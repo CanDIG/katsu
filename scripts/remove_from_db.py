@@ -2,7 +2,7 @@ import sys
 import subprocess
 
 """
-A script that automates that automates the process of deleting the data
+A script that automates the process of deleting the data
 on the table passed as arguments.
 
 Usage:
