@@ -5,7 +5,7 @@ import subprocess
 A script that automates the process of deleting the data
 on the table passed as arguments.
 
-Usage:
+Usage (under active katsu virtualenv):
 python remove_from_db.py Project Individual Dataset
 """
 
