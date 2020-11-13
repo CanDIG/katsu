@@ -6,7 +6,7 @@ A script that automates the process of deleting the data
 on the table passed as arguments.
 
 Usage:
-python remove_from_db.py Table1 Table2 Table3
+python remove_from_db.py Project Individual Dataset
 """
 
 
