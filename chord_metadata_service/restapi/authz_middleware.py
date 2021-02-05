@@ -13,9 +13,14 @@ class AuthzMiddleware:
 
     def __call__(self, request):
         if request.path == "/api/phenopackets" and request.method == "GET":
+            tokens = {}
+            for header in request.headers:
+                if header.startswith(("X-CANDIG-LOCAL", "X-CANDIG-DAC", "X-CANDIG-FED", "X-CANDIG-EXT")):
+                    tokens[header] = request.headers[header]
+
             request_body = {
-                "user_tokens": [],
-                "path": [request.path],
+                "user_tokens": tokens,
+                "path": request.path,
                 "method": request.method
             }
 
