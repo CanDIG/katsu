@@ -15,7 +15,8 @@ class AuthzMiddleware:
         if request.path == "/api/phenopackets" and request.method == "GET":
             tokens = {}
             for header in request.headers:
-                if header.startswith(("X-CANDIG-LOCAL", "X-CANDIG-DAC", "X-CANDIG-FED", "X-CANDIG-EXT")):
+                header_all_caps = header.upper()
+                if header_all_caps.startswith(("X-CANDIG-LOCAL-", "X-CANDIG-DAC-", "X-CANDIG-FED-", "X-CANDIG-EXT-")):
                     tokens[header] = request.headers[header]
 
             request_body = {
