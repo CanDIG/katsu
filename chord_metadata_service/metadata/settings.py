@@ -70,7 +70,6 @@ DRS_URL = os.environ.get("DRS_URL", f"http+unix://{NGINX_INTERNAL_SOCKET}/api/dr
 
 # Candig-specific settings
 
-INSIDE_CANDIG = os.environ.get("INSIDE_CANDIG", "false").lower() == "true"
 CANDIG_OPA_URL = os.environ.get("CANDIG_OPA_URL")
 
 # Application definition
@@ -109,7 +108,6 @@ MIDDLEWARE = [
     'bento_lib.auth.django_remote_user.BentoRemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'chord_metadata_service.restapi.middleware.CandigAuthzMiddleware',
     'chord_metadata_service.restapi.authz_middleware.AuthzMiddleware'
 ]
 
