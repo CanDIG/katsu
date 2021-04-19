@@ -8,9 +8,7 @@ from chord_metadata_service.patients import api_views as individual_views
 from chord_metadata_service.phenopackets import api_views as phenopacket_views
 from chord_metadata_service.resources import api_views as resources_views
 
-
 __all__ = ["router", "urlpatterns"]
-
 
 router = routers.DefaultRouter(trailing_slash=False)
 
@@ -24,7 +22,7 @@ router.register(r'tables', chord_views.TableViewSet)
 router.register(r'experiments', experiment_views.ExperimentViewSet)
 
 # Patients app urls
-router.register(r'individuals', individual_views.IndividualViewSet)
+router.register(r'individuals', individual_views.IndividualViewSet, basename="individuals")
 
 # Phenopackets app urls
 router.register(r'phenotypicfeatures', phenopacket_views.PhenotypicFeatureViewSet)
@@ -35,7 +33,7 @@ router.register(r'variants', phenopacket_views.VariantViewSet)
 router.register(r'diseases', phenopacket_views.DiseaseViewSet)
 router.register(r'metadata', phenopacket_views.MetaDataViewSet)
 router.register(r'biosamples', phenopacket_views.BiosampleViewSet)
-router.register(r'phenopackets', phenopacket_views.PhenopacketViewSet)
+router.register(r'phenopackets', phenopacket_views.PhenopacketViewSet, basename="phenopackets")
 router.register(r'genomicinterpretations', phenopacket_views.GenomicInterpretationViewSet)
 router.register(r'diagnoses', phenopacket_views.DiagnosisViewSet)
 router.register(r'interpretations', phenopacket_views.InterpretationViewSet)
@@ -64,4 +62,7 @@ urlpatterns = [
          name="experiment-schema"),
     path('mcode_schema', mcode_views.get_mcode_schema,
          name="mcode-schema"),
+    # overview
+    path('overview', phenopacket_views.phenopackets_overview,
+         name="overview"),
 ]

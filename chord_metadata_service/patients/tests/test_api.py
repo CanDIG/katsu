@@ -1,4 +1,7 @@
 import json
+import csv
+import io
+from django.test import override_settings
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -18,7 +21,7 @@ class CreateIndividualTest(APITestCase):
         """ POST a new individual. """
 
         response = self.client.post(
-            reverse('individual-list'),
+            reverse('individuals-list'),
             data=json.dumps(self.valid_payload),
             content_type='application/json'
         )
@@ -30,7 +33,7 @@ class CreateIndividualTest(APITestCase):
         """ POST a new individual with invalid data. """
 
         invalid_response = self.client.post(
-            reverse('individual-list'),
+            reverse('individuals-list'),
             data=json.dumps(self.invalid_payload),
             content_type='application/json'
         )
@@ -70,7 +73,7 @@ class UpdateIndividualTest(APITestCase):
 
         response = self.client.put(
             reverse(
-                'individual-detail',
+                'individuals-detail',
                 kwargs={'pk': self.individual_one.id}
                 ),
             data=json.dumps(self.put_valid_payload),
@@ -83,7 +86,7 @@ class UpdateIndividualTest(APITestCase):
 
         response = self.client.put(
             reverse(
-                'individual-detail',
+                'individuals-detail',
                 kwargs={'pk': self.individual_one.id}
                 ),
             data=json.dumps(self.invalid_payload),
@@ -103,7 +106,7 @@ class DeleteIndividualTest(APITestCase):
 
         response = self.client.delete(
             reverse(
-                'individual-detail',
+                'individuals-detail',
                 kwargs={'pk': self.individual_one.id}
                 )
             )
@@ -114,8 +117,28 @@ class DeleteIndividualTest(APITestCase):
 
         response = self.client.delete(
             reverse(
-                'individual-detail',
+                'individuals-detail',
                 kwargs={'pk': 'patient:what'}
                 )
             )
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+
+class IndividualCSVRendererTest(APITestCase):
+    """ Test csv export for Individuals. """
+
+    def setUp(self):
+        self.individual_one = Individual.objects.create(**c.VALID_INDIVIDUAL)
+
+    @override_settings(CANDIG_OPA_URL=None)
+    def test_csv_export(self):
+        get_resp = self.client.get('/api/individuals?format=csv')
+        self.assertEqual(get_resp.status_code, status.HTTP_200_OK)
+        content = get_resp.content.decode('utf-8')
+        cvs_reader = csv.reader(io.StringIO(content))
+        body = list(cvs_reader)
+        self.assertEqual(body[1][1], c.VALID_INDIVIDUAL['sex'])
+        headers = body.pop(0)
+        for column in ['id', 'sex', 'date of birth', 'taxonomy', 'karyotypic sex',
+                       'race', 'ethnicity', 'age', 'diseases', 'created', 'updated']:
+            self.assertIn(column, [column_name.lower() for column_name in headers])

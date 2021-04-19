@@ -1,6 +1,6 @@
 # Katsu Metadata Service
 
-![Build Status](https://travis-ci.com/bento-platform/katsu.svg?branch=master)
+[![Build Status](https://travis-ci.com/CanDIG/katsu.svg?branch=develop)](https://travis-ci.com/CanDIG/katsu)
 [![codecov](https://codecov.io/gh/bento-platform/katsu/branch/master/graph/badge.svg)](https://codecov.io/gh/bento-platform/katsu)
 
 ## License
@@ -123,8 +123,7 @@ When ran inside the CanDIG context, to properly implement authorization you'll
 have to do the following:
 
 1. Make sure the CHORD_PERMISSIONS is set to "false"
-2. Set INSIDE_CANDIG to "true"
-3. Provide the URL for the OPA instance in CANDIG_OPA_URL
+2. Provide the URL for the OPA instance in CANDIG_OPA_URL
 
 ## Developing
 

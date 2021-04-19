@@ -62,7 +62,6 @@ APPEND_SLASH = False
 
 # Candig-specific settings
 
-INSIDE_CANDIG = os.environ.get("INSIDE_CANDIG", "false").lower() == "true"
 CANDIG_OPA_URL = os.environ.get("CANDIG_OPA_URL")
 
 # Application definition
@@ -93,6 +92,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'chord_metadata_service.restapi.preflight_req_middleware.PreflightRequestMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -100,10 +100,12 @@ MIDDLEWARE = [
     'bento_lib.auth.django_remote_user.BentoRemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'chord_metadata_service.restapi.middleware.CandigAuthzMiddleware',
+    'chord_metadata_service.restapi.authz_middleware.AuthzMiddleware'
 ]
 
 CORS_ALLOWED_ORIGINS = []
+
+CORS_PREFLIGHT_MAX_AGE = 0
 
 ROOT_URLCONF = 'chord_metadata_service.metadata.urls'
 
