@@ -252,8 +252,7 @@ def phenopackets_overview(_request):
     get:
     Overview of all Phenopackets in the database
     """
-    phenopackets = m.Phenopacket.objects.all().prefetch_related(*PHENOPACKET_PREFETCH).select_related(
-        *PHENOPACKET_SELECT_REL)
+    phenopackets = m.Phenopacket.objects.all().prefetch_related(*PHENOPACKET_PREFETCH)
 
     diseases_counter = Counter()
     phenotypic_features_counter = Counter()
