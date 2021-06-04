@@ -22,6 +22,7 @@
         * [Phenopacket Commands](#phenopacket-commands)
      * [Accessing the Django Shell from inside a Bento Container](#accessing-the-django-shell-from-inside-a-bento-container)
 
+
 ## License
 
 The majority of the Katsu Metadata Service is licensed under the LGPLv3 license; copyright (c) 2019-2020 the Canadian
