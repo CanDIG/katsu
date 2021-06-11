@@ -140,6 +140,10 @@ BIOSAMPLE_PREFETCH = (
     "variants",
 )
 
+BIOSAMPLE_SELECT_REL = (
+    "procedure",
+)
+
 
 class BiosampleViewSet(ExtendedPhenopacketsModelViewSet):
     """
@@ -149,7 +153,10 @@ class BiosampleViewSet(ExtendedPhenopacketsModelViewSet):
     post:
     Create a new biosample
     """
-    queryset = m.Biosample.objects.all().prefetch_related(*BIOSAMPLE_PREFETCH).order_by("id")
+    queryset = m.Biosample.objects.all()\
+        .prefetch_related(*BIOSAMPLE_PREFETCH)\
+        .select_related(*BIOSAMPLE_SELECT_REL)\
+        .order_by("id")
     serializer_class = s.BiosampleSerializer
     filter_backends = [DjangoFilterBackend]
     filter_class = f.BiosampleFilter
@@ -166,6 +173,11 @@ PHENOPACKET_PREFETCH = (
     "variants",
 )
 
+PHENOPACKET_SELECT_REL = (
+    "subject",
+    "meta_data",
+)
+
 
 class PhenopacketViewSet(ExtendedPhenopacketsModelViewSet):
     """
@@ -176,6 +188,13 @@ class PhenopacketViewSet(ExtendedPhenopacketsModelViewSet):
     Create a new phenopacket
 
     """
+<<<<<<< HEAD
+=======
+    queryset = m.Phenopacket.objects.all()\
+        .prefetch_related(*PHENOPACKET_PREFETCH)\
+        .select_related(*PHENOPACKET_SELECT_REL)\
+        .order_by("id")
+>>>>>>> v1.3.7
     serializer_class = s.PhenopacketSerializer
     filter_backends = [DjangoFilterBackend]
     filter_class = f.PhenopacketFilter
