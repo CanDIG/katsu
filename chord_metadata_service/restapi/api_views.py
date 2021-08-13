@@ -22,8 +22,6 @@ def service_info(_request):
     return Response(SERVICE_INFO)
 
 
-# Cache page for the requested url for 2 hours
-@cache_page(60 * 60 * 2)
 @api_view(["GET"])
 @permission_classes([OverrideOrSuperUserOnly])
 def overview(_request):
