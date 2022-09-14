@@ -341,6 +341,6 @@ SPECTACULAR_SETTINGS = {
     'SORT_OPERATION_PARAMETERS': False,
     # modify and override the SwaggerUI template
     'SWAGGER_UI_SETTINGS': {
-        'docExpansion': 'none', # collapse all endpoints by default
+        'docExpansion': 'none',  # collapse all endpoints by default
     },
 }
