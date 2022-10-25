@@ -63,18 +63,19 @@ AUTH_OVERRIDE = not CHORD_PERMISSIONS
 # in DRF API discovery pages, or swagger UI)
 FORCE_SCRIPT_NAME = os.getenv("CHORD_METADATA_SUB_PATH", "")
 
-# Allowed hosts - TODO: Derive from CHORD_URL
-HOST_CONTAINER_NAME = os.environ.get("HOST_CONTAINER_NAME", "")
+# # Allowed hosts - TODO: Derive from CHORD_URL
+# HOST_CONTAINER_NAME = os.environ.get("HOST_CONTAINER_NAME", "")
 
-CHORD_HOST = urlparse(CHORD_URL or "").netloc
-logging.info(f"Chord debug: {DEBUG}")
-logging.info(f"Chord host: {CHORD_HOST}")
-ALLOWED_HOSTS = [CHORD_HOST or "localhost"]
-if DEBUG:
-    ALLOWED_HOSTS = list(set(ALLOWED_HOSTS + ["localhost", "127.0.0.1", "[::1]"]))
-if HOST_CONTAINER_NAME != "":
-    ALLOWED_HOSTS = list(set(ALLOWED_HOSTS + [HOST_CONTAINER_NAME]))
-logging.info(f"Allowed hosts: {ALLOWED_HOSTS}")
+# CHORD_HOST = urlparse(CHORD_URL or "").netloc
+# logging.info(f"Chord debug: {DEBUG}")
+# logging.info(f"Chord host: {CHORD_HOST}")
+# ALLOWED_HOSTS = [CHORD_HOST or "localhost"]
+# if DEBUG:
+#     ALLOWED_HOSTS = list(set(ALLOWED_HOSTS + ["localhost", "127.0.0.1", "[::1]"]))
+# if HOST_CONTAINER_NAME != "":
+#     ALLOWED_HOSTS = list(set(ALLOWED_HOSTS + [HOST_CONTAINER_NAME]))
+# logging.info(f"Allowed hosts: {ALLOWED_HOSTS}")
+ALLOWED_HOSTS = ["*"]
 
 APPEND_SLASH = False
 
