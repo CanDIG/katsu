@@ -35,7 +35,7 @@
 #   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-from chord_metadata_service.restapi.description_utils import EXTRA_PROPERTIES
+from katsu_service.restapi.description_utils import EXTRA_PROPERTIES
 
 
 __all__ = ["RESOURCE"]

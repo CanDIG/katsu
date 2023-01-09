@@ -1,7 +1,7 @@
 from django.conf import settings
 from authx.auth import get_opa_datasets
 
-from chord_metadata_service.mohpackets.models import Program
+from katsu_service.mohpackets.models import Program
 
 """
     This module contains various utility functions.

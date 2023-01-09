@@ -5,9 +5,9 @@ from django.db.models import F
 
 from .export_utils import ExportError
 
-from chord_metadata_service.chord.models import Dataset
-from chord_metadata_service.patients.models import Individual
-from chord_metadata_service.phenopackets import models as pm
+from katsu_service.katsu.models import Dataset
+from katsu_service.patients.models import Individual
+from katsu_service.phenopackets import models as pm
 
 __all__ = [
     "study_export",

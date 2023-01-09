@@ -135,7 +135,7 @@ def schema_list(schema):
 
     return {
         "$schema": "http://json-schema.org/draft-07/schema#",
-        "$id": "chord_metadata_service:schema_list",
+        "$id": "katsu_service:schema_list",
         "title": "Schema list",
         "type": "array",
         "items": schema

@@ -4,8 +4,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from chord_metadata_service.chord.data_types import DATA_TYPE_EXPERIMENT, DATA_TYPE_PHENOPACKET
-from chord_metadata_service.chord.models import Dataset, TableOwnership, Table
+from katsu_service.katsu.data_types import DATA_TYPE_EXPERIMENT, DATA_TYPE_PHENOPACKET
+from katsu_service.katsu.models import Dataset, TableOwnership, Table
 
 
 class Command(BaseCommand):
@@ -24,8 +24,8 @@ class Command(BaseCommand):
         with transaction.atomic():
             to = TableOwnership.objects.create(
                 table_id=str(uuid.uuid4()),
-                service_id=settings.CHORD_SERVICE_ID,
-                service_artifact=settings.CHORD_SERVICE_ARTIFACT,
+                service_id=settings.KATSU_SERVICE_ID,
+                service_artifact=settings.KATSU_SERVICE_ARTIFACT,
                 dataset=Dataset.objects.get(identifier=options["dataset"]),
             )
 

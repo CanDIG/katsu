@@ -13,7 +13,7 @@ import logging
 from django.core.wsgi import get_wsgi_application
 from django.conf import settings
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chord_metadata_service.metadata.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'katsu_service.metadata.settings')
 
 logger = logging.getLogger(__name__)
 

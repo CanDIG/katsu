@@ -16,13 +16,13 @@ def main():
         return
 
     script = (
-        "from chord_metadata_service.chord.models import *;"
-        "from chord_metadata_service.experiments.models import *;"
-        "from chord_metadata_service.mcode.models import *;"
-        "from chord_metadata_service.patients.models import *;"
-        "from chord_metadata_service.phenopackets.models import *;"
-        "from chord_metadata_service.resources.models import *;"
-        "from chord_metadata_service.restapi.models import *;"
+        "from katsu_service.katsu.models import *;"
+        "from katsu_service.experiments.models import *;"
+        "from katsu_service.mcode.models import *;"
+        "from katsu_service.patients.models import *;"
+        "from katsu_service.phenopackets.models import *;"
+        "from katsu_service.resources.models import *;"
+        "from katsu_service.restapi.models import *;"
     )
 
     for table in sys.argv[1:]:

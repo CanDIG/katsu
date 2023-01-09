@@ -3,7 +3,7 @@ Public API
 
 There are several public APIs to return data overview and perform a search that returns only objects counts.
 The implementation of public APIs relies on a project customized configuration file (config.json) that must be placed in the base directory.
-Currently, there is an :code:`example.config.json` located  in :code:`/katsu/chord_metadata_service` directory which is set to be the project base directory.
+Currently, there is an :code:`example.config.json` located  in :code:`/katsu/katsu_service` directory which is set to be the project base directory.
 The file can be copied, renamed to :code:`config.json` and modified.
 
 The :code:`config.json` file contains fields that data providers would like to open for public access.

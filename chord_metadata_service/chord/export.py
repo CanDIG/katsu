@@ -1,6 +1,6 @@
 import logging
-from chord_metadata_service.chord.ingest import WORKFLOW_CBIOPORTAL
-from chord_metadata_service.chord.models import Dataset, Project, Table
+from katsu_service.katsu.ingest import WORKFLOW_CBIOPORTAL
+from katsu_service.katsu.models import Dataset, Project, Table
 from .export_cbio import study_export as export_cbioportal_workflow
 
 logger = logging.getLogger(__name__)

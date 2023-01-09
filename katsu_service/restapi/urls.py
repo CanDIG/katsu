@@ -1,29 +1,29 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from chord_metadata_service.chord import api_views as chord_views
-from chord_metadata_service.experiments import api_views as experiment_views
-from chord_metadata_service.patients import api_views as individual_views
-from chord_metadata_service.phenopackets import api_views as phenopacket_views
-from chord_metadata_service.phenopackets.autocomplete_views import (
+from katsu_service.katsu import api_views as katsu_views
+from katsu_service.experiments import api_views as experiment_views
+from katsu_service.patients import api_views as individual_views
+from katsu_service.phenopackets import api_views as phenopacket_views
+from katsu_service.phenopackets.autocomplete_views import (
     DiseaseTermAutocomplete,
     PhenotypicFeatureTypeAutocomplete,
     BiosampleSampledTissueAutocomplete
 )
-from chord_metadata_service.resources import api_views as resources_views
+from katsu_service.resources import api_views as resources_views
 from .api_views import overview, public_search_fields, public_overview
-from chord_metadata_service.restapi.routers import BatchListRouter
+from katsu_service.restapi.routers import BatchListRouter
 
 __all__ = ["router", "batch_router", "urlpatterns"]
 
 router = routers.DefaultRouter(trailing_slash=False)
 batch_router = BatchListRouter()
 
-# CHORD app urls
-router.register(r'projects', chord_views.ProjectViewSet)
-router.register(r'datasets', chord_views.DatasetViewSet, basename="datasets")
-router.register(r'table_ownership', chord_views.TableOwnershipViewSet)
-router.register(r'tables', chord_views.TableViewSet)
+# KATSU app urls
+router.register(r'projects', katsu_views.ProjectViewSet)
+router.register(r'datasets', katsu_views.DatasetViewSet, basename="datasets")
+router.register(r'table_ownership', katsu_views.TableOwnershipViewSet)
+router.register(r'tables', katsu_views.TableViewSet)
 
 # Experiments app urls
 router.register(r'experiments', experiment_views.ExperimentViewSet)
@@ -55,8 +55,8 @@ urlpatterns = [
     path('', include(router.urls)),
     path('', include(batch_router.urls)),
     # apps schemas
-    path('chord_phenopacket_schema', phenopacket_views.get_chord_phenopacket_schema,
-         name="chord-phenopacket-schema"),
+    path('katsu_phenopacket_schema', phenopacket_views.get_katsu_phenopacket_schema,
+         name="katsu-phenopacket-schema"),
     path('experiment_schema', experiment_views.get_experiment_schema,
          name="experiment-schema"),
     # overview

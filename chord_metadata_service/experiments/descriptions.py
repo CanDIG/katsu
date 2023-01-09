@@ -3,7 +3,7 @@
 # Portions of this text (c) Machine-Actionable Metadata Models for MIRcat (https://github.com/FAIRsharing/mircat)
 # Licensed under the BSD 3-Clause License
 
-from chord_metadata_service.restapi.description_utils import EXTRA_PROPERTIES, ontology_class
+from katsu_service.restapi.description_utils import EXTRA_PROPERTIES, ontology_class
 
 EXPERIMENT = {
     "description": "Experiment related metadata.",

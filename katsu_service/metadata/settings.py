@@ -41,37 +41,37 @@ SECRET_KEY = os.environ.get(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("CHORD_DEBUG", "true").lower() == "true"
+DEBUG = os.environ.get("KATSU_DEBUG", "true").lower() == "true"
 
 
-# CHORD-specific settings
+# KATSU-specific settings
 
-CHORD_URL = os.environ.get(
-    "CHORD_URL"
+KATSU_URL = os.environ.get(
+    "KATSU_URL"
 )  # Leave None if not specified, for running in other contexts
 
-# SECURITY WARNING: Don't run with CHORD_PERMISSIONS turned off in production,
+# SECURITY WARNING: Don't run with KATSU_PERMISSIONS turned off in production,
 # unless an alternative permissions system is in place.
-CHORD_PERMISSIONS = (
-    os.environ.get("CHORD_PERMISSIONS", str(not DEBUG)).lower() == "true"
+KATSU_PERMISSIONS = (
+    os.environ.get("KATSU_PERMISSIONS", str(not DEBUG)).lower() == "true"
 )
 
-CHORD_SERVICE_ARTIFACT = "metadata"
-CHORD_SERVICE_TYPE_NO_VER = f"ca.c3g.chord:{CHORD_SERVICE_ARTIFACT}"
-CHORD_SERVICE_TYPE = f"{CHORD_SERVICE_TYPE_NO_VER}:{__version__}"
-CHORD_SERVICE_ID = os.environ.get("SERVICE_ID", CHORD_SERVICE_TYPE_NO_VER)
+KATSU_SERVICE_ARTIFACT = "metadata"
+KATSU_SERVICE_TYPE_NO_VER = f"ca.c3g.katsu:{KATSU_SERVICE_ARTIFACT}"
+KATSU_SERVICE_TYPE = f"{KATSU_SERVICE_TYPE_NO_VER}:{__version__}"
+KATSU_SERVICE_ID = os.environ.get("SERVICE_ID", KATSU_SERVICE_TYPE_NO_VER)
 
 # SECURITY WARNING: don't run with AUTH_OVERRIDE turned on in production!
-AUTH_OVERRIDE = not CHORD_PERMISSIONS
+AUTH_OVERRIDE = not KATSU_PERMISSIONS
 
 
-# Allowed hosts - TODO: Derive from CHORD_URL
+# Allowed hosts - TODO: Derive from KATSU_URL
 HOST_CONTAINER_NAME = os.environ.get("HOST_CONTAINER_NAME", "")
 
-# CHORD_HOST = urlparse(CHORD_URL or "").netloc
-# logging.info(f"Chord debug: {DEBUG}")
-# logging.info(f"Chord host: {CHORD_HOST}")
-# ALLOWED_HOSTS = [CHORD_HOST or "localhost"]
+# KATSU_HOST = urlparse(KATSU_URL or "").netloc
+# logging.info(f"Katsu debug: {DEBUG}")
+# logging.info(f"Katsu host: {KATSU_HOST}")
+# ALLOWED_HOSTS = [KATSU_HOST or "localhost"]
 # if DEBUG:
 #     ALLOWED_HOSTS = list(set(ALLOWED_HOSTS + ["localhost", "127.0.0.1", "[::1]"]))
 # if HOST_CONTAINER_NAME != "":
@@ -87,7 +87,7 @@ SERVICE_TEMP = os.environ.get("SERVICE_TEMP")
 
 #  - DRS URL - by default in Bento Singularity context, use internal NGINX DRS (to avoid auth hassles)
 NGINX_INTERNAL_SOCKET = quote(
-    os.environ.get("NGINX_INTERNAL_SOCKET", "/chord/tmp/nginx_internal.sock"), safe=""
+    os.environ.get("NGINX_INTERNAL_SOCKET", "/katsu/tmp/nginx_internal.sock"), safe=""
 )
 DRS_URL = (
     os.environ.get("DRS_URL", f"http+unix://{NGINX_INTERNAL_SOCKET}/api/drs")
@@ -117,13 +117,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.postgres",
-    "chord_metadata_service.chord.apps.ChordConfig",
-    "chord_metadata_service.experiments.apps.ExperimentsConfig",
-    "chord_metadata_service.patients.apps.PatientsConfig",
-    "chord_metadata_service.phenopackets.apps.PhenopacketsConfig",
-    "chord_metadata_service.mohpackets.apps.MohpacketsConfig",
-    "chord_metadata_service.resources.apps.ResourcesConfig",
-    "chord_metadata_service.restapi.apps.RestapiConfig",
+    "katsu_service.katsu.apps.KatsuConfig",
+    "katsu_service.experiments.apps.ExperimentsConfig",
+    "katsu_service.patients.apps.PatientsConfig",
+    "katsu_service.phenopackets.apps.PhenopacketsConfig",
+    "katsu_service.mohpackets.apps.MohpacketsConfig",
+    "katsu_service.resources.apps.ResourcesConfig",
+    "katsu_service.restapi.apps.RestapiConfig",
     "corsheaders",
     "django_filters",
     "rest_framework",
@@ -146,7 +146,7 @@ CORS_ALLOWED_ORIGINS = []
 
 CORS_PREFLIGHT_MAX_AGE = 0
 
-ROOT_URLCONF = "chord_metadata_service.metadata.urls"
+ROOT_URLCONF = "katsu_service.metadata.urls"
 
 TEMPLATES = [
     {
@@ -164,7 +164,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "chord_metadata_service.metadata.wsgi.application"
+WSGI_APPLICATION = "katsu_service.metadata.wsgi.application"
 
 LOGGING = {
     "version": 1,
@@ -222,7 +222,7 @@ DATABASES = {
         "PASSWORD": get_secret(os.environ["POSTGRES_PASSWORD_FILE"])
         if "POSTGRES_PASSWORD_FILE" in os.environ
         else os.environ.get("POSTGRES_PASSWORD", "admin"),
-        # Use sockets if we're inside a CHORD container / as a priority
+        # Use sockets if we're inside a Katsu container / as a priority
         "HOST": os.environ.get(
             "POSTGRES_SOCKET_DIR", os.environ.get("POSTGRES_HOST", "localhost")
         ),
@@ -253,7 +253,7 @@ REST_FRAMEWORK = {
         "djangorestframework_camel_case.parser.CamelCaseMultiPartParser",
     ),
     "DEFAULT_PERMISSION_CLASSES": [
-        "chord_metadata_service.chord.permissions.OverrideOrSuperUserOnly"
+        "katsu_service.katsu.permissions.OverrideOrSuperUserOnly"
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
@@ -339,7 +339,7 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
     # Filter out the url patterns we don't want documented
     "PREPROCESSING_HOOKS": [
-        "chord_metadata_service.metadata.hooks.preprocessing_filter_path"
+        "katsu_service.metadata.hooks.preprocessing_filter_path"
     ],
     # Split components into request and response parts where appropriate
     "COMPONENT_SPLIT_REQUEST": True,

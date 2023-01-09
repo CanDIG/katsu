@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import JSONField
 
-from chord_metadata_service.restapi.description_utils import rec_help
+from katsu_service.restapi.description_utils import rec_help
 
 from . import descriptions as d
 

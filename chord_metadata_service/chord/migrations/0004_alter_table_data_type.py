@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('chord', '0003_alter_dataset_acknowledges_and_more'),
+        ('katsu', '0003_alter_dataset_acknowledges_and_more'),
     ]
 
     operations = [

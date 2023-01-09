@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('chord', '0002_auto_20210409_1026'),
+        ('katsu', '0002_auto_20210409_1026'),
     ]
 
     operations = [
@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='dataset',
             name='has_part',
-            field=models.ManyToManyField(blank=True, help_text="A Dataset that is a subset of this Dataset; Datasets declaring the 'hasPart' relationship are considered a collection of Datasets, the aggregation criteria could be included in the 'description' field.", to='chord.dataset'),
+            field=models.ManyToManyField(blank=True, help_text="A Dataset that is a subset of this Dataset; Datasets declaring the 'hasPart' relationship are considered a collection of Datasets, the aggregation criteria could be included in the 'description' field.", to='katsu.dataset'),
         ),
         migrations.AlterField(
             model_name='dataset',

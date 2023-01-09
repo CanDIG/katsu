@@ -1,15 +1,15 @@
 # Individual schemas for validation of JSONField values
 
-from chord_metadata_service.patients.schemas import INDIVIDUAL_SCHEMA
-from chord_metadata_service.resources.schemas import RESOURCE_SCHEMA
-from chord_metadata_service.restapi.schemas import (
+from katsu_service.patients.schemas import INDIVIDUAL_SCHEMA
+from katsu_service.resources.schemas import RESOURCE_SCHEMA
+from katsu_service.restapi.schemas import (
     AGE,
     AGE_RANGE,
     AGE_OR_AGE_RANGE,
     EXTRA_PROPERTIES_SCHEMA,
     ONTOLOGY_CLASS,
 )
-from chord_metadata_service.restapi.schema_utils import tag_ids_and_describe
+from katsu_service.restapi.schema_utils import tag_ids_and_describe
 
 from . import descriptions
 

@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
-from chord_metadata_service.chord.data_types import DATA_TYPE_EXPERIMENT, DATA_TYPE_PHENOPACKET
-from chord_metadata_service.chord.ingest import ingest_experiments_workflow, ingest_phenopacket_workflow
-from chord_metadata_service.chord.models import Table
+from katsu_service.katsu.data_types import DATA_TYPE_EXPERIMENT, DATA_TYPE_PHENOPACKET
+from katsu_service.katsu.ingest import ingest_experiments_workflow, ingest_phenopacket_workflow
+from katsu_service.katsu.models import Table
 
 
 class Command(BaseCommand):

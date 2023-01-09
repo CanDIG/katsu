@@ -12,18 +12,18 @@ from bento_lib.responses import errors
 from .serializers import IndividualSerializer
 from .models import Individual
 from .filters import IndividualFilter
-from chord_metadata_service.phenopackets.api_views import BIOSAMPLE_PREFETCH, PHENOPACKET_PREFETCH
-from chord_metadata_service.restapi.api_renderers import (
+from katsu_service.phenopackets.api_views import BIOSAMPLE_PREFETCH, PHENOPACKET_PREFETCH
+from katsu_service.restapi.api_renderers import (
     FHIRRenderer,
     PhenopacketsRenderer,
     IndividualCSVRenderer,
 )
-from chord_metadata_service.restapi.pagination import LargeResultsSetPagination, BatchResultsSetPagination
-from chord_metadata_service.restapi.utils import (
+from katsu_service.restapi.pagination import LargeResultsSetPagination, BatchResultsSetPagination
+from katsu_service.restapi.utils import (
     get_field_options,
     filter_queryset_field_value
 )
-from chord_metadata_service.restapi.negociation import FormatInPostContentNegotiation
+from katsu_service.restapi.negociation import FormatInPostContentNegotiation
 from drf_spectacular.utils import extend_schema, inline_serializer
 from rest_framework import serializers
 

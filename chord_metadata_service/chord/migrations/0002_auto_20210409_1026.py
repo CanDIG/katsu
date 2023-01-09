@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('chord', '0001_v1_0_0'),
+        ('katsu', '0001_v1_0_0'),
     ]
 
     operations = [

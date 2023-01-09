@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 from tabulate import tabulate
 
-from chord_metadata_service.chord.models import Project, Dataset
+from katsu_service.katsu.models import Project, Dataset
 
 
 class Command(BaseCommand):

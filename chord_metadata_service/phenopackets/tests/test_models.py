@@ -2,8 +2,8 @@ from django.core.exceptions import ValidationError
 from django.db.utils import IntegrityError
 from django.test import TestCase
 
-from chord_metadata_service.resources.tests.constants import VALID_RESOURCE_1, VALID_RESOURCE_2
-from chord_metadata_service.phenopackets.filters import (
+from katsu_service.resources.tests.constants import VALID_RESOURCE_1, VALID_RESOURCE_2
+from katsu_service.phenopackets.filters import (
     filter_ontology,
     filter_extra_properties_datatype,
     PhenotypicFeatureFilter,

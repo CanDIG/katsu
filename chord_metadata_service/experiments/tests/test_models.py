@@ -1,10 +1,10 @@
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
-from chord_metadata_service.patients.models import Individual
-from chord_metadata_service.phenopackets.models import Biosample, Procedure
+from katsu_service.patients.models import Individual
+from katsu_service.phenopackets.models import Biosample, Procedure
 from ..models import Experiment, ExperimentResult, Instrument
-from chord_metadata_service.phenopackets.tests.constants import (
+from katsu_service.phenopackets.tests.constants import (
     VALID_PROCEDURE_1,
     VALID_INDIVIDUAL_1,
     valid_biosample_1

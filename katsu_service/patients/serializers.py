@@ -1,6 +1,6 @@
-from chord_metadata_service.phenopackets.serializers import BiosampleSerializer, SimplePhenopacketSerializer
-from chord_metadata_service.restapi.serializers import GenericSerializer
-from chord_metadata_service.restapi.fhir_utils import fhir_patient
+from katsu_service.phenopackets.serializers import BiosampleSerializer, SimplePhenopacketSerializer
+from katsu_service.restapi.serializers import GenericSerializer
+from katsu_service.restapi.fhir_utils import fhir_patient
 from .models import Individual
 
 

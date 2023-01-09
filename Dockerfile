@@ -38,9 +38,9 @@ ADD ./requirements.txt /app
 ADD ./requirements-dev.txt /app
 RUN pip install -r requirements-dev.txt
 
-COPY . /app/chord_metadata_service
+COPY . /app/katsu_service
 
-WORKDIR /app/chord_metadata_service
+WORKDIR /app/katsu_service
 
 
 ENTRYPOINT ["python", "manage.py", "runserver"]

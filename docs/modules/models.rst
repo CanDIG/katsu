@@ -4,35 +4,35 @@ Models
 Phenopackets service
 --------------------
 
-.. automodule:: chord_metadata_service.phenopackets.models
+.. automodule:: katsu_service.phenopackets.models
     :members:
 
 Patients service
 -------------------
 
-.. automodule:: chord_metadata_service.patients.models
+.. automodule:: katsu_service.patients.models
     :members:
 
 Mcode service
 -------------------
 
-.. automodule:: chord_metadata_service.mcode.models
+.. automodule:: katsu_service.mcode.models
     :members:
 
 Experiments service
 -------------------
 
-.. automodule:: chord_metadata_service.experiments.models
+.. automodule:: katsu_service.experiments.models
     :members:
 
 Resources service
 -------------------
 
-.. automodule:: chord_metadata_service.resources.models
+.. automodule:: katsu_service.resources.models
     :members:
 
-CHORD service
+KATSU service
 -------------------
 
-.. automodule:: chord_metadata_service.chord.models
+.. automodule:: katsu_service.katsu.models
     :members:

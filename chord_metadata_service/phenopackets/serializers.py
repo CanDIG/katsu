@@ -14,10 +14,10 @@ from .models import (
     Diagnosis,
     Interpretation,
 )
-from chord_metadata_service.resources.serializers import ResourceSerializer
-from chord_metadata_service.experiments.serializers import ExperimentSerializer
-from chord_metadata_service.restapi import fhir_utils
-from chord_metadata_service.restapi.serializers import GenericSerializer
+from katsu_service.resources.serializers import ResourceSerializer
+from katsu_service.experiments.serializers import ExperimentSerializer
+from katsu_service.restapi import fhir_utils
+from katsu_service.restapi.serializers import GenericSerializer
 
 
 __all__ = [
@@ -222,7 +222,7 @@ class PhenopacketSerializer(SimplePhenopacketSerializer):
     def to_representation(self, instance):
         # Phenopacket serializer for nested individuals - need to import here to
         # prevent circular import issues.
-        from chord_metadata_service.patients.serializers import IndividualSerializer
+        from katsu_service.patients.serializers import IndividualSerializer
         response = super().to_representation(instance)
         response['subject'] = IndividualSerializer(
             instance.subject,

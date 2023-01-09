@@ -1,15 +1,14 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
-from chord_metadata_service.mohpackets.pagination import StandardResultsSetPagination
-from chord_metadata_service.mohpackets.permissions import CanDIGAdminOrReadOnly
-from chord_metadata_service.mohpackets.utils import get_authorized_datasets
+from katsu_service.mohpackets.pagination import StandardResultsSetPagination
+from katsu_service.mohpackets.permissions import CanDIGAdminOrReadOnly
+from katsu_service.mohpackets.utils import get_authorized_datasets
 from drf_spectacular.utils import extend_schema, inline_serializer
 from rest_framework import serializers
 from rest_framework.decorators import api_view
 
-
-from chord_metadata_service.mohpackets.filters import (
+from katsu_service.mohpackets.filters import (
     ProgramFilter,
     DonorFilter,
     SpecimenFilter,
@@ -25,7 +24,7 @@ from chord_metadata_service.mohpackets.filters import (
     BiomarkerFilter,
     ComorbidityFilter,
 )
-from chord_metadata_service.mohpackets.serializers import (
+from katsu_service.mohpackets.serializers import (
     ProgramSerializer,
     DonorSerializer,
     SpecimenSerializer,
@@ -41,7 +40,7 @@ from chord_metadata_service.mohpackets.serializers import (
     BiomarkerSerializer,
     ComorbiditySerializer,
 )
-from chord_metadata_service.mohpackets.models import (
+from katsu_service.mohpackets.models import (
     Program,
     Donor,
     Specimen,

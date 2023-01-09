@@ -1,4 +1,4 @@
-CHORD API
+KATSU API
 =========
 
 Data types endpoints

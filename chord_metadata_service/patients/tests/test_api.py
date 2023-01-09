@@ -6,9 +6,9 @@ from django.urls import reverse
 from django.test import override_settings
 from rest_framework import status
 from rest_framework.test import APITestCase
-from chord_metadata_service.patients.models import Individual
-from chord_metadata_service.restapi.tests.constants import CONFIG_PUBLIC_TEST, CONFIG_PUBLIC_TEST_SEARCH_SEX_ONLY
-from chord_metadata_service.restapi.utils import iso_duration_to_years
+from katsu_service.patients.models import Individual
+from katsu_service.restapi.tests.constants import CONFIG_PUBLIC_TEST, CONFIG_PUBLIC_TEST_SEARCH_SEX_ONLY
+from katsu_service.restapi.utils import iso_duration_to_years
 
 from . import constants as c
 

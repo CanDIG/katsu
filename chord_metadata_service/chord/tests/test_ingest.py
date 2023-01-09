@@ -3,22 +3,22 @@ import uuid
 from django.test import TestCase
 from dateutil.parser import isoparse
 
-from chord_metadata_service.chord.data_types import DATA_TYPE_PHENOPACKET, DATA_TYPE_EXPERIMENT
-from chord_metadata_service.chord.models import Project, Dataset, TableOwnership, Table
+from katsu_service.katsu.data_types import DATA_TYPE_PHENOPACKET, DATA_TYPE_EXPERIMENT
+from katsu_service.katsu.models import Project, Dataset, TableOwnership, Table
 # noinspection PyProtectedMember
-from chord_metadata_service.chord.ingest import (
+from katsu_service.katsu.ingest import (
     WORKFLOW_PHENOPACKETS_JSON,
     create_phenotypic_feature,
     WORKFLOW_INGEST_FUNCTION_MAP,
     WORKFLOW_EXPERIMENTS_JSON,
     schema_validation
 )
-from chord_metadata_service.phenopackets.models import PhenotypicFeature, Phenopacket
-from chord_metadata_service.phenopackets.schemas import PHENOPACKET_SCHEMA
-from chord_metadata_service.resources.models import Resource
-from chord_metadata_service.experiments.models import Experiment, ExperimentResult, Instrument
-from chord_metadata_service.experiments.schemas import EXPERIMENT_SCHEMA
-from chord_metadata_service.restapi.utils import iso_duration_to_years
+from katsu_service.phenopackets.models import PhenotypicFeature, Phenopacket
+from katsu_service.phenopackets.schemas import PHENOPACKET_SCHEMA
+from katsu_service.resources.models import Resource
+from katsu_service.experiments.models import Experiment, ExperimentResult, Instrument
+from katsu_service.experiments.schemas import EXPERIMENT_SCHEMA
+from katsu_service.restapi.utils import iso_duration_to_years
 
 
 from .constants import VALID_DATA_USE_1

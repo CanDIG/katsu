@@ -1,8 +1,8 @@
 import logging
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from chord_metadata_service.patients.models import Individual
-from chord_metadata_service.patients.indices import (
+from katsu_service.patients.models import Individual
+from katsu_service.patients.indices import (
     build_individual_index,
     remove_individual_index
 )

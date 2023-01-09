@@ -1,5 +1,5 @@
-from chord_metadata_service.restapi.schema_utils import customize_schema, tag_ids_and_describe
-from chord_metadata_service.restapi.schemas import ONTOLOGY_CLASS, AGE_OR_AGE_RANGE, EXTRA_PROPERTIES_SCHEMA
+from katsu_service.restapi.schema_utils import customize_schema, tag_ids_and_describe
+from katsu_service.restapi.schemas import ONTOLOGY_CLASS, AGE_OR_AGE_RANGE, EXTRA_PROPERTIES_SCHEMA
 
 from .descriptions import INDIVIDUAL
 
@@ -9,7 +9,7 @@ COMORBID_CONDITION = customize_schema(
     second_typeof=ONTOLOGY_CLASS,
     first_property="clinical_status",
     second_property="code",
-    schema_id="chord_metadata_service:comorbid_condition_schema",
+    schema_id="katsu_service:comorbid_condition_schema",
     title="Comorbid Condition schema",
     description="Comorbid condition schema."
 )

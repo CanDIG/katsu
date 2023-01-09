@@ -1,11 +1,11 @@
 from . import models, schemas
-from chord_metadata_service.restapi.schema_utils import (
+from katsu_service.restapi.schema_utils import (
     search_optional_eq,
     search_optional_str,
     tag_schema_with_search_properties,
     merge_schema_dictionaries
 )
-from chord_metadata_service.restapi.search_schemas import ONTOLOGY_SEARCH_SCHEMA
+from katsu_service.restapi.search_schemas import ONTOLOGY_SEARCH_SCHEMA
 
 __all__ = ["EXPERIMENT_SEARCH_SCHEMA"]
 

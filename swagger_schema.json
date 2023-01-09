@@ -1932,17 +1932,17 @@
         ]
       }
     },
-    "/api/chord_phenopacket_schema": {
+    "/api/katsu_phenopacket_schema": {
       "get": {
-        "operationId": "api_chord_phenopacket_schema_list",
+        "operationId": "api_katsu_phenopacket_schema_list",
         "responses": {
           "200": {
             "description": ""
           }
         },
         "parameters": [],
-        "description": "Chord phenopacket schema that can be shared with data providers.",
-        "summary": "Chord phenopacket schema that can be shared with data providers.",
+        "description": "Katsu phenopacket schema that can be shared with data providers.",
+        "summary": "Katsu phenopacket schema that can be shared with data providers.",
         "tags": [
           "api"
         ]

@@ -7,20 +7,20 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from chord_metadata_service.patients.models import Individual
-from chord_metadata_service.phenopackets.models import Biosample, MetaData, Phenopacket, Procedure, PhenotypicFeature
-from chord_metadata_service.experiments.models import Experiment, ExperimentResult, Instrument
-from chord_metadata_service.phenopackets.tests.constants import (
+from katsu_service.patients.models import Individual
+from katsu_service.phenopackets.models import Biosample, MetaData, Phenopacket, Procedure, PhenotypicFeature
+from katsu_service.experiments.models import Experiment, ExperimentResult, Instrument
+from katsu_service.phenopackets.tests.constants import (
     VALID_PROCEDURE_1,
     valid_biosample_1,
     valid_biosample_2,
     VALID_META_DATA_1,
 )
-from chord_metadata_service.experiments.tests.constants import (
+from katsu_service.experiments.tests.constants import (
     valid_experiment, valid_experiment_result, valid_instrument
 )
 
-from chord_metadata_service.chord.tests.es_mocks import SEARCH_SUCCESS
+from katsu_service.katsu.tests.es_mocks import SEARCH_SUCCESS
 from .constants import (
     VALID_PROJECT_1,
     valid_dataset_1,
@@ -105,12 +105,12 @@ class TableTest(APITestCase):
         r = self.client.post(reverse("table-list"), data=json.dumps(tr), content_type="application/json")
         self.table = r.json()
 
-    def test_chord_table_list(self):
+    def test_katsu_table_list(self):
         # No data type specified
-        r = self.client.get(reverse("chord-table-list"))
+        r = self.client.get(reverse("katsu-table-list"))
         self.assertEqual(r.status_code, status.HTTP_400_BAD_REQUEST)
 
-        r = self.client.get(reverse("chord-table-list"), {"data-type": DATA_TYPE_PHENOPACKET})
+        r = self.client.get(reverse("katsu-table-list"), {"data-type": DATA_TYPE_PHENOPACKET})
         self.assertEqual(r.status_code, status.HTTP_200_OK)
         c = r.json()
         self.assertEqual(len(c), 1)
@@ -443,7 +443,7 @@ class SearchTest(APITestCase):
             self.assertEqual(len(c["results"]), 1)
             self.assertIn("patient:1", [phenopacket["subject"]["id"] for phenopacket in c["results"]])
 
-    @patch('chord_metadata_service.chord.views_search.es')
+    @patch('katsu_service.katsu.views_search.es')
     def test_fhir_search(self, mocked_es):
         mocked_es.search.return_value = SEARCH_SUCCESS
         # Valid search with result
@@ -461,7 +461,7 @@ class SearchTest(APITestCase):
                 "data_type": DATA_TYPE_PHENOPACKET
             })
 
-    @patch('chord_metadata_service.chord.views_search.es')
+    @patch('katsu_service.katsu.views_search.es')
     def test_private_fhir_search(self, mocked_es):
         mocked_es.search.return_value = SEARCH_SUCCESS
         # Valid search with result

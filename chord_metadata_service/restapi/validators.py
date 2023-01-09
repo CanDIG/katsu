@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from jsonschema import Draft7Validator, FormatChecker
-from chord_metadata_service.restapi.schemas import (
+from katsu_service.restapi.schemas import (
     AGE_OR_AGE_RANGE,
     ONTOLOGY_CLASS,
     ONTOLOGY_CLASS_LIST,
@@ -26,7 +26,7 @@ class JsonSchemaValidator:
 
     def deconstruct(self):
         return (
-            'chord_metadata_service.restapi.validators.JsonSchemaValidator',
+            'katsu_service.restapi.validators.JsonSchemaValidator',
             [self.schema],
             {"formats": self.formats}
         )

@@ -1,11 +1,11 @@
 from django.db import models
 from django.db.models import CharField, JSONField
 from django.contrib.postgres.fields import ArrayField
-from chord_metadata_service.restapi.models import IndexableMixin
-from chord_metadata_service.restapi.description_utils import rec_help
-from chord_metadata_service.restapi.validators import ontology_list_validator, key_value_validator
-from chord_metadata_service.phenopackets.models import Biosample
-import chord_metadata_service.experiments.descriptions as d
+from katsu_service.restapi.models import IndexableMixin
+from katsu_service.restapi.description_utils import rec_help
+from katsu_service.restapi.validators import ontology_list_validator, key_value_validator
+from katsu_service.phenopackets.models import Biosample
+import katsu_service.experiments.descriptions as d
 
 __all__ = ["Experiment", "ExperimentResult", "Instrument"]
 
@@ -49,7 +49,7 @@ class Experiment(models.Model, IndexableMixin):
                           blank=True, default=list)
     # SAMPLE
     biosample = models.ForeignKey(Biosample, on_delete=models.CASCADE, help_text=rec_help(d.EXPERIMENT, "biosample"))
-    table = models.ForeignKey("chord.Table", on_delete=models.CASCADE, blank=True, null=True)  # TODO: Help text
+    table = models.ForeignKey("katsu.Table", on_delete=models.CASCADE, blank=True, null=True)  # TODO: Help text
     # EXPERIMENT RESULT
     experiment_results = models.ManyToManyField("ExperimentResult", blank=True,
                                                 help_text=rec_help(d.EXPERIMENT, "experiment_results"))

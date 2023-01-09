@@ -4,8 +4,8 @@ import uuid
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
-from chord_metadata_service.phenopackets.models import Phenopacket
-from chord_metadata_service.resources.models import Resource
+from katsu_service.phenopackets.models import Phenopacket
+from katsu_service.resources.models import Resource
 
 from .data_types import DATA_TYPE_EXPERIMENT, DATA_TYPE_PHENOPACKET
 

@@ -16,18 +16,18 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from typing import Any, Callable, Dict, Optional, Tuple, Union
 
-from chord_metadata_service.experiments.api_views import EXPERIMENT_SELECT_REL, EXPERIMENT_PREFETCH
-from chord_metadata_service.experiments.models import Experiment
-from chord_metadata_service.experiments.serializers import ExperimentSerializer
+from katsu_service.experiments.api_views import EXPERIMENT_SELECT_REL, EXPERIMENT_PREFETCH
+from katsu_service.experiments.models import Experiment
+from katsu_service.experiments.serializers import ExperimentSerializer
 
-from chord_metadata_service.metadata.elastic import es
-from chord_metadata_service.metadata.settings import DEBUG, CHORD_SERVICE_ARTIFACT, CHORD_SERVICE_ID
+from katsu_service.metadata.elastic import es
+from katsu_service.metadata.settings import DEBUG, KATSU_SERVICE_ARTIFACT, KATSU_SERVICE_ID
 
-from chord_metadata_service.patients.models import Individual
+from katsu_service.patients.models import Individual
 
-from chord_metadata_service.phenopackets.api_views import PHENOPACKET_SELECT_REL, PHENOPACKET_PREFETCH
-from chord_metadata_service.phenopackets.models import Phenopacket
-from chord_metadata_service.phenopackets.serializers import PhenopacketSerializer
+from katsu_service.phenopackets.api_views import PHENOPACKET_SELECT_REL, PHENOPACKET_PREFETCH
+from katsu_service.phenopackets.models import Phenopacket
+from katsu_service.phenopackets.serializers import PhenopacketSerializer
 
 from .data_types import DATA_TYPE_EXPERIMENT, DATA_TYPE_PHENOPACKET, DATA_TYPES
 from .models import Dataset, TableOwnership, Table
@@ -73,7 +73,7 @@ def data_type_metadata_schema(_request, data_type: str):
     return Response(DATA_TYPES[DATA_TYPE_PHENOPACKET]["metadata_schema"])
 
 
-def chord_table_representation(table: Table) -> dict:
+def katsu_table_representation(table: Table) -> dict:
     return {
         "id": table.identifier,
         "name": table.name,
@@ -107,8 +107,8 @@ def table_list(request):
 
         table_ownership = TableOwnership.objects.create(
             table_id=table_id,
-            service_id=CHORD_SERVICE_ID,
-            service_artifact=CHORD_SERVICE_ARTIFACT,
+            service_id=KATSU_SERVICE_ID,
+            service_artifact=KATSU_SERVICE_ARTIFACT,
             dataset=Dataset.objects.get(identifier=dataset),
         )
 
@@ -118,7 +118,7 @@ def table_list(request):
             data_type=data_type,
         )
 
-        return Response(chord_table_representation(table))
+        return Response(katsu_table_representation(table))
 
     # GET
 
@@ -128,7 +128,7 @@ def table_list(request):
         return Response(errors.bad_request_error(f"Missing or invalid data type(s) (Specified: {data_types})"),
                         status=400)
 
-    return Response([chord_table_representation(t) for t in Table.objects.filter(data_type__in=data_types)])
+    return Response([katsu_table_representation(t) for t in Table.objects.filter(data_type__in=data_types)])
 
 
 # TODO: Remove pragma: no cover when POST implemented
@@ -148,7 +148,7 @@ def table_detail(request, table_id):  # pragma: no cover
         return Response(status=204)
 
     # GET
-    return Response(chord_table_representation(table))
+    return Response(katsu_table_representation(table))
 
 
 def experiment_table_summary(table):
@@ -237,7 +237,7 @@ SUMMARY_HANDLERS: Dict[str, Callable[[Any], Response]] = {
 @cache_page(60 * 60 * 2)
 @api_view(["GET"])
 @permission_classes([OverrideOrSuperUserOnly])
-def chord_table_summary(_request, table_id):
+def katsu_table_summary(_request, table_id):
     try:
         table = Table.objects.get(ownership_record_id=table_id)
         return SUMMARY_HANDLERS[table.data_type](table)
@@ -245,9 +245,9 @@ def chord_table_summary(_request, table_id):
         return Response(errors.not_found_error(f"Table with ID {table_id} not found"), status=404)
 
 
-# TODO: CHORD-standardized logging
+# TODO: KATSU-standardized logging
 def debug_log(message):  # pragma: no cover
-    logging.debug(f"[CHORD Metadata {datetime.now()}] [DEBUG] {message}", flush=True)
+    logging.debug(f"[KATSU Metadata {datetime.now()}] [DEBUG] {message}", flush=True)
 
 
 def data_type_results(query, params, key="id"):
@@ -349,7 +349,7 @@ def search(request, internal_data=False):
 @cache_page(60 * 60 * 2)
 @api_view(["GET", "POST"])
 @permission_classes([AllowAny])
-def chord_search(request):
+def katsu_search(request):
     return search(request, internal_data=False)
 
 
@@ -359,7 +359,7 @@ def chord_search(request):
 @cache_page(60 * 60 * 2)
 @api_view(["GET", "POST"])
 @permission_classes([AllowAny])
-def chord_private_search(request):
+def katsu_private_search(request):
     # Private search endpoints are protected by URL namespace, not by Django permissions.
     return search(request, internal_data=True)
 
@@ -461,14 +461,14 @@ def fhir_private_search(request):
     return fhir_search(request, internal_data=True)
 
 
-def chord_table_search(query, table_id, start, internal=False) -> Tuple[Union[None, bool, list], Optional[str]]:
+def katsu_table_search(query, table_id, start, internal=False) -> Tuple[Union[None, bool, list], Optional[str]]:
     # Check that dataset exists
     table = Table.objects.get(ownership_record_id=table_id)
 
     try:
         compiled_query, params = postgres.search_query_to_psycopg2_sql(query, DATA_TYPES[table.data_type]["schema"])
     except (SyntaxError, TypeError, ValueError) as e:
-        logger.exception(f"[CHORD Metadata] Error encountered compiling query {query}:\n    {str(e)}")
+        logger.exception(f"[KATSU Metadata] Error encountered compiling query {query}:\n    {str(e)}")
         return None, f"Error compiling query (message: {str(e)})"
 
     debug_log(f"Finished compiling query in {datetime.now() - start}")
@@ -488,7 +488,7 @@ def chord_table_search(query, table_id, start, internal=False) -> Tuple[Union[No
     return len(query_results) > 0, None
 
 
-def chord_table_search_response(request, table_id, internal=False):
+def katsu_table_search_response(request, table_id, internal=False):
     start = datetime.now()
     debug_log(f"Started {'private' if internal else 'public'} table search")
 
@@ -509,7 +509,7 @@ def chord_table_search_response(request, table_id, internal=False):
         # TODO: Better error
         return Response(errors.bad_request_error("Missing query in request body"), status=400)
 
-    data, err = chord_table_search(query, table_id, start, internal=internal)
+    data, err = katsu_table_search(query, table_id, start, internal=internal)
 
     if err:
         return Response(errors.bad_request_error(err), status=400)
@@ -524,9 +524,9 @@ def chord_table_search_response(request, table_id, internal=False):
 @cache_page(60 * 60 * 2)
 @api_view(["GET", "POST"])
 @permission_classes([AllowAny])
-def chord_public_table_search(request, table_id):
+def katsu_public_table_search(request, table_id):
     # Search data types in specific tables without leaking internal data
-    return chord_table_search_response(request, table_id, internal=False)
+    return katsu_table_search_response(request, table_id, internal=False)
 
 
 # Mounted on /private/, so will get protected anyway; this allows for access from federation service
@@ -535,7 +535,7 @@ def chord_public_table_search(request, table_id):
 @cache_page(60 * 60 * 2)
 @api_view(["GET", "POST"])
 @permission_classes([AllowAny])
-def chord_private_table_search(request, table_id):
+def katsu_private_table_search(request, table_id):
     # Search data types in specific tables
     # Private search endpoints are protected by URL namespace, not by Django permissions.
-    return chord_table_search_response(request, table_id, internal=True)
+    return katsu_table_search_response(request, table_id, internal=True)

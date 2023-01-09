@@ -3,7 +3,7 @@ from django_filters import rest_framework as filters
 import functools
 from django.db.models import Q
 
-from chord_metadata_service.mohpackets.models import (
+from katsu_service.mohpackets.models import (
     Program,
     Donor,
     Specimen,

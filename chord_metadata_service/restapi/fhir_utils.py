@@ -19,8 +19,8 @@ from fhirclient.models import (
     composition as comp,
 )
 
-from chord_metadata_service.restapi.semantic_mappings.phenopackets_on_fhir_mapping import PHENOPACKETS_ON_FHIR_MAPPING
-from chord_metadata_service.restapi.semantic_mappings.hl7_genomics_mapping import HL7_GENOMICS_MAPPING
+from katsu_service.restapi.semantic_mappings.phenopackets_on_fhir_mapping import PHENOPACKETS_ON_FHIR_MAPPING
+from katsu_service.restapi.semantic_mappings.hl7_genomics_mapping import HL7_GENOMICS_MAPPING
 
 
 # ===================== Generic FHIR conversion functions =====================

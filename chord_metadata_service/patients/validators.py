@@ -1,4 +1,4 @@
-from chord_metadata_service.restapi.validators import JsonSchemaValidator
+from katsu_service.restapi.validators import JsonSchemaValidator
 from .schemas import COMORBID_CONDITION
 
 

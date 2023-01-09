@@ -1,11 +1,11 @@
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
-from chord_metadata_service.chord.tests.constants import (
+from katsu_service.katsu.tests.constants import (
     VALID_PROJECT_1,
     VALID_DATS_CREATORS,
     dats_dataset,
 )
-from chord_metadata_service.restapi.tests.utils import get_response
+from katsu_service.restapi.tests.utils import get_response
 import json
 
 

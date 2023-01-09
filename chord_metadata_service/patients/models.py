@@ -1,8 +1,8 @@
 from django.db import models
 from django.db.models import JSONField
 from django.contrib.postgres.fields import ArrayField
-from chord_metadata_service.restapi.models import IndexableMixin
-from chord_metadata_service.restapi.validators import ontology_validator, age_or_age_range_validator
+from katsu_service.restapi.models import IndexableMixin
+from katsu_service.restapi.validators import ontology_validator, age_or_age_range_validator
 from .validators import comorbid_condition_validator
 
 

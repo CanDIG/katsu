@@ -8,9 +8,9 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django_filters.rest_framework import DjangoFilterBackend
 
-from chord_metadata_service.restapi.api_renderers import PhenopacketsRenderer, FHIRRenderer
-from chord_metadata_service.restapi.pagination import LargeResultsSetPagination
-from chord_metadata_service.phenopackets.schemas import PHENOPACKET_SCHEMA
+from katsu_service.restapi.api_renderers import PhenopacketsRenderer, FHIRRenderer
+from katsu_service.restapi.pagination import LargeResultsSetPagination
+from katsu_service.phenopackets.schemas import PHENOPACKET_SCHEMA
 from . import models as m, serializers as s, filters as f
 from drf_spectacular.utils import extend_schema, inline_serializer
 from rest_framework import serializers
@@ -248,10 +248,10 @@ class InterpretationViewSet(PhenopacketsModelViewSet):
 
 
 @extend_schema(
-    description="Chord phenopacket schema that can be shared with data providers",
+    description="Katsu phenopacket schema that can be shared with data providers",
     responses={
         200: inline_serializer(
-            name='chord_phenopacket_schema_response',
+            name='katsu_phenopacket_schema_response',
             fields={
                 'PHENOPACKET_SCHEMA': serializers.JSONField(),
             }
@@ -260,9 +260,9 @@ class InterpretationViewSet(PhenopacketsModelViewSet):
 )
 @api_view(["GET"])
 @permission_classes([AllowAny])
-def get_chord_phenopacket_schema(_request):
+def get_katsu_phenopacket_schema(_request):
     """
     get:
-    Chord phenopacket schema that can be shared with data providers.
+    Katsu phenopacket schema that can be shared with data providers.
     """
     return Response(PHENOPACKET_SCHEMA)

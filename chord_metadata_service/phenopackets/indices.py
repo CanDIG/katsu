@@ -1,20 +1,20 @@
 from django.conf import settings
-from chord_metadata_service.metadata.elastic import es
-from chord_metadata_service.phenopackets.serializers import (
+from katsu_service.metadata.elastic import es
+from katsu_service.phenopackets.serializers import (
     HtsFileSerializer,
     DiseaseSerializer,
     BiosampleSerializer,
     PhenotypicFeatureSerializer,
     PhenopacketSerializer
 )
-from chord_metadata_service.phenopackets.models import (
+from katsu_service.phenopackets.models import (
     HtsFile,
     Disease,
     Biosample,
     PhenotypicFeature,
     Phenopacket
 )
-from chord_metadata_service.restapi.fhir_utils import (
+from katsu_service.restapi.fhir_utils import (
     fhir_document_reference,
     fhir_condition,
     fhir_specimen,

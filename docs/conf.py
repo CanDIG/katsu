@@ -19,12 +19,12 @@ import django
 from pathlib import Path
 
 sys.path.insert(0, os.path.abspath('..'))
-os.environ['DJANGO_SETTINGS_MODULE'] = 'chord_metadata_service.metadata.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'katsu_service.metadata.settings'
 django.setup()
 
 config = configparser.ConfigParser()
 config.read(os.path.join(Path(os.path.dirname(os.path.realpath(__file__))).parent,
-                         "chord_metadata_service",
+                         "katsu_service",
                          "package.cfg"))
 
 

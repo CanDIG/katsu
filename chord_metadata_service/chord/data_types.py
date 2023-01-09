@@ -1,6 +1,6 @@
-from chord_metadata_service.experiments.search_schemas import EXPERIMENT_SEARCH_SCHEMA
-from chord_metadata_service.phenopackets.search_schemas import PHENOPACKET_SEARCH_SCHEMA
-from chord_metadata_service.experiments.schemas import EXPERIMENT_RESULT_SCHEMA
+from katsu_service.experiments.search_schemas import EXPERIMENT_SEARCH_SCHEMA
+from katsu_service.phenopackets.search_schemas import PHENOPACKET_SEARCH_SCHEMA
+from katsu_service.experiments.schemas import EXPERIMENT_RESULT_SCHEMA
 
 __all__ = [
     "DATA_TYPE_EXPERIMENT",

@@ -7,7 +7,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 
-from chord_metadata_service.restapi.utils import (
+from katsu_service.restapi.utils import (
     get_field_options,
     stats_for_field,
     compute_binned_ages,
@@ -16,12 +16,12 @@ from chord_metadata_service.restapi.utils import (
     get_date_stats,
     get_range_stats,
 )
-from chord_metadata_service.chord.permissions import OverrideOrSuperUserOnly
-from chord_metadata_service.metadata.service_info import SERVICE_INFO
-from chord_metadata_service.chord import models as chord_models
-from chord_metadata_service.phenopackets import models as pheno_models
-from chord_metadata_service.patients import models as patients_models
-from chord_metadata_service.experiments import models as experiments_models
+from katsu_service.katsu.permissions import OverrideOrSuperUserOnly
+from katsu_service.metadata.service_info import SERVICE_INFO
+from katsu_service.katsu import models as katsu_models
+from katsu_service.phenopackets import models as pheno_models
+from katsu_service.patients import models as patients_models
+from katsu_service.experiments import models as experiments_models
 from drf_spectacular.utils import extend_schema, inline_serializer
 from rest_framework import serializers
 from django.db.models import Count
@@ -259,7 +259,7 @@ def public_overview(_request):
         return Response(settings.INSUFFICIENT_DATA_AVAILABLE)
 
     # Datasets provenance metadata
-    datasets = chord_models.Dataset.objects.values(
+    datasets = katsu_models.Dataset.objects.values(
         "title",
         "description",
         "contact_info",
@@ -322,7 +322,7 @@ def moh_overview(_request):
     """
     return Response(
         {
-            "cohort_count": chord_models.Dataset.objects.all().count(),
+            "cohort_count": katsu_models.Dataset.objects.all().count(),
             "individual_count": patients_models.Individual.objects.count(),
             "ethnicity": list(
                 patients_models.Individual.objects.values("ethnicity")
@@ -336,3 +336,4 @@ def moh_overview(_request):
             ),
         }
     )
+

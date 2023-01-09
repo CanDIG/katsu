@@ -1,7 +1,7 @@
 from django.test import TestCase
-from chord_metadata_service.patients.tests.es_mocks import es  # noqa: F401
-from chord_metadata_service.phenopackets.tests import constants as c
-from chord_metadata_service.phenopackets import models as m
+from katsu_service.patients.tests.es_mocks import es  # noqa: F401
+from katsu_service.phenopackets.tests import constants as c
+from katsu_service.phenopackets import models as m
 
 from ..models import Individual
 from ..filters import IndividualFilter

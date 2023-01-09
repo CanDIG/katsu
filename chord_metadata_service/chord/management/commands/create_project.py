@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from chord_metadata_service.chord.models import Project
+from katsu_service.katsu.models import Project
 
 
 class Command(BaseCommand):

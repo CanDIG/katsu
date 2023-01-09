@@ -36,7 +36,7 @@ under the BSD 3-clause license.
 
 ## Funding
 
-CANARIE funded initial development of the Katsu Metadata service under the CHORD project.
+CANARIE funded initial development of the Katsu Metadata service under the KATSU project.
 
 ## Architecture
 
@@ -57,7 +57,7 @@ Katsu Metadata Service is a service to store epigenomic metadata.
 5. Resources service handles metadata about ontologies used for data annotation.
     * Data model: derived from Phenopackets Resource profile
 
-6. CHORD service  handles metadata about dataset, has relation to phenopackets (one dataset can have many phenopackets)
+6. KATSU service  handles metadata about dataset, has relation to phenopackets (one dataset can have many phenopackets)
     * Data model: [DATS](https://github.com/datatagsuite)  + [GA4GH DUO](https://github.com/EBISPOT/DUO)
 
 7. Rest api service handles all generic functionality shared among other services
@@ -131,12 +131,12 @@ AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]
 ```
 
 By default, the service ships with a custom remote user middleware and backend
-compatible with the CHORD project. This middleware isn't particularly useful
+compatible with the KATSU project. This middleware isn't particularly useful
 for a standalone instance of this server, so it can be swapped out.
 
 ### Note on Permissions
 
-By default, `katsu` uses the CHORD permission system, which
+By default, `katsu` uses the KATSU permission system, which
 functions as follows:
 
   * The service assumes that an **out-of-band** mechanism (such as a
@@ -147,7 +147,7 @@ functions as follows:
     access to restricted endpoints and `X-User-Role: user` giving less trusted,
     but authenticated, access.
 
-This can be turned off with the `CHORD_PERMISSIONS` environment variable and/or
+This can be turned off with the `KATSU_PERMISSIONS` environment variable and/or
 Django setting, or with the `AUTH_OVERRIDE` Django setting.
 
 ### Authorization inside CanDIG
@@ -155,7 +155,7 @@ Django setting, or with the `AUTH_OVERRIDE` Django setting.
 When ran inside the CanDIG context, to properly implement authorization you'll
 have to do the following:
 
-1. Make sure the CHORD_PERMISSIONS is set to "false".
+1. Make sure the KATSU_PERMISSIONS is set to "false".
 2. Set CANDIG_AUTHORIZATION to "OPA".
 3. Configure CANDIG_OPA_URL and CANDIG_OPA_SECRET.
 
@@ -189,7 +189,7 @@ python manage.py test
 Run tests for an individual app, e.g.:
 
 ```bash
-python manage.py test chord_metadata_service.phenopackets.tests.test_api
+python manage.py test katsu_service.phenopackets.tests.test_api
 ```
 
 Test and create `coverage` HTML report:
@@ -325,10 +325,10 @@ python manage.py shell
 From there, you can import models and query the database from the REPL.
 
 ```
-from chord_metadata_service.patients.models import *
-from chord_metadata_service.phenopackets.models import *
-from chord_metadata_service.resources.models import *
-from chord_metadata_service.experiments.models import *
+from katsu_service.patients.models import *
+from katsu_service.phenopackets.models import *
+from katsu_service.resources.models import *
+from katsu_service.experiments.models import *
 
 # e.g.
 Individual.objects.all().count()
@@ -336,25 +336,25 @@ Phenopacket.objects.all().count()
 Resource.objects.all().count()
 Experiment.objects.all().count()
 ```
-#### When running Katsu with `chord_singularity` (DEPRECATED)
+#### When running Katsu with `katsu_singularity` (DEPRECATED)
 
-Assuming `chord_singularity` is being used, the following commands can be used
+Assuming `katsu_singularity` is being used, the following commands can be used
 to bootstrap your way to a `katsu` environment within a Bento
 container:
 
 ```bash
 ./dev_utils.py --node x shell
-source /chord/services/metadata/env/bin/activate
-source /chord/data/metadata/.environment
-export $(cut -d= -f1 /chord/data/metadata/.environment)
-DJANGO_SETTINGS_MODULE=chord_metadata_service.metadata.settings django-admin shell
+source /katsu/services/metadata/env/bin/activate
+source /katsu/data/metadata/.environment
+export $(cut -d= -f1 /katsu/data/metadata/.environment)
+DJANGO_SETTINGS_MODULE=katsu_service.metadata.settings django-admin shell
 ```
 
 ## Configuring public overview and public search fields
 
 There are several public APIs to return data overview and perform a search that returns only objects count.
 The implementation of public APIs relies on a project customized configuration file `config.json` that must be placed in the base directory.
-Currently, there is an `example.config.json` located  in `/katsu/chord_metadata_service` directory which is set to be the project base directory.
+Currently, there is an `example.config.json` located  in `/katsu/katsu_service` directory which is set to be the project base directory.
 The file can be copied, renamed to `config.json` and modified.
 
 The `config.json` contains fields that data providers would like to make open for public access.

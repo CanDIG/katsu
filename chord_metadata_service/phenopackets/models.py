@@ -3,12 +3,12 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.db.models import JSONField
 from django.contrib.postgres.fields import ArrayField
-from chord_metadata_service.patients.models import Individual
-from chord_metadata_service.resources.models import Resource
-from chord_metadata_service.restapi.description_utils import rec_help
-from chord_metadata_service.restapi.models import IndexableMixin
-from chord_metadata_service.restapi.schema_utils import schema_list
-from chord_metadata_service.restapi.validators import (
+from katsu_service.patients.models import Individual
+from katsu_service.resources.models import Resource
+from katsu_service.restapi.description_utils import rec_help
+from katsu_service.restapi.models import IndexableMixin
+from katsu_service.restapi.schema_utils import schema_list
+from katsu_service.restapi.validators import (
     JsonSchemaValidator,
     age_or_age_range_validator,
     ontology_validator,
@@ -312,7 +312,7 @@ class Phenopacket(models.Model, IndexableMixin):
     hts_files = models.ManyToManyField(HtsFile, blank=True, help_text=rec_help(d.PHENOPACKET, "hts_files"))
     # TODO OneToOneField
     meta_data = models.ForeignKey(MetaData, on_delete=models.CASCADE, help_text=rec_help(d.PHENOPACKET, "meta_data"))
-    table = models.ForeignKey("chord.Table", on_delete=models.CASCADE, blank=True, null=True)  # TODO: Help text
+    table = models.ForeignKey("katsu.Table", on_delete=models.CASCADE, blank=True, null=True)  # TODO: Help text
     extra_properties = JSONField(blank=True, null=True, help_text=rec_help(d.PHENOPACKET, "extra_properties"))
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

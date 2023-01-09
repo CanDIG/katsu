@@ -1,5 +1,5 @@
-from chord_metadata_service.restapi.schemas import EXTRA_PROPERTIES_SCHEMA
-from chord_metadata_service.restapi.schema_utils import tag_ids_and_describe
+from katsu_service.restapi.schemas import EXTRA_PROPERTIES_SCHEMA
+from katsu_service.restapi.schema_utils import tag_ids_and_describe
 
 from . import descriptions
 

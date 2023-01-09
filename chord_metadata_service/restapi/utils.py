@@ -9,8 +9,8 @@ from django.db.models import Count, F, Func, IntegerField, CharField, Case, When
 from django.db.models.functions import Cast
 from django.conf import settings
 
-from chord_metadata_service.phenopackets import models as pheno_models
-from chord_metadata_service.experiments import models as experiments_models
+from katsu_service.phenopackets import models as pheno_models
+from katsu_service.experiments import models as experiments_models
 
 
 def camel_case_field_names(string):

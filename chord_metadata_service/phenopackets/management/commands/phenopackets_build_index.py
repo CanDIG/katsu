@@ -1,21 +1,21 @@
 import logging
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from chord_metadata_service.phenopackets.models import (
+from katsu_service.phenopackets.models import (
     HtsFile,
     Disease,
     Biosample,
     PhenotypicFeature,
     Phenopacket
 )
-from chord_metadata_service.phenopackets.indices import (
+from katsu_service.phenopackets.indices import (
     build_htsfile_index,
     build_disease_index,
     build_biosample_index,
     build_phenotypicfeature_index,
     build_phenopacket_index
 )
-from chord_metadata_service.metadata.elastic import es
+from katsu_service.metadata.elastic import es
 
 
 logger = logging.getLogger(__name__)

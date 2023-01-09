@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class PatientsConfig(AppConfig):
-    name = 'chord_metadata_service.patients'
+    name = 'katsu_service.patients'
 
     def ready(self):
-        import chord_metadata_service.patients.signals  # noqa: F401
+        import katsu_service.patients.signals  # noqa: F401

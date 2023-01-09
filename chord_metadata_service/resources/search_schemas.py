@@ -1,4 +1,4 @@
-from chord_metadata_service.restapi.schema_utils import (
+from katsu_service.restapi.schema_utils import (
     search_optional_str,
     tag_schema_with_search_properties,
 )

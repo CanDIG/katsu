@@ -2,7 +2,7 @@ import django_filters
 from django_filters.widgets import CSVWidget
 from django.db.models import Q
 
-from chord_metadata_service.patients.models import Individual
+from katsu_service.patients.models import Individual
 from . import models as m
 
 

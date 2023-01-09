@@ -11,7 +11,7 @@ from .serializers import ExperimentSerializer, ExperimentResultSerializer
 from .models import Experiment, ExperimentResult
 from .schemas import EXPERIMENT_SCHEMA
 from .filters import ExperimentFilter, ExperimentResultFilter
-from chord_metadata_service.restapi.pagination import LargeResultsSetPagination
+from katsu_service.restapi.pagination import LargeResultsSetPagination
 from drf_spectacular.utils import extend_schema, inline_serializer
 from rest_framework import serializers
 

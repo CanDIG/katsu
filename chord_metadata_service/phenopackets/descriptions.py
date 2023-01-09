@@ -35,9 +35,9 @@
 #   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-from chord_metadata_service.patients.descriptions import INDIVIDUAL
-from chord_metadata_service.resources.descriptions import RESOURCE
-from chord_metadata_service.restapi.description_utils import EXTRA_PROPERTIES, ontology_class
+from katsu_service.patients.descriptions import INDIVIDUAL
+from katsu_service.resources.descriptions import RESOURCE
+from katsu_service.restapi.description_utils import EXTRA_PROPERTIES, ontology_class
 
 
 # If description and help are specified separately, the Django help text differs from the schema description. Otherwise,

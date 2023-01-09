@@ -2,8 +2,8 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
-from chord_metadata_service.mohpackets.permissions import CanDIGAdminOrReadOnly
-from chord_metadata_service.mohpackets.filters import (
+from katsu_service.mohpackets.permissions import CanDIGAdminOrReadOnly
+from katsu_service.mohpackets.filters import (
     DonorFilter,
     SpecimenFilter,
     SampleRegistrationFilter,
@@ -18,7 +18,7 @@ from chord_metadata_service.mohpackets.filters import (
     BiomarkerFilter,
     ComorbidityFilter,
 )
-from chord_metadata_service.mohpackets.serializers import (
+from katsu_service.mohpackets.serializers import (
     DonorSerializer,
     SpecimenSerializer,
     SampleRegistrationSerializer,
@@ -33,7 +33,7 @@ from chord_metadata_service.mohpackets.serializers import (
     BiomarkerSerializer,
     ComorbiditySerializer,
 )
-from chord_metadata_service.mohpackets.models import (
+from katsu_service.mohpackets.models import (
     Donor,
     Specimen,
     SampleRegistration,

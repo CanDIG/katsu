@@ -1,14 +1,14 @@
 import logging
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from chord_metadata_service.phenopackets.models import (
+from katsu_service.phenopackets.models import (
     HtsFile,
     Disease,
     Biosample,
     PhenotypicFeature,
     Phenopacket
 )
-from chord_metadata_service.phenopackets.indices import (
+from katsu_service.phenopackets.indices import (
     build_htsfile_index,
     remove_htsfile_index,
     build_disease_index,

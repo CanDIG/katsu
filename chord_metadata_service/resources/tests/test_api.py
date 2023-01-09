@@ -1,6 +1,6 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
-from chord_metadata_service.restapi.tests.utils import get_response
+from katsu_service.restapi.tests.utils import get_response
 
 from ..models import Resource
 from ..serializers import ResourceSerializer

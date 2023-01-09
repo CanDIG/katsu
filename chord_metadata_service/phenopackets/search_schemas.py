@@ -1,13 +1,13 @@
 from . import models, schemas
-from chord_metadata_service.patients.schemas import INDIVIDUAL_SCHEMA
-from chord_metadata_service.resources.search_schemas import RESOURCE_SEARCH_SCHEMA
-from chord_metadata_service.restapi.schema_utils import (
+from katsu_service.patients.schemas import INDIVIDUAL_SCHEMA
+from katsu_service.resources.search_schemas import RESOURCE_SEARCH_SCHEMA
+from katsu_service.restapi.schema_utils import (
     merge_schema_dictionaries,
     search_optional_eq,
     search_optional_str,
     tag_schema_with_search_properties,
 )
-from chord_metadata_service.restapi.search_schemas import ONTOLOGY_SEARCH_SCHEMA
+from katsu_service.restapi.search_schemas import ONTOLOGY_SEARCH_SCHEMA
 
 __all__ = [
     "EXTERNAL_REFERENCE_SEARCH_SCHEMA",

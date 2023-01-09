@@ -1,5 +1,5 @@
 import django_filters
-from chord_metadata_service.phenopackets.filters import filter_datasets
+from katsu_service.phenopackets.filters import filter_datasets
 from .models import Experiment, ExperimentResult
 
 

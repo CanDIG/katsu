@@ -7,14 +7,14 @@ from django.test import override_settings
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from chord_metadata_service.metadata.service_info import SERVICE_INFO
-from chord_metadata_service.chord import models as ch_m
-from chord_metadata_service.chord.tests import constants as ch_c
-from chord_metadata_service.chord.data_types import DATA_TYPE_PHENOPACKET
-from chord_metadata_service.phenopackets import models as ph_m
-from chord_metadata_service.phenopackets.tests import constants as ph_c
-from chord_metadata_service.experiments import models as exp_m
-from chord_metadata_service.experiments.tests import constants as exp_c
+from katsu_service.metadata.service_info import SERVICE_INFO
+from katsu_service.katsu import models as ch_m
+from katsu_service.katsu.tests import constants as ch_c
+from katsu_service.katsu.data_types import DATA_TYPE_PHENOPACKET
+from katsu_service.phenopackets import models as ph_m
+from katsu_service.phenopackets.tests import constants as ph_c
+from katsu_service.experiments import models as exp_m
+from katsu_service.experiments.tests import constants as exp_c
 
 from .constants import (
     CONFIG_PUBLIC_TEST,

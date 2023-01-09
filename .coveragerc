@@ -1,7 +1,7 @@
 [run]
-include=chord_metadata_service/*
+include=katsu_service/*
 omit=
-    chord_metadata_service/*/migrations/*
-    chord_metadata_service/*/tests/*
-    chord_metadata_service/metadata/settings.py
+    katsu_service/*/migrations/*
+    katsu_service/*/tests/*
+    katsu_service/metadata/settings.py
 branch=True

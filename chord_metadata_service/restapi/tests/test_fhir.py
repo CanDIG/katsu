@@ -1,16 +1,16 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from chord_metadata_service.patients.models import Individual
-from chord_metadata_service.patients.tests.constants import VALID_INDIVIDUAL, VALID_INDIVIDUAL_2
-from chord_metadata_service.phenopackets.models import (
+from katsu_service.patients.models import Individual
+from katsu_service.patients.tests.constants import VALID_INDIVIDUAL, VALID_INDIVIDUAL_2
+from katsu_service.phenopackets.models import (
     MetaData,
     Procedure,
     Biosample,
     Phenopacket,
     PhenotypicFeature,
 )
-from chord_metadata_service.phenopackets.tests.constants import (
+from katsu_service.phenopackets.tests.constants import (
     VALID_INDIVIDUAL_1,
     VALID_META_DATA_2,
     VALID_PROCEDURE_1,
@@ -22,7 +22,7 @@ from chord_metadata_service.phenopackets.tests.constants import (
     valid_biosample_2,
     valid_phenotypic_feature,
 )
-from chord_metadata_service.restapi.tests.utils import get_response
+from katsu_service.restapi.tests.utils import get_response
 
 
 # Tests for FHIR conversion functions

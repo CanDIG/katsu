@@ -3,10 +3,10 @@ from uuid import uuid4
 
 from rest_framework import status
 from rest_framework.test import APITestCase
-from chord_metadata_service.chord.models import Project, Dataset, TableOwnership, Table
-from chord_metadata_service.chord.tests.constants import VALID_DATA_USE_1
-from chord_metadata_service.chord.data_types import DATA_TYPE_PHENOPACKET, DATA_TYPE_EXPERIMENT
-from chord_metadata_service.chord.ingest import (
+from katsu_service.katsu.models import Project, Dataset, TableOwnership, Table
+from katsu_service.katsu.tests.constants import VALID_DATA_USE_1
+from katsu_service.katsu.data_types import DATA_TYPE_PHENOPACKET, DATA_TYPE_EXPERIMENT
+from katsu_service.katsu.ingest import (
     WORKFLOW_INGEST_FUNCTION_MAP,
     WORKFLOW_PHENOPACKETS_JSON,
     WORKFLOW_EXPERIMENTS_JSON,

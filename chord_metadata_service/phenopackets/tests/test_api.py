@@ -5,15 +5,15 @@ from rest_framework.test import APITestCase
 from . import constants as c
 from .. import models as m, serializers as s
 
-from chord_metadata_service.restapi.tests.utils import get_response
-from chord_metadata_service.chord.data_types import DATA_TYPE_PHENOPACKET
-from chord_metadata_service.chord.models import Project, Dataset, TableOwnership, Table
+from katsu_service.restapi.tests.utils import get_response
+from katsu_service.katsu.data_types import DATA_TYPE_PHENOPACKET
+from katsu_service.katsu.models import Project, Dataset, TableOwnership, Table
 # noinspection PyProtectedMember
-from chord_metadata_service.chord.ingest import (
+from katsu_service.katsu.ingest import (
     WORKFLOW_INGEST_FUNCTION_MAP,
     WORKFLOW_PHENOPACKETS_JSON
 )
-from chord_metadata_service.chord.tests.constants import VALID_DATA_USE_1
+from katsu_service.katsu.tests.constants import VALID_DATA_USE_1
 
 EXAMPLE_INGEST_OUTPUTS_PHENOPACKETS_JSON_1 = {
     "json_document": os.path.join(os.path.dirname(__file__), "phenopackets_example_1.json"),

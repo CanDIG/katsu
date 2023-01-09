@@ -17,4 +17,4 @@ jobs:
       - name: Install flake8
         run: python -m pip install flake8
       - name: Run linter
-        run: flake8 ./chord_metadata_service
+        run: flake8 ./katsu_service

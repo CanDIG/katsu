@@ -5,16 +5,16 @@ import tempfile
 import uuid
 
 from django.urls import reverse
-from chord_metadata_service.chord.export_cbio import CBIO_FILES_SET
-from chord_metadata_service.chord.export_utils import EXPORT_DIR
+from katsu_service.katsu.export_cbio import CBIO_FILES_SET
+from katsu_service.katsu.export_utils import EXPORT_DIR
 from rest_framework import status
 from rest_framework.test import APITestCase
 
 from ..views_ingest import METADATA_WORKFLOWS
-from chord_metadata_service.chord.data_types import DATA_TYPE_PHENOPACKET, DATA_TYPE_EXPERIMENT
-from chord_metadata_service.chord.models import Project, Dataset, TableOwnership, Table
+from katsu_service.katsu.data_types import DATA_TYPE_PHENOPACKET, DATA_TYPE_EXPERIMENT
+from katsu_service.katsu.models import Project, Dataset, TableOwnership, Table
 # noinspection PyProtectedMember
-from chord_metadata_service.chord.ingest import (
+from katsu_service.katsu.ingest import (
     WORKFLOW_PHENOPACKETS_JSON,
     WORKFLOW_INGEST_FUNCTION_MAP,
 )

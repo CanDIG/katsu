@@ -1,8 +1,8 @@
 from django.conf import settings
-from chord_metadata_service.metadata.elastic import es
-from chord_metadata_service.patients.serializers import IndividualSerializer
-from chord_metadata_service.patients.models import Individual
-from chord_metadata_service.restapi.fhir_utils import fhir_patient
+from katsu_service.metadata.elastic import es
+from katsu_service.patients.serializers import IndividualSerializer
+from katsu_service.patients.models import Individual
+from katsu_service.restapi.fhir_utils import fhir_patient
 
 
 def build_individual_index(individual: Individual) -> str:

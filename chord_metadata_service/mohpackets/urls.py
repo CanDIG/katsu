@@ -1,6 +1,6 @@
 from rest_framework import routers
 from django.urls import path, include
-from chord_metadata_service.mohpackets.api_views import (
+from katsu_service.mohpackets.api_views import (
     ProgramViewSet,
     DonorViewSet,
     SpecimenViewSet,
@@ -17,7 +17,7 @@ from chord_metadata_service.mohpackets.api_views import (
     ComorbidityViewSet,
     moh_overview,
 )
-from chord_metadata_service.mohpackets.api_discovery import (
+from katsu_service.mohpackets.api_discovery import (
     DiscoveryDonorViewSet,
     DiscoverySpecimenViewSet,
     DiscoverySampleRegistrationViewSet,

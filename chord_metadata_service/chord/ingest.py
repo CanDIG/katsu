@@ -18,24 +18,24 @@ from django.conf import settings
 
 from bento_lib.drs.utils import get_access_method_of_type, fetch_drs_record_by_uri
 
-from chord_metadata_service.chord.data_types import (
+from katsu_service.katsu.data_types import (
     DATA_TYPE_EXPERIMENT,
     DATA_TYPE_PHENOPACKET,
     DATA_TYPE_READSET,
 )
-from chord_metadata_service.chord.models import Table, TableOwnership
-from chord_metadata_service.experiments import models as em
-from chord_metadata_service.phenopackets import models as pm
-from chord_metadata_service.resources import models as rm, utils as ru
-from chord_metadata_service.restapi.fhir_ingest import (
+from katsu_service.katsu.models import Table, TableOwnership
+from katsu_service.experiments import models as em
+from katsu_service.phenopackets import models as pm
+from katsu_service.resources import models as rm, utils as ru
+from katsu_service.restapi.fhir_ingest import (
     ingest_patients,
     ingest_observations,
     ingest_conditions,
     ingest_specimens,
 )
-from chord_metadata_service.phenopackets.schemas import PHENOPACKET_SCHEMA
-from chord_metadata_service.experiments.schemas import EXPERIMENT_SCHEMA
-from chord_metadata_service.restapi.utils import iso_duration_to_years
+from katsu_service.phenopackets.schemas import PHENOPACKET_SCHEMA
+from katsu_service.experiments.schemas import EXPERIMENT_SCHEMA
+from katsu_service.restapi.utils import iso_duration_to_years
 
 requests_unixsocket.monkeypatch()
 

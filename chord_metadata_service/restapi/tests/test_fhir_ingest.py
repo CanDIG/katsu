@@ -4,13 +4,13 @@ import os
 from django.core.exceptions import ValidationError
 from rest_framework.test import APITestCase
 
-from chord_metadata_service.chord.data_types import DATA_TYPE_PHENOPACKET
-from chord_metadata_service.chord.models import Project, Dataset, TableOwnership, Table
-from chord_metadata_service.patients.models import Individual
-from chord_metadata_service.phenopackets.models import PhenotypicFeature, Biosample, Disease, Procedure, Phenopacket
-from chord_metadata_service.chord.tests.constants import VALID_DATA_USE_1
-from chord_metadata_service.restapi.fhir_ingest import ingest_patients, ingest_observations
-from chord_metadata_service.chord.ingest import (
+from katsu_service.katsu.data_types import DATA_TYPE_PHENOPACKET
+from katsu_service.katsu.models import Project, Dataset, TableOwnership, Table
+from katsu_service.patients.models import Individual
+from katsu_service.phenopackets.models import PhenotypicFeature, Biosample, Disease, Procedure, Phenopacket
+from katsu_service.katsu.tests.constants import VALID_DATA_USE_1
+from katsu_service.restapi.fhir_ingest import ingest_patients, ingest_observations
+from katsu_service.katsu.ingest import (
     WORKFLOW_INGEST_FUNCTION_MAP,
     WORKFLOW_FHIR_JSON
 )

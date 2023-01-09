@@ -1,4 +1,4 @@
-from chord_metadata_service.restapi.serializers import GenericSerializer
+from katsu_service.restapi.serializers import GenericSerializer
 
 from .models import Resource
 

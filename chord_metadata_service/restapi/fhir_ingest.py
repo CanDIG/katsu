@@ -12,9 +12,9 @@ from .fhir_utils import (
     condition_to_disease,
     specimen_to_biosample
 )
-from chord_metadata_service.chord.models import Table
-from chord_metadata_service.patients.models import Individual
-from chord_metadata_service.phenopackets.models import (
+from katsu_service.katsu.models import Table
+from katsu_service.patients.models import Individual
+from katsu_service.phenopackets.models import (
     Biosample,
     Disease,
     MetaData,

@@ -43,7 +43,7 @@ Services depend on each other and are separated based on their scope.
 
 - Data model: derived from the Phenopackets schema Resource profile.
 
-**6. CHORD service** handles granular metadata about dataset (e.g. description, where the dataset is located, who are the creators of the dataset, licenses applied to the dataset,
+**6. KATSU service** handles granular metadata about dataset (e.g. description, where the dataset is located, who are the creators of the dataset, licenses applied to the dataset,
 authorization policy, terms of use).
 The dataset in the current implementation is one or more phenopackets related to each other through their provenance.
 

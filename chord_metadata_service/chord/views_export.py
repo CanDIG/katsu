@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from rest_framework.request import Request
 
 
-from chord_metadata_service.chord.schemas import EXPORT_SCHEMA
+from katsu_service.katsu.schemas import EXPORT_SCHEMA
 from bento_lib.responses import errors
 
 from .export import EXPORT_FORMAT_FUNCTION_MAP, EXPORT_FORMAT_OBJECT_TYPE_MAP, EXPORT_FORMATS, EXPORT_OBJECT_TYPE

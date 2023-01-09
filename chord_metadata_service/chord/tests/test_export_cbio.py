@@ -6,7 +6,7 @@ from os import walk, path
 from django.db.models import F
 from django.test import TestCase
 
-from chord_metadata_service.chord.export_cbio import (
+from katsu_service.katsu.export_cbio import (
     CBIO_FILES_SET,
     PATIENT_DATA_FILENAME,
     PATIENT_DATATYPE,
@@ -18,16 +18,16 @@ from chord_metadata_service.chord.export_cbio import (
     study_export,
     study_export_meta
 )
-from chord_metadata_service.chord.data_types import DATA_TYPE_PHENOPACKET, DATA_TYPE_EXPERIMENT
-from chord_metadata_service.chord.export_utils import ExportFileContext
-from chord_metadata_service.chord.models import Project, Dataset, TableOwnership, Table
+from katsu_service.katsu.data_types import DATA_TYPE_PHENOPACKET, DATA_TYPE_EXPERIMENT
+from katsu_service.katsu.export_utils import ExportFileContext
+from katsu_service.katsu.models import Project, Dataset, TableOwnership, Table
 # noinspection PyProtectedMember
-from chord_metadata_service.chord.ingest import (
+from katsu_service.katsu.ingest import (
     WORKFLOW_PHENOPACKETS_JSON,
     WORKFLOW_INGEST_FUNCTION_MAP,
 )
-from chord_metadata_service.patients.models import Individual
-from chord_metadata_service.phenopackets import models as PhModel
+from katsu_service.patients.models import Individual
+from katsu_service.phenopackets import models as PhModel
 
 
 from .constants import VALID_DATA_USE_1

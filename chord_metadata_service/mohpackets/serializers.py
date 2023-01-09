@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from chord_metadata_service.mohpackets.validators import ID_VALIDATOR
+from katsu_service.mohpackets.validators import ID_VALIDATOR
 
 
 from .models import (

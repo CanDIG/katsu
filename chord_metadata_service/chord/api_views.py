@@ -2,8 +2,8 @@ from rest_framework import viewsets
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 from rest_framework.settings import api_settings
 
-from chord_metadata_service.restapi.api_renderers import PhenopacketsRenderer, JSONLDDatasetRenderer, RDFDatasetRenderer
-from chord_metadata_service.restapi.pagination import LargeResultsSetPagination
+from katsu_service.restapi.api_renderers import PhenopacketsRenderer, JSONLDDatasetRenderer, RDFDatasetRenderer
+from katsu_service.restapi.pagination import LargeResultsSetPagination
 from .models import Project, Dataset, TableOwnership, Table
 from .permissions import OverrideOrSuperUserOnly
 from .serializers import ProjectSerializer, DatasetSerializer, TableOwnershipSerializer, TableSerializer
@@ -22,17 +22,17 @@ class ReadOnly(BasePermission):
         return request.method in SAFE_METHODS
 
 
-class CHORDModelViewSet(viewsets.ModelViewSet):
+class KATSUModelViewSet(viewsets.ModelViewSet):
     renderer_classes = tuple(api_settings.DEFAULT_RENDERER_CLASSES) + (PhenopacketsRenderer,)
     pagination_class = LargeResultsSetPagination
     permission_classes = [OverrideOrSuperUserOnly]  # Explicit
 
 
-class CHORDPublicModelViewSet(CHORDModelViewSet):
+class KATSUPublicModelViewSet(KATSUModelViewSet):
     permission_classes = [OverrideOrSuperUserOnly | ReadOnly]
 
 
-class ProjectViewSet(CHORDPublicModelViewSet):
+class ProjectViewSet(KATSUPublicModelViewSet):
     """
     get:
     Return a list of all existing projects
@@ -45,7 +45,7 @@ class ProjectViewSet(CHORDPublicModelViewSet):
     serializer_class = ProjectSerializer
 
 
-class DatasetViewSet(CHORDPublicModelViewSet):
+class DatasetViewSet(KATSUPublicModelViewSet):
     """
     get:
     Return a list of all existing datasets
@@ -58,11 +58,11 @@ class DatasetViewSet(CHORDPublicModelViewSet):
     filterset_class = AuthorizedDatasetFilter
 
     serializer_class = DatasetSerializer
-    renderer_classes = tuple(CHORDModelViewSet.renderer_classes) + (JSONLDDatasetRenderer, RDFDatasetRenderer,)
+    renderer_classes = tuple(KATSUModelViewSet.renderer_classes) + (JSONLDDatasetRenderer, RDFDatasetRenderer,)
     queryset = Dataset.objects.all().order_by("title")
 
 
-class TableOwnershipViewSet(CHORDPublicModelViewSet):
+class TableOwnershipViewSet(KATSUPublicModelViewSet):
     """
     get:
     Return a list of table-(dataset|dataset,biosample) relationships
@@ -76,7 +76,7 @@ class TableOwnershipViewSet(CHORDPublicModelViewSet):
     serializer_class = TableOwnershipSerializer
 
 
-class TableViewSet(CHORDPublicModelViewSet):
+class TableViewSet(KATSUPublicModelViewSet):
     """
     get:
     Return a list of tables
