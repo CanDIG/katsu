@@ -48,7 +48,7 @@ class Migration(migrations.Migration):
                 ('program_id', models.CharField(max_length=64, primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=255, unique=True)),
                 ('created', models.DateTimeField(default=django.utils.timezone.now)),
-                ('updated', katsu_metadata_service.mohpackets.models.AutoDateTimeField(default=django.utils.timezone.now)),
+                ('updated', katsu_service.mohpackets.models.AutoDateTimeField(default=django.utils.timezone.now)),
             ],
         ),
         migrations.CreateModel(
