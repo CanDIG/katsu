@@ -1,10 +1,10 @@
 [
     {
         "program_id": "PROGRAM_1",
-        "name": "SYNTHETIC-POG"
+        "name": "SYNTHETIC-1"
     },
     {
         "program_id": "PROGRAM_2",
-        "name": "SYNTHETIC-BIO-CAN"
+        "name": "SYNTHETIC-2"
     }
 ]
