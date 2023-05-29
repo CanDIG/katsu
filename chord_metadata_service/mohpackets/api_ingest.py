@@ -18,7 +18,6 @@ from chord_metadata_service.mohpackets.serializers import (
     FollowUpSerializer,
     HormoneTherapySerializer,
     ImmunotherapySerializer,
-    IngestRequestSerializer,
     PrimaryDiagnosisSerializer,
     ProgramSerializer,
     RadiationSerializer,
@@ -183,7 +182,7 @@ class IngestSampleRegistrationViewSet(IngestMixin, viewsets.GenericViewSet):
 # ---------------
 class IngestTreatmentViewSet(IngestMixin, viewsets.GenericViewSet):
     ingest_name = "Treatments"
-    serializer = SampleRegistrationSerializer
+    serializer = TreatmentSerializer
     permission_classes = [CustodianOnly]
     throttle_classes = [MoHRateThrottle]
 
