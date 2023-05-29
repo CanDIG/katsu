@@ -8,7 +8,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
-from chord_metadata_service.mohpackets.permissions import CanDIGAdminOrReadOnly
+from chord_metadata_service.mohpackets.permissions import CanDIGAdminOrReadOnly, CustodianOnly
 from chord_metadata_service.mohpackets.serializers import (
     BiomarkerSerializer,
     ChemotherapySerializer,
@@ -45,7 +45,6 @@ from chord_metadata_service.mohpackets.serializers import (
 ##########################################
 
 logger = logging.getLogger(__name__)
-
 
 def create_bulk_objects(serializer_class, data: dict):
     """Create a list of objects in bulk using a list of JSON strings.
@@ -85,7 +84,8 @@ def create_bulk_objects(serializer_class, data: dict):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
+
 def ingest_programs(request):
     serializer = ProgramSerializer
     data = request.data
@@ -110,7 +110,7 @@ def ingest_programs(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_donors(request):
     serializer = DonorSerializer
     data = request.data
@@ -135,7 +135,7 @@ def ingest_donors(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_primary_diagnosises(request):
     serializer = PrimaryDiagnosisSerializer
     data = request.data
@@ -160,7 +160,7 @@ def ingest_primary_diagnosises(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_specimens(request):
     serializer = SpecimenSerializer
     data = request.data
@@ -185,7 +185,7 @@ def ingest_specimens(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_sample_registrations(request):
     serializer = SampleRegistrationSerializer
     data = request.data
@@ -210,7 +210,7 @@ def ingest_sample_registrations(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_treatments(request):
     serializer = TreatmentSerializer
     data = request.data
@@ -235,7 +235,7 @@ def ingest_treatments(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_chemotherapies(request):
     serializer = ChemotherapySerializer
     data = request.data
@@ -260,7 +260,7 @@ def ingest_chemotherapies(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_radiations(request):
     serializer = RadiationSerializer
     data = request.data
@@ -285,7 +285,7 @@ def ingest_radiations(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_surgeries(request):
     serializer = SurgerySerializer
     data = request.data
@@ -310,7 +310,7 @@ def ingest_surgeries(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_hormonetherapies(request):
     serializer = HormoneTherapySerializer
     data = request.data
@@ -335,7 +335,7 @@ def ingest_hormonetherapies(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_immunotherapies(request):
     serializer = ImmunotherapySerializer
     data = request.data
@@ -360,7 +360,7 @@ def ingest_immunotherapies(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_followups(request):
     serializer = FollowUpSerializer
     data = request.data
@@ -385,7 +385,7 @@ def ingest_followups(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_biomarkers(request):
     serializer = BiomarkerSerializer
     data = request.data
@@ -410,7 +410,7 @@ def ingest_biomarkers(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_comorbidities(request):
     serializer = ComorbiditySerializer
     data = request.data
@@ -435,7 +435,7 @@ def ingest_comorbidities(request):
     responses={201: OpenApiTypes.STR},
 )
 @api_view(["POST"])
-@permission_classes([CanDIGAdminOrReadOnly])
+@permission_classes([CustodianOnly])
 def ingest_exposures(request):
     serializer = ExposureSerializer
     data = request.data
