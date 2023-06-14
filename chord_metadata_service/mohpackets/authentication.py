@@ -18,7 +18,13 @@ class TokenAuthentication(BaseAuthentication):
         else:
             opa_secret = settings.CANDIG_OPA_SECRET
             try:
-                authorized_datasets_read = get_readable_datasets(request, admin_secret=opa_secret)
+                request_object = {
+                    "url": request.path,
+                    "method": request.method,
+                    "headers": request.headers,
+                    "data": request.data
+                }
+                authorized_datasets_read = get_readable_datasets(request_object, admin_secret=opa_secret)
                 # add dataset to request
                 logger.debug(f"User is authorized to access {authorized_datasets_read} for reading")
                 request.authorized_datasets_read = authorized_datasets_read

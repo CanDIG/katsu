@@ -24,4 +24,10 @@ class CanDIGPermissions(BasePermission):
     """
 
     def has_permission(self, request, view):
-        return is_permissible(request)
+        request_object = {
+            "url": request.path,
+            "method": request.method,
+            "headers": request.headers,
+            "data": request.data
+        }
+        return is_permissible(request_object)
