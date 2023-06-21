@@ -1,4 +1,5 @@
 import logging
+import json
 
 from authx.auth import get_readable_datasets
 from django.conf import settings
@@ -18,12 +19,12 @@ class TokenAuthentication(BaseAuthentication):
         else:
             opa_secret = settings.CANDIG_OPA_SECRET
             try:
-                request_object = {
+                request_object = json.dumps({
                     "url": request.path,
                     "method": request.method,
-                    "headers": request.headers,
+                    "headers": dict(request.headers),
                     "data": request.data
-                }
+                })
                 authorized_datasets_read = get_readable_datasets(request_object, admin_secret=opa_secret)
                 # add dataset to request
                 logger.debug(f"User is authorized to access {authorized_datasets_read} for reading")

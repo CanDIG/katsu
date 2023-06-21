@@ -78,7 +78,7 @@ class IngestMixin:
 
         return Response(
             status=status.HTTP_201_CREATED,
-            data={f"One %s was created." % name},
+            data={f"{len(objs)} {name} were created."},
         )
 
 
@@ -97,7 +97,7 @@ def create_object(serializer_class, data: dict):
     """
 
     # Use the serializer to validate the input data
-    serializer = serializer_class(data=data)
+    serializer = serializer_class(data=data, many=True)
     serializer.is_valid(raise_exception=True)
     # Note: bulk_create() would be faster but it requires to append the _id to the foreign keys
     with transaction.atomic():
@@ -139,7 +139,7 @@ def ingest_programs(request):
     )
 '''
 class IngestProgramViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Program"
+    ingest_name = "Programs"
     serializer = ProgramSerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -147,7 +147,7 @@ class IngestProgramViewSet(IngestMixin, viewsets.GenericViewSet):
 # DONOR
 # ---------------
 class IngestDonorViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Donor"
+    ingest_name = "Donors"
     serializer = DonorSerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -155,7 +155,7 @@ class IngestDonorViewSet(IngestMixin, viewsets.GenericViewSet):
 # PRIMARY DIAGNOSIS
 # ---------------
 class IngestPrimaryDiagnosisViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Primary Diagnosis"
+    ingest_name = "Primary Diagnoses"
     serializer = PrimaryDiagnosisSerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -163,7 +163,7 @@ class IngestPrimaryDiagnosisViewSet(IngestMixin, viewsets.GenericViewSet):
 # SPECIMEN
 # ---------------
 class IngestSpecimenViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Specimen"
+    ingest_name = "Specimens"
     serializer = SpecimenSerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -172,7 +172,7 @@ class IngestSpecimenViewSet(IngestMixin, viewsets.GenericViewSet):
 # SAMPLE REGISTRATION
 # ---------------
 class IngestSampleRegistrationViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Sample Registration"
+    ingest_name = "Sample Registrations"
     serializer = SampleRegistrationSerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -181,7 +181,7 @@ class IngestSampleRegistrationViewSet(IngestMixin, viewsets.GenericViewSet):
 # TREATMENT
 # ---------------
 class IngestTreatmentViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Treatment"
+    ingest_name = "Treatments"
     serializer = TreatmentSerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -189,7 +189,7 @@ class IngestTreatmentViewSet(IngestMixin, viewsets.GenericViewSet):
 # CHEMOTHERAPY
 # ---------------
 class IngestChemotherapyViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Chemotherapy"
+    ingest_name = "Chemotherapies"
     serializer = ChemotherapySerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -197,7 +197,7 @@ class IngestChemotherapyViewSet(IngestMixin, viewsets.GenericViewSet):
 # RADIATION
 # ---------------
 class IngestRadiationViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Radiation"
+    ingest_name = "Radiations"
     serializer = RadiationSerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -205,7 +205,7 @@ class IngestRadiationViewSet(IngestMixin, viewsets.GenericViewSet):
 # SURGERY
 # ---------------
 class IngestSurgeryViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Surgery"
+    ingest_name = "Surgeries"
     serializer = SurgerySerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -214,7 +214,7 @@ class IngestSurgeryViewSet(IngestMixin, viewsets.GenericViewSet):
 # HORMONE THERAPY
 # ---------------
 class IngestHormoneTherapyViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Hormone Therapy"
+    ingest_name = "Hormone Therapies"
     serializer = HormoneTherapySerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -222,7 +222,7 @@ class IngestHormoneTherapyViewSet(IngestMixin, viewsets.GenericViewSet):
 # IMMUNOTHERAPY
 # ---------------
 class IngestImmunotherapyViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Immunotherapy"
+    ingest_name = "Immunotherapies"
     serializer = ImmunotherapySerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -231,7 +231,7 @@ class IngestImmunotherapyViewSet(IngestMixin, viewsets.GenericViewSet):
 # FOLLOW UP
 # ---------------
 class IngestFollowUpViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Followup"
+    ingest_name = "Followups"
     serializer = FollowUpSerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -247,7 +247,7 @@ class IngestBiomarkerViewSet(IngestMixin, viewsets.GenericViewSet):
 # COMORBIDITY
 # ---------------
 class IngestComorbidityViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Comorbidity"
+    ingest_name = "Comorbidities"
     serializer = ComorbiditySerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
@@ -255,7 +255,7 @@ class IngestComorbidityViewSet(IngestMixin, viewsets.GenericViewSet):
 # EXPOSURE
 # ---------------
 class IngestExposureViewSet(IngestMixin, viewsets.GenericViewSet):
-    ingest_name = "Exposure"
+    ingest_name = "Exposures"
     serializer = ExposureSerializer
     permission_classes = [CanDIGPermissions]
     throttle_classes = [MoHRateThrottle]
