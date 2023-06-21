@@ -1,5 +1,6 @@
 import logging
 import os
+import json
 
 from authx.auth import is_permissible
 from django.conf import settings
@@ -24,10 +25,10 @@ class CanDIGPermissions(BasePermission):
     """
 
     def has_permission(self, request, view):
-        request_object = {
+        request_object = json.dumps({
             "url": request.path,
             "method": request.method,
-            "headers": request.headers,
+            "headers": dict(request.headers),
             "data": request.data
-        }
+        })
         return is_permissible(request_object)
