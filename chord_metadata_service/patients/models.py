@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.postgres.fields import JSONField, ArrayField
+from django.db.models import JSONField
+from django.contrib.postgres.fields import ArrayField
 from chord_metadata_service.restapi.models import IndexableMixin
 from chord_metadata_service.restapi.validators import ontology_validator, age_or_age_range_validator
 from .validators import comorbid_condition_validator
@@ -37,6 +38,9 @@ class Individual(models.Model, IndexableMixin):
     # An ISO8601 string represent age
     age = JSONField(blank=True, null=True, validators=[age_or_age_range_validator],
                     help_text='The age or age range of the individual.')
+    age_numeric = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True,
+                                      help_text='The age of the individual as number.')
+    age_unit = models.CharField(max_length=50, blank=True, help_text='The unit for measuring age.')
     sex = models.CharField(choices=SEX, max_length=200,  blank=True, null=True,
                            help_text='Observed apparent sex of the individual.')
     karyotypic_sex = models.CharField(choices=KARYOTYPIC_SEX, max_length=200, default='UNKNOWN_KARYOTYPE',

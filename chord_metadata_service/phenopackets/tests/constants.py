@@ -52,13 +52,29 @@ VALID_META_DATA_2 = {
 VALID_INDIVIDUAL_1 = {
     "id": "patient:1",
     "date_of_birth": "1967-01-01",
-    "sex": "MALE"
+    "sex": "MALE",
+    "age": {
+        "age": "P45Y"
+    },
+    "age_numeric": 45.00,
+    "age_unit": "years",
+    "extra_properties": {
+        "education": "Bachelor's Degree"
+    }
 }
 
 VALID_INDIVIDUAL_2 = {
     "id": "patient:2",
     "date_of_birth": "1978-01-01",
-    "sex": "FEMALE"
+    "sex": "FEMALE",
+    "age": {
+        "start": {
+            "age": "P30Y"
+        },
+        "end": {
+            "age": "P35Y"
+        }
+    }
 }
 
 VALID_HTS_FILE = {
