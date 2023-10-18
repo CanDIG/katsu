@@ -211,6 +211,8 @@ Treatment ||--|| Immunotherapy : "has type"
 Treatment ||--|| Radiation : "has type"
 Treatment ||--|| Surgery : "has type"
 PrimaryDiagnosis ||--|{ FollowUp : "has"
+Donor ||--o{ FollowUp : "has"
+Treatment ||--o{ FollowUp : "has"
 
 ```
 
