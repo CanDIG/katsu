@@ -129,73 +129,88 @@ Katsu uses an underlying data model that is compatible interpretation but does n
 ```mermaid
 erDiagram
     Donor {
-        submitter_donor_id PK
+        string submitter_donor_id PK
 }
 
-    Primary Diagnosis {
-        submitter_primary_diagnosis_id PK
-        submitter_donor_id FK
+    PrimaryDiagnosis {
+        string submitter_primary_diagnosis_id PK
+        string submitter_donor_id FK
 }
 
     Specimen {
-        submitter_specimen_id PK
-        submitter_primary_diagnosis_id FK
-}
-    Treatment {
-        submitter_treatment_id PK
-        submitter_primary_diagnosis_id FK    
+        string submitter_specimen_id PK
+        string submitter_primary_diagnosis_id FK
 }
 
-    Sample Registration {
-        submitter_sample_id PK
-        submitter_specimen_id FK
+    Treatment {
+        string submitter_treatment_id PK
+        string submitter_primary_diagnosis_id FK    
+}
+
+    SampleRegistration {
+        string submitter_sample_id PK
+        string submitter_specimen_id FK
 }
 
     Chemotherapy {
-        id PK
-        submitter_treatment_id FK
+        string id PK
+        string submitter_treatment_id FK
 }
 
-    Hormone Therapy {
-        id PK
-        submitter_treatment_id FK
+    HormoneTherapy {
+        string id PK
+        string submitter_treatment_id FK
 }
 
     Immunotherapy {
-        id PK
-        submitter_treatment_id FK
+        string id PK
+        string submitter_treatment_id FK
 }
 
     Radiation {
-        id PK
-        submitter_treatment_id FK
+        string id PK
+        string submitter_treatment_id FK
 }
 
     Surgery {
-        id PK
-        submitter_treatment_id FK
+        string id PK
+        string submitter_treatment_id FK
 }
 
-    Follow Up {
-        submitter_follow_up_id PK
-        submitter_primary_diagnosis_id FK
-        submitter_donor_id FK  
+    FollowUp {
+        string submitter_follow_up_id PK
+        string submitter_primary_diagnosis_id FK
+        string submitter_donor_id FK  
 }
 
     Comorbidity {
-        id PK
-        submitter_donor_id FK
+        string id PK
+        string submitter_donor_id FK
 }
 
     Biomarker {
-        id PK
-        submitter_donor_id FK
+        string id PK
+        string submitter_donor_id FK
 }
 
     Exposure {
-        id PK
-        submiter_donor_id FK
+        string id PK
+        string submiter_donor_id FK
 }
+
+Donor ||--|{ PrimaryDiagnosis : "has"
+Donor ||--o{ Comorbidity : "has"
+Donor ||--o{ Biomarker : "has"
+Donor ||--o{ Exposure : "has"
+PrimaryDiagnosis ||--|{ Specimen : "has"
+PrimaryDiagnosis ||--|{ Treatment : "has"
+Specimen ||--|{ SampleRegistration : "has"
+Treatment ||--|| Chemotherapy : "has type"
+Treatment ||--|| HormoneTherapy : "has type"
+Treatment ||--|| Immunotherapy : "has type"
+Treatment ||--|| Radiation : "has type"
+Treatment ||--|| Surgery : "has type"
+PrimaryDiagnosis ||--|{ FollowUp : "has"
 
 ```
 
