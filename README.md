@@ -124,6 +124,16 @@ coverage html
 
 ## MOHCCN Clinical Data Model
 
+Katsu uses an underlying data model that is compatible interpretation but does not exactly match the MOHCCN data model. The katsu and ingest data model is donor-centric and enforces certain linking between objects based on this interpretation.
+
+```mermaid
+erDiagram
+    Donor {
+        String submitter_donor_id PK "The submitter-provider unique identifier for the donor"
+}
+
+```
+
 [Clinical Data Model](https://www.marathonofhopecancercentres.ca/docs/default-source/policies-and-guidelines/mohccn-clinical-data-model_v1_endorsed6oct-2022.pdf?Status=Master&sfvrsn=7f6bd159_7)
 
 [ER Diagram](https://www.marathonofhopecancercentres.ca/docs/default-source/policies-and-guidelines/mohccn_data_standard_er_diagram_endorsed6oct22.pdf?Status=Master&sfvrsn=dd57a75e_5)
