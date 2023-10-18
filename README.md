@@ -129,7 +129,72 @@ Katsu uses an underlying data model that is compatible interpretation but does n
 ```mermaid
 erDiagram
     Donor {
-        String submitter_donor_id PK "The submitter-provider unique identifier for the donor"
+        submitter_donor_id PK
+}
+
+    Primary Diagnosis {
+        submitter_primary_diagnosis_id PK
+        submitter_donor_id FK
+}
+
+    Specimen {
+        submitter_specimen_id PK
+        submitter_primary_diagnosis_id FK
+}
+    Treatment {
+        submitter_treatment_id PK
+        submitter_primary_diagnosis_id FK    
+}
+
+    Sample Registration {
+        submitter_sample_id PK
+        submitter_specimen_id FK
+}
+
+    Chemotherapy {
+        id PK
+        submitter_treatment_id FK
+}
+
+    Hormone Therapy {
+        id PK
+        submitter_treatment_id FK
+}
+
+    Immunotherapy {
+        id PK
+        submitter_treatment_id FK
+}
+
+    Radiation {
+        id PK
+        submitter_treatment_id FK
+}
+
+    Surgery {
+        id PK
+        submitter_treatment_id FK
+}
+
+    Follow Up {
+        submitter_follow_up_id PK
+        submitter_primary_diagnosis_id FK
+        submitter_donor_id FK  
+}
+
+    Comorbidity {
+        id PK
+        submitter_donor_id FK
+}
+
+    Biomarker {
+        id PK
+        submitter_donor_id FK
+}
+
+    Exposure {
+        id PK
+        submiter_donor_id FK
 }
 
 ```
