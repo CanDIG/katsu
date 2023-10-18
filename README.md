@@ -180,7 +180,8 @@ erDiagram
     FollowUp {
         string submitter_follow_up_id PK
         string submitter_primary_diagnosis_id FK
-        string submitter_donor_id FK  
+        string submitter_donor_id FK
+        string submitter_treatment_id FK
 }
 
     Comorbidity {
