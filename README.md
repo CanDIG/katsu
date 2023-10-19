@@ -177,8 +177,9 @@ Treatment ||--o{ FollowUp : ""
 ```
 ### General notes
 
-* All objects are explicitly linked with foreign keys to a program and the donor the object derives from.
-* The primary key for most objects is the `submitter_<object_name>_id`, apart from **Program** which is `program_id`
+* The primary key for **Program** is `program_id` and should be unique across all instances of the CanDIG platform
+* For all other objects, the primary key is the `submitter_<object_name>_id`, a user provided identifier that should be unique across all instances of an object within a program
+* All objects are explicitly linked with foreign keys to a **Program** and the **Donor** the object derives from.
 
 ### Deviations from the MOHCCN model
 
