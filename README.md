@@ -126,6 +126,10 @@ coverage html
 
 Katsu uses an underlying data model that is compatible interpretation but does not exactly match the MOHCCN data model. The katsu and ingest data model is donor-centric and enforces certain linking between objects based on this interpretation.
 
+The model is explicitly defined as a set of classes in [models.py](chord_metadata_service/mohpackets/models.py).
+
+An overview diagram of how objects in the model are linked is below. A more detailed diagram containing field level information can be found here
+
 ```mermaid
 erDiagram
     Donor {
