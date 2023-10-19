@@ -124,9 +124,9 @@ coverage html
 
 ## MOHCCN Clinical Data Model
 
-Katsu uses an underlying data model that is a compatible interpretation, but does not exactly match the MOHCCN data model. Katsu is currently compliant with version 2 of the model, released February 2023. Some relationships between objects have been modified to avoid excessive complexity in the katsu database and allow for the submission of data that is incomplete compared to the MOHCCN gold standard requirements.
+Katsu uses an underlying data model that is a compatible interpretation, but does not exactly match the MOHCCN data model. Katsu is currently compliant with version 2 of the model, released February 2023. Some relationships between objects have been modified to avoid excessive complexity in the katsu database and allow for the submission of data that is incomplete compared to the MOHCCN gold standard requirements. Permissable values for controlled fields are not validated by the underlying database.
 
-The katsu MoH model is explicitly defined as a set of classes in [models.py](chord_metadata_service/mohpackets/models.py). Complex linkages and conditionally required fields and relationships are enforced by the [clinical ETL](https://github.com/CanDIG/clinical_ETL_code) and [ingest](https://github.com/CanDIG/candigv2-ingest) validation steps.
+The katsu MoH model is explicitly defined as a set of classes in [models.py](chord_metadata_service/mohpackets/models.py). Permissable values for controlled fields, conditionally required fields and relationships are enforced by the [serializers](chord_metadata_service/mohpackets), [clinical ETL](https://github.com/CanDIG/clinical_ETL_code) and [ingest](https://github.com/CanDIG/candigv2-ingest) validation steps.
 
 An overview diagram of how objects in the katsu model is shown below. A more detailed entity relationship diagram containing field level information can be found in the [mohpackets docs folder](chord_metadata_service/mohpackets/docs/er_diagram.md)
 
