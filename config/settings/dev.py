@@ -19,6 +19,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "candig.docker.internal",
     os.environ.get("HOST_CONTAINER_NAME"),
+    os.environ.get("EXTERNAL_URL"),
 ]
 
 # CANDIG SETTINGS
