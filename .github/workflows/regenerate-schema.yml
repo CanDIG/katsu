@@ -35,11 +35,8 @@ jobs:
           file_pattern: 'chord_metadata_service/mohpackets/docs/schema.json'
           commit_message: Regenerate schema.json
 
-      - name: Check out repo
-        uses: actions/checkout@v4
-
       - name: Use the commit SHA
-        run: echo "The latest commit SHA is $(git log -1 --format="%H")"
+        run: echo "The latest commit SHA is ${{ github.event.pull_request.head.sha }}"
 
 
       
