@@ -36,7 +36,7 @@ jobs:
           commit_message: Regenerate schema.json
 
       - name: Use the commit SHA
-        run: echo "The latest commit SHA is ${{ github.event.pull_request.head.sha }}"
+        run: echo "The latest commit SHA is ${{ github.event.after }}"
 
 
       
