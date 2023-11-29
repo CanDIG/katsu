@@ -16,8 +16,6 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
-        with:
-          submodules: true
 
       - name: Install Python
         uses: actions/setup-python@v4
@@ -56,12 +54,10 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
-        with:
-          submodules: true
 
       - name: Git pull to update the repository
         run: git pull origin ${{ github.head_ref }}
-        
+
       - name: Install Python
         uses: actions/setup-python@v4
         with:
