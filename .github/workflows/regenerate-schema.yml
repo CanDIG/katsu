@@ -107,8 +107,9 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          file_pattern: 'chord_metadata_service/mohpackets/docs/schema.json'
+          file_pattern: 'chord_metadata_service/mohpackets/docs/schema.*'
           commit_message: Update schema SHA
+          push_options: '--force'
       # - name: Commit and push changes
       #   uses: actions/github-script@v6
       #   with:
