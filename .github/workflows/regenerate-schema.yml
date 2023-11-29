@@ -35,11 +35,11 @@ jobs:
           file_pattern: 'chord_metadata_service/mohpackets/docs/schema.json'
           commit_message: Regenerate schema.json
 
-      - name: Get latest commit SHA
-        run: echo "::set-output name=commit_sha::$(git rev-parse HEAD)"
+       - name: Check out repo
+        uses: actions/checkout@v4
 
       - name: Use the commit SHA
-        run: echo "The latest commit SHA is ${{ steps.get_sha.outputs.commit_sha }}"
+        run: echo "The latest commit SHA is ${{ github.head_ref }}"
       
       # - name: Commit and push changes to schema.json
       #   uses: actions/github-script@v6
