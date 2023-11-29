@@ -59,6 +59,9 @@ jobs:
         with:
           submodules: true
 
+      - name: Git pull to update the repository
+        run: git pull origin ${{ github.head_ref }}
+        
       - name: Install Python
         uses: actions/setup-python@v4
         with:
@@ -109,7 +112,6 @@ jobs:
         with:
           file_pattern: 'chord_metadata_service/mohpackets/docs/schema.*'
           commit_message: Update schema SHA
-          push_options: '--force'
       # - name: Commit and push changes
       #   uses: actions/github-script@v6
       #   with:
