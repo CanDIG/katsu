@@ -211,9 +211,7 @@ class DonorWithClinicalDataSchema(ModelSchema):
     followups: List[NestedFollowUpSchema] = Field(..., alias="followup_set")
     biomarkers: List[NestedBiomarkerSchema] = Field(..., alias="biomarker_set")
     exposures: List[NestedExposureSchema] = Field(..., alias="exposure_set")
-    comorbidities_dadasd: List[NestedComorbiditySchema] = Field(
-        ..., alias="comorbidity_set"
-    )
+    comorbidities: List[NestedComorbiditySchema] = Field(..., alias="comorbidity_set")
 
     class Config:
         model = Donor
