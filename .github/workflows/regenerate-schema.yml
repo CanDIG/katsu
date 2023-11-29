@@ -35,7 +35,7 @@ jobs:
           file_pattern: 'chord_metadata_service/mohpackets/docs/schema.json'
           commit_message: Regenerate schema.json
 
-       - name: Check out repo
+      - name: Check out repo
         uses: actions/checkout@v4
 
       - name: Use the commit SHA
