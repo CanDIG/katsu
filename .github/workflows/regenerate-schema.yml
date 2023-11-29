@@ -39,7 +39,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Use the commit SHA
-        run: echo "The latest commit SHA is ${{ github.head_ref }}"
+        run: echo "The latest commit SHA is $(git rev-parse HEAD)"
+
       
       # - name: Commit and push changes to schema.json
       #   uses: actions/github-script@v6
