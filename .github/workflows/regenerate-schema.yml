@@ -59,4 +59,5 @@ jobs:
         with:
           file_pattern: 'chord_metadata_service/mohpackets/docs/schema.*'
           commit_message: Regenerate schema
+          skip_fetch: true 
           push_options: '--force'
