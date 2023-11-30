@@ -50,7 +50,7 @@ jobs:
 
       - name: Install octokit/rest
         run: npm install @octokit/rest
-        
+
       - name: Commit and push changes
         uses: actions/github-script@v6
         with:
@@ -60,6 +60,6 @@ jobs:
             const octokit = new Octokit({ request: { fetch: fetch, }, auth: "${{ secrets.GITHUB_TOKEN }}" });
             const { commitAndPushChanges } = require("./.github/commitFile.js");
 
-            await commitAndPushChanges('schema.json', `${{ github.head_ref }}`, fs, octokit, context);
-            await commitAndPushChanges('schema.yml', `${{ github.head_ref }}`, fs, octokit, context);
-            await commitAndPushChanges('schema.md', `${{ github.head_ref }}`, fs, octokit, context);
+            await commitAndPushChanges('schema.json', `${{ github.sha }}`, fs, octokit, context);
+            await commitAndPushChanges('schema.yml', `${{ github.sha }}`, fs, octokit, context);
+            await commitAndPushChanges('schema.md', `${{ github.sha }}`, fs, octokit, context);
