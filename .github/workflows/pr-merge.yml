@@ -8,15 +8,30 @@ on:
       - sonchau/uuid_with_fk
 
 jobs:
-  on_merge:
+  second_job:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install widdershins
+        run: npm install -g widdershins
+
+      - name: Install PyYAML
+        run: pip install PyYAML
+      
+      - name: Convert schema to OpenAPI documentation
+        run: |
+          npx widdershins ./chord_metadata_service/mohpackets/docs/schema.json -o ./chord_metadata_service/mohpackets/docs/schema.md -u ./chord_metadata_service/mohpackets/docs/widdershins/templates/openapi3 -c true --omitHeader true  
+
+      - name: Convert schema.json to schema.yml
+        run: python -c 'import json, yaml; json.load(open("chord_metadata_service/mohpackets/docs/schema.json")); print(yaml.dump(json.load(open("chord_metadata_service/mohpackets/docs/schema.json"))))' > chord_metadata_service/mohpackets/docs/schema.yml
 
       - name: Update schema with last SHA
         run: |
@@ -33,7 +48,15 @@ jobs:
             sed -i "s|This is the RESTful API for the MoH Service.|This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/$REPO_NAME/$SHA/$path|" "$path"
           done
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Commit and push changes
+        uses: actions/github-script@v6
         with:
-          file_pattern: 'chord_metadata_service/mohpackets/docs/schema.*'
-          commit_message: Add SHA to schema
+          script: |
+            const fs = require('fs');
+            const { Octokit } = require('@octokit/rest');
+            const octokit = new Octokit({ request: { fetch: fetch, }, auth: "${{ secrets.GITHUB_TOKEN }}" });
+            const { commitAndPushChanges } = require("./.github/commitFile.js");
+
+            await commitAndPushChanges('schema.json', `${{ github.head_ref }}`, fs, octokit, context);
+            await commitAndPushChanges('schema.yml', `${{ github.head_ref }}`, fs, octokit, context);
+            await commitAndPushChanges('schema.md', `${{ github.head_ref }}`, fs, octokit, context);
