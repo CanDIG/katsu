@@ -7003,11 +7003,11 @@
                         "title": "Exposures",
                         "type": "array"
                     },
-                    "comorbidities_test_test_test": {
+                    "comorbidities": {
                         "items": {
                             "$ref": "#/components/schemas/NestedComorbiditySchema"
                         },
-                        "title": "Comorbidities Test Test Test",
+                        "title": "Comorbidities",
                         "type": "array"
                     },
                     "submitter_donor_id": {
@@ -7144,7 +7144,7 @@
                     "followups",
                     "biomarkers",
                     "exposures",
-                    "comorbidities_test_test_test",
+                    "comorbidities",
                     "submitter_donor_id",
                     "program_id"
                 ],
