@@ -6982,11 +6982,11 @@
                         "title": "Primary Diagnoses",
                         "type": "array"
                     },
-                    "followups_test_test": {
+                    "followups": {
                         "items": {
                             "$ref": "#/components/schemas/NestedFollowUpSchema"
                         },
-                        "title": "Followups Test Test",
+                        "title": "Followups",
                         "type": "array"
                     },
                     "biomarkers": {
@@ -7141,7 +7141,7 @@
                 },
                 "required": [
                     "primary_diagnoses",
-                    "followups_test_test",
+                    "followups",
                     "biomarkers",
                     "exposures",
                     "comorbidities",
