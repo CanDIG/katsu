@@ -899,10 +899,10 @@ components:
             type: string
           - type: 'null'
           title: Cause Of Death
-        comorbidities_test_test_test:
+        comorbidities:
           items:
             $ref: '#/components/schemas/NestedComorbiditySchema'
-          title: Comorbidities Test Test Test
+          title: Comorbidities
           type: array
         date_alive_after_lost_to_followup:
           anyOf:
@@ -984,7 +984,7 @@ components:
       - followups
       - biomarkers
       - exposures
-      - comorbidities_test_test_test
+      - comorbidities
       - submitter_donor_id
       - program_id
       title: DonorWithClinicalDataSchema

@@ -504,7 +504,7 @@ Base URLs:
       "pack_years_smoked": 0
     }
   ],
-  "comorbidities_test_test_test": [
+  "comorbidities": [
     {
       "prior_malignancy": "string",
       "laterality_of_prior_malignancy": "string",
@@ -5348,7 +5348,7 @@ or
       "pack_years_smoked": 0
     }
   ],
-  "comorbidities_test_test_test": [
+  "comorbidities": [
     {
       "prior_malignancy": "string",
       "laterality_of_prior_malignancy": "string",
@@ -5386,7 +5386,7 @@ DonorWithClinicalDataSchema
 |followups|[[NestedFollowUpSchema](#schemanestedfollowupschema)]|true|none|none|
 |biomarkers|[[NestedBiomarkerSchema](#schemanestedbiomarkerschema)]|true|none|none|
 |exposures|[[NestedExposureSchema](#schemanestedexposureschema)]|true|none|none|
-|comorbidities_test_test_test|[[NestedComorbiditySchema](#schemanestedcomorbidityschema)]|true|none|none|
+|comorbidities|[[NestedComorbiditySchema](#schemanestedcomorbidityschema)]|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |program_id|string|true|none|none|
 |gender|any|false|none|none|
