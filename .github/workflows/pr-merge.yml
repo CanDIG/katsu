@@ -1,0 +1,39 @@
+name: PR Merge Workflow
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  on_merge:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update schema with last SHA
+        run: |
+          REPO_NAME=${{ github.repository }}
+          HEAD_REF=${{ github.head_ref }}
+          SHA=$(git rev-parse HEAD)
+
+          DOCS_PATH="chord_metadata_service/mohpackets/docs/"
+          SCHEMA_PATHS=(
+            "${DOCS_PATH}schema.json"
+            "${DOCS_PATH}schema.yml"
+            "${DOCS_PATH}schema.md"
+          )
+          for path in "${SCHEMA_PATHS[@]}"; do
+            sed -i "s|This is the RESTful API for the MoH Service.|This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/$REPO_NAME/$SHA/$path|" "$path"
+          done
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          file_pattern: 'chord_metadata_service/mohpackets/docs/schema.*'
+          commit_message: Add SHA to schema
