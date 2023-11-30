@@ -1,7 +1,7 @@
 
 <h1 id="moh-service-api">MoH Service API v3.0.0</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/0dc5edc38863ac5a5d5440210d130589cb2ceaff/chord_metadata_service/mohpackets/docs/schema.md Based on https://raw.githubusercontent.com/CanDIG/katsu/73cfed3e4f9c351ee38d12fe5b8f249de2b101a7/chord_metadata_service/mohpackets/docs/schema.md Based on https://raw.githubusercontent.com/CanDIG/katsu/26da0c97d35f05f7d75f62ae7416323ff448e84f/chord_metadata_service/mohpackets/docs/schema.md Based on https://raw.githubusercontent.com/CanDIG/katsu/d40e43123128639e871b92ecdf46a8f0d99c2386/chord_metadata_service/mohpackets/docs/schema.md
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/9bc1c7923fc8e41299c0fbd05e422e965a9d4502/chord_metadata_service/mohpackets/docs/schema.md Based on https://raw.githubusercontent.com/CanDIG/katsu/0dc5edc38863ac5a5d5440210d130589cb2ceaff/chord_metadata_service/mohpackets/docs/schema.md Based on https://raw.githubusercontent.com/CanDIG/katsu/73cfed3e4f9c351ee38d12fe5b8f249de2b101a7/chord_metadata_service/mohpackets/docs/schema.md Based on https://raw.githubusercontent.com/CanDIG/katsu/26da0c97d35f05f7d75f62ae7416323ff448e84f/chord_metadata_service/mohpackets/docs/schema.md Based on https://raw.githubusercontent.com/CanDIG/katsu/d40e43123128639e871b92ecdf46a8f0d99c2386/chord_metadata_service/mohpackets/docs/schema.md
 
 Base URLs:
 
