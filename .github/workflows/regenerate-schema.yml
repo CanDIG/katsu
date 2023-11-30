@@ -57,5 +57,6 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
+          branch: ${{ github.head_ref }}
           file_pattern: 'chord_metadata_service/mohpackets/docs/schema.*'
           commit_message: Regenerate schema
