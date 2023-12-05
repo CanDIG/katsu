@@ -34,6 +34,8 @@ jobs:
       - name: Commit new schema.json
         uses: stefanzweifel/git-auto-commit-action@v5
         id: auto-commit-action
+        with:
+          commit_message: Update schema.json
       
       - name: Update schema.json with new SHA
         if: steps.auto-commit-action.outputs.changes_detected == 'true'
@@ -57,6 +59,8 @@ jobs:
         run: python -c 'import json, yaml; json.load(open("chord_metadata_service/mohpackets/docs/schema.json")); print(yaml.dump(json.load(open("chord_metadata_service/mohpackets/docs/schema.json"))))' > chord_metadata_service/mohpackets/docs/schema.yml
 
       - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update schemas with SHA
 
       # - name: Set up Node.js
       #   uses: actions/setup-node@v4
