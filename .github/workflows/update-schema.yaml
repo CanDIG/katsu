@@ -33,6 +33,7 @@ jobs:
       
       - uses: stefanzweifel/git-auto-commit-action@v5
         id: auto-commit-action
+
       - name: "Run if changes have been detected"
         if: steps.auto-commit-action.outputs.changes_detected == 'true'
         run: |
@@ -40,17 +41,16 @@ jobs:
           echo "Head Ref: ${{ github.head_ref }}"
           echo "Commit Hash: ${{ steps.auto-commit-action.outputs.commit_hash }}"
       
-      # - name: Update schema.json with new SHA
-      #   run: |
-      #     REPO_OWNER=${{ github.repository_owner }}
-      #     REPO_NAME=${{ github.repository }}
-      #     HEAD_REF=${{ github.head_ref }}
-      #     SHA=$(git rev-parse HEAD)
+      - name: Update schema.json with new SHA
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+        run: |
+          REPO_NAME=${{ github.repository }}
+          SHA=$(steps.auto-commit-action.outputs.commit_hash)
+          SCHEMA_PATH=chord_metadata_service/mohpackets/docs/schema.json
+          sed -i 's|"description": "This is the RESTful API for the MoH Service."|"description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/'"$REPO_NAME"'/'"$SHA"'/'"$SCHEMA_PATH"'"|' $SCHEMA_PATH
 
-      #     SCHEMA_PATH=chord_metadata_service/mohpackets/docs/schema.json
-
-      #     sed -i 's|"description": "This is the RESTful API for the MoH Service."|"description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/'"$REPO_NAME"'/'"$SHA"'/'"$SCHEMA_PATH"'"|' $SCHEMA_PATH
-
+      - uses: stefanzweifel/git-auto-commit-action@v5
+      
       # - name: Set up Node.js
       #   uses: actions/setup-node@v4
       #   with:
