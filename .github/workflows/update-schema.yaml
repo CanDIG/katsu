@@ -45,12 +45,12 @@ jobs:
         if: steps.auto-commit-action.outputs.changes_detected == 'true'
         run: |
           REPO_NAME=${{ github.repository }}
-          SHA=$(steps.auto-commit-action.outputs.commit_hash)
+          SHA=${{ steps.auto-commit-action.outputs.commit_hash }}
           SCHEMA_PATH=chord_metadata_service/mohpackets/docs/schema.json
           sed -i 's|"description": "This is the RESTful API for the MoH Service."|"description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/'"$REPO_NAME"'/'"$SHA"'/'"$SCHEMA_PATH"'"|' $SCHEMA_PATH
 
       - uses: stefanzweifel/git-auto-commit-action@v5
-      
+
       # - name: Set up Node.js
       #   uses: actions/setup-node@v4
       #   with:
