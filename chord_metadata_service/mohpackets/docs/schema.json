@@ -3,7 +3,7 @@
     "info": {
         "title": "MoH Service API",
         "version": "3.0.0",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/8c9271ca64d6b4b7afa6215755e69a406964095d/chord_metadata_service/mohpackets/docs/schema.json"
+        "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
         "/v2/service-info": {
@@ -6996,11 +6996,11 @@
                         "title": "Biomarkers",
                         "type": "array"
                     },
-                    "exposures_test": {
+                    "exposures": {
                         "items": {
                             "$ref": "#/components/schemas/NestedExposureSchema"
                         },
-                        "title": "Exposures Test",
+                        "title": "Exposures",
                         "type": "array"
                     },
                     "comorbidities": {
