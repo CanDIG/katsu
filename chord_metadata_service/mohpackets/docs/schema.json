@@ -7003,11 +7003,11 @@
                         "title": "Exposures",
                         "type": "array"
                     },
-                    "comorbidities_test": {
+                    "comorbidities": {
                         "items": {
                             "$ref": "#/components/schemas/NestedComorbiditySchema"
                         },
-                        "title": "Comorbidities Test",
+                        "title": "Comorbidities",
                         "type": "array"
                     },
                     "submitter_donor_id": {
