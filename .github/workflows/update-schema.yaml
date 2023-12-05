@@ -1,8 +1,16 @@
 name: Docs
 
 on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+      - master
   pull_request:
-    types: [review_requested, ready_for_review]
+    branches:
+      - develop
+      - master
 
     
 jobs:
@@ -46,18 +54,24 @@ jobs:
           sed -i 's|"description": "This is the RESTful API for the MoH Service."|"description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/'"$REPO_NAME"'/'"$SHA"'/'"$SCHEMA_PATH"'"|' $SCHEMA_PATH
 
       - name: Install widdershins
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
         run: npm install -g widdershins
 
       - name: Convert schema to OpenAPI documentation
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
         run: |
           npx widdershins ./chord_metadata_service/mohpackets/docs/schema.json -o ./chord_metadata_service/mohpackets/docs/schema.md -u ./chord_metadata_service/mohpackets/docs/widdershins/templates/openapi3 -c true --omitHeader true
       
       - name: Install PyYAML
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
         run: pip install PyYAML
 
       - name: Convert schema.json to schema.yml
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
         run: python -c 'import json, yaml; json.load(open("chord_metadata_service/mohpackets/docs/schema.json")); print(yaml.dump(json.load(open("chord_metadata_service/mohpackets/docs/schema.json"))))' > chord_metadata_service/mohpackets/docs/schema.yml
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Update schemas with SHA
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Update schemas with SHA
