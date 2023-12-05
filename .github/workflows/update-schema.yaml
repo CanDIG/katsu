@@ -33,7 +33,7 @@ jobs:
       
       - uses: stefanzweifel/git-auto-commit-action@v5
       - name: "Run if changes have been detected"
-        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+        if: steps.git-auto-commit-action.outputs.changes_detected == 'true'
         run: echo "Changes!"
       # - name: Update schema.json with new SHA
       #   run: |
