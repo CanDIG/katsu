@@ -38,7 +38,7 @@ jobs:
         run: |
           echo "Changes!"
           echo "Head Ref: ${{ github.head_ref }}"
-          echo "Commit Hash: ${{ steps.auto-commit.outputs.commit_hash }}"
+          echo "Commit Hash: ${{ steps.auto-commit-action.outputs.commit_hash }}"
       
       # - name: Update schema.json with new SHA
       #   run: |
