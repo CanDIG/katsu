@@ -3,7 +3,7 @@
     "info": {
         "title": "MoH Service API",
         "version": "3.0.0",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/2a8311ebe4bd765fd80c439746d0a93c0627e242/chord_metadata_service/mohpackets/docs/schema.json"
+        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/b0330a3eed7a92680ba71b95bbbb49f9932018f6/chord_metadata_service/mohpackets/docs/schema.json"
     },
     "paths": {
         "/v2/service-info": {
@@ -7003,11 +7003,11 @@
                         "title": "Exposures",
                         "type": "array"
                     },
-                    "comorbidities": {
+                    "comorbidities_test": {
                         "items": {
                             "$ref": "#/components/schemas/NestedComorbiditySchema"
                         },
-                        "title": "Comorbidities",
+                        "title": "Comorbidities Test",
                         "type": "array"
                     },
                     "submitter_donor_id": {
