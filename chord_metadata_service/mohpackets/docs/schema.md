@@ -1,7 +1,7 @@
 
 <h1 id="moh-service-api">MoH Service API v3.0.0</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/9eed81e7b77a3ec726d3590816d0e8faf8309762/chord_metadata_service/mohpackets/docs/schema.json
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/93b32923527d0ab6ba269bdf051a346dee0a444b/chord_metadata_service/mohpackets/docs/schema.json
 
 Base URLs:
 
@@ -558,7 +558,9 @@ Base URLs:
       "program_id": "string",
       "metadata": {},
       "created": "2019-08-24T14:15:22Z",
-      "updated": "2019-08-24T14:15:22Z"
+      "updated": "2019-08-24T14:15:22Z",
+      "extra": {},
+      "extra_extra": {}
     }
   ],
   "count": 0,
@@ -1887,7 +1889,9 @@ If there are multiple date_of_diagnosis, get the earliest
   "program_id": "string",
   "metadata": {},
   "created": "2019-08-24T14:15:22Z",
-  "updated": "2019-08-24T14:15:22Z"
+  "updated": "2019-08-24T14:15:22Z",
+  "extra": {},
+  "extra_extra": {}
 }
 
 ```
@@ -1919,6 +1923,37 @@ continued
 |---|---|---|---|---|
 |created|string(date-time)|false|none|none|
 |updated|string(date-time)|false|none|none|
+|extra|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|object|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|extra_extra|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|object|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
 
 <h2 id="tocS_DonorIngestSchema">DonorIngestSchema</h2>
 
@@ -8454,7 +8489,9 @@ or
       "program_id": "string",
       "metadata": {},
       "created": "2019-08-24T14:15:22Z",
-      "updated": "2019-08-24T14:15:22Z"
+      "updated": "2019-08-24T14:15:22Z",
+      "extra": {},
+      "extra_extra": {}
     }
   ],
   "count": 0,
