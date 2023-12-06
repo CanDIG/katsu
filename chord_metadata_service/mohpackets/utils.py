@@ -39,6 +39,7 @@ def get_schema_url():
                 f"An error occurred while fetching the schema URL. Details: {str(e)}"
             )
             schema_url = None
+            print("abc")
     return schema_url
 
 
