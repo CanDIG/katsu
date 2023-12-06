@@ -34,6 +34,7 @@ class Program(models.Model):
     created = models.DateTimeField(default=timezone.now)
     updated = AutoDateTimeField(default=timezone.now)
     extra = models.JSONField(null=True, blank=True)
+    extra_extra = models.JSONField(null=True, blank=True)
 
     class Meta:
         ordering = ["program_id"]
