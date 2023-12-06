@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'chord_metadata_service/mohpackets/schemas/**'
+      - 'chord_metadata_service/mohpackets/model.py'
 
 jobs:
   your_job_name:
