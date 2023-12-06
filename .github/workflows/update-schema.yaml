@@ -3,15 +3,8 @@ name: Docs
 on:
   workflow_call:
   workflow_dispatch:
-  push:
-    branches:
-      - develop
-      - master
   pull_request:
-    branches:
-      - develop
-      - master
-
+    types: [review_requested, ready_for_review]
     
 jobs:
   generate-moh-schema:
