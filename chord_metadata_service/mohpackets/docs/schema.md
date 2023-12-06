@@ -1,7 +1,7 @@
 
 <h1 id="moh-service-api">MoH Service API v3.0.0</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/147e51c98d14b2ab54862ec2624afa12941c60d4/chord_metadata_service/mohpackets/docs/schema.json
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/fd21795959465403f5075f8b43f82920895090f6/chord_metadata_service/mohpackets/docs/schema.json
 
 Base URLs:
 
@@ -504,7 +504,7 @@ Base URLs:
       "pack_years_smoked": 0
     }
   ],
-  "comorbidities": [
+  "comorbidities_test": [
     {
       "prior_malignancy": "string",
       "laterality_of_prior_malignancy": "string",
@@ -5348,7 +5348,7 @@ or
       "pack_years_smoked": 0
     }
   ],
-  "comorbidities": [
+  "comorbidities_test": [
     {
       "prior_malignancy": "string",
       "laterality_of_prior_malignancy": "string",
@@ -5386,7 +5386,7 @@ DonorWithClinicalDataSchema
 |followups|[[NestedFollowUpSchema](#schemanestedfollowupschema)]|false|none|none|
 |biomarkers|[[NestedBiomarkerSchema](#schemanestedbiomarkerschema)]|false|none|none|
 |exposures|[[NestedExposureSchema](#schemanestedexposureschema)]|false|none|none|
-|comorbidities|[[NestedComorbiditySchema](#schemanestedcomorbidityschema)]|false|none|none|
+|comorbidities_test|[[NestedComorbiditySchema](#schemanestedcomorbidityschema)]|false|none|none|
 |submitter_donor_id|string|true|none|none|
 |program_id|string|true|none|none|
 |gender|any|false|none|none|
