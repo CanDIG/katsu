@@ -20,11 +20,11 @@ from chord_metadata_service.mohpackets.models import (
     Treatment,
 )
 from chord_metadata_service.mohpackets.permissible_values import (
-    COMORBIDITY_REGEX_PATTERNS,
-    DATE_REGEX_PATTERNS,
-    ID_REGEX_PATTERNS,
-    MORPHOLOGY_REGEX_PATTERNS,
-    TOPOGRAPHY_REGEX_PATTERNS,
+    COMORBIDITY_REGEX,
+    DATE_REGEX,
+    ID_REGEX,
+    MORPHOLOGY_REGEX,
+    TOPOGRAPHY_REGEX,
     BasisOfDiagnosisEnum,
     CauseOfDeathEnum,
     CellsMeasureMethodEnum,
@@ -99,7 +99,7 @@ Author: Son Chau
 
 
 class ProgramModelSchema(ModelSchema):
-    program_id: str = Field(pattern=ID_REGEX_PATTERNS, max_length=64)
+    program_id: str = Field(pattern=ID_REGEX, max_length=64)
 
     class Config:
         model = Program
@@ -119,7 +119,7 @@ class ComorbidityModelSchema(ModelSchema):
     prior_malignancy: Optional[uBooleanEnum] = None
     laterality_of_prior_malignancy: Optional[MalignancyLateralityEnum] = None
     comorbidity_type_code: Optional[str] = Field(
-        None, pattern=COMORBIDITY_REGEX_PATTERNS, max_length=64
+        None, pattern=COMORBIDITY_REGEX, max_length=64
     )
     comorbidity_treatment_status: Optional[uBooleanEnum] = None
     comorbidity_treatment: Optional[str] = Field(None, max_length=255)
@@ -144,15 +144,11 @@ class BiomarkerModelSchema(ModelSchema):
 
 
 class FollowUpModelSchema(ModelSchema):
-    submitter_follow_up_id: str = Field(pattern=ID_REGEX_PATTERNS, max_length=64)
+    submitter_follow_up_id: str = Field(pattern=ID_REGEX, max_length=64)
     disease_status_at_followup: Optional[DiseaseStatusFollowupEnum] = None
     relapse_type: Optional[RelapseTypeEnum] = None
-    date_of_followup: Optional[str] = Field(
-        None, pattern=DATE_REGEX_PATTERNS, max_length=32
-    )
-    date_of_relapse: Optional[str] = Field(
-        None, pattern=DATE_REGEX_PATTERNS, max_length=32
-    )
+    date_of_followup: Optional[str] = Field(None, pattern=DATE_REGEX, max_length=32)
+    date_of_relapse: Optional[str] = Field(None, pattern=DATE_REGEX, max_length=32)
     method_of_progression_status: Optional[List[ProgressionStatusMethodEnum]] = None
     anatomic_site_progression_or_recurrence: Optional[List[str]] = None
     recurrence_tumour_staging_system: Optional[TumourStagingSystemEnum] = None
@@ -168,9 +164,7 @@ class FollowUpModelSchema(ModelSchema):
 
 class SurgeryModelSchema(ModelSchema):
     surgery_type: Optional[SurgeryTypeEnum] = None
-    surgery_site: Optional[str] = Field(
-        None, pattern=TOPOGRAPHY_REGEX_PATTERNS, max_length=255
-    )
+    surgery_site: Optional[str] = Field(None, pattern=TOPOGRAPHY_REGEX, max_length=255)
     surgery_location: Optional[SurgeryLocationEnum] = None
     tumour_focality: Optional[TumourFocalityEnum] = None
     residual_tumour_classification: Optional[TumourClassificationEnum] = None
@@ -224,15 +218,11 @@ class ChemotherapyModelSchema(ModelSchema):
 
 
 class TreatmentModelSchema(ModelSchema):
-    submitter_treatment_id: str = Field(pattern=ID_REGEX_PATTERNS, max_length=64)
+    submitter_treatment_id: str = Field(pattern=ID_REGEX, max_length=64)
     treatment_type: Optional[List[TreatmentTypeEnum]] = None
     is_primary_treatment: Optional[uBooleanEnum] = None
-    treatment_start_date: Optional[str] = Field(
-        None, pattern=DATE_REGEX_PATTERNS, max_length=32
-    )
-    treatment_end_date: Optional[str] = Field(
-        None, pattern=DATE_REGEX_PATTERNS, max_length=32
-    )
+    treatment_start_date: Optional[str] = Field(None, pattern=DATE_REGEX, max_length=32)
+    treatment_end_date: Optional[str] = Field(None, pattern=DATE_REGEX, max_length=32)
     treatment_setting: Optional[TreatmentSettingEnum] = None
     treatment_intent: Optional[TreatmentIntentEnum] = None
     response_to_treatment_criteria_method: Optional[TreatmentResponseMethodEnum] = None
@@ -245,12 +235,8 @@ class TreatmentModelSchema(ModelSchema):
 
 
 class PrimaryDiagnosisModelSchema(ModelSchema):
-    submitter_primary_diagnosis_id: str = Field(
-        pattern=ID_REGEX_PATTERNS, max_length=64
-    )
-    date_of_diagnosis: Optional[str] = Field(
-        None, pattern=DATE_REGEX_PATTERNS, max_length=32
-    )
+    submitter_primary_diagnosis_id: str = Field(pattern=ID_REGEX, max_length=64)
+    date_of_diagnosis: Optional[str] = Field(None, pattern=DATE_REGEX, max_length=32)
 
     basis_of_diagnosis: Optional[BasisOfDiagnosisEnum] = None
     lymph_nodes_examined_status: Optional[LymphNodeStatusEnum] = None
@@ -268,7 +254,7 @@ class PrimaryDiagnosisModelSchema(ModelSchema):
 
 
 class SampleRegistrationModelSchema(ModelSchema):
-    submitter_sample_id: str = Field(pattern=ID_REGEX_PATTERNS, max_length=64)
+    submitter_sample_id: str = Field(pattern=ID_REGEX, max_length=64)
     specimen_tissue_source: Optional[SpecimenTissueSourceEnum] = None
     tumour_normal_designation: Optional[TumourDesginationEnum] = None
     specimen_type: Optional[SpecimenTypeEnum] = None
@@ -280,21 +266,21 @@ class SampleRegistrationModelSchema(ModelSchema):
 
 
 class SpecimenModelSchema(ModelSchema):
-    submitter_specimen_id: str = Field(pattern=ID_REGEX_PATTERNS, max_length=64)
+    submitter_specimen_id: str = Field(pattern=ID_REGEX, max_length=64)
     pathological_tumour_staging_system: Optional[TumourStagingSystemEnum] = None
     pathological_t_category: Optional[TCategoryEnum] = None
     pathological_n_category: Optional[NCategoryEnum] = None
     pathological_m_category: Optional[MCategoryEnum] = None
     pathological_stage_group: Optional[StageGroupEnum] = None
     specimen_collection_date: Optional[str] = Field(
-        None, pattern=DATE_REGEX_PATTERNS, max_length=32
+        None, pattern=DATE_REGEX, max_length=32
     )
     specimen_storage: Optional[StorageEnum] = None
     tumour_histological_type: Optional[str] = Field(
-        None, max_length=128, pattern=MORPHOLOGY_REGEX_PATTERNS
+        None, max_length=128, pattern=MORPHOLOGY_REGEX
     )
     specimen_anatomic_location: Optional[str] = Field(
-        None, max_length=32, pattern=TOPOGRAPHY_REGEX_PATTERNS
+        None, max_length=32, pattern=TOPOGRAPHY_REGEX
     )
     reference_pathology_confirmed_diagnosis: Optional[
         ConfirmedDiagnosisTumourEnum
@@ -316,19 +302,15 @@ class SpecimenModelSchema(ModelSchema):
 
 class DonorModelSchema(ModelSchema):
     cause_of_death: Optional[CauseOfDeathEnum] = None
-    submitter_donor_id: str = Field(pattern=ID_REGEX_PATTERNS, max_length=64)
-    date_of_birth: Optional[str] = Field(
-        None, pattern=DATE_REGEX_PATTERNS, max_length=32
-    )
-    date_of_death: Optional[str] = Field(
-        None, pattern=DATE_REGEX_PATTERNS, max_length=32
-    )
+    submitter_donor_id: str = Field(pattern=ID_REGEX, max_length=64)
+    date_of_birth: Optional[str] = Field(None, pattern=DATE_REGEX, max_length=32)
+    date_of_death: Optional[str] = Field(None, pattern=DATE_REGEX, max_length=32)
     primary_site: Optional[List[PrimarySiteEnum]] = None
     gender: Optional[GenderEnum] = None
     sex_at_birth: Optional[SexAtBirthEnum] = None
     lost_to_followup_reason: Optional[LostToFollowupReasonEnum] = None
     date_alive_after_lost_to_followup: Optional[str] = Field(
-        None, pattern=DATE_REGEX_PATTERNS, max_length=32
+        None, pattern=DATE_REGEX, max_length=32
     )
 
     class Config:
