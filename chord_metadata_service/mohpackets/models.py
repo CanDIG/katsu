@@ -58,11 +58,12 @@ class Donor(models.Model):
         max_length=32, null=True, blank=True
     )
     cause_of_death = models.CharField(max_length=255, null=True, blank=True)
-    date_of_birth = models.CharField(max_length=32, null=True, blank=True)
-    date_of_death = models.CharField(max_length=32, null=True, blank=True)
+    date_of_birth = models.JSONField(null=True, blank=True)
+    date_of_death = models.JSONField(null=True, blank=True)
     primary_site = ArrayField(
         models.CharField(max_length=255, null=True, blank=True), null=True, blank=True
     )
+    date_resolution = models.CharField(max_length=32, null=True, blank=True)
 
     class Meta:
         unique_together = ["program_id", "submitter_donor_id"]
@@ -84,7 +85,7 @@ class PrimaryDiagnosis(models.Model):
         max_length=64, null=True, blank=True
     )
     submitter_donor_id = models.CharField(max_length=64, null=True, blank=True)
-    date_of_diagnosis = models.CharField(max_length=32, null=True, blank=True)
+    date_of_diagnosis = models.JSONField(null=True, blank=True)
     cancer_type_code = models.CharField(max_length=64, null=True, blank=True)
     basis_of_diagnosis = models.CharField(max_length=128, null=True, blank=True)
     laterality = models.CharField(max_length=128, null=True, blank=True)
@@ -134,7 +135,7 @@ class Specimen(models.Model):
     pathological_n_category = models.CharField(max_length=64, null=True, blank=True)
     pathological_m_category = models.CharField(max_length=64, null=True, blank=True)
     pathological_stage_group = models.CharField(max_length=64, null=True, blank=True)
-    specimen_collection_date = models.CharField(max_length=32, null=True, blank=True)
+    specimen_collection_date = models.JSONField(null=True, blank=True)
     specimen_storage = models.CharField(max_length=64, null=True, blank=True)
     specimen_processing = models.CharField(max_length=128, null=True, blank=True)
     tumour_histological_type = models.CharField(max_length=128, null=True, blank=True)
@@ -207,8 +208,8 @@ class Treatment(models.Model):
     treatment_type = ArrayField(models.CharField(max_length=255), null=True, blank=True)
     is_primary_treatment = models.CharField(max_length=32, null=True, blank=True)
     line_of_treatment = models.IntegerField(null=True, blank=True)
-    treatment_start_date = models.CharField(max_length=32, null=True, blank=True)
-    treatment_end_date = models.CharField(max_length=32, null=True, blank=True)
+    treatment_start_date = models.JSONField(null=True, blank=True)
+    treatment_end_date = models.JSONField(null=True, blank=True)
     treatment_setting = models.CharField(max_length=128, null=True, blank=True)
     treatment_intent = models.CharField(max_length=128, null=True, blank=True)
     days_per_cycle = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -420,10 +421,10 @@ class FollowUp(models.Model):
         max_length=64, null=True, blank=True
     )
     submitter_treatment_id = models.CharField(max_length=64, null=True, blank=True)
-    date_of_followup = models.CharField(max_length=32, null=True, blank=True)
+    date_of_followup = models.JSONField(null=True, blank=True)
     disease_status_at_followup = models.CharField(max_length=255, null=True, blank=True)
     relapse_type = models.CharField(max_length=128, null=True, blank=True)
-    date_of_relapse = models.CharField(max_length=32, null=True, blank=True)
+    date_of_relapse = models.JSONField(null=True, blank=True)
     method_of_progression_status = ArrayField(
         models.CharField(max_length=255, null=True, blank=True), null=True, blank=True
     )
@@ -461,7 +462,7 @@ class Biomarker(models.Model):
     )
     submitter_treatment_id = models.CharField(max_length=64, null=True, blank=True)
     submitter_follow_up_id = models.CharField(max_length=64, null=True, blank=True)
-    test_date = models.CharField(max_length=32, null=True, blank=True)
+    test_date = models.JSONField(null=True, blank=True)
     psa_level = models.PositiveSmallIntegerField(null=True, blank=True)
     ca125 = models.PositiveSmallIntegerField(null=True, blank=True)
     cea = models.PositiveSmallIntegerField(null=True, blank=True)
