@@ -764,8 +764,10 @@ components:
           title: Date Resolution
         gender:
           anyOf:
-          - $ref: '#/components/schemas/GenderEnum'
+          - maxLength: 32
+            type: string
           - type: 'null'
+          title: Gender
         is_deceased:
           anyOf:
           - type: boolean
@@ -5512,7 +5514,7 @@ components:
       scheme: bearer
       type: http
 info:
-  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/6608917649663f84d8b3c51a2c34a00e88269c5b/chord_metadata_service/mohpackets/docs/schema.json
+  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/ed62529f804b53aac8045a5045dd3fd14224e322/chord_metadata_service/mohpackets/docs/schema.json
   title: MoH Service API
   version: 3.0.0
 openapi: 3.1.0

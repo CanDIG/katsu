@@ -1,7 +1,7 @@
 
 <h1 id="moh-service-api">MoH Service API v3.0.0</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/6608917649663f84d8b3c51a2c34a00e88269c5b/chord_metadata_service/mohpackets/docs/schema.json
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/ed62529f804b53aac8045a5045dd3fd14224e322/chord_metadata_service/mohpackets/docs/schema.json
 
 Base URLs:
 
@@ -1948,8 +1948,8 @@ continued
 {
   "program_id": "string",
   "uuid": "string",
-  "gender": "Man",
   "submitter_donor_id": "string",
+  "gender": "string",
   "sex_at_birth": "string",
   "is_deceased": true,
   "lost_to_followup_after_clinical_event_identifier": "string",
@@ -1991,13 +1991,14 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|submitter_donor_id|string|true|none|none|
 |gender|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[GenderEnum](#schemagenderenum)|false|none|none|
+|» *anonymous*|string|false|none|none|
 
 or
 
@@ -2009,7 +2010,6 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|submitter_donor_id|string|true|none|none|
 |sex_at_birth|any|false|none|none|
 
 anyOf
@@ -2185,34 +2185,6 @@ or
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|null|false|none|none|
-
-<h2 id="tocS_GenderEnum">GenderEnum</h2>
-
-<a id="schemagenderenum"></a>
-<a id="schema_GenderEnum"></a>
-<a id="tocSgenderenum"></a>
-<a id="tocsgenderenum"></a>
-
-```json
-"Man"
-
-```
-
-GenderEnum
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|GenderEnum|string|false|none|none|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|GenderEnum|Man|
-|GenderEnum|Woman|
-|GenderEnum|Non-binary|
 
 <h2 id="tocS_BiomarkerIngestSchema">BiomarkerIngestSchema</h2>
 
@@ -5894,6 +5866,34 @@ ErPrHpvStatusEnum
 |ErPrHpvStatusEnum|Not applicable|
 |ErPrHpvStatusEnum|Positive|
 |ErPrHpvStatusEnum|Unknown|
+
+<h2 id="tocS_GenderEnum">GenderEnum</h2>
+
+<a id="schemagenderenum"></a>
+<a id="schema_GenderEnum"></a>
+<a id="tocSgenderenum"></a>
+<a id="tocsgenderenum"></a>
+
+```json
+"Man"
+
+```
+
+GenderEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|GenderEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|GenderEnum|Man|
+|GenderEnum|Woman|
+|GenderEnum|Non-binary|
 
 <h2 id="tocS_Her2StatusEnum">Her2StatusEnum</h2>
 
