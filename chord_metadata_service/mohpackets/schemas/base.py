@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from ninja import Field
+from ninja import Field, Schema
 from ninja.orm import create_schema
 
 from chord_metadata_service.mohpackets.models import (
@@ -99,6 +99,16 @@ Author: Son Chau
 #                                      #
 ########################################
 
+
+class DateInterval(Schema):
+    day_interval: Optional[int] = Field(
+        None, description="number of days since first diagnosis"
+    )
+    month_interval: int = Field(
+        ..., description="number of months since first diagnosis"
+    )
+
+
 BaseProgramSchema = create_schema(
     Program,
     name="BaseProgramSchema",
@@ -114,16 +124,8 @@ BaseDonorSchema = create_schema(
     custom_fields=[
         ("cause_of_death", Optional[CauseOfDeathEnum], None),
         ("submitter_donor_id", str, Field(pattern=ID_REGEX_PATTERNS, max_length=64)),
-        (
-            "date_of_birth",
-            Optional[str],
-            Field(None, pattern=DATE_REGEX_PATTERNS, max_length=32),
-        ),
-        (
-            "date_of_death",
-            Optional[str],
-            Field(None, pattern=DATE_REGEX_PATTERNS, max_length=32),
-        ),
+        ("date_of_birth", Optional[DateInterval],None),
+        ("date_of_death", Optional[DateInterval],None),
         ("primary_site", Optional[List[PrimarySiteEnum]], None),
         ("gender", Optional[GenderEnum], None),
         ("sex_at_birth", Optional[SexAtBirthEnum], None),

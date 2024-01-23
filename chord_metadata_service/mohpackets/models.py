@@ -54,9 +54,7 @@ class Donor(models.Model):
         max_length=255, null=True, blank=True
     )
     lost_to_followup_reason = models.CharField(max_length=255, null=True, blank=True)
-    date_alive_after_lost_to_followup = models.CharField(
-        max_length=32, null=True, blank=True
-    )
+    date_alive_after_lost_to_followup = models.JSONField(null=True, blank=True)
     cause_of_death = models.CharField(max_length=255, null=True, blank=True)
     date_of_birth = models.JSONField(null=True, blank=True)
     date_of_death = models.JSONField(null=True, blank=True)
