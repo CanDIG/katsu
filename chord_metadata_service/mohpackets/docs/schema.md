@@ -1,7 +1,7 @@
 
 <h1 id="moh-service-api">MoH Service API v3.0.0</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/ed62529f804b53aac8045a5045dd3fd14224e322/chord_metadata_service/mohpackets/docs/schema.json
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/e34e55599f8d79ccdf918ee5a22d53c0af719be5/chord_metadata_service/mohpackets/docs/schema.json
 
 Base URLs:
 
@@ -288,8 +288,14 @@ Base URLs:
   "lost_to_followup_reason": "Completed study",
   "date_alive_after_lost_to_followup": "string",
   "cause_of_death": "Died of cancer",
-  "date_of_birth": "string",
-  "date_of_death": "string",
+  "date_of_birth": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "date_of_death": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "primary_site": [
     "Accessory sinuses"
   ],
@@ -612,8 +618,14 @@ Base URLs:
       "lost_to_followup_reason": "Completed study",
       "date_alive_after_lost_to_followup": "string",
       "cause_of_death": "Died of cancer",
-      "date_of_birth": "string",
-      "date_of_death": "string",
+      "date_of_birth": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "date_of_death": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "primary_site": [
         "Accessory sinuses"
       ],
@@ -1954,7 +1966,7 @@ continued
   "is_deceased": true,
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "string",
-  "date_alive_after_lost_to_followup": "string",
+  "date_alive_after_lost_to_followup": {},
   "cause_of_death": "string",
   "date_of_birth": {},
   "date_of_death": {},
@@ -2088,7 +2100,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|object|false|none|none|
 
 or
 
@@ -5269,6 +5281,47 @@ ConfirmedDiagnosisTumourEnum
 |ConfirmedDiagnosisTumourEnum|Not done|
 |ConfirmedDiagnosisTumourEnum|Unknown|
 
+<h2 id="tocS_DateInterval">DateInterval</h2>
+
+<a id="schemadateinterval"></a>
+<a id="schema_DateInterval"></a>
+<a id="tocSdateinterval"></a>
+<a id="tocsdateinterval"></a>
+
+```json
+{
+  "day_interval": 0,
+  "month_interval": 0
+}
+
+```
+
+DateInterval
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|day_interval|any|false|none|number of days since first diagnosis|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|month_interval|integer|true|none|number of months since first diagnosis|
+
 <h2 id="tocS_DiseaseStatusFollowupEnum">DiseaseStatusFollowupEnum</h2>
 
 <a id="schemadiseasestatusfollowupenum"></a>
@@ -5320,8 +5373,14 @@ DiseaseStatusFollowupEnum
   "lost_to_followup_reason": "Completed study",
   "date_alive_after_lost_to_followup": "string",
   "cause_of_death": "Died of cancer",
-  "date_of_birth": "string",
-  "date_of_death": "string",
+  "date_of_birth": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "date_of_death": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "primary_site": [
     "Accessory sinuses"
   ],
@@ -5705,7 +5764,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -5723,7 +5782,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -11208,8 +11267,14 @@ continued
   "lost_to_followup_reason": "Completed study",
   "date_alive_after_lost_to_followup": "string",
   "cause_of_death": "Died of cancer",
-  "date_of_birth": "string",
-  "date_of_death": "string",
+  "date_of_birth": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "date_of_death": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "primary_site": [
     "Accessory sinuses"
   ],
@@ -11358,7 +11423,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -11376,7 +11441,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -11440,8 +11505,14 @@ or
       "lost_to_followup_reason": "Completed study",
       "date_alive_after_lost_to_followup": "string",
       "cause_of_death": "Died of cancer",
-      "date_of_birth": "string",
-      "date_of_death": "string",
+      "date_of_birth": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "date_of_death": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "primary_site": [
         "Accessory sinuses"
       ],

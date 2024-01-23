@@ -643,6 +643,22 @@ components:
       - Unknown
       title: ConfirmedDiagnosisTumourEnum
       type: string
+    DateInterval:
+      properties:
+        day_interval:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: number of days since first diagnosis
+          title: Day Interval
+        month_interval:
+          description: number of months since first diagnosis
+          title: Month Interval
+          type: integer
+      required:
+      - month_interval
+      title: DateInterval
+      type: object
     DiscoverySchema:
       properties:
         donors_by_cohort:
@@ -742,8 +758,7 @@ components:
           title: Cause Of Death
         date_alive_after_lost_to_followup:
           anyOf:
-          - maxLength: 32
-            type: string
+          - type: object
           - type: 'null'
           title: Date Alive After Lost To Followup
         date_of_birth:
@@ -829,18 +844,12 @@ components:
           title: Date Alive After Lost To Followup
         date_of_birth:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Birth
         date_of_death:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Death
         date_resolution:
           anyOf:
           - maxLength: 32
@@ -915,18 +924,12 @@ components:
           title: Date Alive After Lost To Followup
         date_of_birth:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Birth
         date_of_death:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Death
         date_resolution:
           anyOf:
           - maxLength: 32
@@ -5514,7 +5517,7 @@ components:
       scheme: bearer
       type: http
 info:
-  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/ed62529f804b53aac8045a5045dd3fd14224e322/chord_metadata_service/mohpackets/docs/schema.json
+  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/e34e55599f8d79ccdf918ee5a22d53c0af719be5/chord_metadata_service/mohpackets/docs/schema.json
   title: MoH Service API
   version: 3.0.0
 openapi: 3.1.0
