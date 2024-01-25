@@ -3,7 +3,7 @@
     "info": {
         "title": "MoH Service API",
         "version": "3.0.0",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/a6cdc8842cb086d3065578080032e148e5a3fdf7/chord_metadata_service/mohpackets/docs/schema.json"
+        "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
         "/v2/service-info": {
@@ -4864,6 +4864,32 @@
                 "title": "CauseOfDeathEnum",
                 "type": "string"
             },
+            "DateInterval": {
+                "properties": {
+                    "day_interval": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "description": "number of days since first diagnosis",
+                        "title": "Day Interval"
+                    },
+                    "month_interval": {
+                        "description": "number of months since first diagnosis",
+                        "title": "Month Interval",
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "month_interval"
+                ],
+                "title": "DateInterval",
+                "type": "object"
+            },
             "DonorIngestSchema": {
                 "properties": {
                     "submitter_donor_id": {
@@ -4951,28 +4977,22 @@
                     "date_of_birth": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Birth"
+                        ]
                     },
                     "date_of_death": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Death"
+                        ]
                     },
                     "primary_site": {
                         "anyOf": [
@@ -4987,6 +5007,18 @@
                             }
                         ],
                         "title": "Primary Site"
+                    },
+                    "date_resolution": {
+                        "anyOf": [
+                            {
+                                "maxLength": 32,
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Date Resolution"
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -5171,8 +5203,7 @@
                     "test_date": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "type": "string"
+                                "type": "object"
                             },
                             {
                                 "type": "null"
@@ -8186,28 +8217,22 @@
                     "date_of_birth": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Birth"
+                        ]
                     },
                     "date_of_death": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Death"
+                        ]
                     },
                     "primary_site": {
                         "anyOf": [
@@ -8222,6 +8247,18 @@
                             }
                         ],
                         "title": "Primary Site"
+                    },
+                    "date_resolution": {
+                        "anyOf": [
+                            {
+                                "maxLength": 32,
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Date Resolution"
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -8323,8 +8360,7 @@
                     "test_date": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "type": "string"
+                                "type": "object"
                             },
                             {
                                 "type": "null"
@@ -10142,28 +10178,22 @@
                     "date_of_birth": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Birth"
+                        ]
                     },
                     "date_of_death": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Death"
+                        ]
                     },
                     "primary_site": {
                         "anyOf": [
@@ -10178,6 +10208,18 @@
                             }
                         ],
                         "title": "Primary Site"
+                    },
+                    "date_resolution": {
+                        "anyOf": [
+                            {
+                                "maxLength": 32,
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Date Resolution"
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -10882,8 +10924,7 @@
                     "test_date": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "type": "string"
+                                "type": "object"
                             },
                             {
                                 "type": "null"
