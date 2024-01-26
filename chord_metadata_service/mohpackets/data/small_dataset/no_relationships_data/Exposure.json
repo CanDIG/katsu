@@ -1,8 +1,8 @@
-[{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Current smoker","tobacco_type":["Unknown","Electronic cigarettes","Not applicable"],"pack_years_smoked":280},
-{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Not applicable","tobacco_type":["Chewing Tobacco","Pipe","Not applicable"],"pack_years_smoked":138},
-{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Not applicable","tobacco_type":["Cigar","Waterpipe","Electronic cigarettes"],"pack_years_smoked":141},
-{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Current reformed smoker for > 15 years","tobacco_type":["Cigarettes","Electronic cigarettes"],"pack_years_smoked":90},
-{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Current smoker","tobacco_type":["Cigarettes","Snuff"],"pack_years_smoked":266},
-{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Current reformed smoker for > 15 years","tobacco_type":["Waterpipe","Unknown"],"pack_years_smoked":29},
-{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Current reformed smoker, duration not specified","tobacco_type":["Unknown","Electronic cigarettes","Not applicable"],"pack_years_smoked":104},
-{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Current reformed smoker for > 15 years","tobacco_type":["Waterpipe","Unknown"],"pack_years_smoked":48}]
+[{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Current smoker","tobacco_type":["Cigar","Not applicable","Electronic cigarettes"],"pack_years_smoked":201},
+{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Lifelong non-smoker (<100 cigarettes smoked in lifetime)","tobacco_type":["Unknown"],"pack_years_smoked":169},
+{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Current smoker","tobacco_type":[],"pack_years_smoked":72},
+{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Lifelong non-smoker (<100 cigarettes smoked in lifetime)","tobacco_type":["Cigar","Cigarettes","Pipe"],"pack_years_smoked":127},
+{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Current reformed smoker for <= 15 years","tobacco_type":[],"pack_years_smoked":111},
+{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Lifelong non-smoker (<100 cigarettes smoked in lifetime)","tobacco_type":["Waterpipe","Not applicable","Cigar"],"pack_years_smoked":171},
+{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":null,"tobacco_type":["Cigar","Chewing Tobacco"],"pack_years_smoked":191},
+{"program_id":null,"submitter_donor_id":null,"tobacco_smoking_status":"Current reformed smoker for > 15 years","tobacco_type":["Pipe"],"pack_years_smoked":100}]
