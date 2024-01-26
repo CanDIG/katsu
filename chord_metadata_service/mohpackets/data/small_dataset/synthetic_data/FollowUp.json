@@ -5,18 +5,25 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
         "submitter_treatment_id": "TREATMENT_1",
-        "date_of_followup": "2022-10",
+        "date_of_followup": {
+            "month_interval": null,
+            "day_interval": null
+        },
         "disease_status_at_followup": null,
-        "relapse_type": "Local recurrence and distant metastasis",
-        "date_of_relapse": null,
-        "method_of_progression_status": [],
-        "anatomic_site_progression_or_recurrence": [
-            "C06"
+        "relapse_type": null,
+        "date_of_relapse": {
+            "month_interval": 23,
+            "day_interval": 690
+        },
+        "method_of_progression_status": [
+            "Laboratory data interpretation (procedure)",
+            "Imaging (procedure)"
         ],
-        "recurrence_tumour_staging_system": "Lugano staging system",
-        "recurrence_t_category": "T2d",
-        "recurrence_n_category": "N1c",
-        "recurrence_m_category": "M1c(1)",
+        "anatomic_site_progression_or_recurrence": null,
+        "recurrence_tumour_staging_system": "Ann Arbor staging system",
+        "recurrence_t_category": null,
+        "recurrence_n_category": null,
+        "recurrence_m_category": null,
         "recurrence_stage_group": null
     },
     {
@@ -25,17 +32,23 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
         "submitter_treatment_id": "TREATMENT_1",
-        "date_of_followup": "2022-11",
-        "disease_status_at_followup": "Relapse or recurrence",
-        "relapse_type": null,
-        "date_of_relapse": "2022-02",
+        "date_of_followup": {
+            "month_interval": 24,
+            "day_interval": 720
+        },
+        "disease_status_at_followup": "Loco-regional progression",
+        "relapse_type": "Distant recurrence/metastasis",
+        "date_of_relapse": {
+            "month_interval": 27,
+            "day_interval": 810
+        },
         "method_of_progression_status": [],
         "anatomic_site_progression_or_recurrence": [],
-        "recurrence_tumour_staging_system": "FIGO staging system",
-        "recurrence_t_category": "T4a",
-        "recurrence_n_category": "N0(i+)",
-        "recurrence_m_category": null,
-        "recurrence_stage_group": "Stage IIEB"
+        "recurrence_tumour_staging_system": "International Neuroblastoma Staging System",
+        "recurrence_t_category": "Tis pd",
+        "recurrence_n_category": "N0a",
+        "recurrence_m_category": "M1a(0)",
+        "recurrence_stage_group": "Stage IVC"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_3",
@@ -43,19 +56,23 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
         "submitter_treatment_id": "TREATMENT_1",
-        "date_of_followup": "2022-10",
-        "disease_status_at_followup": "Partial remission",
-        "relapse_type": null,
-        "date_of_relapse": "2022-06",
-        "method_of_progression_status": [
-            "Assessment of symptom control (procedure)"
-        ],
+        "date_of_followup": {
+            "month_interval": 37,
+            "day_interval": 1110
+        },
+        "disease_status_at_followup": "Stable",
+        "relapse_type": "Biochemical progression",
+        "date_of_relapse": {
+            "month_interval": null,
+            "day_interval": null
+        },
+        "method_of_progression_status": [],
         "anatomic_site_progression_or_recurrence": [],
-        "recurrence_tumour_staging_system": "Rai staging system",
-        "recurrence_t_category": null,
-        "recurrence_n_category": "N2",
-        "recurrence_m_category": "M1",
-        "recurrence_stage_group": "Stage IIA2"
+        "recurrence_tumour_staging_system": "St Jude staging system",
+        "recurrence_t_category": "Tis(LAMN)",
+        "recurrence_n_category": "N2c",
+        "recurrence_m_category": "M1a",
+        "recurrence_stage_group": "Stage IIIES"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_4",
@@ -63,17 +80,25 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
         "submitter_treatment_id": "TREATMENT_2",
-        "date_of_followup": "2022-10",
+        "date_of_followup": {
+            "month_interval": null,
+            "day_interval": null
+        },
         "disease_status_at_followup": "No evidence of disease",
-        "relapse_type": "Distant recurrence/metastasis",
-        "date_of_relapse": "2022-01",
-        "method_of_progression_status": [],
-        "anatomic_site_progression_or_recurrence": [],
+        "relapse_type": "Local recurrence",
+        "date_of_relapse": {
+            "month_interval": 48,
+            "day_interval": 1440
+        },
+        "method_of_progression_status": [
+            "Physical examination procedure (procedure)"
+        ],
+        "anatomic_site_progression_or_recurrence": null,
         "recurrence_tumour_staging_system": "Ann Arbor staging system",
-        "recurrence_t_category": "Tis pu",
-        "recurrence_n_category": "N1b",
-        "recurrence_m_category": "M1a(0)",
-        "recurrence_stage_group": "Localized"
+        "recurrence_t_category": "T0",
+        "recurrence_n_category": "N3",
+        "recurrence_m_category": "M1c(1)",
+        "recurrence_stage_group": "Stage L1"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_5",
@@ -81,21 +106,26 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
         "submitter_treatment_id": "TREATMENT_2",
-        "date_of_followup": "2022-11",
+        "date_of_followup": {
+            "month_interval": 30,
+            "day_interval": 900
+        },
         "disease_status_at_followup": "Complete remission",
-        "relapse_type": "Local recurrence",
-        "date_of_relapse": "2022-06",
+        "relapse_type": "Progression (liquid tumours)",
+        "date_of_relapse": {
+            "month_interval": 29,
+            "day_interval": 870
+        },
         "method_of_progression_status": [
-            "Histopathology test (procedure)"
+            "Imaging (procedure)",
+            "Assessment of symptom control (procedure)"
         ],
-        "anatomic_site_progression_or_recurrence": [
-            "C15"
-        ],
-        "recurrence_tumour_staging_system": "AJCC 7th edition",
-        "recurrence_t_category": "T2",
-        "recurrence_n_category": "N0b (no biopsy)",
-        "recurrence_m_category": "M1d",
-        "recurrence_stage_group": "Stage IA1"
+        "anatomic_site_progression_or_recurrence": [],
+        "recurrence_tumour_staging_system": "SEER staging system",
+        "recurrence_t_category": null,
+        "recurrence_n_category": null,
+        "recurrence_m_category": null,
+        "recurrence_stage_group": null
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_6",
@@ -103,20 +133,23 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
         "submitter_treatment_id": "TREATMENT_2",
-        "date_of_followup": "2022-11",
-        "disease_status_at_followup": "Stable",
-        "relapse_type": null,
-        "date_of_relapse": "2022-05",
+        "date_of_followup": {
+            "month_interval": null,
+            "day_interval": null
+        },
+        "disease_status_at_followup": "No evidence of disease",
+        "relapse_type": "Progression (liquid tumours)",
+        "date_of_relapse": {
+            "month_interval": 15,
+            "day_interval": 450
+        },
         "method_of_progression_status": [],
-        "anatomic_site_progression_or_recurrence": [
-            "C18",
-            "C20"
-        ],
-        "recurrence_tumour_staging_system": "International Neuroblastoma Risk Group Staging System",
-        "recurrence_t_category": "T4b(s)",
-        "recurrence_n_category": "N4",
-        "recurrence_m_category": null,
-        "recurrence_stage_group": "Stage IES"
+        "anatomic_site_progression_or_recurrence": [],
+        "recurrence_tumour_staging_system": "Durie-Salmon staging system",
+        "recurrence_t_category": null,
+        "recurrence_n_category": "N0(i-)",
+        "recurrence_m_category": "M1c(1)",
+        "recurrence_stage_group": "Stage B"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_7",
@@ -124,19 +157,28 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
         "submitter_treatment_id": "TREATMENT_3",
-        "date_of_followup": "2022-08",
+        "date_of_followup": {
+            "month_interval": 47,
+            "day_interval": 1410
+        },
         "disease_status_at_followup": "Distant progression",
         "relapse_type": "Local recurrence and distant metastasis",
-        "date_of_relapse": "2022-05",
+        "date_of_relapse": {
+            "month_interval": 28,
+            "day_interval": 840
+        },
         "method_of_progression_status": [
-            "Tumor marker measurement (procedure)"
+            "Imaging (procedure)"
         ],
-        "anatomic_site_progression_or_recurrence": [],
-        "recurrence_tumour_staging_system": "Binet staging system",
-        "recurrence_t_category": "T1c",
-        "recurrence_n_category": "N0(mol-)",
-        "recurrence_m_category": "M0(i+)",
-        "recurrence_stage_group": "Stage IVAES"
+        "anatomic_site_progression_or_recurrence": [
+            "C03",
+            "C11"
+        ],
+        "recurrence_tumour_staging_system": "SEER staging system",
+        "recurrence_t_category": "T4c",
+        "recurrence_n_category": "N3",
+        "recurrence_m_category": "M1c(0)",
+        "recurrence_stage_group": "Stage M"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_8",
@@ -144,20 +186,28 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
         "submitter_treatment_id": "TREATMENT_3",
-        "date_of_followup": null,
-        "disease_status_at_followup": "Distant progression",
+        "date_of_followup": {
+            "month_interval": 35,
+            "day_interval": 1050
+        },
+        "disease_status_at_followup": "Complete remission",
         "relapse_type": "Biochemical progression",
-        "date_of_relapse": "2022-04",
+        "date_of_relapse": {
+            "month_interval": null,
+            "day_interval": null
+        },
         "method_of_progression_status": [
-            "Laboratory data interpretation (procedure)",
-            "Assessment of symptom control (procedure)"
+            "Tumor marker measurement (procedure)",
+            "Histopathology test (procedure)"
         ],
-        "anatomic_site_progression_or_recurrence": null,
-        "recurrence_tumour_staging_system": null,
-        "recurrence_t_category": "Tis(LAMN)",
-        "recurrence_n_category": "N1c",
-        "recurrence_m_category": "M1c(0)",
-        "recurrence_stage_group": "Stage IIIA2"
+        "anatomic_site_progression_or_recurrence": [
+            "C13"
+        ],
+        "recurrence_tumour_staging_system": "AJCC 7th edition",
+        "recurrence_t_category": "T2a",
+        "recurrence_n_category": "N0b",
+        "recurrence_m_category": "M1",
+        "recurrence_stage_group": null
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_9",
@@ -165,21 +215,26 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
         "submitter_treatment_id": "TREATMENT_3",
-        "date_of_followup": "2022-10",
-        "disease_status_at_followup": "Relapse or recurrence",
-        "relapse_type": "Biochemical progression",
-        "date_of_relapse": "2022-05",
+        "date_of_followup": {
+            "month_interval": null,
+            "day_interval": null
+        },
+        "disease_status_at_followup": null,
+        "relapse_type": "Local recurrence",
+        "date_of_relapse": {
+            "month_interval": 2,
+            "day_interval": 60
+        },
         "method_of_progression_status": [
-            "Tumor marker measurement (procedure)"
+            "Tumor marker measurement (procedure)",
+            "Assessment of symptom control (procedure)"
         ],
-        "anatomic_site_progression_or_recurrence": [
-            "C12"
-        ],
-        "recurrence_tumour_staging_system": "Lugano staging system",
-        "recurrence_t_category": "T2a2",
-        "recurrence_n_category": null,
-        "recurrence_m_category": "M1a(0)",
-        "recurrence_stage_group": "Stage IAES"
+        "anatomic_site_progression_or_recurrence": [],
+        "recurrence_tumour_staging_system": null,
+        "recurrence_t_category": null,
+        "recurrence_n_category": "N2c",
+        "recurrence_m_category": "M1d(1)",
+        "recurrence_stage_group": null
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_10",
@@ -187,20 +242,26 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_2",
         "submitter_treatment_id": "TREATMENT_4",
-        "date_of_followup": "2022-11",
-        "disease_status_at_followup": "Relapse or recurrence",
+        "date_of_followup": {
+            "month_interval": 4,
+            "day_interval": 120
+        },
+        "disease_status_at_followup": "Loco-regional progression",
         "relapse_type": null,
-        "date_of_relapse": "2022-08",
+        "date_of_relapse": {
+            "month_interval": null,
+            "day_interval": null
+        },
         "method_of_progression_status": [],
         "anatomic_site_progression_or_recurrence": [
-            "C13",
-            "C06"
+            "C01",
+            "C19"
         ],
-        "recurrence_tumour_staging_system": "Rai staging system",
-        "recurrence_t_category": null,
-        "recurrence_n_category": null,
-        "recurrence_m_category": "M1c(1)",
-        "recurrence_stage_group": "Stage 4"
+        "recurrence_tumour_staging_system": "International Neuroblastoma Risk Group Staging System",
+        "recurrence_t_category": "T3",
+        "recurrence_n_category": "N0",
+        "recurrence_m_category": "M1a(0)",
+        "recurrence_stage_group": "Stage 0"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_11",
@@ -208,21 +269,28 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_2",
         "submitter_treatment_id": "TREATMENT_4",
-        "date_of_followup": "2022-08",
-        "disease_status_at_followup": "No evidence of disease",
+        "date_of_followup": {
+            "month_interval": 12,
+            "day_interval": 360
+        },
+        "disease_status_at_followup": null,
         "relapse_type": "Local recurrence",
-        "date_of_relapse": null,
+        "date_of_relapse": {
+            "month_interval": 19,
+            "day_interval": 570
+        },
         "method_of_progression_status": [
+            "Assessment of symptom control (procedure)",
             "Physical examination procedure (procedure)"
         ],
         "anatomic_site_progression_or_recurrence": [
-            "C15",
-            "C10"
+            "C05",
+            "C03"
         ],
-        "recurrence_tumour_staging_system": "Lugano staging system",
-        "recurrence_t_category": "T4a(s)",
-        "recurrence_n_category": "N4",
-        "recurrence_m_category": "M0(i+)",
+        "recurrence_tumour_staging_system": "SEER staging system",
+        "recurrence_t_category": "T1a(s)",
+        "recurrence_n_category": "N0(mol+)",
+        "recurrence_m_category": "M1c(1)",
         "recurrence_stage_group": null
     },
     {
@@ -231,17 +299,26 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_2",
         "submitter_treatment_id": "TREATMENT_5",
-        "date_of_followup": "2022-09",
-        "disease_status_at_followup": "Distant progression",
+        "date_of_followup": {
+            "month_interval": 32,
+            "day_interval": 960
+        },
+        "disease_status_at_followup": null,
         "relapse_type": "Local recurrence and distant metastasis",
-        "date_of_relapse": "2022-03",
+        "date_of_relapse": {
+            "month_interval": 14,
+            "day_interval": 420
+        },
         "method_of_progression_status": [],
-        "anatomic_site_progression_or_recurrence": [],
-        "recurrence_tumour_staging_system": "Ann Arbor staging system",
-        "recurrence_t_category": "T1a(s)",
-        "recurrence_n_category": "N2a",
-        "recurrence_m_category": null,
-        "recurrence_stage_group": "Stage IS"
+        "anatomic_site_progression_or_recurrence": [
+            "C16",
+            "C03"
+        ],
+        "recurrence_tumour_staging_system": "St Jude staging system",
+        "recurrence_t_category": "T4a(m)",
+        "recurrence_n_category": "N4",
+        "recurrence_m_category": "M1a",
+        "recurrence_stage_group": "Stage IVBES"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_13",
@@ -249,19 +326,26 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_2",
         "submitter_treatment_id": "TREATMENT_5",
-        "date_of_followup": "2022-08",
-        "disease_status_at_followup": "Partial remission",
+        "date_of_followup": {
+            "month_interval": 16,
+            "day_interval": 480
+        },
+        "disease_status_at_followup": "Distant progression",
         "relapse_type": "Biochemical progression",
-        "date_of_relapse": "2022-09",
+        "date_of_relapse": {
+            "month_interval": 45,
+            "day_interval": 1350
+        },
         "method_of_progression_status": [
-            "Imaging (procedure)"
+            "Physical examination procedure (procedure)",
+            "Histopathology test (procedure)"
         ],
-        "anatomic_site_progression_or_recurrence": [],
-        "recurrence_tumour_staging_system": "Rai staging system",
-        "recurrence_t_category": "Tis(LCIS)",
-        "recurrence_n_category": "N0b (no biopsy)",
-        "recurrence_m_category": "M0",
-        "recurrence_stage_group": null
+        "anatomic_site_progression_or_recurrence": null,
+        "recurrence_tumour_staging_system": null,
+        "recurrence_t_category": "T2(m)",
+        "recurrence_n_category": "N1c",
+        "recurrence_m_category": "M1d(0)",
+        "recurrence_stage_group": "Stage IIIC2"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_14",
@@ -269,20 +353,25 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_2",
         "submitter_treatment_id": "TREATMENT_6",
-        "date_of_followup": "2022-11",
-        "disease_status_at_followup": "No evidence of disease",
-        "relapse_type": "Local recurrence and distant metastasis",
-        "date_of_relapse": null,
-        "method_of_progression_status": [
-            "Laboratory data interpretation (procedure)",
-            "Physical examination procedure (procedure)"
+        "date_of_followup": {
+            "month_interval": 42,
+            "day_interval": 1260
+        },
+        "disease_status_at_followup": "Distant progression",
+        "relapse_type": null,
+        "date_of_relapse": {
+            "month_interval": 12,
+            "day_interval": 360
+        },
+        "method_of_progression_status": [],
+        "anatomic_site_progression_or_recurrence": [
+            "C14"
         ],
-        "anatomic_site_progression_or_recurrence": null,
-        "recurrence_tumour_staging_system": "Lugano staging system",
-        "recurrence_t_category": "T1b(s)",
-        "recurrence_n_category": "N1mi",
-        "recurrence_m_category": "M1e",
-        "recurrence_stage_group": "Stage IIE"
+        "recurrence_tumour_staging_system": null,
+        "recurrence_t_category": null,
+        "recurrence_n_category": null,
+        "recurrence_m_category": null,
+        "recurrence_stage_group": "Stage IBES"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_15",
@@ -290,20 +379,26 @@
         "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_2",
         "submitter_treatment_id": "TREATMENT_6",
-        "date_of_followup": null,
-        "disease_status_at_followup": "Partial remission",
-        "relapse_type": "Progression (liquid tumours)",
-        "date_of_relapse": "2021-12",
-        "method_of_progression_status": [
-            "Tumor marker measurement (procedure)",
-            "Histopathology test (procedure)"
+        "date_of_followup": {
+            "month_interval": 48,
+            "day_interval": 1440
+        },
+        "disease_status_at_followup": "Progression not otherwise specified",
+        "relapse_type": "Local recurrence and distant metastasis",
+        "date_of_relapse": {
+            "month_interval": 21,
+            "day_interval": 630
+        },
+        "method_of_progression_status": [],
+        "anatomic_site_progression_or_recurrence": [
+            "C01",
+            "C03"
         ],
-        "anatomic_site_progression_or_recurrence": [],
-        "recurrence_tumour_staging_system": "AJCC 6th edition",
-        "recurrence_t_category": null,
-        "recurrence_n_category": "N0a",
-        "recurrence_m_category": null,
-        "recurrence_stage_group": "Stage IES"
+        "recurrence_tumour_staging_system": "FIGO staging system",
+        "recurrence_t_category": "T1b(s)",
+        "recurrence_n_category": "N1a",
+        "recurrence_m_category": "M0",
+        "recurrence_stage_group": "Stage IA"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_16",
@@ -311,22 +406,28 @@
         "submitter_donor_id": "DONOR_2",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_3",
         "submitter_treatment_id": "TREATMENT_7",
-        "date_of_followup": "2022-11",
-        "disease_status_at_followup": "Progression not otherwise specified",
-        "relapse_type": "Local recurrence",
-        "date_of_relapse": "2022-10",
+        "date_of_followup": {
+            "month_interval": 50,
+            "day_interval": 1500
+        },
+        "disease_status_at_followup": "Complete remission",
+        "relapse_type": "Progression (liquid tumours)",
+        "date_of_relapse": {
+            "month_interval": 47,
+            "day_interval": 1410
+        },
         "method_of_progression_status": [
-            "Histopathology test (procedure)"
+            "Tumor marker measurement (procedure)",
+            "Assessment of symptom control (procedure)"
         ],
         "anatomic_site_progression_or_recurrence": [
-            "C07",
-            "C02"
+            "C07"
         ],
-        "recurrence_tumour_staging_system": "FIGO staging system",
-        "recurrence_t_category": null,
-        "recurrence_n_category": null,
+        "recurrence_tumour_staging_system": "Ann Arbor staging system",
+        "recurrence_t_category": "T4a(m)",
+        "recurrence_n_category": "N1mi",
         "recurrence_m_category": "M1a(1)",
-        "recurrence_stage_group": "Stage IC"
+        "recurrence_stage_group": "Stage IV"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_17",
@@ -334,17 +435,25 @@
         "submitter_donor_id": "DONOR_2",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_3",
         "submitter_treatment_id": "TREATMENT_8",
-        "date_of_followup": null,
-        "disease_status_at_followup": "Relapse or recurrence",
-        "relapse_type": "Local recurrence and distant metastasis",
-        "date_of_relapse": null,
+        "date_of_followup": {
+            "month_interval": 5,
+            "day_interval": 150
+        },
+        "disease_status_at_followup": "Distant progression",
+        "relapse_type": "Local recurrence",
+        "date_of_relapse": {
+            "month_interval": null,
+            "day_interval": null
+        },
         "method_of_progression_status": [],
-        "anatomic_site_progression_or_recurrence": [],
-        "recurrence_tumour_staging_system": "St Jude staging system",
-        "recurrence_t_category": null,
-        "recurrence_n_category": "N2",
-        "recurrence_m_category": "M1",
-        "recurrence_stage_group": "Stage IVBS"
+        "anatomic_site_progression_or_recurrence": [
+            "C11"
+        ],
+        "recurrence_tumour_staging_system": "International Neuroblastoma Risk Group Staging System",
+        "recurrence_t_category": "T4",
+        "recurrence_n_category": "N1b",
+        "recurrence_m_category": "M1d",
+        "recurrence_stage_group": "Stage IAE"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_18",
@@ -352,20 +461,29 @@
         "submitter_donor_id": "DONOR_2",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_3",
         "submitter_treatment_id": "TREATMENT_9",
-        "date_of_followup": "2022-10",
-        "disease_status_at_followup": "Distant progression",
+        "date_of_followup": {
+            "month_interval": 9,
+            "day_interval": 270
+        },
+        "disease_status_at_followup": "Stable",
         "relapse_type": "Local recurrence and distant metastasis",
-        "date_of_relapse": null,
+        "date_of_relapse": {
+            "month_interval": 23,
+            "day_interval": 690
+        },
         "method_of_progression_status": [
-            "Tumor marker measurement (procedure)",
+            "Histopathology test (procedure)",
             "Imaging (procedure)"
         ],
-        "anatomic_site_progression_or_recurrence": null,
-        "recurrence_tumour_staging_system": null,
-        "recurrence_t_category": null,
-        "recurrence_n_category": "N1",
+        "anatomic_site_progression_or_recurrence": [
+            "C18",
+            "C17"
+        ],
+        "recurrence_tumour_staging_system": "Revised International staging system (RISS)",
+        "recurrence_t_category": "T1a(m)",
+        "recurrence_n_category": null,
         "recurrence_m_category": null,
-        "recurrence_stage_group": null
+        "recurrence_stage_group": "In situ"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_19",
@@ -373,20 +491,28 @@
         "submitter_donor_id": "DONOR_2",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_5",
         "submitter_treatment_id": "TREATMENT_10",
-        "date_of_followup": "2022-11",
-        "disease_status_at_followup": "Loco-regional progression",
-        "relapse_type": "Progression (liquid tumours)",
-        "date_of_relapse": null,
+        "date_of_followup": {
+            "month_interval": 38,
+            "day_interval": 1140
+        },
+        "disease_status_at_followup": "No evidence of disease",
+        "relapse_type": "Local recurrence",
+        "date_of_relapse": {
+            "month_interval": 34,
+            "day_interval": 1020
+        },
         "method_of_progression_status": [
-            "Laboratory data interpretation (procedure)",
-            "Tumor marker measurement (procedure)"
+            "Histopathology test (procedure)"
         ],
-        "anatomic_site_progression_or_recurrence": null,
-        "recurrence_tumour_staging_system": "Binet staging system",
-        "recurrence_t_category": "T4b(s)",
-        "recurrence_n_category": null,
-        "recurrence_m_category": null,
-        "recurrence_stage_group": "Stage II"
+        "anatomic_site_progression_or_recurrence": [
+            "C01",
+            "C06"
+        ],
+        "recurrence_tumour_staging_system": "Ann Arbor staging system",
+        "recurrence_t_category": null,
+        "recurrence_n_category": "N2b",
+        "recurrence_m_category": "M1c(1)",
+        "recurrence_stage_group": "Stage III"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_20",
@@ -394,21 +520,26 @@
         "submitter_donor_id": "DONOR_2",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_5",
         "submitter_treatment_id": "TREATMENT_11",
-        "date_of_followup": "2022-08",
-        "disease_status_at_followup": "Partial remission",
-        "relapse_type": "Distant recurrence/metastasis",
-        "date_of_relapse": "2022-02",
-        "method_of_progression_status": [
-            "Laboratory data interpretation (procedure)"
-        ],
+        "date_of_followup": {
+            "month_interval": 33,
+            "day_interval": 990
+        },
+        "disease_status_at_followup": "No evidence of disease",
+        "relapse_type": "Progression (liquid tumours)",
+        "date_of_relapse": {
+            "month_interval": 28,
+            "day_interval": 840
+        },
+        "method_of_progression_status": [],
         "anatomic_site_progression_or_recurrence": [
-            "C12"
+            "C09",
+            "C07"
         ],
-        "recurrence_tumour_staging_system": "International Neuroblastoma Staging System",
-        "recurrence_t_category": "T3a",
-        "recurrence_n_category": "N0(i+)",
-        "recurrence_m_category": "M1b(0)",
-        "recurrence_stage_group": "Stage L2"
+        "recurrence_tumour_staging_system": "St Jude staging system",
+        "recurrence_t_category": "T1d",
+        "recurrence_n_category": "N3c",
+        "recurrence_m_category": "M1",
+        "recurrence_stage_group": null
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_21",
@@ -416,19 +547,27 @@
         "submitter_donor_id": "DONOR_2",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_5",
         "submitter_treatment_id": "TREATMENT_12",
-        "date_of_followup": "2022-10",
-        "disease_status_at_followup": "Complete remission",
-        "relapse_type": "Progression (liquid tumours)",
-        "date_of_relapse": "2022-07",
+        "date_of_followup": {
+            "month_interval": 32,
+            "day_interval": 960
+        },
+        "disease_status_at_followup": null,
+        "relapse_type": "Biochemical progression",
+        "date_of_relapse": {
+            "month_interval": 5,
+            "day_interval": 150
+        },
         "method_of_progression_status": [
-            "Assessment of symptom control (procedure)"
+            "Tumor marker measurement (procedure)"
         ],
-        "anatomic_site_progression_or_recurrence": [],
-        "recurrence_tumour_staging_system": null,
+        "anatomic_site_progression_or_recurrence": [
+            "C06"
+        ],
+        "recurrence_tumour_staging_system": "St Jude staging system",
         "recurrence_t_category": null,
-        "recurrence_n_category": "N1a(sn)",
-        "recurrence_m_category": "M1a(0)",
-        "recurrence_stage_group": "Stage IIAS"
+        "recurrence_n_category": "N4",
+        "recurrence_m_category": "M1c(0)",
+        "recurrence_stage_group": "Stage IVAES"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_22",
@@ -436,20 +575,26 @@
         "submitter_donor_id": "DONOR_2",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_5",
         "submitter_treatment_id": "TREATMENT_13",
-        "date_of_followup": "2022-11",
+        "date_of_followup": {
+            "month_interval": 9,
+            "day_interval": 270
+        },
         "disease_status_at_followup": "Loco-regional progression",
-        "relapse_type": "Biochemical progression",
-        "date_of_relapse": "2022-01",
-        "method_of_progression_status": [],
-        "anatomic_site_progression_or_recurrence": [
-            "C18",
-            "C08"
+        "relapse_type": "Local recurrence and distant metastasis",
+        "date_of_relapse": {
+            "month_interval": 49,
+            "day_interval": 1470
+        },
+        "method_of_progression_status": [
+            "Imaging (procedure)",
+            "Histopathology test (procedure)"
         ],
-        "recurrence_tumour_staging_system": "AJCC 8th edition",
-        "recurrence_t_category": null,
-        "recurrence_n_category": "N0b (no biopsy)",
-        "recurrence_m_category": "M1",
-        "recurrence_stage_group": "Stage IIIAES"
+        "anatomic_site_progression_or_recurrence": [],
+        "recurrence_tumour_staging_system": "Rai staging system",
+        "recurrence_t_category": "T4",
+        "recurrence_n_category": "N2c",
+        "recurrence_m_category": "M1d(0)",
+        "recurrence_stage_group": "Stage IIIES"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_23",
@@ -457,22 +602,25 @@
         "submitter_donor_id": "DONOR_2",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_6",
         "submitter_treatment_id": "TREATMENT_14",
-        "date_of_followup": "2022-11",
-        "disease_status_at_followup": null,
-        "relapse_type": "Local recurrence and distant metastasis",
-        "date_of_relapse": "2022-06",
+        "date_of_followup": {
+            "month_interval": 40,
+            "day_interval": 1200
+        },
+        "disease_status_at_followup": "Relapse or recurrence",
+        "relapse_type": "Progression (liquid tumours)",
+        "date_of_relapse": {
+            "month_interval": 3,
+            "day_interval": 90
+        },
         "method_of_progression_status": [
-            "Laboratory data interpretation (procedure)",
-            "Assessment of symptom control (procedure)"
+            "Physical examination procedure (procedure)"
         ],
-        "anatomic_site_progression_or_recurrence": [
-            "C16"
-        ],
+        "anatomic_site_progression_or_recurrence": null,
         "recurrence_tumour_staging_system": "International Neuroblastoma Risk Group Staging System",
-        "recurrence_t_category": "T4b(s)",
-        "recurrence_n_category": "N0b (no biopsy)",
-        "recurrence_m_category": "M1a",
-        "recurrence_stage_group": "Stage IIES"
+        "recurrence_t_category": "T1mi",
+        "recurrence_n_category": "N0a",
+        "recurrence_m_category": "M0",
+        "recurrence_stage_group": "Stage 0"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_24",
@@ -480,22 +628,23 @@
         "submitter_donor_id": "DONOR_2",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_6",
         "submitter_treatment_id": "TREATMENT_15",
-        "date_of_followup": "2022-08",
-        "disease_status_at_followup": "Relapse or recurrence",
-        "relapse_type": "Distant recurrence/metastasis",
-        "date_of_relapse": "2022-01",
-        "method_of_progression_status": [
-            "Histopathology test (procedure)"
-        ],
-        "anatomic_site_progression_or_recurrence": [
-            "C02",
-            "C09"
-        ],
-        "recurrence_tumour_staging_system": "International Neuroblastoma Staging System",
-        "recurrence_t_category": "T4b(s)",
-        "recurrence_n_category": "N0(mol-)",
-        "recurrence_m_category": "M1",
-        "recurrence_stage_group": "Stage IIIA2"
+        "date_of_followup": {
+            "month_interval": 29,
+            "day_interval": 870
+        },
+        "disease_status_at_followup": "Complete remission",
+        "relapse_type": null,
+        "date_of_relapse": {
+            "month_interval": 12,
+            "day_interval": 360
+        },
+        "method_of_progression_status": [],
+        "anatomic_site_progression_or_recurrence": null,
+        "recurrence_tumour_staging_system": "FIGO staging system",
+        "recurrence_t_category": null,
+        "recurrence_n_category": "N3a",
+        "recurrence_m_category": "M1d",
+        "recurrence_stage_group": null
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_25",
@@ -503,20 +652,23 @@
         "submitter_donor_id": "DONOR_3",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_7",
         "submitter_treatment_id": "TREATMENT_16",
-        "date_of_followup": "2022-10",
-        "disease_status_at_followup": "No evidence of disease",
-        "relapse_type": "Biochemical progression",
-        "date_of_relapse": "2022-08",
-        "method_of_progression_status": [
-            "Assessment of symptom control (procedure)",
-            "Tumor marker measurement (procedure)"
-        ],
+        "date_of_followup": {
+            "month_interval": 7,
+            "day_interval": 210
+        },
+        "disease_status_at_followup": "Progression not otherwise specified",
+        "relapse_type": "Local recurrence and distant metastasis",
+        "date_of_relapse": {
+            "month_interval": null,
+            "day_interval": null
+        },
+        "method_of_progression_status": [],
         "anatomic_site_progression_or_recurrence": [],
-        "recurrence_tumour_staging_system": "Binet staging system",
-        "recurrence_t_category": "T3(m)",
-        "recurrence_n_category": "N1b",
+        "recurrence_tumour_staging_system": "Durie-Salmon staging system",
+        "recurrence_t_category": null,
+        "recurrence_n_category": "NX",
         "recurrence_m_category": "M1a(0)",
-        "recurrence_stage_group": "Stage IEB"
+        "recurrence_stage_group": "Stage IVE"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_26",
@@ -524,17 +676,26 @@
         "submitter_donor_id": "DONOR_3",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_8",
         "submitter_treatment_id": "TREATMENT_17",
-        "date_of_followup": "2022-11",
-        "disease_status_at_followup": null,
-        "relapse_type": null,
-        "date_of_relapse": null,
-        "method_of_progression_status": [],
-        "anatomic_site_progression_or_recurrence": null,
+        "date_of_followup": {
+            "month_interval": 24,
+            "day_interval": 720
+        },
+        "disease_status_at_followup": "Stable",
+        "relapse_type": "Distant recurrence/metastasis",
+        "date_of_relapse": {
+            "month_interval": 3,
+            "day_interval": 90
+        },
+        "method_of_progression_status": [
+            "Assessment of symptom control (procedure)",
+            "Histopathology test (procedure)"
+        ],
+        "anatomic_site_progression_or_recurrence": [],
         "recurrence_tumour_staging_system": null,
-        "recurrence_t_category": "T4b(s)",
-        "recurrence_n_category": "N0b (no biopsy)",
-        "recurrence_m_category": "M1b(0)",
-        "recurrence_stage_group": null
+        "recurrence_t_category": "T4a(s)",
+        "recurrence_n_category": "N2c",
+        "recurrence_m_category": "M1e",
+        "recurrence_stage_group": "Stage IIAE"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_27",
@@ -542,19 +703,26 @@
         "submitter_donor_id": "DONOR_4",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_9",
         "submitter_treatment_id": "TREATMENT_18",
-        "date_of_followup": "2022-10",
-        "disease_status_at_followup": null,
-        "relapse_type": "Distant recurrence/metastasis",
-        "date_of_relapse": "2022-03",
-        "method_of_progression_status": [],
-        "anatomic_site_progression_or_recurrence": [
-            "C13"
+        "date_of_followup": {
+            "month_interval": 6,
+            "day_interval": 180
+        },
+        "disease_status_at_followup": "Partial remission",
+        "relapse_type": "Progression (liquid tumours)",
+        "date_of_relapse": {
+            "month_interval": 6,
+            "day_interval": 180
+        },
+        "method_of_progression_status": [
+            "Assessment of symptom control (procedure)",
+            "Histopathology test (procedure)"
         ],
-        "recurrence_tumour_staging_system": "Ann Arbor staging system",
-        "recurrence_t_category": null,
+        "anatomic_site_progression_or_recurrence": null,
+        "recurrence_tumour_staging_system": "International Neuroblastoma Staging System",
+        "recurrence_t_category": "T2a",
         "recurrence_n_category": "N3c",
-        "recurrence_m_category": "M1a(0)",
-        "recurrence_stage_group": "Stage IA3"
+        "recurrence_m_category": "MX",
+        "recurrence_stage_group": null
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_28",
@@ -562,19 +730,29 @@
         "submitter_donor_id": "DONOR_4",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_10",
         "submitter_treatment_id": "TREATMENT_19",
-        "date_of_followup": "2022-10",
-        "disease_status_at_followup": "Complete remission",
-        "relapse_type": null,
-        "date_of_relapse": "2022-03",
-        "method_of_progression_status": [],
-        "anatomic_site_progression_or_recurrence": [
-            "C01"
+        "date_of_followup": {
+            "month_interval": 22,
+            "day_interval": 660
+        },
+        "disease_status_at_followup": "Relapse or recurrence",
+        "relapse_type": "Distant recurrence/metastasis",
+        "date_of_relapse": {
+            "month_interval": 13,
+            "day_interval": 390
+        },
+        "method_of_progression_status": [
+            "Assessment of symptom control (procedure)",
+            "Histopathology test (procedure)"
         ],
-        "recurrence_tumour_staging_system": "FIGO staging system",
-        "recurrence_t_category": "T2a",
-        "recurrence_n_category": "N0b",
-        "recurrence_m_category": "M1b(0)",
-        "recurrence_stage_group": "Stage IAE"
+        "anatomic_site_progression_or_recurrence": [
+            "C03",
+            "C14"
+        ],
+        "recurrence_tumour_staging_system": "Ann Arbor staging system",
+        "recurrence_t_category": "T1",
+        "recurrence_n_category": "N3b",
+        "recurrence_m_category": "M0",
+        "recurrence_stage_group": "Stage 0a"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_29",
@@ -582,20 +760,25 @@
         "submitter_donor_id": "DONOR_5",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_11",
         "submitter_treatment_id": "TREATMENT_20",
-        "date_of_followup": "2022-09",
-        "disease_status_at_followup": "Distant progression",
+        "date_of_followup": {
+            "month_interval": 27,
+            "day_interval": 810
+        },
+        "disease_status_at_followup": "Relapse or recurrence",
         "relapse_type": null,
-        "date_of_relapse": "2022-08",
-        "method_of_progression_status": [],
-        "anatomic_site_progression_or_recurrence": [
-            "C06",
-            "C16"
+        "date_of_relapse": {
+            "month_interval": 42,
+            "day_interval": 1260
+        },
+        "method_of_progression_status": [
+            "Tumor marker measurement (procedure)"
         ],
-        "recurrence_tumour_staging_system": "AJCC 6th edition",
-        "recurrence_t_category": "T4e",
-        "recurrence_n_category": "N4",
-        "recurrence_m_category": "M1b",
-        "recurrence_stage_group": "Stage IVBES"
+        "anatomic_site_progression_or_recurrence": null,
+        "recurrence_tumour_staging_system": "Ann Arbor staging system",
+        "recurrence_t_category": "T4a(s)",
+        "recurrence_n_category": "N0a (biopsy)",
+        "recurrence_m_category": null,
+        "recurrence_stage_group": "Stage IIIA2"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_30",
@@ -603,17 +786,25 @@
         "submitter_donor_id": "DONOR_6",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_12",
         "submitter_treatment_id": "TREATMENT_21",
-        "date_of_followup": "2022-11",
-        "disease_status_at_followup": "No evidence of disease",
-        "relapse_type": "Local recurrence",
-        "date_of_relapse": "2021-12",
+        "date_of_followup": {
+            "month_interval": 49,
+            "day_interval": 1470
+        },
+        "disease_status_at_followup": "Partial remission",
+        "relapse_type": "Progression (liquid tumours)",
+        "date_of_relapse": {
+            "month_interval": 42,
+            "day_interval": 1260
+        },
         "method_of_progression_status": [],
-        "anatomic_site_progression_or_recurrence": null,
-        "recurrence_tumour_staging_system": "Rai staging system",
-        "recurrence_t_category": "T4a",
-        "recurrence_n_category": "N0(i-)",
-        "recurrence_m_category": "M1d(1)",
-        "recurrence_stage_group": null
+        "anatomic_site_progression_or_recurrence": [
+            "C04"
+        ],
+        "recurrence_tumour_staging_system": "Ann Arbor staging system",
+        "recurrence_t_category": null,
+        "recurrence_n_category": "N4",
+        "recurrence_m_category": null,
+        "recurrence_stage_group": "In situ"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_31",
@@ -621,20 +812,26 @@
         "submitter_donor_id": "DONOR_7",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_13",
         "submitter_treatment_id": "TREATMENT_22",
-        "date_of_followup": "2022-11",
+        "date_of_followup": {
+            "month_interval": null,
+            "day_interval": null
+        },
         "disease_status_at_followup": "Distant progression",
-        "relapse_type": null,
-        "date_of_relapse": "2021-12",
-        "method_of_progression_status": [
-            "Physical examination procedure (procedure)",
-            "Assessment of symptom control (procedure)"
+        "relapse_type": "Progression (liquid tumours)",
+        "date_of_relapse": {
+            "month_interval": 36,
+            "day_interval": 1080
+        },
+        "method_of_progression_status": [],
+        "anatomic_site_progression_or_recurrence": [
+            "C02",
+            "C07"
         ],
-        "anatomic_site_progression_or_recurrence": [],
-        "recurrence_tumour_staging_system": "Rai staging system",
-        "recurrence_t_category": "T0",
-        "recurrence_n_category": null,
-        "recurrence_m_category": null,
-        "recurrence_stage_group": "Stage IVA1"
+        "recurrence_tumour_staging_system": null,
+        "recurrence_t_category": "T1b(s)",
+        "recurrence_n_category": "N3",
+        "recurrence_m_category": "M1a(0)",
+        "recurrence_stage_group": null
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_32",
@@ -642,17 +839,29 @@
         "submitter_donor_id": "DONOR_8",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_14",
         "submitter_treatment_id": "TREATMENT_23",
-        "date_of_followup": "2022-11",
-        "disease_status_at_followup": "Progression not otherwise specified",
+        "date_of_followup": {
+            "month_interval": 35,
+            "day_interval": 1050
+        },
+        "disease_status_at_followup": "Complete remission",
         "relapse_type": "Local recurrence and distant metastasis",
-        "date_of_relapse": "2022-08",
-        "method_of_progression_status": [],
-        "anatomic_site_progression_or_recurrence": [],
-        "recurrence_tumour_staging_system": "Lugano staging system",
-        "recurrence_t_category": "T4b",
-        "recurrence_n_category": "N1c",
-        "recurrence_m_category": "M1b(0)",
-        "recurrence_stage_group": "Stage IB"
+        "date_of_relapse": {
+            "month_interval": 44,
+            "day_interval": 1320
+        },
+        "method_of_progression_status": [
+            "Imaging (procedure)",
+            "Laboratory data interpretation (procedure)"
+        ],
+        "anatomic_site_progression_or_recurrence": [
+            "C06",
+            "C13"
+        ],
+        "recurrence_tumour_staging_system": "Revised International staging system (RISS)",
+        "recurrence_t_category": "T2b",
+        "recurrence_n_category": "N0",
+        "recurrence_m_category": null,
+        "recurrence_stage_group": "Stage IIA"
     },
     {
         "submitter_follow_up_id": "FOLLOW_UP_33",
@@ -660,21 +869,27 @@
         "submitter_donor_id": "DONOR_9",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_15",
         "submitter_treatment_id": "TREATMENT_24",
-        "date_of_followup": "2022-08",
-        "disease_status_at_followup": "Complete remission",
-        "relapse_type": "Local recurrence",
-        "date_of_relapse": "2022-11",
+        "date_of_followup": {
+            "month_interval": 24,
+            "day_interval": 720
+        },
+        "disease_status_at_followup": "Partial remission",
+        "relapse_type": "Local recurrence and distant metastasis",
+        "date_of_relapse": {
+            "month_interval": 16,
+            "day_interval": 480
+        },
         "method_of_progression_status": [
-            "Imaging (procedure)"
+            "Laboratory data interpretation (procedure)",
+            "Physical examination procedure (procedure)"
         ],
         "anatomic_site_progression_or_recurrence": [
-            "C10",
-            "C13"
+            "C20"
         ],
-        "recurrence_tumour_staging_system": "AJCC 8th edition",
-        "recurrence_t_category": "T4c",
-        "recurrence_n_category": "N2c",
-        "recurrence_m_category": "M1d(0)",
+        "recurrence_tumour_staging_system": "International Neuroblastoma Risk Group Staging System",
+        "recurrence_t_category": "Tis pd",
+        "recurrence_n_category": null,
+        "recurrence_m_category": null,
         "recurrence_stage_group": null
     },
     {
@@ -683,19 +898,25 @@
         "submitter_donor_id": "DONOR_10",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_16",
         "submitter_treatment_id": "TREATMENT_25",
-        "date_of_followup": null,
-        "disease_status_at_followup": "Progression not otherwise specified",
-        "relapse_type": "Biochemical progression",
-        "date_of_relapse": "2022-08",
+        "date_of_followup": {
+            "month_interval": 48,
+            "day_interval": 1440
+        },
+        "disease_status_at_followup": "No evidence of disease",
+        "relapse_type": "Progression (liquid tumours)",
+        "date_of_relapse": {
+            "month_interval": 18,
+            "day_interval": 540
+        },
         "method_of_progression_status": [],
         "anatomic_site_progression_or_recurrence": [
-            "C15",
-            "C03"
+            "C20",
+            "C11"
         ],
-        "recurrence_tumour_staging_system": "International Neuroblastoma Risk Group Staging System",
-        "recurrence_t_category": "T4b(s)",
-        "recurrence_n_category": "N0",
-        "recurrence_m_category": "M1b(0)",
-        "recurrence_stage_group": "Stage IIEB"
+        "recurrence_tumour_staging_system": "AJCC 8th edition",
+        "recurrence_t_category": "T2(s)",
+        "recurrence_n_category": "N0a",
+        "recurrence_m_category": "MX",
+        "recurrence_stage_group": "Stage IIS"
     }
 ]
