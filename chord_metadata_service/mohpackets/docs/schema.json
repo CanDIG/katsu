@@ -3,7 +3,7 @@
     "info": {
         "title": "MoH Service API",
         "version": "3.0.0",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/b4ce35c9e1d9bff67d519ec88e16c3f77824325f/chord_metadata_service/mohpackets/docs/schema.json"
+        "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
         "/v2/service-info": {
@@ -4879,9 +4879,16 @@
                         "title": "Day Interval"
                     },
                     "month_interval": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
                         "description": "number of months since first diagnosis",
-                        "title": "Month Interval",
-                        "type": "integer"
+                        "title": "Month Interval"
                     }
                 },
                 "required": [
@@ -4954,15 +4961,12 @@
                     "date_alive_after_lost_to_followup": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Alive After Lost To Followup"
+                        ]
                     },
                     "cause_of_death": {
                         "anyOf": [
@@ -5203,13 +5207,12 @@
                     "test_date": {
                         "anyOf": [
                             {
-                                "type": "object"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Test Date"
+                        ]
                     },
                     "psa_level": {
                         "anyOf": [
@@ -5768,15 +5771,12 @@
                     "date_of_followup": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Followup"
+                        ]
                     },
                     "disease_status_at_followup": {
                         "anyOf": [
@@ -5801,15 +5801,12 @@
                     "date_of_relapse": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Relapse"
+                        ]
                     },
                     "method_of_progression_status": {
                         "anyOf": [
@@ -6461,15 +6458,12 @@
                     "date_of_diagnosis": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Diagnosis"
+                        ]
                     },
                     "cancer_type_code": {
                         "anyOf": [
@@ -7279,15 +7273,12 @@
                     "specimen_collection_date": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Specimen Collection Date"
+                        ]
                     },
                     "specimen_storage": {
                         "anyOf": [
@@ -7897,28 +7888,22 @@
                     "treatment_start_date": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Treatment Start Date"
+                        ]
                     },
                     "treatment_end_date": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Treatment End Date"
+                        ]
                     },
                     "treatment_setting": {
                         "anyOf": [
@@ -8194,15 +8179,12 @@
                     "date_alive_after_lost_to_followup": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Alive After Lost To Followup"
+                        ]
                     },
                     "cause_of_death": {
                         "anyOf": [
@@ -8360,13 +8342,12 @@
                     "test_date": {
                         "anyOf": [
                             {
-                                "type": "object"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Test Date"
+                        ]
                     },
                     "psa_level": {
                         "anyOf": [
@@ -8697,15 +8678,12 @@
                     "date_of_followup": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Followup"
+                        ]
                     },
                     "disease_status_at_followup": {
                         "anyOf": [
@@ -8730,15 +8708,12 @@
                     "date_of_relapse": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Relapse"
+                        ]
                     },
                     "method_of_progression_status": {
                         "anyOf": [
@@ -8990,15 +8965,12 @@
                     "date_of_diagnosis": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Diagnosis"
+                        ]
                     },
                     "cancer_type_code": {
                         "anyOf": [
@@ -9338,15 +9310,12 @@
                     "specimen_collection_date": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Specimen Collection Date"
+                        ]
                     },
                     "specimen_storage": {
                         "anyOf": [
@@ -9690,28 +9659,22 @@
                     "treatment_start_date": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Treatment Start Date"
+                        ]
                     },
                     "treatment_end_date": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Treatment End Date"
+                        ]
                     },
                     "treatment_setting": {
                         "anyOf": [
@@ -10155,15 +10118,12 @@
                     "date_alive_after_lost_to_followup": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Alive After Lost To Followup"
+                        ]
                     },
                     "cause_of_death": {
                         "anyOf": [
@@ -10519,15 +10479,12 @@
                     "date_of_diagnosis": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Diagnosis"
+                        ]
                     },
                     "cancer_type_code": {
                         "anyOf": [
@@ -10924,13 +10881,12 @@
                     "test_date": {
                         "anyOf": [
                             {
-                                "type": "object"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Test Date"
+                        ]
                     },
                     "psa_level": {
                         "anyOf": [
@@ -11955,15 +11911,12 @@
                     "date_of_followup": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Followup"
+                        ]
                     },
                     "disease_status_at_followup": {
                         "anyOf": [
@@ -11988,15 +11941,12 @@
                     "date_of_relapse": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Date Of Relapse"
+                        ]
                     },
                     "method_of_progression_status": {
                         "anyOf": [
@@ -13512,15 +13462,12 @@
                     "specimen_collection_date": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Specimen Collection Date"
+                        ]
                     },
                     "specimen_storage": {
                         "anyOf": [
@@ -14356,28 +14303,22 @@
                     "treatment_start_date": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Treatment Start Date"
+                        ]
                     },
                     "treatment_end_date": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
-                                "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?",
-                                "type": "string"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Treatment End Date"
+                        ]
                     },
                     "treatment_setting": {
                         "anyOf": [
