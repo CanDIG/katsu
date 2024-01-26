@@ -1,7 +1,7 @@
 
 <h1 id="moh-service-api">MoH Service API v3.0.0</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/b4ce35c9e1d9bff67d519ec88e16c3f77824325f/chord_metadata_service/mohpackets/docs/schema.json
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/3f46d50310c6d4268b4260c6247bab0ad40d2347/chord_metadata_service/mohpackets/docs/schema.json
 
 Base URLs:
 
@@ -285,7 +285,10 @@ Base URLs:
   "is_deceased": true,
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
-  "date_alive_after_lost_to_followup": "string",
+  "date_alive_after_lost_to_followup": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
@@ -303,7 +306,10 @@ Base URLs:
   "primary_diagnoses": [
     {
       "submitter_primary_diagnosis_id": "string",
-      "date_of_diagnosis": "string",
+      "date_of_diagnosis": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "cancer_type_code": "string",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
@@ -323,7 +329,10 @@ Base URLs:
           "pathological_n_category": "N0",
           "pathological_m_category": "M0",
           "pathological_stage_group": "Stage 0",
-          "specimen_collection_date": "string",
+          "specimen_collection_date": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
           "specimen_storage": "Cut slide",
           "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
           "tumour_histological_type": "string",
@@ -354,8 +363,14 @@ Base URLs:
           ],
           "is_primary_treatment": "Yes",
           "line_of_treatment": 0,
-          "treatment_start_date": "string",
-          "treatment_end_date": "string",
+          "treatment_start_date": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
+          "treatment_end_date": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
           "treatment_setting": "Adjuvant",
           "treatment_intent": "Curative",
           "days_per_cycle": 0,
@@ -432,10 +447,16 @@ Base URLs:
           "followups": [
             {
               "submitter_follow_up_id": "string",
-              "date_of_followup": "string",
+              "date_of_followup": {
+                "day_interval": 0,
+                "month_interval": 0
+              },
               "disease_status_at_followup": "Complete remission",
               "relapse_type": "Distant recurrence/metastasis",
-              "date_of_relapse": "string",
+              "date_of_relapse": {
+                "day_interval": 0,
+                "month_interval": 0
+              },
               "method_of_progression_status": [
                 "Imaging (procedure)"
               ],
@@ -454,10 +475,16 @@ Base URLs:
       "followups": [
         {
           "submitter_follow_up_id": "string",
-          "date_of_followup": "string",
+          "date_of_followup": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
           "disease_status_at_followup": "Complete remission",
           "relapse_type": "Distant recurrence/metastasis",
-          "date_of_relapse": "string",
+          "date_of_relapse": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
           "method_of_progression_status": [
             "Imaging (procedure)"
           ],
@@ -476,10 +503,16 @@ Base URLs:
   "followups": [
     {
       "submitter_follow_up_id": "string",
-      "date_of_followup": "string",
+      "date_of_followup": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
-      "date_of_relapse": "string",
+      "date_of_relapse": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -499,7 +532,10 @@ Base URLs:
       "submitter_primary_diagnosis_id": "string",
       "submitter_treatment_id": "string",
       "submitter_follow_up_id": "string",
-      "test_date": {},
+      "test_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "psa_level": 0,
       "ca125": 0,
       "cea": 0,
@@ -615,7 +651,10 @@ Base URLs:
       "is_deceased": true,
       "lost_to_followup_after_clinical_event_identifier": "string",
       "lost_to_followup_reason": "Completed study",
-      "date_alive_after_lost_to_followup": "string",
+      "date_alive_after_lost_to_followup": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "cause_of_death": "Died of cancer",
       "date_of_birth": {
         "day_interval": 0,
@@ -677,7 +716,10 @@ Base URLs:
   "items": [
     {
       "submitter_primary_diagnosis_id": "string",
-      "date_of_diagnosis": "string",
+      "date_of_diagnosis": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "cancer_type_code": "string",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
@@ -745,7 +787,10 @@ Base URLs:
       "submitter_primary_diagnosis_id": "string",
       "submitter_treatment_id": "string",
       "submitter_follow_up_id": "string",
-      "test_date": {},
+      "test_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "psa_level": 0,
       "ca125": 0,
       "cea": 0,
@@ -949,10 +994,16 @@ Base URLs:
   "items": [
     {
       "submitter_follow_up_id": "string",
-      "date_of_followup": "string",
+      "date_of_followup": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
-      "date_of_relapse": "string",
+      "date_of_relapse": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -1224,7 +1275,10 @@ Base URLs:
       "pathological_n_category": "N0",
       "pathological_m_category": "M0",
       "pathological_stage_group": "Stage 0",
-      "specimen_collection_date": "string",
+      "specimen_collection_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "specimen_storage": "Cut slide",
       "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
       "tumour_histological_type": "string",
@@ -1363,8 +1417,14 @@ Base URLs:
       ],
       "is_primary_treatment": "Yes",
       "line_of_treatment": 0,
-      "treatment_start_date": "string",
-      "treatment_end_date": "string",
+      "treatment_start_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "treatment_end_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "treatment_setting": "Adjuvant",
       "treatment_intent": "Curative",
       "days_per_cycle": 0,
@@ -1999,7 +2059,19 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|month_interval|integer|true|none|number of months since first diagnosis|
+|month_interval|any|true|none|number of months since first diagnosis|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
 
 <h2 id="tocS_DonorIngestSchema">DonorIngestSchema</h2>
 
@@ -2016,7 +2088,10 @@ continued
   "is_deceased": true,
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
-  "date_alive_after_lost_to_followup": "string",
+  "date_alive_after_lost_to_followup": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
@@ -2139,7 +2214,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -2452,7 +2527,10 @@ SexAtBirthEnum
   "submitter_primary_diagnosis_id": "string",
   "submitter_treatment_id": "string",
   "submitter_follow_up_id": "string",
-  "test_date": {},
+  "test_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "psa_level": 0,
   "ca125": 0,
   "cea": 0,
@@ -2558,7 +2636,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -3536,10 +3614,16 @@ DiseaseStatusFollowupEnum
 ```json
 {
   "submitter_follow_up_id": "string",
-  "date_of_followup": "string",
+  "date_of_followup": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "disease_status_at_followup": "Complete remission",
   "relapse_type": "Distant recurrence/metastasis",
-  "date_of_relapse": "string",
+  "date_of_relapse": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "method_of_progression_status": [
     "Imaging (procedure)"
   ],
@@ -3573,7 +3657,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -3627,7 +3711,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -4664,7 +4748,10 @@ LymphNodeStatusEnum
 ```json
 {
   "submitter_primary_diagnosis_id": "string",
-  "date_of_diagnosis": "string",
+  "date_of_diagnosis": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "cancer_type_code": "string",
   "basis_of_diagnosis": "Clinical investigation",
   "laterality": "Bilateral",
@@ -4696,7 +4783,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -5853,7 +5940,10 @@ PercentCellsRangeEnum
   "pathological_n_category": "N0",
   "pathological_m_category": "M0",
   "pathological_stage_group": "Stage 0",
-  "specimen_collection_date": "string",
+  "specimen_collection_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "specimen_storage": "Cut slide",
   "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
   "tumour_histological_type": "string",
@@ -5976,7 +6066,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -6977,8 +7067,14 @@ TumourFocalityEnum
   ],
   "is_primary_treatment": "Yes",
   "line_of_treatment": 0,
-  "treatment_start_date": "string",
-  "treatment_end_date": "string",
+  "treatment_start_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "treatment_end_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "treatment_setting": "Adjuvant",
   "treatment_intent": "Curative",
   "days_per_cycle": 0,
@@ -7061,7 +7157,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -7079,7 +7175,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -7468,7 +7564,10 @@ TreatmentTypeEnum
   "is_deceased": true,
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
-  "date_alive_after_lost_to_followup": "string",
+  "date_alive_after_lost_to_followup": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
@@ -7486,7 +7585,10 @@ TreatmentTypeEnum
   "primary_diagnoses": [
     {
       "submitter_primary_diagnosis_id": "string",
-      "date_of_diagnosis": "string",
+      "date_of_diagnosis": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "cancer_type_code": "string",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
@@ -7506,7 +7608,10 @@ TreatmentTypeEnum
           "pathological_n_category": "N0",
           "pathological_m_category": "M0",
           "pathological_stage_group": "Stage 0",
-          "specimen_collection_date": "string",
+          "specimen_collection_date": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
           "specimen_storage": "Cut slide",
           "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
           "tumour_histological_type": "string",
@@ -7537,8 +7642,14 @@ TreatmentTypeEnum
           ],
           "is_primary_treatment": "Yes",
           "line_of_treatment": 0,
-          "treatment_start_date": "string",
-          "treatment_end_date": "string",
+          "treatment_start_date": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
+          "treatment_end_date": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
           "treatment_setting": "Adjuvant",
           "treatment_intent": "Curative",
           "days_per_cycle": 0,
@@ -7615,10 +7726,16 @@ TreatmentTypeEnum
           "followups": [
             {
               "submitter_follow_up_id": "string",
-              "date_of_followup": "string",
+              "date_of_followup": {
+                "day_interval": 0,
+                "month_interval": 0
+              },
               "disease_status_at_followup": "Complete remission",
               "relapse_type": "Distant recurrence/metastasis",
-              "date_of_relapse": "string",
+              "date_of_relapse": {
+                "day_interval": 0,
+                "month_interval": 0
+              },
               "method_of_progression_status": [
                 "Imaging (procedure)"
               ],
@@ -7637,10 +7754,16 @@ TreatmentTypeEnum
       "followups": [
         {
           "submitter_follow_up_id": "string",
-          "date_of_followup": "string",
+          "date_of_followup": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
           "disease_status_at_followup": "Complete remission",
           "relapse_type": "Distant recurrence/metastasis",
-          "date_of_relapse": "string",
+          "date_of_relapse": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
           "method_of_progression_status": [
             "Imaging (procedure)"
           ],
@@ -7659,10 +7782,16 @@ TreatmentTypeEnum
   "followups": [
     {
       "submitter_follow_up_id": "string",
-      "date_of_followup": "string",
+      "date_of_followup": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
-      "date_of_relapse": "string",
+      "date_of_relapse": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -7682,7 +7811,10 @@ TreatmentTypeEnum
       "submitter_primary_diagnosis_id": "string",
       "submitter_treatment_id": "string",
       "submitter_follow_up_id": "string",
-      "test_date": {},
+      "test_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "psa_level": 0,
       "ca125": 0,
       "cea": 0,
@@ -7825,7 +7957,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -7947,7 +8079,10 @@ continued
   "submitter_primary_diagnosis_id": "string",
   "submitter_treatment_id": "string",
   "submitter_follow_up_id": "string",
-  "test_date": {},
+  "test_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "psa_level": 0,
   "ca125": 0,
   "cea": 0,
@@ -8050,7 +8185,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -8616,10 +8751,16 @@ or
 ```json
 {
   "submitter_follow_up_id": "string",
-  "date_of_followup": "string",
+  "date_of_followup": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "disease_status_at_followup": "Complete remission",
   "relapse_type": "Distant recurrence/metastasis",
-  "date_of_relapse": "string",
+  "date_of_relapse": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "method_of_progression_status": [
     "Imaging (procedure)"
   ],
@@ -8648,7 +8789,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -8702,7 +8843,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -9123,7 +9264,10 @@ or
 ```json
 {
   "submitter_primary_diagnosis_id": "string",
-  "date_of_diagnosis": "string",
+  "date_of_diagnosis": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "cancer_type_code": "string",
   "basis_of_diagnosis": "Clinical investigation",
   "laterality": "Bilateral",
@@ -9143,7 +9287,10 @@ or
       "pathological_n_category": "N0",
       "pathological_m_category": "M0",
       "pathological_stage_group": "Stage 0",
-      "specimen_collection_date": "string",
+      "specimen_collection_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "specimen_storage": "Cut slide",
       "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
       "tumour_histological_type": "string",
@@ -9174,8 +9321,14 @@ or
       ],
       "is_primary_treatment": "Yes",
       "line_of_treatment": 0,
-      "treatment_start_date": "string",
-      "treatment_end_date": "string",
+      "treatment_start_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "treatment_end_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "treatment_setting": "Adjuvant",
       "treatment_intent": "Curative",
       "days_per_cycle": 0,
@@ -9252,10 +9405,16 @@ or
       "followups": [
         {
           "submitter_follow_up_id": "string",
-          "date_of_followup": "string",
+          "date_of_followup": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
           "disease_status_at_followup": "Complete remission",
           "relapse_type": "Distant recurrence/metastasis",
-          "date_of_relapse": "string",
+          "date_of_relapse": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
           "method_of_progression_status": [
             "Imaging (procedure)"
           ],
@@ -9274,10 +9433,16 @@ or
   "followups": [
     {
       "submitter_follow_up_id": "string",
-      "date_of_followup": "string",
+      "date_of_followup": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
-      "date_of_relapse": "string",
+      "date_of_relapse": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -9308,7 +9473,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -9778,7 +9943,10 @@ or
   "pathological_n_category": "N0",
   "pathological_m_category": "M0",
   "pathological_stage_group": "Stage 0",
-  "specimen_collection_date": "string",
+  "specimen_collection_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "specimen_storage": "Cut slide",
   "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
   "tumour_histological_type": "string",
@@ -9906,7 +10074,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -10420,8 +10588,14 @@ or
   ],
   "is_primary_treatment": "Yes",
   "line_of_treatment": 0,
-  "treatment_start_date": "string",
-  "treatment_end_date": "string",
+  "treatment_start_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "treatment_end_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "treatment_setting": "Adjuvant",
   "treatment_intent": "Curative",
   "days_per_cycle": 0,
@@ -10498,10 +10672,16 @@ or
   "followups": [
     {
       "submitter_follow_up_id": "string",
-      "date_of_followup": "string",
+      "date_of_followup": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
-      "date_of_relapse": "string",
+      "date_of_relapse": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -10586,7 +10766,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -10604,7 +10784,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -11181,7 +11361,10 @@ continued
   "is_deceased": true,
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
-  "date_alive_after_lost_to_followup": "string",
+  "date_alive_after_lost_to_followup": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
@@ -11303,7 +11486,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -11424,7 +11607,10 @@ continued
       "is_deceased": true,
       "lost_to_followup_after_clinical_event_identifier": "string",
       "lost_to_followup_reason": "Completed study",
-      "date_alive_after_lost_to_followup": "string",
+      "date_alive_after_lost_to_followup": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "cause_of_death": "Died of cancer",
       "date_of_birth": {
         "day_interval": 0,
@@ -11817,7 +12003,10 @@ or
   "items": [
     {
       "submitter_primary_diagnosis_id": "string",
-      "date_of_diagnosis": "string",
+      "date_of_diagnosis": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "cancer_type_code": "string",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
@@ -11907,7 +12096,10 @@ or
 ```json
 {
   "submitter_primary_diagnosis_id": "string",
-  "date_of_diagnosis": "string",
+  "date_of_diagnosis": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "cancer_type_code": "string",
   "basis_of_diagnosis": "Clinical investigation",
   "laterality": "Bilateral",
@@ -11938,7 +12130,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -12530,7 +12722,10 @@ continued
   "submitter_primary_diagnosis_id": "string",
   "submitter_treatment_id": "string",
   "submitter_follow_up_id": "string",
-  "test_date": {},
+  "test_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "psa_level": 0,
   "ca125": 0,
   "cea": 0,
@@ -12635,7 +12830,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -12881,7 +13076,10 @@ continued
       "submitter_primary_diagnosis_id": "string",
       "submitter_treatment_id": "string",
       "submitter_follow_up_id": "string",
-      "test_date": {},
+      "test_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "psa_level": 0,
       "ca125": 0,
       "cea": 0,
@@ -14327,10 +14525,16 @@ or
 ```json
 {
   "submitter_follow_up_id": "string",
-  "date_of_followup": "string",
+  "date_of_followup": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "disease_status_at_followup": "Complete remission",
   "relapse_type": "Distant recurrence/metastasis",
-  "date_of_relapse": "string",
+  "date_of_relapse": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "method_of_progression_status": [
     "Imaging (procedure)"
   ],
@@ -14363,7 +14567,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -14417,7 +14621,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -14601,10 +14805,16 @@ or
   "items": [
     {
       "submitter_follow_up_id": "string",
-      "date_of_followup": "string",
+      "date_of_followup": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
-      "date_of_relapse": "string",
+      "date_of_relapse": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -16787,7 +16997,10 @@ or
       "pathological_n_category": "N0",
       "pathological_m_category": "M0",
       "pathological_stage_group": "Stage 0",
-      "specimen_collection_date": "string",
+      "specimen_collection_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "specimen_storage": "Cut slide",
       "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
       "tumour_histological_type": "string",
@@ -16883,7 +17096,10 @@ or
   "pathological_n_category": "N0",
   "pathological_m_category": "M0",
   "pathological_stage_group": "Stage 0",
-  "specimen_collection_date": "string",
+  "specimen_collection_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "specimen_storage": "Cut slide",
   "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
   "tumour_histological_type": "string",
@@ -17005,7 +17221,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -18231,8 +18447,14 @@ or
       ],
       "is_primary_treatment": "Yes",
       "line_of_treatment": 0,
-      "treatment_start_date": "string",
-      "treatment_end_date": "string",
+      "treatment_start_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "treatment_end_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
       "treatment_setting": "Adjuvant",
       "treatment_intent": "Curative",
       "days_per_cycle": 0,
@@ -18324,8 +18546,14 @@ or
   ],
   "is_primary_treatment": "Yes",
   "line_of_treatment": 0,
-  "treatment_start_date": "string",
-  "treatment_end_date": "string",
+  "treatment_start_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "treatment_end_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
   "treatment_setting": "Adjuvant",
   "treatment_intent": "Curative",
   "days_per_cycle": 0,
@@ -18407,7 +18635,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -18425,7 +18653,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
