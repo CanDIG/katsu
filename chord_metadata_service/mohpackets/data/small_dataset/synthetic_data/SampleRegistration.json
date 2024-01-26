@@ -4,9 +4,9 @@
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_1",
-        "specimen_tissue_source": "Pleural fluid",
+        "specimen_tissue_source": "Abdominal fluid",
         "tumour_normal_designation": "Tumour",
-        "specimen_type": "Cell line - derived from normal",
+        "specimen_type": "Cell line - derived from metastatic tumour",
         "sample_type": "Other DNA enrichments"
     },
     {
@@ -14,149 +14,149 @@
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_1",
-        "specimen_tissue_source": "Seminal fluid",
+        "specimen_tissue_source": "Arterial blood",
         "tumour_normal_designation": "Tumour",
-        "specimen_type": "Xenograft - derived from metastatic tumour",
-        "sample_type": "rRNA-depleted RNA"
+        "specimen_type": "Cell line - derived from normal",
+        "sample_type": "Other RNA fractions"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_3",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_1",
-        "specimen_tissue_source": "Seminal fluid",
+        "specimen_tissue_source": "Cerebrospinal fluid",
         "tumour_normal_designation": "Tumour",
         "specimen_type": "Primary tumour",
-        "sample_type": "Protein"
+        "sample_type": "Total RNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_4",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_2",
-        "specimen_tissue_source": "Hydrocele fluid",
-        "tumour_normal_designation": "Tumour",
-        "specimen_type": "Normal",
-        "sample_type": "Other DNA enrichments"
+        "specimen_tissue_source": "Solid tissue",
+        "tumour_normal_designation": "Normal",
+        "specimen_type": "Xenograft - derived from metastatic tumour",
+        "sample_type": "rRNA-depleted RNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_5",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_2",
-        "specimen_tissue_source": "Sputum",
+        "specimen_tissue_source": "Buccal cell",
         "tumour_normal_designation": "Tumour",
-        "specimen_type": "Normal",
-        "sample_type": "Total RNA"
+        "specimen_type": "Xenograft - derived from tumour cell line",
+        "sample_type": null
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_6",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_2",
-        "specimen_tissue_source": "Cervical mucus",
-        "tumour_normal_designation": "Tumour",
-        "specimen_type": "Recurrent tumour",
-        "sample_type": "Total DNA"
+        "specimen_tissue_source": "Convalescent plasma",
+        "tumour_normal_designation": "Normal",
+        "specimen_type": "Cell line - derived from xenograft tumour",
+        "sample_type": null
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_7",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_3",
-        "specimen_tissue_source": "Vitreous fluid",
+        "specimen_tissue_source": "Cord blood",
         "tumour_normal_designation": "Tumour",
-        "specimen_type": "Metastatic tumour - metastasis to distant location",
-        "sample_type": "polyA+ RNA"
+        "specimen_type": "Recurrent tumour",
+        "sample_type": "Other DNA enrichments"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_8",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_3",
-        "specimen_tissue_source": "Seminal fluid",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Normal - tissue adjacent to primary tumour",
-        "sample_type": "Total DNA"
+        "specimen_tissue_source": "Amniotic fluid",
+        "tumour_normal_designation": "Tumour",
+        "specimen_type": null,
+        "sample_type": "ctDNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_9",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_4",
-        "specimen_tissue_source": "Buffy coat",
+        "specimen_tissue_source": "Cervical mucus",
         "tumour_normal_designation": "Normal",
-        "specimen_type": "Metastatic tumour - metastasis to distant location",
-        "sample_type": "rRNA-depleted RNA"
+        "specimen_type": "Primary tumour",
+        "sample_type": "polyA+ RNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_10",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_4",
-        "specimen_tissue_source": "Pleural fluid",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Metastatic tumour - metastasis local to lymph node",
-        "sample_type": "Total DNA"
+        "specimen_tissue_source": "Hydrocele fluid",
+        "tumour_normal_designation": null,
+        "specimen_type": "Primary tumour",
+        "sample_type": "polyA+ RNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_11",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_5",
-        "specimen_tissue_source": "Buffy coat",
+        "specimen_tissue_source": "Urine",
         "tumour_normal_designation": "Tumour",
         "specimen_type": "Normal - tissue adjacent to primary tumour",
-        "sample_type": "polyA+ RNA"
+        "sample_type": "Total RNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_12",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_6",
-        "specimen_tissue_source": "Amniotic fluid",
-        "tumour_normal_designation": "Tumour",
-        "specimen_type": "Primary tumour - additional new primary",
-        "sample_type": "Protein"
+        "specimen_tissue_source": null,
+        "tumour_normal_designation": null,
+        "specimen_type": "Recurrent tumour",
+        "sample_type": "Total DNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_13",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_7",
-        "specimen_tissue_source": "Saliva",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Recurrent tumour",
-        "sample_type": "ctDNA"
+        "specimen_tissue_source": "Urine",
+        "tumour_normal_designation": "Tumour",
+        "specimen_type": null,
+        "sample_type": "Other RNA fractions"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_14",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
         "submitter_specimen_id": "SPECIMEN_8",
-        "specimen_tissue_source": "Urine",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Xenograft - derived from metastatic tumour",
-        "sample_type": "Total RNA"
+        "specimen_tissue_source": "Serum",
+        "tumour_normal_designation": "Tumour",
+        "specimen_type": "Metastatic tumour",
+        "sample_type": "Amplified DNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_15",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_2",
         "submitter_specimen_id": "SPECIMEN_9",
-        "specimen_tissue_source": "Blood derived - peripheral blood",
-        "tumour_normal_designation": "Tumour",
-        "specimen_type": "Recurrent tumour",
-        "sample_type": "Total RNA"
+        "specimen_tissue_source": "Vitreous fluid",
+        "tumour_normal_designation": "Normal",
+        "specimen_type": null,
+        "sample_type": "Other DNA enrichments"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_16",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_2",
         "submitter_specimen_id": "SPECIMEN_10",
-        "specimen_tissue_source": "Bile",
+        "specimen_tissue_source": "Renal cyst fluid",
         "tumour_normal_designation": "Normal",
-        "specimen_type": "Metastatic tumour - additional metastatic",
+        "specimen_type": null,
         "sample_type": "polyA+ RNA"
     },
     {
@@ -164,29 +164,29 @@
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_2",
         "submitter_specimen_id": "SPECIMEN_11",
-        "specimen_tissue_source": "Pancreatic fluid",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Metastatic tumour - additional metastatic",
-        "sample_type": "Total DNA"
+        "specimen_tissue_source": "Bone marrow fluid",
+        "tumour_normal_designation": "Tumour",
+        "specimen_type": "Xenograft - derived from primary tumour",
+        "sample_type": "polyA+ RNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_18",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_2",
         "submitter_specimen_id": "SPECIMEN_12",
-        "specimen_tissue_source": "Blood derived - bone marrow",
-        "tumour_normal_designation": "Tumour",
-        "specimen_type": "Cell line - derived from primary tumour",
-        "sample_type": "Other RNA fractions"
+        "specimen_tissue_source": "Female genital fluid",
+        "tumour_normal_designation": "Normal",
+        "specimen_type": null,
+        "sample_type": null
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_19",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_3",
         "submitter_specimen_id": "SPECIMEN_13",
-        "specimen_tissue_source": "Solid tissue",
+        "specimen_tissue_source": "Cerebrospinal fluid",
         "tumour_normal_designation": "Tumour",
-        "specimen_type": "Metastatic tumour",
+        "specimen_type": "Metastatic tumour - metastasis local to lymph node",
         "sample_type": "Other RNA fractions"
     },
     {
@@ -194,69 +194,69 @@
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_3",
         "submitter_specimen_id": "SPECIMEN_14",
-        "specimen_tissue_source": "Sputum",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Normal",
-        "sample_type": "Protein"
+        "specimen_tissue_source": "Bone marrow fluid",
+        "tumour_normal_designation": "Tumour",
+        "specimen_type": "Primary tumour",
+        "sample_type": "polyA+ RNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_21",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_4",
         "submitter_specimen_id": "SPECIMEN_15",
-        "specimen_tissue_source": "Buccal cell",
+        "specimen_tissue_source": null,
         "tumour_normal_designation": "Tumour",
-        "specimen_type": "Recurrent tumour",
-        "sample_type": "Protein"
+        "specimen_type": "Metastatic tumour - metastasis to distant location",
+        "sample_type": "Amplified DNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_22",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_4",
         "submitter_specimen_id": "SPECIMEN_16",
-        "specimen_tissue_source": "Cervical mucus",
-        "tumour_normal_designation": "Tumour",
-        "specimen_type": "Primary tumour - additional new primary",
-        "sample_type": "ctDNA"
+        "specimen_tissue_source": "Blood derived - bone marrow",
+        "tumour_normal_designation": "Normal",
+        "specimen_type": "Normal",
+        "sample_type": "Total DNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_23",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_5",
         "submitter_specimen_id": "SPECIMEN_17",
-        "specimen_tissue_source": "Pleural fluid",
+        "specimen_tissue_source": "Bone marrow fluid",
         "tumour_normal_designation": "Tumour",
-        "specimen_type": "Xenograft - derived from metastatic tumour",
-        "sample_type": "Other RNA fractions"
+        "specimen_type": "Normal - tissue adjacent to primary tumour",
+        "sample_type": "Other DNA enrichments"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_24",
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_6",
         "submitter_specimen_id": "SPECIMEN_18",
-        "specimen_tissue_source": "Synovial fluid",
+        "specimen_tissue_source": "Blood derived - bone marrow",
         "tumour_normal_designation": "Normal",
-        "specimen_type": "Cell line - derived from metastatic tumour",
-        "sample_type": "polyA+ RNA"
+        "specimen_type": "Cell line - derived from xenograft tumour",
+        "sample_type": "Total RNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_25",
         "program_id": "SYNTHETIC-2",
         "submitter_donor_id": "DONOR_7",
         "submitter_specimen_id": "SPECIMEN_19",
-        "specimen_tissue_source": "Pancreatic fluid",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Metastatic tumour - metastasis to distant location",
-        "sample_type": "Protein"
+        "specimen_tissue_source": "Cervical mucus",
+        "tumour_normal_designation": "Tumour",
+        "specimen_type": "Recurrent tumour",
+        "sample_type": null
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_26",
         "program_id": "SYNTHETIC-2",
         "submitter_donor_id": "DONOR_8",
         "submitter_specimen_id": "SPECIMEN_20",
-        "specimen_tissue_source": "Bone marrow fluid",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Recurrent tumour",
+        "specimen_tissue_source": null,
+        "tumour_normal_designation": null,
+        "specimen_type": "Primary tumour - adjacent to normal",
         "sample_type": "Total DNA"
     },
     {
@@ -264,19 +264,19 @@
         "program_id": "SYNTHETIC-2",
         "submitter_donor_id": "DONOR_9",
         "submitter_specimen_id": "SPECIMEN_21",
-        "specimen_tissue_source": "Blood derived - peripheral blood",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Normal",
-        "sample_type": "Protein"
+        "specimen_tissue_source": "Synovial fluid",
+        "tumour_normal_designation": null,
+        "specimen_type": "Cell line - derived from xenograft tumour",
+        "sample_type": "Total RNA"
     },
     {
         "submitter_sample_id": "SAMPLE_REGISTRATION_28",
         "program_id": "SYNTHETIC-2",
         "submitter_donor_id": "DONOR_10",
         "submitter_specimen_id": "SPECIMEN_22",
-        "specimen_tissue_source": "Venous blood",
+        "specimen_tissue_source": "Fetal blood",
         "tumour_normal_designation": "Tumour",
-        "specimen_type": "Primary tumour - adjacent to normal",
-        "sample_type": "Total RNA"
+        "specimen_type": "Normal",
+        "sample_type": "ctDNA"
     }
 ]
