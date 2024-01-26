@@ -4,83 +4,74 @@
         "submitter_donor_id": "DONOR_1",
         "tobacco_smoking_status": "Current smoker",
         "tobacco_type": [
-            "Unknown",
-            "Electronic cigarettes",
-            "Not applicable"
+            "Cigar",
+            "Not applicable",
+            "Electronic cigarettes"
         ],
-        "pack_years_smoked": 280
+        "pack_years_smoked": 201
     },
     {
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
-        "tobacco_smoking_status": "Not applicable",
+        "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
         "tobacco_type": [
-            "Chewing Tobacco",
-            "Pipe",
-            "Not applicable"
+            "Unknown"
         ],
-        "pack_years_smoked": 138
+        "pack_years_smoked": 169
     },
     {
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_1",
-        "tobacco_smoking_status": "Not applicable",
+        "tobacco_smoking_status": "Current smoker",
+        "tobacco_type": [],
+        "pack_years_smoked": 72
+    },
+    {
+        "program_id": "SYNTHETIC-1",
+        "submitter_donor_id": "DONOR_2",
+        "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
         "tobacco_type": [
             "Cigar",
-            "Waterpipe",
-            "Electronic cigarettes"
+            "Cigarettes",
+            "Pipe"
         ],
-        "pack_years_smoked": 141
+        "pack_years_smoked": 127
     },
     {
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_2",
-        "tobacco_smoking_status": "Current reformed smoker for > 15 years",
-        "tobacco_type": [
-            "Cigarettes",
-            "Electronic cigarettes"
-        ],
-        "pack_years_smoked": 90
-    },
-    {
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_2",
-        "tobacco_smoking_status": "Current smoker",
-        "tobacco_type": [
-            "Cigarettes",
-            "Snuff"
-        ],
-        "pack_years_smoked": 266
+        "tobacco_smoking_status": "Current reformed smoker for <= 15 years",
+        "tobacco_type": [],
+        "pack_years_smoked": 111
     },
     {
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_3",
-        "tobacco_smoking_status": "Current reformed smoker for > 15 years",
+        "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
         "tobacco_type": [
             "Waterpipe",
-            "Unknown"
+            "Not applicable",
+            "Cigar"
         ],
-        "pack_years_smoked": 29
+        "pack_years_smoked": 171
     },
     {
         "program_id": "SYNTHETIC-2",
         "submitter_donor_id": "DONOR_7",
-        "tobacco_smoking_status": "Current reformed smoker, duration not specified",
+        "tobacco_smoking_status": null,
         "tobacco_type": [
-            "Unknown",
-            "Electronic cigarettes",
-            "Not applicable"
+            "Cigar",
+            "Chewing Tobacco"
         ],
-        "pack_years_smoked": 104
+        "pack_years_smoked": 191
     },
     {
         "program_id": "SYNTHETIC-2",
         "submitter_donor_id": "DONOR_8",
         "tobacco_smoking_status": "Current reformed smoker for > 15 years",
         "tobacco_type": [
-            "Waterpipe",
-            "Unknown"
+            "Pipe"
         ],
-        "pack_years_smoked": 48
+        "pack_years_smoked": 100
     }
 ]
