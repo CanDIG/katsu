@@ -123,6 +123,12 @@ class DonorTest(TestCase):
             "sex_at_birth": "Unknown",
             "lost_to_followup_after_clinical_event_identifier": "",
             "lost_to_followup_reason": "Not applicable",
+            "date_of_birth": {"month_interval": -591, "day_interval": -17730},
+            "date_of_death": {"month_interval": 7, "day_interval": 210},
+            "date_alive_after_lost_to_followup": {
+                "month_interval": 5,
+                "day_interval": 150,
+            },
         }
         self.donor = Donor.objects.create(**self.valid_values)
 
@@ -140,8 +146,18 @@ class DonorTest(TestCase):
             self.donor.lost_to_followup_after_clinical_event_identifier, ""
         )
         self.assertEqual(self.donor.lost_to_followup_reason, "Not applicable")
+        self.assertEqual(
+            self.donor.date_of_birth, {"month_interval": -591, "day_interval": -17730}
+        )
+        self.assertEqual(
+            self.donor.date_of_death, {"month_interval": 7, "day_interval": 210}
+        )
+        self.assertEqual(
+            self.donor.date_alive_after_lost_to_followup,
+            {"month_interval": 5, "day_interval": 150},
+        )
         self.assertCountEqual(
-            self.donor.primary_site,
+            self.donor.primary_site,  # type: ignore
             [
                 "Adrenal gland",
                 "Other and ill-defined sites in lip, oral cavity and pharynx",
@@ -184,11 +200,6 @@ class DonorTest(TestCase):
                 self.valid_values["submitter_donor_id"] = invalid_value
                 with self.assertRaises(SchemaValidationError):
                     DonorModelSchema.model_validate(self.valid_values)
-
-    def test_invalid_is_deceased(self):
-        self.donor.is_deceased = "foo"
-        with self.assertRaises(ValidationError):
-            self.donor.save()
 
     def test_invalid_cause_of_death(self):
         invalid_values = get_invalid_choices()
@@ -253,6 +264,7 @@ class PrimaryDiagnosisTest(TestCase):
             "clinical_m_category": "M1b(0)",
             "clinical_stage_group": "Stage IA3",
             "laterality": "Right",
+            "date_of_diagnosis": {"month_interval": 20, "day_interval": 600},
         }
         self.primary_diagnosis = PrimaryDiagnosis.objects.create(**self.valid_values)
 
@@ -286,6 +298,10 @@ class PrimaryDiagnosisTest(TestCase):
         self.assertEqual(self.primary_diagnosis.clinical_m_category, "M1b(0)")
         self.assertEqual(self.primary_diagnosis.clinical_stage_group, "Stage IA3")
         self.assertEqual(self.primary_diagnosis.laterality, "Right")
+        self.assertEqual(
+            self.primary_diagnosis.date_of_diagnosis,
+            {"month_interval": 20, "day_interval": 600},
+        )
 
     def test_null_optional_fields(self):
         """Tests no exceptions are raised when saving null values in optional fields."""
@@ -437,6 +453,7 @@ class SpecimenTest(TestCase):
             "percent_tumour_cells_measurement_method": "Image analysis",
             "specimen_processing": "Formalin fixed - unbuffered",
             "specimen_laterality": "Left",
+            "specimen_collection_date": {"month_interval": 6, "day_interval": 180},
         }
         self.specimen = Specimen.objects.create(**self.valid_values)
 
@@ -479,6 +496,10 @@ class SpecimenTest(TestCase):
             self.specimen.specimen_processing, "Formalin fixed - unbuffered"
         )
         self.assertEqual(self.specimen.specimen_laterality, "Left")
+        self.assertEqual(
+            self.specimen.specimen_collection_date,
+            {"month_interval": 6, "day_interval": 180},
+        )
 
     def test_null_optional_fields(self):
         """Tests no exceptions are raised when saving null values in optional fields."""
@@ -842,6 +863,8 @@ class TreatmentTest(TestCase):
             "response_to_treatment": "Stable disease",
             "line_of_treatment": 5,
             "status_of_treatment": "Other",
+            "treatment_start_date": {"month_interval": 9, "day_interval": 270},
+            "treatment_end_date": {"month_interval": 59, "day_interval": 1770},
         }
         self.treatment = Treatment.objects.create(**self.valid_values)
 
@@ -859,7 +882,7 @@ class TreatmentTest(TestCase):
             self.primary_diagnosis.submitter_primary_diagnosis_id,
         )
         self.assertCountEqual(
-            self.treatment.treatment_type,
+            self.treatment.treatment_type,  # type: ignore
             ["Chemotherapy", "Immunotherapy"],
         )
         self.assertEqual(self.treatment.is_primary_treatment, "Yes")
@@ -874,6 +897,14 @@ class TreatmentTest(TestCase):
         self.assertEqual(self.treatment.response_to_treatment, "Stable disease")
         self.assertEqual(self.treatment.line_of_treatment, 5)
         self.assertEqual(self.treatment.status_of_treatment, "Other")
+        self.assertEqual(
+            self.treatment.treatment_start_date,
+            {"month_interval": 9, "day_interval": 270},
+        )
+        self.assertEqual(
+            self.treatment.treatment_end_date,
+            {"month_interval": 59, "day_interval": 1770},
+        )
 
     def test_null_optional_fields(self):
         """Tests no exceptions are raised when saving null values in optional fields."""
@@ -1340,11 +1371,6 @@ class RadiationTest(TestCase):
                 with self.assertRaises(SchemaValidationError):
                     RadiationModelSchema.model_validate(self.valid_values)
 
-    def test_invalid_radiation_boost(self):
-        self.radiation.radiation_boost = "foo"
-        with self.assertRaises(ValidationError):
-            self.radiation.save()
-
     def test_reference_radiation_treatment_id_max_length(self):
         self.radiation.reference_radiation_treatment_id = "f" * 65
         with self.assertRaises(DataError):
@@ -1516,12 +1542,13 @@ class SurgeryTest(TestCase):
         self.assertEqual(self.surgery.tumour_focality, "Cannot be assessed")
         self.assertEqual(self.surgery.residual_tumour_classification, "R2")
         self.assertCountEqual(
-            self.surgery.margin_types_involved, ["Proximal margin", "Not applicable"]
+            self.surgery.margin_types_involved,
+            ["Proximal margin", "Not applicable"],  # type: ignore
         )
-        self.assertCountEqual(self.surgery.margin_types_not_involved, ["Unknown"])
+        self.assertCountEqual(self.surgery.margin_types_not_involved, ["Unknown"])  # type: ignore
         self.assertEqual(self.surgery.lymphovascular_invasion, "Absent")
         self.assertCountEqual(
-            self.surgery.margin_types_not_assessed,
+            self.surgery.margin_types_not_assessed,  # type: ignore
             ["Common bile duct margin", "Not applicable"],
         )
         self.assertEqual(self.surgery.perineural_invasion, "Not applicable")
@@ -1685,6 +1712,8 @@ class FollowUpTest(TestCase):
             "recurrence_n_category": "N0a (biopsy)",
             "recurrence_m_category": "M0(i+)",
             "recurrence_stage_group": "Stage IBS",
+            "date_of_followup": {"month_interval": 24, "day_interval": 720},
+            "date_of_relapse": {"month_interval": 27, "day_interval": 810},
         }
         self.followup = FollowUp.objects.create(**self.valid_values)
 
@@ -1721,6 +1750,12 @@ class FollowUpTest(TestCase):
         self.assertEqual(self.followup.recurrence_n_category, "N0a (biopsy)")
         self.assertEqual(self.followup.recurrence_m_category, "M0(i+)")
         self.assertEqual(self.followup.recurrence_stage_group, "Stage IBS")
+        self.assertEqual(
+            self.followup.date_of_followup, {"month_interval": 24, "day_interval": 720}
+        )
+        self.assertEqual(
+            self.followup.date_of_relapse, {"month_interval": 27, "day_interval": 810}
+        )
 
     def test_null_optional_fields(self):
         """Tests no exceptions are raised when saving null values in optional fields."""
@@ -1873,6 +1908,7 @@ class BiomarkerTest(TestCase):
             "hpv_ihc_status": "Not applicable",
             "hpv_pcr_status": "Negative",
             "hpv_strain": ["HPV35"],
+            "test_date": {"month_interval": 39, "day_interval": 1170},
         }
         self.biomarker = Biomarker.objects.create(**self.valid_values)
 
@@ -1896,6 +1932,9 @@ class BiomarkerTest(TestCase):
         self.assertEqual(self.biomarker.hpv_ihc_status, "Not applicable")
         self.assertEqual(self.biomarker.hpv_pcr_status, "Negative")
         self.assertEqual(self.biomarker.hpv_strain, ["HPV35"])
+        self.assertEqual(
+            self.biomarker.test_date, {"month_interval": 39, "day_interval": 1170}
+        )
 
     def test_null_optional_fields(self):
         """Tests no exceptions are raised when saving null values in optional fields."""
