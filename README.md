@@ -134,21 +134,14 @@ coverage html
 │       │   ├── discovery.py
 │       │   └── ingestion.py
 │       ├── data/
-│       │   ├── large_dataset/
-│       │   │    ├── synthetic_data/
-│       │   │    └── ...
-│       │   ├── medium_dataset/
-│       │   │    ├── synthetic_data/
-│       │   │    └── ...
-│       │   ├── small_dataset/
-│       │   │    ├── synthetic_data/
-│       │   │    └── ...
+│       │   ├── ...
 │       │   ├── data_converter.py
 │       │   ├── data_loader.py
 │       │   └── README.md
 │       ├── docs/
 │       │    ├── ...
-│       │    └── schema.json
+│       │    ├── schema.json
+│       │    └── README.md
 │       ├── migrations/
 │       ├── schemas/
 │       │   ├── base.py
