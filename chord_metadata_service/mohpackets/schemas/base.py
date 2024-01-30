@@ -22,7 +22,6 @@ from chord_metadata_service.mohpackets.models import (
 )
 from chord_metadata_service.mohpackets.permissible_values import (
     COMORBIDITY_REGEX_PATTERNS,
-    DATE_REGEX_PATTERNS,
     ID_REGEX_PATTERNS,
     MORPHOLOGY_REGEX_PATTERNS,
     TOPOGRAPHY_REGEX_PATTERNS,
