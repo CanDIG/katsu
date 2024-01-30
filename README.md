@@ -122,6 +122,77 @@ tox
 coverage html
 ```
 
+## App Structure
+
+```bash
+.
+├── chord_metadata_service/
+│   └── mohpackets/
+│       ├── apis/
+│       │   ├── clinical_data.py
+│       │   ├── core.py
+│       │   ├── discovery.py
+│       │   └── ingestion.py
+│       ├── data/
+│       │   ├── large_dataset/
+│       │   │    ├── synthetic_data/
+│       │   │    └── ...
+│       │   ├── medium_dataset/
+│       │   │    ├── synthetic_data/
+│       │   │    └── ...
+│       │   ├── small_dataset/
+│       │   │    ├── synthetic_data/
+│       │   │    └── ...
+│       │   ├── data_converter.py
+│       │   ├── data_loader.py
+│       │   └── README.md
+│       ├── docs/
+│       │    ├── ...
+│       │    └── schema.json
+│       ├── migrations/
+│       ├── schemas/
+│       │   ├── base.py
+│       │   ├── discovery.py
+│       │   ├── filter.py
+│       │   ├── ingestion.py
+│       │   ├── model.py
+│       │   └── nested_data.py
+│       ├── tests/
+│       │   ├── endpoints/
+│       │   │   ├── base.py
+│       │   │   ├── factories.py
+│       │   │   ├── test_chemotherapy.py
+│       │   │   └── ...
+│       │   └── test_models.py
+│       ├── apps.py
+│       ├── models.py
+│       ├── pagination.py
+│       ├── permissible_values.py
+│       ├── signals.py
+│       └── utils.py
+├── config/
+│   ├── settings/
+│   │   ├── base.txt
+│   │   ├── dev.txt
+│   │   ├── local.txt
+│   │   └── prod.txt
+│   ├── asgi.py
+│   ├── urls.py
+│   └── wsgi.py
+├── requirements/
+│   ├── base.txt
+│   ├── dev.txt
+│   ├── local.txt
+│   └── prod.txt
+├── entrypoint.sh
+├── katsu_wsgi.ini
+├── manage.py
+├── codecov.yml
+├── Dockerfile
+├── README.md
+└── tox.ini
+```
+
 ## MOHCCN Clinical Data Model
 
 Katsu uses an underlying data model that is a compatible interpretation, but does not exactly match the MOHCCN data model. Katsu is currently compliant with version 2 of the model, released February 2023. Some relationships between objects have been modified to avoid excessive complexity in the katsu database and allow for the submission of data that is incomplete compared to the MOHCCN gold standard requirements. Permissable values for controlled fields are not validated by the underlying database.
