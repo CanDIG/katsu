@@ -115,8 +115,6 @@ class DonorTest(TestCase):
             "program_id_id": self.program.program_id,
             "is_deceased": True,
             "cause_of_death": "Died of cancer",
-            "date_of_birth": "1975-08",
-            "date_of_death": "2009-08",
             "primary_site": [
                 "Adrenal gland",
                 "Other and ill-defined sites in lip, oral cavity and pharynx",
@@ -125,7 +123,6 @@ class DonorTest(TestCase):
             "sex_at_birth": "Unknown",
             "lost_to_followup_after_clinical_event_identifier": "",
             "lost_to_followup_reason": "Not applicable",
-            "date_alive_after_lost_to_followup": "2022-02",
         }
         self.donor = Donor.objects.create(**self.valid_values)
 
@@ -137,15 +134,12 @@ class DonorTest(TestCase):
         self.assertEqual(self.donor.program_id, self.program)
         self.assertTrue(self.donor.is_deceased)
         self.assertEqual(self.donor.cause_of_death, "Died of cancer")
-        self.assertEqual(self.donor.date_of_birth, "1975-08")
-        self.assertEqual(self.donor.date_of_death, "2009-08")
         self.assertEqual(self.donor.gender, "Woman")
         self.assertEqual(self.donor.sex_at_birth, "Unknown")
         self.assertEqual(
             self.donor.lost_to_followup_after_clinical_event_identifier, ""
         )
         self.assertEqual(self.donor.lost_to_followup_reason, "Not applicable")
-        self.assertEqual(self.donor.date_alive_after_lost_to_followup, "2022-02")
         self.assertCountEqual(
             self.donor.primary_site,
             [
@@ -204,22 +198,6 @@ class DonorTest(TestCase):
                 with self.assertRaises(SchemaValidationError):
                     DonorModelSchema.model_validate(self.valid_values)
 
-    def test_invalid_date_of_death(self):
-        invalid_values = get_invalid_dates()
-        for invalid_value in invalid_values:
-            with self.subTest(value=invalid_value):
-                self.valid_values["date_of_death"] = invalid_value
-                with self.assertRaises(SchemaValidationError):
-                    DonorModelSchema.model_validate(self.valid_values)
-
-    def test_invalid_date_of_birth(self):
-        invalid_values = get_invalid_dates()
-        for invalid_value in invalid_values:
-            with self.subTest(value=invalid_value):
-                self.valid_values["date_of_birth"] = invalid_value
-                with self.assertRaises(SchemaValidationError):
-                    DonorModelSchema.model_validate(self.valid_values)
-
     def test_invalid_primary_site(self):
         invalid_values = ["foo", ["foo"]]
         for invalid_value in invalid_values:
@@ -252,14 +230,6 @@ class DonorTest(TestCase):
                 with self.assertRaises(SchemaValidationError):
                     DonorModelSchema.model_validate(self.valid_values)
 
-    def test_invalid_date_alive_after_lost_to_followup(self):
-        invalid_values = get_invalid_dates()
-        for invalid_value in invalid_values:
-            with self.subTest(value=invalid_value):
-                self.valid_values["date_alive_after_lost_to_followup"] = invalid_value
-                with self.assertRaises(SchemaValidationError):
-                    DonorModelSchema.model_validate(self.valid_values)
-
 
 class PrimaryDiagnosisTest(TestCase):
     def setUp(self):
@@ -272,7 +242,6 @@ class PrimaryDiagnosisTest(TestCase):
             "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
             "program_id_id": self.program.program_id,
             "submitter_donor_id": self.donor.submitter_donor_id,
-            "date_of_diagnosis": "2019-11",
             "cancer_type_code": "C02.1",
             "basis_of_diagnosis": "Unknown",
             "lymph_nodes_examined_status": "Not applicable",
@@ -298,7 +267,6 @@ class PrimaryDiagnosisTest(TestCase):
         self.assertEqual(
             self.primary_diagnosis.submitter_donor_id, self.donor.submitter_donor_id
         )
-        self.assertEqual(self.primary_diagnosis.date_of_diagnosis, "2019-11")
         self.assertEqual(self.primary_diagnosis.cancer_type_code, "C02.1")
         self.assertEqual(self.primary_diagnosis.basis_of_diagnosis, "Unknown")
         self.assertEqual(
@@ -368,14 +336,6 @@ class PrimaryDiagnosisTest(TestCase):
         for invalid_value in invalid_values:
             with self.subTest(value=invalid_value):
                 self.valid_values["submitter_primary_diagnosis_id"] = invalid_value
-                with self.assertRaises(SchemaValidationError):
-                    PrimaryDiagnosisModelSchema.model_validate(self.valid_values)
-
-    def test_invalid_date_of_diagnosis(self):
-        invalid_values = get_invalid_dates()
-        for invalid_value in invalid_values:
-            with self.subTest(value=invalid_value):
-                self.valid_values["date_of_diagnosis"] = invalid_value
                 with self.assertRaises(SchemaValidationError):
                     PrimaryDiagnosisModelSchema.model_validate(self.valid_values)
 
@@ -466,7 +426,6 @@ class SpecimenTest(TestCase):
             "pathological_n_category": "N0b",
             "pathological_m_category": "M1a",
             "pathological_stage_group": "Stage IAS",
-            "specimen_collection_date": "2021-06-25",
             "specimen_storage": "Cut slide",
             "tumour_histological_type": "8209/3",
             "specimen_anatomic_location": "C43.9",
@@ -501,7 +460,6 @@ class SpecimenTest(TestCase):
         self.assertEqual(self.specimen.pathological_n_category, "N0b")
         self.assertEqual(self.specimen.pathological_m_category, "M1a")
         self.assertEqual(self.specimen.pathological_stage_group, "Stage IAS")
-        self.assertEqual(self.specimen.specimen_collection_date, "2021-06-25")
         self.assertEqual(self.specimen.specimen_storage, "Cut slide")
         self.assertEqual(self.specimen.tumour_histological_type, "8209/3")
         self.assertEqual(self.specimen.specimen_anatomic_location, "C43.9")
@@ -613,14 +571,6 @@ class SpecimenTest(TestCase):
         for invalid_value in invalid_values:
             with self.subTest(value=invalid_value):
                 self.valid_values["pathological_stage_group"] = invalid_value
-                with self.assertRaises(SchemaValidationError):
-                    SpecimenModelSchema.model_validate(self.valid_values)
-
-    def test_invalid_specimen_collection_date(self):
-        invalid_values = get_invalid_dates()
-        for invalid_value in invalid_values:
-            with self.subTest(value=invalid_value):
-                self.valid_values["specimen_collection_date"] = invalid_value
                 with self.assertRaises(SchemaValidationError):
                     SpecimenModelSchema.model_validate(self.valid_values)
 
@@ -884,8 +834,6 @@ class TreatmentTest(TestCase):
             "submitter_primary_diagnosis_id": self.primary_diagnosis.submitter_primary_diagnosis_id,
             "treatment_type": ["Chemotherapy", "Immunotherapy"],
             "is_primary_treatment": "Yes",
-            "treatment_start_date": "2021-02",
-            "treatment_end_date": "2022-09",
             "treatment_setting": "Neoadjuvant",
             "treatment_intent": "Palliative",
             "days_per_cycle": 1,
@@ -915,8 +863,6 @@ class TreatmentTest(TestCase):
             ["Chemotherapy", "Immunotherapy"],
         )
         self.assertEqual(self.treatment.is_primary_treatment, "Yes")
-        self.assertEqual(self.treatment.treatment_start_date, "2021-02")
-        self.assertEqual(self.treatment.treatment_end_date, "2022-09")
         self.assertEqual(self.treatment.treatment_setting, "Neoadjuvant")
         self.assertEqual(self.treatment.treatment_intent, "Palliative")
         self.assertEqual(self.treatment.days_per_cycle, 1)
@@ -996,22 +942,6 @@ class TreatmentTest(TestCase):
         for invalid_value in invalid_values:
             with self.subTest(value=invalid_value):
                 self.valid_values["is_primary_treatment"] = invalid_value
-                with self.assertRaises(SchemaValidationError):
-                    TreatmentModelSchema.model_validate(self.valid_values)
-
-    def test_invalid_treatment_start_date(self):
-        invalid_values = get_invalid_dates()
-        for invalid_value in invalid_values:
-            with self.subTest(value=invalid_value):
-                self.valid_values["treatment_start_date"] = invalid_value
-                with self.assertRaises(SchemaValidationError):
-                    TreatmentModelSchema.model_validate(self.valid_values)
-
-    def test_treatment_end_date(self):
-        invalid_values = get_invalid_dates()
-        for invalid_value in invalid_values:
-            with self.subTest(value=invalid_value):
-                self.valid_values["treatment_end_date"] = invalid_value
                 with self.assertRaises(SchemaValidationError):
                     TreatmentModelSchema.model_validate(self.valid_values)
 
@@ -1743,10 +1673,8 @@ class FollowUpTest(TestCase):
             "submitter_donor_id": self.donor.submitter_donor_id,
             "submitter_primary_diagnosis_id": self.primary_diagnosis.submitter_primary_diagnosis_id,
             "submitter_treatment_id": self.treatment.submitter_treatment_id,
-            "date_of_followup": "2022-10",
             "disease_status_at_followup": "Loco-regional progression",
             "relapse_type": "Progression (liquid tumours)",
-            "date_of_relapse": "2022-07",
             "method_of_progression_status": [
                 "Imaging (procedure)",
                 "Laboratory data interpretation (procedure)",
@@ -1776,12 +1704,10 @@ class FollowUpTest(TestCase):
         self.assertEqual(
             self.followup.submitter_treatment_id, self.treatment.submitter_treatment_id
         )
-        self.assertEqual(self.followup.date_of_followup, "2022-10")
         self.assertEqual(
             self.followup.disease_status_at_followup, "Loco-regional progression"
         )
         self.assertEqual(self.followup.relapse_type, "Progression (liquid tumours)")
-        self.assertEqual(self.followup.date_of_relapse, "2022-07")
         self.assertEqual(
             self.followup.method_of_progression_status,
             ["Imaging (procedure)", "Laboratory data interpretation (procedure)"],
@@ -1850,14 +1776,6 @@ class FollowUpTest(TestCase):
                 with self.assertRaises(SchemaValidationError):
                     FollowUpModelSchema.model_validate(self.valid_values)
 
-    def test_invalid_date_of_followup(self):
-        invalid_values = get_invalid_dates()
-        for invalid_value in invalid_values:
-            with self.subTest(value=invalid_value):
-                self.valid_values["date_of_followup"] = invalid_value
-                with self.assertRaises(SchemaValidationError):
-                    FollowUpModelSchema.model_validate(self.valid_values)
-
     def test_invalid_disease_status_at_followup(self):
         invalid_values = get_invalid_choices()
         for invalid_value in invalid_values:
@@ -1871,14 +1789,6 @@ class FollowUpTest(TestCase):
         for invalid_value in invalid_values:
             with self.subTest(value=invalid_value):
                 self.valid_values["relapse_type"] = invalid_value
-                with self.assertRaises(SchemaValidationError):
-                    FollowUpModelSchema.model_validate(self.valid_values)
-
-    def test_invalid_date_of_relapse(self):
-        invalid_values = get_invalid_dates()
-        for invalid_value in invalid_values:
-            with self.subTest(value=invalid_value):
-                self.valid_values["date_of_relapse"] = invalid_value
                 with self.assertRaises(SchemaValidationError):
                     FollowUpModelSchema.model_validate(self.valid_values)
 
@@ -1951,7 +1861,6 @@ class BiomarkerTest(TestCase):
         self.valid_values = {
             "program_id_id": self.program.program_id,
             "submitter_donor_id": self.donor.submitter_donor_id,
-            "test_date": "8",
             "psa_level": 230,
             "ca125": 29,
             "cea": 11,
@@ -1975,7 +1884,6 @@ class BiomarkerTest(TestCase):
         self.assertEqual(
             self.biomarker.submitter_donor_id, self.donor.submitter_donor_id
         )
-        self.assertEqual(self.biomarker.test_date, "8")
         self.assertEqual(self.biomarker.psa_level, 230)
         self.assertEqual(self.biomarker.ca125, 29)
         self.assertEqual(self.biomarker.cea, 11)
