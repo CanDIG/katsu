@@ -1542,8 +1542,8 @@ class SurgeryTest(TestCase):
         self.assertEqual(self.surgery.tumour_focality, "Cannot be assessed")
         self.assertEqual(self.surgery.residual_tumour_classification, "R2")
         self.assertCountEqual(
-            self.surgery.margin_types_involved,
-            ["Proximal margin", "Not applicable"],  # type: ignore
+            self.surgery.margin_types_involved,  # type: ignore
+            ["Proximal margin", "Not applicable"],
         )
         self.assertCountEqual(self.surgery.margin_types_not_involved, ["Unknown"])  # type: ignore
         self.assertEqual(self.surgery.lymphovascular_invasion, "Absent")
