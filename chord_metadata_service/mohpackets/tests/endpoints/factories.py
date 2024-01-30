@@ -70,14 +70,20 @@ class DonorFactory(factory.django.DjangoModelFactory):
         "is_deceased",
         yes_declaration=factory.Faker(
             "random_element", elements=PERM_VAL.CAUSE_OF_DEATH
-        ),
-        no_declaration=None,
+        ),  # type: ignore
+        no_declaration=None,  # type: ignore
     )
-    date_of_birth = None  # factory.Faker("random_int")
+    date_of_birth = {
+        "month_interval": random.randint(0, 100),
+        "day_interval": random.randint(0, 300),
+    }
     date_of_death = factory.Maybe(
         "is_deceased",
-        yes_declaration=None,  # factory.Faker("random_int", min=date_of_birth),
-        no_declaration=None,
+        yes_declaration={
+            "month_interval": random.randint(0, 100),
+            "day_interval": random.randint(0, 300),
+        },  # type: ignore
+        no_declaration=None,  # type: ignore
     )
     primary_site = factory.Faker(
         "random_elements",
@@ -132,15 +138,18 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     @factory.post_generation
     def set_clinical_event_identifier(self, create, extracted, **kwargs):
         donor = self.donor_uuid
-        if not donor.is_deceased:
-            donor.lost_to_followup_after_clinical_event_identifier = (
+        if not donor.is_deceased:  # type: ignore
+            donor.lost_to_followup_after_clinical_event_identifier = (  # type: ignore
                 self.submitter_primary_diagnosis_id
             )
-            donor.lost_to_followup_reason = random.choice(
+            donor.lost_to_followup_reason = random.choice(  # type: ignore
                 PERM_VAL.LOST_TO_FOLLOWUP_REASON
             )
-            donor.date_alive_after_lost_to_followup = random.randint(1000, 5000)
-            donor.save()
+            donor.date_alive_after_lost_to_followup = {  # type: ignore
+                "month_interval": random.randint(0, 100),
+                "day_interval": random.randint(0, 300),
+            }
+            donor.save()  # type: ignore
 
 
 class SpecimenFactory(factory.django.DjangoModelFactory):
