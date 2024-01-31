@@ -3,7 +3,7 @@
     "info": {
         "title": "MoH Service API",
         "version": "3.0.0",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/1bdd35ae524acc900e93e4b1269bda06678d94e7/chord_metadata_service/mohpackets/docs/schema.json"
+        "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
         "/v2/service-info": {
@@ -9031,7 +9031,6 @@
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^(\\d(\\d(\\d\\d|\\d0)|\\d00)|\\d000)(-(0[1-9]|1[0-2])(-(0\\d|[1-2]\\d|3[0-1]))?)?",
                                 "type": "string"
                             },
                             {
@@ -9044,7 +9043,6 @@
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^(\\d(\\d(\\d\\d|\\d0)|\\d00)|\\d000)(-(0[1-9]|1[0-2])(-(0\\d|[1-2]\\d|3[0-1]))?)?",
                                 "type": "string"
                             },
                             {
@@ -9101,7 +9099,6 @@
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^(\\d(\\d(\\d\\d|\\d0)|\\d00)|\\d000)(-(0[1-9]|1[0-2])(-(0\\d|[1-2]\\d|3[0-1]))?)?",
                                 "type": "string"
                             },
                             {
@@ -9641,7 +9638,6 @@
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^(\\d(\\d(\\d\\d|\\d0)|\\d00)|\\d000)(-(0[1-9]|1[0-2])(-(0\\d|[1-2]\\d|3[0-1]))?)?",
                                 "type": "string"
                             },
                             {
@@ -11420,7 +11416,6 @@
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^(\\d(\\d(\\d\\d|\\d0)|\\d00)|\\d000)(-(0[1-9]|1[0-2])(-(0\\d|[1-2]\\d|3[0-1]))?)?",
                                 "type": "string"
                             },
                             {
@@ -11433,7 +11428,6 @@
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^(\\d(\\d(\\d\\d|\\d0)|\\d00)|\\d000)(-(0[1-9]|1[0-2])(-(0\\d|[1-2]\\d|3[0-1]))?)?",
                                 "type": "string"
                             },
                             {
@@ -13438,7 +13432,6 @@
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^(\\d(\\d(\\d\\d|\\d0)|\\d00)|\\d000)(-(0[1-9]|1[0-2])(-(0\\d|[1-2]\\d|3[0-1]))?)?",
                                 "type": "string"
                             },
                             {
@@ -14498,7 +14491,6 @@
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^(\\d(\\d(\\d\\d|\\d0)|\\d00)|\\d000)(-(0[1-9]|1[0-2])(-(0\\d|[1-2]\\d|3[0-1]))?)?",
                                 "type": "string"
                             },
                             {
@@ -14511,7 +14503,6 @@
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^(\\d(\\d(\\d\\d|\\d0)|\\d00)|\\d000)(-(0[1-9]|1[0-2])(-(0\\d|[1-2]\\d|3[0-1]))?)?",
                                 "type": "string"
                             },
                             {
