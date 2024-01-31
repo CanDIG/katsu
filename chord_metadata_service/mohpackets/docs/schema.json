@@ -3,7 +3,7 @@
     "info": {
         "title": "MoH Service API",
         "version": "3.1.0",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/9a3901aec804010a1c52fbe91718e30c7a7a1fd5/chord_metadata_service/mohpackets/docs/schema.json"
+        "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
         "/v2/service-info": {
@@ -756,22 +756,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "date_alive_after_lost_to_followup",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Date Alive After Lost To Followup"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
                         "name": "cause_of_death",
                         "schema": {
                             "anyOf": [
@@ -783,38 +767,6 @@
                                 }
                             ],
                             "title": "Cause Of Death"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "date_of_birth",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Date Of Birth"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "date_of_death",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Date Of Death"
                         },
                         "required": false
                     },
@@ -924,22 +876,6 @@
                                 }
                             ],
                             "title": "Submitter Donor Id"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "date_of_diagnosis",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Date Of Diagnosis"
                         },
                         "required": false
                     },
@@ -1260,22 +1196,6 @@
                                 }
                             ],
                             "title": "Submitter Follow Up Id"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "test_date",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Test Date"
                         },
                         "required": false
                     },
@@ -2091,22 +2011,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "date_of_followup",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Date Of Followup"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
                         "name": "disease_status_at_followup",
                         "schema": {
                             "anyOf": [
@@ -2134,22 +2038,6 @@
                                 }
                             ],
                             "title": "Relapse Type"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "date_of_relapse",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Date Of Relapse"
                         },
                         "required": false
                     },
@@ -3237,22 +3125,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "specimen_collection_date",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Specimen Collection Date"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
                         "name": "specimen_storage",
                         "schema": {
                             "anyOf": [
@@ -3897,38 +3769,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "treatment_start_date",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Treatment Start Date"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "treatment_end_date",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Treatment End Date"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
                         "name": "treatment_setting",
                         "schema": {
                             "anyOf": [
@@ -4224,22 +4064,6 @@
                     },
                     {
                         "in": "query",
-                        "name": "date_alive_after_lost_to_followup",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Date Alive After Lost To Followup"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
                         "name": "cause_of_death",
                         "schema": {
                             "anyOf": [
@@ -4251,38 +4075,6 @@
                                 }
                             ],
                             "title": "Cause Of Death"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "date_of_birth",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Date Of Birth"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "date_of_death",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Date Of Death"
                         },
                         "required": false
                     },
@@ -9998,17 +9790,6 @@
                         ],
                         "title": "Lost To Followup Reason"
                     },
-                    "date_alive_after_lost_to_followup": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Date Alive After Lost To Followup"
-                    },
                     "cause_of_death": {
                         "anyOf": [
                             {
@@ -10019,28 +9800,6 @@
                             }
                         ],
                         "title": "Cause Of Death"
-                    },
-                    "date_of_birth": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Date Of Birth"
-                    },
-                    "date_of_death": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Date Of Death"
                     },
                     "primary_site": {
                         "items": {
@@ -10279,17 +10038,6 @@
                             }
                         ],
                         "title": "Submitter Donor Id"
-                    },
-                    "date_of_diagnosis": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Date Of Diagnosis"
                     },
                     "cancer_type_code": {
                         "anyOf": [
@@ -10683,17 +10431,6 @@
                             }
                         ],
                         "title": "Submitter Follow Up Id"
-                    },
-                    "test_date": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Test Date"
                     },
                     "psa_level": {
                         "anyOf": [
@@ -11781,17 +11518,6 @@
                         ],
                         "title": "Submitter Treatment Id"
                     },
-                    "date_of_followup": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Date Of Followup"
-                    },
                     "disease_status_at_followup": {
                         "anyOf": [
                             {
@@ -11813,17 +11539,6 @@
                             }
                         ],
                         "title": "Relapse Type"
-                    },
-                    "date_of_relapse": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Date Of Relapse"
                     },
                     "method_of_progression_status": {
                         "items": {
@@ -13213,17 +12928,6 @@
                         ],
                         "title": "Pathological Stage Group"
                     },
-                    "specimen_collection_date": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Specimen Collection Date"
-                    },
                     "specimen_storage": {
                         "anyOf": [
                             {
@@ -14101,28 +13805,6 @@
                             }
                         ],
                         "title": "Line Of Treatment"
-                    },
-                    "treatment_start_date": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Treatment Start Date"
-                    },
-                    "treatment_end_date": {
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Treatment End Date"
                     },
                     "treatment_setting": {
                         "anyOf": [
