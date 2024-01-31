@@ -357,6 +357,9 @@ def discover_diagnosis_age_count(request):
     """
     Return the count for age of diagnosis by calculating the date of birth interval.
     """
+    months_in_year = 12
+    days_in_year = 365
+    
     age_count = {
         "null": 0,
         "0-19": 0,
@@ -379,9 +382,9 @@ def discover_diagnosis_age_count(request):
         age = (
             -1
             if birth_interval is None
-            else abs(birth_interval) // 12
+            else abs(birth_interval) // months_in_year
             if "month_interval" in donor["date_of_birth"]
-            else abs(birth_interval) // 365
+            else abs(birth_interval) // days_in_year
         )
 
         if age < 0:
