@@ -1,5 +1,4 @@
-from collections import Counter, defaultdict
-from datetime import date, datetime
+from collections import Counter
 from typing import Any, Dict, Type
 
 from django.db.models import (
