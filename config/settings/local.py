@@ -16,7 +16,7 @@ from .base import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", os.environ.get("EXTERNAL_URL")]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
 
 # Debug toolbar settings
 # ----------------------
