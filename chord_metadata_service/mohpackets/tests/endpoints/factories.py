@@ -139,18 +139,18 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     @factory.post_generation
     def set_clinical_event_identifier(self, create, extracted, **kwargs):
         donor = self.donor_uuid
-        if not donor.is_deceased:  
-            donor.lost_to_followup_after_clinical_event_identifier = (  
+        if not donor.is_deceased:
+            donor.lost_to_followup_after_clinical_event_identifier = (
                 self.submitter_primary_diagnosis_id
             )
-            donor.lost_to_followup_reason = random.choice(  
+            donor.lost_to_followup_reason = random.choice(
                 PERM_VAL.LOST_TO_FOLLOWUP_REASON
             )
             donor.date_alive_after_lost_to_followup = {
                 "month_interval": random.randint(0, 100),
                 "day_interval": random.randint(0, 300),
             }
-            donor.save() 
+            donor.save()
 
 
 class SpecimenFactory(factory.django.DjangoModelFactory):
