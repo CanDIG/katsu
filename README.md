@@ -2,7 +2,7 @@
 
 ![Test Status](https://github.com/CanDIG/katsu/workflows/Test/badge.svg)
 ![Lint Status](https://github.com/CanDIG/katsu/workflows/Lint/badge.svg)
-[![codecov](https://codecov.io/gh/CanDIG/katsu/branch/master/graph/badge.svg)](https://codecov.io/gh/CanDIG/katsu)
+[![codecov](https://codecov.io/gh/CanDIG/katsu/branch/develop/graph/badge.svg)](https://codecov.io/gh/CanDIG/katsu)
 
 ## Table of Contents
 
