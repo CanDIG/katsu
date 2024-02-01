@@ -7,7 +7,7 @@
 # - local postgres database                                 #
 # - user1 set to authorize SYNTHETIC-1                      #
 # - user2 set to authorize SYNTHETIC-1, SYNTHETIC-2         #
-# - testing token is user1 and user2                        #
+# - testing token is token_1 and token_2                    #
 #############################################################
 
 import socket
@@ -76,11 +76,8 @@ LOGGING = {
 
 # Debug toolbar settings
 # ----------------------
-if DEBUG:
-    import socket
-
-    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
-        "127.0.0.1",
-        "10.0.2.2",
-    ]
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
+    "127.0.0.1",
+    "10.0.2.2",
+]
