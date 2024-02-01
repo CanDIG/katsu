@@ -3,176 +3,273 @@
         "submitter_donor_id": "DONOR_1",
         "program_id": "SYNTHETIC-1",
         "is_deceased": true,
-        "cause_of_death": "Unknown",
-        "date_of_birth": "1961-07",
-        "date_of_death": "2009-07",
+        "cause_of_death": "Died of cancer",
+        "date_resolution": "day",
+        "date_of_birth": {
+            "month_interval": null,
+            "day_interval": null
+        },
+        "date_of_death": {
+            "month_interval": 20,
+            "day_interval": 600
+        },
         "primary_site": [
-            "Corpus uteri",
-            "Anus and anal canal"
+            "Floor of mouth"
         ],
-        "gender": "Woman",
+        "gender": "Non-binary",
         "sex_at_birth": "Unknown",
         "lost_to_followup_after_clinical_event_identifier": "",
-        "lost_to_followup_reason": "Not applicable",
-        "date_alive_after_lost_to_followup": "2022-02"
+        "lost_to_followup_reason": "Unknown",
+        "date_alive_after_lost_to_followup": {
+            "month_interval": null,
+            "day_interval": null
+        }
     },
     {
         "submitter_donor_id": "DONOR_2",
         "program_id": "SYNTHETIC-1",
         "is_deceased": false,
         "cause_of_death": "Died of other reasons",
-        "date_of_birth": "1994-06",
-        "date_of_death": null,
+        "date_resolution": "month",
+        "date_of_birth": {
+            "month_interval": null,
+            "day_interval": null
+        },
+        "date_of_death": {
+            "month_interval": 13,
+            "day_interval": null
+        },
         "primary_site": [
-            "Bronchus and lung",
-            "Larynx",
-            "Pancreas"
+            "Retroperitoneum and peritoneum",
+            "Esophagus",
+            "Connective, subcutaneous and other soft tissues",
+            "Prostate gland",
+            "Spinal cord, cranial nerves, and other parts of central nervous system"
         ],
-        "gender": "Man",
-        "sex_at_birth": "Male",
+        "gender": null,
+        "sex_at_birth": "Female",
         "lost_to_followup_after_clinical_event_identifier": "",
-        "lost_to_followup_reason": "Discharged to palliative care",
-        "date_alive_after_lost_to_followup": "2022-10"
+        "lost_to_followup_reason": null,
+        "date_alive_after_lost_to_followup": {
+            "month_interval": null,
+            "day_interval": null
+        }
     },
     {
         "submitter_donor_id": "DONOR_3",
         "program_id": "SYNTHETIC-1",
-        "is_deceased": true,
-        "cause_of_death": "Unknown",
-        "date_of_birth": "2005-08",
-        "date_of_death": "2011-08",
+        "is_deceased": false,
+        "cause_of_death": "Died of other reasons",
+        "date_resolution": "day",
+        "date_of_birth": {
+            "month_interval": -591,
+            "day_interval": -17730
+        },
+        "date_of_death": {
+            "month_interval": 7,
+            "day_interval": 210
+        },
         "primary_site": [
-            "Penis"
+            "Testis",
+            "Ovary"
         ],
         "gender": "Non-binary",
         "sex_at_birth": "Female",
         "lost_to_followup_after_clinical_event_identifier": "",
-        "lost_to_followup_reason": "Discharged to palliative care",
-        "date_alive_after_lost_to_followup": "2022-01"
+        "lost_to_followup_reason": "Not applicable",
+        "date_alive_after_lost_to_followup": {
+            "month_interval": 5,
+            "day_interval": 150
+        }
     },
     {
         "submitter_donor_id": "DONOR_4",
         "program_id": "SYNTHETIC-1",
-        "is_deceased": false,
+        "is_deceased": true,
         "cause_of_death": "Died of cancer",
-        "date_of_birth": "1984-10",
-        "date_of_death": null,
+        "date_resolution": "month",
+        "date_of_birth": {
+            "month_interval": -876,
+            "day_interval": null
+        },
+        "date_of_death": {
+            "month_interval": null,
+            "day_interval": null
+        },
         "primary_site": [
-            "Skin",
-            "Bronchus and lung",
-            "Prostate gland"
+            "Prostate gland",
+            "Heart, mediastinum, and pleura"
         ],
-        "gender": "Man",
-        "sex_at_birth": "Male",
+        "gender": "Non-binary",
+        "sex_at_birth": "Female",
         "lost_to_followup_after_clinical_event_identifier": "",
         "lost_to_followup_reason": "Withdrew from study",
-        "date_alive_after_lost_to_followup": "2022-04"
+        "date_alive_after_lost_to_followup": {
+            "month_interval": 9,
+            "day_interval": null
+        }
     },
     {
         "submitter_donor_id": "DONOR_5",
         "program_id": "SYNTHETIC-1",
         "is_deceased": true,
         "cause_of_death": "Died of other reasons",
-        "date_of_birth": "1998-08",
-        "date_of_death": "2013-08",
-        "primary_site": [
-            "Connective, subcutaneous and other soft tissues",
-            "Penis",
-            "Thyroid gland",
-            "Adrenal gland"
-        ],
-        "gender": "Non-binary",
+        "date_resolution": "month",
+        "date_of_birth": {
+            "month_interval": -565,
+            "day_interval": null
+        },
+        "date_of_death": {
+            "month_interval": 81,
+            "day_interval": null
+        },
+        "primary_site": [],
+        "gender": "Man",
         "sex_at_birth": "Other",
-        "lost_to_followup_after_clinical_event_identifier": "",
-        "lost_to_followup_reason": "Completed study",
-        "date_alive_after_lost_to_followup": "2022-02"
+        "lost_to_followup_after_clinical_event_identifier": null,
+        "lost_to_followup_reason": "Withdrew from study",
+        "date_alive_after_lost_to_followup": {
+            "month_interval": 1,
+            "day_interval": null
+        }
     },
     {
         "submitter_donor_id": "DONOR_6",
         "program_id": "SYNTHETIC-1",
         "is_deceased": false,
-        "cause_of_death": "Died of other reasons",
-        "date_of_birth": "1972-12",
-        "date_of_death": null,
+        "cause_of_death": "Unknown",
+        "date_resolution": "month",
+        "date_of_birth": {
+            "month_interval": -376,
+            "day_interval": null
+        },
+        "date_of_death": {
+            "month_interval": 1,
+            "day_interval": null
+        },
         "primary_site": [
-            "Hypopharynx",
-            "Nasal cavity and middle ear",
-            "Peripheral nerves and autonomic nervous system"
+            "Floor of mouth",
+            "Spinal cord, cranial nerves, and other parts of central nervous system",
+            "Thymus"
         ],
-        "gender": "Non-binary",
+        "gender": "Man",
         "sex_at_birth": "Unknown",
         "lost_to_followup_after_clinical_event_identifier": "",
-        "lost_to_followup_reason": "Discharged to palliative care",
-        "date_alive_after_lost_to_followup": "2022-08"
+        "lost_to_followup_reason": "Completed study",
+        "date_alive_after_lost_to_followup": {
+            "month_interval": 40,
+            "day_interval": null
+        }
     },
     {
         "submitter_donor_id": "DONOR_7",
         "program_id": "SYNTHETIC-2",
         "is_deceased": false,
-        "cause_of_death": "Unknown",
-        "date_of_birth": "1961-05",
-        "date_of_death": null,
+        "cause_of_death": "Died of other reasons",
+        "date_resolution": "day",
+        "date_of_birth": {
+            "month_interval": null,
+            "day_interval": null
+        },
+        "date_of_death": {
+            "month_interval": 27,
+            "day_interval": 810
+        },
         "primary_site": [
-            "Floor of mouth"
+            "Thyroid gland",
+            "Connective, subcutaneous and other soft tissues",
+            "Heart, mediastinum, and pleura"
         ],
-        "gender": "Non-binary",
-        "sex_at_birth": "Male",
-        "lost_to_followup_after_clinical_event_identifier": "",
-        "lost_to_followup_reason": "Lost contact",
-        "date_alive_after_lost_to_followup": "2022-10"
+        "gender": "Woman",
+        "sex_at_birth": null,
+        "lost_to_followup_after_clinical_event_identifier": null,
+        "lost_to_followup_reason": "Not applicable",
+        "date_alive_after_lost_to_followup": {
+            "month_interval": 4,
+            "day_interval": 120
+        }
     },
     {
         "submitter_donor_id": "DONOR_8",
         "program_id": "SYNTHETIC-2",
-        "is_deceased": false,
-        "cause_of_death": "Died of cancer",
-        "date_of_birth": "2003-12",
-        "date_of_death": null,
+        "is_deceased": true,
+        "cause_of_death": "Died of other reasons",
+        "date_resolution": "month",
+        "date_of_birth": {
+            "month_interval": -922,
+            "day_interval": null
+        },
+        "date_of_death": {
+            "month_interval": 44,
+            "day_interval": null
+        },
         "primary_site": [
-            "Hypopharynx",
-            "Thymus",
-            "Esophagus",
-            "Colon"
+            "Other and unspecified parts of mouth",
+            "Anus and anal canal",
+            "Colon",
+            "Floor of mouth"
         ],
-        "gender": "Woman",
-        "sex_at_birth": "Unknown",
-        "lost_to_followup_after_clinical_event_identifier": "",
-        "lost_to_followup_reason": "Discharged to palliative care",
-        "date_alive_after_lost_to_followup": "2022-03"
+        "gender": null,
+        "sex_at_birth": "Female",
+        "lost_to_followup_after_clinical_event_identifier": null,
+        "lost_to_followup_reason": "Not applicable",
+        "date_alive_after_lost_to_followup": {
+            "month_interval": 15,
+            "day_interval": null
+        }
     },
     {
         "submitter_donor_id": "DONOR_9",
         "program_id": "SYNTHETIC-2",
         "is_deceased": false,
-        "cause_of_death": "Died of other reasons",
-        "date_of_birth": "1993-10",
-        "date_of_death": null,
+        "cause_of_death": "Died of cancer",
+        "date_resolution": "day",
+        "date_of_birth": {
+            "month_interval": -689,
+            "day_interval": -20670
+        },
+        "date_of_death": {
+            "month_interval": null,
+            "day_interval": null
+        },
         "primary_site": [
-            "Trachea",
-            "Other and ill-defined digestive organs"
+            "Anus and anal canal",
+            "Nasal cavity and middle ear",
+            "Other and unspecified male genital organs"
         ],
-        "gender": "Woman",
-        "sex_at_birth": "Female",
-        "lost_to_followup_after_clinical_event_identifier": "",
-        "lost_to_followup_reason": "Withdrew from study",
-        "date_alive_after_lost_to_followup": "2022-05"
+        "gender": "Non-binary",
+        "sex_at_birth": "Male",
+        "lost_to_followup_after_clinical_event_identifier": null,
+        "lost_to_followup_reason": "Unknown",
+        "date_alive_after_lost_to_followup": {
+            "month_interval": null,
+            "day_interval": null
+        }
     },
     {
         "submitter_donor_id": "DONOR_10",
         "program_id": "SYNTHETIC-2",
-        "is_deceased": true,
+        "is_deceased": false,
         "cause_of_death": "Unknown",
-        "date_of_birth": "1987-09",
-        "date_of_death": "2015-09",
+        "date_resolution": "day",
+        "date_of_birth": {
+            "month_interval": -952,
+            "day_interval": -28560
+        },
+        "date_of_death": {
+            "month_interval": 18,
+            "day_interval": 540
+        },
         "primary_site": [
-            "Esophagus",
-            "Base of tongue",
-            "Nasal cavity and middle ear"
+            "Nasopharynx"
         ],
         "gender": "Woman",
-        "sex_at_birth": "Other",
+        "sex_at_birth": "Male",
         "lost_to_followup_after_clinical_event_identifier": "",
-        "lost_to_followup_reason": "Not applicable",
-        "date_alive_after_lost_to_followup": "2022-03"
+        "lost_to_followup_reason": "Discharged to palliative care",
+        "date_alive_after_lost_to_followup": {
+            "month_interval": 2,
+            "day_interval": 60
+        }
     }
 ]

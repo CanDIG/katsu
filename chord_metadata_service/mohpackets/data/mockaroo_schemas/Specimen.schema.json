@@ -65,13 +65,22 @@
       "formula": "[\"Stage 0\",\n    \"Stage 0a\",\n    \"Stage 0is\",\n    \"Stage 1\",\n    \"Stage 1A\",\n    \"Stage 1B\",\n    \"Stage A\",\n    \"Stage B\",\n    \"Stage C\",\n    \"Stage I\",\n    \"Stage IA\",\n    \"Stage IA1\",\n    \"Stage IA2\",\n    \"Stage IA3\",\n    \"Stage IAB\",\n    \"Stage IAE\",\n    \"Stage IAES\",\n    \"Stage IAS\",\n    \"Stage IB\",\n    \"Stage IB1\",\n    \"Stage IB2\",\n    \"Stage IBE\",\n    \"Stage IBES\",\n    \"Stage IBS\",\n    \"Stage IC\",\n    \"Stage IE\",\n    \"Stage IEA\",\n    \"Stage IEB\",\n    \"Stage IES\",\n    \"Stage II\",\n    \"Stage II bulky\",\n    \"Stage IIA\",\n    \"Stage IIA1\",\n    \"Stage IIA2\",\n    \"Stage IIAE\",\n    \"Stage IIAES\",\n    \"Stage IIAS\",\n    \"Stage IIB\",\n    \"Stage IIBE\",\n    \"Stage IIBES\",\n    \"Stage IIBS\",\n    \"Stage IIC\",\n    \"Stage IIE\",\n    \"Stage IIEA\",\n    \"Stage IIEB\",\n    \"Stage IIES\",\n    \"Stage III\",\n    \"Stage IIIA\",\n    \"Stage IIIA1\",\n    \"Stage IIIA2\",\n    \"Stage IIIAE\",\n    \"Stage IIIAES\",\n    \"Stage IIIAS\",\n    \"Stage IIIB\",\n    \"Stage IIIBE\",\n    \"Stage IIIBES\",\n    \"Stage IIIBS\",\n    \"Stage IIIC\",\n    \"Stage IIIC1\",\n    \"Stage IIIC2\",\n    \"Stage IIID\",\n    \"Stage IIIE\",\n    \"Stage IIIES\",\n    \"Stage IIIS\",\n    \"Stage IIS\",\n    \"Stage IS\",\n    \"Stage IV\",\n    \"Stage IVA\",\n    \"Stage IVA1\",\n    \"Stage IVA2\",\n    \"Stage IVAE\",\n    \"Stage IVAES\",\n    \"Stage IVAS\",\n    \"Stage IVB\",\n    \"Stage IVBE\",\n    \"Stage IVBES\",\n    \"Stage IVBS\",\n    \"Stage IVC\",\n    \"Stage IVE\",\n    \"Stage IVES\",\n    \"Stage IVS\",\n    \"In situ\",\n    \"Localized\",\n    \"Regionalized\",\n    \"Distant\",\n    \"Stage L1\",\n    \"Stage L2\",\n    \"Stage M\",\n    \"Stage Ms\",\n    \"Stage 2A\",\n    \"Stage 2B\",\n    \"Stage 3\",\n    \"Stage 4\",\n    \"Stage 4S\",\n    \"Occult Carcinoma\",][random(0,94)]"
     },
     {
-      "name": "specimen_collection_date",
+      "name": "specimen_collection_date.month_interval",
       "null_percentage": 14,
-      "type": "Datetime",
-      "min": "01/01/2020",
-      "max": "01/10/2022",
-      "format": "%Y-%m-%d",
+      "type": "Number",
+      "min": 1,
+      "max": 50,
+      "decimals": null,
       "formula": null
+    },
+    {
+      "name": "specimen_collection_date.day_interval",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": null,
+      "max": null,
+      "decimals": null,
+      "formula": "if !field('specimen_collection_date.month_interval').nil?\nthen field('specimen_collection_date.month_interval') * 30\nelse nil end"
     },
     {
       "name": "specimen_storage",

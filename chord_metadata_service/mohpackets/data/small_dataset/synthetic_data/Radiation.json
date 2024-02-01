@@ -3,13 +3,13 @@
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_4",
         "submitter_treatment_id": "TREATMENT_19",
-        "radiation_therapy_modality": "Brachytherapy (procedure)",
+        "radiation_therapy_modality": null,
         "radiation_therapy_type": "Internal",
         "radiation_therapy_fractions": "35",
         "radiation_therapy_dosage": "66",
-        "anatomical_site_irradiated": "Bilateral Heel",
-        "radiation_boost": false,
-        "reference_radiation_treatment_id": ""
+        "anatomical_site_irradiated": "Boost - Area Previously Treated",
+        "radiation_boost": null,
+        "reference_radiation_treatment_id": null
     },
     {
         "program_id": "SYNTHETIC-1",
@@ -18,8 +18,8 @@
         "radiation_therapy_modality": "Teleradiotherapy neutrons (procedure)",
         "radiation_therapy_type": "Internal",
         "radiation_therapy_fractions": "35",
-        "radiation_therapy_dosage": "66",
-        "anatomical_site_irradiated": "Forehead",
+        "radiation_therapy_dosage": "70",
+        "anatomical_site_irradiated": "Right Maxilla",
         "radiation_boost": true,
         "reference_radiation_treatment_id": "REFERENCE_RADIATION_TREATMENT_2"
     },
@@ -27,24 +27,24 @@
         "program_id": "SYNTHETIC-1",
         "submitter_donor_id": "DONOR_6",
         "submitter_treatment_id": "TREATMENT_21",
-        "radiation_therapy_modality": "Brachytherapy (procedure)",
-        "radiation_therapy_type": "External",
-        "radiation_therapy_fractions": "30",
-        "radiation_therapy_dosage": "66",
-        "anatomical_site_irradiated": "Right Pleura",
-        "radiation_boost": true,
-        "reference_radiation_treatment_id": "REFERENCE_RADIATION_TREATMENT_3"
+        "radiation_therapy_modality": "Teleradiotherapy using electrons (procedure)",
+        "radiation_therapy_type": null,
+        "radiation_therapy_fractions": "35",
+        "radiation_therapy_dosage": "70",
+        "anatomical_site_irradiated": "Bilateral Hip",
+        "radiation_boost": null,
+        "reference_radiation_treatment_id": null
     },
     {
         "program_id": "SYNTHETIC-2",
         "submitter_donor_id": "DONOR_7",
         "submitter_treatment_id": "TREATMENT_22",
-        "radiation_therapy_modality": null,
-        "radiation_therapy_type": "External",
+        "radiation_therapy_modality": "Teleradiotherapy neutrons (procedure)",
+        "radiation_therapy_type": "Internal",
         "radiation_therapy_fractions": "30",
         "radiation_therapy_dosage": "70",
-        "anatomical_site_irradiated": "Oropharynx",
+        "anatomical_site_irradiated": "Lower Limb",
         "radiation_boost": false,
-        "reference_radiation_treatment_id": ""
+        "reference_radiation_treatment_id": null
     }
 ]

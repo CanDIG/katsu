@@ -45,22 +45,40 @@
       "formula": "[\"Yes\",\n\"No\",\n\"Unknown\"][random(0,2)]"
     },
     {
-      "name": "treatment_start_date",
+      "name": "treatment_start_date.month_interval",
       "null_percentage": 11,
-      "type": "Datetime",
-      "min": "01/02/2021",
-      "max": "01/01/2022",
-      "format": "%Y-%m",
+      "type": "Number",
+      "min": 1,
+      "max": 50,
+      "decimals": null,
       "formula": null
     },
     {
-      "name": "treatment_end_date",
+      "name": "treatment_start_date.day_interval",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 0,
+      "decimals": null,
+      "formula": "\nif !field('treatment_start_date.month_interval').nil?\nthen field('treatment_start_date.month_interval') * 30\nelse nil end"
+    },
+    {
+      "name": "treatment_end_date.month_interval",
       "null_percentage": 12,
-      "type": "Datetime",
-      "min": "01/02/2022",
-      "max": "11/17/2022",
-      "format": "%Y-%m",
+      "type": "Number",
+      "min": 50,
+      "max": 100,
+      "decimals": null,
       "formula": null
+    },
+    {
+      "name": "treatment_end_date.day_interval",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 0,
+      "decimals": null,
+      "formula": "if !field('treatment_end_date.month_interval').nil?\nthen field('treatment_end_date.month_interval') * 30\nelse nil end"
     },
     {
       "name": "treatment_setting",

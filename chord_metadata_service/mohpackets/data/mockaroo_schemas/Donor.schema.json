@@ -31,22 +31,47 @@
       "formula": "[\"Died of cancer\",\n\"Died of other reasons\",\n\"Unknown\"][random(0,2)]"
     },
     {
-      "name": "date_of_birth",
+      "name": "date_resolution",
       "null_percentage": 12,
-      "type": "Datetime",
-      "min": "01/01/1960",
-      "max": "01/01/2010",
-      "format": "%Y-%m",
-      "formula": null
+      "type": "Template",
+      "value": "",
+      "formula": "[\n\"day\",\n\"month\"\n][random(0,1)]"
     },
     {
-      "name": "date_of_death",
+      "name": "date_of_birth.month_interval",
       "null_percentage": 13,
-      "type": "Datetime",
-      "min": "01/01/2015",
-      "max": "11/16/2022",
-      "format": "%Y-%m",
-      "formula": "dob = date_of_birth || now()\nbirth_year = year(dob)\ncurr_year = year(now())\nlife_span = curr_year - birth_year\ndeath_year = dob + years(random(1, life_span))\n\nif is_deceased == true && !date_of_birth.nil?\n  death_year\nelse\n  nil\nend\n\n"
+      "type": "Number",
+      "min": -1000,
+      "max": -100,
+      "decimals": null,
+      "formula": ""
+    },
+    {
+      "name": "date_of_birth.day_interval",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 0,
+      "decimals": null,
+      "formula": "if date_resolution == 'day' && !field('date_of_birth.month_interval').nil?\nthen field('date_of_birth.month_interval') * 30\nelse nil end"
+    },
+    {
+      "name": "date_of_death.month_interval",
+      "null_percentage": 14,
+      "type": "Number",
+      "min": 1,
+      "max": 100,
+      "decimals": null,
+      "formula": ""
+    },
+    {
+      "name": "date_of_death.day_interval",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 0,
+      "decimals": null,
+      "formula": "if date_resolution == 'day' && !field('date_of_death.month_interval').nil?\nthen field('date_of_death.month_interval') * 30\nelse nil end"
     },
     {
       "name": "primary_site",
@@ -84,13 +109,22 @@
       "formula": "[\n    \"Completed study\",\n    \"Discharged to palliative care\",\n    \"Lost contact\",\n    \"Not applicable\",\n    \"Unknown\",\n    \"Withdrew from study\",\n][random(0,5)]"
     },
     {
-      "name": "date_alive_after_lost_to_followup",
+      "name": "date_alive_after_lost_to_followup.month_interval",
       "null_percentage": 19,
-      "type": "Datetime",
-      "min": "01/01/2022",
-      "max": "01/01/2023",
-      "format": "%Y-%m",
+      "type": "Number",
+      "min": 1,
+      "max": 50,
+      "decimals": null,
       "formula": null
+    },
+    {
+      "name": "date_alive_after_lost_to_followup.day_interval",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 0,
+      "decimals": null,
+      "formula": "if date_resolution == 'day' && !field('date_alive_after_lost_to_followup.month_interval').nil?\nthen field('date_alive_after_lost_to_followup.month_interval') * 30\nelse nil end"
     }
   ]
 }
