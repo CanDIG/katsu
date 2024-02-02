@@ -1,7 +1,7 @@
 
 <h1 id="moh-service-api">MoH Service API v3.0.0</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/b38d23d30623f193079720a604920cf1be6fecf4/chord_metadata_service/mohpackets/docs/schema.json
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/1dbaa741bf473d17bcd41789c71e5070fd0d4118/chord_metadata_service/mohpackets/docs/schema.json
 
 Base URLs:
 
