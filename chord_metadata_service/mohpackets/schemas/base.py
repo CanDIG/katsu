@@ -23,6 +23,7 @@ from chord_metadata_service.mohpackets.models import (
 from chord_metadata_service.mohpackets.permissible_values import (
     COMORBIDITY_REGEX,
     ID_REGEX,
+    DATE_REGEX,
     MORPHOLOGY_REGEX,
     TOPOGRAPHY_REGEX,
     BasisOfDiagnosisEnum,
@@ -116,12 +117,12 @@ BaseDonorSchema = create_schema(
         (
             "date_of_birth",
             Optional[str],
-            Field(None, max_length=32),
+            Field(None, pattern=DATE_REGEX, max_length=32),
         ),
         (
             "date_of_death",
             Optional[str],
-            Field(None, max_length=32),
+            Field(None, pattern=DATE_REGEX, max_length=32),
         ),
         ("primary_site", Optional[List[PrimarySiteEnum]], None),
         ("gender", Optional[GenderEnum], None),
@@ -130,7 +131,7 @@ BaseDonorSchema = create_schema(
         (
             "date_alive_after_lost_to_followup",
             Optional[str],
-            Field(None, max_length=32),
+            Field(None, pattern=DATE_REGEX, max_length=32),
         ),
     ],
 )
@@ -148,7 +149,7 @@ BasePrimaryDiagnosisSchema = create_schema(
         (
             "date_of_diagnosis",
             Optional[str],
-            Field(None, max_length=32),
+            Field(None, pattern=DATE_REGEX, max_length=32),
         ),
         ("basis_of_diagnosis", Optional[BasisOfDiagnosisEnum], None),
         ("lymph_nodes_examined_status", Optional[LymphNodeStatusEnum], None),
@@ -183,7 +184,7 @@ BaseSpecimenSchema = create_schema(
         (
             "specimen_collection_date",
             Optional[str],
-            Field(None, max_length=32),
+            Field(None, pattern=DATE_REGEX, max_length=32),
         ),
         ("specimen_storage", Optional[StorageEnum], None),
         (
@@ -261,12 +262,12 @@ BaseTreatmentSchema = create_schema(
         (
             "treatment_start_date",
             Optional[str],
-            Field(None, max_length=32),
+            Field(None, pattern=DATE_REGEX, max_length=32),
         ),
         (
             "treatment_end_date",
             Optional[str],
-            Field(None, max_length=32),
+            Field(None, pattern=DATE_REGEX, max_length=32),
         ),
         ("treatment_setting", Optional[TreatmentSettingEnum], None),
         ("treatment_intent", Optional[TreatmentIntentEnum], None),
@@ -403,12 +404,12 @@ BaseFollowUpSchema = create_schema(
         (
             "date_of_followup",
             Optional[str],
-            Field(None, max_length=32),
+            Field(None, pattern=DATE_REGEX, max_length=32),
         ),
         (
             "date_of_relapse",
             Optional[str],
-            Field(None, max_length=32),
+            Field(None, pattern=DATE_REGEX, max_length=32),
         ),
         (
             "method_of_progression_status",
