@@ -166,5 +166,6 @@ def main():
     program_id = str(input("Enter the dataset name (default: SYNTHETIC-): ")) or "SYNTHETIC-"
     set_foreign_keys(path, program_id)
 
+
 if __name__ == "__main__":
     main()
