@@ -1,279 +1,199 @@
 [
     {
-        "submitter_treatment_id": "TREATMENT_1",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_1",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
-        "treatment_type": [],
-        "is_primary_treatment": "Unknown",
-        "treatment_start_date": {
-            "month_interval": 9,
-            "day_interval": 270
-        },
-        "treatment_end_date": {
-            "month_interval": 59,
-            "day_interval": 1770
-        },
-        "treatment_setting": "Adjuvant",
-        "treatment_intent": "Screening",
-        "days_per_cycle": 1,
-        "number_of_cycles": 4,
-        "response_to_treatment_criteria_method": "Response Assessment in Neuro-Oncology (RANO)",
-        "response_to_treatment": "Immune uncomfirmed progressive disease (iUPD)",
-        "line_of_treatment": 3,
-        "status_of_treatment": "Treatment incomplete because patient died"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_2",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_1",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
         "treatment_type": [
-            "Hormonal therapy",
-            "Immunotherapy",
-            "Photodynamic therapy"
+            "Chemotherapy"
         ],
         "is_primary_treatment": "Unknown",
         "treatment_start_date": {
-            "month_interval": 11,
-            "day_interval": 330
-        },
-        "treatment_end_date": {
-            "month_interval": 53,
-            "day_interval": 1590
-        },
-        "treatment_setting": null,
-        "treatment_intent": "Diagnostic",
-        "days_per_cycle": 3,
-        "number_of_cycles": 5,
-        "response_to_treatment_criteria_method": null,
-        "response_to_treatment": "Immune confirmed progressive disease (iCPD)",
-        "line_of_treatment": 2,
-        "status_of_treatment": "Treatment incomplete due to technical or organizational problems"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_3",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_1",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
-        "treatment_type": [
-            "Other targeting molecular therapy",
-            "Surgery",
-            "Immunotherapy"
-        ],
-        "is_primary_treatment": "No",
-        "treatment_start_date": {
-            "month_interval": null,
-            "day_interval": null
+            "month_interval": 21,
+            "day_interval": 630
         },
         "treatment_end_date": {
             "month_interval": 96,
             "day_interval": 2880
         },
-        "treatment_setting": "Radiosensitization",
+        "treatment_setting": "Salvage",
         "treatment_intent": "Diagnostic",
-        "days_per_cycle": 7,
-        "number_of_cycles": 4,
-        "response_to_treatment_criteria_method": "Cheson CLL 2012 Oncology Response Criteria",
-        "response_to_treatment": null,
-        "line_of_treatment": 1,
-        "status_of_treatment": "Treatment stopped due to lack of efficacy (disease progression)"
+        "days_per_cycle": 4,
+        "number_of_cycles": 5,
+        "response_to_treatment_criteria_method": "RECIST 1.1",
+        "response_to_treatment": "Immune uncomfirmed progressive disease (iUPD)",
+        "line_of_treatment": 3,
+        "status_of_treatment": "Treatment completed as prescribed",
+        "submitter_treatment_id": "TREATMENT_1",
+        "submitter_donor_id": "DONOR_1",
+        "program_id": "SYNTHETIC-1"
     },
     {
-        "submitter_treatment_id": "TREATMENT_4",
-        "program_id": "SYNTHETIC-1",
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
+        "treatment_type": [
+            "Bone marrow transplant",
+            "Hormonal therapy"
+        ],
+        "is_primary_treatment": "Yes",
+        "treatment_setting": "Radiosensitization",
+        "treatment_intent": "Diagnostic",
+        "days_per_cycle": 6,
+        "number_of_cycles": 3,
+        "response_to_treatment_criteria_method": "Response Assessment in Neuro-Oncology (RANO)",
+        "response_to_treatment": "Stable disease",
+        "status_of_treatment": "Patient choice (stopped or interrupted treatment)",
+        "submitter_treatment_id": "TREATMENT_2",
         "submitter_donor_id": "DONOR_1",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_2",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_1",
         "treatment_type": [
             "Other targeting molecular therapy",
-            "Stem cell transplant",
-            "Hormonal therapy"
+            "Photodynamic therapy"
+        ],
+        "is_primary_treatment": "Unknown",
+        "treatment_start_date": {
+            "month_interval": 49,
+            "day_interval": 1470
+        },
+        "treatment_end_date": {
+            "month_interval": 70,
+            "day_interval": 2100
+        },
+        "treatment_setting": "Locally advanced",
+        "treatment_intent": "Supportive",
+        "days_per_cycle": 3,
+        "number_of_cycles": 5,
+        "response_to_treatment_criteria_method": "Physician Assessed Response Criteria",
+        "response_to_treatment": "Morphologic leukemia-free state",
+        "line_of_treatment": 3,
+        "status_of_treatment": "Treatment stopped due to acute toxicity",
+        "submitter_treatment_id": "TREATMENT_3",
+        "submitter_donor_id": "DONOR_1",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_2",
+        "treatment_type": [
+            "Chemotherapy",
+            "Stem cell transplant"
+        ],
+        "is_primary_treatment": "Yes",
+        "treatment_start_date": {
+            "month_interval": 6,
+            "day_interval": 180
+        },
+        "treatment_end_date": {
+            "month_interval": 97,
+            "day_interval": 2910
+        },
+        "treatment_setting": "Advanced/Metastatic",
+        "treatment_intent": "Curative",
+        "days_per_cycle": 4,
+        "number_of_cycles": 5,
+        "response_to_treatment_criteria_method": "AML Response Criteria",
+        "response_to_treatment": "Physician assessed stable disease",
+        "line_of_treatment": 3,
+        "status_of_treatment": "Patient choice (stopped or interrupted treatment)",
+        "submitter_treatment_id": "TREATMENT_4",
+        "submitter_donor_id": "DONOR_1",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_2",
+        "treatment_type": [
+            "Hormonal therapy",
+            "Surgery"
         ],
         "is_primary_treatment": "No",
         "treatment_start_date": {
-            "month_interval": 5,
-            "day_interval": 150
-        },
-        "treatment_end_date": {
-            "month_interval": null,
-            "day_interval": null
-        },
-        "treatment_setting": "Induction",
-        "treatment_intent": "Guidance",
-        "days_per_cycle": null,
-        "number_of_cycles": 3,
-        "response_to_treatment_criteria_method": "Physician Assessed Response Criteria",
-        "response_to_treatment": "Partial remission",
-        "line_of_treatment": 1,
-        "status_of_treatment": "Other"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_5",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_1",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_2",
-        "treatment_type": [
-            "Immunotherapy"
-        ],
-        "is_primary_treatment": "Unknown",
-        "treatment_start_date": {
-            "month_interval": 25,
-            "day_interval": 750
-        },
-        "treatment_end_date": {
-            "month_interval": 52,
-            "day_interval": 1560
-        },
-        "treatment_setting": "Neoadjuvant",
-        "treatment_intent": "Guidance",
-        "days_per_cycle": 5,
-        "number_of_cycles": 4,
-        "response_to_treatment_criteria_method": "Cheson CLL 2012 Oncology Response Criteria",
-        "response_to_treatment": "Morphologic leukemia-free state",
-        "line_of_treatment": null,
-        "status_of_treatment": "Physician decision (stopped or interrupted treatment)"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_6",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_1",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_2",
-        "treatment_type": [],
-        "is_primary_treatment": "Unknown",
-        "treatment_start_date": {
-            "month_interval": 31,
-            "day_interval": 930
-        },
-        "treatment_end_date": {
-            "month_interval": 68,
-            "day_interval": 2040
-        },
-        "treatment_setting": null,
-        "treatment_intent": "Palliative",
-        "days_per_cycle": 4,
-        "number_of_cycles": 3,
-        "response_to_treatment_criteria_method": null,
-        "response_to_treatment": null,
-        "line_of_treatment": 5,
-        "status_of_treatment": "Treatment incomplete due to technical or organizational problems"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_7",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_1",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_3",
-        "treatment_type": [
-            "Surgery",
-            "Bone marrow transplant",
-            "No treatment"
-        ],
-        "is_primary_treatment": "Yes",
-        "treatment_start_date": {
-            "month_interval": 34,
-            "day_interval": 1020
-        },
-        "treatment_end_date": {
-            "month_interval": 59,
-            "day_interval": 1770
-        },
-        "treatment_setting": "Mobilization",
-        "treatment_intent": "Supportive",
-        "days_per_cycle": 7,
-        "number_of_cycles": 4,
-        "response_to_treatment_criteria_method": "AML Response Criteria",
-        "response_to_treatment": "Morphologic leukemia-free state",
-        "line_of_treatment": null,
-        "status_of_treatment": "Not applicable"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_8",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_1",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_3",
-        "treatment_type": [
-            "Hormonal therapy",
-            "Radiation therapy",
-            "Chemotherapy"
-        ],
-        "is_primary_treatment": "Yes",
-        "treatment_start_date": {
-            "month_interval": 5,
-            "day_interval": 150
-        },
-        "treatment_end_date": {
-            "month_interval": 52,
-            "day_interval": 1560
-        },
-        "treatment_setting": "Advanced/Metastatic",
-        "treatment_intent": "Preventive",
-        "days_per_cycle": 1,
-        "number_of_cycles": 3,
-        "response_to_treatment_criteria_method": null,
-        "response_to_treatment": "Morphologic leukemia-free state",
-        "line_of_treatment": 2,
-        "status_of_treatment": "Physician decision (stopped or interrupted treatment)"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_9",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_1",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_3",
-        "treatment_type": [
-            "Photodynamic therapy",
-            "Stem cell transplant"
-        ],
-        "is_primary_treatment": "Unknown",
-        "treatment_start_date": {
-            "month_interval": 45,
-            "day_interval": 1350
+            "month_interval": 39,
+            "day_interval": 1170
         },
         "treatment_end_date": {
             "month_interval": 92,
             "day_interval": 2760
         },
-        "treatment_setting": "Induction",
-        "treatment_intent": "Guidance",
-        "days_per_cycle": 6,
-        "number_of_cycles": null,
-        "response_to_treatment_criteria_method": "Response Assessment in Neuro-Oncology (RANO)",
-        "response_to_treatment": "Minor response",
-        "line_of_treatment": 3,
-        "status_of_treatment": "Treatment stopped due to acute toxicity"
+        "number_of_cycles": 5,
+        "response_to_treatment": "Primary refractory disease",
+        "line_of_treatment": 5,
+        "submitter_treatment_id": "TREATMENT_5",
+        "submitter_donor_id": "DONOR_1",
+        "program_id": "SYNTHETIC-1"
     },
     {
-        "submitter_treatment_id": "TREATMENT_10",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_2",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_4",
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_2",
         "treatment_type": [
-            "Other targeting molecular therapy",
-            "Bone marrow transplant"
+            "Surgery"
         ],
+        "is_primary_treatment": "No",
+        "treatment_start_date": {
+            "month_interval": 23,
+            "day_interval": 690
+        },
+        "treatment_end_date": {
+            "month_interval": 50,
+            "day_interval": 1500
+        },
+        "treatment_setting": "Locally advanced",
+        "days_per_cycle": 6,
+        "response_to_treatment_criteria_method": "Blazer score",
+        "response_to_treatment": "No evidence of disease (NED)",
+        "line_of_treatment": 4,
+        "status_of_treatment": "Unknown",
+        "submitter_treatment_id": "TREATMENT_6",
+        "submitter_donor_id": "DONOR_1",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_3",
+        "treatment_type": [],
         "is_primary_treatment": "Unknown",
+        "treatment_start_date": {
+            "month_interval": 19,
+            "day_interval": 570
+        },
+        "treatment_end_date": {
+            "month_interval": 99,
+            "day_interval": 2970
+        },
+        "treatment_setting": "Preventative",
+        "treatment_intent": "Forensic",
+        "days_per_cycle": 7,
+        "response_to_treatment_criteria_method": "AML Response Criteria",
+        "line_of_treatment": 2,
+        "status_of_treatment": "Not applicable",
+        "submitter_treatment_id": "TREATMENT_7",
+        "submitter_donor_id": "DONOR_1",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_3",
+        "treatment_type": [
+            "Other targeting molecular therapy"
+        ],
+        "is_primary_treatment": "No",
         "treatment_start_date": {
             "month_interval": 32,
             "day_interval": 960
         },
         "treatment_end_date": {
-            "month_interval": 59,
-            "day_interval": 1770
+            "month_interval": 95,
+            "day_interval": 2850
         },
-        "treatment_setting": "Mobilization",
-        "treatment_intent": "Guidance",
+        "treatment_setting": "Conditioning",
+        "treatment_intent": "Supportive",
         "days_per_cycle": 7,
         "number_of_cycles": 5,
-        "response_to_treatment_criteria_method": "Physician Assessed Response Criteria",
-        "response_to_treatment": "Immune stable disease (iSD)",
-        "line_of_treatment": 2,
-        "status_of_treatment": "Not applicable"
+        "response_to_treatment_criteria_method": "RECIST 1.1",
+        "response_to_treatment": "Complete remission",
+        "line_of_treatment": 1,
+        "submitter_treatment_id": "TREATMENT_8",
+        "submitter_donor_id": "DONOR_1",
+        "program_id": "SYNTHETIC-1"
     },
     {
-        "submitter_treatment_id": "TREATMENT_11",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_2",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_4",
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_3",
         "treatment_type": [
-            "Bone marrow transplant",
+            "Immunotherapy",
             "Other targeting molecular therapy"
         ],
         "is_primary_treatment": "Yes",
@@ -282,208 +202,49 @@
             "day_interval": 660
         },
         "treatment_end_date": {
-            "month_interval": 66,
-            "day_interval": 1980
-        },
-        "treatment_setting": "Salvage",
-        "treatment_intent": null,
-        "days_per_cycle": 4,
-        "number_of_cycles": 3,
-        "response_to_treatment_criteria_method": "iRECIST",
-        "response_to_treatment": "Major response",
-        "line_of_treatment": 3,
-        "status_of_treatment": "Treatment stopped due to lack of efficacy (disease progression)"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_12",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_2",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_5",
-        "treatment_type": [
-            "Stem cell transplant",
-            "Radiation therapy",
-            "Chemotherapy"
-        ],
-        "is_primary_treatment": "Yes",
-        "treatment_start_date": {
-            "month_interval": 34,
-            "day_interval": 1020
-        },
-        "treatment_end_date": {
-            "month_interval": 86,
-            "day_interval": 2580
-        },
-        "treatment_setting": "Maintenance",
-        "treatment_intent": "Forensic",
-        "days_per_cycle": 7,
-        "number_of_cycles": 4,
-        "response_to_treatment_criteria_method": "Physician Assessed Response Criteria",
-        "response_to_treatment": "Major response",
-        "line_of_treatment": 2,
-        "status_of_treatment": "Physician decision (stopped or interrupted treatment)"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_13",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_2",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_5",
-        "treatment_type": [
-            "Stem cell transplant"
-        ],
-        "is_primary_treatment": "No",
-        "treatment_start_date": {
-            "month_interval": 22,
-            "day_interval": 660
-        },
-        "treatment_end_date": {
-            "month_interval": 77,
-            "day_interval": 2310
-        },
-        "treatment_setting": "Neoadjuvant",
-        "treatment_intent": "Palliative",
-        "days_per_cycle": 5,
-        "number_of_cycles": 4,
-        "response_to_treatment_criteria_method": "iRECIST",
-        "response_to_treatment": "Physician assessed complete response",
-        "line_of_treatment": 5,
-        "status_of_treatment": null
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_14",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_2",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_6",
-        "treatment_type": [
-            "Hormonal therapy"
-        ],
-        "is_primary_treatment": "Unknown",
-        "treatment_start_date": {
-            "month_interval": 44,
-            "day_interval": 1320
-        },
-        "treatment_end_date": {
-            "month_interval": 72,
-            "day_interval": 2160
-        },
-        "treatment_setting": "Radiosensitization",
-        "treatment_intent": "Curative",
-        "days_per_cycle": 4,
-        "number_of_cycles": 4,
-        "response_to_treatment_criteria_method": "RECIST 1.1",
-        "response_to_treatment": "Partial response",
-        "line_of_treatment": 1,
-        "status_of_treatment": "Patient choice (stopped or interrupted treatment)"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_15",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_2",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_6",
-        "treatment_type": [
-            "No treatment"
-        ],
-        "is_primary_treatment": "No",
-        "treatment_start_date": {
-            "month_interval": 14,
-            "day_interval": 420
-        },
-        "treatment_end_date": {
-            "month_interval": 97,
-            "day_interval": 2910
-        },
-        "treatment_setting": "Salvage",
-        "treatment_intent": null,
-        "days_per_cycle": 4,
-        "number_of_cycles": 3,
-        "response_to_treatment_criteria_method": "Response Assessment in Neuro-Oncology (RANO)",
-        "response_to_treatment": null,
-        "line_of_treatment": null,
-        "status_of_treatment": "Physician decision (stopped or interrupted treatment)"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_16",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_3",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_7",
-        "treatment_type": [
-            "Surgery"
-        ],
-        "is_primary_treatment": "Yes",
-        "treatment_start_date": {
-            "month_interval": 47,
-            "day_interval": 1410
-        },
-        "treatment_end_date": {
-            "month_interval": 52,
-            "day_interval": 1560
-        },
-        "treatment_setting": "Preventative",
-        "treatment_intent": "Forensic",
-        "days_per_cycle": 4,
-        "number_of_cycles": 5,
-        "response_to_treatment_criteria_method": "Cheson CLL 2012 Oncology Response Criteria",
-        "response_to_treatment": "Physician assessed partial response",
-        "line_of_treatment": 5,
-        "status_of_treatment": "Treatment completed as prescribed"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_17",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_3",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_8",
-        "treatment_type": [
-            "Other targeting molecular therapy",
-            "No treatment"
-        ],
-        "is_primary_treatment": "No",
-        "treatment_start_date": {
-            "month_interval": 27,
-            "day_interval": 810
-        },
-        "treatment_end_date": {
-            "month_interval": 54,
-            "day_interval": 1620
+            "month_interval": 56,
+            "day_interval": 1680
         },
         "treatment_setting": "Adjuvant",
-        "treatment_intent": "Forensic",
-        "days_per_cycle": 4,
-        "number_of_cycles": 5,
-        "response_to_treatment_criteria_method": "Response Assessment in Neuro-Oncology (RANO)",
-        "response_to_treatment": "Hematologic relapse (after CR MRD-, CR, CRi)",
-        "line_of_treatment": 1,
-        "status_of_treatment": "Treatment stopped due to lack of efficacy (disease progression)"
+        "treatment_intent": "Guidance",
+        "days_per_cycle": 7,
+        "number_of_cycles": 4,
+        "response_to_treatment": "Complete remission without measurable residual disease (CR MRD-)",
+        "line_of_treatment": 5,
+        "status_of_treatment": "Other",
+        "submitter_treatment_id": "TREATMENT_9",
+        "submitter_donor_id": "DONOR_1",
+        "program_id": "SYNTHETIC-1"
     },
     {
-        "submitter_treatment_id": "TREATMENT_18",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_4",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_9",
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_4",
         "treatment_type": [
-            "Stem cell transplant"
+            "Immunotherapy",
+            "Stem cell transplant",
+            "No treatment"
         ],
         "is_primary_treatment": "No",
         "treatment_start_date": {
-            "month_interval": 8,
-            "day_interval": 240
+            "month_interval": 49,
+            "day_interval": 1470
         },
         "treatment_end_date": {
-            "month_interval": 59,
-            "day_interval": 1770
+            "month_interval": 56,
+            "day_interval": 1680
         },
-        "treatment_setting": "Salvage",
-        "treatment_intent": "Supportive",
-        "days_per_cycle": 7,
+        "treatment_setting": "Locally advanced",
+        "treatment_intent": "Forensic",
+        "days_per_cycle": 5,
         "number_of_cycles": 4,
-        "response_to_treatment_criteria_method": "AML Response Criteria",
+        "response_to_treatment_criteria_method": "Response Assessment in Neuro-Oncology (RANO)",
         "response_to_treatment": "Complete remission",
-        "line_of_treatment": 5,
-        "status_of_treatment": "Treatment stopped due to acute toxicity"
+        "status_of_treatment": "Treatment stopped due to lack of efficacy (disease progression)",
+        "submitter_treatment_id": "TREATMENT_10",
+        "submitter_donor_id": "DONOR_2",
+        "program_id": "SYNTHETIC-1"
     },
     {
-        "submitter_treatment_id": "TREATMENT_19",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_4",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_10",
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_4",
         "treatment_type": [],
         "is_primary_treatment": "Yes",
         "treatment_start_date": {
@@ -491,172 +252,340 @@
             "day_interval": 1260
         },
         "treatment_end_date": {
-            "month_interval": 65,
-            "day_interval": 1950
+            "month_interval": 90,
+            "day_interval": 2700
         },
-        "treatment_setting": "Maintenance",
-        "treatment_intent": "Supportive",
-        "days_per_cycle": 7,
-        "number_of_cycles": 3,
-        "response_to_treatment_criteria_method": "AML Response Criteria",
-        "response_to_treatment": "Complete response",
-        "line_of_treatment": 2,
-        "status_of_treatment": "Not applicable"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_20",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_5",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_11",
-        "treatment_type": [],
-        "is_primary_treatment": "Yes",
-        "treatment_start_date": {
-            "month_interval": 36,
-            "day_interval": 1080
-        },
-        "treatment_end_date": {
-            "month_interval": 88,
-            "day_interval": 2640
-        },
-        "treatment_setting": "Salvage",
-        "treatment_intent": "Guidance",
-        "days_per_cycle": null,
-        "number_of_cycles": 3,
-        "response_to_treatment_criteria_method": "Cheson CLL 2012 Oncology Response Criteria",
+        "treatment_setting": "Induction",
+        "treatment_intent": "Diagnostic",
+        "days_per_cycle": 4,
+        "response_to_treatment_criteria_method": "Blazer score",
         "response_to_treatment": "Major response",
-        "line_of_treatment": 2,
-        "status_of_treatment": "Treatment completed as prescribed"
+        "status_of_treatment": "Physician decision (stopped or interrupted treatment)",
+        "submitter_treatment_id": "TREATMENT_11",
+        "submitter_donor_id": "DONOR_2",
+        "program_id": "SYNTHETIC-1"
     },
     {
-        "submitter_treatment_id": "TREATMENT_21",
-        "program_id": "SYNTHETIC-1",
-        "submitter_donor_id": "DONOR_6",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_12",
-        "treatment_type": [],
-        "is_primary_treatment": "Unknown",
-        "treatment_start_date": {
-            "month_interval": 23,
-            "day_interval": 690
-        },
-        "treatment_end_date": {
-            "month_interval": 69,
-            "day_interval": 2070
-        },
-        "treatment_setting": "Conditioning",
-        "treatment_intent": "Preventive",
-        "days_per_cycle": 7,
-        "number_of_cycles": 4,
-        "response_to_treatment_criteria_method": "Response Assessment in Neuro-Oncology (RANO)",
-        "response_to_treatment": "Immune complete response (iCR)",
-        "line_of_treatment": 2,
-        "status_of_treatment": "Physician decision (stopped or interrupted treatment)"
-    },
-    {
-        "submitter_treatment_id": "TREATMENT_22",
-        "program_id": "SYNTHETIC-2",
-        "submitter_donor_id": "DONOR_7",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_13",
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_5",
         "treatment_type": [
-            "Photodynamic therapy"
+            "Chemotherapy"
         ],
         "is_primary_treatment": "Yes",
         "treatment_start_date": {
-            "month_interval": 10,
-            "day_interval": 300
+            "month_interval": 44,
+            "day_interval": 1320
+        },
+        "treatment_end_date": {
+            "month_interval": 65,
+            "day_interval": 1950
+        },
+        "treatment_setting": "Locally advanced",
+        "treatment_intent": "Forensic",
+        "days_per_cycle": 3,
+        "number_of_cycles": 5,
+        "response_to_treatment_criteria_method": "iRECIST",
+        "response_to_treatment": "Major response",
+        "status_of_treatment": "Treatment incomplete due to technical or organizational problems",
+        "submitter_treatment_id": "TREATMENT_12",
+        "submitter_donor_id": "DONOR_2",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_5",
+        "treatment_type": [
+            "Surgery"
+        ],
+        "is_primary_treatment": "Yes",
+        "treatment_start_date": {
+            "month_interval": 16,
+            "day_interval": 480
         },
         "treatment_end_date": {
             "month_interval": 57,
             "day_interval": 1710
         },
-        "treatment_setting": "Induction",
+        "treatment_setting": "Preventative",
         "treatment_intent": "Guidance",
-        "days_per_cycle": 1,
-        "number_of_cycles": 5,
-        "response_to_treatment_criteria_method": "Response Assessment in Neuro-Oncology (RANO)",
-        "response_to_treatment": "Physician assessed partial response",
-        "line_of_treatment": 3,
-        "status_of_treatment": "Treatment stopped due to acute toxicity"
+        "days_per_cycle": 2,
+        "number_of_cycles": 4,
+        "response_to_treatment_criteria_method": "Physician Assessed Response Criteria",
+        "response_to_treatment": "Immune uncomfirmed progressive disease (iUPD)",
+        "line_of_treatment": 5,
+        "submitter_treatment_id": "TREATMENT_13",
+        "submitter_donor_id": "DONOR_2",
+        "program_id": "SYNTHETIC-1"
     },
     {
-        "submitter_treatment_id": "TREATMENT_23",
-        "program_id": "SYNTHETIC-2",
-        "submitter_donor_id": "DONOR_8",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_14",
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_6",
         "treatment_type": [
-            "Surgery",
-            "No treatment",
-            "Bone marrow transplant"
+            "Hormonal therapy"
         ],
-        "is_primary_treatment": null,
+        "is_primary_treatment": "No",
         "treatment_start_date": {
-            "month_interval": 12,
-            "day_interval": 360
+            "month_interval": 8,
+            "day_interval": 240
         },
         "treatment_end_date": {
-            "month_interval": null,
-            "day_interval": null
+            "month_interval": 79,
+            "day_interval": 2370
         },
-        "treatment_setting": null,
-        "treatment_intent": "Diagnostic",
-        "days_per_cycle": 2,
+        "treatment_setting": "Salvage",
+        "treatment_intent": "Preventive",
+        "days_per_cycle": 4,
         "number_of_cycles": 3,
-        "response_to_treatment_criteria_method": "iRECIST",
-        "response_to_treatment": null,
-        "line_of_treatment": 3,
-        "status_of_treatment": "Treatment incomplete because patient died"
+        "response_to_treatment_criteria_method": "Response Assessment in Neuro-Oncology (RANO)",
+        "response_to_treatment": "Progressive disease",
+        "line_of_treatment": 5,
+        "submitter_treatment_id": "TREATMENT_14",
+        "submitter_donor_id": "DONOR_2",
+        "program_id": "SYNTHETIC-1"
     },
     {
-        "submitter_treatment_id": "TREATMENT_24",
-        "program_id": "SYNTHETIC-2",
-        "submitter_donor_id": "DONOR_9",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_15",
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_6",
+        "treatment_type": [],
+        "is_primary_treatment": "Yes",
+        "treatment_start_date": {
+            "month_interval": 50,
+            "day_interval": 1500
+        },
+        "treatment_intent": "Screening",
+        "days_per_cycle": 1,
+        "number_of_cycles": 3,
+        "status_of_treatment": "Treatment stopped due to acute toxicity",
+        "submitter_treatment_id": "TREATMENT_15",
+        "submitter_donor_id": "DONOR_2",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_7",
         "treatment_type": [
-            "Chemotherapy",
-            "Bone marrow transplant"
+            "Immunotherapy"
         ],
         "is_primary_treatment": "Unknown",
         "treatment_start_date": {
-            "month_interval": 1,
-            "day_interval": 30
+            "month_interval": 22,
+            "day_interval": 660
+        },
+        "treatment_end_date": {
+            "month_interval": 86,
+            "day_interval": 2580
+        },
+        "treatment_setting": "Induction",
+        "treatment_intent": "Supportive",
+        "days_per_cycle": 2,
+        "number_of_cycles": 5,
+        "response_to_treatment_criteria_method": "iRECIST",
+        "line_of_treatment": 3,
+        "status_of_treatment": "Treatment incomplete because patient died",
+        "submitter_treatment_id": "TREATMENT_16",
+        "submitter_donor_id": "DONOR_3",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_8",
+        "treatment_type": [],
+        "is_primary_treatment": "No",
+        "treatment_start_date": {
+            "month_interval": 34,
+            "day_interval": 1020
+        },
+        "treatment_end_date": {
+            "month_interval": 52,
+            "day_interval": 1560
+        },
+        "treatment_setting": "Preventative",
+        "treatment_intent": "Screening",
+        "days_per_cycle": 5,
+        "number_of_cycles": 5,
+        "response_to_treatment_criteria_method": "Blazer score",
+        "response_to_treatment": "Immune confirmed progressive disease (iCPD)",
+        "line_of_treatment": 3,
+        "status_of_treatment": "Other",
+        "submitter_treatment_id": "TREATMENT_17",
+        "submitter_donor_id": "DONOR_3",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_9",
+        "treatment_type": [],
+        "treatment_start_date": {
+            "month_interval": 36,
+            "day_interval": 1080
+        },
+        "treatment_intent": "Forensic",
+        "days_per_cycle": 6,
+        "response_to_treatment_criteria_method": "RECIST 1.1",
+        "line_of_treatment": 1,
+        "status_of_treatment": "Unknown",
+        "submitter_treatment_id": "TREATMENT_18",
+        "submitter_donor_id": "DONOR_4",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_10",
+        "treatment_type": [
+            "Chemotherapy"
+        ],
+        "is_primary_treatment": "No",
+        "treatment_start_date": {
+            "month_interval": 7,
+            "day_interval": 210
+        },
+        "treatment_end_date": {
+            "month_interval": 63,
+            "day_interval": 1890
+        },
+        "treatment_setting": "Locally advanced",
+        "treatment_intent": "Guidance",
+        "days_per_cycle": 4,
+        "number_of_cycles": 5,
+        "response_to_treatment_criteria_method": "Cheson CLL 2012 Oncology Response Criteria",
+        "response_to_treatment": "Physician assessed stable disease",
+        "line_of_treatment": 1,
+        "status_of_treatment": "Other",
+        "submitter_treatment_id": "TREATMENT_19",
+        "submitter_donor_id": "DONOR_4",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_11",
+        "treatment_type": [
+            "Bone marrow transplant",
+            "Photodynamic therapy"
+        ],
+        "is_primary_treatment": "Yes",
+        "treatment_end_date": {
+            "month_interval": 91,
+            "day_interval": 2730
+        },
+        "days_per_cycle": 7,
+        "number_of_cycles": 4,
+        "response_to_treatment_criteria_method": "Response Assessment in Neuro-Oncology (RANO)",
+        "response_to_treatment": "Physician assessed complete response",
+        "line_of_treatment": 1,
+        "status_of_treatment": "Patient choice (stopped or interrupted treatment)",
+        "submitter_treatment_id": "TREATMENT_20",
+        "submitter_donor_id": "DONOR_5",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_12",
+        "treatment_type": [
+            "No treatment",
+            "Other targeting molecular therapy",
+            "Surgery"
+        ],
+        "is_primary_treatment": "No",
+        "treatment_start_date": {
+            "month_interval": 23,
+            "day_interval": 690
+        },
+        "treatment_end_date": {
+            "month_interval": 56,
+            "day_interval": 1680
+        },
+        "treatment_setting": "Preventative",
+        "treatment_intent": "Forensic",
+        "days_per_cycle": 5,
+        "number_of_cycles": 5,
+        "response_to_treatment_criteria_method": "Blazer score",
+        "response_to_treatment": "No evidence of disease (NED)",
+        "line_of_treatment": 3,
+        "status_of_treatment": "Treatment stopped due to lack of efficacy (disease progression)",
+        "submitter_treatment_id": "TREATMENT_21",
+        "submitter_donor_id": "DONOR_6",
+        "program_id": "SYNTHETIC-1"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_13",
+        "treatment_type": [],
+        "is_primary_treatment": "No",
+        "treatment_start_date": {
+            "month_interval": 45,
+            "day_interval": 1350
+        },
+        "treatment_end_date": {
+            "month_interval": 89,
+            "day_interval": 2670
+        },
+        "treatment_setting": "Radiosensitization",
+        "treatment_intent": "Palliative",
+        "days_per_cycle": 6,
+        "number_of_cycles": 5,
+        "response_to_treatment_criteria_method": "Physician Assessed Response Criteria",
+        "response_to_treatment": "Immune uncomfirmed progressive disease (iUPD)",
+        "status_of_treatment": "Treatment incomplete due to technical or organizational problems",
+        "submitter_treatment_id": "TREATMENT_22",
+        "submitter_donor_id": "DONOR_7",
+        "program_id": "SYNTHETIC-2"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_14",
+        "treatment_type": [
+            "Radiation therapy"
+        ],
+        "is_primary_treatment": "Unknown",
+        "treatment_start_date": {
+            "month_interval": 38,
+            "day_interval": 1140
+        },
+        "treatment_setting": "Adjuvant",
+        "treatment_intent": "Forensic",
+        "days_per_cycle": 7,
+        "number_of_cycles": 4,
+        "response_to_treatment_criteria_method": "Cheson CLL 2012 Oncology Response Criteria",
+        "response_to_treatment": "Immune confirmed progressive disease (iCPD)",
+        "line_of_treatment": 1,
+        "status_of_treatment": "Treatment stopped due to lack of efficacy (disease progression)",
+        "submitter_treatment_id": "TREATMENT_23",
+        "submitter_donor_id": "DONOR_8",
+        "program_id": "SYNTHETIC-2"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_15",
+        "treatment_type": [],
+        "is_primary_treatment": "No",
+        "treatment_start_date": {
+            "month_interval": 31,
+            "day_interval": 930
+        },
+        "treatment_end_date": {
+            "month_interval": 76,
+            "day_interval": 2280
+        },
+        "treatment_setting": "Preventative",
+        "treatment_intent": "Supportive",
+        "days_per_cycle": 5,
+        "number_of_cycles": 5,
+        "response_to_treatment_criteria_method": "Physician Assessed Response Criteria",
+        "response_to_treatment": "Complete remission without measurable residual disease (CR MRD-)",
+        "line_of_treatment": 2,
+        "status_of_treatment": "Patient choice (stopped or interrupted treatment)",
+        "submitter_treatment_id": "TREATMENT_24",
+        "submitter_donor_id": "DONOR_9",
+        "program_id": "SYNTHETIC-2"
+    },
+    {
+        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_16",
+        "treatment_type": [],
+        "is_primary_treatment": "No",
+        "treatment_start_date": {
+            "month_interval": 25,
+            "day_interval": 750
         },
         "treatment_end_date": {
             "month_interval": 87,
             "day_interval": 2610
         },
-        "treatment_setting": null,
-        "treatment_intent": "Palliative",
-        "days_per_cycle": null,
-        "number_of_cycles": null,
-        "response_to_treatment_criteria_method": "AML Response Criteria",
-        "response_to_treatment": "Immune confirmed progressive disease (iCPD)",
-        "line_of_treatment": 3,
-        "status_of_treatment": "Treatment incomplete because patient died"
-    },
-    {
+        "treatment_setting": "Induction",
+        "days_per_cycle": 2,
+        "number_of_cycles": 4,
+        "response_to_treatment_criteria_method": "Physician Assessed Response Criteria",
+        "response_to_treatment": "Complete remission with incomplete hematologic recovery (CRi)",
+        "line_of_treatment": 4,
+        "status_of_treatment": "Not applicable",
         "submitter_treatment_id": "TREATMENT_25",
-        "program_id": "SYNTHETIC-2",
         "submitter_donor_id": "DONOR_10",
-        "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_16",
-        "treatment_type": [
-            "Radiation therapy",
-            "Surgery"
-        ],
-        "is_primary_treatment": "No",
-        "treatment_start_date": {
-            "month_interval": 47,
-            "day_interval": 1410
-        },
-        "treatment_end_date": {
-            "month_interval": null,
-            "day_interval": null
-        },
-        "treatment_setting": "Conditioning",
-        "treatment_intent": null,
-        "days_per_cycle": 1,
-        "number_of_cycles": 5,
-        "response_to_treatment_criteria_method": "RECIST 1.1",
-        "response_to_treatment": "Immune uncomfirmed progressive disease (iUPD)",
-        "line_of_treatment": null,
-        "status_of_treatment": "Treatment incomplete due to technical or organizational problems"
+        "program_id": "SYNTHETIC-2"
     }
 ]
