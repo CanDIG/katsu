@@ -2,8 +2,8 @@
     "openapi": "3.1.0",
     "info": {
         "title": "MoH Service API",
-        "version": "3.1.0",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/fde4877fe9e043279355633f604107d2ca794bd9/chord_metadata_service/mohpackets/docs/schema.json"
+        "version": "4.0.0",
+        "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
         "/v2/service-info": {
@@ -4671,16 +4671,9 @@
                         "title": "Day Interval"
                     },
                     "month_interval": {
-                        "anyOf": [
-                            {
-                                "type": "integer"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
                         "description": "number of months since first diagnosis",
-                        "title": "Month Interval"
+                        "title": "Month Interval",
+                        "type": "integer"
                     }
                 },
                 "required": [
