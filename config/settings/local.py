@@ -10,6 +10,7 @@
 # - testing token is user1 and user2                        #
 #############################################################
 
+import os
 import socket
 from .base import *
 
