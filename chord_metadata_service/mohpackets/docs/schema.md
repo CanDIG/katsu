@@ -1,7 +1,7 @@
 
-<h1 id="moh-service-api">MoH Service API v3.1.0</h1>
+<h1 id="moh-service-api">MoH Service API v4.0.0</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/fde4877fe9e043279355633f604107d2ca794bd9/chord_metadata_service/mohpackets/docs/schema.json
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/1793268149dedd0d62f84e089b063040afd26bba/chord_metadata_service/mohpackets/docs/schema.json
 
 Base URLs:
 
@@ -2045,19 +2045,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|month_interval|any|true|none|number of months since first diagnosis|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
+|month_interval|integer|true|none|number of months since first diagnosis|
 
 <h2 id="tocS_DonorIngestSchema">DonorIngestSchema</h2>
 
