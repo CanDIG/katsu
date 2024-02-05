@@ -103,7 +103,7 @@ class DateInterval(Schema):
     day_interval: Optional[int] = Field(
         None, description="number of days since first diagnosis"
     )
-    month_interval: Optional[int] = Field(
+    month_interval: int = Field(
         ..., description="number of months since first diagnosis"
     )
 
