@@ -36,13 +36,22 @@
       "formula": ""
     },
     {
-      "name": "date_of_followup",
+      "name": "date_of_followup.month_interval",
       "null_percentage": 10,
-      "type": "Datetime",
-      "min": "08/01/2022",
-      "max": "11/23/2022",
-      "format": "%Y-%m",
+      "type": "Number",
+      "min": 1,
+      "max": 50,
+      "decimals": null,
       "formula": null
+    },
+    {
+      "name": "date_of_followup.day_interval",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": null,
+      "max": null,
+      "decimals": null,
+      "formula": "\nif !field('date_of_followup.month_interval').nil?\nthen field('date_of_followup.month_interval') * 30\nelse nil end"
     },
     {
       "name": "disease_status_at_followup",
@@ -59,13 +68,22 @@
       "formula": "[\"Distant recurrence/metastasis\",\n\"Local recurrence\",\n\"Local recurrence and distant metastasis\",\n\"Progression (liquid tumours)\",\n\"Biochemical progression\"][random(0,4)]\n"
     },
     {
-      "name": "date_of_relapse",
+      "name": "date_of_relapse.month_interval",
       "null_percentage": 13,
-      "type": "Datetime",
-      "min": "11/23/2021",
-      "max": "11/23/2022",
-      "format": "%Y-%m",
+      "type": "Number",
+      "min": 1,
+      "max": 50,
+      "decimals": null,
       "formula": null
+    },
+    {
+      "name": "date_of_relapse.day_interval",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": null,
+      "max": null,
+      "decimals": null,
+      "formula": "if !field('date_of_relapse.month_interval').nil?\nthen field('date_of_relapse.month_interval') * 30\nelse nil end"
     },
     {
       "name": "method_of_progression_status",
