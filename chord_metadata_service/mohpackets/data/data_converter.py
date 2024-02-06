@@ -1,6 +1,5 @@
 import json
 import os
-import sys
 import argparse
 
 MODEL_NAME_MAPPING = {
