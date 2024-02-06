@@ -1,5 +1,7 @@
 import json
 import os
+import sys
+import argparse
 
 MODEL_NAME_MAPPING = {
     "programs": "Program.json",
@@ -141,29 +143,28 @@ def replace_values(input_data, transformation_rules, program_id):
     return input_data
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--size', type=str, default='s', choices=['s', 'm', 'l'], help="Size of the dataset to convert (default: small)")
+    parser.add_argument('--program', type=str, default='SYNTHETIC', help="Program ID prefix (default: SYNTHETIC)")
+    args = parser.parse_args()
+    return args
+
+
 def main():
-    print("Select an option:")
-    print("1. Convert small dataset")
-    print("2. Convert medium dataset")
-    print("3. Convert large dataset")
-    print("4. Exit")
+    args = parse_args()
 
-    choice = int(input("Enter your choice [1-4]: "))
-
-    if choice == 1:
-        path = "small_dataset"
-    elif choice == 2:
-        path = "medium_dataset"
-    elif choice == 3:
-        path = "large_dataset"
-    elif choice == 4:
-        print("Exiting...")
-        exit()
+    if args.size:
+        size_mapping = {'s': 'small', 'm': 'medium', 'l': 'large'}
+        path = f"{size_mapping[args.size]}_dataset"
     else:
-        print("Invalid option. Please try again.")
-        return
+        path = "small_dataset"
 
-    program_id = str(input("Enter the dataset name (default: SYNTHETIC-): ")) or "SYNTHETIC-"
+    if args.program:
+        program_id = args.program
+    else:
+        program_id = "SYNTHETIC"
+
     set_foreign_keys(path, program_id)
 
 
