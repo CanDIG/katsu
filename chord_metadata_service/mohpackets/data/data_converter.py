@@ -144,8 +144,19 @@ def replace_values(input_data, transformation_rules, program_id):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--size', type=str, default='s', choices=['s', 'm', 'l'], help="Size of the dataset to convert (default: small)")
-    parser.add_argument('--program', type=str, default='SYNTHETIC', help="Program ID prefix (default: SYNTHETIC)")
+    parser.add_argument(
+        '--size',
+        type=str,
+        default='s',
+        choices=['s', 'm', 'l'],
+        help="Size of the dataset to convert (default: small)"
+    )
+    parser.add_argument(
+        '--program',
+        type=str,
+        default='SYNTHETIC',
+        help="Program ID prefix (default: SYNTHETIC)"
+    )
     args = parser.parse_args()
     return args
 
