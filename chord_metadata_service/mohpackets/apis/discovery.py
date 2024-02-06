@@ -1,5 +1,4 @@
-from collections import Counter, defaultdict
-from datetime import date, datetime
+from collections import Counter
 from typing import Any, Dict, Type
 
 from django.db.models import (
@@ -294,43 +293,30 @@ def discover_treatment_type_count(request):
 @overview_router.get("/diagnosis_age_count/", response=Dict[str, int])
 def discover_diagnosis_age_count(request):
     """
-    Return the count for age of diagnosis in the database.
-    If there are multiple date_of_diagnosis, get the earliest
+    Return the count for age of diagnosis by calculating the date of birth interval.
     """
-    # Find the earliest diagnosis date per donor
-    diagnosis_dates = PrimaryDiagnosis.objects.values(
-        "submitter_donor_id", "date_of_diagnosis"
-    )
-    min_dates = {}
-    for d_date in diagnosis_dates:
-        donor = d_date["submitter_donor_id"]
-        cur_date = (
-            datetime.strptime(d_date["date_of_diagnosis"], "%Y-%m").date()
-            if d_date["date_of_diagnosis"] is not None
-            else date.max
-        )
-        if donor not in min_dates.keys():
-            min_dates[donor] = cur_date
-        else:
-            if cur_date < min_dates[donor]:
-                min_dates[donor] = cur_date
+    months_in_year = 12
 
-    # Calculate donor's age of diagnosis
-    birth_dates = Donor.objects.values("submitter_donor_id", "date_of_birth")
-    birth_dates = {
-        date["submitter_donor_id"]: date["date_of_birth"] for date in birth_dates
+    age_counts = {
+        "null": 0,
+        "0-19": 0,
+        "20-29": 0,
+        "30-39": 0,
+        "40-49": 0,
+        "50-59": 0,
+        "60-69": 0,
+        "70-79": 0,
+        "80+": 0,
     }
-    ages = {}
-    for donor, diagnosis_date in min_dates.items():
-        if birth_dates[donor] is not None and diagnosis_date is not date.max:
-            birth_date = datetime.strptime(birth_dates[donor], "%Y-%m").date()
-            ages[donor] = (diagnosis_date - birth_date).days // 365.25
-        else:
-            ages[donor] = None
 
-    age_counts = defaultdict(int)
-    for age in ages.values():
-        if age is None:
+    donors = Donor.objects.values("date_of_birth")
+
+    for donor in donors:
+        age = -1
+        if donor["date_of_birth"] and donor["date_of_birth"].get("month_interval"):
+            age = abs(donor["date_of_birth"]["month_interval"]) // months_in_year
+
+        if age < 0:
             age_counts["null"] += 1
         elif age <= 19:
             age_counts["0-19"] += 1

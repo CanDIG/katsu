@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from ninja import Field
+from ninja import Field, Schema
 from ninja.orm import create_schema
 
 from chord_metadata_service.mohpackets.models import (
@@ -22,7 +22,6 @@ from chord_metadata_service.mohpackets.models import (
 )
 from chord_metadata_service.mohpackets.permissible_values import (
     COMORBIDITY_REGEX_PATTERNS,
-    DATE_REGEX_PATTERNS,
     ID_REGEX_PATTERNS,
     MORPHOLOGY_REGEX_PATTERNS,
     TOPOGRAPHY_REGEX_PATTERNS,
@@ -99,6 +98,16 @@ Author: Son Chau
 #                                      #
 ########################################
 
+
+class DateInterval(Schema):
+    day_interval: Optional[int] = Field(
+        None, description="number of days since first diagnosis"
+    )
+    month_interval: int = Field(
+        ..., description="number of months since first diagnosis"
+    )
+
+
 BaseProgramSchema = create_schema(
     Program,
     name="BaseProgramSchema",
@@ -114,25 +123,13 @@ BaseDonorSchema = create_schema(
     custom_fields=[
         ("cause_of_death", Optional[CauseOfDeathEnum], None),
         ("submitter_donor_id", str, Field(pattern=ID_REGEX_PATTERNS, max_length=64)),
-        (
-            "date_of_birth",
-            Optional[str],
-            Field(None, pattern=DATE_REGEX_PATTERNS, max_length=32),
-        ),
-        (
-            "date_of_death",
-            Optional[str],
-            Field(None, pattern=DATE_REGEX_PATTERNS, max_length=32),
-        ),
+        ("date_of_birth", Optional[DateInterval], None),
+        ("date_of_death", Optional[DateInterval], None),
         ("primary_site", Optional[List[PrimarySiteEnum]], None),
         ("gender", Optional[GenderEnum], None),
         ("sex_at_birth", Optional[SexAtBirthEnum], None),
         ("lost_to_followup_reason", Optional[LostToFollowupReasonEnum], None),
-        (
-            "date_alive_after_lost_to_followup",
-            Optional[str],
-            Field(None, pattern=DATE_REGEX_PATTERNS, max_length=32),
-        ),
+        ("date_alive_after_lost_to_followup", Optional[DateInterval], None),
     ],
 )
 
@@ -146,11 +143,7 @@ BasePrimaryDiagnosisSchema = create_schema(
             str,
             Field(pattern=ID_REGEX_PATTERNS, max_length=64),
         ),
-        (
-            "date_of_diagnosis",
-            Optional[str],
-            Field(None, pattern=DATE_REGEX_PATTERNS, max_length=32),
-        ),
+        ("date_of_diagnosis", Optional[DateInterval], None),
         ("basis_of_diagnosis", Optional[BasisOfDiagnosisEnum], None),
         ("lymph_nodes_examined_status", Optional[LymphNodeStatusEnum], None),
         ("lymph_nodes_examined_method", Optional[LymphNodeMethodEnum], None),
@@ -181,11 +174,7 @@ BaseSpecimenSchema = create_schema(
         ("pathological_n_category", Optional[NCategoryEnum], None),
         ("pathological_m_category", Optional[MCategoryEnum], None),
         ("pathological_stage_group", Optional[StageGroupEnum], None),
-        (
-            "specimen_collection_date",
-            Optional[str],
-            Field(None, pattern=DATE_REGEX_PATTERNS, max_length=32),
-        ),
+        ("specimen_collection_date", Optional[DateInterval], None),
         ("specimen_storage", Optional[StorageEnum], None),
         (
             "tumour_histological_type",
@@ -259,16 +248,8 @@ BaseTreatmentSchema = create_schema(
         ),
         ("treatment_type", Optional[List[TreatmentTypeEnum]], None),
         ("is_primary_treatment", Optional[uBooleanEnum], None),
-        (
-            "treatment_start_date",
-            Optional[str],
-            Field(None, pattern=DATE_REGEX_PATTERNS, max_length=32),
-        ),
-        (
-            "treatment_end_date",
-            Optional[str],
-            Field(None, pattern=DATE_REGEX_PATTERNS, max_length=32),
-        ),
+        ("treatment_start_date", Optional[DateInterval], None),
+        ("treatment_end_date", Optional[DateInterval], None),
         ("treatment_setting", Optional[TreatmentSettingEnum], None),
         ("treatment_intent", Optional[TreatmentIntentEnum], None),
         (
@@ -401,16 +382,8 @@ BaseFollowUpSchema = create_schema(
         ),
         ("disease_status_at_followup", Optional[DiseaseStatusFollowupEnum], None),
         ("relapse_type", Optional[RelapseTypeEnum], None),
-        (
-            "date_of_followup",
-            Optional[str],
-            Field(None, pattern=DATE_REGEX_PATTERNS, max_length=32),
-        ),
-        (
-            "date_of_relapse",
-            Optional[str],
-            Field(None, pattern=DATE_REGEX_PATTERNS, max_length=32),
-        ),
+        ("date_of_followup", Optional[DateInterval], None),
+        ("date_of_relapse", Optional[DateInterval], None),
         (
             "method_of_progression_status",
             Optional[List[ProgressionStatusMethodEnum]],
@@ -437,6 +410,7 @@ BaseBiomarkerSchema = create_schema(
         ("hpv_ihc_status", Optional[ErPrHpvStatusEnum], None),
         ("hpv_pcr_status", Optional[ErPrHpvStatusEnum], None),
         ("hpv_strain", Optional[List[HpvStrainEnum]], None),
+        ("test_date", Optional[DateInterval], None),
     ],
 )
 
