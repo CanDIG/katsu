@@ -29,4 +29,10 @@ If you want to modify the mock data to your preferences, you can follow these st
 5. Modify `relationships.json` if needed
 6. Run `data_converter.py` to generate the final data
 
+```python
+#  --size {s,m,l}     Size of the dataset to convert, options: 's' for small, 'm' for medium, 'l' for large (default: small)
+#  --program PROGRAM  Program ID prefix (default: SYNTHETIC)
+python chord_metadata_service/mohpackets/data/data_converter.py --size m --program PROGRAM
+```
+
 *NOTE*: The synthetic data provided here is intended for frontend testing, and the logic is not strictly enforced. For other types of testing purposes, it is recommended to create your own data to ensure accuracy.
