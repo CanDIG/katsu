@@ -1,5 +1,6 @@
 import json
 import os
+import argparse
 
 MODEL_NAME_MAPPING = {
     "programs": "Program.json",
@@ -20,10 +21,11 @@ MODEL_NAME_MAPPING = {
 }
 
 
-def set_foreign_keys(path):
+def set_foreign_keys(path="small_dataset", program_id="SYNTHETIC-"):
     """
     Set foreign keys for synthetic data.
     """
+    print(f"Processing {program_id} | {path}")
     print("\nStep 1: Set Foreign Keys:\n")
     # Get the absolute path to the synthetic data folder
     script_dir = os.path.dirname(__file__)
@@ -53,7 +55,7 @@ def set_foreign_keys(path):
             data_without_relationships = json.load(f)
 
         print(f"Processing {filename}...")
-        data_with_keys = replace_values(data_without_relationships, relationship)
+        data_with_keys = replace_values(data_without_relationships, relationship, program_id)
 
         with open(output_path, "w") as f:
             json.dump(data_with_keys, f, indent=4)
@@ -61,7 +63,7 @@ def set_foreign_keys(path):
     print("--------------------\n")
 
 
-def replace_values(input_data, transformation_rules):
+def replace_values(input_data, transformation_rules, program_id):
     """
     Replace values in input data using transformation rules.
 
@@ -105,7 +107,7 @@ def replace_values(input_data, transformation_rules):
     }
     """
     field_value_map = {
-        "program_id": "SYNTHETIC-",
+        "program_id": program_id,
         "submitter_donor_id": "DONOR_",
         "submitter_primary_diagnosis_id": "PRIMARY_DIAGNOSIS_",
         "submitter_specimen_id": "SPECIMEN_",
@@ -141,29 +143,33 @@ def replace_values(input_data, transformation_rules):
     return input_data
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '--size',
+        type=str,
+        default='s',
+        choices=['s', 'm', 'l'],
+        help="Size of the dataset to convert, options: 's' for small, 'm' for medium, 'l' for large (default: small)"
+    )
+    parser.add_argument(
+        '--program',
+        type=str,
+        default='SYNTHETIC',
+        help="Program ID prefix (default: SYNTHETIC)"
+    )
+    args = parser.parse_args()
+    return args
+
+
 def main():
-    print("Select an option:")
-    print("1. Convert small dataset")
-    print("2. Convert medium dataset")
-    print("3. Convert large dataset")
-    print("4. Exit")
+    args = parse_args()
 
-    choice = int(input("Enter your choice [1-4]: "))
+    size_mapping = {'s': 'small', 'm': 'medium', 'l': 'large'}
+    path = f"{size_mapping[args.size]}_dataset"
+    program_id = f"{args.program}-"
 
-    if choice == 1:
-        path = "small_dataset"
-    elif choice == 2:
-        path = "medium_dataset"
-    elif choice == 3:
-        path = "large_dataset"
-    elif choice == 4:
-        print("Exiting...")
-        exit()
-    else:
-        print("Invalid option. Please try again.")
-        return
-
-    set_foreign_keys(path)
+    set_foreign_keys(path, program_id)
 
 
 if __name__ == "__main__":
