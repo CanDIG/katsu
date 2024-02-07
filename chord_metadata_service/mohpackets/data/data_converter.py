@@ -166,7 +166,7 @@ def main():
 
     size_mapping = {'s': 'small', 'm': 'medium', 'l': 'large'}
     path = f"{size_mapping[args.size]}_dataset"
-    program_id = f"{args.program}-" 
+    program_id = f"{args.program}-"
 
     set_foreign_keys(path, program_id)
 
