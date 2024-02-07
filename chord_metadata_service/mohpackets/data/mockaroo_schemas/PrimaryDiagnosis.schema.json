@@ -24,13 +24,22 @@
       "formula": ""
     },
     {
-      "name": "date_of_diagnosis",
+      "name": "date_of_diagnosis.month_interval",
       "null_percentage": 9,
-      "type": "Datetime",
-      "min": "01/01/2019",
-      "max": "01/01/2020",
-      "format": "%Y-%m",
+      "type": "Number",
+      "min": 0,
+      "max": 100,
+      "decimals": null,
       "formula": null
+    },
+    {
+      "name": "date_of_diagnosis.day_interval",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": null,
+      "decimals": null,
+      "formula": "if !field('date_of_diagnosis.month_interval').nil?\nthen field('date_of_diagnosis.month_interval') * 30\nelse nil end"
     },
     {
       "name": "cancer_type_code",
