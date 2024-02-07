@@ -1,7 +1,7 @@
 
 <h1 id="moh-service-api">MoH Service API v4.0.0</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/1793268149dedd0d62f84e089b063040afd26bba/chord_metadata_service/mohpackets/docs/schema.json
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/0692c5e4b17fda1e83f05b76f48da7abb1d5c428/chord_metadata_service/mohpackets/docs/schema.json
 
 Base URLs:
 
@@ -329,10 +329,7 @@ Base URLs:
           "pathological_n_category": "N0",
           "pathological_m_category": "M0",
           "pathological_stage_group": "Stage 0",
-          "specimen_collection_date": {
-            "day_interval": 0,
-            "month_interval": 0
-          },
+          "specimen_collection_date": {},
           "specimen_storage": "Cut slide",
           "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
           "tumour_histological_type": "string",
@@ -1267,10 +1264,7 @@ Base URLs:
       "pathological_n_category": "N0",
       "pathological_m_category": "M0",
       "pathological_stage_group": "Stage 0",
-      "specimen_collection_date": {
-        "day_interval": 0,
-        "month_interval": 0
-      },
+      "specimen_collection_date": {},
       "specimen_storage": "Cut slide",
       "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
       "tumour_histological_type": "string",
@@ -5914,10 +5908,7 @@ PercentCellsRangeEnum
   "pathological_n_category": "N0",
   "pathological_m_category": "M0",
   "pathological_stage_group": "Stage 0",
-  "specimen_collection_date": {
-    "day_interval": 0,
-    "month_interval": 0
-  },
+  "specimen_collection_date": {},
   "specimen_storage": "Cut slide",
   "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
   "tumour_histological_type": "string",
@@ -6040,7 +6031,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+|» *anonymous*|object|false|none|none|
 
 or
 
@@ -7582,10 +7573,7 @@ TreatmentTypeEnum
           "pathological_n_category": "N0",
           "pathological_m_category": "M0",
           "pathological_stage_group": "Stage 0",
-          "specimen_collection_date": {
-            "day_interval": 0,
-            "month_interval": 0
-          },
+          "specimen_collection_date": {},
           "specimen_storage": "Cut slide",
           "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
           "tumour_histological_type": "string",
@@ -9261,10 +9249,7 @@ or
       "pathological_n_category": "N0",
       "pathological_m_category": "M0",
       "pathological_stage_group": "Stage 0",
-      "specimen_collection_date": {
-        "day_interval": 0,
-        "month_interval": 0
-      },
+      "specimen_collection_date": {},
       "specimen_storage": "Cut slide",
       "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
       "tumour_histological_type": "string",
@@ -9917,10 +9902,7 @@ or
   "pathological_n_category": "N0",
   "pathological_m_category": "M0",
   "pathological_stage_group": "Stage 0",
-  "specimen_collection_date": {
-    "day_interval": 0,
-    "month_interval": 0
-  },
+  "specimen_collection_date": {},
   "specimen_storage": "Cut slide",
   "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
   "tumour_histological_type": "string",
@@ -10048,7 +10030,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+|» *anonymous*|object|false|none|none|
 
 or
 
@@ -16819,10 +16801,7 @@ or
       "pathological_n_category": "N0",
       "pathological_m_category": "M0",
       "pathological_stage_group": "Stage 0",
-      "specimen_collection_date": {
-        "day_interval": 0,
-        "month_interval": 0
-      },
+      "specimen_collection_date": {},
       "specimen_storage": "Cut slide",
       "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
       "tumour_histological_type": "string",
@@ -16918,10 +16897,7 @@ or
   "pathological_n_category": "N0",
   "pathological_m_category": "M0",
   "pathological_stage_group": "Stage 0",
-  "specimen_collection_date": {
-    "day_interval": 0,
-    "month_interval": 0
-  },
+  "specimen_collection_date": {},
   "specimen_storage": "Cut slide",
   "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
   "tumour_histological_type": "string",
@@ -17043,7 +17019,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+|» *anonymous*|object|false|none|none|
 
 or
 
