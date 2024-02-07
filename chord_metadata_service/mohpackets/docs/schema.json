@@ -3,7 +3,7 @@
     "info": {
         "title": "MoH Service API",
         "version": "4.0.0",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/1793268149dedd0d62f84e089b063040afd26bba/chord_metadata_service/mohpackets/docs/schema.json"
+        "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
         "/v2/service-info": {
@@ -7058,12 +7058,13 @@
                     "specimen_collection_date": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/DateInterval"
+                                "type": "object"
                             },
                             {
                                 "type": "null"
                             }
-                        ]
+                        ],
+                        "title": "Specimen Collection Date"
                     },
                     "specimen_storage": {
                         "anyOf": [
@@ -7089,7 +7090,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 128,
-                                "pattern": "^\\d{4}[/]\\d{1}$",
+                                "pattern": "^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$",
                                 "type": "string"
                             },
                             {
@@ -9095,12 +9096,13 @@
                     "specimen_collection_date": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/DateInterval"
+                                "type": "object"
                             },
                             {
                                 "type": "null"
                             }
-                        ]
+                        ],
+                        "title": "Specimen Collection Date"
                     },
                     "specimen_storage": {
                         "anyOf": [
@@ -9126,7 +9128,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 128,
-                                "pattern": "^\\d{4}[/]\\d{1}$",
+                                "pattern": "^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$",
                                 "type": "string"
                             },
                             {
@@ -13159,12 +13161,13 @@
                     "specimen_collection_date": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/DateInterval"
+                                "type": "object"
                             },
                             {
                                 "type": "null"
                             }
-                        ]
+                        ],
+                        "title": "Specimen Collection Date"
                     },
                     "specimen_storage": {
                         "anyOf": [
@@ -13190,7 +13193,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 128,
-                                "pattern": "^\\d{4}[/]\\d{1}$",
+                                "pattern": "^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$",
                                 "type": "string"
                             },
                             {
