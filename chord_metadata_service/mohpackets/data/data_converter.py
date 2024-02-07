@@ -25,6 +25,7 @@ def set_foreign_keys(path="small_dataset", program_id="SYNTHETIC-"):
     """
     Set foreign keys for synthetic data.
     """
+    print(f"Processing {program_id} | {path}")
     print("\nStep 1: Set Foreign Keys:\n")
     # Get the absolute path to the synthetic data folder
     script_dir = os.path.dirname(__file__)
