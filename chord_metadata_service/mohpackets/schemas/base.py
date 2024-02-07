@@ -23,7 +23,6 @@ from chord_metadata_service.mohpackets.models import (
 from chord_metadata_service.mohpackets.permissible_values import (
     COMORBIDITY_REGEX,
     ID_REGEX,
-    DATE_REGEX,
     MORPHOLOGY_REGEX,
     TOPOGRAPHY_REGEX,
     BasisOfDiagnosisEnum,
@@ -123,7 +122,7 @@ BaseDonorSchema = create_schema(
     exclude=["uuid", "program_id"],
     custom_fields=[
         ("cause_of_death", Optional[CauseOfDeathEnum], None),
-        ("submitter_donor_id", str, Field(pattern=ID_REGEX_PATTERNS, max_length=64)),
+        ("submitter_donor_id", str, Field(pattern=ID_REGEX, max_length=64)),
         ("date_of_birth", Optional[DateInterval], None),
         ("date_of_death", Optional[DateInterval], None),
         ("primary_site", Optional[List[PrimarySiteEnum]], None),
