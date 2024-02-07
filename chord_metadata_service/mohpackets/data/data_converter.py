@@ -149,7 +149,7 @@ def parse_args():
         type=str,
         default='s',
         choices=['s', 'm', 'l'],
-        help="Size of the dataset to convert (default: small)"
+        help="Size of the dataset to convert, options: 's' for small, 'm' for medium, 'l' for large (default: small)"
     )
     parser.add_argument(
         '--program',
@@ -164,16 +164,9 @@ def parse_args():
 def main():
     args = parse_args()
 
-    if args.size:
-        size_mapping = {'s': 'small', 'm': 'medium', 'l': 'large'}
-        path = f"{size_mapping[args.size]}_dataset"
-    else:
-        path = "small_dataset"
-
-    if args.program:
-        program_id = args.program
-    else:
-        program_id = "SYNTHETIC"
+    size_mapping = {'s': 'small', 'm': 'medium', 'l': 'large'}
+    path = f"{size_mapping[args.size]}_dataset" or "small_dataset"
+    program_id = args.program or "SYNTHETIC"
 
     set_foreign_keys(path, program_id)
 
