@@ -53,7 +53,7 @@ def set_foreign_keys(path="small_dataset", program_id="SYNTHETIC-"):
 
         with open(input_path, "r") as f:
             data_without_relationships = json.load(f)
-        
+
         if model == "programs":
             # Update the values in Program.json
             for item in data_without_relationships:
