@@ -21,7 +21,7 @@ MODEL_NAME_MAPPING = {
 }
 
 
-def set_foreign_keys(path, program_id):
+def set_foreign_keys(path="small_dataset", program_id="SYNTHETIC-"):
     """
     Set foreign keys for synthetic data.
     """
@@ -165,8 +165,8 @@ def main():
     args = parse_args()
 
     size_mapping = {'s': 'small', 'm': 'medium', 'l': 'large'}
-    path = f"{size_mapping[args.size]}_dataset" or "small_dataset"
-    program_id = f"{args.program}-" or "SYNTHETIC-"
+    path = f"{size_mapping[args.size]}_dataset"
+    program_id = f"{args.program}-" 
 
     set_foreign_keys(path, program_id)
 
