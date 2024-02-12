@@ -3236,15 +3236,13 @@ components:
       type: string
     ProgramDiscoverySchema:
       properties:
-        cohort_list:
-          items:
-            type: string
-          title: Cohort List
-          type: array
         metadata:
           title: Metadata
+        program_id:
+          title: Program Id
+          type: string
       required:
-      - cohort_list
+      - program_id
       - metadata
       title: ProgramDiscoverySchema
       type: object
@@ -5262,7 +5260,7 @@ components:
       scheme: bearer
       type: http
 info:
-  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/88aca4f00531da1710aa4eb27af67016f7f820d3/chord_metadata_service/mohpackets/docs/schema.json
+  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/1041a2562340db01152d4da95647e48e465e4357/chord_metadata_service/mohpackets/docs/schema.json
   title: MoH Service API
   version: 4.0.0
 openapi: 3.1.0
@@ -7455,7 +7453,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProgramDiscoverySchema'
+                items:
+                  $ref: '#/components/schemas/ProgramDiscoverySchema'
+                title: Response
+                type: array
           description: OK
       summary: Discover Programs
       tags:

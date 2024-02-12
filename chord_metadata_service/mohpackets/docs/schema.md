@@ -1,7 +1,7 @@
 
 <h1 id="moh-service-api">MoH Service API v4.0.0</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/88aca4f00531da1710aa4eb27af67016f7f820d3/chord_metadata_service/mohpackets/docs/schema.json
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/1041a2562340db01152d4da95647e48e465e4357/chord_metadata_service/mohpackets/docs/schema.json
 
 Base URLs:
 
@@ -1442,12 +1442,12 @@ Base URLs:
 > 200 Response
 
 ```json
-{
-  "cohort_list": [
-    "string"
-  ],
-  "metadata": null
-}
+[
+  {
+    "program_id": "string",
+    "metadata": null
+  }
+]
 ```
 
 ## chord_metadata_service_mohpackets_apis_discovery_discover_donors
@@ -18565,9 +18565,7 @@ continued
 
 ```json
 {
-  "cohort_list": [
-    "string"
-  ],
+  "program_id": "string",
   "metadata": null
 }
 
@@ -18579,7 +18577,7 @@ ProgramDiscoverySchema
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|cohort_list|[string]|true|none|none|
+|program_id|string|true|none|none|
 |metadata|any|true|none|none|
 
 <h2 id="tocS_DiscoverySchema">DiscoverySchema</h2>
