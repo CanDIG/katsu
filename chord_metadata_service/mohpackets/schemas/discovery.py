@@ -11,6 +11,7 @@ Author: Son Chau
 
 class ProgramDiscoverySchema(Schema):
     cohort_list: List[str]
+    metadata: object
 
 
 class DiscoverySchema(Schema):

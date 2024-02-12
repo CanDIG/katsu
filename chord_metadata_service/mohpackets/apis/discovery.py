@@ -92,7 +92,8 @@ def count_donors(model: Type[Model], filters=None) -> Dict[str, int]:
 @discovery_router.get("/programs/", response=ProgramDiscoverySchema)
 def discover_programs(request):
     programs_list = Program.objects.values_list("program_id", flat=True)
-    return ProgramDiscoverySchema(cohort_list=programs_list)
+    metadata = Program.objects.values_list("metadata", flat=True)
+    return ProgramDiscoverySchema(cohort_list=programs_list, metadata=metadata)
 
 
 @discovery_router.get("/donors/", response=DiscoverySchema)
