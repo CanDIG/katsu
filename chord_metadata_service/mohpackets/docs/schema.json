@@ -3,7 +3,7 @@
     "info": {
         "title": "MoH Service API",
         "version": "4.0.0",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/180feb33041c247c0501428d905e68b0c7672e16/chord_metadata_service/mohpackets/docs/schema.json"
+        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/1041a2562340db01152d4da95647e48e465e4357/chord_metadata_service/mohpackets/docs/schema.json"
     },
     "paths": {
         "/v2/service-info": {
@@ -3933,7 +3933,11 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ProgramDiscoverySchema"
+                                    "items": {
+                                        "$ref": "#/components/schemas/ProgramDiscoverySchema"
+                                    },
+                                    "title": "Response",
+                                    "type": "array"
                                 }
                             }
                         }
@@ -14094,16 +14098,17 @@
             },
             "ProgramDiscoverySchema": {
                 "properties": {
-                    "cohort_list": {
-                        "items": {
-                            "type": "string"
-                        },
-                        "title": "Cohort List",
-                        "type": "array"
+                    "program_id": {
+                        "title": "Program Id",
+                        "type": "string"
+                    },
+                    "metadata": {
+                        "title": "Metadata"
                     }
                 },
                 "required": [
-                    "cohort_list"
+                    "program_id",
+                    "metadata"
                 ],
                 "title": "ProgramDiscoverySchema",
                 "type": "object"

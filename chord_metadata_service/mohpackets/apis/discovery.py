@@ -1,5 +1,5 @@
 from collections import Counter
-from typing import Any, Dict, Type
+from typing import Any, Dict, List, Type
 
 from django.db.models import (
     Count,
@@ -89,10 +89,9 @@ def count_donors(model: Type[Model], filters=None) -> Dict[str, int]:
 #               DISCOVERY API                 #
 #                                             #
 ###############################################
-@discovery_router.get("/programs/", response=ProgramDiscoverySchema)
+@discovery_router.get("/programs/", response=List[ProgramDiscoverySchema])
 def discover_programs(request):
-    programs_list = Program.objects.values_list("program_id", flat=True)
-    return ProgramDiscoverySchema(cohort_list=programs_list)
+    return Program.objects.only("program_id", "metadata")
 
 
 @discovery_router.get("/donors/", response=DiscoverySchema)
