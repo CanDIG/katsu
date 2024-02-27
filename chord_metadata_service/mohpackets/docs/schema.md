@@ -1,13 +1,16 @@
 
-<h1 id="moh-service-api">MoH Service API v4.0.0</h1>
+<h1 id="moh-service-api">MoH Service API v4.1.0</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/4bba10e2f6740666179080bf49ccf7b98756fe58/chord_metadata_service/mohpackets/docs/schema.json
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/0e8458cfcdd01c51a4841f681b0056dd2a77e62d/chord_metadata_service/mohpackets/docs/schema.json
 
 Base URLs:
 
 # Authentication
 
 - HTTP Authentication, scheme: bearer
+
+* API Key (ServiceTokenAuth)
+    - Parameter Name: **X-Service-Token**, in: header. 
 
 <h1 id="moh-service-api-default">Default</h1>
 
@@ -1924,6 +1927,50 @@ Return the count for age of diagnosis by calculating the date of birth interval.
   "property1": 0,
   "property2": 0
 }
+```
+
+<h1 id="moh-service-api-explorer">explorer</h1>
+
+## chord_metadata_service_mohpackets_apis_explorer_explorer_donor
+
+<a id="opIdchord_metadata_service_mohpackets_apis_explorer_explorer_donor"></a>
+
+`GET /v2/explorer/donors/`
+
+*Explorer Donor*
+
+<h3 id="chord_metadata_service_mohpackets_apis_explorer_explorer_donor-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|treatment_type|query|array[string]|false|none|
+|primary_site|query|array[string]|false|none|
+|chemotherapy_drug_name|query|array[string]|false|none|
+|immunotherapy_drug_name|query|array[string]|false|none|
+|hormone_therapy_drug_name|query|array[string]|false|none|
+|exclude_cohorts|query|array[string]|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "program_id": "string",
+    "submitter_donor_id": "string",
+    "submitter_sample_ids": [
+      "string"
+    ],
+    "primary_site": [
+      "string"
+    ],
+    "treatment_type": [
+      "string"
+    ],
+    "age_at_diagnosis": "string"
+  }
+]
 ```
 
 # Schemas
@@ -18605,4 +18652,149 @@ DiscoverySchema
 |---|---|---|---|---|
 |donors_by_cohort|object|true|none|none|
 |» **additionalProperties**|integer|false|none|none|
+
+<h2 id="tocS_DonorExplorerFilterSchema">DonorExplorerFilterSchema</h2>
+
+<a id="schemadonorexplorerfilterschema"></a>
+<a id="schema_DonorExplorerFilterSchema"></a>
+<a id="tocSdonorexplorerfilterschema"></a>
+<a id="tocsdonorexplorerfilterschema"></a>
+
+```json
+{
+  "treatment_type": [
+    "string"
+  ],
+  "primary_site": [
+    "string"
+  ],
+  "chemotherapy_drug_name": [
+    "string"
+  ],
+  "immunotherapy_drug_name": [
+    "string"
+  ],
+  "hormone_therapy_drug_name": [
+    "string"
+  ],
+  "exclude_cohorts": [
+    "string"
+  ]
+}
+
+```
+
+DonorExplorerFilterSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|treatment_type|[string]|false|none|none|
+|primary_site|[string]|false|none|none|
+|chemotherapy_drug_name|[string]|false|none|none|
+|immunotherapy_drug_name|[string]|false|none|none|
+|hormone_therapy_drug_name|[string]|false|none|none|
+|exclude_cohorts|[string]|false|none|none|
+
+<h2 id="tocS_DonorExplorerSchema">DonorExplorerSchema</h2>
+
+<a id="schemadonorexplorerschema"></a>
+<a id="schema_DonorExplorerSchema"></a>
+<a id="tocSdonorexplorerschema"></a>
+<a id="tocsdonorexplorerschema"></a>
+
+```json
+{
+  "program_id": "string",
+  "submitter_donor_id": "string",
+  "submitter_sample_ids": [
+    "string"
+  ],
+  "primary_site": [
+    "string"
+  ],
+  "treatment_type": [
+    "string"
+  ],
+  "age_at_diagnosis": "string"
+}
+
+```
+
+DonorExplorerSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|program_id|string|true|none|none|
+|submitter_donor_id|string|true|none|none|
+|submitter_sample_ids|any|true|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[string]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|primary_site|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[string]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|treatment_type|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[string]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|age_at_diagnosis|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
 
