@@ -5,6 +5,7 @@ from enum import Enum
 
 from django.core.cache import cache
 
+
 logger = logging.getLogger(__name__)
 
 

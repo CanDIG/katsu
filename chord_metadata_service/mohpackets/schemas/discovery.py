@@ -1,6 +1,6 @@
 from typing import Dict
-
 from ninja import Schema
+
 
 """
 Module with schema used for discovery response

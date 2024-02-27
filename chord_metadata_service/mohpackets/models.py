@@ -91,9 +91,7 @@ class PrimaryDiagnosis(models.Model):
         max_length=128, null=True, blank=True
     )
     lymph_nodes_examined_method = models.CharField(max_length=64, null=True, blank=True)
-    number_lymph_nodes_positive = models.IntegerField(
-        null=True, blank=True
-    )
+    number_lymph_nodes_positive = models.IntegerField(null=True, blank=True)
     clinical_tumour_staging_system = models.CharField(
         max_length=128, null=True, blank=True
     )
@@ -245,12 +243,8 @@ class Chemotherapy(models.Model):
     chemotherapy_drug_dose_units = models.CharField(
         max_length=64, null=True, blank=True
     )
-    prescribed_cumulative_drug_dose = models.IntegerField(
-        blank=True, null=True
-    )
-    actual_cumulative_drug_dose = models.IntegerField(
-        blank=True, null=True
-    )
+    prescribed_cumulative_drug_dose = models.IntegerField(blank=True, null=True)
+    actual_cumulative_drug_dose = models.IntegerField(blank=True, null=True)
 
     class Meta:
         ordering = ["uuid"]
@@ -276,12 +270,8 @@ class HormoneTherapy(models.Model):
     drug_name = models.CharField(max_length=255, null=True, blank=True)
     drug_reference_identifier = models.CharField(max_length=64, null=True, blank=True)
     hormone_drug_dose_units = models.CharField(max_length=64, null=True, blank=True)
-    prescribed_cumulative_drug_dose = models.IntegerField(
-        blank=True, null=True
-    )
-    actual_cumulative_drug_dose = models.IntegerField(
-        blank=True, null=True
-    )
+    prescribed_cumulative_drug_dose = models.IntegerField(blank=True, null=True)
+    actual_cumulative_drug_dose = models.IntegerField(blank=True, null=True)
 
     class Meta:
         ordering = ["uuid"]
@@ -305,9 +295,7 @@ class Radiation(models.Model):
     submitter_treatment_id = models.CharField(max_length=64, null=False, blank=False)
     radiation_therapy_modality = models.CharField(max_length=255, null=True, blank=True)
     radiation_therapy_type = models.CharField(max_length=64, null=True, blank=True)
-    radiation_therapy_fractions = models.IntegerField(
-        null=True, blank=True
-    )
+    radiation_therapy_fractions = models.IntegerField(null=True, blank=True)
     radiation_therapy_dosage = models.IntegerField(null=True, blank=True)
     anatomical_site_irradiated = models.CharField(max_length=255, null=True, blank=True)
     radiation_boost = models.BooleanField(blank=True, null=True)
@@ -342,12 +330,8 @@ class Immunotherapy(models.Model):
     immunotherapy_drug_dose_units = models.CharField(
         max_length=64, null=True, blank=True
     )
-    prescribed_cumulative_drug_dose = models.IntegerField(
-        blank=True, null=True
-    )
-    actual_cumulative_drug_dose = models.IntegerField(
-        blank=True, null=True
-    )
+    prescribed_cumulative_drug_dose = models.IntegerField(blank=True, null=True)
+    actual_cumulative_drug_dose = models.IntegerField(blank=True, null=True)
 
     class Meta:
         ordering = ["uuid"]
@@ -496,9 +480,7 @@ class Comorbidity(models.Model):
     laterality_of_prior_malignancy = models.CharField(
         max_length=64, null=True, blank=True
     )
-    age_at_comorbidity_diagnosis = models.IntegerField(
-        null=True, blank=True
-    )
+    age_at_comorbidity_diagnosis = models.IntegerField(null=True, blank=True)
     comorbidity_type_code = models.CharField(max_length=64, null=True, blank=True)
     comorbidity_treatment_status = models.CharField(
         max_length=32, null=True, blank=True
