@@ -5344,7 +5344,7 @@ components:
       name: X-Service-Token
       type: apiKey
 info:
-  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/0e8458cfcdd01c51a4841f681b0056dd2a77e62d/chord_metadata_service/mohpackets/docs/schema.json
+  description: This is the RESTful API for the MoH Service.
   title: MoH Service API
   version: 4.1.0
 openapi: 3.1.0
