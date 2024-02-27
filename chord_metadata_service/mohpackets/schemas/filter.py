@@ -236,3 +236,12 @@ class ExposureFilterSchema(FilterSchema):
 class DonorWithClinicalDataFilterSchema(FilterSchema):
     submitter_donor_id: str
     program_id: str
+
+
+class DonorExplorerFilterSchema(FilterSchema):
+    treatment_type: List[str] = Field(None, q="treatment_type__overlap")
+    primary_site: List[str] = Field(None, q="primary_site__overlap")
+    chemotherapy_drug_name: List[str] = Field(None)
+    immunotherapy_drug_name: List[str] = Field(None)
+    hormone_therapy_drug_name: List[str] = Field(None)
+    exclude_cohorts: List[str] = Field(None)
