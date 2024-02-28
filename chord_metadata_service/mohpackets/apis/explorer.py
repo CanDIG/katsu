@@ -90,7 +90,9 @@ def explorer_donor(request, filters: DonorExplorerFilterSchema = Query(...)):
             default=Value("80+"),
             output_field=CharField(),
         ),
-        submitter_sample_ids=ArrayAgg("sampleregistration__submitter_sample_id"),
+        submitter_sample_ids=ArrayAgg(
+            "sampleregistration__submitter_sample_id", distinct=True
+        ),
         treatment_type=ArraySubquery(Subquery(treatment_type_names)),
     ).values(
         "program_id",
