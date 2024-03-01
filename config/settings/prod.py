@@ -11,7 +11,6 @@ from os.path import exists
 from .base import *
 
 ALLOWED_HOSTS = [
-    "candig.docker.internal",
     os.environ.get("HOST_CONTAINER_NAME"),
     os.environ.get("EXTERNAL_URL"),
 ]
