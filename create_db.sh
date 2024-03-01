@@ -16,7 +16,7 @@ check_db_exist() {
     psql --quiet -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -lqt | cut -d \| -f 1 | grep -qw "$POSTGRES_DATABASE"
 }
 
-# create metadata database and create tables
+# create metadata database
 create_db() {
     echo "Initializing database..."
     createdb -h "$POSTGRES_HOST" -U "$POSTGRES_USER" "$POSTGRES_DATABASE"
