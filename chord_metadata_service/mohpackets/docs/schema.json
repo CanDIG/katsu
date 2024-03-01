@@ -2,8 +2,8 @@
     "openapi": "3.1.0",
     "info": {
         "title": "MoH Service API",
-        "version": "4.0.0",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/4bba10e2f6740666179080bf49ccf7b98756fe58/chord_metadata_service/mohpackets/docs/schema.json"
+        "version": "4.1.0",
+        "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
         "/v2/service-info": {
@@ -43,7 +43,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -73,7 +73,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -103,7 +103,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -133,7 +133,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -163,7 +163,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -193,7 +193,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -223,7 +223,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -253,7 +253,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -283,7 +283,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -313,7 +313,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -343,7 +343,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -373,7 +373,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -403,7 +403,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -433,7 +433,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -463,7 +463,7 @@
                 },
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -507,7 +507,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -567,7 +567,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -631,7 +631,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -821,7 +821,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -1093,7 +1093,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -1426,7 +1426,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -1618,7 +1618,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -1794,7 +1794,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -1919,7 +1919,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -2185,7 +2185,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -2377,7 +2377,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -2585,7 +2585,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -2793,7 +2793,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -2969,7 +2969,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -3337,7 +3337,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -3648,7 +3648,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -3917,7 +3917,7 @@
                 ],
                 "security": [
                     {
-                        "LocalAuth": []
+                        "LoginAuth": []
                     }
                 ]
             }
@@ -4609,6 +4609,112 @@
                 "description": "Return the count for age of diagnosis by calculating the date of birth interval.",
                 "tags": [
                     "overview"
+                ]
+            }
+        },
+        "/v2/explorer/donors/": {
+            "get": {
+                "operationId": "chord_metadata_service_mohpackets_apis_explorer_explorer_donor",
+                "summary": "Explorer Donor",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "treatment_type",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "q": "treatment_type__overlap",
+                            "title": "Treatment Type",
+                            "type": "array"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "primary_site",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "q": "primary_site__overlap",
+                            "title": "Primary Site",
+                            "type": "array"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "chemotherapy_drug_name",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "title": "Chemotherapy Drug Name",
+                            "type": "array"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "immunotherapy_drug_name",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "title": "Immunotherapy Drug Name",
+                            "type": "array"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "hormone_therapy_drug_name",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "title": "Hormone Therapy Drug Name",
+                            "type": "array"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "exclude_cohorts",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "title": "Exclude Cohorts",
+                            "type": "array"
+                        },
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/DonorExplorerSchema"
+                                    },
+                                    "title": "Response",
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "explorer"
+                ],
+                "security": [
+                    {
+                        "ServiceTokenAuth": []
+                    }
                 ]
             }
         }
@@ -14128,12 +14234,143 @@
                 ],
                 "title": "DiscoverySchema",
                 "type": "object"
+            },
+            "DonorExplorerFilterSchema": {
+                "properties": {
+                    "treatment_type": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "q": "treatment_type__overlap",
+                        "title": "Treatment Type",
+                        "type": "array"
+                    },
+                    "primary_site": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "q": "primary_site__overlap",
+                        "title": "Primary Site",
+                        "type": "array"
+                    },
+                    "chemotherapy_drug_name": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Chemotherapy Drug Name",
+                        "type": "array"
+                    },
+                    "immunotherapy_drug_name": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Immunotherapy Drug Name",
+                        "type": "array"
+                    },
+                    "hormone_therapy_drug_name": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Hormone Therapy Drug Name",
+                        "type": "array"
+                    },
+                    "exclude_cohorts": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Exclude Cohorts",
+                        "type": "array"
+                    }
+                },
+                "title": "DonorExplorerFilterSchema",
+                "type": "object"
+            },
+            "DonorExplorerSchema": {
+                "properties": {
+                    "program_id": {
+                        "maxLength": 64,
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "title": "Program Id",
+                        "type": "string"
+                    },
+                    "submitter_donor_id": {
+                        "maxLength": 64,
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "title": "Submitter Donor Id",
+                        "type": "string"
+                    },
+                    "submitter_sample_ids": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Submitter Sample Ids"
+                    },
+                    "primary_site": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Primary Site"
+                    },
+                    "treatment_type": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Treatment Type"
+                    },
+                    "age_at_diagnosis": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Age At Diagnosis"
+                    }
+                },
+                "required": [
+                    "program_id",
+                    "submitter_donor_id",
+                    "submitter_sample_ids"
+                ],
+                "title": "DonorExplorerSchema",
+                "type": "object"
             }
         },
         "securitySchemes": {
-            "LocalAuth": {
+            "LoginAuth": {
                 "type": "http",
                 "scheme": "bearer"
+            },
+            "ServiceTokenAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "X-Service-Token"
             }
         }
     },

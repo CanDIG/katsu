@@ -7,7 +7,8 @@
 # - local postgres database                                 #
 # - user1 set to authorize SYNTHETIC-1                      #
 # - user2 set to authorize SYNTHETIC-1, SYNTHETIC-2         #
-# - testing token is token_1 and token_2                    #
+# - testing user token is "user_1" and "user_2"             #
+# - testing query token is "query"                          #
 #############################################################
 
 import os
@@ -41,16 +42,17 @@ DATABASES = {
 # You can change username and datasets to suit your needs
 LOCAL_AUTHORIZED_DATASET = [
     {
-        "token": "token_1",
+        "token": "user_1",
         "is_admin": False,
         "datasets": ["SYNTHETIC-1"],
     },
     {
-        "token": "token_2",
+        "token": "user_2",
         "is_admin": True,
         "datasets": ["SYNTHETIC-1", "SYNTHETIC-2"],
     },
 ]
+QUERY_SERVICE_TOKEN = "query"
 
 LOGGING = {
     "version": 1,

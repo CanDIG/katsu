@@ -651,6 +651,86 @@ components:
       - Stable
       title: DiseaseStatusFollowupEnum
       type: string
+    DonorExplorerFilterSchema:
+      properties:
+        chemotherapy_drug_name:
+          items:
+            type: string
+          title: Chemotherapy Drug Name
+          type: array
+        exclude_cohorts:
+          items:
+            type: string
+          title: Exclude Cohorts
+          type: array
+        hormone_therapy_drug_name:
+          items:
+            type: string
+          title: Hormone Therapy Drug Name
+          type: array
+        immunotherapy_drug_name:
+          items:
+            type: string
+          title: Immunotherapy Drug Name
+          type: array
+        primary_site:
+          items:
+            type: string
+          q: primary_site__overlap
+          title: Primary Site
+          type: array
+        treatment_type:
+          items:
+            type: string
+          q: treatment_type__overlap
+          title: Treatment Type
+          type: array
+      title: DonorExplorerFilterSchema
+      type: object
+    DonorExplorerSchema:
+      properties:
+        age_at_diagnosis:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Age At Diagnosis
+        primary_site:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Primary Site
+        program_id:
+          maxLength: 64
+          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          title: Program Id
+          type: string
+        submitter_donor_id:
+          maxLength: 64
+          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          title: Submitter Donor Id
+          type: string
+        submitter_sample_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Submitter Sample Ids
+        treatment_type:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Treatment Type
+      required:
+      - program_id
+      - submitter_donor_id
+      - submitter_sample_ids
+      title: DonorExplorerSchema
+      type: object
     DonorFilterSchema:
       properties:
         cause_of_death:
@@ -5256,13 +5336,17 @@ components:
       title: uBooleanEnum
       type: string
   securitySchemes:
-    LocalAuth:
+    LoginAuth:
       scheme: bearer
       type: http
+    ServiceTokenAuth:
+      in: header
+      name: X-Service-Token
+      type: apiKey
 info:
-  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/4bba10e2f6740666179080bf49ccf7b98756fe58/chord_metadata_service/mohpackets/docs/schema.json
+  description: This is the RESTful API for the MoH Service.
   title: MoH Service API
-  version: 4.0.0
+  version: 4.1.0
 openapi: 3.1.0
 paths:
   /v2/authorized/biomarkers/:
@@ -5436,7 +5520,7 @@ paths:
                 $ref: '#/components/schemas/PagedBiomarkerModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Biomarkers
       tags:
       - authorized
@@ -5538,7 +5622,7 @@ paths:
                 $ref: '#/components/schemas/PagedChemotherapyModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Chemotherapies
       tags:
       - authorized
@@ -5632,7 +5716,7 @@ paths:
                 $ref: '#/components/schemas/PagedComorbidityModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Comorbidities
       tags:
       - authorized
@@ -5669,7 +5753,7 @@ paths:
                 type: object
           description: Not Found
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Get Donor With Clinical Data
       tags:
       - authorized
@@ -5773,7 +5857,7 @@ paths:
                 $ref: '#/components/schemas/PagedDonorModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Donors
       tags:
       - authorized
@@ -5844,7 +5928,7 @@ paths:
                 $ref: '#/components/schemas/PagedExposureModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Exposures
       tags:
       - authorized
@@ -5988,7 +6072,7 @@ paths:
                 $ref: '#/components/schemas/PagedFollowUpModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Follow Ups
       tags:
       - authorized
@@ -6090,7 +6174,7 @@ paths:
                 $ref: '#/components/schemas/PagedHormoneTherapyModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Hormone Therapies
       tags:
       - authorized
@@ -6200,7 +6284,7 @@ paths:
                 $ref: '#/components/schemas/PagedImmunotherapyModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Immunotherapies
       tags:
       - authorized
@@ -6342,7 +6426,7 @@ paths:
                 $ref: '#/components/schemas/PagedPrimaryDiagnosisModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Primary Diagnoses
       tags:
       - authorized
@@ -6369,7 +6453,7 @@ paths:
                 type: object
           description: Not Found
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Delete Program
       tags:
       - authorized
@@ -6407,7 +6491,7 @@ paths:
                 $ref: '#/components/schemas/PagedProgramModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Programs
       tags:
       - authorized
@@ -6517,7 +6601,7 @@ paths:
                 $ref: '#/components/schemas/PagedRadiationModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Radiations
       tags:
       - authorized
@@ -6611,7 +6695,7 @@ paths:
                 $ref: '#/components/schemas/PagedSampleRegistrationModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Sample Registrations
       tags:
       - authorized
@@ -6801,7 +6885,7 @@ paths:
                 $ref: '#/components/schemas/PagedSpecimenModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Specimens
       tags:
       - authorized
@@ -6970,7 +7054,7 @@ paths:
                 $ref: '#/components/schemas/PagedSurgeryModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Surgeries
       tags:
       - authorized
@@ -7113,7 +7197,7 @@ paths:
                 $ref: '#/components/schemas/PagedTreatmentModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Treatments
       tags:
       - authorized
@@ -7550,6 +7634,75 @@ paths:
       summary: Discover Treatments
       tags:
       - discovery
+  /v2/explorer/donors/:
+    get:
+      operationId: chord_metadata_service_mohpackets_apis_explorer_explorer_donor
+      parameters:
+      - in: query
+        name: treatment_type
+        required: false
+        schema:
+          items:
+            type: string
+          q: treatment_type__overlap
+          title: Treatment Type
+          type: array
+      - in: query
+        name: primary_site
+        required: false
+        schema:
+          items:
+            type: string
+          q: primary_site__overlap
+          title: Primary Site
+          type: array
+      - in: query
+        name: chemotherapy_drug_name
+        required: false
+        schema:
+          items:
+            type: string
+          title: Chemotherapy Drug Name
+          type: array
+      - in: query
+        name: immunotherapy_drug_name
+        required: false
+        schema:
+          items:
+            type: string
+          title: Immunotherapy Drug Name
+          type: array
+      - in: query
+        name: hormone_therapy_drug_name
+        required: false
+        schema:
+          items:
+            type: string
+          title: Hormone Therapy Drug Name
+          type: array
+      - in: query
+        name: exclude_cohorts
+        required: false
+        schema:
+          items:
+            type: string
+          title: Exclude Cohorts
+          type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DonorExplorerSchema'
+                title: Response
+                type: array
+          description: OK
+      security:
+      - ServiceTokenAuth: []
+      summary: Explorer Donor
+      tags:
+      - explorer
   /v2/ingest/biomarker/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_biomarker
@@ -7564,7 +7717,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Biomarker
       tags:
       - ingest
@@ -7582,7 +7735,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Chemotherapy
       tags:
       - ingest
@@ -7600,7 +7753,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Comorbidity
       tags:
       - ingest
@@ -7618,7 +7771,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Donor
       tags:
       - ingest
@@ -7636,7 +7789,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Exposure
       tags:
       - ingest
@@ -7654,7 +7807,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Follow Up
       tags:
       - ingest
@@ -7672,7 +7825,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Hormone Therapy
       tags:
       - ingest
@@ -7690,7 +7843,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Immunotherapy
       tags:
       - ingest
@@ -7708,7 +7861,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Primary Diagnosis
       tags:
       - ingest
@@ -7726,7 +7879,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Program
       tags:
       - ingest
@@ -7744,7 +7897,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Radiation
       tags:
       - ingest
@@ -7762,7 +7915,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Sample Registration
       tags:
       - ingest
@@ -7780,7 +7933,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Specimen
       tags:
       - ingest
@@ -7798,7 +7951,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Surgery
       tags:
       - ingest
@@ -7816,7 +7969,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Treatment
       tags:
       - ingest

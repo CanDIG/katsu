@@ -1,12 +1,10 @@
 from collections import Counter
-from typing import Any, Dict, List, Type
-
+from typing import Any, Dict, Type, List
 from django.db.models import (
     Count,
     Model,
 )
 from ninja import Query, Router
-
 from chord_metadata_service.mohpackets.models import (
     Biomarker,
     Chemotherapy,
@@ -32,7 +30,10 @@ from chord_metadata_service.mohpackets.schemas.discovery import (
     DiscoverySchema,
     ProgramDiscoverySchema,
 )
-from chord_metadata_service.mohpackets.schemas.filter import DonorFilterSchema
+from chord_metadata_service.mohpackets.schemas.filter import (
+    DonorFilterSchema,
+)
+
 
 """
 Module with overview APIs for the summary page and discovery APIs.
