@@ -27,8 +27,8 @@ from datetime import datetime
 import os
 import re
 
-def main():
 
+def main():
     mmd_file = f"{os.path.dirname(os.path.realpath(__file__))}/classes.mmd"
     with open(mmd_file, "r") as classes_file:
         class_diagram = classes_file.read()
