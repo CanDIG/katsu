@@ -25,7 +25,7 @@ Output:
 
 from datetime import datetime
 import os
-
+import re
 
 def main():
 
@@ -33,9 +33,12 @@ def main():
     with open(mmd_file, "r") as classes_file:
         class_diagram = classes_file.read()
         # Remove unwanted text and transform to erDiagram
-        er_diagram = class_diagram.replace("class ", "")
-        er_diagram = er_diagram.replace("  Meta {\n    ordering : list\n  }\n", "")
-        er_diagram = er_diagram.replace("  AutoDateTimeField {\n    pre_save(model_instance, add)\n  }\n", "")
+        er_diagram = re.sub(r'class Meta {\n\s+ordering : list\n\s+}\n\s+', '', class_diagram)
+        er_diagram = re.sub(r'class Meta {\n\s+ordering : list\n\s+unique_together : list\n\s+}\n\s+', '', er_diagram)
+        # er_diagram = er_diagram.replace("    ordering list\n  }\n", "")
+        # ordering list\n  }\n", "")
+        er_diagram = er_diagram.replace("class AutoDateTimeFi ordering list\n}\n", "")
+        er_diagram = er_diagram.replace("class AutoDateTimeField {\n    pre_save(model_instance, add)\n  }\n", "")
         er_diagram = er_diagram.replace(": ", "")
         er_diagram = er_diagram.replace("AutoDateTimeField --* Program updated", "")
         er_diagram = er_diagram.replace("updated", "updated AutoDateTimeField")
