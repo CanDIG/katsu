@@ -36,6 +36,7 @@ RUN mkdir -p /app/chord_metadata_service/logs /app/chord_metadata_service/static
     && chown -R candig:candig /app/chord_metadata_service
 
 RUN chmod +x /app/chord_metadata_service/entrypoint.sh
+RUN chmod +x /app/chord_metadata_service/create_db.sh
 
 USER candig
 
