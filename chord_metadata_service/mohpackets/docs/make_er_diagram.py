@@ -25,18 +25,20 @@ Output:
 
 from datetime import datetime
 import os
+import re
 
 
 def main():
-
     mmd_file = f"{os.path.dirname(os.path.realpath(__file__))}/classes.mmd"
     with open(mmd_file, "r") as classes_file:
         class_diagram = classes_file.read()
         # Remove unwanted text and transform to erDiagram
-        er_diagram = class_diagram.replace("class ", "")
-        er_diagram = er_diagram.replace("classDiagram", "erDiagram")
-        er_diagram = er_diagram.replace("  Meta {\n    ordering : list\n  }\n", "")
-        er_diagram = er_diagram.replace("  AutoDateTimeField {\n    pre_save(model_instance, add)\n  }\n", "")
+        er_diagram = re.sub(r'class Meta {\n\s+ordering : list\n\s+}\n\s+', '', class_diagram)
+        er_diagram = re.sub(r'class Meta {\n\s+ordering : list\n\s+unique_together : list\n\s+}\n\s+', '', er_diagram)
+        # er_diagram = er_diagram.replace("    ordering list\n  }\n", "")
+        # ordering list\n  }\n", "")
+        er_diagram = er_diagram.replace("class AutoDateTimeFi ordering list\n}\n", "")
+        er_diagram = er_diagram.replace("class AutoDateTimeField {\n    pre_save(model_instance, add)\n  }\n", "")
         er_diagram = er_diagram.replace(": ", "")
         er_diagram = er_diagram.replace("AutoDateTimeField --* Program updated", "")
         er_diagram = er_diagram.replace("updated", "updated AutoDateTimeField")
@@ -52,43 +54,43 @@ def main():
         er_file.write("```mermaid\n")
         er_file.write(er_diagram)
         # Define linking relationships
-        er_file.write('Program ||--o{ Donor : ""\n'
-                      'Program ||--o{ PrimaryDiagnosis : ""\n'
-                      'Program ||--o{ Comorbidity : ""\n'
-                      'Program ||--o{ Biomarker : ""\n'
-                      'Program ||--o{ Exposure : ""\n'
-                      'Program ||--o{ FollowUp : ""\n'
-                      'Program ||--o{ Specimen : ""\n'
-                      'Program ||--o{ Treatment : ""\n'
-                      'Program ||--o{ SampleRegistration : ""\n'
-                      'Program ||--o{ Chemotherapy : ""\n'
-                      'Program ||--o{ HormoneTherapy : ""\n'
-                      'Program ||--o{ Immunotherapy : ""\n'
-                      'Program ||--o{ Radiation : ""\n'
-                      'Program ||--o{ Surgery : ""\n'
-                      'Donor ||--o{ PrimaryDiagnosis : ""\n'
-                      'Donor ||--o{ Comorbidity : ""\n'
-                      'Donor ||--o{ Biomarker : "" \n'
-                      'Donor ||--o{ Exposure : "" \n'
-                      'Donor ||--o{ FollowUp : "" \n'
-                      'Donor ||--o{ Specimen : "" \n'
-                      'Donor ||--o{ Treatment : "" \n'
-                      'Donor ||--o{ SampleRegistration : "" \n'
-                      'Donor ||--o{ Chemotherapy : "" \n'
-                      'Donor ||--o{ HormoneTherapy : "" \n'
-                      'Donor ||--o{ Immunotherapy : "" \n'
-                      'Donor ||--o{ Radiation : "" \n'
-                      'Donor ||--o{ Surgery : "" \n'
-                      'PrimaryDiagnosis ||--o{ Specimen : "" \n'
-                      'PrimaryDiagnosis ||--o{ Treatment : "" \n'
-                      'PrimaryDiagnosis ||--o{ FollowUp : "" \n'
-                      'Specimen ||--o{ SampleRegistration : "" \n'
-                      'Treatment ||--o{ Chemotherapy : "" \n'
-                      'Treatment ||--o{ HormoneTherapy : "" \n'
-                      'Treatment ||--o{ Immunotherapy : "" \n'
-                      'Treatment ||--o{ Radiation : "" \n'
-                      'Treatment ||--o{ Surgery : "" \n'
-                      'Treatment ||--o{ FollowUp : "" \n'
+        er_file.write('Program -- Donor : ""\n'
+                      'Program -- PrimaryDiagnosis : ""\n'
+                      'Program -- Comorbidity : ""\n'
+                      'Program -- Biomarker : ""\n'
+                      'Program -- Exposure : ""\n'
+                      'Program -- FollowUp : ""\n'
+                      'Program -- Specimen : ""\n'
+                      'Program -- Treatment : ""\n'
+                      'Program -- SampleRegistration : ""\n'
+                      'Program -- Chemotherapy : ""\n'
+                      'Program -- HormoneTherapy : ""\n'
+                      'Program -- Immunotherapy : ""\n'
+                      'Program -- Radiation : ""\n'
+                      'Program -- Surgery : ""\n'
+                      'Donor -- PrimaryDiagnosis : ""\n'
+                      'Donor -- Comorbidity : ""\n'
+                      'Donor -- Biomarker\n'
+                      'Donor -- Exposure\n'
+                      'Donor -- FollowUp\n'
+                      'Donor -- Specimen\n'
+                      'Donor -- Treatment\n'
+                      'Donor -- SampleRegistration\n'
+                      'Donor -- Chemotherapy\n'
+                      'Donor -- HormoneTherapy\n'
+                      'Donor -- Immunotherapy\n'
+                      'Donor -- Radiation\n'
+                      'Donor -- Surgery\n'
+                      'PrimaryDiagnosis -- Specimen\n'
+                      'PrimaryDiagnosis -- Treatment\n'
+                      'PrimaryDiagnosis -- FollowUp\n'
+                      'Specimen -- SampleRegistration\n'
+                      'Treatment -- Chemotherapy\n'
+                      'Treatment -- HormoneTherapy\n'
+                      'Treatment -- Immunotherapy\n'
+                      'Treatment -- Radiation\n'
+                      'Treatment -- Surgery\n'
+                      'Treatment -- FollowUp\n'
                       '\n```\n')
 
 
