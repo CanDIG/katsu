@@ -26,10 +26,7 @@ class DonorFilterSchema(FilterSchema):
     is_deceased: Optional[bool] = Field(None)
     lost_to_followup_after_clinical_event_identifier: Optional[str] = Field(None)
     lost_to_followup_reason: Optional[str] = Field(None)
-    date_alive_after_lost_to_followup: Optional[str] = Field(None)
     cause_of_death: Optional[str] = Field(None)
-    date_of_birth: Optional[str] = Field(None)
-    date_of_death: Optional[str] = Field(None)
     primary_site: List[str] = Field(None, q="primary_site__overlap")
 
 
@@ -37,7 +34,6 @@ class PrimaryDiagnosisFilterSchema(FilterSchema):
     submitter_primary_diagnosis_id: Optional[str] = Field(None)
     program_id: Optional[str] = Field(None)
     submitter_donor_id: Optional[str] = Field(None)
-    date_of_diagnosis: Optional[str] = Field(None)
     cancer_type_code: Optional[str] = Field(None)
     basis_of_diagnosis: Optional[str] = Field(None)
     laterality: Optional[str] = Field(None)
@@ -61,7 +57,6 @@ class SpecimenFilterSchema(FilterSchema):
     pathological_n_category: Optional[str] = Field(None)
     pathological_m_category: Optional[str] = Field(None)
     pathological_stage_group: Optional[str] = Field(None)
-    specimen_collection_date: Optional[str] = Field(None)
     specimen_storage: Optional[str] = Field(None)
     specimen_processing: Optional[str] = Field(None)
     tumour_histological_type: Optional[str] = Field(None)
@@ -94,8 +89,6 @@ class TreatmentFilterSchema(FilterSchema):
     treatment_type: List[str] = Field(None, q="treatment_type__overlap")
     is_primary_treatment: Optional[str] = Field(None)
     line_of_treatment: Optional[int] = Field(None)
-    treatment_start_date: Optional[str] = Field(None)
-    treatment_end_date: Optional[str] = Field(None)
     treatment_setting: Optional[str] = Field(None)
     treatment_intent: Optional[str] = Field(None)
     days_per_cycle: Optional[int] = Field(None)
@@ -185,10 +178,8 @@ class FollowUpFilterSchema(FilterSchema):
     submitter_donor_id: Optional[str] = Field(None)
     submitter_primary_diagnosis_id: Optional[str] = Field(None)
     submitter_treatment_id: Optional[str] = Field(None)
-    date_of_followup: Optional[str] = Field(None)
     disease_status_at_followup: Optional[str] = Field(None)
     relapse_type: Optional[str] = Field(None)
-    date_of_relapse: Optional[str] = Field(None)
     method_of_progression_status: List[str] = Field(
         None, q="method_of_progression_status__overlap"
     )
@@ -209,7 +200,6 @@ class BiomarkerFilterSchema(FilterSchema):
     submitter_primary_diagnosis_id: Optional[str] = Field(None)
     submitter_treatment_id: Optional[str] = Field(None)
     submitter_follow_up_id: Optional[str] = Field(None)
-    test_date: Optional[str] = Field(None)
     psa_level: Optional[int] = Field(None)
     ca125: Optional[int] = Field(None)
     cea: Optional[int] = Field(None)
@@ -246,3 +236,12 @@ class ExposureFilterSchema(FilterSchema):
 class DonorWithClinicalDataFilterSchema(FilterSchema):
     submitter_donor_id: str
     program_id: str
+
+
+class DonorExplorerFilterSchema(FilterSchema):
+    treatment_type: List[str] = Field(None, q="treatment_type__overlap")
+    primary_site: List[str] = Field(None, q="primary_site__overlap")
+    chemotherapy_drug_name: List[str] = Field(None)
+    immunotherapy_drug_name: List[str] = Field(None)
+    hormone_therapy_drug_name: List[str] = Field(None)
+    exclude_cohorts: List[str] = Field(None)

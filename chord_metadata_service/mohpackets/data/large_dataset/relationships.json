@@ -1,5 +1,15 @@
 {
-  "programs": [],
+  "programs": [
+    {
+      "range": [1, 10],
+      "targets": [
+        {
+          "range": [1, 10],
+          "field_name": "program_id"
+        }
+      ]
+    }
+  ],
   "donors": [
     {
       "range": [1, 500],

@@ -1,6 +1,6 @@
-from typing import Dict, List
-
+from typing import Dict
 from ninja import Schema
+
 
 """
 Module with schema used for discovery response
@@ -10,7 +10,8 @@ Author: Son Chau
 
 
 class ProgramDiscoverySchema(Schema):
-    cohort_list: List[str]
+    program_id: str
+    metadata: object
 
 
 class DiscoverySchema(Schema):

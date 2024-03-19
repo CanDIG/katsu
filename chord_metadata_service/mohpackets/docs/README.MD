@@ -27,7 +27,7 @@ To regenerate the `er_diagram.md` file, run the following from the commandline i
 To update the model classes:
 ```bash
 pip install pylint
-pyreverse -o mmd ./models.py
+pyreverse -o mmd ../models.py
 ```
 
 To update the markdown file

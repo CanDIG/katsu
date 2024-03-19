@@ -105,11 +105,6 @@ components:
           - type: string
           - type: 'null'
           title: Submitter Treatment Id
-        test_date:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Test Date
       title: BiomarkerFilterSchema
       type: object
     BiomarkerIngestSchema:
@@ -202,10 +197,8 @@ components:
           title: Submitter Treatment Id
         test_date:
           anyOf:
-          - maxLength: 32
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Test Date
         uuid:
           anyOf:
           - type: string
@@ -306,10 +299,8 @@ components:
           title: Submitter Treatment Id
         test_date:
           anyOf:
-          - maxLength: 32
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Test Date
       required:
       - program_id
       - submitter_donor_id
@@ -621,6 +612,22 @@ components:
       - Unknown
       title: ConfirmedDiagnosisTumourEnum
       type: string
+    DateInterval:
+      properties:
+        day_interval:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          description: number of days since first diagnosis
+          title: Day Interval
+        month_interval:
+          description: number of months since first diagnosis
+          title: Month Interval
+          type: integer
+      required:
+      - month_interval
+      title: DateInterval
+      type: object
     DiscoverySchema:
       properties:
         donors_by_cohort:
@@ -644,6 +651,86 @@ components:
       - Stable
       title: DiseaseStatusFollowupEnum
       type: string
+    DonorExplorerFilterSchema:
+      properties:
+        chemotherapy_drug_name:
+          items:
+            type: string
+          title: Chemotherapy Drug Name
+          type: array
+        exclude_cohorts:
+          items:
+            type: string
+          title: Exclude Cohorts
+          type: array
+        hormone_therapy_drug_name:
+          items:
+            type: string
+          title: Hormone Therapy Drug Name
+          type: array
+        immunotherapy_drug_name:
+          items:
+            type: string
+          title: Immunotherapy Drug Name
+          type: array
+        primary_site:
+          items:
+            type: string
+          q: primary_site__overlap
+          title: Primary Site
+          type: array
+        treatment_type:
+          items:
+            type: string
+          q: treatment_type__overlap
+          title: Treatment Type
+          type: array
+      title: DonorExplorerFilterSchema
+      type: object
+    DonorExplorerSchema:
+      properties:
+        age_at_diagnosis:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Age At Diagnosis
+        primary_site:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Primary Site
+        program_id:
+          maxLength: 64
+          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          title: Program Id
+          type: string
+        submitter_donor_id:
+          maxLength: 64
+          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          title: Submitter Donor Id
+          type: string
+        submitter_sample_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Submitter Sample Ids
+        treatment_type:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Treatment Type
+      required:
+      - program_id
+      - submitter_donor_id
+      - submitter_sample_ids
+      title: DonorExplorerSchema
+      type: object
     DonorFilterSchema:
       properties:
         cause_of_death:
@@ -651,21 +738,6 @@ components:
           - type: string
           - type: 'null'
           title: Cause Of Death
-        date_alive_after_lost_to_followup:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Alive After Lost To Followup
-        date_of_birth:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Birth
-        date_of_death:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Death
         gender:
           anyOf:
           - type: string
@@ -718,25 +790,22 @@ components:
           - type: 'null'
         date_alive_after_lost_to_followup:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Alive After Lost To Followup
         date_of_birth:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Birth
         date_of_death:
           anyOf:
+          - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_resolution:
+          anyOf:
           - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
             type: string
           - type: 'null'
-          title: Date Of Death
+          title: Date Resolution
         gender:
           anyOf:
           - $ref: '#/components/schemas/GenderEnum'
@@ -793,25 +862,22 @@ components:
           - type: 'null'
         date_alive_after_lost_to_followup:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Alive After Lost To Followup
         date_of_birth:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Birth
         date_of_death:
           anyOf:
+          - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_resolution:
+          anyOf:
           - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
             type: string
           - type: 'null'
-          title: Date Of Death
+          title: Date Resolution
         gender:
           anyOf:
           - $ref: '#/components/schemas/GenderEnum'
@@ -873,25 +939,22 @@ components:
           type: array
         date_alive_after_lost_to_followup:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Alive After Lost To Followup
         date_of_birth:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Birth
         date_of_death:
           anyOf:
+          - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_resolution:
+          anyOf:
           - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
             type: string
           - type: 'null'
-          title: Date Of Death
+          title: Date Resolution
         exposures:
           items:
             $ref: '#/components/schemas/NestedExposureSchema'
@@ -1078,16 +1141,6 @@ components:
           q: anatomic_site_progression_or_recurrence__overlap
           title: Anatomic Site Progression Or Recurrence
           type: array
-        date_of_followup:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Followup
-        date_of_relapse:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Relapse
         disease_status_at_followup:
           anyOf:
           - type: string
@@ -1167,18 +1220,12 @@ components:
           title: Anatomic Site Progression Or Recurrence
         date_of_followup:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Followup
         date_of_relapse:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Relapse
         disease_status_at_followup:
           anyOf:
           - $ref: '#/components/schemas/DiseaseStatusFollowupEnum'
@@ -1257,18 +1304,12 @@ components:
           title: Anatomic Site Progression Or Recurrence
         date_of_followup:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Followup
         date_of_relapse:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Relapse
         disease_status_at_followup:
           anyOf:
           - $ref: '#/components/schemas/DiseaseStatusFollowupEnum'
@@ -1889,10 +1930,8 @@ components:
           title: Submitter Treatment Id
         test_date:
           anyOf:
-          - maxLength: 32
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Test Date
       title: NestedBiomarkerSchema
       type: object
     NestedChemotherapySchema:
@@ -1994,18 +2033,12 @@ components:
           title: Anatomic Site Progression Or Recurrence
         date_of_followup:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Followup
         date_of_relapse:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Relapse
         disease_status_at_followup:
           anyOf:
           - $ref: '#/components/schemas/DiseaseStatusFollowupEnum'
@@ -2156,11 +2189,8 @@ components:
           - type: 'null'
         date_of_diagnosis:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Diagnosis
         followups:
           items:
             $ref: '#/components/schemas/NestedFollowUpSchema'
@@ -2318,9 +2348,7 @@ components:
           title: Specimen Anatomic Location
         specimen_collection_date:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - type: object
           - type: 'null'
           title: Specimen Collection Date
         specimen_laterality:
@@ -2506,11 +2534,8 @@ components:
           type: array
         treatment_end_date:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Treatment End Date
         treatment_intent:
           anyOf:
           - $ref: '#/components/schemas/TreatmentIntentEnum'
@@ -2521,11 +2546,8 @@ components:
           - type: 'null'
         treatment_start_date:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Treatment Start Date
         treatment_type:
           anyOf:
           - items:
@@ -3025,11 +3047,6 @@ components:
           - type: string
           - type: 'null'
           title: Clinical Tumour Staging System
-        date_of_diagnosis:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Diagnosis
         laterality:
           anyOf:
           - type: string
@@ -3101,11 +3118,8 @@ components:
           - type: 'null'
         date_of_diagnosis:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Diagnosis
         laterality:
           anyOf:
           - $ref: '#/components/schemas/PrimaryDiagnosisLateralityEnum'
@@ -3190,11 +3204,8 @@ components:
           - type: 'null'
         date_of_diagnosis:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Date Of Diagnosis
         laterality:
           anyOf:
           - $ref: '#/components/schemas/PrimaryDiagnosisLateralityEnum'
@@ -3305,13 +3316,14 @@ components:
       type: string
     ProgramDiscoverySchema:
       properties:
-        cohort_list:
-          items:
-            type: string
-          title: Cohort List
-          type: array
+        metadata:
+          title: Metadata
+        program_id:
+          title: Program Id
+          type: string
       required:
-      - cohort_list
+      - program_id
+      - metadata
       title: ProgramDiscoverySchema
       type: object
     ProgramFilterSchema:
@@ -4040,11 +4052,6 @@ components:
           - type: string
           - type: 'null'
           title: Specimen Anatomic Location
-        specimen_collection_date:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Specimen Collection Date
         specimen_laterality:
           anyOf:
           - type: string
@@ -4142,9 +4149,7 @@ components:
           title: Specimen Anatomic Location
         specimen_collection_date:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - type: object
           - type: 'null'
           title: Specimen Collection Date
         specimen_laterality:
@@ -4255,9 +4260,7 @@ components:
           title: Specimen Anatomic Location
         specimen_collection_date:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - type: object
           - type: 'null'
           title: Specimen Collection Date
         specimen_laterality:
@@ -4969,11 +4972,6 @@ components:
           - type: string
           - type: 'null'
           title: Submitter Treatment Id
-        treatment_end_date:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Treatment End Date
         treatment_intent:
           anyOf:
           - type: string
@@ -4984,11 +4982,6 @@ components:
           - type: string
           - type: 'null'
           title: Treatment Setting
-        treatment_start_date:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Treatment Start Date
         treatment_type:
           items:
             type: string
@@ -5046,11 +5039,8 @@ components:
           type: string
         treatment_end_date:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Treatment End Date
         treatment_intent:
           anyOf:
           - $ref: '#/components/schemas/TreatmentIntentEnum'
@@ -5061,11 +5051,8 @@ components:
           - type: 'null'
         treatment_start_date:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Treatment Start Date
         treatment_type:
           anyOf:
           - items:
@@ -5146,11 +5133,8 @@ components:
           type: string
         treatment_end_date:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Treatment End Date
         treatment_intent:
           anyOf:
           - $ref: '#/components/schemas/TreatmentIntentEnum'
@@ -5161,11 +5145,8 @@ components:
           - type: 'null'
         treatment_start_date:
           anyOf:
-          - maxLength: 32
-            pattern: ^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?
-            type: string
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Treatment Start Date
         treatment_type:
           anyOf:
           - items:
@@ -5355,13 +5336,17 @@ components:
       title: uBooleanEnum
       type: string
   securitySchemes:
-    LocalAuth:
+    LoginAuth:
       scheme: bearer
       type: http
+    ServiceTokenAuth:
+      in: header
+      name: X-Service-Token
+      type: apiKey
 info:
-  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/8116c4bd44a23eba8aac1eb61dd1c3c33caf92bc/chord_metadata_service/mohpackets/docs/schema.json
+  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/e817df8fed83826d957d99e51b61753e3bac302a/chord_metadata_service/mohpackets/docs/schema.json
   title: MoH Service API
-  version: 3.0.0
+  version: 4.1.1
 openapi: 3.1.0
 paths:
   /v2/authorized/biomarkers/:
@@ -5416,14 +5401,6 @@ paths:
           - type: string
           - type: 'null'
           title: Submitter Follow Up Id
-      - in: query
-        name: test_date
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Test Date
       - in: query
         name: psa_level
         required: false
@@ -5543,7 +5520,7 @@ paths:
                 $ref: '#/components/schemas/PagedBiomarkerModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Biomarkers
       tags:
       - authorized
@@ -5645,7 +5622,7 @@ paths:
                 $ref: '#/components/schemas/PagedChemotherapyModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Chemotherapies
       tags:
       - authorized
@@ -5739,7 +5716,7 @@ paths:
                 $ref: '#/components/schemas/PagedComorbidityModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Comorbidities
       tags:
       - authorized
@@ -5776,7 +5753,7 @@ paths:
                 type: object
           description: Not Found
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Get Donor With Clinical Data
       tags:
       - authorized
@@ -5842,14 +5819,6 @@ paths:
           - type: 'null'
           title: Lost To Followup Reason
       - in: query
-        name: date_alive_after_lost_to_followup
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Alive After Lost To Followup
-      - in: query
         name: cause_of_death
         required: false
         schema:
@@ -5857,22 +5826,6 @@ paths:
           - type: string
           - type: 'null'
           title: Cause Of Death
-      - in: query
-        name: date_of_birth
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Birth
-      - in: query
-        name: date_of_death
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Death
       - in: query
         name: primary_site
         required: false
@@ -5904,7 +5857,7 @@ paths:
                 $ref: '#/components/schemas/PagedDonorModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Donors
       tags:
       - authorized
@@ -5975,7 +5928,7 @@ paths:
                 $ref: '#/components/schemas/PagedExposureModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Exposures
       tags:
       - authorized
@@ -6024,14 +5977,6 @@ paths:
           - type: 'null'
           title: Submitter Treatment Id
       - in: query
-        name: date_of_followup
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Followup
-      - in: query
         name: disease_status_at_followup
         required: false
         schema:
@@ -6047,14 +5992,6 @@ paths:
           - type: string
           - type: 'null'
           title: Relapse Type
-      - in: query
-        name: date_of_relapse
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Relapse
       - in: query
         name: method_of_progression_status
         required: false
@@ -6135,7 +6072,7 @@ paths:
                 $ref: '#/components/schemas/PagedFollowUpModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Follow Ups
       tags:
       - authorized
@@ -6237,7 +6174,7 @@ paths:
                 $ref: '#/components/schemas/PagedHormoneTherapyModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Hormone Therapies
       tags:
       - authorized
@@ -6347,7 +6284,7 @@ paths:
                 $ref: '#/components/schemas/PagedImmunotherapyModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Immunotherapies
       tags:
       - authorized
@@ -6379,14 +6316,6 @@ paths:
           - type: string
           - type: 'null'
           title: Submitter Donor Id
-      - in: query
-        name: date_of_diagnosis
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Diagnosis
       - in: query
         name: cancer_type_code
         required: false
@@ -6497,7 +6426,7 @@ paths:
                 $ref: '#/components/schemas/PagedPrimaryDiagnosisModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Primary Diagnoses
       tags:
       - authorized
@@ -6524,7 +6453,7 @@ paths:
                 type: object
           description: Not Found
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Delete Program
       tags:
       - authorized
@@ -6562,7 +6491,7 @@ paths:
                 $ref: '#/components/schemas/PagedProgramModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Programs
       tags:
       - authorized
@@ -6672,7 +6601,7 @@ paths:
                 $ref: '#/components/schemas/PagedRadiationModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Radiations
       tags:
       - authorized
@@ -6766,7 +6695,7 @@ paths:
                 $ref: '#/components/schemas/PagedSampleRegistrationModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Sample Registrations
       tags:
       - authorized
@@ -6846,14 +6775,6 @@ paths:
           - type: string
           - type: 'null'
           title: Pathological Stage Group
-      - in: query
-        name: specimen_collection_date
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Specimen Collection Date
       - in: query
         name: specimen_storage
         required: false
@@ -6964,7 +6885,7 @@ paths:
                 $ref: '#/components/schemas/PagedSpecimenModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Specimens
       tags:
       - authorized
@@ -7133,7 +7054,7 @@ paths:
                 $ref: '#/components/schemas/PagedSurgeryModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Surgeries
       tags:
       - authorized
@@ -7198,22 +7119,6 @@ paths:
           - type: integer
           - type: 'null'
           title: Line Of Treatment
-      - in: query
-        name: treatment_start_date
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Treatment Start Date
-      - in: query
-        name: treatment_end_date
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Treatment End Date
       - in: query
         name: treatment_setting
         required: false
@@ -7292,7 +7197,7 @@ paths:
                 $ref: '#/components/schemas/PagedTreatmentModelSchema'
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: List Treatments
       tags:
       - authorized
@@ -7400,14 +7305,6 @@ paths:
           - type: 'null'
           title: Lost To Followup Reason
       - in: query
-        name: date_alive_after_lost_to_followup
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Alive After Lost To Followup
-      - in: query
         name: cause_of_death
         required: false
         schema:
@@ -7415,22 +7312,6 @@ paths:
           - type: string
           - type: 'null'
           title: Cause Of Death
-      - in: query
-        name: date_of_birth
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Birth
-      - in: query
-        name: date_of_death
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Date Of Death
       - in: query
         name: primary_site
         required: false
@@ -7544,9 +7425,8 @@ paths:
       - overview
   /v2/discovery/overview/diagnosis_age_count/:
     get:
-      description: 'Return the count for age of diagnosis in the database.
-
-        If there are multiple date_of_diagnosis, get the earliest'
+      description: Return the count for age of diagnosis by calculating the date of
+        birth interval.
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_diagnosis_age_count
       parameters: []
       responses:
@@ -7657,7 +7537,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProgramDiscoverySchema'
+                items:
+                  $ref: '#/components/schemas/ProgramDiscoverySchema'
+                title: Response
+                type: array
           description: OK
       summary: Discover Programs
       tags:
@@ -7751,6 +7634,75 @@ paths:
       summary: Discover Treatments
       tags:
       - discovery
+  /v2/explorer/donors/:
+    get:
+      operationId: chord_metadata_service_mohpackets_apis_explorer_explorer_donor
+      parameters:
+      - in: query
+        name: treatment_type
+        required: false
+        schema:
+          items:
+            type: string
+          q: treatment_type__overlap
+          title: Treatment Type
+          type: array
+      - in: query
+        name: primary_site
+        required: false
+        schema:
+          items:
+            type: string
+          q: primary_site__overlap
+          title: Primary Site
+          type: array
+      - in: query
+        name: chemotherapy_drug_name
+        required: false
+        schema:
+          items:
+            type: string
+          title: Chemotherapy Drug Name
+          type: array
+      - in: query
+        name: immunotherapy_drug_name
+        required: false
+        schema:
+          items:
+            type: string
+          title: Immunotherapy Drug Name
+          type: array
+      - in: query
+        name: hormone_therapy_drug_name
+        required: false
+        schema:
+          items:
+            type: string
+          title: Hormone Therapy Drug Name
+          type: array
+      - in: query
+        name: exclude_cohorts
+        required: false
+        schema:
+          items:
+            type: string
+          title: Exclude Cohorts
+          type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DonorExplorerSchema'
+                title: Response
+                type: array
+          description: OK
+      security:
+      - ServiceTokenAuth: []
+      summary: Explorer Donor
+      tags:
+      - explorer
   /v2/ingest/biomarker/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_biomarker
@@ -7765,7 +7717,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Biomarker
       tags:
       - ingest
@@ -7783,7 +7735,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Chemotherapy
       tags:
       - ingest
@@ -7801,7 +7753,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Comorbidity
       tags:
       - ingest
@@ -7819,7 +7771,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Donor
       tags:
       - ingest
@@ -7837,7 +7789,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Exposure
       tags:
       - ingest
@@ -7855,7 +7807,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Follow Up
       tags:
       - ingest
@@ -7873,7 +7825,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Hormone Therapy
       tags:
       - ingest
@@ -7891,7 +7843,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Immunotherapy
       tags:
       - ingest
@@ -7909,7 +7861,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Primary Diagnosis
       tags:
       - ingest
@@ -7927,7 +7879,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Program
       tags:
       - ingest
@@ -7945,7 +7897,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Radiation
       tags:
       - ingest
@@ -7963,7 +7915,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Sample Registration
       tags:
       - ingest
@@ -7981,7 +7933,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Specimen
       tags:
       - ingest
@@ -7999,7 +7951,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Surgery
       tags:
       - ingest
@@ -8017,7 +7969,7 @@ paths:
         '200':
           description: OK
       security:
-      - LocalAuth: []
+      - LoginAuth: []
       summary: Create Treatment
       tags:
       - ingest

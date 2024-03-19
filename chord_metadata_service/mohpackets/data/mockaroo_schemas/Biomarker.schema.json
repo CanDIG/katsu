@@ -42,10 +42,22 @@
       "formula": ""
     },
     {
-      "name": "test_date",
+      "name": "test_date.month_interval",
       "null_percentage": 10,
-      "type": "Street Number",
+      "type": "Number",
+      "min": 0,
+      "max": 50,
+      "decimals": 0,
       "formula": null
+    },
+    {
+      "name": "test_date.day_interval",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 0,
+      "max": 0,
+      "decimals": 0,
+      "formula": "if !field('test_date.month_interval').nil?\nthen field('test_date.month_interval') * 30\nelse nil end"
     },
     {
       "name": "psa_level",

@@ -7,9 +7,11 @@
 # - local postgres database                                 #
 # - user1 set to authorize SYNTHETIC-1                      #
 # - user2 set to authorize SYNTHETIC-1, SYNTHETIC-2         #
-# - testing token is user1 and user2                        #
+# - testing user token is "user_1" and "user_2"             #
+# - testing query token is "query"                          #
 #############################################################
 
+import os
 import socket
 from .base import *
 
@@ -40,16 +42,17 @@ DATABASES = {
 # You can change username and datasets to suit your needs
 LOCAL_AUTHORIZED_DATASET = [
     {
-        "token": "token_1",
+        "token": "user_1",
         "is_admin": False,
         "datasets": ["SYNTHETIC-1"],
     },
     {
-        "token": "token_2",
+        "token": "user_2",
         "is_admin": True,
         "datasets": ["SYNTHETIC-1", "SYNTHETIC-2"],
     },
 ]
+QUERY_SERVICE_TOKEN = "query"
 
 LOGGING = {
     "version": 1,
@@ -76,11 +79,8 @@ LOGGING = {
 
 # Debug toolbar settings
 # ----------------------
-if DEBUG:
-    import socket
-
-    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-    INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
-        "127.0.0.1",
-        "10.0.2.2",
-    ]
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
+    "127.0.0.1",
+    "10.0.2.2",
+]
