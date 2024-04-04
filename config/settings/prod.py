@@ -24,10 +24,9 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # ---------------
 KATSU_AUTHORIZATION = os.getenv("KATSU_AUTHORIZATION")
 CANDIG_OPA_URL = os.getenv("OPA_URL")
-CANDIG_OPA_SITE_ADMIN_KEY = os.getenv("OPA_SITE_ADMIN_KEY")
 CONN_MAX_AGE = int(os.getenv("CONN_MAX_AGE", 0))
-if exists("/run/secrets/opa-root-token"):
-    with open("/run/secrets/opa-root-token", "r") as f:
+if exists("/run/secrets/opa-service-token"):
+    with open("/run/secrets/opa-service-token", "r") as f:
         CANDIG_OPA_SECRET = f.read()
 if exists("/run/secrets/katsu_secret"):
     with open("/run/secrets/katsu_secret", "r") as f:
