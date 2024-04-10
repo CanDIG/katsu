@@ -23,7 +23,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # CANDIG SETTINGS
 # ---------------
 KATSU_AUTHORIZATION = os.getenv("KATSU_AUTHORIZATION")
-CANDIG_OPA_URL = os.getenv("OPA_URL")
 CONN_MAX_AGE = int(os.getenv("CONN_MAX_AGE", 0))
 if exists("/run/secrets/opa-root-token"):
     with open("/run/secrets/opa-root-token", "r") as f:
