@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List
 from ninja import Schema
 
 
@@ -16,3 +16,6 @@ class ProgramDiscoverySchema(Schema):
 
 class DiscoverySchema(Schema):
     donors_by_cohort: Dict[str, int]
+
+class QuerySampleRegistrationSchema(Schema):
+    samples_ids: List[str]

@@ -4157,6 +4157,28 @@
                 ]
             }
         },
+        "/v2/discovery/sample_registrations_query/": {
+            "get": {
+                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_sample_registrations_query",
+                "summary": "Discover Sample Registrations",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/QuerySampleRegistrationSchema"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "discovery"
+                ]
+            }
+        },
         "/v2/discovery/primary_diagnoses/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_primary_diagnoses",

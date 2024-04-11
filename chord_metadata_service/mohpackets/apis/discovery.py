@@ -29,10 +29,12 @@ from chord_metadata_service.mohpackets.permissible_values import (
 from chord_metadata_service.mohpackets.schemas.discovery import (
     DiscoverySchema,
     ProgramDiscoverySchema,
+    QuerySampleRegistrationSchema
 )
 from chord_metadata_service.mohpackets.schemas.filter import (
     DonorFilterSchema,
 )
+import authx.auth
 
 
 """
@@ -85,6 +87,13 @@ def count_donors(model: Type[Model], filters=None) -> Dict[str, int]:
     return {f"{item['program_id']}": item["donor_count"] for item in item_counts}
 
 
+# Query gets a bit more information from certain endpoints
+def request_is_from_query(request):
+    if "X-Service-Token" in request.headers:
+        return authx.auth.verify_service_token(service="query", token=request.headers["X-Service-Token"])
+    return False
+
+
 ###############################################
 #                                             #
 #               DISCOVERY API                 #
@@ -112,6 +121,13 @@ def discover_sample_registrations(request):
     sample_registrations = count_donors(SampleRegistration)
     return DiscoverySchema(donors_by_cohort=sample_registrations)
 
+@discovery_router.get("/sample_registrations_query/", response=QuerySampleRegistrationSchema)
+def discover_sample_registrations_query(request):
+    if request_is_from_query(request):
+        # Append the actual sample registrations for Query
+        registration_query = SampleRegistration.objects.all().values("submitter_sample_id")
+        print([item['submitter_sample_id'] for item in registration_query])
+        return QuerySampleRegistrationSchema(sample_ids = [item['submitter_sample_id'] for item in registration_query])
 
 @discovery_router.get("/primary_diagnoses/", response=DiscoverySchema)
 def discover_primary_diagnoses(request):
