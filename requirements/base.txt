@@ -1,6 +1,6 @@
-candigv2-authx@git+https://github.com/CanDIG/candigv2-authx.git@v2.1.0 # CANDIG authorization wrapper
-Django==5.0.1 # Python web framework
-psycopg[binary]==3.1.16 # PostgreSQL driver for Python
+candigv2-authx@git+https://github.com/CanDIG/candigv2-authx.git@v2.2.2 # CANDIG authorization wrapper
+Django==5.0.4 # Python web framework
+psycopg[binary]==3.1.18 # PostgreSQL driver for Python
 django-cors-headers==4.3.1 # handling the server headers required for CORS
 django-ninja==1.1.0 # API & schema
-orjson==3.9.10 # JSON library
+orjson==3.10.0 # JSON library

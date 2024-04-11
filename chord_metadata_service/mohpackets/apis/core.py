@@ -3,14 +3,13 @@ import os
 import sys
 
 import orjson
-from authx.auth import get_opa_datasets, is_site_admin
+from authx.auth import get_opa_datasets, verify_service_token, is_site_admin
 from django.conf import settings
 from django.http import JsonResponse
 from ninja import NinjaAPI, Swagger
 from ninja.parser import Parser
 from ninja.renderers import BaseRenderer
-from ninja.security import HttpBearer
-from ninja.security import APIKeyHeader
+from ninja.security import APIKeyHeader, HttpBearer
 
 from chord_metadata_service.mohpackets.apis.clinical_data import (
     router as authorzied_router,
@@ -18,13 +17,11 @@ from chord_metadata_service.mohpackets.apis.clinical_data import (
 from chord_metadata_service.mohpackets.apis.discovery import (
     discovery_router as discovery_router,
 )
-
-from chord_metadata_service.mohpackets.apis.ingestion import router as ingest_router
 from chord_metadata_service.mohpackets.apis.explorer import (
     explorer_router as explorer_router,
 )
+from chord_metadata_service.mohpackets.apis.ingestion import router as ingest_router
 from chord_metadata_service.mohpackets.utils import get_schema_url
-from authx.auth import verify_service_token
 
 """
 Module with configurations for APIs
