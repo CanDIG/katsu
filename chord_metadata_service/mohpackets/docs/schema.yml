@@ -3393,6 +3393,17 @@ components:
       - Laboratory data interpretation (procedure)
       title: ProgressionStatusMethodEnum
       type: string
+    QuerySampleRegistrationSchema:
+      properties:
+        samples_ids:
+          items:
+            type: string
+          title: Samples Ids
+          type: array
+      required:
+      - samples_ids
+      title: QuerySampleRegistrationSchema
+      type: object
     RadiationAnatomicalSiteEnum:
       enum:
       - Left Abdomen
@@ -5344,7 +5355,7 @@ components:
       name: X-Service-Token
       type: apiKey
 info:
-  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/e817df8fed83826d957d99e51b61753e3bac302a/chord_metadata_service/mohpackets/docs/schema.json
+  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/ea0aaea2850970ce67c7bd4630efd45a0a3b87de/chord_metadata_service/mohpackets/docs/schema.json
   title: MoH Service API
   version: 4.1.1
 openapi: 3.1.0
@@ -7571,6 +7582,20 @@ paths:
                 $ref: '#/components/schemas/DiscoverySchema'
           description: OK
       summary: Discover Sample Registrations
+      tags:
+      - discovery
+  /v2/discovery/sample_registrations_query/:
+    get:
+      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_sample_registrations_query
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuerySampleRegistrationSchema'
+          description: OK
+      summary: Discover Sample Registrations Query
       tags:
       - discovery
   /v2/discovery/sidebar_list/:

@@ -1,7 +1,7 @@
 
 <h1 id="moh-service-api">MoH Service API v4.1.1</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/e817df8fed83826d957d99e51b61753e3bac302a/chord_metadata_service/mohpackets/docs/schema.json
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/ea0aaea2850970ce67c7bd4630efd45a0a3b87de/chord_metadata_service/mohpackets/docs/schema.json
 
 Base URLs:
 
@@ -1527,6 +1527,26 @@ Base URLs:
     "property1": 0,
     "property2": 0
   }
+}
+```
+
+## chord_metadata_service_mohpackets_apis_discovery_discover_sample_registrations_query
+
+<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_sample_registrations_query"></a>
+
+`GET /v2/discovery/sample_registrations_query/`
+
+*Discover Sample Registrations Query*
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "samples_ids": [
+    "string"
+  ]
 }
 ```
 
@@ -18652,6 +18672,30 @@ DiscoverySchema
 |---|---|---|---|---|
 |donors_by_cohort|object|true|none|none|
 |» **additionalProperties**|integer|false|none|none|
+
+<h2 id="tocS_QuerySampleRegistrationSchema">QuerySampleRegistrationSchema</h2>
+
+<a id="schemaquerysampleregistrationschema"></a>
+<a id="schema_QuerySampleRegistrationSchema"></a>
+<a id="tocSquerysampleregistrationschema"></a>
+<a id="tocsquerysampleregistrationschema"></a>
+
+```json
+{
+  "samples_ids": [
+    "string"
+  ]
+}
+
+```
+
+QuerySampleRegistrationSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|samples_ids|[string]|true|none|none|
 
 <h2 id="tocS_DonorExplorerFilterSchema">DonorExplorerFilterSchema</h2>
 
