@@ -3,7 +3,7 @@
     "info": {
         "title": "MoH Service API",
         "version": "4.1.1",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/e817df8fed83826d957d99e51b61753e3bac302a/chord_metadata_service/mohpackets/docs/schema.json"
+        "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
         "/v2/service-info": {
@@ -4160,7 +4160,7 @@
         "/v2/discovery/sample_registrations_query/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_sample_registrations_query",
-                "summary": "Discover Sample Registrations",
+                "summary": "Discover Sample Registrations Query",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -14255,6 +14255,22 @@
                     "donors_by_cohort"
                 ],
                 "title": "DiscoverySchema",
+                "type": "object"
+            },
+            "QuerySampleRegistrationSchema": {
+                "properties": {
+                    "samples_ids": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Samples Ids",
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "samples_ids"
+                ],
+                "title": "QuerySampleRegistrationSchema",
                 "type": "object"
             },
             "DonorExplorerFilterSchema": {
