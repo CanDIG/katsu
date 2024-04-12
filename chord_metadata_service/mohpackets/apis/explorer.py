@@ -1,13 +1,21 @@
 from typing import List
-from django.db.models.functions import Abs
-from ninja import Query, Router
-from django.db.models import Q
-from django.db.models import Case, When, IntegerField, CharField, Value
-from django.db.models import Func
-from django.db.models import OuterRef, Subquery
-from django.db.models.functions import Cast
+
 from django.contrib.postgres.aggregates import ArrayAgg
 from django.contrib.postgres.expressions import ArraySubquery
+from django.db.models import (
+    Case,
+    CharField,
+    Func,
+    IntegerField,
+    OuterRef,
+    Q,
+    Subquery,
+    Value,
+    When,
+)
+from django.db.models.functions import Abs, Cast
+from ninja import Query, Router
+
 from chord_metadata_service.mohpackets.models import (
     Donor,
     Treatment,
@@ -18,7 +26,6 @@ from chord_metadata_service.mohpackets.schemas.explorer import (
 from chord_metadata_service.mohpackets.schemas.filter import (
     DonorExplorerFilterSchema,
 )
-
 
 explorer_router = Router()
 
@@ -91,7 +98,9 @@ def explorer_donor(request, filters: DonorExplorerFilterSchema = Query(...)):
             output_field=CharField(),
         ),
         submitter_sample_ids=ArrayAgg(
-            "sampleregistration__submitter_sample_id", distinct=True
+            "sampleregistration__submitter_sample_id",
+            distinct=True,
+            filter=~Q(sampleregistration__submitter_sample_id=None),
         ),
         treatment_type=ArraySubquery(Subquery(treatment_type_names)),
     ).values(

@@ -493,3 +493,37 @@ class DonorExplorerTestCase(BaseTestCase):
         donors = response.json()
 
         assert len(donors) == len(donors_with_both_drug_names)
+
+    def test_donor_with_missing_data(self):
+        """
+        Test donor with missing data.
+        Verifies that the API can still return the donor correctly.
+
+        Testing Strategy:
+        - Add a new donor without anything (e.g sample registrations or treatments)
+        - Send a valid request with no filters.
+        - Ensure that the response contains the donor with empty submitter_sample_ids and treatment_type.
+        """
+
+        DonorFactory.create(
+            program_id=self.programs[0], submitter_donor_id="DONOR_MISSING_DATA"
+        )
+
+        response = self.client.get(
+            self.donor_url,
+            HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
+        )
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        missing_data_donor = next(
+            (
+                donor
+                for donor in response.json()
+                if donor["submitter_donor_id"] == "DONOR_MISSING_DATA"
+            ),
+            None,  # Default value if donor is not found
+        )
+        self.assertIsNotNone(
+            missing_data_donor, "Donor with missing data  not found in response"
+        )
+        self.assertIsNone(missing_data_donor["submitter_sample_ids"])
+        self.assertEqual(missing_data_donor["treatment_type"], [])
