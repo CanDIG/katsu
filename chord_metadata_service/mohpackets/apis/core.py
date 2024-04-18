@@ -23,6 +23,9 @@ from chord_metadata_service.mohpackets.apis.explorer import (
 from chord_metadata_service.mohpackets.apis.ingestion import router as ingest_router
 from chord_metadata_service.mohpackets.utils import get_schema_url
 
+from django.views.decorators.cache import cache_page
+from ninja.decorators import decorate_view
+
 """
 Module with configurations for APIs
 
@@ -188,6 +191,7 @@ api.add_router(
 
 
 @api.get("/service-info")
+@decorate_view(cache_page(settings.CACHE_DURATION))
 def service_info(request):
     schema_url = get_schema_url()
 
