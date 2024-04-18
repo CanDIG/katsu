@@ -57,6 +57,7 @@ def create_instance(payload, model_cls: Type):
             status=HTTPStatus.BAD_REQUEST,
             data={"error": str(e)},
         )
+
     return JsonResponse(
         status=HTTPStatus.CREATED,
         data={"created": str(instance)},
