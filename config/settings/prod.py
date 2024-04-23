@@ -22,7 +22,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # CANDIG SETTINGS
 # ---------------
-KATSU_AUTHORIZATION = os.getenv("KATSU_AUTHORIZATION")
+CACHE_DURATION = int(os.getenv("CACHE_DURATION", 86400))  # default to 1 day
 CONN_MAX_AGE = int(os.getenv("CONN_MAX_AGE", 0))
 if exists("/run/secrets/opa-root-token"):
     with open("/run/secrets/opa-root-token", "r") as f:
@@ -54,6 +54,16 @@ DATABASES = {
         "PASSWORD": get_secret(os.environ.get("POSTGRES_PASSWORD_FILE")),
         "HOST": os.environ.get("POSTGRES_HOST"),
         "PORT": os.environ.get("POSTGRES_PORT"),
+    }
+}
+
+# Cache
+# -----
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": f"redis://:{get_secret(os.environ.get('REDIS_PASSWORD_FILE'))}@{os.environ.get('EXTERNAL_URL')}:6379/1",
+        "TIMEOUT": CACHE_DURATION,
     }
 }
 

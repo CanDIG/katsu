@@ -98,15 +98,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-# Cache
-# https://docs.djangoproject.com/en/4.1/topics/cache/
-
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-    }
-}
-
 # ==============================================================================
 # AUTHENTICATION AND AUTHORIZATION SETTINGS
 # ==============================================================================
@@ -156,4 +147,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # CURRENT KATSU VERSION ACCORDING TO MODEL CHANGES
 # ------------------------------------------------
 
-KATSU_VERSION = "4.1.3"
+KATSU_VERSION = "4.2.0"

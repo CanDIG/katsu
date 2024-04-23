@@ -11,7 +11,6 @@
 # - testing query token is "query"                          #
 #############################################################
 
-import os
 import socket
 from .base import *
 
@@ -36,6 +35,16 @@ DATABASES = {
         "PASSWORD": "password_local",
         "HOST": "localhost",
         "PORT": "5432",
+    }
+}
+
+# Cache
+# https://docs.djangoproject.com/en/4.1/topics/cache/
+CACHE_DURATION = 30  # set to 0 to disable cache
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "TIMEOUT": CACHE_DURATION,
     }
 }
 
