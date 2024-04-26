@@ -1,7 +1,8 @@
 import logging
 
+from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models.signals import pre_save
+from django.db.models.signals import post_delete, post_save, pre_save
 from django.dispatch import receiver
 
 from chord_metadata_service.mohpackets.models import (
@@ -187,3 +188,11 @@ def create_follow_up_foreign_key(sender, instance, **kwargs):
         "submitter_primary_diagnosis_id",
         "primary_diagnosis_uuid_id",
     )
+
+
+@receiver([post_save, post_delete])
+def clear_cache(**kwargs):
+    """
+    Clears the cache when database changes
+    """
+    cache.clear()
