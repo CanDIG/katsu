@@ -147,4 +147,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # CURRENT KATSU VERSION ACCORDING TO MODEL CHANGES
 # ------------------------------------------------
 
-KATSU_VERSION = "4.2.1"
+KATSU_VERSION = "4.2.2"
