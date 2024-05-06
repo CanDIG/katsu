@@ -5,6 +5,7 @@ on:
     paths:
       - 'chord_metadata_service/mohpackets/schemas/**'
       - 'chord_metadata_service/mohpackets/models.py'
+      - 'chord_metadata_service/mohpackets/docs/schema.json'
 
     
 jobs:
