@@ -1,10 +1,15 @@
 from collections import Counter
-from typing import Any, Dict, Type, List
+from typing import Any, Dict, List, Type
+
+from django.conf import settings
 from django.db.models import (
     Count,
     Model,
 )
+from django.views.decorators.cache import cache_page
 from ninja import Query, Router
+from ninja.decorators import decorate_view
+
 from chord_metadata_service.mohpackets.models import (
     Biomarker,
     Chemotherapy,
@@ -34,14 +39,13 @@ from chord_metadata_service.mohpackets.schemas.filter import (
     DonorFilterSchema,
 )
 
-
 """
 Module with overview APIs for the summary page and discovery APIs.
 These APIs do not require authorization but return only donor counts.
 
 Author: Son Chau
 """
-
+CACHE_DURATION = settings.CACHE_DURATION
 discovery_router = Router()
 overview_router = Router()
 discovery_router.add_router("/overview/", overview_router, tags=["overview"])
@@ -91,6 +95,7 @@ def count_donors(model: Type[Model], filters=None) -> Dict[str, int]:
 #                                             #
 ###############################################
 @discovery_router.get("/programs/", response=List[ProgramDiscoverySchema])
+@decorate_view(cache_page(CACHE_DURATION))
 def discover_programs(request):
     return Program.objects.only("program_id", "metadata")
 
@@ -185,6 +190,7 @@ def discover_exposures(request):
 #                                             #
 ###############################################
 @discovery_router.get("/sidebar_list/", response=Dict[str, Any])
+@decorate_view(cache_page(CACHE_DURATION))
 def discover_sidebar_list(request):
     """
     Retrieve the list of available values for all fields (including for
@@ -226,6 +232,7 @@ def discover_sidebar_list(request):
 
 
 @overview_router.get("/cohort_count/", response=Dict[str, int])
+@decorate_view(cache_page(CACHE_DURATION))
 def discover_cohort_count(request):
     """
     Return the number of cohorts in the database.
@@ -234,6 +241,7 @@ def discover_cohort_count(request):
 
 
 @overview_router.get("/patients_per_cohort/", response=Dict[str, int])
+@decorate_view(cache_page(CACHE_DURATION))
 def discover_patients_per_cohort(request):
     """
     Return the number of patients per cohort in the database.
@@ -243,15 +251,16 @@ def discover_patients_per_cohort(request):
 
 
 @overview_router.get("/individual_count/", response=Dict[str, int])
+@decorate_view(cache_page(CACHE_DURATION))
 def discover_individual_count(request):
     """
     Return the number of individuals in the database.
     """
-
     return {"individual_count": Donor.objects.count()}
 
 
 @overview_router.get("/gender_count/", response=Dict[str, int])
+@decorate_view(cache_page(CACHE_DURATION))
 def discover_gender_count(request):
     """
     Return the count for every gender in the database.
@@ -261,6 +270,7 @@ def discover_gender_count(request):
 
 
 @overview_router.get("/cancer_type_count/", response=Dict[str, int])
+@decorate_view(cache_page(CACHE_DURATION))
 def discover_cancer_type_count(request):
     """
     Return the count for every cancer type in the database.
@@ -276,6 +286,7 @@ def discover_cancer_type_count(request):
 
 
 @overview_router.get("/treatment_type_count/", response=Dict[str, int])
+@decorate_view(cache_page(CACHE_DURATION))
 def discover_treatment_type_count(request):
     """
     Return the count for every treatment type in the database.
@@ -291,6 +302,7 @@ def discover_treatment_type_count(request):
 
 
 @overview_router.get("/diagnosis_age_count/", response=Dict[str, int])
+@decorate_view(cache_page(CACHE_DURATION))
 def discover_diagnosis_age_count(request):
     """
     Return the count for age of diagnosis by calculating the date of birth interval.

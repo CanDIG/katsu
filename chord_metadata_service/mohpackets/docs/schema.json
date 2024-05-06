@@ -2,8 +2,8 @@
     "openapi": "3.1.0",
     "info": {
         "title": "MoH Service API",
-        "version": "4.1.1",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/2e25db910303a590b44a8435d38b4a7d5eeedaad/chord_metadata_service/mohpackets/docs/schema.json"
+        "version": "4.2.1",
+        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/08d8b4ed5eb8816827e6275ce1bfebe3018ce537/chord_metadata_service/mohpackets/docs/schema.json"
     },
     "paths": {
         "/v2/service-info": {
