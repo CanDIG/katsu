@@ -1,9 +1,9 @@
 {
     "openapi": "3.1.0",
     "info": {
-      "title": "MoH Service API",
-      "version": "4.2.1",
-      "description": "This is the RESTful API for the MoH Service. (trigger new commit)"
+        "title": "MoH Service API",
+        "version": "4.2.1",
+        "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
         "/v2/service-info": {
