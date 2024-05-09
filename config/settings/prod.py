@@ -13,7 +13,8 @@ from .base import *
 ALLOWED_HOSTS = [
     os.environ.get("HOST_CONTAINER_NAME"),
     os.environ.get("EXTERNAL_URL"),
-    os.environ.get("CANDIG_INTERNAL_DOMAIN")
+    os.environ.get("CANDIG_INTERNAL_DOMAIN"),
+    "query"
 ]
 
 # Whitenoise
