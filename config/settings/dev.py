@@ -21,6 +21,7 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     os.environ.get("HOST_CONTAINER_NAME"),
     os.environ.get("EXTERNAL_URL"),
+    "query"
 ]
 
 # Debug toolbar settings
