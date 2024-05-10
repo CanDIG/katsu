@@ -16,6 +16,7 @@ ALLOWED_HOSTS = [
     os.environ.get("CANDIG_INTERNAL_DOMAIN"),
     "query"
 ]
+AGGREGATE_COUNT_THRESHOLD = os.environ.get("AGGREGATE_COUNT_THRESHOLD")
 
 # Whitenoise
 # ----------

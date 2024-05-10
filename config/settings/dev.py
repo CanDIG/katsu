@@ -23,6 +23,7 @@ ALLOWED_HOSTS = [
     os.environ.get("EXTERNAL_URL"),
     "query"
 ]
+AGGREGATE_COUNT_THRESHOLD = os.environ.get("AGGREGATE_COUNT_THRESHOLD")
 
 # Debug toolbar settings
 # ----------------------
