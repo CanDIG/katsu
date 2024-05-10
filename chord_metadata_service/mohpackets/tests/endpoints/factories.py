@@ -73,16 +73,20 @@ class DonorFactory(factory.django.DjangoModelFactory):
         ),
         no_declaration=None,
     )
-    date_of_birth = {
-        "month_interval": random.randint(0, 100),
-        "day_interval": random.randint(0, 300),
-    }
+    date_of_birth = factory.LazyFunction(
+        lambda: {
+            "month_interval": random.randint(0, 1000),
+            "day_interval": random.randint(0, 3000),
+        }
+    )
     date_of_death = factory.Maybe(
         "is_deceased",
-        yes_declaration={
-            "month_interval": random.randint(0, 100),
-            "day_interval": random.randint(0, 300),
-        },
+        yes_declaration=factory.LazyFunction(
+            lambda: {
+                "month_interval": random.randint(0, 1000),
+                "day_interval": random.randint(0, 3000),
+            }
+        ),
         no_declaration=None,
     )
     primary_site = factory.Faker(
@@ -103,10 +107,12 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
 
     # Default values
     submitter_primary_diagnosis_id = factory.Sequence(lambda n: "DIAG_%d" % n)
-    date_of_diagnosis = {
-        "month_interval": random.randint(0, 100),
-        "day_interval": random.randint(0, 300),
-    }
+    date_of_diagnosis = factory.LazyFunction(
+        lambda: {
+            "month_interval": random.randint(0, 1000),
+            "day_interval": random.randint(0, 3000),
+        }
+    )
     cancer_type_code = factory.Faker("uuid4")
     basis_of_diagnosis = factory.Faker(
         "random_element", elements=PERM_VAL.BASIS_OF_DIAGNOSIS
@@ -147,8 +153,8 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
                 PERM_VAL.LOST_TO_FOLLOWUP_REASON
             )
             donor.date_alive_after_lost_to_followup = {
-                "month_interval": random.randint(0, 100),
-                "day_interval": random.randint(0, 300),
+                "month_interval": random.randint(0, 1000),
+                "day_interval": random.randint(0, 3000),
             }
             donor.save()
 
