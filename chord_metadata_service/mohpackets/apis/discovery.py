@@ -11,20 +11,11 @@ from ninja import Query, Router
 from ninja.decorators import decorate_view
 
 from chord_metadata_service.mohpackets.models import (
-    Biomarker,
     Chemotherapy,
-    Comorbidity,
     Donor,
-    Exposure,
-    FollowUp,
     HormoneTherapy,
     Immunotherapy,
-    PrimaryDiagnosis,
     Program,
-    Radiation,
-    SampleRegistration,
-    Specimen,
-    Surgery,
     Treatment,
 )
 from chord_metadata_service.mohpackets.permissible_values import (
@@ -94,6 +85,8 @@ def count_donors(model: Type[Model], filters=None) -> Dict[str, int]:
 #               DISCOVERY API                 #
 #                                             #
 ###############################################
+
+
 @discovery_router.get("/programs/", response=List[ProgramDiscoverySchema])
 @decorate_view(cache_page(CACHE_DURATION))
 def discover_programs(request):
@@ -106,89 +99,6 @@ def discover_donors(request, filters: DonorFilterSchema = Query(...)):
     return DiscoverySchema(donors_by_cohort=donors)
 
 
-@discovery_router.get("/specimen/", response=DiscoverySchema)
-def discover_specimens(request):
-    specimens = count_donors(Specimen)
-    return DiscoverySchema(donors_by_cohort=specimens)
-
-
-@discovery_router.get("/sample_registrations/", response=DiscoverySchema)
-def discover_sample_registrations(request):
-    sample_registrations = count_donors(SampleRegistration)
-    return DiscoverySchema(donors_by_cohort=sample_registrations)
-
-
-@discovery_router.get("/primary_diagnoses/", response=DiscoverySchema)
-def discover_primary_diagnoses(request):
-    primary_diagnoses = count_donors(PrimaryDiagnosis)
-    return DiscoverySchema(donors_by_cohort=primary_diagnoses)
-
-
-@discovery_router.get("/treatments/", response=DiscoverySchema)
-def discover_treatments(request):
-    treatments = count_donors(Treatment)
-    return DiscoverySchema(donors_by_cohort=treatments)
-
-
-@discovery_router.get("/chemotherapies/", response=DiscoverySchema)
-def discover_chemotherapies(request):
-    chemotherapies = count_donors(Chemotherapy)
-    return DiscoverySchema(donors_by_cohort=chemotherapies)
-
-
-@discovery_router.get("/hormone_therapies/", response=DiscoverySchema)
-def discover_hormone_therapies(request):
-    hormone_therapies = count_donors(HormoneTherapy)
-    return DiscoverySchema(donors_by_cohort=hormone_therapies)
-
-
-@discovery_router.get("/radiations/", response=DiscoverySchema)
-def discover_radiations(request):
-    radiations = count_donors(Radiation)
-    return DiscoverySchema(donors_by_cohort=radiations)
-
-
-@discovery_router.get("/immunotherapies/", response=DiscoverySchema)
-def discover_immunotherapies(request):
-    immunotherapies = count_donors(Immunotherapy)
-    return DiscoverySchema(donors_by_cohort=immunotherapies)
-
-
-@discovery_router.get("/surgeries/", response=DiscoverySchema)
-def discover_surgeries(request):
-    surgeries = count_donors(Surgery)
-    return DiscoverySchema(donors_by_cohort=surgeries)
-
-
-@discovery_router.get("/follow_ups/", response=DiscoverySchema)
-def discover_follow_ups(request):
-    follow_ups = count_donors(FollowUp)
-    return DiscoverySchema(donors_by_cohort=follow_ups)
-
-
-@discovery_router.get("/biomarkers/", response=DiscoverySchema)
-def discover_biomarkers(request):
-    biomarkers = count_donors(Biomarker)
-    return DiscoverySchema(donors_by_cohort=biomarkers)
-
-
-@discovery_router.get("/comorbidities/", response=DiscoverySchema)
-def discover_comorbidities(request):
-    comorbidities = count_donors(Comorbidity)
-    return DiscoverySchema(donors_by_cohort=comorbidities)
-
-
-@discovery_router.get("/exposures/", response=DiscoverySchema)
-def discover_exposures(request):
-    exposures = count_donors(Exposure)
-    return DiscoverySchema(donors_by_cohort=exposures)
-
-
-###############################################
-#                                             #
-#                OVERVIEW API                 #
-#                                             #
-###############################################
 @discovery_router.get("/sidebar_list/", response=Dict[str, Any])
 @decorate_view(cache_page(CACHE_DURATION))
 def discover_sidebar_list(request):
@@ -229,6 +139,13 @@ def discover_sidebar_list(request):
     }
 
     return results
+
+
+###############################################
+#                                             #
+#                OVERVIEW API                 #
+#                                             #
+###############################################
 
 
 @overview_router.get("/cohort_count/", response=Dict[str, int])
