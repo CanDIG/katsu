@@ -628,16 +628,31 @@ components:
       - month_interval
       title: DateInterval
       type: object
-    DiscoverySchema:
+    DiagnosisAgeCountSchema:
       properties:
-        donors_by_cohort:
-          additionalProperties:
-            type: integer
-          title: Donors By Cohort
-          type: object
+        age_at_diagnosis:
+          title: Age At Diagnosis
+          type: string
+        age_count:
+          title: Age Count
+          type: string
       required:
-      - donors_by_cohort
-      title: DiscoverySchema
+      - age_at_diagnosis
+      - age_count
+      title: DiagnosisAgeCountSchema
+      type: object
+    DiscoveryDonorSchema:
+      properties:
+        donors_count:
+          title: Donors Count
+          type: string
+        program_id:
+          title: Program Id
+          type: string
+      required:
+      - program_id
+      - donors_count
+      title: DiscoveryDonorSchema
       type: object
     DiseaseStatusFollowupEnum:
       enum:
@@ -1371,6 +1386,21 @@ components:
       - program_id
       - submitter_donor_id
       title: FollowUpModelSchema
+      type: object
+    GenderCountSchema:
+      properties:
+        gender:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Gender
+        gender_count:
+          title: Gender Count
+          type: string
+      required:
+      - gender
+      - gender_count
+      title: GenderCountSchema
       type: object
     GenderEnum:
       enum:
@@ -2994,6 +3024,19 @@ components:
       - previous_page
       title: PagedTreatmentModelSchema
       type: object
+    PatientPerCohortSchema:
+      properties:
+        patients_count:
+          title: Patients Count
+          type: string
+        program_id:
+          title: Program Id
+          type: string
+      required:
+      - program_id
+      - patients_count
+      title: PatientPerCohortSchema
+      type: object
     PercentCellsRangeEnum:
       enum:
       - 0-19%
@@ -3239,6 +3282,19 @@ components:
       - program_id
       - submitter_donor_id
       title: PrimaryDiagnosisModelSchema
+      type: object
+    PrimarySiteCountSchema:
+      properties:
+        primary_site_count:
+          title: Primary Site Count
+          type: string
+        primary_site_name:
+          title: Primary Site Name
+          type: string
+      required:
+      - primary_site_name
+      - primary_site_count
+      title: PrimarySiteCountSchema
       type: object
     PrimarySiteEnum:
       enum:
@@ -5228,6 +5284,19 @@ components:
       - Unknown
       title: TreatmentStatusEnum
       type: string
+    TreatmentTypeCountSchema:
+      properties:
+        treatment_type_count:
+          title: Treatment Type Count
+          type: string
+        treatment_type_name:
+          title: Treatment Type Name
+          type: string
+      required:
+      - treatment_type_name
+      - treatment_type_count
+      title: TreatmentTypeCountSchema
+      type: object
     TreatmentTypeEnum:
       enum:
       - Bone marrow transplant
@@ -5344,7 +5413,7 @@ components:
       name: X-Service-Token
       type: apiKey
 info:
-  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/a5656164c539273637fe7ae7709f41d61bf86ced/chord_metadata_service/mohpackets/docs/schema.json
+  description: This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/52d470cfd8a3fd5c2b60f7145204a19066e783f2/chord_metadata_service/mohpackets/docs/schema.json
   title: MoH Service API
   version: 4.2.1
 openapi: 3.1.0
@@ -7201,210 +7270,24 @@ paths:
       summary: List Treatments
       tags:
       - authorized
-  /v2/discovery/biomarkers/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_biomarkers
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Biomarkers
-      tags:
-      - discovery
-  /v2/discovery/chemotherapies/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_chemotherapies
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Chemotherapies
-      tags:
-      - discovery
-  /v2/discovery/comorbidities/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_comorbidities
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Comorbidities
-      tags:
-      - discovery
   /v2/discovery/donors/:
     get:
+      description: Return the number of donors per cohort in the database.
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_donors
-      parameters:
-      - in: query
-        name: submitter_donor_id
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Submitter Donor Id
-      - in: query
-        name: program_id
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Program Id
-      - in: query
-        name: gender
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          q: gender__icontains
-          title: Gender
-      - in: query
-        name: sex_at_birth
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Sex At Birth
-      - in: query
-        name: is_deceased
-        required: false
-        schema:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Is Deceased
-      - in: query
-        name: lost_to_followup_after_clinical_event_identifier
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Lost To Followup After Clinical Event Identifier
-      - in: query
-        name: lost_to_followup_reason
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Lost To Followup Reason
-      - in: query
-        name: cause_of_death
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Cause Of Death
-      - in: query
-        name: primary_site
-        required: false
-        schema:
-          items:
-            type: string
-          q: primary_site__overlap
-          title: Primary Site
-          type: array
+      parameters: []
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DiscoverySchema'
+                items:
+                  $ref: '#/components/schemas/DiscoveryDonorSchema'
+                title: Response
+                type: array
           description: OK
       summary: Discover Donors
       tags:
       - discovery
-  /v2/discovery/exposures/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_exposures
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Exposures
-      tags:
-      - discovery
-  /v2/discovery/follow_ups/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_follow_ups
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Follow Ups
-      tags:
-      - discovery
-  /v2/discovery/hormone_therapies/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_hormone_therapies
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Hormone Therapies
-      tags:
-      - discovery
-  /v2/discovery/immunotherapies/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_immunotherapies
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Immunotherapies
-      tags:
-      - discovery
-  /v2/discovery/overview/cancer_type_count/:
-    get:
-      description: Return the count for every cancer type in the database.
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_cancer_type_count
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                additionalProperties:
-                  type: integer
-                title: Response
-                type: object
-          description: OK
-      summary: Discover Cancer Type Count
-      tags:
-      - overview
   /v2/discovery/overview/cohort_count/:
     get:
       description: Return the number of cohorts in the database.
@@ -7434,10 +7317,10 @@ paths:
           content:
             application/json:
               schema:
-                additionalProperties:
-                  type: integer
+                items:
+                  $ref: '#/components/schemas/DiagnosisAgeCountSchema'
                 title: Response
-                type: object
+                type: array
           description: OK
       summary: Discover Diagnosis Age Count
       tags:
@@ -7452,10 +7335,10 @@ paths:
           content:
             application/json:
               schema:
-                additionalProperties:
-                  type: integer
+                items:
+                  $ref: '#/components/schemas/GenderCountSchema'
                 title: Response
-                type: object
+                type: array
           description: OK
       summary: Discover Gender Count
       tags:
@@ -7471,7 +7354,7 @@ paths:
             application/json:
               schema:
                 additionalProperties:
-                  type: integer
+                  type: string
                 title: Response
                 type: object
           description: OK
@@ -7488,12 +7371,30 @@ paths:
           content:
             application/json:
               schema:
-                additionalProperties:
-                  type: integer
+                items:
+                  $ref: '#/components/schemas/PatientPerCohortSchema'
                 title: Response
-                type: object
+                type: array
           description: OK
       summary: Discover Patients Per Cohort
+      tags:
+      - overview
+  /v2/discovery/overview/primary_site_count/:
+    get:
+      description: Return the count for every cancer type in the database.
+      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_primary_site_count
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PrimarySiteCountSchema'
+                title: Response
+                type: array
+          description: OK
+      summary: Discover Primary Site Count
       tags:
       - overview
   /v2/discovery/overview/treatment_type_count/:
@@ -7506,30 +7407,17 @@ paths:
           content:
             application/json:
               schema:
-                additionalProperties:
-                  type: integer
+                items:
+                  $ref: '#/components/schemas/TreatmentTypeCountSchema'
                 title: Response
-                type: object
+                type: array
           description: OK
       summary: Discover Treatment Type Count
       tags:
       - overview
-  /v2/discovery/primary_diagnoses/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_primary_diagnoses
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Primary Diagnoses
-      tags:
-      - discovery
   /v2/discovery/programs/:
     get:
+      description: Return all the programs in the database.
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_programs
       parameters: []
       responses:
@@ -7543,34 +7431,6 @@ paths:
                 type: array
           description: OK
       summary: Discover Programs
-      tags:
-      - discovery
-  /v2/discovery/radiations/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_radiations
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Radiations
-      tags:
-      - discovery
-  /v2/discovery/sample_registrations/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_sample_registrations
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Sample Registrations
       tags:
       - discovery
   /v2/discovery/sidebar_list/:
@@ -7590,48 +7450,6 @@ paths:
                 type: object
           description: OK
       summary: Discover Sidebar List
-      tags:
-      - discovery
-  /v2/discovery/specimen/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_specimens
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Specimens
-      tags:
-      - discovery
-  /v2/discovery/surgeries/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_surgeries
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Surgeries
-      tags:
-      - discovery
-  /v2/discovery/treatments/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_discovery_discover_treatments
-      parameters: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/DiscoverySchema'
-          description: OK
-      summary: Discover Treatments
       tags:
       - discovery
   /v2/explorer/donors/:

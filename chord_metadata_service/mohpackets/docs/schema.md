@@ -1,7 +1,7 @@
 
 <h1 id="moh-service-api">MoH Service API v4.2.1</h1>
 
-This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/a5656164c539273637fe7ae7709f41d61bf86ced/chord_metadata_service/mohpackets/docs/schema.json
+This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/52d470cfd8a3fd5c2b60f7145204a19066e783f2/chord_metadata_service/mohpackets/docs/schema.json
 
 Base URLs:
 
@@ -1440,6 +1440,8 @@ Base URLs:
 
 *Discover Programs*
 
+Return all the programs in the database.
+
 > Example responses
 
 > 200 Response
@@ -1461,304 +1463,19 @@ Base URLs:
 
 *Discover Donors*
 
-<h3 id="chord_metadata_service_mohpackets_apis_discovery_discover_donors-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|submitter_donor_id|query|any|false|none|
-|program_id|query|any|false|none|
-|gender|query|any|false|none|
-|sex_at_birth|query|any|false|none|
-|is_deceased|query|any|false|none|
-|lost_to_followup_after_clinical_event_identifier|query|any|false|none|
-|lost_to_followup_reason|query|any|false|none|
-|cause_of_death|query|any|false|none|
-|primary_site|query|array[string]|false|none|
+Return the number of donors per cohort in the database.
 
 > Example responses
 
 > 200 Response
 
 ```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
+[
+  {
+    "program_id": "string",
+    "donors_count": "string"
   }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_specimens
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_specimens"></a>
-
-`GET /v2/discovery/specimen/`
-
-*Discover Specimens*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_sample_registrations
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_sample_registrations"></a>
-
-`GET /v2/discovery/sample_registrations/`
-
-*Discover Sample Registrations*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_primary_diagnoses
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_primary_diagnoses"></a>
-
-`GET /v2/discovery/primary_diagnoses/`
-
-*Discover Primary Diagnoses*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_treatments
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_treatments"></a>
-
-`GET /v2/discovery/treatments/`
-
-*Discover Treatments*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_chemotherapies
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_chemotherapies"></a>
-
-`GET /v2/discovery/chemotherapies/`
-
-*Discover Chemotherapies*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_hormone_therapies
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_hormone_therapies"></a>
-
-`GET /v2/discovery/hormone_therapies/`
-
-*Discover Hormone Therapies*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_radiations
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_radiations"></a>
-
-`GET /v2/discovery/radiations/`
-
-*Discover Radiations*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_immunotherapies
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_immunotherapies"></a>
-
-`GET /v2/discovery/immunotherapies/`
-
-*Discover Immunotherapies*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_surgeries
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_surgeries"></a>
-
-`GET /v2/discovery/surgeries/`
-
-*Discover Surgeries*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_follow_ups
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_follow_ups"></a>
-
-`GET /v2/discovery/follow_ups/`
-
-*Discover Follow Ups*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_biomarkers
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_biomarkers"></a>
-
-`GET /v2/discovery/biomarkers/`
-
-*Discover Biomarkers*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_comorbidities
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_comorbidities"></a>
-
-`GET /v2/discovery/comorbidities/`
-
-*Discover Comorbidities*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
-```
-
-## chord_metadata_service_mohpackets_apis_discovery_discover_exposures
-
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_exposures"></a>
-
-`GET /v2/discovery/exposures/`
-
-*Discover Exposures*
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
-}
+]
 ```
 
 ## chord_metadata_service_mohpackets_apis_discovery_discover_sidebar_list
@@ -1818,10 +1535,12 @@ Return the number of patients per cohort in the database.
 > 200 Response
 
 ```json
-{
-  "property1": 0,
-  "property2": 0
-}
+[
+  {
+    "program_id": "string",
+    "patients_count": "string"
+  }
+]
 ```
 
 ## chord_metadata_service_mohpackets_apis_discovery_discover_individual_count
@@ -1840,8 +1559,8 @@ Return the number of individuals in the database.
 
 ```json
 {
-  "property1": 0,
-  "property2": 0
+  "property1": "string",
+  "property2": "string"
 }
 ```
 
@@ -1860,19 +1579,21 @@ Return the count for every gender in the database.
 > 200 Response
 
 ```json
-{
-  "property1": 0,
-  "property2": 0
-}
+[
+  {
+    "gender": "string",
+    "gender_count": "string"
+  }
+]
 ```
 
-## chord_metadata_service_mohpackets_apis_discovery_discover_cancer_type_count
+## chord_metadata_service_mohpackets_apis_discovery_discover_primary_site_count
 
-<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_cancer_type_count"></a>
+<a id="opIdchord_metadata_service_mohpackets_apis_discovery_discover_primary_site_count"></a>
 
-`GET /v2/discovery/overview/cancer_type_count/`
+`GET /v2/discovery/overview/primary_site_count/`
 
-*Discover Cancer Type Count*
+*Discover Primary Site Count*
 
 Return the count for every cancer type in the database.
 
@@ -1881,10 +1602,12 @@ Return the count for every cancer type in the database.
 > 200 Response
 
 ```json
-{
-  "property1": 0,
-  "property2": 0
-}
+[
+  {
+    "primary_site_name": "string",
+    "primary_site_count": "string"
+  }
+]
 ```
 
 ## chord_metadata_service_mohpackets_apis_discovery_discover_treatment_type_count
@@ -1902,10 +1625,12 @@ Return the count for every treatment type in the database.
 > 200 Response
 
 ```json
-{
-  "property1": 0,
-  "property2": 0
-}
+[
+  {
+    "treatment_type_name": "string",
+    "treatment_type_count": "string"
+  }
+]
 ```
 
 ## chord_metadata_service_mohpackets_apis_discovery_discover_diagnosis_age_count
@@ -1923,10 +1648,12 @@ Return the count for age of diagnosis by calculating the date of birth interval.
 > 200 Response
 
 ```json
-{
-  "property1": 0,
-  "property2": 0
-}
+[
+  {
+    "age_at_diagnosis": "string",
+    "age_count": "string"
+  }
+]
 ```
 
 <h1 id="moh-service-api-explorer">explorer</h1>
@@ -18627,31 +18354,166 @@ ProgramDiscoverySchema
 |program_id|string|true|none|none|
 |metadata|any|true|none|none|
 
-<h2 id="tocS_DiscoverySchema">DiscoverySchema</h2>
+<h2 id="tocS_DiscoveryDonorSchema">DiscoveryDonorSchema</h2>
 
-<a id="schemadiscoveryschema"></a>
-<a id="schema_DiscoverySchema"></a>
-<a id="tocSdiscoveryschema"></a>
-<a id="tocsdiscoveryschema"></a>
+<a id="schemadiscoverydonorschema"></a>
+<a id="schema_DiscoveryDonorSchema"></a>
+<a id="tocSdiscoverydonorschema"></a>
+<a id="tocsdiscoverydonorschema"></a>
 
 ```json
 {
-  "donors_by_cohort": {
-    "property1": 0,
-    "property2": 0
-  }
+  "program_id": "string",
+  "donors_count": "string"
 }
 
 ```
 
-DiscoverySchema
+DiscoveryDonorSchema
 
 ### Properties
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|donors_by_cohort|object|true|none|none|
-|» **additionalProperties**|integer|false|none|none|
+|program_id|string|true|none|none|
+|donors_count|string|true|none|none|
+
+<h2 id="tocS_PatientPerCohortSchema">PatientPerCohortSchema</h2>
+
+<a id="schemapatientpercohortschema"></a>
+<a id="schema_PatientPerCohortSchema"></a>
+<a id="tocSpatientpercohortschema"></a>
+<a id="tocspatientpercohortschema"></a>
+
+```json
+{
+  "program_id": "string",
+  "patients_count": "string"
+}
+
+```
+
+PatientPerCohortSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|program_id|string|true|none|none|
+|patients_count|string|true|none|none|
+
+<h2 id="tocS_GenderCountSchema">GenderCountSchema</h2>
+
+<a id="schemagendercountschema"></a>
+<a id="schema_GenderCountSchema"></a>
+<a id="tocSgendercountschema"></a>
+<a id="tocsgendercountschema"></a>
+
+```json
+{
+  "gender": "string",
+  "gender_count": "string"
+}
+
+```
+
+GenderCountSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|gender|any|true|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|gender_count|string|true|none|none|
+
+<h2 id="tocS_PrimarySiteCountSchema">PrimarySiteCountSchema</h2>
+
+<a id="schemaprimarysitecountschema"></a>
+<a id="schema_PrimarySiteCountSchema"></a>
+<a id="tocSprimarysitecountschema"></a>
+<a id="tocsprimarysitecountschema"></a>
+
+```json
+{
+  "primary_site_name": "string",
+  "primary_site_count": "string"
+}
+
+```
+
+PrimarySiteCountSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|primary_site_name|string|true|none|none|
+|primary_site_count|string|true|none|none|
+
+<h2 id="tocS_TreatmentTypeCountSchema">TreatmentTypeCountSchema</h2>
+
+<a id="schematreatmenttypecountschema"></a>
+<a id="schema_TreatmentTypeCountSchema"></a>
+<a id="tocStreatmenttypecountschema"></a>
+<a id="tocstreatmenttypecountschema"></a>
+
+```json
+{
+  "treatment_type_name": "string",
+  "treatment_type_count": "string"
+}
+
+```
+
+TreatmentTypeCountSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|treatment_type_name|string|true|none|none|
+|treatment_type_count|string|true|none|none|
+
+<h2 id="tocS_DiagnosisAgeCountSchema">DiagnosisAgeCountSchema</h2>
+
+<a id="schemadiagnosisagecountschema"></a>
+<a id="schema_DiagnosisAgeCountSchema"></a>
+<a id="tocSdiagnosisagecountschema"></a>
+<a id="tocsdiagnosisagecountschema"></a>
+
+```json
+{
+  "age_at_diagnosis": "string",
+  "age_count": "string"
+}
+
+```
+
+DiagnosisAgeCountSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|age_at_diagnosis|string|true|none|none|
+|age_count|string|true|none|none|
 
 <h2 id="tocS_DonorExplorerFilterSchema">DonorExplorerFilterSchema</h2>
 
