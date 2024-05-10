@@ -76,8 +76,11 @@ def discover_programs(request):
 def discover_donors(request):
     """
     Return the number of donors per cohort in the database.
+    Note: This function is identical to `discover_patients_per_cohort`
+    and is here because the frontend ingest uses it. It's probably best
+    to clean up later.
     """
-    donors = (
+    result = (
         Donor.objects.values("program_id")
         .annotate(
             count=Count("uuid"),
@@ -91,20 +94,14 @@ def discover_donors(request):
         )
         .values("program_id", "donors_count")
     )
-    return donors
+    return result
 
 
-###############################################
-#                                             #
-#                OVERVIEW API                 #
-#                                             #
-###############################################
 @discovery_router.get("/sidebar_list/", response=Dict[str, Any])
 @decorate_view(cache_page(CACHE_DURATION))
 def discover_sidebar_list(request):
     """
-    Retrieve the list of available values for all fields (including for
-    datasets that the user is not authorized to view)
+    Retrieve the list of drug names and treatment for frontend usage
     """
     # Drugs queryable for chemotherapy
     chemotherapy_drug_names = list(
@@ -129,7 +126,7 @@ def discover_sidebar_list(request):
         .distinct()
     )
 
-    results = {
+    result = {
         "treatment_types": TREATMENT_TYPE,
         "tumour_primary_sites": PRIMARY_SITE,
         "chemotherapy_drug_names": chemotherapy_drug_names,
@@ -137,7 +134,7 @@ def discover_sidebar_list(request):
         "hormone_therapy_drug_names": hormone_therapy_drug_names,
     }
 
-    return results
+    return result
 
 
 ###############################################
@@ -162,7 +159,7 @@ def discover_patients_per_cohort(request):
     """
     Return the number of patients per cohort in the database.
     """
-    cohort_counts = (
+    result = (
         Donor.objects.values("program_id")
         .annotate(count=Count("uuid"))
         .annotate(
@@ -176,7 +173,7 @@ def discover_patients_per_cohort(request):
         )
         .values("program_id", "patients_count")
     )
-    return cohort_counts
+    return result
 
 
 @overview_router.get("/individual_count/", response=Dict[str, str])
@@ -185,10 +182,10 @@ def discover_individual_count(request):
     """
     Return the number of individuals in the database.
     """
-    count = Donor.objects.count()
+    donor_count = Donor.objects.count()
     return {
-        "individual_count": str(count)
-        if count >= SMALL_NUMBER_THRESHOLD
+        "individual_count": str(donor_count)
+        if donor_count >= SMALL_NUMBER_THRESHOLD
         else SMALL_NUMBER_DISPLAY
     }
 
@@ -199,7 +196,7 @@ def discover_gender_count(request):
     """
     Return the count for every gender in the database.
     """
-    genders_count = (
+    result = (
         Donor.objects.values("gender")
         .annotate(count=Count("uuid"))
         .annotate(
@@ -213,7 +210,7 @@ def discover_gender_count(request):
         )
         .values("gender", "gender_count")
     )
-    return genders_count
+    return result
 
 
 @overview_router.get("/primary_site_count/", response=List[PrimarySiteCountSchema])
@@ -222,7 +219,7 @@ def discover_primary_site_count(request):
     """
     Return the count for every cancer type in the database.
     """
-    primary_sites_count = (
+    result = (
         Donor.objects.annotate(
             primary_site_name=Func(
                 Coalesce(F("primary_site"), Value(["None"])), function="unnest"
@@ -241,7 +238,7 @@ def discover_primary_site_count(request):
         )
         .values("primary_site_name", "primary_site_count")
     )
-    return primary_sites_count
+    return result
 
 
 @overview_router.get("/treatment_type_count/", response=List[TreatmentTypeCountSchema])
@@ -280,7 +277,7 @@ def discover_diagnosis_age_count(request):
     """
     Return the count for age of diagnosis by calculating the date of birth interval.
     """
-    age_counts = (
+    result = (
         Donor.objects.annotate(
             abs_month_interval=Abs(
                 Cast("date_of_birth__month_interval", output_field=IntegerField())
@@ -314,4 +311,4 @@ def discover_diagnosis_age_count(request):
         .values("age_at_diagnosis", "age_count")
     )
 
-    return age_counts
+    return result
