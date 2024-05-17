@@ -14,6 +14,7 @@ ALLOWED_HOSTS = [
     os.environ.get("HOST_CONTAINER_NAME"),
     os.environ.get("EXTERNAL_URL"),
     os.environ.get("CANDIG_INTERNAL_DOMAIN"),
+    "127.0.0.1",
     "query"
 ]
 
