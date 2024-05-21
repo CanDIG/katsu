@@ -283,7 +283,7 @@ def discover_diagnosis_age_count(request):
                 Cast("date_of_birth__month_interval", output_field=IntegerField())
             ),
             age_at_diagnosis=Case(
-                When(Q(date_of_birth__isnull=True), then=Value(None)),
+                When(Q(date_of_birth__isnull=True), then=Value("null")),
                 When(abs_month_interval__lt=240, then=Value("0-19")),
                 When(abs_month_interval__lt=360, then=Value("20-29")),
                 When(abs_month_interval__lt=480, then=Value("30-39")),
