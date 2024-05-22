@@ -52,7 +52,7 @@ overview_router = Router()
 discovery_router.add_router("/overview/", overview_router, tags=["overview"])
 
 # To protect privacy, numbers below a certain threshold will be censored, e.g., <5
-SMALL_NUMBER_THRESHOLD = settings.AGGREGATE_COUNT_THRESHOLD
+SMALL_NUMBER_THRESHOLD = int(settings.AGGREGATE_COUNT_THRESHOLD)
 SMALL_NUMBER_DISPLAY = "<" + str(SMALL_NUMBER_THRESHOLD)
 
 
@@ -183,11 +183,15 @@ def discover_individual_count(request):
     Return the number of individuals in the database.
     """
     donor_count = Donor.objects.count()
-    return {
-        "individual_count": str(donor_count)
-        if donor_count >= SMALL_NUMBER_THRESHOLD
-        else SMALL_NUMBER_DISPLAY
-    }
+
+    if donor_count == 0:
+        result = "0"
+    elif donor_count < SMALL_NUMBER_THRESHOLD:
+        result = SMALL_NUMBER_DISPLAY
+    else:
+        result = str(donor_count)
+
+    return {"individual_count": result}
 
 
 @overview_router.get("/gender_count/", response=List[GenderCountSchema])
