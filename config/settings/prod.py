@@ -10,7 +10,6 @@ from os.path import exists
 
 from .base import *
 
-# Required environment variables
 required_env_vars = [
     "HOST_CONTAINER_NAME",
     "EXTERNAL_URL",
@@ -25,7 +24,6 @@ required_env_vars = [
     "REDIS_PASSWORD_FILE",
 ]
 
-# Check for missing environment variables
 missing_vars = [var for var in required_env_vars if not os.getenv(var)]
 if missing_vars:
     raise EnvironmentError(
