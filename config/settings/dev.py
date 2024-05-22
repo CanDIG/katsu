@@ -14,16 +14,37 @@ from os.path import exists
 
 from .base import *
 
+# Required environment variables
+required_env_vars = [
+    "HOST_CONTAINER_NAME",
+    "EXTERNAL_URL",
+    "AGGREGATE_COUNT_THRESHOLD",
+    "OPA_URL",
+    "POSTGRES_DATABASE",
+    "POSTGRES_USER",
+    "POSTGRES_PASSWORD_FILE",
+    "POSTGRES_HOST",
+    "POSTGRES_PORT",
+    "REDIS_PASSWORD_FILE",
+]
+
+# Check for missing environment variables
+missing_vars = [var for var in required_env_vars if not os.getenv(var)]
+if missing_vars:
+    raise EnvironmentError(
+        f"Missing required environment variables: {', '.join(missing_vars)}"
+    )
+
 DEBUG = True
 
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    os.environ.get("HOST_CONTAINER_NAME"),
-    os.environ.get("EXTERNAL_URL"),
-    "query"
+    os.environ["HOST_CONTAINER_NAME"],
+    os.environ["EXTERNAL_URL"],
+    "query",
 ]
-AGGREGATE_COUNT_THRESHOLD = os.environ.get("AGGREGATE_COUNT_THRESHOLD")
+AGGREGATE_COUNT_THRESHOLD = os.environ["AGGREGATE_COUNT_THRESHOLD"]
 
 # Debug toolbar settings
 # ----------------------
@@ -31,8 +52,8 @@ INSTALLED_APPS.append("debug_toolbar")
 MIDDLEWARE.append("debug_toolbar.middleware.DebugToolbarMiddleware")
 INTERNAL_IPS = type("c", (), {"__contains__": lambda *a: True})()
 DEBUG_TOOLBAR_CONFIG = {
-    'RENDER_PANELS': False,
-    'RESULTS_CACHE_SIZE': 100,
+    "RENDER_PANELS": False,
+    "RESULTS_CACHE_SIZE": 100,
 }
 
 # Whitenoise
@@ -42,7 +63,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # CANDIG SETTINGS
 # ---------------
-CANDIG_OPA_URL = os.getenv("OPA_URL")
+CANDIG_OPA_URL = os.environ["OPA_URL"]
 CACHE_DURATION = int(os.getenv("CACHE_DURATION", 86400))  # default to 1 day
 CONN_MAX_AGE = int(os.getenv("CONN_MAX_AGE", 0))
 if exists("/run/secrets/opa-service-token"):
@@ -70,11 +91,11 @@ def get_secret(path):
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("POSTGRES_DATABASE"),
-        "USER": os.environ.get("POSTGRES_USER"),
-        "PASSWORD": get_secret(os.environ.get("POSTGRES_PASSWORD_FILE")),
-        "HOST": os.environ.get("POSTGRES_HOST"),
-        "PORT": os.environ.get("POSTGRES_PORT"),
+        "NAME": os.environ["POSTGRES_DATABASE"],
+        "USER": os.environ["POSTGRES_USER"],
+        "PASSWORD": get_secret(os.environ["POSTGRES_PASSWORD_FILE"]),
+        "HOST": os.environ["POSTGRES_HOST"],
+        "PORT": os.environ["POSTGRES_PORT"],
     }
 }
 
@@ -83,7 +104,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": f"redis://:{get_secret(os.environ.get('REDIS_PASSWORD_FILE'))}@{os.environ.get('EXTERNAL_URL')}:6379/1",
+        "LOCATION": f"redis://:{get_secret(os.environ['REDIS_PASSWORD_FILE'])}@{os.environ['EXTERNAL_URL']}:6379/1",
         "TIMEOUT": CACHE_DURATION,
     }
 }

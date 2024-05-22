@@ -10,13 +10,35 @@ from os.path import exists
 
 from .base import *
 
-ALLOWED_HOSTS = [
-    os.environ.get("HOST_CONTAINER_NAME"),
-    os.environ.get("EXTERNAL_URL"),
-    os.environ.get("CANDIG_INTERNAL_DOMAIN"),
-    "query"
+# Required environment variables
+required_env_vars = [
+    "HOST_CONTAINER_NAME",
+    "EXTERNAL_URL",
+    "CANDIG_INTERNAL_DOMAIN",
+    "AGGREGATE_COUNT_THRESHOLD",
+    "OPA_URL",
+    "POSTGRES_DATABASE",
+    "POSTGRES_USER",
+    "POSTGRES_PASSWORD_FILE",
+    "POSTGRES_HOST",
+    "POSTGRES_PORT",
+    "REDIS_PASSWORD_FILE",
 ]
-AGGREGATE_COUNT_THRESHOLD = os.environ.get("AGGREGATE_COUNT_THRESHOLD")
+
+# Check for missing environment variables
+missing_vars = [var for var in required_env_vars if not os.getenv(var)]
+if missing_vars:
+    raise EnvironmentError(
+        f"Missing required environment variables: {', '.join(missing_vars)}"
+    )
+
+ALLOWED_HOSTS = [
+    os.environ["HOST_CONTAINER_NAME"],
+    os.environ["EXTERNAL_URL"],
+    os.environ["CANDIG_INTERNAL_DOMAIN"],
+    "query",
+]
+AGGREGATE_COUNT_THRESHOLD = os.environ["AGGREGATE_COUNT_THRESHOLD"]
 
 # Whitenoise
 # ----------
@@ -25,7 +47,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # CANDIG SETTINGS
 # ---------------
-CANDIG_OPA_URL = os.getenv("OPA_URL")
+CANDIG_OPA_URL = os.environ["OPA_URL"]
 CACHE_DURATION = int(os.getenv("CACHE_DURATION", 86400))  # default to 1 day
 CONN_MAX_AGE = int(os.getenv("CONN_MAX_AGE", 0))
 if exists("/run/secrets/opa-service-token"):
@@ -36,7 +58,7 @@ if exists("/run/secrets/katsu_secret"):
         SECRET_KEY = f.read()
 
 
-# function to read docker secret password file
+# Function to read docker secret password file
 def get_secret(path):
     try:
         with open(path, "r", encoding="utf-8") as f:
@@ -53,11 +75,11 @@ def get_secret(path):
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("POSTGRES_DATABASE"),
-        "USER": os.environ.get("POSTGRES_USER"),
-        "PASSWORD": get_secret(os.environ.get("POSTGRES_PASSWORD_FILE")),
-        "HOST": os.environ.get("POSTGRES_HOST"),
-        "PORT": os.environ.get("POSTGRES_PORT"),
+        "NAME": os.environ["POSTGRES_DATABASE"],
+        "USER": os.environ["POSTGRES_USER"],
+        "PASSWORD": get_secret(os.environ["POSTGRES_PASSWORD_FILE"]),
+        "HOST": os.environ["POSTGRES_HOST"],
+        "PORT": os.environ["POSTGRES_PORT"],
     }
 }
 
@@ -66,7 +88,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": f"redis://:{get_secret(os.environ.get('REDIS_PASSWORD_FILE'))}@{os.environ.get('EXTERNAL_URL')}:6379/1",
+        "LOCATION": f"redis://:{get_secret(os.environ['REDIS_PASSWORD_FILE'])}@{os.environ['EXTERNAL_URL']}:6379/1",
         "TIMEOUT": CACHE_DURATION,
     }
 }
