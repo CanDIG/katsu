@@ -33,9 +33,10 @@ if missing_vars:
     )
 
 ALLOWED_HOSTS = [
-    os.environ["HOST_CONTAINER_NAME"],
-    os.environ["EXTERNAL_URL"],
-    os.environ["CANDIG_INTERNAL_DOMAIN"],
+    os.environ.get("HOST_CONTAINER_NAME"),
+    os.environ.get("EXTERNAL_URL"),
+    os.environ.get("CANDIG_INTERNAL_DOMAIN"),
+    "127.0.0.1",
     "query",
 ]
 AGGREGATE_COUNT_THRESHOLD = os.environ["AGGREGATE_COUNT_THRESHOLD"]
@@ -53,12 +54,9 @@ CONN_MAX_AGE = int(os.getenv("CONN_MAX_AGE", 0))
 if exists("/run/secrets/opa-service-token"):
     with open("/run/secrets/opa-service-token", "r") as f:
         CANDIG_OPA_SECRET = f.read()
-if exists("/run/secrets/katsu_secret"):
-    with open("/run/secrets/katsu_secret", "r") as f:
-        SECRET_KEY = f.read()
 
 
-# Function to read docker secret password file
+# function to read docker secret password file
 def get_secret(path):
     try:
         with open(path, "r", encoding="utf-8") as f:
