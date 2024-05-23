@@ -73,14 +73,13 @@ class NetworkAuth:
                 str: The token if the requester has permission, None otherwise.
             """
             try:
-                opa_secret = settings.CANDIG_OPA_SECRET
                 request.has_permission = (
                     request.method in SAFE_METHODS
-                    or is_site_admin(request, admin_secret=opa_secret)
+                    or is_site_admin(request)
                 )
                 if not request.has_permission:
                     return None
-                authorized_datasets = get_opa_datasets(request, admin_secret=opa_secret)
+                authorized_datasets = get_opa_datasets(request)
                 request.authorized_datasets = authorized_datasets
 
             except Exception as e:
