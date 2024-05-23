@@ -9,7 +9,7 @@ USER root
 RUN groupadd -r candig && useradd -r -g candig candig
 
 RUN apt-get update && apt-get -y install \
-	postgresql-client
+	postgresql-client libpcre3 libpcre3-dev
 	
 RUN mkdir /app
 WORKDIR /app
