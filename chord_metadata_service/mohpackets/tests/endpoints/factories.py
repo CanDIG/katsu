@@ -39,6 +39,8 @@ from chord_metadata_service.mohpackets.models import (
     Note:
         These factories use the Factory Boy library (https://factoryboy.readthedocs.io/)
         to generate test data.
+        Some business logic is not strictly enforced. For example,
+        date_of_birth could have mismatched month_interval and day_interval.
 
     Author: Son Chau
 """
