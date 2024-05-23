@@ -3,7 +3,7 @@
     "info": {
         "title": "MoH Service API",
         "version": "4.2.1",
-        "description": "This is the RESTful API for the MoH Service. Based on https://raw.githubusercontent.com/CanDIG/katsu/a5656164c539273637fe7ae7709f41d61bf86ced/chord_metadata_service/mohpackets/docs/schema.json"
+        "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
         "/v2/service-info": {
@@ -3943,6 +3943,7 @@
                         }
                     }
                 },
+                "description": "Return all the programs in the database.",
                 "tags": [
                     "discovery"
                 ]
@@ -3952,171 +3953,6 @@
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_donors",
                 "summary": "Discover Donors",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "submitter_donor_id",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Submitter Donor Id"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "program_id",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Program Id"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "gender",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "q": "gender__icontains",
-                            "title": "Gender"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "sex_at_birth",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Sex At Birth"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "is_deceased",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "boolean"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Is Deceased"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "lost_to_followup_after_clinical_event_identifier",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Lost To Followup After Clinical Event Identifier"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "lost_to_followup_reason",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Lost To Followup Reason"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "cause_of_death",
-                        "schema": {
-                            "anyOf": [
-                                {
-                                    "type": "string"
-                                },
-                                {
-                                    "type": "null"
-                                }
-                            ],
-                            "title": "Cause Of Death"
-                        },
-                        "required": false
-                    },
-                    {
-                        "in": "query",
-                        "name": "primary_site",
-                        "schema": {
-                            "items": {
-                                "type": "string"
-                            },
-                            "q": "primary_site__overlap",
-                            "title": "Primary Site",
-                            "type": "array"
-                        },
-                        "required": false
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/specimen/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_specimens",
-                "summary": "Discover Specimens",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -4124,276 +3960,17 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
+                                    "items": {
+                                        "$ref": "#/components/schemas/DiscoveryDonorSchema"
+                                    },
+                                    "title": "Response",
+                                    "type": "array"
                                 }
                             }
                         }
                     }
                 },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/sample_registrations/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_sample_registrations",
-                "summary": "Discover Sample Registrations",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/primary_diagnoses/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_primary_diagnoses",
-                "summary": "Discover Primary Diagnoses",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/treatments/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_treatments",
-                "summary": "Discover Treatments",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/chemotherapies/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_chemotherapies",
-                "summary": "Discover Chemotherapies",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/hormone_therapies/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_hormone_therapies",
-                "summary": "Discover Hormone Therapies",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/radiations/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_radiations",
-                "summary": "Discover Radiations",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/immunotherapies/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_immunotherapies",
-                "summary": "Discover Immunotherapies",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/surgeries/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_surgeries",
-                "summary": "Discover Surgeries",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/follow_ups/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_follow_ups",
-                "summary": "Discover Follow Ups",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/biomarkers/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_biomarkers",
-                "summary": "Discover Biomarkers",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/comorbidities/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_comorbidities",
-                "summary": "Discover Comorbidities",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
-                "tags": [
-                    "discovery"
-                ]
-            }
-        },
-        "/v2/discovery/exposures/": {
-            "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_exposures",
-                "summary": "Discover Exposures",
-                "parameters": [],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/DiscoverySchema"
-                                }
-                            }
-                        }
-                    }
-                },
+                "description": "Return the number of donors per cohort in the database.",
                 "tags": [
                     "discovery"
                 ]
@@ -4461,11 +4038,11 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "additionalProperties": {
-                                        "type": "integer"
+                                    "items": {
+                                        "$ref": "#/components/schemas/PatientPerCohortSchema"
                                     },
                                     "title": "Response",
-                                    "type": "object"
+                                    "type": "array"
                                 }
                             }
                         }
@@ -4489,7 +4066,7 @@
                             "application/json": {
                                 "schema": {
                                     "additionalProperties": {
-                                        "type": "integer"
+                                        "type": "string"
                                     },
                                     "title": "Response",
                                     "type": "object"
@@ -4515,11 +4092,11 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "additionalProperties": {
-                                        "type": "integer"
+                                    "items": {
+                                        "$ref": "#/components/schemas/GenderCountSchema"
                                     },
                                     "title": "Response",
-                                    "type": "object"
+                                    "type": "array"
                                 }
                             }
                         }
@@ -4531,10 +4108,10 @@
                 ]
             }
         },
-        "/v2/discovery/overview/cancer_type_count/": {
+        "/v2/discovery/overview/primary_site_count/": {
             "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_cancer_type_count",
-                "summary": "Discover Cancer Type Count",
+                "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_primary_site_count",
+                "summary": "Discover Primary Site Count",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -4542,11 +4119,11 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "additionalProperties": {
-                                        "type": "integer"
+                                    "items": {
+                                        "$ref": "#/components/schemas/PrimarySiteCountSchema"
                                     },
                                     "title": "Response",
-                                    "type": "object"
+                                    "type": "array"
                                 }
                             }
                         }
@@ -4569,11 +4146,11 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "additionalProperties": {
-                                        "type": "integer"
+                                    "items": {
+                                        "$ref": "#/components/schemas/TreatmentTypeCountSchema"
                                     },
                                     "title": "Response",
-                                    "type": "object"
+                                    "type": "array"
                                 }
                             }
                         }
@@ -4596,11 +4173,11 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "additionalProperties": {
-                                        "type": "integer"
+                                    "items": {
+                                        "$ref": "#/components/schemas/DiagnosisAgeCountSchema"
                                     },
                                     "title": "Response",
-                                    "type": "object"
+                                    "type": "array"
                                 }
                             }
                         }
@@ -14219,20 +13796,119 @@
                 "title": "ProgramDiscoverySchema",
                 "type": "object"
             },
-            "DiscoverySchema": {
+            "DiscoveryDonorSchema": {
                 "properties": {
-                    "donors_by_cohort": {
-                        "additionalProperties": {
-                            "type": "integer"
-                        },
-                        "title": "Donors By Cohort",
-                        "type": "object"
+                    "program_id": {
+                        "title": "Program Id",
+                        "type": "string"
+                    },
+                    "donors_count": {
+                        "title": "Donors Count",
+                        "type": "string"
                     }
                 },
                 "required": [
-                    "donors_by_cohort"
+                    "program_id",
+                    "donors_count"
                 ],
-                "title": "DiscoverySchema",
+                "title": "DiscoveryDonorSchema",
+                "type": "object"
+            },
+            "PatientPerCohortSchema": {
+                "properties": {
+                    "program_id": {
+                        "title": "Program Id",
+                        "type": "string"
+                    },
+                    "patients_count": {
+                        "title": "Patients Count",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "program_id",
+                    "patients_count"
+                ],
+                "title": "PatientPerCohortSchema",
+                "type": "object"
+            },
+            "GenderCountSchema": {
+                "properties": {
+                    "gender": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Gender"
+                    },
+                    "gender_count": {
+                        "title": "Gender Count",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "gender",
+                    "gender_count"
+                ],
+                "title": "GenderCountSchema",
+                "type": "object"
+            },
+            "PrimarySiteCountSchema": {
+                "properties": {
+                    "primary_site_name": {
+                        "title": "Primary Site Name",
+                        "type": "string"
+                    },
+                    "primary_site_count": {
+                        "title": "Primary Site Count",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "primary_site_name",
+                    "primary_site_count"
+                ],
+                "title": "PrimarySiteCountSchema",
+                "type": "object"
+            },
+            "TreatmentTypeCountSchema": {
+                "properties": {
+                    "treatment_type_name": {
+                        "title": "Treatment Type Name",
+                        "type": "string"
+                    },
+                    "treatment_type_count": {
+                        "title": "Treatment Type Count",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "treatment_type_name",
+                    "treatment_type_count"
+                ],
+                "title": "TreatmentTypeCountSchema",
+                "type": "object"
+            },
+            "DiagnosisAgeCountSchema": {
+                "properties": {
+                    "age_at_diagnosis": {
+                        "title": "Age At Diagnosis",
+                        "type": "string"
+                    },
+                    "age_count": {
+                        "title": "Age Count",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "age_at_diagnosis",
+                    "age_count"
+                ],
+                "title": "DiagnosisAgeCountSchema",
                 "type": "object"
             },
             "DonorExplorerFilterSchema": {

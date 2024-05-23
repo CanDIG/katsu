@@ -17,6 +17,7 @@ from .base import *
 DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
+AGGREGATE_COUNT_THRESHOLD = 5
 
 # Debug toolbar settings
 # ----------------------
