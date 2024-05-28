@@ -25,6 +25,7 @@ required_env_vars = [
     "POSTGRES_HOST",
     "POSTGRES_PORT",
     "REDIS_PASSWORD_FILE",
+    "CACHE_DURATION",
 ]
 
 missing_vars = [var for var in required_env_vars if not os.getenv(var)]
@@ -61,9 +62,8 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # CANDIG SETTINGS
 # ---------------
-CANDIG_OPA_URL = os.environ["OPA_URL"]
-CACHE_DURATION = int(os.getenv("CACHE_DURATION", 86400))  # default to 1 day
-CONN_MAX_AGE = int(os.getenv("CONN_MAX_AGE", 0))
+CACHE_DURATION = int(os.environ["CACHE_DURATION"])
+
 
 # function to read docker secret password file
 def get_secret(path):
@@ -89,7 +89,8 @@ DATABASES = {
         "PORT": os.environ["POSTGRES_PORT"],
     }
 }
-
+CONN_MAX_AGE = 300
+CONN_HEALTH_CHECKS = True
 # Cache
 # -----
 CACHES = {
@@ -124,9 +125,9 @@ LOGGING = {
         },
         "file": {
             "class": "logging.handlers.RotatingFileHandler",
-            "filename": os.path.join(BASE_DIR, "logs", "logs.txt"),
+            "filename": os.path.join(BASE_DIR, "logs", "django"),
             "formatter": "file",
-            "maxBytes": 1024 * 1024,
+            "maxBytes": 1024 * 1024 * 5,
             "backupCount": 5,
             "level": "DEBUG",  # Set the log level for the file handler
         },

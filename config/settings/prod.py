@@ -22,6 +22,7 @@ required_env_vars = [
     "POSTGRES_HOST",
     "POSTGRES_PORT",
     "REDIS_PASSWORD_FILE",
+    "CACHE_DURATION",
 ]
 
 missing_vars = [var for var in required_env_vars if not os.getenv(var)]
@@ -46,9 +47,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # CANDIG SETTINGS
 # ---------------
-CANDIG_OPA_URL = os.environ["OPA_URL"]
-CACHE_DURATION = int(os.getenv("CACHE_DURATION", 86400))  # default to 1 day
-CONN_MAX_AGE = int(os.getenv("CONN_MAX_AGE", 0))
+CACHE_DURATION = int(os.environ["CACHE_DURATION"])
 
 
 # function to read docker secret password file
@@ -75,6 +74,8 @@ DATABASES = {
         "PORT": os.environ["POSTGRES_PORT"],
     }
 }
+CONN_MAX_AGE = 300
+CONN_HEALTH_CHECKS = True
 
 # Cache
 # -----
@@ -109,9 +110,9 @@ LOGGING = {
         },
         "file": {
             "class": "logging.handlers.RotatingFileHandler",
-            "filename": os.path.join(BASE_DIR, "logs", "logs.txt"),
+            "filename": os.path.join(BASE_DIR, "logs", "django"),
             "formatter": "file",
-            "maxBytes": 1024 * 1024,
+            "maxBytes": 1024 * 1024 * 5,
             "backupCount": 5,
             "level": "ERROR",  # Set the log level for the file handler
         },
@@ -133,11 +134,9 @@ LOGGING = {
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_SSL_REDIRECT = True # need port 443
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SESSION_COOKIE_SECURE = True
 SECURE_HSTS_PRELOAD = True
-SECURE_HSTS_SECONDS = 60  # Once confirm that all assets are served securely(i.e. HSTS didn’t break anything), increase this value
-# SECURE_HSTS_SECONDS = 60 * 60 * 24 * 7 * 52  # one year
+SECURE_HSTS_SECONDS = 60 * 60 * 24 * 30  # one month
