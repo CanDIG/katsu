@@ -14,4 +14,4 @@ export SECRET_KEY=$(cat .secret_key)
 
 # start the server
 python manage.py collectstatic --noinput
-uwsgi --ini katsu_wsgi.ini
+gunicorn config.asgi:application -c gunicorn_conf.py
