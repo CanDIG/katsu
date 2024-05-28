@@ -49,9 +49,6 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 CANDIG_OPA_URL = os.environ["OPA_URL"]
 CACHE_DURATION = int(os.getenv("CACHE_DURATION", 86400))  # default to 1 day
 CONN_MAX_AGE = int(os.getenv("CONN_MAX_AGE", 0))
-if exists("/run/secrets/opa-service-token"):
-    with open("/run/secrets/opa-service-token", "r") as f:
-        CANDIG_OPA_SECRET = f.read()
 
 
 # function to read docker secret password file
