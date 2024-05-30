@@ -2,8 +2,8 @@ import logging.config
 import os
 
 bind = "0.0.0.0"
-workers = int(os.getenv("KATSU_WORKERS", 2))
-threads = int(os.getenv("KATSU_THREADS", 4))
+workers = int(os.getenv("WORKERS", 2))
+threads = int(os.getenv("THREADS", 4))
 worker_class = "uvicorn.workers.UvicornWorker"
 user = "candig"
 group = "candig"
