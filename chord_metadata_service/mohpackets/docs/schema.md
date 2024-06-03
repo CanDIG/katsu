@@ -1,5 +1,5 @@
 
-<h1 id="moh-service-api">MoH Service API v4.2.1</h1>
+<h1 id="moh-service-api">MoH Service API v4.4.0</h1>
 
 This is the RESTful API for the MoH Service.
 
@@ -1464,6 +1464,9 @@ Return all the programs in the database.
 *Discover Donors*
 
 Return the number of donors per cohort in the database.
+Note: This function is identical to `discover_patients_per_cohort`
+and is here because the frontend ingest uses it. It's probably best
+to clean up later.
 
 > Example responses
 
@@ -1486,8 +1489,7 @@ Return the number of donors per cohort in the database.
 
 *Discover Sidebar List*
 
-Retrieve the list of available values for all fields (including for
-datasets that the user is not authorized to view)
+Retrieve the list of drug names and treatment for frontend usage
 
 > Example responses
 

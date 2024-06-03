@@ -9,8 +9,10 @@ USER root
 RUN groupadd -r candig && useradd -r -g candig candig
 
 RUN apt-get update && apt-get -y install \
-	postgresql-client libpcre3 libpcre3-dev
-	
+    postgresql-client
+
+RUN mkdir -p /home/candig && chown -R candig:candig /home/candig
+
 RUN mkdir /app
 WORKDIR /app
 
@@ -26,7 +28,6 @@ else \
     pip install --no-cache-dir -r requirements/prod.txt; \
 fi
 
-
 COPY . /app/chord_metadata_service
 
 WORKDIR /app/chord_metadata_service
@@ -41,4 +42,3 @@ RUN chmod +x /app/chord_metadata_service/create_db.sh
 USER candig
 
 CMD ["/app/chord_metadata_service/entrypoint.sh"]
-

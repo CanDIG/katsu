@@ -5415,7 +5415,7 @@ components:
 info:
   description: This is the RESTful API for the MoH Service.
   title: MoH Service API
-  version: 4.2.1
+  version: 4.4.0
 openapi: 3.1.0
 paths:
   /v2/authorized/biomarkers/:
@@ -7272,7 +7272,13 @@ paths:
       - authorized
   /v2/discovery/donors/:
     get:
-      description: Return the number of donors per cohort in the database.
+      description: 'Return the number of donors per cohort in the database.
+
+        Note: This function is identical to `discover_patients_per_cohort`
+
+        and is here because the frontend ingest uses it. It''s probably best
+
+        to clean up later.'
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_donors
       parameters: []
       responses:
@@ -7435,10 +7441,7 @@ paths:
       - discovery
   /v2/discovery/sidebar_list/:
     get:
-      description: 'Retrieve the list of available values for all fields (including
-        for
-
-        datasets that the user is not authorized to view)'
+      description: Retrieve the list of drug names and treatment for frontend usage
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_sidebar_list
       parameters: []
       responses:

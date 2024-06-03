@@ -2,7 +2,7 @@
     "openapi": "3.1.0",
     "info": {
         "title": "MoH Service API",
-        "version": "4.2.1",
+        "version": "4.4.0",
         "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
@@ -3970,7 +3970,7 @@
                         }
                     }
                 },
-                "description": "Return the number of donors per cohort in the database.",
+                "description": "Return the number of donors per cohort in the database.\nNote: This function is identical to `discover_patients_per_cohort`\nand is here because the frontend ingest uses it. It's probably best\nto clean up later.",
                 "tags": [
                     "discovery"
                 ]
@@ -3994,7 +3994,7 @@
                         }
                     }
                 },
-                "description": "Retrieve the list of available values for all fields (including for\ndatasets that the user is not authorized to view)",
+                "description": "Retrieve the list of drug names and treatment for frontend usage",
                 "tags": [
                     "discovery"
                 ]
