@@ -1,19 +1,18 @@
 #####################################################################
 #                   PRODUCTION SETTINGS                             #
 # Inherit from setting base.py. Contain only necessary settings to  #
-# make the project run. Following:                                  #
-# https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/ #
+# make the project run.                                             #
+# - prod domain                                                     #
+# - debug disable                                                   #
+# - docker postgres database                                        #
+# - user and datasets permission from OPA                           #
+# - testing token obtain from keycloak                              #
 #####################################################################
 
 import os
-from os.path import exists
-
 from .base import *
 
 required_env_vars = [
-    "HOST_CONTAINER_NAME",
-    "EXTERNAL_URL",
-    "CANDIG_INTERNAL_DOMAIN",
     "AGGREGATE_COUNT_THRESHOLD",
     "OPA_URL",
     "POSTGRES_DATABASE",
@@ -23,6 +22,8 @@ required_env_vars = [
     "POSTGRES_PORT",
     "REDIS_PASSWORD_FILE",
     "CACHE_DURATION",
+    "ALLOWED_HOSTS",
+    "CANDIG_DOMAIN",
 ]
 
 missing_vars = [var for var in required_env_vars if not os.getenv(var)]
@@ -31,13 +32,8 @@ if missing_vars:
         f"Missing required environment variables: {', '.join(missing_vars)}"
     )
 
-ALLOWED_HOSTS = [
-    os.environ["HOST_CONTAINER_NAME"],
-    os.environ["EXTERNAL_URL"],
-    os.environ["CANDIG_INTERNAL_DOMAIN"],
-    "127.0.0.1",
-    "query",
-]
+DEBUG = False
+ALLOWED_HOSTS = [host.strip() for host in os.environ["ALLOWED_HOSTS"].split(",")]
 AGGREGATE_COUNT_THRESHOLD = os.environ["AGGREGATE_COUNT_THRESHOLD"]
 
 # Whitenoise
@@ -82,7 +78,7 @@ CONN_HEALTH_CHECKS = True
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": f"redis://:{get_secret(os.environ['REDIS_PASSWORD_FILE'])}@{os.environ['EXTERNAL_URL']}:6379/1",
+        "LOCATION": f"redis://:{get_secret(os.environ['REDIS_PASSWORD_FILE'])}@{os.environ['CANDIG_DOMAIN']}:6379/1",
         "TIMEOUT": CACHE_DURATION,
     }
 }
