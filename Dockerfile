@@ -19,12 +19,10 @@ WORKDIR /app
 COPY ./requirements /app/requirements
 
 # Conditionally install dependencies based on the environment
-ARG katsu_env
-RUN if [ ${katsu_env} = "dev" ]; then \
-    echo "Installing dev.txt" && \
+ARG debug_mode 
+RUN if [ ${debug_mode} = 1 ]; then \
     pip install --no-cache-dir -r requirements/dev.txt; \
 else \
-    echo "Installing prod.txt" && \
     pip install --no-cache-dir -r requirements/prod.txt; \
 fi
 
