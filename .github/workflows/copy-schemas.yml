@@ -1,5 +1,4 @@
 name: Copy Schemas
-
 on:
   push:
     branches:
@@ -8,7 +7,6 @@ on:
 jobs:
   copy-schema:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -18,11 +16,17 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-      - name: Pull changes from fake-develop into schemas branch
+      - name: Fetch fake-develop
+        run: git fetch origin fake-develop
+
+      - name: Switch to schemas branch
+        run: git checkout schemas
+
+      - name: Merge changes from fake-develop
+        run: git merge origin/fake-develop
+
+      - name: Commit updated schemas
         run: |
-          git fetch origin
-          git checkout schemas
-          git pull origin fake-develop
           git add chord_metadata_service/mohpackets/docs/*
-          git commit -m "Update schemas from develop branch"
+          git commit -m "Update schemas from fake-develop branch"
           git push origin schemas
