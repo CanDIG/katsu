@@ -24,3 +24,5 @@ katsu.code-workspace
 
 # Staticfiles
 config/staticfiles/*
+
+.github
