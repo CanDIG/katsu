@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Set up Git user
         run: |
           git config --global user.name "GitHub Actions"
@@ -21,7 +21,7 @@ jobs:
       - name: Commit Schema to Docs Branch
         run: |
           # Commit the copied schemas file to the docs branch
-          git checkout develop
+          git checkout fake-develop
           git add chord_metadata_service/mohpackets/docs/*
           git commit -m "Update schemas from develop branch"
           git push origin schemas
