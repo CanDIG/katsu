@@ -21,7 +21,7 @@ from chord_metadata_service.mohpackets.apis.explorer import (
     explorer_router as explorer_router,
 )
 from chord_metadata_service.mohpackets.apis.ingestion import router as ingest_router
-from chord_metadata_service.mohpackets.utils import get_schema_url
+from chord_metadata_service.mohpackets.utils import get_schema_version
 
 from django.views.decorators.cache import cache_page
 from ninja.decorators import decorate_view
@@ -192,14 +192,12 @@ api.add_router(
 @api.get("/service-info")
 @decorate_view(cache_page(settings.CACHE_DURATION))
 def service_info(request):
-    schema_url = get_schema_url()
-
     return JsonResponse(
         {
             "name": "katsu",
             "description": "A CanDIG clinical data service",
             "version": settings.KATSU_VERSION,
-            "schema_url": schema_url,
+            "schema_version": get_schema_version(),
         },
         status=200,
         safe=False,
