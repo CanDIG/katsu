@@ -1,9 +1,8 @@
-import json
 import logging
-import re
 from enum import Enum
 
 logger = logging.getLogger(__name__)
+
 
 def get_schema_version():
     """
