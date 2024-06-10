@@ -1652,8 +1652,8 @@ Return the count for age of diagnosis by calculating the date of birth interval.
 ```json
 [
   {
-    "age_at_diagnosis": "string",
-    "age_count": "string"
+    "age_at_diagnosis": 0,
+    "age_count": 0
   }
 ]
 ```
@@ -18502,8 +18502,8 @@ TreatmentTypeCountSchema
 
 ```json
 {
-  "age_at_diagnosis": "string",
-  "age_count": "string"
+  "age_at_diagnosis": 0,
+  "age_count": 0
 }
 
 ```
@@ -18514,8 +18514,8 @@ DiagnosisAgeCountSchema
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|age_at_diagnosis|string|true|none|none|
-|age_count|string|true|none|none|
+|age_at_diagnosis|integer|true|none|none|
+|age_count|integer|true|none|none|
 
 <h2 id="tocS_DonorExplorerFilterSchema">DonorExplorerFilterSchema</h2>
 

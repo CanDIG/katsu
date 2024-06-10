@@ -13897,11 +13897,11 @@
                 "properties": {
                     "age_at_diagnosis": {
                         "title": "Age At Diagnosis",
-                        "type": "string"
+                        "type": "integer"
                     },
                     "age_count": {
                         "title": "Age Count",
-                        "type": "string"
+                        "type": "integer"
                     }
                 },
                 "required": [
