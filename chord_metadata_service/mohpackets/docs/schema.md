@@ -1630,7 +1630,7 @@ Return the count for every treatment type in the database.
 [
   {
     "treatment_type_name": "string",
-    "treatment_type_count": "string"
+    "treatment_type_count": 0
   }
 ]
 ```
@@ -1652,8 +1652,8 @@ Return the count for age of diagnosis by calculating the date of birth interval.
 ```json
 [
   {
-    "age_at_diagnosis": 0,
-    "age_count": 0
+    "age_at_diagnosis": "string",
+    "age_count": "string"
   }
 ]
 ```
@@ -18479,7 +18479,7 @@ PrimarySiteCountSchema
 ```json
 {
   "treatment_type_name": "string",
-  "treatment_type_count": "string"
+  "treatment_type_count": 0
 }
 
 ```
@@ -18491,7 +18491,7 @@ TreatmentTypeCountSchema
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |treatment_type_name|string|true|none|none|
-|treatment_type_count|string|true|none|none|
+|treatment_type_count|integer|true|none|none|
 
 <h2 id="tocS_DiagnosisAgeCountSchema">DiagnosisAgeCountSchema</h2>
 
@@ -18502,8 +18502,8 @@ TreatmentTypeCountSchema
 
 ```json
 {
-  "age_at_diagnosis": 0,
-  "age_count": 0
+  "age_at_diagnosis": "string",
+  "age_count": "string"
 }
 
 ```
@@ -18514,8 +18514,8 @@ DiagnosisAgeCountSchema
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|age_at_diagnosis|integer|true|none|none|
-|age_count|integer|true|none|none|
+|age_at_diagnosis|string|true|none|none|
+|age_count|string|true|none|none|
 
 <h2 id="tocS_DonorExplorerFilterSchema">DonorExplorerFilterSchema</h2>
 

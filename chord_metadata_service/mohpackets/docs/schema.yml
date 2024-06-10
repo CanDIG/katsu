@@ -632,10 +632,10 @@ components:
       properties:
         age_at_diagnosis:
           title: Age At Diagnosis
-          type: integer
+          type: string
         age_count:
           title: Age Count
-          type: integer
+          type: string
       required:
       - age_at_diagnosis
       - age_count
@@ -5288,7 +5288,7 @@ components:
       properties:
         treatment_type_count:
           title: Treatment Type Count
-          type: string
+          type: integer
         treatment_type_name:
           title: Treatment Type Name
           type: string

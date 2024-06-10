@@ -13883,7 +13883,7 @@
                     },
                     "treatment_type_count": {
                         "title": "Treatment Type Count",
-                        "type": "string"
+                        "type": "integer"
                     }
                 },
                 "required": [
@@ -13897,11 +13897,11 @@
                 "properties": {
                     "age_at_diagnosis": {
                         "title": "Age At Diagnosis",
-                        "type": "integer"
+                        "type": "string"
                     },
                     "age_count": {
                         "title": "Age Count",
-                        "type": "integer"
+                        "type": "string"
                     }
                 },
                 "required": [
