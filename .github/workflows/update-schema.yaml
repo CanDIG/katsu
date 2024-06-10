@@ -52,7 +52,7 @@ jobs:
         run: |
           current_version=$(cat ./chord_metadata_service/mohpackets/docs/version.txt)
           new_version=$((current_version + 1))
-          echo $new_version > version.txt
+          echo $new_version > ./chord_metadata_service/mohpackets/docs/version.txt
 
       - name: Update schemas
         uses: stefanzweifel/git-auto-commit-action@v5
