@@ -48,14 +48,14 @@ jobs:
       - name: Convert schema.json to schema.yml
         run: python -c 'import json, yaml; json.load(open("chord_metadata_service/mohpackets/docs/schema.json")); print(yaml.dump(json.load(open("chord_metadata_service/mohpackets/docs/schema.json"))))' > chord_metadata_service/mohpackets/docs/schema.yml
 
-      - name: Increment version
+      - name: Increment schema version
         run: |
-          current_version=$(cat ./chord_metadata_service/mohpackets/docs/version.txt)
+          current_version=$(cat ./chord_metadata_service/mohpackets/docs/schema_version.txt)
           new_version=$((current_version + 1))
-          echo $new_version > ./chord_metadata_service/mohpackets/docs/version.txt
+          echo $new_version > ./chord_metadata_service/mohpackets/docs/schema_version.txt
 
       - name: Update schemas
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Update schemas
-          file_pattern: "chord_metadata_service/mohpackets/docs/schema.json chord_metadata_service/mohpackets/docs/schema.md chord_metadata_service/mohpackets/docs/schema.yml chord_metadata_service/mohpackets/docs/version.txt"
+          file_pattern: "chord_metadata_service/mohpackets/docs/schema.json chord_metadata_service/mohpackets/docs/schema.md chord_metadata_service/mohpackets/docs/schema.yml chord_metadata_service/mohpackets/docs/schema_version.txt"
