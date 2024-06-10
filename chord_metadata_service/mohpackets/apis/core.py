@@ -176,6 +176,7 @@ api = NinjaAPI(
         settings={"docExpansion": "none"}
     ),  # collapse all endpoints by default
     title="MoH Service API",
+    version=settings.KATSU_VERSION,
     description="This is the RESTful API for the MoH Service.",
 )
 api.add_router("/ingest/", ingest_router, auth=auth.LoginAuth(), tags=["ingest"])
