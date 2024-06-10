@@ -44,5 +44,5 @@ class TreatmentTypeCountSchema(Schema):
 
 
 class DiagnosisAgeCountSchema(Schema):
-    age_at_diagnosis: str
-    age_count: str
+    age_at_diagnosis: int
+    age_count: int
