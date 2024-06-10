@@ -40,9 +40,9 @@ class PrimarySiteCountSchema(Schema):
 
 class TreatmentTypeCountSchema(Schema):
     treatment_type_name: str
-    treatment_type_count: str
+    treatment_type_count: int
 
 
 class DiagnosisAgeCountSchema(Schema):
-    age_at_diagnosis: int
-    age_count: int
+    age_at_diagnosis: str
+    age_count: str
