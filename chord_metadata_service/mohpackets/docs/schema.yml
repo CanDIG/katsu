@@ -5415,7 +5415,7 @@ components:
 info:
   description: This is the RESTful API for the MoH Service.
   title: MoH Service API
-  version: 4.4.0
+  version: 1.0.0
 openapi: 3.1.0
 paths:
   /v2/authorized/biomarkers/:
