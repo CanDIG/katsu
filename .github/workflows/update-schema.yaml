@@ -3,7 +3,7 @@ name: Docs
 on:
   pull_request:
     # branches:
-    #     - develop
+    #   - develop
     paths:
       - "chord_metadata_service/mohpackets/schemas/**"
       - "chord_metadata_service/mohpackets/models.py"
@@ -58,10 +58,10 @@ jobs:
 
       - name: Get SHA commit of schema.json
         id: get-sha
-        run: echo "::set-output name=sha::$(git log -1 --format=%H chord_metadata_service/mohpackets/docs/schema.json)"
+        run: echo "SHA=$(git log -1 --format=%H chord_metadata_service/mohpackets/docs/schema.json)" >> $GITHUB_ENV
 
       - name: Write SHA to schema_version.txt
-        run: echo ${{ steps.get-sha.outputs.sha }} > chord_metadata_service/mohpackets/docs/schema_version.txt
+        run: echo ${{ env.SHA }} > chord_metadata_service/mohpackets/docs/schema_version.txt
 
       - name: Commit updated schema_version.txt
         uses: stefanzweifel/git-auto-commit-action@v5
