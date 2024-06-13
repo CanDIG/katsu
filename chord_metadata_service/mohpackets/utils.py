@@ -11,7 +11,7 @@ def get_schema_version():
     file_path = "chord_metadata_service/mohpackets/docs/schema_version.txt"
     with open(file_path, "r") as file:
         version = file.read().strip()
-    return int(version)
+    return version
 
 
 def list_to_enum(enum_name, value_list):
