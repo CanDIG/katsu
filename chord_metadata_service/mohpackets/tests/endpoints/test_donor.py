@@ -26,7 +26,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import DonorFac
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.donor_url = "/v2/ingest/donor/"
+        self.donor_url = "/v2/ingest/donors/"
 
     def test_donor_create_authorized(self):
         """
@@ -38,10 +38,10 @@ class IngestTestCase(BaseTestCase):
         - User can perform a POST request for donor creation.
         """
         donor = DonorFactory.build(program_id=self.programs[0])
-        donor_dict = model_to_dict(donor)
+        data_dict = model_to_dict(donor)
         response = self.client.post(
             self.donor_url,
-            data=donor_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -63,10 +63,10 @@ class IngestTestCase(BaseTestCase):
         - User cannot perform a POST request for donor creation.
         """
         donor = DonorFactory.build(program_id=self.programs[0])
-        donor_dict = model_to_dict(donor)
+        data_dict = model_to_dict(donor)
         response = self.client.post(
             self.donor_url,
-            data=donor_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",

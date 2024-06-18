@@ -48,6 +48,7 @@ Author: Son Chau
 
 router = Router()
 
+
 def create_instances(payloads: List, model_cls: Type):
     instances = []
     try:
