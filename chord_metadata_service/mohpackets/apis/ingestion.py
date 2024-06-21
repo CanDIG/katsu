@@ -49,10 +49,10 @@ Author: Son Chau
 router = Router()
 
 
-def create_instances(payloads: List, model_cls: Type):
+def create_instances(payload: List, model_cls: Type):
     instances = []
     try:
-        for item in payloads:
+        for item in payload:
             instance = model_cls.objects.create(**item.dict())
             instances.append(instance)
     except Exception as e:
@@ -70,102 +70,102 @@ def create_instances(payloads: List, model_cls: Type):
 
 @router.post("/programs/")
 def create_programs(
-    request, payloads: List[ProgramIngestSchema], response: HttpResponse
+    request, payload: List[ProgramIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, Program)
+    return create_instances(payload, Program)
 
 
 @router.post("/donors/")
-def create_donors(request, payloads: List[DonorIngestSchema], response: HttpResponse):
-    return create_instances(payloads, Donor)
+def create_donors(request, payload: List[DonorIngestSchema], response: HttpResponse):
+    return create_instances(payload, Donor)
 
 
 @router.post("/biomarkers/")
 def create_biomarkers(
-    request, payloads: List[BiomarkerIngestSchema], response: HttpResponse
+    request, payload: List[BiomarkerIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, Biomarker)
+    return create_instances(payload, Biomarker)
 
 
 @router.post("/chemotherapies/")
 def create_chemotherapies(
-    request, payloads: List[ChemotherapyIngestSchema], response: HttpResponse
+    request, payload: List[ChemotherapyIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, Chemotherapy)
+    return create_instances(payload, Chemotherapy)
 
 
 @router.post("/comorbidities/")
 def create_comorbidities(
-    request, payloads: List[ComorbidityIngestSchema], response: HttpResponse
+    request, payload: List[ComorbidityIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, Comorbidity)
+    return create_instances(payload, Comorbidity)
 
 
 @router.post("/exposures/")
 def create_exposures(
-    request, payloads: List[ExposureIngestSchema], response: HttpResponse
+    request, payload: List[ExposureIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, Exposure)
+    return create_instances(payload, Exposure)
 
 
 @router.post("/followups/")
 def create_followups(
-    request, payloads: List[FollowUpIngestSchema], response: HttpResponse
+    request, payload: List[FollowUpIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, FollowUp)
+    return create_instances(payload, FollowUp)
 
 
 @router.post("/hormone_therapies/")
 def create_hormone_therapies(
-    request, payloads: List[HormoneTherapyIngestSchema], response: HttpResponse
+    request, payload: List[HormoneTherapyIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, HormoneTherapy)
+    return create_instances(payload, HormoneTherapy)
 
 
 @router.post("/immunotherapies/")
 def create_immunotherapies(
-    request, payloads: List[ImmunotherapyIngestSchema], response: HttpResponse
+    request, payload: List[ImmunotherapyIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, Immunotherapy)
+    return create_instances(payload, Immunotherapy)
 
 
 @router.post("/primary_diagnoses/")
 def create_primary_diagnoses(
-    request, payloads: List[PrimaryDiagnosisIngestSchema], response: HttpResponse
+    request, payload: List[PrimaryDiagnosisIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, PrimaryDiagnosis)
+    return create_instances(payload, PrimaryDiagnosis)
 
 
 @router.post("/radiations/")
 def create_radiations(
-    request, payloads: List[RadiationIngestSchema], response: HttpResponse
+    request, payload: List[RadiationIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, Radiation)
+    return create_instances(payload, Radiation)
 
 
 @router.post("/sample_registrations/")
 def create_sample_registrations(
-    request, payloads: List[SampleRegistrationIngestSchema], response: HttpResponse
+    request, payload: List[SampleRegistrationIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, SampleRegistration)
+    return create_instances(payload, SampleRegistration)
 
 
 @router.post("/specimens/")
 def create_specimens(
-    request, payloads: List[SpecimenIngestSchema], response: HttpResponse
+    request, payload: List[SpecimenIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, Specimen)
+    return create_instances(payload, Specimen)
 
 
 @router.post("/surgeries/")
 def create_surgeries(
-    request, payloads: List[SurgeryIngestSchema], response: HttpResponse
+    request, payload: List[SurgeryIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, Surgery)
+    return create_instances(payload, Surgery)
 
 
 @router.post("/treatments/")
 def create_treatments(
-    request, payloads: List[TreatmentIngestSchema], response: HttpResponse
+    request, payload: List[TreatmentIngestSchema], response: HttpResponse
 ):
-    return create_instances(payloads, Treatment)
+    return create_instances(payload, Treatment)
