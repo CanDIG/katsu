@@ -280,7 +280,7 @@ api = NinjaAPI(
 )
 api.add_router("/discovery/", discovery_router, tags=["discovery"])
 api.add_router("/ingest/", ingest_router, auth=auth.IngestAuth(), tags=["ingest"])
-api.add_router("/authorized/", delete_router, auth=auth.DeleteAuth(), tags=["delete"])
+api.add_router("/ingest/", delete_router, auth=auth.DeleteAuth(), tags=["delete"])
 api.add_router(
     "/authorized/", authorzied_router, auth=auth.GetAuth(), tags=["authorized"]
 )
