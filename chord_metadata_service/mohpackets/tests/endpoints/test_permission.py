@@ -119,7 +119,7 @@ class IngestTestCase(BaseTestCase):
 class DeleteTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.authorized_url = "/v2/authorized/program/"
+        self.delete_url = "/v2/ingest/program/"
 
     def test_delete_with_normal_user(self):
         """
@@ -130,7 +130,7 @@ class DeleteTestCase(BaseTestCase):
         - The request should receive a 401 response.
         """
         response = self.client.delete(
-            f"{self.authorized_url}{self.programs[0]}/",
+            f"{self.delete_url}{self.programs[0]}/",
             HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.UNAUTHORIZED)
@@ -144,7 +144,7 @@ class DeleteTestCase(BaseTestCase):
         - The request should receive a 401 response.
         """
         response = self.client.delete(
-            f"{self.authorized_url}{self.programs[0]}/",
+            f"{self.delete_url}{self.programs[0]}/",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.UNAUTHORIZED)
@@ -158,7 +158,7 @@ class DeleteTestCase(BaseTestCase):
         - The request should receive a 204 response.
         """
         response = self.client.delete(
-            f"{self.authorized_url}{self.programs[1]}/",
+            f"{self.delete_url}{self.programs[1]}/",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.NO_CONTENT)
@@ -174,7 +174,7 @@ class DeleteTestCase(BaseTestCase):
         """
         program_to_delete = ProgramFactory.create()
         response = self.client.delete(
-            f"{self.authorized_url}{program_to_delete}/",
+            f"{self.delete_url}{program_to_delete}/",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.NO_CONTENT)
