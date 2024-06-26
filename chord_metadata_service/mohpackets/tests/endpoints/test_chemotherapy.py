@@ -143,10 +143,8 @@ class ChemotherapyOthersTestCase(BaseTestCase):
           for each of the test users.
         """
         for user in self.users:
-            authorized_datasets = next(
-                user_data["datasets"]
-                for user_data in settings.LOCAL_AUTHORIZED_DATASET
-                if user_data["token"] == user.token
+            authorized_datasets = settings.LOCAL_OPA_DATASET.get(user.token, {}).get(
+                "read_datasets", []
             )
             expected_datasets = [
                 str(dataset)

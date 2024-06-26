@@ -176,10 +176,8 @@ class OthersTestCase(BaseTestCase):
             )
             response = response.json()
 
-            authorized_datasets = next(
-                user_data["datasets"]
-                for user_data in settings.LOCAL_AUTHORIZED_DATASET
-                if user_data["token"] == user.token
+            authorized_datasets = settings.LOCAL_OPA_DATASET.get(user.token, {}).get(
+                "read_datasets", []
             )
             response_datasets = [program["program_id"] for program in response["items"]]
             self.assertEqual(response_datasets, authorized_datasets)
