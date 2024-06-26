@@ -1,9 +1,14 @@
 import logging
 import os
+import json
 import sys
-
 import orjson
-from authx.auth import get_opa_datasets, verify_service_token, is_site_admin
+from authx.auth import (
+    get_opa_datasets,
+    verify_service_token,
+    is_site_admin,
+    is_action_allowed_for_program,
+)
 from django.conf import settings
 from django.http import JsonResponse
 from ninja import NinjaAPI, Swagger
@@ -20,7 +25,11 @@ from chord_metadata_service.mohpackets.apis.discovery import (
 from chord_metadata_service.mohpackets.apis.explorer import (
     explorer_router as explorer_router,
 )
-from chord_metadata_service.mohpackets.apis.ingestion import router as ingest_router
+from chord_metadata_service.mohpackets.apis.ingestion import (
+    router as ingest_router,
+    delete_router,
+)
+
 from chord_metadata_service.mohpackets.utils import get_schema_version
 
 from django.views.decorators.cache import cache_page
@@ -61,39 +70,117 @@ class ORJSONParser(Parser):
 
 
 class NetworkAuth:
-    class LoginAuth(HttpBearer):
+    class DeleteAuth(HttpBearer):
         def authenticate(self, request, bearer_token):
             """
-            Authenticates a request using Open Policy Agent (OPA).
-
-            This method gives permission for site admin or read only request.
-            If permitted, it fetches the authorized datasets from OPA and attaches them to the request.
-
-            Returns:
-                str: The token if the requester has permission, None otherwise.
+            Authenticates a delete request.
+            Only site_admin and authorized curators can delete.
             """
             try:
-                request.has_permission = (
-                    request.method in SAFE_METHODS
-                    or is_site_admin(request)
+                program_id = request.path.rstrip("/").rsplit("/", 1)[-1]
+                write_permission = is_action_allowed_for_program(
+                    bearer_token,
+                    method=request.method,
+                    path=request.path,
+                    program=program_id,
                 )
-                if not request.has_permission:
-                    return None
-                authorized_datasets = get_opa_datasets(request)
-                request.authorized_datasets = authorized_datasets
+                logger.debug(
+                    "DELETE request authentication for '%s' with token: %s. Program ID: %s. Write permission: %s.",
+                    request.get_full_path(),
+                    bearer_token,
+                    program_id,
+                    write_permission,
+                )
+                return write_permission
 
             except Exception as e:
                 logger.exception(f"An error occurred in OPA: {e}")
                 raise Exception("Error with OPA authentication.")
 
-            logger.debug(
-                "OPA Authentication completed for request '%s' with token: %s. Authorized datasets: %s. Permission: %s",
-                request.get_full_path(),
-                bearer_token,
-                authorized_datasets,
-                request.has_permission,
-            )
-            return bearer_token
+    class IngestAuth(HttpBearer):
+        def authenticate(self, request, bearer_token):
+            """
+            Authenticates a request for ingest.
+            Grants full permission to site admins.
+            Curators must have ingesting datasets authorized.
+            """
+            if not bearer_token:
+                return False
+
+            try:
+                if is_site_admin(request):
+                    logger.debug(
+                        "Site admin authenticated for request '%s'.",
+                        request.get_full_path(),
+                    )
+                    return True
+
+                # For curator
+                request_body = request.body.decode("utf-8")
+                data = json.loads(request_body)
+                program_ids = [item["program_id"] for item in data]
+                write_datasets = all(
+                    is_action_allowed_for_program(
+                        bearer_token,
+                        method=request.method,
+                        path=request.path,
+                        program=program_id,
+                    )
+                    for program_id in program_ids
+                )
+
+                logger.debug(
+                    "INGEST request authentication for '%s' with token: %s and programs: %s. Write datasets: %s.",
+                    request.get_full_path(),
+                    bearer_token,
+                    program_ids,
+                    write_datasets,
+                )
+
+                return write_datasets
+
+            except Exception as e:
+                logger.exception(f"An error occurred in OPA: {e}")
+                raise Exception("Error with OPA authentication.")
+
+    class GetAuth(HttpBearer):
+        def authenticate(self, request, bearer_token):
+            """
+            Authenticates a request using the bearer_token then
+            fetches the authorized datasets from OPA.
+
+            Args:
+                request: The HTTP request object.
+                bearer_token: The bearer token for authentication.
+
+            Returns:
+                True if the requester has permission (i.e., authorized datasets are found), None otherwise.
+
+            Raises:
+                Exception: If an error occurs during OPA authentication.
+            """
+            if not bearer_token:
+                return None
+
+            try:
+                read_datasets = get_opa_datasets(request)
+                result = True if read_datasets else None
+                logger.debug(
+                    "OPA Authentication completed for request '%s' with token: %s. "
+                    "Read datasets: %s. Result: %s.",
+                    request.get_full_path(),
+                    bearer_token,
+                    read_datasets,
+                    result,
+                )
+
+                if result:
+                    request.read_datasets = read_datasets
+                return result
+
+            except Exception as e:
+                logger.exception(f"An error occurred in OPA: {e}")
+                raise Exception("Error with OPA authentication.")
 
     class ServiceTokenAuth(APIKeyHeader):
         param_name = "X-Service-Token"
@@ -114,35 +201,47 @@ class NetworkAuth:
 
 
 class LocalAuth:
-    class LoginAuth(HttpBearer):
+    class DeleteAuth(HttpBearer):
         def authenticate(self, request, bearer_token):
-            # permissions in config/settings/local.py
-            request.has_permission = request.method in SAFE_METHODS or any(
-                d.get("is_admin", False)
-                for d in settings.LOCAL_AUTHORIZED_DATASET
-                if d["token"] == bearer_token
-            )
-            if not request.has_permission:
-                return None
+            program_id = request.path.rstrip("/").rsplit("/", 1)[-1]
+            token_data = settings.LOCAL_OPA_DATASET[bearer_token]
 
-            authorized_datasets = [
-                dataset
-                for d in settings.LOCAL_AUTHORIZED_DATASET
-                if d["token"] == bearer_token
-                for dataset in d["datasets"]
-            ]
-            request.authorized_datasets = authorized_datasets
+            if token_data:
+                if token_data["is_admin"] or program_id in token_data.get(
+                    "write_datasets", []
+                ):
+                    return True
 
-            logger.debug(
-                "Local Authentication completed for request '%s' with token: %s. "
-                "Authorized datasets: %s. Permission: %s",
-                request.get_full_path(),
-                bearer_token,
-                authorized_datasets,
-                request.has_permission,
-            )
+            return False
 
-            return bearer_token
+    class IngestAuth(HttpBearer):
+        def authenticate(self, request, bearer_token):
+            if bearer_token in settings.LOCAL_OPA_DATASET:
+                opa_data = settings.LOCAL_OPA_DATASET[bearer_token]
+                is_admin = opa_data["is_admin"]
+                write_datasets = opa_data["write_datasets"]
+
+                if is_admin:
+                    return True
+
+                request_body = request.body.decode("utf-8")
+                data = json.loads(request_body)
+                program_ids = [item["program_id"] for item in data]
+                authorized = all(
+                    program_id in write_datasets for program_id in program_ids
+                )
+
+                if authorized:
+                    return True
+
+            return False
+
+    class GetAuth(HttpBearer):
+        def authenticate(self, request, bearer_token):
+            if bearer_token in settings.LOCAL_OPA_DATASET:
+                opa_data = settings.LOCAL_OPA_DATASET[bearer_token]
+                request.read_datasets = opa_data["read_datasets"]
+                return True
 
     class ServiceTokenAuth(APIKeyHeader):
         param_name = "X-Service-Token"
@@ -179,11 +278,12 @@ api = NinjaAPI(
     version=settings.KATSU_VERSION,
     description="This is the RESTful API for the MoH Service.",
 )
-api.add_router("/ingest/", ingest_router, auth=auth.LoginAuth(), tags=["ingest"])
-api.add_router(
-    "/authorized/", authorzied_router, auth=auth.LoginAuth(), tags=["authorized"]
-)
 api.add_router("/discovery/", discovery_router, tags=["discovery"])
+api.add_router("/ingest/", ingest_router, auth=auth.IngestAuth(), tags=["ingest"])
+api.add_router("/authorized/", delete_router, auth=auth.DeleteAuth(), tags=["delete"])
+api.add_router(
+    "/authorized/", authorzied_router, auth=auth.GetAuth(), tags=["authorized"]
+)
 api.add_router(
     "/explorer", explorer_router, auth=auth.ServiceTokenAuth(), tags=["explorer"]
 )
