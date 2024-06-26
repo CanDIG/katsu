@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Type, List
+from typing import Type, List, Dict
 
 from django.http import HttpResponse, JsonResponse
 from ninja import Router
@@ -66,6 +66,13 @@ def create_instances(payload: List, model_cls: Type):
         status=HTTPStatus.CREATED,
         data={"created": created_instances},
     )
+
+
+##########################################
+#                                        #
+#           CREATE FUNCTIONS             #
+#                                        #
+##########################################
 
 
 @router.post("/programs/")
@@ -169,3 +176,24 @@ def create_treatments(
     request, payload: List[TreatmentIngestSchema], response: HttpResponse
 ):
     return create_instances(payload, Treatment)
+
+
+##########################################
+#                                        #
+#           DELETE FUNCTIONS             #
+#                                        #
+##########################################
+delete_router = Router()
+
+
+@delete_router.delete(
+    "/program/{program_id}/",
+    response={204: None, 404: Dict[str, str]},
+)
+def delete_program(request, program_id: str):
+    try:
+        dataset = Program.objects.get(pk=program_id)
+        dataset.delete()
+        return HTTPStatus.NO_CONTENT, None
+    except Program.DoesNotExist:
+        return HTTPStatus.NOT_FOUND, {"error": "Program matching query does not exist"}
