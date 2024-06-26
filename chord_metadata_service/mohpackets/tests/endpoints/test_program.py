@@ -19,7 +19,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import ProgramF
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.ingest_url = "/v2/ingest/program/"
+        self.ingest_url = "/v2/ingest/programs/"
 
     def test_ingest_authorized(self):
         """
@@ -30,10 +30,10 @@ class IngestTestCase(BaseTestCase):
         - User can perform a POST request for program ingestion.
         """
         ingest_program = ProgramFactory.build()
-        program_dict = model_to_dict(ingest_program)
+        data_dict = model_to_dict(ingest_program)
         response = self.client.post(
             self.ingest_url,
-            data=program_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -54,10 +54,10 @@ class IngestTestCase(BaseTestCase):
         - User cannot perform a POST request for program ingestion.
         """
         ingest_program = ProgramFactory.build()
-        program_dict = model_to_dict(ingest_program)
+        data_dict = model_to_dict(ingest_program)
         response = self.client.post(
             self.ingest_url,
-            data=program_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",

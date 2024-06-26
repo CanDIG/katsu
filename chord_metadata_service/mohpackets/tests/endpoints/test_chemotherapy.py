@@ -15,7 +15,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.chemotherapy_url = "/v2/ingest/chemotherapy/"
+        self.chemotherapy_url = "/v2/ingest/chemotherapies/"
 
     def test_chemotherapy_create_authorized(self):
         """
@@ -30,7 +30,7 @@ class IngestTestCase(BaseTestCase):
         data_dict = model_to_dict(chemotherapy)
         response = self.client.post(
             self.chemotherapy_url,
-            data=data_dict,
+            data=[data_dict],
             format="json",
             content_type="application/json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -55,7 +55,7 @@ class IngestTestCase(BaseTestCase):
         data_dict = model_to_dict(chemotherapy)
         response = self.client.post(
             self.chemotherapy_url,
-            data=data_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",

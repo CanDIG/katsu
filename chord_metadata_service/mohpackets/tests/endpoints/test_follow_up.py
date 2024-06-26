@@ -13,7 +13,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import FollowUp
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.follow_up_url = "/v2/ingest/follow_up/"
+        self.follow_up_url = "/v2/ingest/followups/"
 
     def test_follow_up_create_authorized(self):
         """
@@ -28,7 +28,7 @@ class IngestTestCase(BaseTestCase):
         data_dict = model_to_dict(follow_up)
         response = self.client.post(
             self.follow_up_url,
-            data=data_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -53,7 +53,7 @@ class IngestTestCase(BaseTestCase):
         data_dict = model_to_dict(follow_up)
         response = self.client.post(
             self.follow_up_url,
-            data=data_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",

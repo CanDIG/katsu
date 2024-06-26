@@ -13,7 +13,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import Specimen
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.specimen_url = "/v2/ingest/specimen/"
+        self.specimen_url = "/v2/ingest/specimens/"
 
     def test_specimen_create_authorized(self):
         """
@@ -30,7 +30,7 @@ class IngestTestCase(BaseTestCase):
         data_dict = model_to_dict(specimen)
         response = self.client.post(
             self.specimen_url,
-            data=data_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -57,7 +57,7 @@ class IngestTestCase(BaseTestCase):
         data_dict = model_to_dict(specimen)
         response = self.client.post(
             self.specimen_url,
-            data=data_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",

@@ -15,7 +15,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
 class SampleRegistrationTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.sample_registration_url = "/v2/ingest/sample_registration/"
+        self.sample_registration_url = "/v2/ingest/sample_registrations/"
 
     def test_sample_registration_create_authorized(self):
         """
@@ -33,7 +33,7 @@ class SampleRegistrationTestCase(BaseTestCase):
 
         response = self.client.post(
             self.sample_registration_url,
-            data=data_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -60,7 +60,7 @@ class SampleRegistrationTestCase(BaseTestCase):
         data_dict = model_to_dict(sample_registration)
         response = self.client.post(
             self.sample_registration_url,
-            data=data_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",
