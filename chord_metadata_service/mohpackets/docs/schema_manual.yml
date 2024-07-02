@@ -440,6 +440,7 @@ components:
       - program_id
       - submitter_donor_id
       - submitter_treatment_id
+      - systemic_therapy_type
       title: SystemicTherapyIngestSchema
       type: object
     SystemicTherapyModelSchema:
@@ -502,6 +503,7 @@ components:
       - program_id
       - submitter_donor_id
       - submitter_treatment_id
+      - systemic_therapy_type
       title: SystemicTherapyModelSchema
       type: object
     ComorbidityFilterSchema:
@@ -2008,12 +2010,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/TumourClassificationEnum'
           - type: 'null'
-        submitter_treatment_id:
-          anyOf:
-          - maxLength: 64
-            type: string
-          - type: 'null'
-          title: Submitter Treatment Id
         surgery_reference_database:
           anyOf:
           - $ref: '#/components/schemas/SurgeryReferenceDatabaseEnum'
@@ -3461,9 +3457,6 @@ components:
         submitter_specimen_id:
           title: Submitter Specimen Id
           type: string
-        submitter_treatment_id:
-          title: Submitter Treatment Id
-          type: string
         tumour_normal_designation:
           anyOf:
           - $ref: '#/components/schemas/TumourDesginationEnum'
@@ -3507,9 +3500,6 @@ components:
           type: string
         submitter_specimen_id:
           title: Submitter Specimen Id
-          type: string
-        submitter_treatment_id:
-          title: Submitter Treatment Id
           type: string
         tumour_normal_designation:
           anyOf:
