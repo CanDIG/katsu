@@ -2440,6 +2440,15 @@ components:
             type: string
           - type: 'null'
           title: Submitter Treatment Id
+        surgery_reference_database:
+          anyOf:
+          - $ref: '#/components/schemas/SurgeryReferenceDatabaseEnum'
+          - type: 'null'
+        surgery_reference_identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitter Treatment Id
         surgery_location:
           anyOf:
           - $ref: '#/components/schemas/SurgeryLocationEnum'
@@ -4543,6 +4552,15 @@ components:
           - type: string
           - type: 'null'
           title: Submitter Treatment Id
+        surgery_reference_database:
+          anyOf:
+          - $ref: '#/components/schemas/SurgeryReferenceDatabaseEnum'
+          - type: 'null'
+        surgery_reference_identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitter Treatment Id
         surgery_location:
           anyOf:
           - type: string
@@ -4627,6 +4645,18 @@ components:
             type: string
           - type: 'null'
           title: Submitter Treatment Id
+          type: string
+        surgery_reference_database:
+          anyOf:
+          - $ref: '#/components/schemas/SurgeryReferenceDatabaseEnum'
+          - type: 'null'
+          title: Surgery Reference Database
+          type: string
+        surgery_reference_identifier:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Surgery Reference Identifier
           type: string
         surgery_location:
           anyOf:
@@ -4724,6 +4754,12 @@ components:
         submitter_treatment_id:
           title: Submitter Treatment Id
           type: string
+        surgery_reference_database:
+          title: Surgery Reference Database
+          type: string
+        surgery_reference_identifier:
+          title: Surgery Reference Identifier
+          type: string
         surgery_location:
           anyOf:
           - $ref: '#/components/schemas/SurgeryLocationEnum'
@@ -4819,6 +4855,13 @@ components:
       - Wedge/localised gastric resection
       - Wide Local Excision
       title: SurgeryTypeEnum
+      type: string
+    SurgeryReferenceDatabaseEnum:
+      enum:
+      - SNOMED
+      - NCIt
+      - UMLS
+      title: SurgeryReferenceDatabaseEnum
       type: string
     TCategoryEnum:
       enum:
@@ -6903,6 +6946,22 @@ paths:
           - type: string
           - type: 'null'
           title: Submitter Treatment Id
+      - in: query
+        name: surgery_reference_database
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Surgery Reference Database
+      - in: query
+        name: surgery_reference_identifier
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Surgery Reference Identifier
       - in: query
         name: surgery_type
         required: false
