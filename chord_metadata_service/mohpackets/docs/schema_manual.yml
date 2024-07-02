@@ -321,18 +321,18 @@ components:
       - Unknown
       title: CellsMeasureMethodEnum
       type: string
-    ChemotherapyFilterSchema:
+    SystemicTherapyFilterSchema:
       properties:
         actual_cumulative_drug_dose:
           anyOf:
           - type: integer
           - type: 'null'
           title: Actual Cumulative Drug Dose
-        chemotherapy_drug_dose_units:
+        drug_dose_units:
           anyOf:
           - type: string
           - type: 'null'
-          title: Chemotherapy Drug Dose Units
+          title: Drug Dose Units
         drug_name:
           anyOf:
           - type: string
@@ -353,6 +353,11 @@ components:
           - type: integer
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
+        systemic_therapy_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Systemic Therapy Type
         program_id:
           anyOf:
           - type: string
@@ -368,16 +373,16 @@ components:
           - type: string
           - type: 'null'
           title: Submitter Treatment Id
-      title: ChemotherapyFilterSchema
+      title: SystemicTherapyFilterSchema
       type: object
-    ChemotherapyIngestSchema:
+    SystemicTherapyIngestSchema:
       properties:
         actual_cumulative_drug_dose:
           anyOf:
           - type: integer
           - type: 'null'
           title: Actual Cumulative Drug Dose
-        chemotherapy_drug_dose_units:
+        drug_dose_units:
           anyOf:
           - $ref: '#/components/schemas/DosageUnitsEnum'
           - type: 'null'
@@ -402,6 +407,11 @@ components:
           - type: integer
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
+        systemic_therapy_type:
+          anyOf:
+          - $ref: '#/components/schemas/SystemicTherapyTypeEnum'
+          - type: 'null'
+          title: Systemic Therapy Type
         program_id:
           title: Program Id
           type: string
@@ -420,16 +430,16 @@ components:
       - program_id
       - submitter_donor_id
       - submitter_treatment_id
-      title: ChemotherapyIngestSchema
+      title: SystemicTherapyIngestSchema
       type: object
-    ChemotherapyModelSchema:
+    SystemicTherapyModelSchema:
       properties:
         actual_cumulative_drug_dose:
           anyOf:
           - type: integer
           - type: 'null'
           title: Actual Cumulative Drug Dose
-        chemotherapy_drug_dose_units:
+        drug_dose_units:
           anyOf:
           - $ref: '#/components/schemas/DosageUnitsEnum'
           - type: 'null'
@@ -454,6 +464,10 @@ components:
           - type: integer
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
+        systemic_therapy_type:
+          anyOf:
+          - $ref: '#/components/schemas/SystemicTherapyTypeEnum'
+          - type: 'null'
         program_id:
           title: Program Id
           type: string
@@ -467,7 +481,7 @@ components:
       - program_id
       - submitter_donor_id
       - submitter_treatment_id
-      title: ChemotherapyModelSchema
+      title: SystemicTherapyModelSchema
       type: object
     ComorbidityFilterSchema:
       properties:
@@ -668,25 +682,15 @@ components:
       type: string
     DonorExplorerFilterSchema:
       properties:
-        chemotherapy_drug_name:
+        systemic_therapy_drug_name:
           items:
             type: string
-          title: Chemotherapy Drug Name
+          title: Systemic Therapy Drug Name
           type: array
         exclude_cohorts:
           items:
             type: string
           title: Exclude Cohorts
-          type: array
-        hormone_therapy_drug_name:
-          items:
-            type: string
-          title: Hormone Therapy Drug Name
-          type: array
-        immunotherapy_drug_name:
-          items:
-            type: string
-          title: Immunotherapy Drug Name
           type: array
         treatment_type:
           items:
@@ -1334,154 +1338,6 @@ components:
       - Unknown
       title: Her2StatusEnum
       type: string
-    HormoneTherapyFilterSchema:
-      properties:
-        actual_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Actual Cumulative Drug Dose
-        drug_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Drug Name
-        drug_reference_database:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Drug Reference Database
-        drug_reference_identifier:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Drug Reference Identifier
-        hormone_drug_dose_units:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hormone Drug Dose Units
-        prescribed_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Prescribed Cumulative Drug Dose
-        program_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Program Id
-        submitter_donor_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Submitter Donor Id
-        submitter_treatment_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Submitter Treatment Id
-      title: HormoneTherapyFilterSchema
-      type: object
-    HormoneTherapyIngestSchema:
-      properties:
-        actual_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Actual Cumulative Drug Dose
-        drug_name:
-          anyOf:
-          - maxLength: 255
-            type: string
-          - type: 'null'
-          title: Drug Name
-        drug_reference_database:
-          anyOf:
-          - $ref: '#/components/schemas/DrugReferenceDbEnum'
-          - type: 'null'
-        drug_reference_identifier:
-          anyOf:
-          - maxLength: 64
-            type: string
-          - type: 'null'
-          title: Drug Reference Identifier
-        hormone_drug_dose_units:
-          anyOf:
-          - $ref: '#/components/schemas/DosageUnitsEnum'
-          - type: 'null'
-        prescribed_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Prescribed Cumulative Drug Dose
-        program_id:
-          title: Program Id
-          type: string
-        submitter_donor_id:
-          title: Submitter Donor Id
-          type: string
-        submitter_treatment_id:
-          title: Submitter Treatment Id
-          type: string
-        uuid:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Uuid
-      required:
-      - program_id
-      - submitter_donor_id
-      - submitter_treatment_id
-      title: HormoneTherapyIngestSchema
-      type: object
-    HormoneTherapyModelSchema:
-      properties:
-        actual_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Actual Cumulative Drug Dose
-        drug_name:
-          anyOf:
-          - maxLength: 255
-            type: string
-          - type: 'null'
-          title: Drug Name
-        drug_reference_database:
-          anyOf:
-          - $ref: '#/components/schemas/DrugReferenceDbEnum'
-          - type: 'null'
-        drug_reference_identifier:
-          anyOf:
-          - maxLength: 64
-            type: string
-          - type: 'null'
-          title: Drug Reference Identifier
-        hormone_drug_dose_units:
-          anyOf:
-          - $ref: '#/components/schemas/DosageUnitsEnum'
-          - type: 'null'
-        prescribed_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Prescribed Cumulative Drug Dose
-        program_id:
-          title: Program Id
-          type: string
-        submitter_donor_id:
-          title: Submitter Donor Id
-          type: string
-        submitter_treatment_id:
-          title: Submitter Treatment Id
-          type: string
-      required:
-      - program_id
-      - submitter_donor_id
-      - submitter_treatment_id
-      title: HormoneTherapyModelSchema
-      type: object
     HpvStrainEnum:
       enum:
       - HPV16
@@ -1501,167 +1357,6 @@ components:
       - HPV73
       title: HpvStrainEnum
       type: string
-    ImmunotherapyFilterSchema:
-      properties:
-        actual_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Actual Cumulative Drug Dose
-        drug_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Drug Name
-        drug_reference_database:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Drug Reference Database
-        drug_reference_identifier:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Drug Reference Identifier
-        immunotherapy_drug_dose_units:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Immunotherapy Drug Dose Units
-        immunotherapy_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Immunotherapy Type
-        prescribed_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Prescribed Cumulative Drug Dose
-        program_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Program Id
-        submitter_donor_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Submitter Donor Id
-        submitter_treatment_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Submitter Treatment Id
-      title: ImmunotherapyFilterSchema
-      type: object
-    ImmunotherapyIngestSchema:
-      properties:
-        actual_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Actual Cumulative Drug Dose
-        drug_name:
-          anyOf:
-          - maxLength: 255
-            type: string
-          - type: 'null'
-          title: Drug Name
-        drug_reference_database:
-          anyOf:
-          - $ref: '#/components/schemas/DrugReferenceDbEnum'
-          - type: 'null'
-        drug_reference_identifier:
-          anyOf:
-          - maxLength: 64
-            type: string
-          - type: 'null'
-          title: Drug Reference Identifier
-        immunotherapy_drug_dose_units:
-          anyOf:
-          - $ref: '#/components/schemas/DosageUnitsEnum'
-          - type: 'null'
-        immunotherapy_type:
-          anyOf:
-          - $ref: '#/components/schemas/ImmunotherapyTypeEnum'
-          - type: 'null'
-        prescribed_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Prescribed Cumulative Drug Dose
-        program_id:
-          title: Program Id
-          type: string
-        submitter_donor_id:
-          title: Submitter Donor Id
-          type: string
-        submitter_treatment_id:
-          title: Submitter Treatment Id
-          type: string
-        uuid:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Uuid
-      required:
-      - program_id
-      - submitter_donor_id
-      - submitter_treatment_id
-      title: ImmunotherapyIngestSchema
-      type: object
-    ImmunotherapyModelSchema:
-      properties:
-        actual_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Actual Cumulative Drug Dose
-        drug_name:
-          anyOf:
-          - maxLength: 255
-            type: string
-          - type: 'null'
-          title: Drug Name
-        drug_reference_database:
-          anyOf:
-          - $ref: '#/components/schemas/DrugReferenceDbEnum'
-          - type: 'null'
-        drug_reference_identifier:
-          anyOf:
-          - maxLength: 64
-            type: string
-          - type: 'null'
-          title: Drug Reference Identifier
-        immunotherapy_drug_dose_units:
-          anyOf:
-          - $ref: '#/components/schemas/DosageUnitsEnum'
-          - type: 'null'
-        immunotherapy_type:
-          anyOf:
-          - $ref: '#/components/schemas/ImmunotherapyTypeEnum'
-          - type: 'null'
-        prescribed_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Prescribed Cumulative Drug Dose
-        program_id:
-          title: Program Id
-          type: string
-        submitter_donor_id:
-          title: Submitter Donor Id
-          type: string
-        submitter_treatment_id:
-          title: Submitter Treatment Id
-          type: string
-      required:
-      - program_id
-      - submitter_donor_id
-      - submitter_treatment_id
-      title: ImmunotherapyModelSchema
-      type: object
     ImmunotherapyTypeEnum:
       enum:
       - Cell-based
@@ -1879,14 +1574,14 @@ components:
           - type: 'null'
       title: NestedBiomarkerSchema
       type: object
-    NestedChemotherapySchema:
+    NestedSystemicTherapySchema:
       properties:
         actual_cumulative_drug_dose:
           anyOf:
           - type: integer
           - type: 'null'
           title: Actual Cumulative Drug Dose
-        chemotherapy_drug_dose_units:
+        drug_dose_units:
           anyOf:
           - $ref: '#/components/schemas/DosageUnitsEnum'
           - type: 'null'
@@ -1911,7 +1606,11 @@ components:
           - type: integer
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
-      title: NestedChemotherapySchema
+        systemic_therapy_type:
+          anyOf:
+          - $ref: '#/components/schemas/SystemicTherapyTypeEnum'
+          - type: 'null'
+      title: NestedSystemicTherapySchema
       type: object
     NestedComorbiditySchema:
       properties:
@@ -2007,78 +1706,6 @@ components:
       required:
       - submitter_follow_up_id
       title: NestedFollowUpSchema
-      type: object
-    NestedHormoneTherapySchema:
-      properties:
-        actual_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Actual Cumulative Drug Dose
-        drug_name:
-          anyOf:
-          - maxLength: 255
-            type: string
-          - type: 'null'
-          title: Drug Name
-        drug_reference_database:
-          anyOf:
-          - $ref: '#/components/schemas/DrugReferenceDbEnum'
-          - type: 'null'
-        drug_reference_identifier:
-          anyOf:
-          - maxLength: 64
-            type: string
-          - type: 'null'
-          title: Drug Reference Identifier
-        hormone_drug_dose_units:
-          anyOf:
-          - $ref: '#/components/schemas/DosageUnitsEnum'
-          - type: 'null'
-        prescribed_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Prescribed Cumulative Drug Dose
-      title: NestedHormoneTherapySchema
-      type: object
-    NestedImmunotherapySchema:
-      properties:
-        actual_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Actual Cumulative Drug Dose
-        drug_name:
-          anyOf:
-          - maxLength: 255
-            type: string
-          - type: 'null'
-          title: Drug Name
-        drug_reference_database:
-          anyOf:
-          - $ref: '#/components/schemas/DrugReferenceDbEnum'
-          - type: 'null'
-        drug_reference_identifier:
-          anyOf:
-          - maxLength: 64
-            type: string
-          - type: 'null'
-          title: Drug Reference Identifier
-        immunotherapy_drug_dose_units:
-          anyOf:
-          - $ref: '#/components/schemas/DosageUnitsEnum'
-          - type: 'null'
-        immunotherapy_type:
-          anyOf:
-          - $ref: '#/components/schemas/ImmunotherapyTypeEnum'
-          - type: 'null'
-        prescribed_cumulative_drug_dose:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Prescribed Cumulative Drug Dose
-      title: NestedImmunotherapySchema
       type: object
     NestedPrimaryDiagnosisSchema:
       properties:
@@ -2397,10 +2024,10 @@ components:
       type: object
     NestedTreatmentSchema:
       properties:
-        chemotherapies:
+        systemic_therapies:
           items:
-            $ref: '#/components/schemas/NestedChemotherapySchema'
-          title: Chemotherapies
+            $ref: '#/components/schemas/NestedSystemicTherapySchema'
+          title: Systemic Therapies
           type: array
         days_per_cycle:
           anyOf:
@@ -2411,16 +2038,6 @@ components:
           items:
             $ref: '#/components/schemas/NestedFollowUpSchema'
           title: Followups
-          type: array
-        hormone_therapies:
-          items:
-            $ref: '#/components/schemas/NestedHormoneTherapySchema'
-          title: Hormone Therapies
-          type: array
-        immunotherapies:
-          items:
-            $ref: '#/components/schemas/NestedImmunotherapySchema'
-          title: Immunotherapies
           type: array
         is_primary_treatment:
           anyOf:
@@ -2519,7 +2136,7 @@ components:
       - previous_page
       title: PagedBiomarkerModelSchema
       type: object
-    PagedChemotherapyModelSchema:
+    PagedSystemicTherapyModelSchema:
       properties:
         count:
           anyOf:
@@ -2528,7 +2145,7 @@ components:
           title: Count
         items:
           items:
-            $ref: '#/components/schemas/ChemotherapyModelSchema'
+            $ref: '#/components/schemas/SystemicTherapyModelSchema'
           title: Items
           type: array
         next_page:
@@ -2546,7 +2163,7 @@ components:
       - count
       - next_page
       - previous_page
-      title: PagedChemotherapyModelSchema
+      title: PagedSystemicTherapyModelSchema
       type: object
     PagedComorbidityModelSchema:
       properties:
@@ -2663,64 +2280,6 @@ components:
       - next_page
       - previous_page
       title: PagedFollowUpModelSchema
-      type: object
-    PagedHormoneTherapyModelSchema:
-      properties:
-        count:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Count
-        items:
-          items:
-            $ref: '#/components/schemas/HormoneTherapyModelSchema'
-          title: Items
-          type: array
-        next_page:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Next Page
-        previous_page:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Previous Page
-      required:
-      - items
-      - count
-      - next_page
-      - previous_page
-      title: PagedHormoneTherapyModelSchema
-      type: object
-    PagedImmunotherapyModelSchema:
-      properties:
-        count:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Count
-        items:
-          items:
-            $ref: '#/components/schemas/ImmunotherapyModelSchema'
-          title: Items
-          type: array
-        next_page:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Next Page
-        previous_page:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Previous Page
-      required:
-      - items
-      - count
-      - next_page
-      - previous_page
-      title: PagedImmunotherapyModelSchema
       type: object
     PagedPrimaryDiagnosisModelSchema:
       properties:
@@ -4778,6 +4337,13 @@ components:
       - UMLS
       title: SurgeryReferenceDatabaseEnum
       type: string
+    SystemicTherapyTypeEnum:
+      enum:
+      - Chemotherapy
+      - Hormone Therapy
+      - Immunotherapy
+      title: SystemicTherapyTypeEnum
+      type: string
     TCategoryEnum:
       enum:
       - T0
@@ -5476,9 +5042,9 @@ paths:
       summary: List Biomarkers
       tags:
       - authorized
-  /v2/authorized/chemotherapies/:
+  /v2/authorized/systemic_therapies/:
     get:
-      operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_chemotherapies
+      operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_systemic_therapies
       parameters:
       - in: query
         name: program_id
@@ -5529,13 +5095,13 @@ paths:
           - type: 'null'
           title: Drug Reference Identifier
       - in: query
-        name: chemotherapy_drug_dose_units
+        name: drug_dose_units
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
-          title: Chemotherapy Drug Dose Units
+          title: Drug Dose Units
       - in: query
         name: prescribed_cumulative_drug_dose
         required: false
@@ -5552,6 +5118,14 @@ paths:
           - type: integer
           - type: 'null'
           title: Actual Cumulative Drug Dose
+      - in: query
+        name: systemic_therapy_type
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Systemic Therapy Type
       - in: query
         name: page
         required: false
@@ -5571,11 +5145,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PagedChemotherapyModelSchema'
+                $ref: '#/components/schemas/PagedSystemicTherapyModelSchema'
           description: OK
       security:
       - LoginAuth: []
-      summary: List Chemotherapies
+      summary: List Systemic Therapies
       tags:
       - authorized
   /v2/authorized/comorbidities/:
@@ -5986,218 +5560,6 @@ paths:
       security:
       - LoginAuth: []
       summary: List Follow Ups
-      tags:
-      - authorized
-  /v2/authorized/hormone_therapies/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_hormone_therapies
-      parameters:
-      - in: query
-        name: program_id
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Program Id
-      - in: query
-        name: submitter_donor_id
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Submitter Donor Id
-      - in: query
-        name: submitter_treatment_id
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Submitter Treatment Id
-      - in: query
-        name: drug_reference_database
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Drug Reference Database
-      - in: query
-        name: drug_name
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Drug Name
-      - in: query
-        name: drug_reference_identifier
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Drug Reference Identifier
-      - in: query
-        name: hormone_drug_dose_units
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Hormone Drug Dose Units
-      - in: query
-        name: prescribed_cumulative_drug_dose
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Prescribed Cumulative Drug Dose
-      - in: query
-        name: actual_cumulative_drug_dose
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Actual Cumulative Drug Dose
-      - in: query
-        name: page
-        required: false
-        schema:
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          minimum: 1
-          title: Page Size
-          type: integer
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PagedHormoneTherapyModelSchema'
-          description: OK
-      security:
-      - LoginAuth: []
-      summary: List Hormone Therapies
-      tags:
-      - authorized
-  /v2/authorized/immunotherapies/:
-    get:
-      operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_immunotherapies
-      parameters:
-      - in: query
-        name: program_id
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Program Id
-      - in: query
-        name: submitter_donor_id
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Submitter Donor Id
-      - in: query
-        name: submitter_treatment_id
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Submitter Treatment Id
-      - in: query
-        name: drug_reference_database
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Drug Reference Database
-      - in: query
-        name: immunotherapy_type
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Immunotherapy Type
-      - in: query
-        name: drug_name
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Drug Name
-      - in: query
-        name: drug_reference_identifier
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Drug Reference Identifier
-      - in: query
-        name: immunotherapy_drug_dose_units
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Immunotherapy Drug Dose Units
-      - in: query
-        name: prescribed_cumulative_drug_dose
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Prescribed Cumulative Drug Dose
-      - in: query
-        name: actual_cumulative_drug_dose
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Actual Cumulative Drug Dose
-      - in: query
-        name: page
-        required: false
-        schema:
-          minimum: 1
-          title: Page
-          type: integer
-      - in: query
-        name: page_size
-        required: false
-        schema:
-          minimum: 1
-          title: Page Size
-          type: integer
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PagedImmunotherapyModelSchema'
-          description: OK
-      security:
-      - LoginAuth: []
-      summary: List Immunotherapies
       tags:
       - authorized
   /v2/authorized/primary_diagnoses/:
@@ -7321,28 +6683,12 @@ paths:
           title: Primary Site
           type: array
       - in: query
-        name: chemotherapy_drug_name
+        name: systemic_therapy_drug_name
         required: false
         schema:
           items:
             type: string
-          title: Chemotherapy Drug Name
-          type: array
-      - in: query
-        name: immunotherapy_drug_name
-        required: false
-        schema:
-          items:
-            type: string
-          title: Immunotherapy Drug Name
-          type: array
-      - in: query
-        name: hormone_therapy_drug_name
-        required: false
-        schema:
-          items:
-            type: string
-          title: Hormone Therapy Drug Name
+          title: Systemic Therapy Drug Name
           type: array
       - in: query
         name: exclude_cohorts
@@ -7385,22 +6731,22 @@ paths:
       summary: Create Biomarker
       tags:
       - ingest
-  /v2/ingest/chemotherapy/:
+  /v2/ingest/systemic_therapy/:
     post:
-      operationId: chord_metadata_service_mohpackets_apis_ingestion_create_chemotherapy
+      operationId: chord_metadata_service_mohpackets_apis_ingestion_create_systemic_therapy
       parameters: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ChemotherapyIngestSchema'
+              $ref: '#/components/schemas/SystemicTherapyIngestSchema'
         required: true
       responses:
         '200':
           description: OK
       security:
       - LoginAuth: []
-      summary: Create Chemotherapy
+      summary: Create Systemic Therapy
       tags:
       - ingest
   /v2/ingest/comorbidity/:
@@ -7473,42 +6819,6 @@ paths:
       security:
       - LoginAuth: []
       summary: Create Follow Up
-      tags:
-      - ingest
-  /v2/ingest/hormone_therapy/:
-    post:
-      operationId: chord_metadata_service_mohpackets_apis_ingestion_create_hormone_therapy
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/HormoneTherapyIngestSchema'
-        required: true
-      responses:
-        '200':
-          description: OK
-      security:
-      - LoginAuth: []
-      summary: Create Hormone Therapy
-      tags:
-      - ingest
-  /v2/ingest/immunotherapy/:
-    post:
-      operationId: chord_metadata_service_mohpackets_apis_ingestion_create_immunotherapy
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ImmunotherapyIngestSchema'
-        required: true
-      responses:
-        '200':
-          description: OK
-      security:
-      - LoginAuth: []
-      summary: Create Immunotherapy
       tags:
       - ingest
   /v2/ingest/primary_diagnosis/:
