@@ -2106,11 +2106,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/uBooleanEnum'
           - type: 'null'
-        line_of_treatment:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Line Of Treatment
         radiations:
           items:
             $ref: '#/components/schemas/NestedRadiationSchema'
@@ -2145,10 +2140,6 @@ components:
         treatment_intent:
           anyOf:
           - $ref: '#/components/schemas/TreatmentIntentEnum'
-          - type: 'null'
-        treatment_setting:
-          anyOf:
-          - $ref: '#/components/schemas/TreatmentSettingEnum'
           - type: 'null'
         treatment_start_date:
           anyOf:
@@ -4479,11 +4470,6 @@ components:
           - type: string
           - type: 'null'
           title: Is Primary Treatment
-        line_of_treatment:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Line Of Treatment
         program_id:
           anyOf:
           - type: string
@@ -4524,11 +4510,6 @@ components:
           - type: string
           - type: 'null'
           title: Treatment Intent
-        treatment_setting:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Treatment Setting
         treatment_type:
           items:
             type: string
@@ -4543,11 +4524,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/uBooleanEnum'
           - type: 'null'
-        line_of_treatment:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Line Of Treatment
         program_id:
           title: Program Id
           type: string
@@ -4581,10 +4557,6 @@ components:
         treatment_intent:
           anyOf:
           - $ref: '#/components/schemas/TreatmentIntentEnum'
-          - type: 'null'
-        treatment_setting:
-          anyOf:
-          - $ref: '#/components/schemas/TreatmentSettingEnum'
           - type: 'null'
         treatment_start_date:
           anyOf:
@@ -4627,11 +4599,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/uBooleanEnum'
           - type: 'null'
-        line_of_treatment:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Line Of Treatment
         program_id:
           title: Program Id
           type: string
@@ -4665,10 +4632,6 @@ components:
         treatment_intent:
           anyOf:
           - $ref: '#/components/schemas/TreatmentIntentEnum'
-          - type: 'null'
-        treatment_setting:
-          anyOf:
-          - $ref: '#/components/schemas/TreatmentSettingEnum'
           - type: 'null'
         treatment_start_date:
           anyOf:
@@ -4725,21 +4688,6 @@ components:
       - Physician Assessed Response Criteria
       - Blazer score
       title: TreatmentResponseMethodEnum
-      type: string
-    TreatmentSettingEnum:
-      enum:
-      - Adjuvant
-      - Advanced/Metastatic
-      - Neoadjuvant
-      - Conditioning
-      - Induction
-      - Locally advanced
-      - Maintenance
-      - Mobilization
-      - Preventative
-      - Radiosensitization
-      - Salvage
-      title: TreatmentSettingEnum
       type: string
     TreatmentStatusEnum:
       enum:
@@ -6423,22 +6371,6 @@ paths:
           - type: string
           - type: 'null'
           title: Is Primary Treatment
-      - in: query
-        name: line_of_treatment
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Line Of Treatment
-      - in: query
-        name: treatment_setting
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Treatment Setting
       - in: query
         name: treatment_intent
         required: false
