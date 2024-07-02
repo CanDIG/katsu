@@ -3251,10 +3251,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/PrimaryDiagnosisLateralityEnum'
           - type: 'null'
-        lymph_nodes_examined_status:
-          anyOf:
-          - $ref: '#/components/schemas/LymphNodeStatusEnum'
-          - type: 'null'
         primary_site:
           title: Primary Site
           type: string
