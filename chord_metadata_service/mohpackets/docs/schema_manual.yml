@@ -688,12 +688,6 @@ components:
             type: string
           title: Immunotherapy Drug Name
           type: array
-        primary_site:
-          items:
-            type: string
-          q: primary_site__overlap
-          title: Primary Site
-          type: array
         treatment_type:
           items:
             type: string
@@ -840,13 +834,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/LostToFollowupReasonEnum'
           - type: 'null'
-        primary_site:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/PrimarySiteEnum'
-            type: array
-          - type: 'null'
-          title: Primary Site
         program_id:
           title: Program Id
           type: string
@@ -912,13 +899,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/LostToFollowupReasonEnum'
           - type: 'null'
-        primary_site:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/PrimarySiteEnum'
-            type: array
-          - type: 'null'
-          title: Primary Site
         program_id:
           title: Program Id
           type: string
@@ -2187,6 +2167,31 @@ components:
       type: object
     NestedPrimaryDiagnosisSchema:
       properties:
+        pathological_m_category:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pathological M Category
+        pathological_n_category:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pathological N Category
+        pathological_stage_group:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pathological Stage Group
+        pathological_t_category:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pathological T Category
+        pathological_tumour_staging_system:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Pathological Tumour Staging System
         basis_of_diagnosis:
           anyOf:
           - $ref: '#/components/schemas/BasisOfDiagnosisEnum'
@@ -2230,19 +2235,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/PrimaryDiagnosisLateralityEnum'
           - type: 'null'
-        lymph_nodes_examined_method:
-          anyOf:
-          - $ref: '#/components/schemas/LymphNodeMethodEnum'
-          - type: 'null'
-        lymph_nodes_examined_status:
-          anyOf:
-          - $ref: '#/components/schemas/LymphNodeStatusEnum'
-          - type: 'null'
-        number_lymph_nodes_positive:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Number Lymph Nodes Positive
         specimens:
           items:
             $ref: '#/components/schemas/NestedSpecimenSchema'
@@ -2328,26 +2320,6 @@ components:
       type: object
     NestedSpecimenSchema:
       properties:
-        pathological_m_category:
-          anyOf:
-          - $ref: '#/components/schemas/MCategoryEnum'
-          - type: 'null'
-        pathological_n_category:
-          anyOf:
-          - $ref: '#/components/schemas/NCategoryEnum'
-          - type: 'null'
-        pathological_stage_group:
-          anyOf:
-          - $ref: '#/components/schemas/StageGroupEnum'
-          - type: 'null'
-        pathological_t_category:
-          anyOf:
-          - $ref: '#/components/schemas/TCategoryEnum'
-          - type: 'null'
-        pathological_tumour_staging_system:
-          anyOf:
-          - $ref: '#/components/schemas/TumourStagingSystemEnum'
-          - type: 'null'
         percent_tumour_cells_measurement_method:
           anyOf:
           - $ref: '#/components/schemas/CellsMeasureMethodEnum'
@@ -2397,6 +2369,11 @@ components:
           maxLength: 64
           pattern: ^[A-Za-z0-9\-\._]{1,64}
           title: Submitter Specimen Id
+          type: string
+        submitter_treatment_id:
+          maxLength: 64
+          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          title: Submitter Treatment Id
           type: string
         tumour_grade:
           anyOf:
@@ -2463,6 +2440,12 @@ components:
             type: string
           - type: 'null'
           title: Submitter Specimen Id
+        submitter_treatment_id:
+          anyOf:
+          - maxLength: 64
+            type: string
+          - type: 'null'
+          title: Submitter Treatment Id
         surgery_location:
           anyOf:
           - $ref: '#/components/schemas/SurgeryLocationEnum'
@@ -3095,21 +3078,6 @@ components:
           - type: string
           - type: 'null'
           title: Laterality
-        lymph_nodes_examined_method:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Lymph Nodes Examined Method
-        lymph_nodes_examined_status:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Lymph Nodes Examined Status
-        number_lymph_nodes_positive:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Number Lymph Nodes Positive
         program_id:
           anyOf:
           - type: string
@@ -3129,6 +3097,26 @@ components:
       type: object
     PrimaryDiagnosisIngestSchema:
       properties:
+        pathological_m_category:
+          anyOf:
+          - $ref: '#/components/schemas/MCategoryEnum'
+          - type: 'null'
+        pathological_n_category:
+          anyOf:
+          - $ref: '#/components/schemas/NCategoryEnum'
+          - type: 'null'
+        pathological_stage_group:
+          anyOf:
+          - $ref: '#/components/schemas/StageGroupEnum'
+          - type: 'null'
+        pathological_t_category:
+          anyOf:
+          - $ref: '#/components/schemas/TCategoryEnum'
+          - type: 'null'
+        pathological_tumour_staging_system:
+          anyOf:
+          - $ref: '#/components/schemas/TumourStagingSystemEnum'
+          - type: 'null'
         basis_of_diagnosis:
           anyOf:
           - $ref: '#/components/schemas/BasisOfDiagnosisEnum'
@@ -3167,19 +3155,9 @@ components:
           anyOf:
           - $ref: '#/components/schemas/PrimaryDiagnosisLateralityEnum'
           - type: 'null'
-        lymph_nodes_examined_method:
-          anyOf:
-          - $ref: '#/components/schemas/LymphNodeMethodEnum'
-          - type: 'null'
-        lymph_nodes_examined_status:
-          anyOf:
-          - $ref: '#/components/schemas/LymphNodeStatusEnum'
-          - type: 'null'
-        number_lymph_nodes_positive:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Number Lymph Nodes Positive
+        primary_site:
+          type: string
+          title: Primary Site
         program_id:
           title: Program Id
           type: string
@@ -3215,6 +3193,26 @@ components:
       type: string
     PrimaryDiagnosisModelSchema:
       properties:
+        pathological_m_category:
+          anyOf:
+          - $ref: '#/components/schemas/MCategoryEnum'
+          - type: 'null'
+        pathological_n_category:
+          anyOf:
+          - $ref: '#/components/schemas/NCategoryEnum'
+          - type: 'null'
+        pathological_stage_group:
+          anyOf:
+          - $ref: '#/components/schemas/StageGroupEnum'
+          - type: 'null'
+        pathological_t_category:
+          anyOf:
+          - $ref: '#/components/schemas/TCategoryEnum'
+          - type: 'null'
+        pathological_tumour_staging_system:
+          anyOf:
+          - $ref: '#/components/schemas/TumourStagingSystemEnum'
+          - type: 'null'
         basis_of_diagnosis:
           anyOf:
           - $ref: '#/components/schemas/BasisOfDiagnosisEnum'
@@ -3253,19 +3251,13 @@ components:
           anyOf:
           - $ref: '#/components/schemas/PrimaryDiagnosisLateralityEnum'
           - type: 'null'
-        lymph_nodes_examined_method:
-          anyOf:
-          - $ref: '#/components/schemas/LymphNodeMethodEnum'
-          - type: 'null'
         lymph_nodes_examined_status:
           anyOf:
           - $ref: '#/components/schemas/LymphNodeStatusEnum'
           - type: 'null'
-        number_lymph_nodes_positive:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Number Lymph Nodes Positive
+        primary_site:
+          title: Primary Site
+          type: string
         program_id:
           title: Program Id
           type: string
@@ -3964,6 +3956,9 @@ components:
         submitter_specimen_id:
           title: Submitter Specimen Id
           type: string
+        submitter_treatment_id:
+          title: Submitter Treatment Id
+          type: string
         tumour_normal_designation:
           anyOf:
           - $ref: '#/components/schemas/TumourDesginationEnum'
@@ -4007,6 +4002,9 @@ components:
           type: string
         submitter_specimen_id:
           title: Submitter Specimen Id
+          type: string
+        submitter_treatment_id:
+          title: Submitter Treatment Id
           type: string
         tumour_normal_designation:
           anyOf:
@@ -4053,31 +4051,6 @@ components:
       type: string
     SpecimenFilterSchema:
       properties:
-        pathological_m_category:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pathological M Category
-        pathological_n_category:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pathological N Category
-        pathological_stage_group:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pathological Stage Group
-        pathological_t_category:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pathological T Category
-        pathological_tumour_staging_system:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Pathological Tumour Staging System
         percent_tumour_cells_measurement_method:
           anyOf:
           - type: string
@@ -4138,6 +4111,11 @@ components:
           - type: string
           - type: 'null'
           title: Submitter Specimen Id
+        submitter_treatment_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitter Treatment Id
         tumour_grade:
           anyOf:
           - type: string
@@ -4157,26 +4135,6 @@ components:
       type: object
     SpecimenIngestSchema:
       properties:
-        pathological_m_category:
-          anyOf:
-          - $ref: '#/components/schemas/MCategoryEnum'
-          - type: 'null'
-        pathological_n_category:
-          anyOf:
-          - $ref: '#/components/schemas/NCategoryEnum'
-          - type: 'null'
-        pathological_stage_group:
-          anyOf:
-          - $ref: '#/components/schemas/StageGroupEnum'
-          - type: 'null'
-        pathological_t_category:
-          anyOf:
-          - $ref: '#/components/schemas/TCategoryEnum'
-          - type: 'null'
-        pathological_tumour_staging_system:
-          anyOf:
-          - $ref: '#/components/schemas/TumourStagingSystemEnum'
-          - type: 'null'
         percent_tumour_cells_measurement_method:
           anyOf:
           - $ref: '#/components/schemas/CellsMeasureMethodEnum'
@@ -4231,6 +4189,11 @@ components:
           pattern: ^[A-Za-z0-9\-\._]{1,64}
           title: Submitter Specimen Id
           type: string
+        submitter_treatment_id:
+          maxLength: 64
+          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          title: Submitter Specimen Id
+          type: string
         tumour_grade:
           anyOf:
           - $ref: '#/components/schemas/TumourGradeEnum'
@@ -4268,26 +4231,6 @@ components:
       type: string
     SpecimenModelSchema:
       properties:
-        pathological_m_category:
-          anyOf:
-          - $ref: '#/components/schemas/MCategoryEnum'
-          - type: 'null'
-        pathological_n_category:
-          anyOf:
-          - $ref: '#/components/schemas/NCategoryEnum'
-          - type: 'null'
-        pathological_stage_group:
-          anyOf:
-          - $ref: '#/components/schemas/StageGroupEnum'
-          - type: 'null'
-        pathological_t_category:
-          anyOf:
-          - $ref: '#/components/schemas/TCategoryEnum'
-          - type: 'null'
-        pathological_tumour_staging_system:
-          anyOf:
-          - $ref: '#/components/schemas/TumourStagingSystemEnum'
-          - type: 'null'
         percent_tumour_cells_measurement_method:
           anyOf:
           - $ref: '#/components/schemas/CellsMeasureMethodEnum'
@@ -4338,6 +4281,11 @@ components:
           title: Submitter Primary Diagnosis Id
           type: string
         submitter_specimen_id:
+          maxLength: 64
+          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          title: Submitter Specimen Id
+          type: string
+        submitter_treatment_id:
           maxLength: 64
           pattern: ^[A-Za-z0-9\-\._]{1,64}
           title: Submitter Specimen Id
@@ -6410,30 +6358,6 @@ paths:
           - type: 'null'
           title: Laterality
       - in: query
-        name: lymph_nodes_examined_status
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Lymph Nodes Examined Status
-      - in: query
-        name: lymph_nodes_examined_method
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Lymph Nodes Examined Method
-      - in: query
-        name: number_lymph_nodes_positive
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Number Lymph Nodes Positive
-      - in: query
         name: clinical_tumour_staging_system
         required: false
         schema:
@@ -6711,6 +6635,14 @@ paths:
           - type: 'null'
           title: Submitter Specimen Id
       - in: query
+        name: submitter_treatment_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitter Treatment Id
+      - in: query
         name: specimen_tissue_source
         required: false
         schema:
@@ -6780,6 +6712,14 @@ paths:
           - type: string
           - type: 'null'
           title: Submitter Specimen Id
+      - in: query
+        name: submitter_treatment_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitter Treatment Id
       - in: query
         name: program_id
         required: false
