@@ -358,6 +358,16 @@ components:
           - type: string
           - type: 'null'
           title: Systemic Therapy Type
+        days_per_cycle:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Days Per Cycle
+        number_of_cycles:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number Of Cycles
         program_id:
           anyOf:
           - type: string
@@ -422,6 +432,16 @@ components:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
           title: End date
+        days_per_cycle:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Days Per Cycle
+        number_of_cycles:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number Of Cycles
         program_id:
           title: Program Id
           type: string
@@ -490,6 +510,16 @@ components:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
           title: End date
+        days_per_cycle:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Days Per Cycle
+        number_of_cycles:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number Of Cycles
         program_id:
           title: Program Id
           type: string
@@ -1644,6 +1674,16 @@ components:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
           title: End date
+        days_per_cycle:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Days Per Cycle
+        number_of_cycles:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number Of Cycles
       title: NestedSystemicTherapySchema
       type: object
     NestedComorbiditySchema:
@@ -2057,11 +2097,6 @@ components:
             $ref: '#/components/schemas/NestedSystemicTherapySchema'
           title: Systemic Therapies
           type: array
-        days_per_cycle:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Days Per Cycle
         followups:
           items:
             $ref: '#/components/schemas/NestedFollowUpSchema'
@@ -2076,11 +2111,6 @@ components:
           - type: integer
           - type: 'null'
           title: Line Of Treatment
-        number_of_cycles:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Number Of Cycles
         radiations:
           items:
             $ref: '#/components/schemas/NestedRadiationSchema'
@@ -4444,11 +4474,6 @@ components:
       type: string
     TreatmentFilterSchema:
       properties:
-        days_per_cycle:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Days Per Cycle
         is_primary_treatment:
           anyOf:
           - type: string
@@ -4459,11 +4484,6 @@ components:
           - type: integer
           - type: 'null'
           title: Line Of Treatment
-        number_of_cycles:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Number Of Cycles
         program_id:
           anyOf:
           - type: string
@@ -4519,11 +4539,6 @@ components:
       type: object
     TreatmentIngestSchema:
       properties:
-        days_per_cycle:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Days Per Cycle
         is_primary_treatment:
           anyOf:
           - $ref: '#/components/schemas/uBooleanEnum'
@@ -4533,11 +4548,6 @@ components:
           - type: integer
           - type: 'null'
           title: Line Of Treatment
-        number_of_cycles:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Number Of Cycles
         program_id:
           title: Program Id
           type: string
@@ -4613,11 +4623,6 @@ components:
       type: string
     TreatmentModelSchema:
       properties:
-        days_per_cycle:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Days Per Cycle
         is_primary_treatment:
           anyOf:
           - $ref: '#/components/schemas/uBooleanEnum'
@@ -4627,11 +4632,6 @@ components:
           - type: integer
           - type: 'null'
           title: Line Of Treatment
-        number_of_cycles:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Number Of Cycles
         program_id:
           title: Program Id
           type: string
@@ -5148,6 +5148,22 @@ paths:
           - type: string
           - type: 'null'
           title: Systemic Therapy Type
+      - in: query
+        name: days_per_cycle
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Days Per Cycle
+      - in: query
+        name: number_of_cycles
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number Of Cycles
       - in: query
         name: page
         required: false
@@ -6431,22 +6447,6 @@ paths:
           - type: string
           - type: 'null'
           title: Treatment Intent
-      - in: query
-        name: days_per_cycle
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Days Per Cycle
-      - in: query
-        name: number_of_cycles
-        required: false
-        schema:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Number Of Cycles
       - in: query
         name: response_to_treatment_criteria_method
         required: false
