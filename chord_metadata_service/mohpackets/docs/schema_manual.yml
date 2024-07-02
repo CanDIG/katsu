@@ -2434,12 +2434,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/TumourClassificationEnum'
           - type: 'null'
-        submitter_specimen_id:
-          anyOf:
-          - maxLength: 64
-            type: string
-          - type: 'null'
-          title: Submitter Specimen Id
         submitter_treatment_id:
           anyOf:
           - maxLength: 64
@@ -4544,11 +4538,6 @@ components:
           - type: string
           - type: 'null'
           title: Submitter Donor Id
-        submitter_specimen_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Submitter Specimen Id
         submitter_treatment_id:
           anyOf:
           - type: string
@@ -4632,13 +4621,11 @@ components:
         submitter_donor_id:
           title: Submitter Donor Id
           type: string
-        submitter_specimen_id:
+        submitter_treatment_id:
           anyOf:
           - maxLength: 64
             type: string
           - type: 'null'
-          title: Submitter Specimen Id
-        submitter_treatment_id:
           title: Submitter Treatment Id
           type: string
         surgery_location:
@@ -4734,12 +4721,6 @@ components:
         submitter_donor_id:
           title: Submitter Donor Id
           type: string
-        submitter_specimen_id:
-          anyOf:
-          - maxLength: 64
-            type: string
-          - type: 'null'
-          title: Submitter Specimen Id
         submitter_treatment_id:
           title: Submitter Treatment Id
           type: string
@@ -6922,14 +6903,6 @@ paths:
           - type: string
           - type: 'null'
           title: Submitter Treatment Id
-      - in: query
-        name: submitter_specimen_id
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Submitter Specimen Id
       - in: query
         name: surgery_type
         required: false
