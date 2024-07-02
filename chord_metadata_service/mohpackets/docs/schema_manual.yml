@@ -1152,31 +1152,6 @@ components:
           - type: string
           - type: 'null'
           title: Program Id
-        recurrence_m_category:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Recurrence M Category
-        recurrence_n_category:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Recurrence N Category
-        recurrence_stage_group:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Recurrence Stage Group
-        recurrence_t_category:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Recurrence T Category
-        recurrence_tumour_staging_system:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Recurrence Tumour Staging System
         relapse_type:
           anyOf:
           - type: string
@@ -1235,26 +1210,6 @@ components:
         program_id:
           title: Program Id
           type: string
-        recurrence_m_category:
-          anyOf:
-          - $ref: '#/components/schemas/MCategoryEnum'
-          - type: 'null'
-        recurrence_n_category:
-          anyOf:
-          - $ref: '#/components/schemas/NCategoryEnum'
-          - type: 'null'
-        recurrence_stage_group:
-          anyOf:
-          - $ref: '#/components/schemas/StageGroupEnum'
-          - type: 'null'
-        recurrence_t_category:
-          anyOf:
-          - $ref: '#/components/schemas/TCategoryEnum'
-          - type: 'null'
-        recurrence_tumour_staging_system:
-          anyOf:
-          - $ref: '#/components/schemas/TumourStagingSystemEnum'
-          - type: 'null'
         relapse_type:
           anyOf:
           - $ref: '#/components/schemas/RelapseTypeEnum'
@@ -1319,26 +1274,6 @@ components:
         program_id:
           title: Program Id
           type: string
-        recurrence_m_category:
-          anyOf:
-          - $ref: '#/components/schemas/MCategoryEnum'
-          - type: 'null'
-        recurrence_n_category:
-          anyOf:
-          - $ref: '#/components/schemas/NCategoryEnum'
-          - type: 'null'
-        recurrence_stage_group:
-          anyOf:
-          - $ref: '#/components/schemas/StageGroupEnum'
-          - type: 'null'
-        recurrence_t_category:
-          anyOf:
-          - $ref: '#/components/schemas/TCategoryEnum'
-          - type: 'null'
-        recurrence_tumour_staging_system:
-          anyOf:
-          - $ref: '#/components/schemas/TumourStagingSystemEnum'
-          - type: 'null'
         relapse_type:
           anyOf:
           - $ref: '#/components/schemas/RelapseTypeEnum'
@@ -2060,26 +1995,6 @@ components:
             type: array
           - type: 'null'
           title: Method Of Progression Status
-        recurrence_m_category:
-          anyOf:
-          - $ref: '#/components/schemas/MCategoryEnum'
-          - type: 'null'
-        recurrence_n_category:
-          anyOf:
-          - $ref: '#/components/schemas/NCategoryEnum'
-          - type: 'null'
-        recurrence_stage_group:
-          anyOf:
-          - $ref: '#/components/schemas/StageGroupEnum'
-          - type: 'null'
-        recurrence_t_category:
-          anyOf:
-          - $ref: '#/components/schemas/TCategoryEnum'
-          - type: 'null'
-        recurrence_tumour_staging_system:
-          anyOf:
-          - $ref: '#/components/schemas/TumourStagingSystemEnum'
-          - type: 'null'
         relapse_type:
           anyOf:
           - $ref: '#/components/schemas/RelapseTypeEnum'
@@ -6047,46 +5962,6 @@ paths:
           q: anatomic_site_progression_or_recurrence__overlap
           title: Anatomic Site Progression Or Recurrence
           type: array
-      - in: query
-        name: recurrence_tumour_staging_system
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Recurrence Tumour Staging System
-      - in: query
-        name: recurrence_t_category
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Recurrence T Category
-      - in: query
-        name: recurrence_n_category
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Recurrence N Category
-      - in: query
-        name: recurrence_m_category
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Recurrence M Category
-      - in: query
-        name: recurrence_stage_group
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Recurrence Stage Group
       - in: query
         name: page
         required: false
