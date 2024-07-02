@@ -412,6 +412,16 @@ components:
           - $ref: '#/components/schemas/SystemicTherapyTypeEnum'
           - type: 'null'
           title: Systemic Therapy Type
+        start_date:
+          anyOf:
+          - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+          title: Start date
+        end_date:
+          anyOf:
+          - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+          title: End date
         program_id:
           title: Program Id
           type: string
@@ -468,6 +478,17 @@ components:
           anyOf:
           - $ref: '#/components/schemas/SystemicTherapyTypeEnum'
           - type: 'null'
+          title: Systemic Therapy Type
+        start_date:
+          anyOf:
+          - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+          title: Start date
+        end_date:
+          anyOf:
+          - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+          title: End date
         program_id:
           title: Program Id
           type: string
@@ -1610,6 +1631,17 @@ components:
           anyOf:
           - $ref: '#/components/schemas/SystemicTherapyTypeEnum'
           - type: 'null'
+          title: Systemic Therapy Type
+        start_date:
+          anyOf:
+          - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+          title: Start date
+        end_date:
+          anyOf:
+          - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+          title: End date
       title: NestedSystemicTherapySchema
       type: object
     NestedComorbiditySchema:
