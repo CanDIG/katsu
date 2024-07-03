@@ -751,6 +751,12 @@ components:
           q: treatment_type__overlap
           title: Treatment Type
           type: array
+        primary_site:
+          items:
+            type: string
+          q: primary_site__overlap
+          title: Primary Site
+          type: array
       title: DonorExplorerFilterSchema
       type: object
     DonorExplorerSchema:
@@ -825,12 +831,6 @@ components:
           - type: string
           - type: 'null'
           title: Lost To Followup Reason
-        primary_site:
-          items:
-            type: string
-          q: primary_site__overlap
-          title: Primary Site
-          type: array
         program_id:
           anyOf:
           - type: string
@@ -1861,6 +1861,11 @@ components:
           pattern: ^[A-Za-z0-9\-\._]{1,64}
           title: Submitter Primary Diagnosis Id
           type: string
+        primary_site:
+          anyOf:
+          - $ref: '#/components/schemas/PrimarySiteEnum'
+          - type: 'null'
+          title: Primary Site
         treatments:
           items:
             $ref: '#/components/schemas/NestedTreatmentSchema'
@@ -2604,6 +2609,11 @@ components:
           - type: string
           - type: 'null'
           title: Laterality
+        primary_site:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Primary Site
         program_id:
           anyOf:
           - type: string
@@ -2778,8 +2788,10 @@ components:
           - $ref: '#/components/schemas/PrimaryDiagnosisLateralityEnum'
           - type: 'null'
         primary_site:
+          anyOf:
+          - $ref: '#/components/schemas/PrimarySiteEnum'
+          - type: 'null'
           title: Primary Site
-          type: string
         program_id:
           title: Program Id
           type: string
@@ -5338,15 +5350,6 @@ paths:
           - type: string
           - type: 'null'
           title: Cause Of Death
-      - in: query
-        name: primary_site
-        required: false
-        schema:
-          items:
-            type: string
-          q: primary_site__overlap
-          title: Primary Site
-          type: array
       - in: query
         name: page
         required: false
