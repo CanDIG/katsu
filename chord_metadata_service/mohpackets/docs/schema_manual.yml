@@ -325,7 +325,7 @@ components:
       properties:
         actual_cumulative_drug_dose:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Actual Cumulative Drug Dose
         drug_dose_units:
@@ -350,7 +350,7 @@ components:
           title: Drug Reference Identifier
         prescribed_cumulative_drug_dose:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
         systemic_therapy_type:
@@ -389,7 +389,7 @@ components:
       properties:
         actual_cumulative_drug_dose:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Actual Cumulative Drug Dose
         drug_dose_units:
@@ -414,7 +414,7 @@ components:
           title: Drug Reference Identifier
         prescribed_cumulative_drug_dose:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
         systemic_therapy_type:
@@ -467,7 +467,7 @@ components:
       properties:
         actual_cumulative_drug_dose:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Actual Cumulative Drug Dose
         drug_dose_units:
@@ -492,7 +492,7 @@ components:
           title: Drug Reference Identifier
         prescribed_cumulative_drug_dose:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
         systemic_therapy_type:
@@ -1486,6 +1486,7 @@ components:
       - M1d(1)
       - M1e
       - MX
+      - Not applicable
       title: MCategoryEnum
       type: string
     MalignancyLateralityEnum:
@@ -1631,7 +1632,7 @@ components:
       properties:
         actual_cumulative_drug_dose:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Actual Cumulative Drug Dose
         drug_dose_units:
@@ -1656,7 +1657,7 @@ components:
           title: Drug Reference Identifier
         prescribed_cumulative_drug_dose:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
         systemic_therapy_type:
@@ -1785,22 +1786,22 @@ components:
       properties:
         pathological_m_category:
           anyOf:
-          - type: string
+          - $ref: '#/components/schemas/MCategoryEnum'
           - type: 'null'
           title: Pathological M Category
         pathological_n_category:
           anyOf:
-          - type: string
+          - $ref: '#/components/schemas/NCategoryEnum'
           - type: 'null'
           title: Pathological N Category
         pathological_stage_group:
           anyOf:
-          - type: string
+          - $ref: '#/components/schemas/StageGroupEnum'
           - type: 'null'
           title: Pathological Stage Group
         pathological_t_category:
           anyOf:
-          - type: string
+          - $ref: '#/components/schemas/TCategoryEnum'
           - type: 'null'
           title: Pathological T Category
         pathological_tumour_staging_system:
@@ -4395,7 +4396,7 @@ components:
     SystemicTherapyTypeEnum:
       enum:
       - Chemotherapy
-      - Hormone Therapy
+      - Hormone therapy
       - Immunotherapy
       title: SystemicTherapyTypeEnum
       type: string
@@ -5089,7 +5090,7 @@ paths:
         required: false
         schema:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
       - in: query
@@ -5097,7 +5098,7 @@ paths:
         required: false
         schema:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Actual Cumulative Drug Dose
       - in: query
