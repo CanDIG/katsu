@@ -70,6 +70,11 @@ class ORJSONParser(Parser):
 
 
 class NetworkAuth:
+    """
+    The built-in authenticate function in Django has been overridden to use custom OPA logic
+    to authorize for different types of requests.
+    """
+
     class DeleteAuth(HttpBearer):
         def authenticate(self, request, bearer_token):
             """
