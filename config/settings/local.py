@@ -49,19 +49,27 @@ CACHES = {
     }
 }
 
-# You can change username and datasets to suit your needs
-LOCAL_AUTHORIZED_DATASET = [
-    {
-        "token": "user_1",
+# user_1 is a normal user
+# user_2 is a curator
+# site_admin is admin
+LOCAL_OPA_DATASET = {
+    "user_1": {
         "is_admin": False,
-        "datasets": ["SYNTHETIC-1"],
+        "write_datasets": [],
+        "read_datasets": ["SYNTHETIC-1"],
     },
-    {
-        "token": "user_2",
+    "user_2": {
+        "is_admin": False,
+        "write_datasets": ["SYNTHETIC-2"],
+        "read_datasets": ["SYNTHETIC-2"],
+    },
+    "site_admin": {
         "is_admin": True,
-        "datasets": ["SYNTHETIC-1", "SYNTHETIC-2"],
+        "write_datasets": [],
+        "read_datasets": ["SYNTHETIC-1", "SYNTHETIC-2"],
     },
-]
+}
+
 QUERY_SERVICE_TOKEN = "query"
 
 LOGGING = {

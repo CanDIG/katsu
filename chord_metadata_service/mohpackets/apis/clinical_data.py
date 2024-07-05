@@ -94,24 +94,6 @@ def require_donor_by_program(func):
 
 ##########################################
 #                                        #
-#           DELETE FUNCTIONS             #
-#                                        #
-##########################################
-@router.delete(
-    "/program/{program_id}/",
-    response={204: None, 404: Dict[str, str]},
-)
-def delete_program(request, program_id: str):
-    try:
-        dataset = Program.objects.get(pk=program_id)
-        dataset.delete()
-        return HTTPStatus.NO_CONTENT, None
-    except Program.DoesNotExist:
-        return HTTPStatus.NOT_FOUND, {"error": "Program matching query does not exist"}
-
-
-##########################################
-#                                        #
 #        DONOR WITH CLINICAL DATA        #
 #                                        #
 ##########################################
@@ -120,9 +102,8 @@ def delete_program(request, program_id: str):
     response={200: DonorWithClinicalDataSchema, 404: Dict[str, str]},
 )
 def get_donor_with_clinical_data(request, program_id: str, donor_id: str):
-    authorized_datasets = request.authorized_datasets
     q = (
-        Q(program_id__in=authorized_datasets)
+        Q(program_id__in=request.read_datasets)
         & Q(program_id=program_id)
         & Q(submitter_donor_id=donor_id)
     )
@@ -175,16 +156,14 @@ def get_donor_with_clinical_data(request, program_id: str, donor_id: str):
     response=List[ProgramModelSchema],
 )
 def list_programs(request, filters: Query[ProgramFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Program.objects.filter(q)
 
 
 @router.get("/donors/", response=List[DonorModelSchema])
 def list_donors(request, filters: Query[DonorFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Donor.objects.filter(q)
 
@@ -201,8 +180,7 @@ def check_filter_donor_with_program(filters):
     response=List[PrimaryDiagnosisModelSchema],
 )
 def list_primary_diagnoses(request, filters: Query[PrimaryDiagnosisFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return PrimaryDiagnosis.objects.filter(q)
 
@@ -212,8 +190,7 @@ def list_primary_diagnoses(request, filters: Query[PrimaryDiagnosisFilterSchema]
     response=List[BiomarkerModelSchema],
 )
 def list_biomarkers(request, filters: Query[BiomarkerFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Biomarker.objects.filter(q)
 
@@ -223,8 +200,7 @@ def list_biomarkers(request, filters: Query[BiomarkerFilterSchema]):
     response=List[ChemotherapyModelSchema],
 )
 def list_chemotherapies(request, filters: Query[ChemotherapyFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Chemotherapy.objects.filter(q)
 
@@ -234,8 +210,7 @@ def list_chemotherapies(request, filters: Query[ChemotherapyFilterSchema]):
     response=List[ComorbidityModelSchema],
 )
 def list_comorbidities(request, filters: Query[ComorbidityFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Comorbidity.objects.filter(q)
 
@@ -245,8 +220,7 @@ def list_comorbidities(request, filters: Query[ComorbidityFilterSchema]):
     response=List[ExposureModelSchema],
 )
 def list_exposures(request, filters: Query[ExposureFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Exposure.objects.filter(q)
 
@@ -256,8 +230,7 @@ def list_exposures(request, filters: Query[ExposureFilterSchema]):
     response=List[FollowUpModelSchema],
 )
 def list_follow_ups(request, filters: Query[FollowUpFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return FollowUp.objects.filter(q)
 
@@ -267,8 +240,7 @@ def list_follow_ups(request, filters: Query[FollowUpFilterSchema]):
     response=List[HormoneTherapyModelSchema],
 )
 def list_hormone_therapies(request, filters: Query[HormoneTherapyFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return HormoneTherapy.objects.filter(q)
 
@@ -278,8 +250,7 @@ def list_hormone_therapies(request, filters: Query[HormoneTherapyFilterSchema]):
     response=List[ImmunotherapyModelSchema],
 )
 def list_immunotherapies(request, filters: Query[ImmunotherapyFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Immunotherapy.objects.filter(q)
 
@@ -289,8 +260,7 @@ def list_immunotherapies(request, filters: Query[ImmunotherapyFilterSchema]):
     response=List[RadiationModelSchema],
 )
 def list_radiations(request, filters: Query[RadiationFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Radiation.objects.filter(q)
 
@@ -300,8 +270,7 @@ def list_radiations(request, filters: Query[RadiationFilterSchema]):
     response=List[SampleRegistrationModelSchema],
 )
 def list_sample_registrations(request, filters: Query[SampleRegistrationFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return SampleRegistration.objects.filter(q)
 
@@ -311,8 +280,7 @@ def list_sample_registrations(request, filters: Query[SampleRegistrationFilterSc
     response=List[SpecimenModelSchema],
 )
 def list_specimens(request, filters: Query[SpecimenFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Specimen.objects.filter(q)
 
@@ -322,8 +290,7 @@ def list_specimens(request, filters: Query[SpecimenFilterSchema]):
     response=List[SurgeryModelSchema],
 )
 def list_surgeries(request, filters: Query[SurgeryFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Surgery.objects.filter(q)
 
@@ -333,7 +300,6 @@ def list_surgeries(request, filters: Query[SurgeryFilterSchema]):
     response=List[TreatmentModelSchema],
 )
 def list_treatments(request, filters: Query[TreatmentFilterSchema]):
-    authorized_datasets = request.authorized_datasets
-    q = Q(program_id__in=authorized_datasets)
+    q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Treatment.objects.filter(q)

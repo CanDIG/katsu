@@ -70,7 +70,7 @@ class IngestTestCase(BaseTestCase):
 class DeleteTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.authorized_url = "/v2/authorized/program/"
+        self.delete_url = "/v2/ingest/program/"
 
     def test_delete_authorized(self):
         """
@@ -83,14 +83,14 @@ class DeleteTestCase(BaseTestCase):
         """
         program_to_delete = ProgramFactory()
         response = self.client.delete(
-            f"{self.authorized_url}{program_to_delete.program_id}/",
+            f"{self.delete_url}{program_to_delete.program_id}/",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.NO_CONTENT)
 
     def test_delete_unauthorized(self):
         """
-        Test an unauthorized DELETE request 'authorized/programs/{program_id}/' endpoint.
+        Test an unauthorized DELETE request 'ingest/programs/{program_id}/' endpoint.
 
         Testing Strategy:
         - Create a new program to delete
@@ -99,7 +99,7 @@ class DeleteTestCase(BaseTestCase):
         """
         program_to_delete = ProgramFactory()
         response = self.client.delete(
-            f"{self.authorized_url}{program_to_delete.program_id}/",
+            f"{self.delete_url}{program_to_delete.program_id}/",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.UNAUTHORIZED)
@@ -176,10 +176,8 @@ class OthersTestCase(BaseTestCase):
             )
             response = response.json()
 
-            authorized_datasets = next(
-                user_data["datasets"]
-                for user_data in settings.LOCAL_AUTHORIZED_DATASET
-                if user_data["token"] == user.token
+            authorized_datasets = settings.LOCAL_OPA_DATASET.get(user.token, {}).get(
+                "read_datasets", []
             )
             response_datasets = [program["program_id"] for program in response["items"]]
             self.assertEqual(response_datasets, authorized_datasets)
