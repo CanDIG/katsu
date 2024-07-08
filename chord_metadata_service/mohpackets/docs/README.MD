@@ -4,7 +4,10 @@ This folder contains the schema and documentation for **MoH models**
 
 ## Katsu API Documentation
 
-To view the API documentation, simply open [schema.md](schema.md) or [Redoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/CanDIG/katsu/develop/chord_metadata_service/mohpackets/docs/schema.json).
+To view the API documentation, simply open [schema.md](schema.md) or [Redoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/CanDIG/katsu/feature/manual_schema/chord_metadata_service/mohpackets/docs/schema_manual.yml).
+
+> [!IMPORTANT]
+> Katsu is currently being transitioned to MoH clinical data model v3.0.0. There is a manually created v3.0.0 of the OpenAPI schema at [schema_v3.yml](schema_v3.yml) that can be used as a reference in the interim period. This file will be replaced by the automatically generated schema documentaion files once katsu is fully transitioned to model v3.0.0.
 
 To generate the `schema.json` file, run the following command:
 
@@ -22,15 +25,17 @@ This will create the schema.md file with the updated documentation.
 
 ## Katsu MoH data model Documentation
 
-To regenerate the `er_diagram.md` file, run the following from the commandline in the current directory: 
+To regenerate the `er_diagram.md` file, run the following from the commandline in the current directory:
 
 To update the model classes:
+
 ```bash
 pip install pylint
 pyreverse -o mmd ../models.py
 ```
 
 To update the markdown file
+
 ```bash
 python make_er_diagram.py
 ```
