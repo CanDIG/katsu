@@ -6,8 +6,8 @@ This folder contains the schema and documentation for **MoH models**
 
 To view the API documentation, simply open [schema.md](schema.md) or [Redoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/CanDIG/katsu/feature/manual_schema/chord_metadata_service/mohpackets/docs/schema_manual.yml).
 
-> [!WARNING]
-> Katsu is currently being transitioned to the MoH clinical data model v3.0.0. There is a manually created v3.0.0 of the OpenAPI schema at [schema_v3.yml](schema_v3.yml) that can be used as a reference in the interim period. This file will be replaced by the automatically generated schema documentaion files once katsu is fully transitions to model v3.0.0
+> [!IMPORTANT]
+> Katsu is currently being transitioned to MoH clinical data model v3.0.0. There is a manually created v3.0.0 of the OpenAPI schema at [schema_v3.yml](schema_v3.yml) that can be used as a reference in the interim period. This file will be replaced by the automatically generated schema documentaion files once katsu is fully transitioned to model v3.0.0.
 
 To generate the `schema.json` file, run the following command:
 
