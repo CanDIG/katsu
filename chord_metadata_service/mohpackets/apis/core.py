@@ -105,7 +105,9 @@ class NetworkAuth:
         def authenticate(self, request, bearer_token):
             """
             Authenticates a request for ingest.
-            For each program, if the user is listed as a program curator for the program, Opa will allow ingest. User must be allowed to ingest into ALL programs requested, otherwise it will return false.
+            For each program, if the user is listed as a program curator for the program,
+            Opa will allow ingest. User must be allowed to ingest into ALL programs
+            requested, otherwise it will return false.
             Opa allows site admins to ingest into all programs.
             """
             if not bearer_token:
