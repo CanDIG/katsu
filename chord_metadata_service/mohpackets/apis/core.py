@@ -106,24 +106,16 @@ class NetworkAuth:
         def authenticate(self, request, bearer_token):
             """
             Authenticates a request for ingest.
-            Grants full permission to site admins.
-            Curators must have ingesting datasets authorized.
+            For each program, if the user is listed as a program curator for the program, Opa will allow ingest. User must be allowed to ingest into ALL programs requested, otherwise it will return false.
+            Opa allows site admins to ingest into all programs.
             """
             if not bearer_token:
                 return False
 
             try:
-                if is_site_admin(request):
-                    logger.debug(
-                        "Site admin authenticated for request '%s'.",
-                        request.get_full_path(),
-                    )
-                    return True
-
-                # For curator
                 request_body = request.body.decode("utf-8")
                 data = json.loads(request_body)
-                program_ids = [item["program_id"] for item in data]
+                program_ids = list(set([item["program_id"] for item in data]))
                 write_datasets = all(
                     is_action_allowed_for_program(
                         bearer_token,
