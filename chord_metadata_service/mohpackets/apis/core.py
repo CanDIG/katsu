@@ -6,7 +6,6 @@ import orjson
 from authx.auth import (
     get_opa_datasets,
     verify_service_token,
-    is_site_admin,
     is_action_allowed_for_program,
 )
 from django.conf import settings
