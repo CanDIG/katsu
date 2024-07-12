@@ -216,15 +216,11 @@ class LocalAuth:
         def authenticate(self, request, bearer_token):
             if bearer_token in settings.LOCAL_OPA_DATASET:
                 opa_data = settings.LOCAL_OPA_DATASET[bearer_token]
-                is_admin = opa_data["is_admin"]
                 write_datasets = opa_data["write_datasets"]
-
-                if is_admin:
-                    return True
 
                 request_body = request.body.decode("utf-8")
                 data = json.loads(request_body)
-                program_ids = [item["program_id"] for item in data]
+                program_ids = list(set([item["program_id"] for item in data]))
                 authorized = all(
                     program_id in write_datasets for program_id in program_ids
                 )
