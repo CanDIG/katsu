@@ -92,14 +92,34 @@ class IngestTestCase(BaseTestCase):
         )
         self.assertEqual(response.status_code, HTTPStatus.CREATED)
 
-    def test_ingest_with_site_admin(self):
+    def test_authorized_ingest_with_site_admin(self):
         """
-        Test that a site admin can create a donor with any program,
-        even not in authorized dataset
+        Test that an admin also required authorized program from OPA to ingest
 
         Testing Strategy:
-        - Build Donor data based on a newly created program_id
-        - A site admin (user_2) can perform a POST request for donor creation.
+        - Build Donor data based on the existing program_id
+        - An authorized admin (user_2) with permission on that program_id
+        - User can perform a POST request for donor creation.
+        """
+        donor = DonorFactory.build(program_id=self.programs[0])
+        data_dict = model_to_dict(donor)
+        response = self.client.post(
+            self.donor_url,
+            data=[data_dict],
+            content_type="application/json",
+            format="json",
+            HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
+        )
+        self.assertEqual(response.status_code, HTTPStatus.CREATED)
+
+    def test_unauthorized_ingest_with_site_admin(self):
+        """
+        Test that an admin also required authorized program from OPA to ingest
+
+        Testing Strategy:
+        - Build Donor data based on new a program
+        - An authorized admin (user_2) don't have permission on that program_id
+        - User cannot perform a POST request for donor creation.
         """
         program = ProgramFactory.create()
         donor = DonorFactory.build(program_id=program)
@@ -111,7 +131,7 @@ class IngestTestCase(BaseTestCase):
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
         )
-        self.assertEqual(response.status_code, HTTPStatus.CREATED)
+        self.assertEqual(response.status_code, HTTPStatus.UNAUTHORIZED)
 
 
 # DELETE API

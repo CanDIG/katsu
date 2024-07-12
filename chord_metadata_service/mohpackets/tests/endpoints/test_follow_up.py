@@ -70,11 +70,11 @@ class IngestTestCase(BaseTestCase):
         - User cannot perform a POST request for follow-up creation.
         """
         follow_up = FollowUpFactory.build(treatment_uuid=self.treatments[0])
-        follow_up_dict = model_to_dict(follow_up)
-        follow_up_dict["relapse_type"] = "invalid"
+        data_dict = model_to_dict(follow_up)
+        data_dict["relapse_type"] = "invalid"
         response = self.client.post(
             self.follow_up_url,
-            data=follow_up_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",

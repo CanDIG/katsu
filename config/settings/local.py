@@ -65,7 +65,7 @@ LOCAL_OPA_DATASET = {
     },
     "site_admin": {
         "is_admin": True,
-        "write_datasets": [],
+        "write_datasets": ["SYNTHETIC-1", "SYNTHETIC-2"],
         "read_datasets": ["SYNTHETIC-1", "SYNTHETIC-2"],
     },
 }

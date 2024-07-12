@@ -6,7 +6,6 @@ import orjson
 from authx.auth import (
     get_opa_datasets,
     verify_service_token,
-    is_site_admin,
     is_action_allowed_for_program,
 )
 from django.conf import settings
@@ -106,24 +105,18 @@ class NetworkAuth:
         def authenticate(self, request, bearer_token):
             """
             Authenticates a request for ingest.
-            Grants full permission to site admins.
-            Curators must have ingesting datasets authorized.
+            For each program, if the user is listed as a program curator for the program,
+            Opa will allow ingest. User must be allowed to ingest into ALL programs
+            requested, otherwise it will return false.
+            Opa allows site admins to ingest into all programs.
             """
             if not bearer_token:
                 return False
 
             try:
-                if is_site_admin(request):
-                    logger.debug(
-                        "Site admin authenticated for request '%s'.",
-                        request.get_full_path(),
-                    )
-                    return True
-
-                # For curator
                 request_body = request.body.decode("utf-8")
                 data = json.loads(request_body)
-                program_ids = [item["program_id"] for item in data]
+                program_ids = list(set([item["program_id"] for item in data]))
                 write_datasets = all(
                     is_action_allowed_for_program(
                         bearer_token,
@@ -223,15 +216,11 @@ class LocalAuth:
         def authenticate(self, request, bearer_token):
             if bearer_token in settings.LOCAL_OPA_DATASET:
                 opa_data = settings.LOCAL_OPA_DATASET[bearer_token]
-                is_admin = opa_data["is_admin"]
                 write_datasets = opa_data["write_datasets"]
-
-                if is_admin:
-                    return True
 
                 request_body = request.body.decode("utf-8")
                 data = json.loads(request_body)
-                program_ids = [item["program_id"] for item in data]
+                program_ids = list(set([item["program_id"] for item in data]))
                 authorized = all(
                     program_id in write_datasets for program_id in program_ids
                 )

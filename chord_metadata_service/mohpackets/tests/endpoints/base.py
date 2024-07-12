@@ -93,7 +93,11 @@ class BaseTestCase(TestCase):
         cls.user_2 = TestUser(
             token="site_admin",
             is_admin=True,
-            write_datasets=[],  # admin can write regardless
+            write_datasets=[
+                cls.programs[0].program_id,
+                cls.programs[1].program_id,
+                "admin_authorized_program_id",
+            ],
             read_datasets=[
                 cls.programs[0].program_id,
                 cls.programs[1].program_id,
