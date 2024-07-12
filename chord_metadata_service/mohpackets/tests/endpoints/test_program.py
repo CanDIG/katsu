@@ -29,7 +29,7 @@ class IngestTestCase(BaseTestCase):
         - An authorized user (user_2) with admin permission.
         - User can perform a POST request for program ingestion.
         """
-        ingest_program = ProgramFactory.build()
+        ingest_program = ProgramFactory.build(program_id="admin_authorized_program_id")
         data_dict = model_to_dict(ingest_program)
         response = self.client.post(
             self.ingest_url,

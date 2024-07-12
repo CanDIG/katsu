@@ -79,11 +79,11 @@ class SampleRegistrationTestCase(BaseTestCase):
         sample_registration = SampleRegistrationFactory.build(
             specimen_uuid=self.specimens[0]
         )
-        sample_registration_dict = model_to_dict(sample_registration)
-        sample_registration_dict["sample_type"] = "invalid"
+        data_dict = model_to_dict(sample_registration)
+        data_dict["sample_type"] = "invalid"
         response = self.client.post(
             self.sample_registration_url,
-            data=sample_registration_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",

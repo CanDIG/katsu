@@ -76,11 +76,11 @@ class TreatmentsIngestTestCase(BaseTestCase):
         treatment = TreatmentFactory.build(
             primary_diagnosis_uuid=self.primary_diagnoses[0]
         )
-        treatment_dict = model_to_dict(treatment)
-        treatment_dict["treatment_type"] = "invalid"
+        data_dict = model_to_dict(treatment)
+        data_dict["treatment_type"] = "invalid"
         response = self.client.post(
             self.treatment_url,
-            data=treatment_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",

@@ -72,11 +72,11 @@ class IngestTestCase(BaseTestCase):
         - User cannot perform a POST request for chemotherapy record creation.
         """
         chemotherapy = ChemotherapyFactory.build(treatment_uuid=self.treatments[0])
-        chemotherapy_dict = model_to_dict(chemotherapy)
-        chemotherapy_dict["drug_reference_database"] = "invalid"
+        data_dict = model_to_dict(chemotherapy)
+        data_dict["drug_reference_database"] = "invalid"
         response = self.client.post(
             self.chemotherapy_url,
-            data=chemotherapy_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",

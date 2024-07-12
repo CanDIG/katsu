@@ -83,11 +83,11 @@ class IngestTestCase(BaseTestCase):
         - User cannot perform a POST request for donor creation.
         """
         donor = DonorFactory.build(program_id=self.programs[0])
-        donor_dict = model_to_dict(donor)
-        donor_dict["cause_of_death"] = "invalid"
+        data_dict = model_to_dict(donor)
+        data_dict["cause_of_death"] = "invalid"
         response = self.client.post(
             self.donor_url,
-            data=donor_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",

@@ -72,11 +72,11 @@ class IngestTestCase(BaseTestCase):
         - User cannot perform a POST request for primary diagnosis creation.
         """
         primary_diagnosis = PrimaryDiagnosisFactory.build(donor_uuid=self.donors[0])
-        primary_diagnosis_dict = model_to_dict(primary_diagnosis)
-        primary_diagnosis_dict["basis_of_diagnosis"] = "invalid"
+        data_dict = model_to_dict(primary_diagnosis)
+        data_dict["basis_of_diagnosis"] = "invalid"
         response = self.client.post(
             self.primary_diagnosis_url,
-            data=primary_diagnosis_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",

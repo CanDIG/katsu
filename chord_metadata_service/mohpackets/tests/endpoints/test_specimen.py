@@ -76,11 +76,11 @@ class IngestTestCase(BaseTestCase):
         specimen = SpecimenFactory.build(
             primary_diagnosis_uuid=self.primary_diagnoses[0]
         )
-        specimen_dict = model_to_dict(specimen)
-        specimen_dict["tumour_grade"] = "invalid"
+        data_dict = model_to_dict(specimen)
+        data_dict["tumour_grade"] = "invalid"
         response = self.client.post(
             self.specimen_url,
-            data=specimen_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
