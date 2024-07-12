@@ -43,6 +43,75 @@ from chord_metadata_service.mohpackets.models import (
     Author: Son Chau
 """
 
+# ICD disease codes, not all are correct but will match regex in model
+c_codes = ['C' + str(x).rjust(2, '0') for x in list(range(0, 97))]
+d_codes = ['D' + str(x).rjust(2, '0') for x in list(range(0, 9)) + list(range(37, 48))]
+cancer_codes = c_codes + d_codes
+# some codes from diseases of the circulatory system, diseases of the blood
+non_cancer_codes = ['D' + str(x) for x in list(range(50, 89)) + list(range(37, 48))] + \
+                       ['I' + str(x).rjust(2, '0') for x in list(range(0, 99))]
+
+# Systemic Therapy Drugs
+chemotherapy_drugs = {
+    "Methotrexate": {"RxNorm": "6851",
+                     "PubChem": "126941",
+                     "NCI Thesaurus": "C642"},
+    "Fludarabine": {"RxNorm": "24698",
+                    "PubChem": "657237",
+                    "NCI Thesaurus": "C1094"},
+    "Carboplatin": {"RxNorm": "40048",
+                    "PubChem": "426756",
+                    "NCI Thesaurus": "C1282"},
+    "Idarubicin": {"RxNorm": "5650",
+                   "PubChem": "42890",
+                   "NCI Thesaurus": "C562"},
+    "Paclitaxel": {"RxNorm": "56946",
+                   "PubChem": "36314",
+                   "NCI Thesaurus": "C1411"}
+
+}
+
+immunotherapy_drugs = {
+    "Atezolizumab": {"RxNorm": "1792776",
+                     "PubChem": "469690927",
+                     "NCI Thesaurus": "C106250"},
+    "Durvalumab": {"RxNorm": "1919503",
+                   "PubChem": "481101604",
+                   "NCI Thesaurus": "C103194"},
+    "Nivolumab": {"RxNorm": "1597876",
+                  "PubChem": "469753496",
+                  "NCI Thesaurus": "C68814"},
+    "Pembrolizumab": {"RxNorm": "1547545",
+                      "PubChem": "469691028",
+                      "NCI Thesaurus": "C106432"},
+    "Ipilimumab": {"RxNorm": "1094833",
+                   "PubChem": "472634117",
+                   "NCI Thesaurus": "C2654"}
+
+}
+
+hormone_therapy_drugs = {
+    "Tamoxifen": {"RxNorm": "1792776",
+                  "PubChem": "469690927",
+                  "NCI Thesaurus": "C106250"},
+    "Fluoxymesterone": {"RxNorm": "1919503",
+                        "PubChem": "481101604",
+                        "NCI Thesaurus": "C103194"},
+    "Diethylstilbestrol": {"RxNorm": "1597876",
+                           "PubChem": "469753496",
+                           "NCI Thesaurus": "C68814"},
+    "Buserelin": {"RxNorm": "1547545",
+                  "PubChem": "469691028",
+                  "NCI Thesaurus": "C106432"},
+    "Degarelix": {"RxNorm": "1094833",
+                  "PubChem": "472634117",
+                  "NCI Thesaurus": "C2654"}
+}
+
+
+def days_to_months(day_interval):
+    return int(math.floor(day_interval * 0.032855))
+
 
 class ProgramFactory(factory.django.DjangoModelFactory):
     class Meta:
@@ -417,7 +486,7 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
         model = FollowUp
 
     # default values
-    submitter_follow_up_id = factory.Sequence(lambda n: "FOLLOW_UP_%d" % n)
+    submitter_follow_up_id = factory.Sequence(lambda n: "FOLL_%d" % n)
     date_of_followup = None
     disease_status_at_followup = factory.Faker(
         "random_element", elements=PERM_VAL.DISEASE_STATUS_FOLLOWUP
@@ -518,6 +587,7 @@ class ComorbidityFactory(factory.django.DjangoModelFactory):
 class ExposureFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Exposure
+        exclude = ('smoking_information',)
 
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
