@@ -423,7 +423,7 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
         model = FollowUp
 
     # default values
-    submitter_follow_up_id = factory.Sequence(lambda n: "FOLL_%d" % n)
+    submitter_follow_up_id = factory.Sequence(lambda n: "FOLLOW_UP_%d" % n)
     date_of_followup = None
     disease_status_at_followup = factory.Faker(
         "random_element", elements=PERM_VAL.DISEASE_STATUS_FOLLOWUP
