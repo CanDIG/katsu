@@ -7,7 +7,6 @@ from django.dispatch import receiver
 
 from chord_metadata_service.mohpackets.models import (
     Biomarker,
-    SystemicTherapy,
     Comorbidity,
     Donor,
     Exposure,
@@ -18,6 +17,7 @@ from chord_metadata_service.mohpackets.models import (
     Specimen,
     Surgery,
     Treatment,
+    SystemicTherapy,
 )
 
 logger = logging.getLogger(__name__)
@@ -110,7 +110,7 @@ def create_treatment_foreign_key(sender, instance, **kwargs):
 
 
 @receiver(pre_save, sender=SystemicTherapy)
-def create_systemic_therapy_foreign_key(sender, instance, **kwargs):
+def create_systemicTherapy_foreign_key(sender, instance, **kwargs):
     set_foreign_key(sender, instance, Donor, "submitter_donor_id", "donor_uuid_id")
     set_foreign_key(
         sender,
@@ -132,7 +132,6 @@ def create_radiation_foreign_key(sender, instance, **kwargs):
         "submitter_treatment_id",
         "treatment_uuid_id",
     )
-
 
 @receiver(pre_save, sender=Surgery)
 def create_surgery_foreign_key(sender, instance, **kwargs):
