@@ -71,3 +71,23 @@ HORMONE_DRUGS = {
                   "PubChem": "16136245",
                   "NCI Thesaurus": "C48385"}
 }
+
+SURGERY_TYPE = {
+    "Biopsy": {"NCIt": "C15189",
+               "SNOMED": "86273004",
+               "UMLS": "C0005558"},
+    "Bypass Gastrojejunostomy": {"NCIt": "C51758",
+                                 "SNOMED": "49245001",
+                                 "UMLS": "C0399839"},
+    "Exploratory laparotomy": {"NCIt": "C51779",
+                               "SNOMED": "74770008",
+                               "UMLS": "C0085704"},
+    "Total Mastectomy": {"NCIt": "C15281"},
+    "Mastectomy with excision of regional lymph nodes": {"SNOMED": "66398006"},
+    "Radical prostatectomy": {"NCIt": "C15399",
+                              "SNOMED": "26294005",
+                              "UMLS": "C0194810"},
+    "Total gastrectomy": {"NCIt": "C185240",
+                          "SNOMED": "26452005",
+                          "UMLS": "C1304782"},
+}

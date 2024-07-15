@@ -62,9 +62,9 @@ class Dataset:
         cls.treatments = TreatmentFactory.create_batch(
             treatment_count, primary_diagnosis_uuid=factory.Iterator(cls.primary_diagnoses)
         )
-        # cls.systemic_therapies = SystemicTherapyFactory.create_batch(
-        #     sys_therapy_count, treatment_uuid=factory.Iterator(cls.treatments)
-        # )
+        cls.systemic_therapies = SystemicTherapyFactory.create_batch(
+            sys_therapy_count, treatment_uuid=factory.Iterator(cls.treatments)
+        )
         logging.info("Creating Radiations...")
         cls.radiations = RadiationFactory.create_batch(
             radiation_count, treatment_uuid=factory.Iterator(cls.treatments[0:int(treatment_count/2)])
@@ -100,7 +100,6 @@ class Dataset:
         yield "donors", self.donors
         yield ""
 
-
     def convert_to_dicts(self):
         self.programs = [model_to_dict(x) for x in self.programs]
         self.biomarkers = [model_to_dict(x) for x in self.biomarkers]
@@ -111,7 +110,7 @@ class Dataset:
         self.specimens = [model_to_dict(x) for x in self.specimens]
         self.sample_registrations = [model_to_dict(x) for x in self.sample_registrations]
         self.treatments = [model_to_dict(x) for x in self.treatments]
-        # self.systemic_therapies = [model_to_dict(x) for x in self.systemic_therapies]
+        self.systemic_therapies = [model_to_dict(x) for x in self.systemic_therapies]
         self.radiations = [model_to_dict(x) for x in self.radiations]
         self.surgeries = [model_to_dict(x) for x in self.surgeries]
         # self.followups = [model_to_dict(x) for x in self.followups]
@@ -186,7 +185,6 @@ def main():
         print(program)
 
         print(programs)
-
 
 
 if __name__ == "__main__":
