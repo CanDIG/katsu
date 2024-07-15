@@ -1,7 +1,10 @@
 
 # Restricted values for synthetic data generation
 
-PRIMARY_SITES = []
+PRIMARY_SITE = ["Breast",
+                "Bronchus and lung",
+                "Colon",
+                "Skin"]
 
 # ICD disease codes, not all are correct but will match regex in model
 c_codes = ['C' + str(x).rjust(2, '0') for x in list(range(0, 97))]
@@ -53,18 +56,18 @@ IMMUNO_DRUGS = {
 
 HORMONE_DRUGS = {
     "Tamoxifen": {"RxNorm": "10324",
-                  "PubChem": "",
-                  "NCI Thesaurus": ""},
-    "Fluoxymesterone": {"RxNorm": "",
-                        "PubChem": "",
-                        "NCI Thesaurus": ""},
-    "Diethylstilbestrol": {"RxNorm": "1",
-                           "PubChem": "46",
-                           "NCI Thesaurus": "C"},
-    "Buserelin": {"RxNorm": "5",
-                  "PubChem": "48",
-                  "NCI Thesaurus": "C"},
-    "Degarelix": {"RxNorm": "13",
-                  "PubChem": "47",
-                  "NCI Thesaurus": "C"}
+                  "PubChem": "2733526",
+                  "NCI Thesaurus": "C62078"},
+    "Fluoxymesterone": {"RxNorm": "4494",
+                        "PubChem": "6446",
+                        "NCI Thesaurus": "C507"},
+    "Diethylstilbestrol": {"RxNorm": "3390",
+                           "PubChem": "448537",
+                           "NCI Thesaurus": "C433"},
+    "Buserelin": {"RxNorm": "1825",
+                  "PubChem": "50225",
+                  "NCI Thesaurus": "C320"},
+    "Degarelix": {"RxNorm": "475230",
+                  "PubChem": "16136245",
+                  "NCI Thesaurus": "C48385"}
 }
