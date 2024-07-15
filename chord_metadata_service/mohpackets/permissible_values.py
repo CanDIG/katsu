@@ -504,11 +504,11 @@ LYMPH_NODE_METHOD = [
 
 TREATMENT_TYPE = [
     "Bone marrow transplant",
-    "Systemic therapy",
     "No treatment",
     "Other targeting molecular therapy",
     "Photodynamic therapy",
     "Radiation therapy",
+    "Systemic therapy"
     "Stem cell transplant",
     "Surgery",
 ]
@@ -1088,7 +1088,7 @@ SYSTEMIC_THERAPY_TYPE = ["Chemotherapy", "Hormone therapy", "Immunotherapy"]
 
 # ID format
 # Examples: 90234, BLD_donor_89, AML-90
-ID_REGEX = r"^[A-Za-z0-9\-\._]{1,64}$"
+ID_REGEX = r"^[A-Za-z0-9\-\._]{1,64}"
 
 # Date format
 # A date, or partial date (e.g. just year or year + month) as used in
