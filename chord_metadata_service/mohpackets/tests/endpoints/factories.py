@@ -6,13 +6,10 @@ import factory
 import chord_metadata_service.mohpackets.permissible_values as PERM_VAL
 from chord_metadata_service.mohpackets.models import (
     Biomarker,
-    Chemotherapy,
     Comorbidity,
     Donor,
     Exposure,
     FollowUp,
-    HormoneTherapy,
-    Immunotherapy,
     PrimaryDiagnosis,
     Program,
     Radiation,
@@ -292,61 +289,6 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
     )
     primary_diagnosis_uuid = factory.SubFactory(PrimaryDiagnosisFactory)
 
-
-class ChemotherapyFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = Chemotherapy
-
-    # default values
-    uuid = factory.LazyFunction(uuid.uuid4)
-    drug_reference_database = factory.Faker(
-        "random_element", elements=PERM_VAL.DRUG_REFERENCE_DB
-    )
-    drug_name = factory.Faker("word")
-    drug_reference_identifier = factory.Faker("word")
-    chemotherapy_drug_dose_units = factory.Faker(
-        "random_element", elements=PERM_VAL.DOSAGE_UNITS
-    )
-    prescribed_cumulative_drug_dose = factory.Faker("random_int", min=1, max=100)
-    actual_cumulative_drug_dose = factory.Faker("random_int", min=1, max=100)
-
-    # set foregin keys
-    program_id = factory.SelfAttribute("treatment_uuid.program_id")
-    submitter_donor_id = factory.SelfAttribute("treatment_uuid.submitter_donor_id")
-    donor_uuid = factory.SelfAttribute("treatment_uuid.donor_uuid")
-    submitter_treatment_id = factory.SelfAttribute(
-        "treatment_uuid.submitter_treatment_id"
-    )
-    treatment_uuid = factory.SubFactory(TreatmentFactory)
-
-
-class HormoneTherapyFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = HormoneTherapy
-
-    # default values
-    uuid = factory.LazyFunction(uuid.uuid4)
-    drug_reference_database = factory.Faker(
-        "random_element", elements=PERM_VAL.DRUG_REFERENCE_DB
-    )
-    drug_name = factory.Faker("word")
-    drug_reference_identifier = factory.Faker("word")
-    hormone_drug_dose_units = factory.Faker(
-        "random_element", elements=PERM_VAL.DOSAGE_UNITS
-    )
-    prescribed_cumulative_drug_dose = factory.Faker("random_int", min=1, max=100)
-    actual_cumulative_drug_dose = factory.Faker("random_int", min=1, max=100)
-
-    # set foreign keys
-    program_id = factory.SelfAttribute("treatment_uuid.program_id")
-    submitter_donor_id = factory.SelfAttribute("treatment_uuid.submitter_donor_id")
-    donor_uuid = factory.SelfAttribute("treatment_uuid.donor_uuid")
-    submitter_treatment_id = factory.SelfAttribute(
-        "treatment_uuid.submitter_treatment_id"
-    )
-    treatment_uuid = factory.SubFactory(TreatmentFactory)
-
-
 class RadiationFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Radiation
@@ -375,37 +317,6 @@ class RadiationFactory(factory.django.DjangoModelFactory):
         "treatment_uuid.submitter_treatment_id"
     )
     treatment_uuid = factory.SubFactory(TreatmentFactory)
-
-
-class ImmunotherapyFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = Immunotherapy
-
-    # default values
-    uuid = factory.LazyFunction(uuid.uuid4)
-    drug_reference_database = factory.Faker(
-        "random_element", elements=PERM_VAL.DRUG_REFERENCE_DB
-    )
-    immunotherapy_type = factory.Faker(
-        "random_element", elements=PERM_VAL.IMMUNOTHERAPY_TYPE
-    )
-    drug_name = factory.Faker("word")
-    drug_reference_identifier = factory.Faker("word")
-    immunotherapy_drug_dose_units = factory.Faker(
-        "random_element", elements=PERM_VAL.DOSAGE_UNITS
-    )
-    prescribed_cumulative_drug_dose = factory.Faker("random_int", min=1, max=100)
-    actual_cumulative_drug_dose = factory.Faker("random_int", min=1, max=100)
-
-    # set foreign keys
-    program_id = factory.SelfAttribute("treatment_uuid.program_id")
-    submitter_donor_id = factory.SelfAttribute("treatment_uuid.submitter_donor_id")
-    donor_uuid = factory.SelfAttribute("treatment_uuid.donor_uuid")
-    submitter_treatment_id = factory.SelfAttribute(
-        "treatment_uuid.submitter_treatment_id"
-    )
-    treatment_uuid = factory.SubFactory(TreatmentFactory)
-
 
 class SurgeryFactory(factory.django.DjangoModelFactory):
     class Meta:
