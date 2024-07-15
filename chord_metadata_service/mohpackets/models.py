@@ -58,9 +58,6 @@ class Donor(models.Model):
     cause_of_death = models.CharField(max_length=255, null=True, blank=True)
     date_of_birth = models.JSONField(null=True, blank=True)
     date_of_death = models.JSONField(null=True, blank=True)
-    primary_site = ArrayField(
-        models.CharField(max_length=255, null=True, blank=True), null=True, blank=True
-    )
     date_resolution = models.CharField(max_length=32, null=True, blank=True)
 
     class Meta:
@@ -73,25 +70,21 @@ class Donor(models.Model):
 
 class PrimaryDiagnosis(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    program_id = models.ForeignKey(
-        Program, on_delete=models.CASCADE, null=False, blank=False
-    )
     donor_uuid = models.ForeignKey(
         Donor, on_delete=models.CASCADE, null=True, blank=True
+    )
+    program_id = models.ForeignKey(
+        Program, on_delete=models.CASCADE, null=False, blank=False
     )
     submitter_primary_diagnosis_id = models.CharField(
         max_length=64, null=True, blank=True
     )
     submitter_donor_id = models.CharField(max_length=64, null=True, blank=True)
+    primary_site = models.CharField(max_length=64, null=True, blank=True)
     date_of_diagnosis = models.JSONField(null=True, blank=True)
     cancer_type_code = models.CharField(max_length=64, null=True, blank=True)
     basis_of_diagnosis = models.CharField(max_length=128, null=True, blank=True)
     laterality = models.CharField(max_length=128, null=True, blank=True)
-    lymph_nodes_examined_status = models.CharField(
-        max_length=128, null=True, blank=True
-    )
-    lymph_nodes_examined_method = models.CharField(max_length=64, null=True, blank=True)
-    number_lymph_nodes_positive = models.IntegerField(null=True, blank=True)
     clinical_tumour_staging_system = models.CharField(
         max_length=128, null=True, blank=True
     )
@@ -99,6 +92,13 @@ class PrimaryDiagnosis(models.Model):
     clinical_n_category = models.CharField(max_length=64, null=True, blank=True)
     clinical_m_category = models.CharField(max_length=64, null=True, blank=True)
     clinical_stage_group = models.CharField(max_length=64, null=True, blank=True)
+    pathological_tumour_staging_system = models.CharField(
+        max_length=255, null=True, blank=True
+    )
+    pathological_t_category = models.CharField(max_length=64, null=True, blank=True)
+    pathological_n_category = models.CharField(max_length=64, null=True, blank=True)
+    pathological_m_category = models.CharField(max_length=64, null=True, blank=True)
+    pathological_stage_group = models.CharField(max_length=64, null=True, blank=True)
 
     class Meta:
         unique_together = ["program_id", "submitter_primary_diagnosis_id"]
@@ -124,13 +124,7 @@ class Specimen(models.Model):
     submitter_primary_diagnosis_id = models.CharField(
         max_length=64, null=False, blank=False
     )
-    pathological_tumour_staging_system = models.CharField(
-        max_length=255, null=True, blank=True
-    )
-    pathological_t_category = models.CharField(max_length=64, null=True, blank=True)
-    pathological_n_category = models.CharField(max_length=64, null=True, blank=True)
-    pathological_m_category = models.CharField(max_length=64, null=True, blank=True)
-    pathological_stage_group = models.CharField(max_length=64, null=True, blank=True)
+    submitter_treatment_id = models.CharField(max_length=64, null=True, blank=True)
     specimen_collection_date = models.JSONField(null=True, blank=True)
     specimen_storage = models.CharField(max_length=64, null=True, blank=True)
     specimen_processing = models.CharField(max_length=128, null=True, blank=True)
@@ -203,13 +197,9 @@ class Treatment(models.Model):
     )
     treatment_type = ArrayField(models.CharField(max_length=255), null=True, blank=True)
     is_primary_treatment = models.CharField(max_length=32, null=True, blank=True)
-    line_of_treatment = models.IntegerField(null=True, blank=True)
     treatment_start_date = models.JSONField(null=True, blank=True)
     treatment_end_date = models.JSONField(null=True, blank=True)
-    treatment_setting = models.CharField(max_length=128, null=True, blank=True)
     treatment_intent = models.CharField(max_length=128, null=True, blank=True)
-    days_per_cycle = models.IntegerField(null=True, blank=True)
-    number_of_cycles = models.IntegerField(null=True, blank=True)
     response_to_treatment_criteria_method = models.CharField(
         max_length=255, null=True, blank=True
     )
@@ -223,8 +213,7 @@ class Treatment(models.Model):
     def __str__(self):
         return f"{self.program_id}: {self.submitter_treatment_id}"
 
-
-class Chemotherapy(models.Model):
+class SystemicTherapy(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     donor_uuid = models.ForeignKey(
         Donor, on_delete=models.CASCADE, null=False, blank=False
@@ -237,12 +226,15 @@ class Chemotherapy(models.Model):
     )
     submitter_donor_id = models.CharField(max_length=64, null=False, blank=False)
     submitter_treatment_id = models.CharField(max_length=64, null=False, blank=False)
+    systemic_therapy_type = models.CharField(max_length=32, null=True, blank=True)
+    days_per_cycle = models.IntegerField(null=True, blank=True)
+    number_of_cycles = models.IntegerField(null=True, blank=True)
+    start_date = models.JSONField(null=True, blank=True)
+    end_date = models.JSONField(null=True, blank=True)
     drug_reference_database = models.CharField(max_length=64, null=True, blank=True)
     drug_name = models.CharField(max_length=255, null=True, blank=True)
     drug_reference_identifier = models.CharField(max_length=64, null=True, blank=True)
-    chemotherapy_drug_dose_units = models.CharField(
-        max_length=64, null=True, blank=True
-    )
+    drug_dose_units = models.CharField(max_length=64, null=True, blank=True)
     prescribed_cumulative_drug_dose = models.IntegerField(blank=True, null=True)
     actual_cumulative_drug_dose = models.IntegerField(blank=True, null=True)
 
@@ -252,32 +244,6 @@ class Chemotherapy(models.Model):
     def __str__(self):
         return f"{self.program_id}: {self.submitter_treatment_id}"
 
-
-class HormoneTherapy(models.Model):
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    donor_uuid = models.ForeignKey(
-        Donor, on_delete=models.CASCADE, null=False, blank=False
-    )
-    treatment_uuid = models.ForeignKey(
-        Treatment, on_delete=models.CASCADE, null=False, blank=False
-    )
-    program_id = models.ForeignKey(
-        Program, on_delete=models.CASCADE, null=False, blank=False
-    )
-    submitter_donor_id = models.CharField(max_length=64, null=False, blank=False)
-    submitter_treatment_id = models.CharField(max_length=64, null=False, blank=False)
-    drug_reference_database = models.CharField(max_length=64, null=True, blank=True)
-    drug_name = models.CharField(max_length=255, null=True, blank=True)
-    drug_reference_identifier = models.CharField(max_length=64, null=True, blank=True)
-    hormone_drug_dose_units = models.CharField(max_length=64, null=True, blank=True)
-    prescribed_cumulative_drug_dose = models.IntegerField(blank=True, null=True)
-    actual_cumulative_drug_dose = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        ordering = ["uuid"]
-
-    def __str__(self):
-        return f"{self.program_id}: {self.submitter_treatment_id}"
 
 
 class Radiation(models.Model):
@@ -310,35 +276,6 @@ class Radiation(models.Model):
         return f"{self.program_id}: {self.submitter_treatment_id}"
 
 
-class Immunotherapy(models.Model):
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    donor_uuid = models.ForeignKey(
-        Donor, on_delete=models.CASCADE, null=False, blank=False
-    )
-    treatment_uuid = models.ForeignKey(
-        Treatment, on_delete=models.CASCADE, null=False, blank=False
-    )
-    program_id = models.ForeignKey(
-        Program, on_delete=models.CASCADE, null=False, blank=False
-    )
-    submitter_donor_id = models.CharField(max_length=64, null=False, blank=False)
-    submitter_treatment_id = models.CharField(max_length=64, null=False, blank=False)
-    drug_reference_database = models.CharField(max_length=64, null=True, blank=True)
-    immunotherapy_type = models.CharField(max_length=255, null=True, blank=True)
-    drug_name = models.CharField(max_length=255, null=True, blank=True)
-    drug_reference_identifier = models.CharField(max_length=64, null=True, blank=True)
-    immunotherapy_drug_dose_units = models.CharField(
-        max_length=64, null=True, blank=True
-    )
-    prescribed_cumulative_drug_dose = models.IntegerField(blank=True, null=True)
-    actual_cumulative_drug_dose = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        ordering = ["uuid"]
-
-    def __str__(self):
-        return f"{self.program_id}: {self.submitter_treatment_id}"
-
 
 class Surgery(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
@@ -353,7 +290,6 @@ class Surgery(models.Model):
     )
     submitter_donor_id = models.CharField(max_length=64, null=False, blank=False)
     submitter_treatment_id = models.CharField(max_length=64, null=False, blank=False)
-    submitter_specimen_id = models.CharField(max_length=64, null=True, blank=True)
     surgery_type = models.CharField(max_length=255, null=True, blank=True)
     surgery_site = models.CharField(max_length=255, null=True, blank=True)
     surgery_location = models.CharField(max_length=128, null=True, blank=True)
@@ -375,6 +311,10 @@ class Surgery(models.Model):
     )
     lymphovascular_invasion = models.CharField(max_length=255, null=True, blank=True)
     perineural_invasion = models.CharField(max_length=128, null=True, blank=True)
+    surgery_reference_database = models.CharField(max_length=64, null=True, blank=True)
+    surgery_reference_identifier = models.CharField(
+        max_length=64, null=True, blank=True
+    )
 
     class Meta:
         ordering = ["uuid"]
@@ -413,13 +353,6 @@ class FollowUp(models.Model):
     anatomic_site_progression_or_recurrence = ArrayField(
         models.CharField(max_length=255, null=True, blank=True), null=True, blank=True
     )
-    recurrence_tumour_staging_system = models.CharField(
-        max_length=255, null=True, blank=True
-    )
-    recurrence_t_category = models.CharField(max_length=32, null=True, blank=True)
-    recurrence_n_category = models.CharField(max_length=32, null=True, blank=True)
-    recurrence_m_category = models.CharField(max_length=32, null=True, blank=True)
-    recurrence_stage_group = models.CharField(max_length=64, null=True, blank=True)
 
     class Meta:
         unique_together = ["program_id", "submitter_follow_up_id"]
