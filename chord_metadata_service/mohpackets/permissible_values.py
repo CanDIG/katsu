@@ -508,7 +508,7 @@ TREATMENT_TYPE = [
     "Other targeting molecular therapy",
     "Photodynamic therapy",
     "Radiation therapy",
-    "Systemic therapy"
+    "Systemic therapy",
     "Stem cell transplant",
     "Surgery",
 ]

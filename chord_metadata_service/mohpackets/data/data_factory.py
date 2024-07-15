@@ -37,53 +37,54 @@ import factory
 
 
 class Dataset:
+    """Create a set of programs with synthetic data"""
     @classmethod
     def __init__(cls, program_count=4, donor_count=80, pd_count=80, specimen_count=80, sample_count=240,
                  treatment_count=160, radiation_count=80, surgery_count=80, comorbidity_count=40, biomarker_count=40,
                  exposure_count=30, followup_count=2, sys_therapy_count=320):
-        cls.programs = ProgramFactory.create_batch(program_count)
+        cls.Program = ProgramFactory.create_batch(program_count)
         logging.info("Creating Donors...")
-        cls.donors = DonorFactory.create_batch(
-            donor_count, program_id=factory.Iterator(cls.programs)
+        cls.Donor = DonorFactory.create_batch(
+            donor_count, program_id=factory.Iterator(cls.Program)
         )
         logging.info("Creating Primary Diagnoses...")
-        cls.primary_diagnoses = PrimaryDiagnosisFactory.create_batch(
-            pd_count, donor_uuid=factory.Iterator(cls.donors)
+        cls.PrimaryDiagnosis = PrimaryDiagnosisFactory.create_batch(
+            pd_count, donor_uuid=factory.Iterator(cls.Donor)
         )
         logging.info("Creating Specimens...")
-        cls.specimens = SpecimenFactory.create_batch(
-            specimen_count, primary_diagnosis_uuid=factory.Iterator(cls.primary_diagnoses)
+        cls.Specimen = SpecimenFactory.create_batch(
+            specimen_count, primary_diagnosis_uuid=factory.Iterator(cls.PrimaryDiagnosis)
         )
         logging.info("Creating Sample registrations...")
-        cls.sample_registrations = SampleRegistrationFactory.create_batch(
-            sample_count, specimen_uuid=factory.Iterator(cls.specimens)
+        cls.SampleRegistration = SampleRegistrationFactory.create_batch(
+            sample_count, specimen_uuid=factory.Iterator(cls.Specimen)
         )
         logging.info("Creating Treatments...")
-        cls.treatments = TreatmentFactory.create_batch(
-            treatment_count, primary_diagnosis_uuid=factory.Iterator(cls.primary_diagnoses)
+        cls.Treatment = TreatmentFactory.create_batch(
+            treatment_count, primary_diagnosis_uuid=factory.Iterator(cls.PrimaryDiagnosis)
         )
-        cls.systemic_therapies = SystemicTherapyFactory.create_batch(
-            sys_therapy_count, treatment_uuid=factory.Iterator(cls.treatments)
+        cls.SystemicTherapy = SystemicTherapyFactory.create_batch(
+            sys_therapy_count, treatment_uuid=factory.Iterator(cls.Treatment)
         )
         logging.info("Creating Radiations...")
-        cls.radiations = RadiationFactory.create_batch(
-            radiation_count, treatment_uuid=factory.Iterator(cls.treatments[0:int(treatment_count/2)])
+        cls.Radiation = RadiationFactory.create_batch(
+            radiation_count, treatment_uuid=factory.Iterator(cls.Treatment[0:int(treatment_count/2)])
         )
         logging.info("Creating Surgeries...")
-        cls.surgeries = SurgeryFactory.create_batch(
-            surgery_count, treatment_uuid=factory.Iterator(cls.treatments[int(treatment_count/2):treatment_count])
+        cls.Surgery = SurgeryFactory.create_batch(
+            surgery_count, treatment_uuid=factory.Iterator(cls.Treatment[int(treatment_count/2):treatment_count])
         )
         logging.info("Creating Comorbidities...")
-        cls.comorbidities = ComorbidityFactory.create_batch(
-            comorbidity_count, donor_uuid=factory.Iterator(cls.donors)
+        cls.Comorbidity = ComorbidityFactory.create_batch(
+            comorbidity_count, donor_uuid=factory.Iterator(cls.Donor)
         )
         logging.info("Creating Biomarkers...")
-        cls.biomarkers = BiomarkerFactory.create_batch(
-            biomarker_count, donor_uuid=factory.Iterator(cls.donors)
+        cls.Biomarker = BiomarkerFactory.create_batch(
+            biomarker_count, donor_uuid=factory.Iterator(cls.Donor)
         )
-        logging.info("Creating Exposurs...")
-        cls.exposures = ExposureFactory.create_batch(
-            exposure_count, donor_uuid=factory.Iterator(cls.donors)
+        logging.info("Creating Exposures...")
+        cls.Exposure = ExposureFactory.create_batch(
+            exposure_count, donor_uuid=factory.Iterator(cls.Donor)
         )
         # cls.followups = FollowUpFactory.create_batch(
         #     followup_count,
@@ -95,25 +96,45 @@ class Dataset:
         #                                                               [None, cls.primary_diagnoses]))
         # )
 
-    def __iter__(self):
-        yield "programs", self.programs
-        yield "donors", self.donors
-        yield ""
+    def __getitem__(self, item):
+        return getattr(self, item)
+
+    @staticmethod
+    def clean_dict(dirty_dict):
+        """Transforms the factory object into a dictionary and removes fields that cause errors during
+        JSON serialisation"""
+        clean_dict = model_to_dict(dirty_dict)
+        if 'created' in clean_dict.keys():
+            del clean_dict['created']
+        if 'updated' in clean_dict.keys():
+            del clean_dict['updated']
+        if 'uuid' in clean_dict.keys():
+            del clean_dict['uuid']
+        if 'primary_diagnosis_uuid' in clean_dict.keys():
+            del clean_dict['primary_diagnosis_uuid']
+        if 'donor_uuid' in clean_dict.keys():
+            del clean_dict['donor_uuid']
+        if 'treatment_uuid' in clean_dict.keys():
+            del clean_dict['treatment_uuid']
+        if 'specimen_uuid' in clean_dict.keys():
+            del clean_dict['specimen_uuid']
+        return clean_dict
 
     def convert_to_dicts(self):
-        self.programs = [model_to_dict(x) for x in self.programs]
-        self.biomarkers = [model_to_dict(x) for x in self.biomarkers]
-        self.comorbidities = [model_to_dict(x) for x in self.comorbidities]
-        self.donors = [model_to_dict(x) for x in self.donors]
-        self.exposures = [model_to_dict(x) for x in self.exposures]
-        self.primary_diagnoses = [model_to_dict(x) for x in self.primary_diagnoses]
-        self.specimens = [model_to_dict(x) for x in self.specimens]
-        self.sample_registrations = [model_to_dict(x) for x in self.sample_registrations]
-        self.treatments = [model_to_dict(x) for x in self.treatments]
-        self.systemic_therapies = [model_to_dict(x) for x in self.systemic_therapies]
-        self.radiations = [model_to_dict(x) for x in self.radiations]
-        self.surgeries = [model_to_dict(x) for x in self.surgeries]
-        # self.followups = [model_to_dict(x) for x in self.followups]
+        """Convert all factory objects to dictionaries that can be output as JSON files"""
+        self.Program = [self.clean_dict(x) for x in self.Program]
+        self.Biomarker = [self.clean_dict(x) for x in self.Biomarker]
+        self.Comorbidity = [self.clean_dict(x) for x in self.Comorbidity]
+        self.Donor = [self.clean_dict(x) for x in self.Donor]
+        self.Exposure = [self.clean_dict(x) for x in self.Exposure]
+        self.PrimaryDiagnosis = [self.clean_dict(x) for x in self.PrimaryDiagnosis]
+        self.Specimen = [self.clean_dict(x) for x in self.Specimen]
+        self.SampleRegistration = [self.clean_dict(x) for x in self.SampleRegistration]
+        self.Treatment = [self.clean_dict(x) for x in self.Treatment]
+        self.SystemicTherapy = [self.clean_dict(x) for x in self.SystemicTherapy]
+        self.Radiation = [self.clean_dict(x) for x in self.Radiation]
+        self.Surgery = [self.clean_dict(x) for x in self.Surgery]
+        # self.followups = [self.clean_dict(x) for x in self.followups]
 
     def setUp(self):
         logging.disable(logging.WARNING)
@@ -181,10 +202,10 @@ def main():
         path = f"{size_mapping[args.size]["size"]}_dataset"
         programs = Dataset(**size_mapping[args.size]['params'])
     programs.convert_to_dicts()
-    for program in programs:
-        print(program)
-
-        print(programs)
+    for schema, data in programs.__dict__.items():
+        logging.info(f"Saving {schema} objects to file...")
+        with open(f"{path}/v3_synthetic_data/{schema}.json", "w+") as f:
+            json.dump(data, f)
 
 
 if __name__ == "__main__":
