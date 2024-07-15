@@ -1085,6 +1085,7 @@ TOBACCO_TYPE = [
 ]
 TUMOUR_DESIGNATION = ["Normal", "Tumour"]
 THERAPY_TYPE = ["External", "Internal"]
+SYSTEMIC_THERAPY_TYPE = ["Chemotherapy", "Hormone therapy", "Immunotherapy"]
 
 # ID format
 # Examples: 90234, BLD_donor_89, AML-90
@@ -1187,3 +1188,4 @@ SmokingStatusEnum = list_to_enum("SmokingStatusEnum", SMOKING_STATUS)
 TobaccoTypeEnum = list_to_enum("TobaccoTypeEnum", TOBACCO_TYPE)
 TumourDesginationEnum = list_to_enum("TumourDesginationEnum", TUMOUR_DESIGNATION)
 TherapyTypeEnum = list_to_enum("TherapyTypeEnum", THERAPY_TYPE)
+SystemicTherapyTypeEnum = list_to_enum("SystemicTherapyTypeEnum", SYSTEMIC_THERAPY_TYPE)
