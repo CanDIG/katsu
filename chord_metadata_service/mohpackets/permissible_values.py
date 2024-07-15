@@ -950,6 +950,7 @@ SURGERY_TYPE = [
 ]
 
 SURGERY_LOCATION = ["Local recurrence", "Metastatic", "Primary"]
+SURGERY_REFERENCE_DATABASE = ["SNOMED", "NCIt", "UMLS"]
 
 TUMOUR_FOCALITY = [
     "Cannot be assessed",
@@ -1161,6 +1162,9 @@ RadiationAnatomicalSiteEnum = list_to_enum(
 )
 ImmunotherapyTypeEnum = list_to_enum("ImmunotherapyTypeEnum", IMMUNOTHERAPY_TYPE)
 SurgeryTypeEnum = list_to_enum("SurgeryTypeEnum", SURGERY_TYPE)
+SurgeryReferenceDatabaseEnum = list_to_enum(
+    "SurgeryReferenceDatabaseEnum", SURGERY_REFERENCE_DATABASE
+)
 SurgeryLocationEnum = list_to_enum("SurgeryLocationEnum", SURGERY_LOCATION)
 TumourFocalityEnum = list_to_enum("TumourFocalityEnum", TUMOUR_FOCALITY)
 TumourClassificationEnum = list_to_enum(
