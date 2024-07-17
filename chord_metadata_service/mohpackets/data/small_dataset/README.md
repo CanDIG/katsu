@@ -35,7 +35,7 @@ graph LR;
 
 ```mermaid
 ---
-title: 80 PrimaryDiagnoses, 1 Primary Diagnosis per Donor, examples:
+title: 80 PrimaryDiagnoses, 1 Primary Diagnosis per Donor, examples
 ---
 graph LR;  
   DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
@@ -50,7 +50,7 @@ graph LR;
 
 ```mermaid
 ---
-title: 80 Specimens, 1 per Donor, examples:
+title: 80 Specimens, 1 per Donor, examples
 ---
 graph LR;  
   SPECIMEN_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
@@ -65,7 +65,7 @@ graph LR;
 
 ```mermaid
 ---
-title: 240 SampleRegistrations, 3 per specimen, examples:
+title: 240 SampleRegistrations, 3 per specimen, examples
 ---
 graph LR;  
   SAMPLE_0001--> SPECIMEN_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
