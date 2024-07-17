@@ -1,19 +1,24 @@
+import math
 
 # Restricted values for synthetic data generation
 
 PRIMARY_SITE = ["Breast",
                 "Bronchus and lung",
                 "Colon",
-                "Skin"]
+                "Skin",
+                None]
 
 # ICD disease codes, not all are correct but will match regex in model
 c_codes = ['C' + str(x).rjust(2, '0') for x in list(range(0, 97))]
 d_codes = ['D' + str(x).rjust(2, '0') for x in list(range(0, 9)) + list(range(37, 48))]
-CANCER_CODES = c_codes + d_codes
+CANCER_CODES = c_codes + d_codes + [None]
+CANCER_CODES.extend([None] * math.floor(len(CANCER_CODES)*.2))
 # some codes from diseases of the circulatory system, diseases of the blood
 NON_CANCER_CODES = ['D' + str(x) for x in list(range(50, 89)) + list(range(37, 48))] + \
-                       ['I' + str(x).rjust(2, '0') for x in list(range(0, 99))]
-ALL_CODES = CANCER_CODES + NON_CANCER_CODES + [None]
+                   ['I' + str(x).rjust(2, '0') for x in list(range(0, 99))]
+CANCER_CODES.extend([None] * math.floor(len(NON_CANCER_CODES)*.2))
+
+ALL_CODES = CANCER_CODES + NON_CANCER_CODES
 
 # Systemic Therapy Drugs
 CHEMO_DRUGS = {
@@ -31,7 +36,8 @@ CHEMO_DRUGS = {
                    "NCI Thesaurus": "C562"},
     "Paclitaxel": {"RxNorm": "56946",
                    "PubChem": "36314",
-                   "NCI Thesaurus": "C1411"}
+                   "NCI Thesaurus": "C1411"},
+    None: {}
 
 }
 
@@ -50,7 +56,8 @@ IMMUNO_DRUGS = {
                       "NCI Thesaurus": "C106432"},
     "Ipilimumab": {"RxNorm": "1094833",
                    "PubChem": "472634117",
-                   "NCI Thesaurus": "C2654"}
+                   "NCI Thesaurus": "C2654"},
+    None: {}
 
 }
 
@@ -69,25 +76,34 @@ HORMONE_DRUGS = {
                   "NCI Thesaurus": "C320"},
     "Degarelix": {"RxNorm": "475230",
                   "PubChem": "16136245",
-                  "NCI Thesaurus": "C48385"}
+                  "NCI Thesaurus": "C48385"},
+    None: {}
 }
 
 SURGERY_TYPE = {
     "Biopsy": {"NCIt": "C15189",
                "SNOMED": "86273004",
-               "UMLS": "C0005558"},
+               "UMLS": "C0005558",
+               None: None},
     "Bypass Gastrojejunostomy": {"NCIt": "C51758",
                                  "SNOMED": "49245001",
-                                 "UMLS": "C0399839"},
+                                 "UMLS": "C0399839",
+                                 None: None},
     "Exploratory laparotomy": {"NCIt": "C51779",
                                "SNOMED": "74770008",
-                               "UMLS": "C0085704"},
-    "Total Mastectomy": {"NCIt": "C15281"},
-    "Mastectomy with excision of regional lymph nodes": {"SNOMED": "66398006"},
+                               "UMLS": "C0085704",
+                               None: None},
+    "Total Mastectomy": {"NCIt": "C15281",
+                         None: None},
+    "Mastectomy with excision of regional lymph nodes": {"SNOMED": "66398006",
+                                                         None: None},
     "Radical prostatectomy": {"NCIt": "C15399",
                               "SNOMED": "26294005",
-                              "UMLS": "C0194810"},
+                              "UMLS": "C0194810",
+                              None: None},
     "Total gastrectomy": {"NCIt": "C185240",
                           "SNOMED": "26452005",
-                          "UMLS": "C1304782"},
+                          "UMLS": "C1304782",
+                          None: None},
+    None: {None: None}
 }

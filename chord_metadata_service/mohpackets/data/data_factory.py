@@ -151,13 +151,14 @@ def parse_args():
     parser.add_argument(
         '-p', '--num-programs',
         type=int,
-        help="Number of programs to generate (if not using size option)"
+        help="Number of programs to generate (if not using size option)."
     )
     parser.add_argument(
-        '-d', '--donors-per-program',
+        '-d', '--total-donors',
         type=int,
-        default=50,
-        help="Number of donors to generate per program"
+        default=80,
+        help="Number of donors to generate, will be distributed amongst the programs given by --num-programs. "
+             "Default=80"
     )
     args = parser.parse_args()
     return args
