@@ -17,13 +17,10 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
 django.setup()
 from chord_metadata_service.mohpackets.models import (  # noqa: E402
     Biomarker,
-    Chemotherapy,
     Comorbidity,
     Donor,
     Exposure,
     FollowUp,
-    HormoneTherapy,
-    Immunotherapy,
     PrimaryDiagnosis,
     Program,
     Radiation,
@@ -31,6 +28,7 @@ from chord_metadata_service.mohpackets.models import (  # noqa: E402
     Specimen,
     Surgery,
     Treatment,
+    SystemicTherapy
 )
 
 
@@ -51,11 +49,9 @@ def ingest_data(path):
             (Specimen, "Specimen.json"),
             (SampleRegistration, "SampleRegistration.json"),
             (Treatment, "Treatment.json"),
-            (Chemotherapy, "Chemotherapy.json"),
-            (HormoneTherapy, "HormoneTherapy.json"),
             (Radiation, "Radiation.json"),
-            (Immunotherapy, "Immunotherapy.json"),
             (Surgery, "Surgery.json"),
+            (SystemicTherapy, "SystemicTherapy.json"),
             (FollowUp, "FollowUp.json"),
             (Biomarker, "Biomarker.json"),
             (Comorbidity, "Comorbidity.json"),
