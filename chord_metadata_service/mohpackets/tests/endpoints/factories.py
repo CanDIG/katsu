@@ -78,7 +78,7 @@ class ProgramFactory(factory.django.DjangoModelFactory):
         django_get_or_create = ("program_id",)
 
     # default values
-    program_id = factory.Sequence(lambda n: "PROGRAM_%d" % n)
+    program_id = factory.Sequence(lambda n: f"PROGRAM_{str(n).zfill(2)}")
 
 
 class DonorFactory(factory.django.DjangoModelFactory):
@@ -88,7 +88,7 @@ class DonorFactory(factory.django.DjangoModelFactory):
         exclude = ("fill_dob",)
 
     # default values
-    submitter_donor_id = factory.Sequence(lambda n: "DONOR_%d" % n)
+    submitter_donor_id = factory.Sequence(lambda n: f"DONOR_{str(n).zfill(4)}")
 
     # add 20% nulls to all enum lists:
     PERM_VAL.GENDER = add_nulls(PERM_VAL.GENDER)
@@ -144,7 +144,7 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
         exclude = ("fill_dod")
 
     # Default values
-    submitter_primary_diagnosis_id = factory.Sequence(lambda n: "DIAG_%d" % n)
+    submitter_primary_diagnosis_id = factory.Sequence(lambda n: f"DIAG_{str(n).zfill(4)}")
     fill_dod = factory.Faker("pybool", truth_probability=80)
     date_of_diagnosis = factory.Maybe(
         "fill_dod",
@@ -208,7 +208,7 @@ class SpecimenFactory(factory.django.DjangoModelFactory):
         django_get_or_create = ("submitter_specimen_id",)
 
     # default values
-    submitter_specimen_id = factory.Sequence(lambda n: "SPECIMEN_%d" % n)
+    submitter_specimen_id = factory.Sequence(lambda n: f"SPECIMEN_{str(n).zfill(4)}")
     specimen_collection_date = None
 
     # add 20% nulls to all enum lists
@@ -282,7 +282,7 @@ class SampleRegistrationFactory(factory.django.DjangoModelFactory):
         django_get_or_create = ("submitter_sample_id",)
 
     # default values
-    submitter_sample_id = factory.Sequence(lambda n: "SAMPLE_%d" % n)
+    submitter_sample_id = factory.Sequence(lambda n: f"SAMPLE_{str(n).zfill(4)}")
 
     # add 20% nulls to all enum lists
     PERM_VAL.SPECIMEN_TISSUE_SOURCE = add_nulls(PERM_VAL.SPECIMEN_TISSUE_SOURCE)
@@ -310,7 +310,7 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
         django_get_or_create = ("submitter_treatment_id",)
 
     # default values
-    submitter_treatment_id = factory.Sequence(lambda n: "TREATMENT_%d" % n)
+    submitter_treatment_id = factory.Sequence(lambda n: f"TREATMENT_{str(n).zfill(4)}")
 
     # add 20% nulls to all enum lists
     PERM_VAL.TREATMENT_INTENT = add_nulls(PERM_VAL.TREATMENT_INTENT)
@@ -628,14 +628,13 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
             treatment.treatment_type.remove("No treatment")
 
 
-# TODO: This hasn't been tested properly yet
 class FollowUpFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = FollowUp
         exclude = ("fill_pd", )
 
     # default values
-    submitter_follow_up_id = factory.Sequence(lambda n: "FOLLOW_UP_%d" % n)
+    submitter_follow_up_id = factory.Sequence(lambda n: f"FOLLOW_UP_{str(n).zfill(4)}")
     date_of_followup = None
     disease_status_at_followup = factory.Faker(
         "random_element", elements=PERM_VAL.DISEASE_STATUS_FOLLOWUP
@@ -711,7 +710,6 @@ class BiomarkerFactory(factory.django.DjangoModelFactory):
     # add 20% null values to enums
     PERM_VAL.ER_PR_HPV_STATUS = add_nulls(PERM_VAL.ER_PR_HPV_STATUS)
     PERM_VAL.HER2_STATUS = add_nulls(PERM_VAL.HER2_STATUS)
-
 
     test_date = None
     psa_level = factory.Faker("pyfloat", min_value=0, max_value=20, right_digits=1)

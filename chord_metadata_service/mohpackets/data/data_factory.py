@@ -42,24 +42,31 @@ class Dataset:
     def __init__(cls, program_count=4, donor_count=80, pd_count=80, specimen_count=80, sample_count=240,
                  treatment_count=160, radiation_count=80, surgery_count=80, comorbidity_count=40, biomarker_count=40,
                  exposure_count=30, followup_count=20, sys_therapy_count=320):
+        logging.info("Creating Programs...")
+        ProgramFactory.reset_sequence(1)
         cls.Program = ProgramFactory.create_batch(program_count)
         logging.info("Creating Donors...")
+        DonorFactory.reset_sequence(1)
         cls.Donor = DonorFactory.create_batch(
             donor_count, program_id=factory.Iterator(cls.Program)
         )
         logging.info("Creating Primary Diagnoses...")
+        PrimaryDiagnosisFactory.reset_sequence(1)
         cls.PrimaryDiagnosis = PrimaryDiagnosisFactory.create_batch(
             pd_count, donor_uuid=factory.Iterator(cls.Donor)
         )
         logging.info("Creating Specimens...")
+        SpecimenFactory.reset_sequence(1)
         cls.Specimen = SpecimenFactory.create_batch(
             specimen_count, primary_diagnosis_uuid=factory.Iterator(cls.PrimaryDiagnosis)
         )
         logging.info("Creating Sample registrations...")
+        SampleRegistrationFactory.reset_sequence(1)
         cls.SampleRegistration = SampleRegistrationFactory.create_batch(
             sample_count, specimen_uuid=factory.Iterator(cls.Specimen)
         )
         logging.info("Creating Treatments...")
+        TreatmentFactory.reset_sequence(1)
         cls.Treatment = TreatmentFactory.create_batch(
             treatment_count, primary_diagnosis_uuid=factory.Iterator(cls.PrimaryDiagnosis)
         )
@@ -87,6 +94,7 @@ class Dataset:
             exposure_count, donor_uuid=factory.Iterator(cls.Donor)
         )
         logging.info("Creating Follow Ups...")
+        FollowUpFactory.reset_sequence(1)
         cls.Followup = FollowUpFactory.create_batch(
             followup_count,
             donor_uuid=factory.Iterator(cls.Donor),
@@ -203,7 +211,7 @@ def main():
     programs.convert_to_dicts()
     for schema, data in programs.__dict__.items():
         logging.info(f"Saving {schema} objects to file...")
-        with open(f"{path}/v3_synthetic_data/{schema}.json", "w+") as f:
+        with open(f"{path}/synthetic_data/{schema}.json", "w+") as f:
             json.dump(data, f)
 
 

@@ -9,7 +9,7 @@ The small dataset is composed of:
 * 160 Treatments
 * 320 Systemic Therapies
 
-Sub-objects are iterated over and assigned evenly to a parent object until all objects are exhausted. 
+Sub-objects are iterated over and assigned evenly to a parent object until all objects are exhausted. Identifiers show the pattern in the diagrams below.
 
 e.g.
 
@@ -20,17 +20,17 @@ This is a diagram of the synthetic relationships between the models in the datas
 title: 80 Donors and 4 Programs
 ---
 graph LR;  
-  Donor_0_4_8_12_etc --> Program_0;  
-  Donor_1_5_9_13_etc --> Program_1;
-  Donor_2_6_10_14_etc --> Program_2;
-  Donor_3_7_11_15_etc --> Program_3;
+  "DONOR_0001,0005,0009,0013-0080" --> PROGRAM_01;  
+  Donor_02,5,9,13_etc --> Program_1;
+  Donor_03,6,10,14_etc --> Program_2;
+  Donor_04,7,11,15_etc --> Program_3;
 ```
 
 ---
 
 ```mermaid
 ---
-title: 16 PrimaryDiagnoses
+title: 80 PrimaryDiagnoses
 ---
 graph LR;  
   PrimaryDiagnosis_1_3 --> Donor_1 --> Program_1;  
