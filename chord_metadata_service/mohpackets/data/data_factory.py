@@ -70,7 +70,7 @@ class Dataset:
         cls.Treatment = TreatmentFactory.create_batch(
             treatment_count, primary_diagnosis_uuid=factory.Iterator(cls.PrimaryDiagnosis)
         )
-        logging.info("Creating Systemic therapies...")
+        logging.info("Creating Systemic therapie s...")
         cls.SystemicTherapy = SystemicTherapyFactory.create_batch(
             sys_therapy_count, treatment_uuid=factory.Iterator(cls.Treatment)
         )

@@ -6,7 +6,7 @@ The small dataset is composed of:
 * 30 Exposures
 * 40 Comorbidities, Biomarkers
 * 80 Donors, Primary Diagnoses, Specimens, Radiations, Surgeries
-* 160 Treatments
+* 160 TREATMENTs
 * 240 Sample registrations
 * 320 Systemic Therapies
 
@@ -71,55 +71,55 @@ graph LR;
   SAMPLE_0001--> SPECIMEN_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
   SAMPLE_0081--> SPECIMEN_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
   SAMPLE_0161--> SPECIMEN_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  SPECIMEN_0005 -->DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
-  SPECIMEN_0085 -->DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
-  SPECIMEN_0165 -->DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
-  SPECIMEN_0002 -->DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
-  SPECIMEN_0082 -->DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
-  SPECIMEN_0162 -->DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
-  SPECIMEN_0003 -->DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
-  SPECIMEN_0083 -->DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
-  SPECIMEN_0163 -->DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
-  SPECIMEN_0004 -->DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
-  SPECIMEN_0084 -->DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
-  SPECIMEN_0164 -->DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
-  SPECIMEN_0008 -->DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
-  SPECIMEN_0088 -->DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
-  SPECIMEN_0168 -->DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
+  SAMPLE_0005--> SPECIMEN_0005 --> DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
+  SAMPLE_0085--> SPECIMEN_0085 --> DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
+  SAMPLE_0165--> SPECIMEN_0165 --> DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
+  SAMPLE_0002--> SPECIMEN_0002 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  SAMPLE_0082--> SPECIMEN_0082 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  SAMPLE_0162--> SPECIMEN_0162 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  SAMPLE_0003--> SPECIMEN_0003 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
+  SAMPLE_0083--> SPECIMEN_0083 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
+  SAMPLE_0163--> SPECIMEN_0163 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
+  SAMPLE_0004--> SPECIMEN_0004 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
+  SAMPLE_0084--> SPECIMEN_0084 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
+  SAMPLE_0164--> SPECIMEN_0164 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
+  SAMPLE_0008--> SPECIMEN_0008 --> DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
+  SAMPLE_0088--> SPECIMEN_0088 --> DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
+  SAMPLE_0168--> SPECIMEN_0168 --> DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
 ```
 
 ---
 
 ```mermaid
 ---
-title: 25 Treatments
+title: 160 TREATMENTs, 2 per Primary Diagnosis, examples
 ---
 graph LR;  
-  Treatment_1_3 --> DIAG_1 --> DONOR_1 --> PROGRAM_1;  
-  Treatment_4_6 --> DIAG_2 --> DONOR_1 --> PROGRAM_1;  
-  Treatment_7_9 --> DIAG_3 --> DONOR_1 --> PROGRAM_1;  
-  Treatment_10_11 --> DIAG_4 --> DONOR_2 --> PROGRAM_1;  
-  Treatment_12_13 --> DIAG_5 --> DONOR_2 --> PROGRAM_1;  
-  Treatment_14_15 --> DIAG_6 --> DONOR_2 --> PROGRAM_1; 
-  Treatment_16_17 --> DIAG_7_8 --> DONOR_3 --> PROGRAM_1;  
-  Treatment_18_19 --> DIAG_9_10 --> DONOR_4 --> PROGRAM_1;  
-  Treatment_20_21 --> DIAG_11_12 --> DONOR_5_6 --> PROGRAM_1;  
-  Treatment_22_25 --> DIAG_13_16 --> DONOR_7_10 --> PROGRAM_2;
+  TREATMENT_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;
+  TREATMENT_0081 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
+  TREATMENT_0002 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02; 
+  TREATMENT_0082 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  TREATMENT_0003 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03; 
+  TREATMENT_0083 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03; 
+  TREATMENT_0004 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_03; 
+  TREATMENT_0084 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_03; 
 ```
 
 ---
 
 ```mermaid
 ---
-title: 15 Chemotherapies
+title: 320 Systemic Therapies, 2 per Treatment
 ---
 graph LR;  
-  Chemotherapy_1_3 --> Treatment_1 --> DONOR_1 --> PROGRAM_1;  
-  Chemotherapy_4_6 --> Treatment_2 --> DONOR_1 --> PROGRAM_1;  
-  Chemotherapy_7_9 --> Treatment_3 --> DONOR_1 --> PROGRAM_1;
-  Chemotherapy_10_11 --> Treatment_4 --> DONOR_1 --> PROGRAM_1;
-  Chemotherapy_12_13 --> Treatment_5 --> DONOR_1 --> PROGRAM_1;
-  Chemotherapy_14_15 --> Treatment_6_7 --> DONOR_1 --> PROGRAM_1;
+  sys_therapy_uuid --> TREATMENT_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;
+  sys_therapy_uuid --> TREATMENT_0081 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
+  sys_therapy_uuid --> TREATMENT_0002 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02; 
+  sys_therapy_uuid --> TREATMENT_0082 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  sys_therapy_uuid --> TREATMENT_0003 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03; 
+  sys_therapy_uuid --> TREATMENT_0083 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03; 
+  sys_therapy_uuid --> TREATMENT_0004 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_03; 
+  sys_therapy_uuid --> TREATMENT_0084 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_03; 
 ```
 
 ---
@@ -129,12 +129,12 @@ graph LR;
 title: 14 HormoneTherapies
 ---
 graph LR;  
-  HormoneTherapy_1_3 --> Treatment_8 --> DONOR_1 --> PROGRAM_1;  
-  HormoneTherapy_4_6 --> Treatment_9 --> DONOR_1 --> PROGRAM_1;  
-  HormoneTherapy_7_9 --> Treatment_10 --> DONOR_2 --> PROGRAM_1;  
-  HormoneTherapy_10_11 --> Treatment_11 --> DONOR_2 --> PROGRAM_1;  
-  HormoneTherapy_12_13 --> Treatment_12 --> DONOR_2 --> PROGRAM_1;  
-  HormoneTherapy_14 --> Treatment_13 --> DONOR_2 --> PROGRAM_1;   
+  HormoneTherapy_1_3 --> TREATMENT_8 --> DONOR_1 --> PROGRAM_1;  
+  HormoneTherapy_4_6 --> TREATMENT_9 --> DONOR_1 --> PROGRAM_1;  
+  HormoneTherapy_7_9 --> TREATMENT_10 --> DONOR_2 --> PROGRAM_1;  
+  HormoneTherapy_10_11 --> TREATMENT_11 --> DONOR_2 --> PROGRAM_1;  
+  HormoneTherapy_12_13 --> TREATMENT_12 --> DONOR_2 --> PROGRAM_1;  
+  HormoneTherapy_14 --> TREATMENT_13 --> DONOR_2 --> PROGRAM_1;   
 ```
 
 ---
@@ -144,11 +144,11 @@ graph LR;
 title: 11 Immunotherapies
 ---
 graph LR;  
-  Immunotherapy_1_3 --> Treatment_14 --> DONOR_2 --> PROGRAM_1; 
-  Immunotherapy_4_6 --> Treatment_15 --> DONOR_2 --> PROGRAM_1;  
-  Immunotherapy_7_8 --> Treatment_16 --> DONOR_3 --> PROGRAM_1;  
-  Immunotherapy_9_10 --> Treatment_17 --> DONOR_3 --> PROGRAM_1;  
-  Immunotherapy_11 --> Treatment_18 --> DONOR_4 --> PROGRAM_1;   
+  Immunotherapy_1_3 --> TREATMENT_14 --> DONOR_2 --> PROGRAM_1; 
+  Immunotherapy_4_6 --> TREATMENT_15 --> DONOR_2 --> PROGRAM_1;  
+  Immunotherapy_7_8 --> TREATMENT_16 --> DONOR_3 --> PROGRAM_1;  
+  Immunotherapy_9_10 --> TREATMENT_17 --> DONOR_3 --> PROGRAM_1;  
+  Immunotherapy_11 --> TREATMENT_18 --> DONOR_4 --> PROGRAM_1;   
 ```
 
 ---
@@ -158,8 +158,8 @@ graph LR;
 title: 4 Radiations
 ---
 graph LR;  
-  Radiation_1_3 --> Treatment_19_21 --> DONOR_4_6 --> PROGRAM_1;  
-  Radiation_4 --> Treatment_22 --> DONOR_7 --> PROGRAM_2; 
+  Radiation_1_3 --> TREATMENT_19_21 --> DONOR_4_6 --> PROGRAM_1;  
+  Radiation_4 --> TREATMENT_22 --> DONOR_7 --> PROGRAM_2; 
 ```
 
 ---
@@ -169,7 +169,7 @@ graph LR;
 title: 3 Surgeries
 ---
 graph LR;  
-  Surgery_1_3 --> Treatment_23_25 --> DONOR_8_10 --> PROGRAM_2;  
+  Surgery_1_3 --> TREATMENT_23_25 --> DONOR_8_10 --> PROGRAM_2;  
 ```
 
 ---
@@ -179,20 +179,20 @@ graph LR;
 title: 34 FollowUps
 ---
 graph LR;  
-  FollowUp_1_3 --> Treatment_1 --> DIAG_1 --> DONOR_1 --> PROGRAM_1;  
-  FollowUp_4_6 --> Treatment_2 --> DIAG_1 --> DONOR_1 --> PROGRAM_1;  
-  FollowUp_7_9 --> Treatment_3 --> DIAG_1 --> DONOR_1 --> PROGRAM_1;  
-  FollowUp_10_11 --> Treatment_4 --> DIAG_2 --> DONOR_1 --> PROGRAM_1; 
-  FollowUp_12_13 --> Treatment_5 --> DIAG_2 --> DONOR_1 --> PROGRAM_1; 
-  FollowUp_14_15 --> Treatment_6 --> DIAG_2 --> DONOR_1 --> PROGRAM_1; 
-  FollowUp_16_18 --> Treatment_7_9 --> DIAG_3 --> DONOR_1 --> PROGRAM_1;
-  FollowUp_19_20 --> Treatment_10_11 --> DIAG_4 --> DONOR_2 --> PROGRAM_1;  
-  FollowUp_21_22 --> Treatment_12_13 --> DIAG_5 --> DONOR_2 --> PROGRAM_1;  
-  FollowUp_23_24 --> Treatment_14_15 --> DIAG_6 --> DONOR_2 --> PROGRAM_1; 
-  FollowUp_25_26 --> Treatment_16_17 --> DIAG_7_8 --> DONOR_3 --> PROGRAM_1;  
-  FollowUp_27_28 --> Treatment_18_19 --> DIAG_9_10 --> DONOR_4 --> PROGRAM_1;  
-  FollowUp_29_30 --> Treatment_20_21 --> DIAG_11_12 --> DONOR_5_6 --> PROGRAM_1;  
-  FollowUp_31_34 --> Treatment_22_25 --> DIAG_13_16 --> DONOR_7_10 --> PROGRAM_2;
+  FollowUp_1_3 --> TREATMENT_1 --> DIAG_1 --> DONOR_1 --> PROGRAM_1;  
+  FollowUp_4_6 --> TREATMENT_2 --> DIAG_1 --> DONOR_1 --> PROGRAM_1;  
+  FollowUp_7_9 --> TREATMENT_3 --> DIAG_1 --> DONOR_1 --> PROGRAM_1;  
+  FollowUp_10_11 --> TREATMENT_4 --> DIAG_2 --> DONOR_1 --> PROGRAM_1; 
+  FollowUp_12_13 --> TREATMENT_5 --> DIAG_2 --> DONOR_1 --> PROGRAM_1; 
+  FollowUp_14_15 --> TREATMENT_6 --> DIAG_2 --> DONOR_1 --> PROGRAM_1; 
+  FollowUp_16_18 --> TREATMENT_7_9 --> DIAG_3 --> DONOR_1 --> PROGRAM_1;
+  FollowUp_19_20 --> TREATMENT_10_11 --> DIAG_4 --> DONOR_2 --> PROGRAM_1;  
+  FollowUp_21_22 --> TREATMENT_12_13 --> DIAG_5 --> DONOR_2 --> PROGRAM_1;  
+  FollowUp_23_24 --> TREATMENT_14_15 --> DIAG_6 --> DONOR_2 --> PROGRAM_1; 
+  FollowUp_25_26 --> TREATMENT_16_17 --> DIAG_7_8 --> DONOR_3 --> PROGRAM_1;  
+  FollowUp_27_28 --> TREATMENT_18_19 --> DIAG_9_10 --> DONOR_4 --> PROGRAM_1;  
+  FollowUp_29_30 --> TREATMENT_20_21 --> DIAG_11_12 --> DONOR_5_6 --> PROGRAM_1;  
+  FollowUp_31_34 --> TREATMENT_22_25 --> DIAG_13_16 --> DONOR_7_10 --> PROGRAM_2;
 ```
 
 ---
@@ -205,7 +205,7 @@ graph LR;
   Biomarker_1_5 ------> DONOR_1 --> PROGRAM_1;
   Biomarker_6_9 -----> DIAG_4 --> DONOR_2 --> PROGRAM_1;
   Biomarker_10_12 ----> SPECIMEN_13 ---> DONOR_3 --> PROGRAM_1;
-  Biomarker_13_14 ---> Treatment_15 ----> DONOR_4 --> PROGRAM_1;
+  Biomarker_13_14 ---> TREATMENT_15 ----> DONOR_4 --> PROGRAM_1;
   Biomarker_15 --> FollowUp_31 -----> DONOR_7 --> PROGRAM_2;
 ```
 
