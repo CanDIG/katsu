@@ -1,14 +1,29 @@
 # Small dataset relationships
 
+The small dataset is composed of:
+* 4 programs
+* 20 Follow Ups
+* 30 Exposures
+* 40 Comorbidities, Biomarkers
+* 80 Donors, Primary Diagnoses, Specimens, Radiations, Surgeries
+* 160 Treatments
+* 320 Systemic Therapies
+
+Sub-objects are iterated over and assigned evenly to a parent object until all objects are exhausted. 
+
+e.g.
+
 This is a diagram of the synthetic relationships between the models in the dataset.
 
 ```mermaid
 ---
-title: 10 Donors and 2 Programs
+title: 80 Donors and 4 Programs
 ---
 graph LR;  
-  Donor_1_6 --> Program_1;  
-  Donor_7_10 --> Program_2;
+  Donor_0_4_8_12_etc --> Program_0;  
+  Donor_1_5_9_13_etc --> Program_1;
+  Donor_2_6_10_14_etc --> Program_2;
+  Donor_3_7_11_15_etc --> Program_3;
 ```
 
 ---
