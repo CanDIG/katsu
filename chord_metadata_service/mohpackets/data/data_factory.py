@@ -41,7 +41,7 @@ class Dataset:
     @classmethod
     def __init__(cls, program_count=4, donor_count=80, pd_count=80, specimen_count=80, sample_count=240,
                  treatment_count=160, radiation_count=80, surgery_count=80, comorbidity_count=40, biomarker_count=40,
-                 exposure_count=30, followup_count=2, sys_therapy_count=320):
+                 exposure_count=30, followup_count=20, sys_therapy_count=320):
         cls.Program = ProgramFactory.create_batch(program_count)
         logging.info("Creating Donors...")
         cls.Donor = DonorFactory.create_batch(
@@ -86,15 +86,13 @@ class Dataset:
         cls.Exposure = ExposureFactory.create_batch(
             exposure_count, donor_uuid=factory.Iterator(cls.Donor)
         )
-        # cls.followups = FollowUpFactory.create_batch(
-        #     followup_count,
-        #
-        #     primary_diagnosis_uuid=factory.Faker("random_element", [None, cls.primary_diagnoses]),
-        #     treatment_uuid=factory.Maybe(decider="primary_diagnosis_uuid",
-        #                                  yes_declaration=None,
-        #                                  no_declaration=factory.Faker("random_element",
-        #                                                               [None, cls.primary_diagnoses]))
-        # )
+        logging.info("Creating Follow Ups...")
+        cls.Followup = FollowUpFactory.create_batch(
+            followup_count,
+            donor_uuid=factory.Iterator(cls.Donor),
+            primary_diagnosis_uuid=factory.Iterator(cls.PrimaryDiagnosis),
+            treatment_uuid=factory.Iterator(cls.Treatment)
+        )
 
     def __getitem__(self, item):
         return getattr(self, item)
@@ -134,7 +132,7 @@ class Dataset:
         self.SystemicTherapy = [self.clean_dict(x) for x in self.SystemicTherapy]
         self.Radiation = [self.clean_dict(x) for x in self.Radiation]
         self.Surgery = [self.clean_dict(x) for x in self.Surgery]
-        # self.followups = [self.clean_dict(x) for x in self.followups]
+        self.Followup = [self.clean_dict(x) for x in self.Followup]
 
     def setUp(self):
         logging.disable(logging.WARNING)
