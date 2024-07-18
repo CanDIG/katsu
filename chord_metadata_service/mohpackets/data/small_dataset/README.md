@@ -99,14 +99,20 @@ graph LR;
 title: 160 TREATMENTs, 2 per Primary Diagnosis, examples
 ---
 graph LR;  
-  TREATMENT_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;
-  TREATMENT_0081 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  TREATMENT_0002 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02; 
-  TREATMENT_0082 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
-  TREATMENT_0003 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03; 
-  TREATMENT_0083 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03; 
-  TREATMENT_0004 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_03; 
-  TREATMENT_0084 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_03; 
+  DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
+  DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
+  DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
+  DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
+  DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
+  TREATMENT_0001 --> DIAG_0001;
+  TREATMENT_0081 --> DIAG_0001;  
+  TREATMENT_0002 --> DIAG_0002; 
+  TREATMENT_0082 --> DIAG_0002;  
+  TREATMENT_0003 --> DIAG_0003; 
+  TREATMENT_0083 --> DIAG_0003; 
+  TREATMENT_0004 --> DIAG_0004; 
+  TREATMENT_0084 --> DIAG_0004; 
 ```
 
 ---
@@ -116,14 +122,36 @@ graph LR;
 title: 320 Systemic Therapies, 2 per Treatment
 ---
 graph LR;  
-  sys_therapy_uuid1 --> TREATMENT_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;
-  sys_therapy_uuid2 --> TREATMENT_0081 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  sys_therapy_uuid3 --> TREATMENT_0002 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02; 
-  sys_therapy_uuid4 --> TREATMENT_0082 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
-  sys_therapy_uuid5 --> TREATMENT_0003 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03; 
-  sys_therapy_uuid6 --> TREATMENT_0083 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03; 
-  sys_therapy_uuid7 --> TREATMENT_0004 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_03; 
-  sys_therapy_uuid8 --> TREATMENT_0084 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_03; 
+  DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
+  DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
+  DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
+  DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
+  DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
+  TREATMENT_0001 --> DIAG_0001;
+  TREATMENT_0081 --> DIAG_0001;  
+  TREATMENT_0002 --> DIAG_0002; 
+  TREATMENT_0082 --> DIAG_0002;  
+  TREATMENT_0003 --> DIAG_0003; 
+  TREATMENT_0083 --> DIAG_0003; 
+  TREATMENT_0004 --> DIAG_0004; 
+  TREATMENT_0084 --> DIAG_0004; 
+  sys_therapy_uuid1a --> TREATMENT_0001;
+  sys_therapy_uuid1b --> TREATMENT_0001;
+  sys_therapy_uuid2a --> TREATMENT_0081;
+  sys_therapy_uuid2b --> TREATMENT_0081;  
+  sys_therapy_uuid3a --> TREATMENT_0002; 
+  sys_therapy_uuid3b --> TREATMENT_0002; 
+  sys_therapy_uuid4a --> TREATMENT_0082;  
+  sys_therapy_uuid4b --> TREATMENT_0082;  
+  sys_therapy_uuid5a --> TREATMENT_0003; 
+  sys_therapy_uuid5b --> TREATMENT_0003; 
+  sys_therapy_uuid6a --> TREATMENT_0083; 
+  sys_therapy_uuid6b --> TREATMENT_0083; 
+  sys_therapy_uuid7a --> TREATMENT_0004; 
+  sys_therapy_uuid7b --> TREATMENT_0004; 
+  sys_therapy_uuid8a --> TREATMENT_0084;
+  sys_therapy_uuid8b --> TREATMENT_0084;  
 ```
 
 ---
