@@ -12,9 +12,7 @@ The small dataset is composed of:
 
 Sub-objects are iterated over and assigned evenly to a parent object until all objects are exhausted. Identifiers show the pattern in the diagrams below.
 
-e.g.
-
-This is a diagram of the synthetic relationships between the models in the dataset.
+Diagrams below show example linkage relationships for the different objects.
 
 20 donors per program.
 
@@ -35,7 +33,7 @@ graph LR;
 
 ```mermaid
 ---
-title: 80 PrimaryDiagnoses, 1 Primary Diagnosis per Donor, examples
+title: 80 PrimaryDiagnoses, 1 Primary Diagnosis per Donor
 ---
 graph LR;  
   DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
@@ -50,7 +48,7 @@ graph LR;
 
 ```mermaid
 ---
-title: 80 Specimens, 1 per Donor, examples
+title: 80 Specimens, 1 per Donor
 ---
 graph LR;  
   SPECIMEN_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
@@ -65,27 +63,33 @@ graph LR;
 
 ```mermaid
 ---
-title: 240 SampleRegistrations, 3 per specimen, examples
+title: 240 SampleRegistrations, 3 per specimen
 ---
 graph LR;  
-  SAMPLE_0001--> SPECIMEN_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  SAMPLE_0081--> SPECIMEN_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  SAMPLE_0161--> SPECIMEN_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  SAMPLE_0005--> SPECIMEN_0005 --> DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
-  SAMPLE_0085--> SPECIMEN_0005 --> DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
-  SAMPLE_0165--> SPECIMEN_0005 --> DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
-  SAMPLE_0002--> SPECIMEN_0002 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
-  SAMPLE_0082--> SPECIMEN_0002 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
-  SAMPLE_0162--> SPECIMEN_0002 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
-  SAMPLE_0003--> SPECIMEN_0003 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
-  SAMPLE_0083--> SPECIMEN_0003 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
-  SAMPLE_0163--> SPECIMEN_0003 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
-  SAMPLE_0004--> SPECIMEN_0004 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
-  SAMPLE_0084--> SPECIMEN_0004 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
-  SAMPLE_0164--> SPECIMEN_0004 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
-  SAMPLE_0008--> SPECIMEN_0008 --> DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
-  SAMPLE_0088--> SPECIMEN_0008 --> DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
-  SAMPLE_0168--> SPECIMEN_0008 --> DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
+  SPECIMEN_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
+  SPECIMEN_0005 --> DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
+  SPECIMEN_0002 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  SPECIMEN_0003 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
+  SPECIMEN_0004 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
+  SPECIMEN_0008 --> DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
+  SAMPLE_0001--> SPECIMEN_0001; 
+  SAMPLE_0081--> SPECIMEN_0001;  
+  SAMPLE_0161--> SPECIMEN_0001;  
+  SAMPLE_0005--> SPECIMEN_0005;  
+  SAMPLE_0085--> SPECIMEN_0005;  
+  SAMPLE_0165--> SPECIMEN_0005;  
+  SAMPLE_0002--> SPECIMEN_0002;  
+  SAMPLE_0082--> SPECIMEN_0002;  
+  SAMPLE_0162--> SPECIMEN_0002;  
+  SAMPLE_0003--> SPECIMEN_0003;  
+  SAMPLE_0083--> SPECIMEN_0003;  
+  SAMPLE_0163--> SPECIMEN_0003;  
+  SAMPLE_0004--> SPECIMEN_0004;
+  SAMPLE_0084--> SPECIMEN_0004;
+  SAMPLE_0164--> SPECIMEN_0004;
+  SAMPLE_0008--> SPECIMEN_0008;
+  SAMPLE_0088--> SPECIMEN_0008;
+  SAMPLE_0168--> SPECIMEN_0008;
 ```
 
 ---
@@ -112,50 +116,21 @@ graph LR;
 title: 320 Systemic Therapies, 2 per Treatment
 ---
 graph LR;  
-  sys_therapy_uuid --> TREATMENT_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;
-  sys_therapy_uuid --> TREATMENT_0081 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  sys_therapy_uuid --> TREATMENT_0002 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02; 
-  sys_therapy_uuid --> TREATMENT_0082 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
-  sys_therapy_uuid --> TREATMENT_0003 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03; 
-  sys_therapy_uuid --> TREATMENT_0083 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03; 
-  sys_therapy_uuid --> TREATMENT_0004 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_03; 
-  sys_therapy_uuid --> TREATMENT_0084 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_03; 
+  sys_therapy_uuid1 --> TREATMENT_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;
+  sys_therapy_uuid2 --> TREATMENT_0081 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
+  sys_therapy_uuid3 --> TREATMENT_0002 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02; 
+  sys_therapy_uuid4 --> TREATMENT_0082 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  sys_therapy_uuid5 --> TREATMENT_0003 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03; 
+  sys_therapy_uuid6 --> TREATMENT_0083 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03; 
+  sys_therapy_uuid7 --> TREATMENT_0004 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_03; 
+  sys_therapy_uuid8 --> TREATMENT_0084 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_03; 
 ```
 
 ---
 
 ```mermaid
 ---
-title: 14 HormoneTherapies
----
-graph LR;  
-  HormoneTherapy_1_3 --> TREATMENT_8 --> DONOR_1 --> PROGRAM_1;  
-  HormoneTherapy_4_6 --> TREATMENT_9 --> DONOR_1 --> PROGRAM_1;  
-  HormoneTherapy_7_9 --> TREATMENT_10 --> DONOR_2 --> PROGRAM_1;  
-  HormoneTherapy_10_11 --> TREATMENT_11 --> DONOR_2 --> PROGRAM_1;  
-  HormoneTherapy_12_13 --> TREATMENT_12 --> DONOR_2 --> PROGRAM_1;  
-  HormoneTherapy_14 --> TREATMENT_13 --> DONOR_2 --> PROGRAM_1;   
-```
-
----
-
-```mermaid
----
-title: 11 Immunotherapies
----
-graph LR;  
-  Immunotherapy_1_3 --> TREATMENT_14 --> DONOR_2 --> PROGRAM_1; 
-  Immunotherapy_4_6 --> TREATMENT_15 --> DONOR_2 --> PROGRAM_1;  
-  Immunotherapy_7_8 --> TREATMENT_16 --> DONOR_3 --> PROGRAM_1;  
-  Immunotherapy_9_10 --> TREATMENT_17 --> DONOR_3 --> PROGRAM_1;  
-  Immunotherapy_11 --> TREATMENT_18 --> DONOR_4 --> PROGRAM_1;   
-```
-
----
-
-```mermaid
----
-title: 4 Radiations
+title: 80 Radiations, 1 for half of treatments
 ---
 graph LR;  
   Radiation_1_3 --> TREATMENT_19_21 --> DONOR_4_6 --> PROGRAM_1;  
@@ -166,7 +141,7 @@ graph LR;
 
 ```mermaid
 ---
-title: 3 Surgeries
+title: 80 Surgeries, 1 for other half of treatments
 ---
 graph LR;  
   Surgery_1_3 --> TREATMENT_23_25 --> DONOR_8_10 --> PROGRAM_2;  
@@ -229,6 +204,19 @@ graph LR;
 ```mermaid
 ---
 title: 8 Exposures
+---
+graph LR;  
+  Exposure_1_3 --> DONOR_1 --> PROGRAM_1;  
+  Exposure_4_5 --> DONOR_2 --> PROGRAM_1;
+  Exposure_6 --> DONOR_3 --> PROGRAM_1;    
+  Exposure_7_8 --> DONOR_7_8 --> PROGRAM_2;
+```
+
+---
+
+```mermaid
+---
+title: 20 Follow Ups
 ---
 graph LR;  
   Exposure_1_3 --> DONOR_1 --> PROGRAM_1;  
