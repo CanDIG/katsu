@@ -165,49 +165,6 @@ graph LR;
 
 ---
 
-## Radiations, Systemic therapies to Treatments to Primary Diagnoses to Donors to Programs
-
-```mermaid
----
-title: 80 Radiations, 1 for half of treatments
----
-graph LR;  
-  DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
-  DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
-  DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
-  TREATMENT_0001 --> DIAG_0001;
-  TREATMENT_0081 --> DIAG_0001;  
-  TREATMENT_0002 --> DIAG_0002; 
-  TREATMENT_0082 --> DIAG_0002;  
-  TREATMENT_0003 --> DIAG_0003; 
-  TREATMENT_0083 --> DIAG_0003; 
-  TREATMENT_0004 --> DIAG_0004; 
-  TREATMENT_0084 --> DIAG_0004; 
-  SYS_THERAPY_uuid1a --> TREATMENT_0001;
-  SYS_THERAPY_uuid1b --> TREATMENT_0001;
-  SYS_THERAPY_uuid2a --> TREATMENT_0081;
-  SYS_THERAPY_uuid2b --> TREATMENT_0081;  
-  SYS_THERAPY_uuid3a --> TREATMENT_0002; 
-  SYS_THERAPY_uuid3b --> TREATMENT_0002; 
-  SYS_THERAPY_uuid4a --> TREATMENT_0082;  
-  SYS_THERAPY_uuid4b --> TREATMENT_0082;  
-  SYS_THERAPY_uuid5a --> TREATMENT_0003; 
-  SYS_THERAPY_uuid5b --> TREATMENT_0003; 
-  SYS_THERAPY_uuid6a --> TREATMENT_0083; 
-  SYS_THERAPY_uuid6b --> TREATMENT_0083; 
-  SYS_THERAPY_uuid7a --> TREATMENT_0004; 
-  SYS_THERAPY_uuid7b --> TREATMENT_0004; 
-  SYS_THERAPY_uuid8a --> TREATMENT_0084;
-  SYS_THERAPY_uuid8b --> TREATMENT_0084;
-  RADIATION_uuid1 --> TREATMENT_0001;
-  RADIATION_uuid2 --> TREATMENT_0002; 
-  RADIATION_uuid3 --> TREATMENT_0003;  
-  RADIATION_uuid4 --> TREATMENT_0004;  
-```
-
----
-
 ## Surgeries, Radiations, Systemic therapies to Treatments to Primary Diagnoses to Donors to Programs
 
 ```mermaid
@@ -255,7 +212,7 @@ graph LR;
 
 ---
 
-## Follw ups to Donor plus Primary Diagnosis or Treatment
+## Follow ups to Donor plus Primary Diagnosis or Treatment
 
 ```mermaid
 ---
