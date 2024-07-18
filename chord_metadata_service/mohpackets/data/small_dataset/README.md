@@ -107,8 +107,7 @@ graph LR;
 title: 160 TREATMENTs, 2 per Primary Diagnosis, examples
 ---
 graph LR;  
-  DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
+  DIAG_0001 --> DONOR_0001 --> PROGRAM_01;   
   DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
   DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
   DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
@@ -121,8 +120,8 @@ graph LR;
   TREATMENT_0083 --> DIAG_0003; 
   TREATMENT_0004 --> DIAG_0004; 
   TREATMENT_0084 --> DIAG_0004; 
-  TREATMENT_0008 --> DIAG_0004; 
-  TREATMENT_0088 --> DIAG_0004; 
+  TREATMENT_0008 --> DIAG_0008; 
+  TREATMENT_0088 --> DIAG_0008; 
 ```
 
 ---
@@ -135,11 +134,9 @@ title: 320 Systemic Therapies, 2 per Treatment
 ---
 graph LR;  
   DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
   DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
   DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
   DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
-  DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
   TREATMENT_0001 --> DIAG_0001;
   TREATMENT_0081 --> DIAG_0001;  
   TREATMENT_0002 --> DIAG_0002; 
@@ -176,11 +173,9 @@ title: 80 Radiations, 1 for half of treatments
 ---
 graph LR;  
   DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
   DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
   DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
   DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
-  DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
   TREATMENT_0001 --> DIAG_0001;
   TREATMENT_0081 --> DIAG_0001;  
   TREATMENT_0002 --> DIAG_0002; 
@@ -221,11 +216,9 @@ title: 80 Surgeries, 1 for other half of treatments
 ---
 graph LR;  
   DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
   DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
   DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
   DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
-  DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
   TREATMENT_0001 --> DIAG_0001;
   TREATMENT_0081 --> DIAG_0001;  
   TREATMENT_0002 --> DIAG_0002; 
@@ -262,28 +255,35 @@ graph LR;
 
 ---
 
+## Follw ups to Donor plus Primary Diagnosis or Treatment
+
 ```mermaid
 ---
 title: 20 FollowUps, linked to either donor +/- primary diagnosis or treatment
 ---
 graph LR;  
-  FollowUp_1_3 --> TREATMENT_1 --> DIAG_1 --> DONOR_1 --> PROGRAM_1;  
-  FollowUp_4_6 --> TREATMENT_2 --> DIAG_1 --> DONOR_1 --> PROGRAM_1;  
-  FollowUp_7_9 --> TREATMENT_3 --> DIAG_1 --> DONOR_1 --> PROGRAM_1;  
-  FollowUp_10_11 --> TREATMENT_4 --> DIAG_2 --> DONOR_1 --> PROGRAM_1; 
-  FollowUp_12_13 --> TREATMENT_5 --> DIAG_2 --> DONOR_1 --> PROGRAM_1; 
-  FollowUp_14_15 --> TREATMENT_6 --> DIAG_2 --> DONOR_1 --> PROGRAM_1; 
-  FollowUp_16_18 --> TREATMENT_7_9 --> DIAG_3 --> DONOR_1 --> PROGRAM_1;
-  FollowUp_19_20 --> TREATMENT_10_11 --> DIAG_4 --> DONOR_2 --> PROGRAM_1;  
-  FollowUp_21_22 --> TREATMENT_12_13 --> DIAG_5 --> DONOR_2 --> PROGRAM_1;  
-  FollowUp_23_24 --> TREATMENT_14_15 --> DIAG_6 --> DONOR_2 --> PROGRAM_1; 
-  FollowUp_25_26 --> TREATMENT_16_17 --> DIAG_7_8 --> DONOR_3 --> PROGRAM_1;  
-  FollowUp_27_28 --> TREATMENT_18_19 --> DIAG_9_10 --> DONOR_4 --> PROGRAM_1;  
-  FollowUp_29_30 --> TREATMENT_20_21 --> DIAG_11_12 --> DONOR_5_6 --> PROGRAM_1;  
-  FollowUp_31_34 --> TREATMENT_22_25 --> DIAG_13_16 --> DONOR_7_10 --> PROGRAM_2;
+  DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
+  DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
+  DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
+  TREATMENT_0001 --> DIAG_0001; 
+  TREATMENT_0002 --> DIAG_0002; 
+  TREATMENT_0082 --> DIAG_0002;  
+  TREATMENT_0003 --> DIAG_0003; 
+  TREATMENT_0083 --> DIAG_0003; 
+  TREATMENT_0004 --> DIAG_0004; 
+  FOLLOW_UP_0001 --> DONOR_0001;  
+  FOLLOW_UP_0002 --> DIAG_0002;
+  FOLLOW_UP_0002 --> DONOR_0002; 
+  FOLLOW_UP_0003 --> DONOR_0003; 
+  FOLLOW_UP_0003 --> TREATMENT_0003;  
+  FOLLOW_UP_0004 --> DONOR_0004
+  
 ```
 
 ---
+
+## Biomarkers to Donors
 
 ```mermaid
 ---
@@ -299,6 +299,8 @@ graph LR;
 
 ---
 
+## Comorbidities to Donors
+
 ```mermaid
 ---
 title: 14 Comorbidities
@@ -313,6 +315,8 @@ graph LR;
 ```
 
 ---
+
+## Exposures to Donors
 
 ```mermaid
 ---
