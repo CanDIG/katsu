@@ -1,231 +1,165 @@
 # Large dataset relationships
 
-This is a diagram of the synthetic relationships between the models in the dataset.
+The large dataset is composed of:
+* 4 Programs
+* 500 Follow Ups
+* 1000 Comorbidities, Biomarkers, Exposures
+* 2000 Donors, Primary Diagnoses, Specimens, Radiations, Surgeries
+* 4000 Treatments
+* 6000 Sample registrations
+* 8000 Systemic Therapies
+
+Sub-objects are iterated over and assigned evenly to a parent object until all objects are exhausted. Identifiers show the pattern in the diagrams below.
+
+Diagrams below show example linkage relationships for the different objects.
+
+---
+
+## Sample Registrations, Specimens and Primary Diagnoses to Donors
+
+Each donor has one primary diagnosis, each primary diagnosis has one specimen, each specimen has three samples.
 
 ```mermaid
 ---
-title: 5000 Donors and 10 Programs
+title: Samples, Specimens, Diagnoses, Donors, Programs
 ---
 graph LR;  
-  Donor_1_500 --> Program_1;
-  Donor_501_1000 --> Program_2;  
-  Donor_1001_1500 --> Program_3;  
-  Donor_1501_2000 --> Program_4;  
-  Donor_2001_2500 --> Program_5;  
-  Donor_2501_3000 --> Program_6;  
-  Donor_3001_3500 --> Program_7;  
-  Donor_3501_4000 --> Program_8;  
-  Donor_4001_4500 --> Program_9;
-  Donor_4501_5000 --> Program_10;    
- 
+  SPECIMEN_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
+  SPECIMEN_0005 --> DIAG_0005 --> DONOR_0005 --> PROGRAM_01;  
+  SPECIMEN_0002 --> DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  SPECIMEN_0003 --> DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
+  SPECIMEN_0004 --> DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
+  SPECIMEN_0008 --> DIAG_0008 --> DONOR_0008 --> PROGRAM_04;
+  SAMPLE_0001--> SPECIMEN_0001; 
+  SAMPLE_2001--> SPECIMEN_0001;  
+  SAMPLE_4001--> SPECIMEN_0001;  
+  SAMPLE_0005--> SPECIMEN_0005;  
+  SAMPLE_2005--> SPECIMEN_0005;  
+  SAMPLE_4005--> SPECIMEN_0005;  
+  SAMPLE_0002--> SPECIMEN_0002;  
+  SAMPLE_2002--> SPECIMEN_0002;  
+  SAMPLE_4002--> SPECIMEN_0002;  
+  SAMPLE_0003--> SPECIMEN_0003;  
+  SAMPLE_2003--> SPECIMEN_0003;  
+  SAMPLE_4003--> SPECIMEN_0003;  
+  SAMPLE_0004--> SPECIMEN_0004;
+  SAMPLE_2004--> SPECIMEN_0004;
+  SAMPLE_4004--> SPECIMEN_0004;
+  SAMPLE_0008--> SPECIMEN_0008;
+  SAMPLE_2008--> SPECIMEN_0008;
+  SAMPLE_4008--> SPECIMEN_0008;
 ```
 
 ---
 
+## Treatments and treatment types
+
+Each diagnosis has two treatments, each treatment has two systemic therapies and either a radiation or surgery.
+
 ```mermaid
 ---
-title: 10000 PrimaryDiagnoses
+title: Surgeries, Radiations, Systemic therapies, Treatments, Diagnoses, Donors
 ---
 graph LR;  
-  PrimaryDiagnosis_1_1000 --> Donor_1_500 --> Program_1;
-  PrimaryDiagnosis_1001_2000 --> Donor_501_1000 --> Program_2;  
-  PrimaryDiagnosis_2001_3000 --> Donor_1001_1500 --> Program_3;  
-  PrimaryDiagnosis_3001_4000 --> Donor_1501_2000 --> Program_4;  
-  PrimaryDiagnosis_4001_5000 --> Donor_2001_2500 --> Program_5;  
-  PrimaryDiagnosis_5001_6000 --> Donor_2501_3000 --> Program_6;  
-  PrimaryDiagnosis_6001_7000 --> Donor_3001_3500 --> Program_7;  
-  PrimaryDiagnosis_7001_8000 --> Donor_3501_4000 --> Program_8;  
-  PrimaryDiagnosis_8001_9000 --> Donor_4001_4500 --> Program_9;
-  PrimaryDiagnosis_9001_10000 --> Donor_4501_5000 --> Program_10;
+  DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
+  DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
+  DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
+  TREATMENT_0001 --> DIAG_0001;
+  TREATMENT_2001 --> DIAG_0001;  
+  TREATMENT_0002 --> DIAG_0002; 
+  TREATMENT_2002 --> DIAG_0002;  
+  TREATMENT_0003 --> DIAG_0003; 
+  TREATMENT_2003 --> DIAG_0003; 
+  TREATMENT_0004 --> DIAG_0004; 
+  TREATMENT_2004 --> DIAG_0004; 
+  SYS_THERAPY_uuid1a --> TREATMENT_0001;
+  SYS_THERAPY_uuid1b --> TREATMENT_0001;
+  SYS_THERAPY_uuid2a --> TREATMENT_2001;
+  SYS_THERAPY_uuid2b --> TREATMENT_2001;  
+  SYS_THERAPY_uuid3a --> TREATMENT_0002; 
+  SYS_THERAPY_uuid3b --> TREATMENT_0002; 
+  SYS_THERAPY_uuid4a --> TREATMENT_2002;  
+  SYS_THERAPY_uuid4b --> TREATMENT_2002;  
+  SYS_THERAPY_uuid5a --> TREATMENT_0003; 
+  SYS_THERAPY_uuid5b --> TREATMENT_0003; 
+  SYS_THERAPY_uuid6a --> TREATMENT_2003; 
+  SYS_THERAPY_uuid6b --> TREATMENT_2003; 
+  SYS_THERAPY_uuid7a --> TREATMENT_0004; 
+  SYS_THERAPY_uuid7b --> TREATMENT_0004; 
+  SYS_THERAPY_uuid8a --> TREATMENT_2004;
+  SYS_THERAPY_uuid8b --> TREATMENT_2004;
+  RADIATION_uuid1 --> TREATMENT_0001;
+  RADIATION_uuid2 --> TREATMENT_0002; 
+  RADIATION_uuid3 --> TREATMENT_0003;  
+  RADIATION_uuid4 --> TREATMENT_0004;  
+  SURGERY_uuid1 --> TREATMENT_2001;
+  SURGERY_uuid2 --> TREATMENT_2002; 
+  SURGERY_uuid3 --> TREATMENT_2003;  
+  SURGERY_uuid4 --> TREATMENT_2004;  
 ```
 
 ---
 
-```mermaid
----
-title: 10000 Specimens
----
-graph LR;  
-  Specimen_1_1000 --> PrimaryDiagnosis_1_1000 --> Donor_1_500 --> Program_1;
-  Specimen_1001_2000 --> PrimaryDiagnosis_1001_2000 --> Donor_501_1000 --> Program_2;
-  Specimen_2001_3000 --> PrimaryDiagnosis_2001_3000 --> Donor_1001_1500 --> Program_3;
-  Specimen_3001_4000 --> PrimaryDiagnosis_3001_4000 --> Donor_1501_2000 --> Program_4;
-  Specimen_4001_5000 --> PrimaryDiagnosis_4001_5000 --> Donor_2001_2500 --> Program_5;
-  Specimen_5001_6000 --> PrimaryDiagnosis_5001_6000 --> Donor_2501_3000 --> Program_6;
-  Specimen_6001_7000 --> PrimaryDiagnosis_6001_7000 --> Donor_3001_3500 --> Program_7;
-  Specimen_7001_8000 --> PrimaryDiagnosis_7001_8000 --> Donor_3501_4000 --> Program_8;
-  Specimen_8001_9000 --> PrimaryDiagnosis_8001_9000 --> Donor_4001_4500 --> Program_9;
-  Specimen_9001_10000 --> PrimaryDiagnosis_9001_10000 --> Donor_4501_5000 --> Program_10;
-```
+## Follow ups
 
----
+Follow ups is linked to Donor only or to Donor plus either a Primary Diagnosis or Treatment.
 
 ```mermaid
 ---
-title: 10000 SampleRegistrations
+title: 20 FollowUps, linked to either donor +/- primary diagnosis or treatment
 ---
 graph LR;  
-  SampleRegistration_1_1000 --> Specimen_1_1000 --> Donor_1_500 --> Program_1;
-  SampleRegistration_1001_2000 --> Specimen_1001_2000 --> Donor_501_1000 --> Program_2;
-  SampleRegistration_2001_3000 --> Specimen_2001_3000 --> Donor_1001_1500 --> Program_3;
-  SampleRegistration_3001_4000 --> Specimen_3001_4000 --> Donor_1501_2000 --> Program_4;
-  SampleRegistration_4001_5000 --> Specimen_4001_5000 --> Donor_2001_2500 --> Program_5;
-  SampleRegistration_5001_6000 --> Specimen_5001_6000 --> Donor_2501_3000 --> Program_6;
-  SampleRegistration_6001_7000 --> Specimen_6001_7000 --> Donor_3001_3500 --> Program_7;
-  SampleRegistration_7001_8000 --> Specimen_7001_8000 --> Donor_3501_4000 --> Program_8;
-  SampleRegistration_8001_9000 --> Specimen_8001_9000 --> Donor_4001_4500 --> Program_9;
-  SampleRegistration_9001_10000 --> Specimen_9001_10000 --> Donor_4501_5000 --> Program_10;
+  DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
+  DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
+  DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
+  DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
+  TREATMENT_0001 --> DIAG_0001; 
+  TREATMENT_0002 --> DIAG_0002; 
+  TREATMENT_2002 --> DIAG_0002;  
+  TREATMENT_0003 --> DIAG_0003; 
+  TREATMENT_2003 --> DIAG_0003; 
+  TREATMENT_0004 --> DIAG_0004; 
+  FOLLOW_UP_0001 --> DONOR_0001;  
+  FOLLOW_UP_0002 --> DIAG_0002;
+  FOLLOW_UP_0002 --> DONOR_0002; 
+  FOLLOW_UP_0003 --> DONOR_0003; 
+  FOLLOW_UP_0003 --> TREATMENT_0003;  
+  FOLLOW_UP_0004 --> DONOR_0004
   
 ```
 
 ---
 
-```mermaid
----
-title: 20000 Treatments
----
-graph LR;  
-  Treatment_1_2000 --> PrimaryDiagnosis_1_1000 --> Donor_1_500 --> Program_1;
-  Treatment_2001_4000 --> PrimaryDiagnosis_1001_2000 --> Donor_501_1000 --> Program_2;
-  Treatment_4001_6000 --> PrimaryDiagnosis_2001_3000 --> Donor_1001_1500 --> Program_3;
-  Treatment_6001_8000 --> PrimaryDiagnosis_3001_4000 --> Donor_1501_2000 --> Program_4;
-  Treatment_8001_10000 --> PrimaryDiagnosis_4001_5000 --> Donor_2001_2500 --> Program_5;
-  Treatment_10001_12000 --> PrimaryDiagnosis_5001_6000 --> Donor_2501_3000 --> Program_6;
-  Treatment_12001_14000 --> PrimaryDiagnosis_6001_7000 --> Donor_3001_3500 --> Program_7;
-  Treatment_14001_16000 --> PrimaryDiagnosis_7001_8000 --> Donor_3501_4000 --> Program_8;
-  Treatment_16001_18000 --> PrimaryDiagnosis_8001_9000 --> Donor_4001_4500 --> Program_9;
-  Treatment_18001_20000 --> PrimaryDiagnosis_9001_10000 --> Donor_4501_5000 --> Program_10;
+## Biomarkers, Comorbidities, Exposures to Donors
 
-```
-
----
+Biomarkers may be linked to Donor alone or Donor plus treatment, primary diagnosis, specimen or followup. Synthetic data is only linked to Donors for now. Half of donors have a linked biomarker object. Comorbidities are linked directly to Donors, half of the donors in the dataset have a linked comorbidity. Exposures are linked directly to Donors, half of donors have a linked exposure.
 
 ```mermaid
 ---
-title: 10000 Chemotherapies
+title: Biomarkers, Comorbidities, Exposures
 ---
 graph LR;  
-  Chemotherapy_1_8000 --> Treatment_1_2000 --> Donor_1_500 --> Program_1;
-  Chemotherapy_8001_10000 --> Treatment_2001_4000 --> Donor_501_1000 --> Program_2;
+  BIOMARKER_uuid1 --> DONOR_0001 --> PROGRAM_01; 
+  EXPOSURE_uuid1 --> DONOR_0501 --> PROGRAM_01;  
+  BIOMARKER_uuid2 --> DONOR_501;
+  COMORBIDITY_uuid1 --> DONOR_1001 --> PROGRAM_01;
+  EXPOSURE_uuid2 --> DONOR_1001;
+  BIOMARKER_uuid3 --> DONOR_0002 --> PROGRAM_02;  
+  EXPOSURE_uuid3 --> DONOR_0502 --> PROGRAM_02;
+  BIOMARKER_uuid4 --> DONOR_0502;
+  COMORBIDITY_uuid2 --> DONOR_1002 --> PROGRAM_02;
+  EXPOSURE_uuid4 --> DONOR_1002;
+  BIOMARKER_uuid5 --> DONOR_0003 --> PROGRAM_03;
+  EXPOSURE_uuid5 --> DONOR_0503 --> PROGRAM_03;
+  BIOMARKER_uuid6 --> DONOR_0503;
+  COMORBIDITY_uuid3 --> DONOR_1003 --> PROGRAM_03;  
+  EXPOSURE_uuid6 --> DONOR_1003;
+  BIOMARKER_uuid7 --> DONOR_0004 --> PROGRAM_04;
+  EXPOSURE_uuid7 --> DONOR_0504 --> PROGRAM_04;
+  BIOMARKER_uuid8 --> DONOR_0504;
+  COMORBIDITY_uuid4 --> DONOR_1004 --> PROGRAM_04;
+  EXPOSURE_uuid8 --> DONOR_1004;
 ```
 
 ---
-
-```mermaid
----
-title: 10000 HormoneTherapies
----
-graph LR;  
-  HormoneTherapy_1_8000 --> Treatment_4001_6000 --> Donor_1001_1500 --> Program_3;  
-  HormoneTherapy_8001_10000 --> Treatment_6001_8000 --> Donor_1501_2000 --> Program_4;  
-
-```
-
----
-
-```mermaid
----
-title: 10000 Immunotherapies
----
-graph LR;  
-  Immunotherapy_1_8000 --> Treatment_8001_10000 -->  Donor_2001_2500 --> Program_5;  
-  Immunotherapy_8001_10000 -->  Treatment_10001_12000 --> Donor_2501_3000 --> Program_6;  
-```
-
----
-
-```mermaid
----
-title: 4000 Radiations
----
-graph LR;  
-  Radiation_1_2000 --> Treatment_12001_14000 --> Donor_3001_3500 --> Program_7;  
-  Radiation_2001_4000 --> Treatment_14001_16000 --> Donor_3501_4000 --> Program_8;  
-```
-
----
-
-```mermaid
----
-title: 4000 Surgeries
----
-graph LR;  
-  Surgery_1_2000 --> Treatment_16001_18000 --> Donor_4001_4500 --> Program_9;
-  Surgery_2001_4000 --> Treatment_18001_20000 --> Donor_4501_5000 --> Program_10;  
-```
-
----
-
-```mermaid
----
-title: 20000 FollowUps
----
-graph LR;  
-  FollowUp_1_2000 --> Treatment_1_2000 --> PrimaryDiagnosis_1_1000 --> Donor_1_500 --> Program_1;
-  FollowUp_2001_4000 --> Treatment_2001_4000 --> PrimaryDiagnosis_1001_2000 --> Donor_501_1000 --> Program_2;
-  FollowUp_4001_6000 --> Treatment_4001_6000 --> PrimaryDiagnosis_2001_3000 --> Donor_1001_1500 --> Program_3;
-  FollowUp_6001_8000 --> Treatment_6001_8000 --> PrimaryDiagnosis_3001_4000 --> Donor_1501_2000 --> Program_4;
-  FollowUp_8001_10000 --> Treatment_8001_10000 --> PrimaryDiagnosis_4001_5000 --> Donor_2001_2500 --> Program_5;
-  FollowUp_10001_12000 --> Treatment_10001_12000 --> PrimaryDiagnosis_5001_6000 --> Donor_2501_3000 --> Program_6;
-  FollowUp_12001_14000 --> Treatment_12001_14000 --> PrimaryDiagnosis_6001_7000 --> Donor_3001_3500 --> Program_7;
-  FollowUp_14001_16000 --> Treatment_14001_16000 --> Donor_3501_4000 --> Program_8;
-  FollowUp_16001_18000 --> PrimaryDiagnosis_8001_9000 --> Donor_4001_4500 --> Program_9;
-  FollowUp_18001_20000 --> Donor_4501_5000 --> Program_10;
-
-```
-
----
-
-```mermaid
----
-title: 18000 Biomarkers
----
-graph LR;  
-  Biomarker_1_2000 --> Donor_1_500 --> Program_1;
-  Biomarker_2001_4000 --> PrimaryDiagnosis_1001_2000 --> Donor_501_1000 --> Program_2;
-  Biomarker_4001_6000 --> Specimen_2001_3000 --> Donor_1001_1500 --> Program_3;
-  Biomarker_6001_8000 --> Treatment_6001_8000 --> Donor_1501_2000 --> Program_4;
-  Biomarker_8001_10000 --> FollowUp_8001_10000 --> Donor_2001_2500 --> Program_5;
-  Biomarker_10001_12000 --> FollowUp_10001_12000 --> Donor_2501_3000 --> Program_6;
-  Biomarker_12001_14000 --> Treatment_12001_14000 --> Donor_3001_3500 --> Program_7;
-  Biomarker_14001_16000 --> Specimen_7001_8000 --> Donor_3501_4000 --> Program_8;
-  Biomarker_16001_18000 --> Donor_4001_4500 --> Program_9;
-```
-
----
-
-```mermaid
----
-title: 10000 Exposures
----
-graph LR;  
-  Exposure_1_1000 --> Donor_1_500 --> Program_1;
-  Exposure_1001_2000 --> Donor_501_1000 --> Program_2;  
-  Exposure_2001_3000 --> Donor_1001_1500 --> Program_3;  
-  Exposure_3001_4000 --> Donor_1501_2000 --> Program_4;  
-  Exposure_4001_5000 --> Donor_2001_2500 --> Program_5;  
-  Exposure_5001_6000 --> Donor_2501_3000 --> Program_6;  
-  Exposure_6001_7000 --> Donor_3001_3500 --> Program_7;  
-  Exposure_7001_8000 --> Donor_3501_4000 --> Program_8;  
-  Exposure_8001_9000 --> Donor_4001_4500 --> Program_9;
-  Exposure_9001_10000 --> Donor_4501_5000 --> Program_10;
-```
-
----
-
-```mermaid
----
-title: 10000 Comorbidities
----
-graph LR;  
-  Comorbidity_1_1000 --> Donor_1_500 --> Program_1;
-  Comorbidity_1001_2000 --> Donor_501_1000 --> Program_2;  
-  Comorbidity_2001_3000 --> Donor_1001_1500 --> Program_3;  
-  Comorbidity_3001_4000 --> Donor_1501_2000 --> Program_4;  
-  Comorbidity_4001_5000 --> Donor_2001_2500 --> Program_5;  
-  Comorbidity_5001_6000 --> Donor_2501_3000 --> Program_6;  
-  Comorbidity_6001_7000 --> Donor_3001_3500 --> Program_7;  
-  Comorbidity_7001_8000 --> Donor_3501_4000 --> Program_8;  
-  Comorbidity_8001_9000 --> Donor_4001_4500 --> Program_9;
-  Comorbidity_9001_10000 --> Donor_4501_5000 --> Program_10;
-```

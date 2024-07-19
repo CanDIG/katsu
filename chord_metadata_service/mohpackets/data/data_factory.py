@@ -4,6 +4,7 @@ import sys
 import pprint
 import json
 import argparse
+import pathlib
 # Add your Django project's root directory to the Python path
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
@@ -70,7 +71,7 @@ class Dataset:
         cls.Treatment = TreatmentFactory.create_batch(
             treatment_count, primary_diagnosis_uuid=factory.Iterator(cls.PrimaryDiagnosis)
         )
-        logging.info("Creating Systemic therapie s...")
+        logging.info("Creating Systemic therapies...")
         cls.SystemicTherapy = SystemicTherapyFactory.create_batch(
             sys_therapy_count, treatment_uuid=factory.Iterator(cls.Treatment)
         )
@@ -84,7 +85,8 @@ class Dataset:
         )
         logging.info("Creating Comorbidities...")
         cls.Comorbidity = ComorbidityFactory.create_batch(
-            comorbidity_count, donor_uuid=factory.Iterator(cls.Donor)
+            comorbidity_count, donor_uuid=factory.Iterator(cls.Donor[int(donor_count/2):
+                                                                     int(donor_count/2) + comorbidity_count])
         )
         logging.info("Creating Biomarkers...")
         cls.Biomarker = BiomarkerFactory.create_batch(
@@ -92,7 +94,7 @@ class Dataset:
         )
         logging.info("Creating Exposures...")
         cls.Exposure = ExposureFactory.create_batch(
-            exposure_count, donor_uuid=factory.Iterator(cls.Donor)
+            exposure_count, donor_uuid=factory.Iterator(cls.Donor[int(exposure_count/2):(int(exposure_count/2) + exposure_count)])
         )
         logging.info("Creating Follow Ups...")
         FollowUpFactory.reset_sequence(1)
@@ -167,6 +169,11 @@ def parse_args():
         help="Number of donors to generate, will be distributed amongst the programs given by --num-programs. "
              "Default=80"
     )
+    parser.add_argument(
+        '--dont-minify',
+        action='store_true',
+        help='Use this flag to output jsons as indented jsons that are easier to read but are larger files.'
+    )
     args = parser.parse_args()
     return args
 
@@ -175,34 +182,34 @@ def main():
     args = parse_args()
 
     if args.num_programs:
-        donor_count = args.num_programs * args.donors_per_program
-        params = {"program_count": args.num_programs, "donor_count": donor_count,
-                  "pd_count": donor_count, "specimen_count": donor_count,
-                  "sample_count": 3*donor_count, "treatment_count": donor_count*2, "radiation_count": donor_count,
-                  "surgery_count": donor_count, "comorbidity_count": int(donor_count/2),
-                  "biomarker_count": int(donor_count/2), "exposure_count": int(donor_count/4),
-                  "followup_count": int(donor_count/4), "sys_therapy_count": donor_count*4}
+        params = {"program_count": args.num_programs, "donor_count": args.total_donors,
+                  "pd_count": args.total_donors, "specimen_count": args.total_donors,
+                  "sample_count": 3 * args.total_donors, "treatment_count": args.total_donors * 2,
+                  "radiation_count": args.total_donors, "surgery_count": args.total_donors,
+                  "comorbidity_count": int(args.total_donors/2), "biomarker_count": int(args.total_donors/2),
+                  "exposure_count": int(args.total_donors/4), "followup_count": int(args.total_donors/4),
+                  "sys_therapy_count": args.total_donors * 4}
         programs = Dataset(**params)
-        path = f"custom_{args.num_programs}P_{args.donors_per_program}D_dataset"
+        path = f"custom_{args.num_programs}P_{args.total_donors}D_dataset"
     else:
         size_mapping = {
             "s": {"size": "small",
                   "params": {"program_count": 4, "donor_count": 80, "pd_count": 80, "specimen_count": 80,
                              "sample_count": 240, "treatment_count": 160, "radiation_count": 80, "surgery_count": 80,
-                             "comorbidity_count": 40, "biomarker_count": 40, "exposure_count": 30, "followup_count": 20,
+                             "comorbidity_count": 40, "biomarker_count": 40, "exposure_count": 40, "followup_count": 20,
                              "sys_therapy_count": 320}
                   },
             "m": {"size": "medium",
                   "params": {"program_count": 4, "donor_count": 800, "pd_count": 800, "specimen_count": 800,
                              "sample_count": 2400, "treatment_count": 1600, "radiation_count": 800,
                              "surgery_count": 800, "comorbidity_count": 400, "biomarker_count": 400,
-                             "exposure_count": 300, "followup_count": 200, "sys_therapy_count": 3200}
+                             "exposure_count": 400, "followup_count": 200, "sys_therapy_count": 3200}
                   },
             "l": {"size": "large",
                   "params": {"program_count": 4, "donor_count": 2000, "pd_count": 2000, "specimen_count": 2000,
                              "sample_count": 6000, "treatment_count": 4000, "radiation_count": 2000,
                              "surgery_count": 2000, "comorbidity_count": 1000, "biomarker_count": 1000,
-                             "exposure_count": 300, "followup_count": 500, "sys_therapy_count": 8000}
+                             "exposure_count": 1000, "followup_count": 500, "sys_therapy_count": 8000}
                   }
         }
         if not args.size:
@@ -210,10 +217,15 @@ def main():
         path = f"{size_mapping[args.size]["size"]}_dataset"
         programs = Dataset(**size_mapping[args.size]['params'])
     programs.convert_to_dicts()
+    path = f"{path}/synthetic_data"
+    pathlib.Path(path).mkdir(parents=True, exist_ok=True)
     for schema, data in programs.__dict__.items():
         logging.info(f"Saving {schema} objects to file...")
-        with open(f"{path}/synthetic_data/{schema}.json", "w+") as f:
-            json.dump(data, f)
+        with open(f"{path}/{schema}.json", "w+") as f:
+            if args.dont_minify:
+                json.dump(data, f, indent=4)
+            else:
+                json.dump(data, f)
 
 
 if __name__ == "__main__":

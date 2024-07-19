@@ -1,12 +1,11 @@
 # Small dataset relationships
 
 The small dataset is composed of:
-* 4 programs
+* 4 Programs
 * 20 Follow Ups
-* 30 Exposures
-* 40 Comorbidities, Biomarkers
+* 40 Comorbidities, Biomarkers, Exposures
 * 80 Donors, Primary Diagnoses, Specimens, Radiations, Surgeries
-* 160 TREATMENTs
+* 160 Treatments
 * 240 Sample registrations
 * 320 Systemic Therapies
 
@@ -16,7 +15,9 @@ Diagrams below show example linkage relationships for the different objects.
 
 ---
 
-## Sample Registrations to Specimens to Primary Diagnoses to Donors to Programs
+## Sample Registrations, Specimens and Primary Diagnoses to Donors
+
+Each donor has one primary diagnosis, each primary diagnosis has one specimen, each specimen has three samples.
 
 ```mermaid
 ---
@@ -51,7 +52,9 @@ graph LR;
 
 ---
 
-## Surgeries, Radiations, Systemic therapies to Treatments to Primary Diagnoses to Donors to Programs
+## Treatments and treatment types
+
+Each diagnosis has two treatments, each treatment has two systemic therapies and either a radiation or surgery.
 
 ```mermaid
 ---
@@ -98,9 +101,9 @@ graph LR;
 
 ---
 
-## Follow ups to Donor plus Primary Diagnosis or Treatment
+## Follow ups
 
-Follow ups can be linked to Donor only or to Donor plus either a Primary Diagnosis or Treatment.
+Follow ups is linked to Donor only or to Donor plus either a Primary Diagnosis or Treatment.
 
 ```mermaid
 ---
@@ -130,7 +133,7 @@ graph LR;
 
 ## Biomarkers, Comorbidities, Exposures to Donors
 
-Biomarkers may be linked to Donor alone or Donor plus treatment, primary diagnosis, specimen or followup. Synthetic data is only linked to Donors for now. Half of donors have a linked biomarker object. Comorbidities are linked directly to Donors, half of the donors in the dataset have a linked comorbidity. Exposures are linked directly to Donors.
+Biomarkers may be linked to Donor alone or Donor plus treatment, primary diagnosis, specimen or followup. Synthetic data is only linked to Donors for now. Half of donors have a linked biomarker object. Comorbidities are linked directly to Donors, half of the donors in the dataset have a linked comorbidity. Exposures are linked directly to Donors, half of donors have a linked exposure.
 
 ```mermaid
 ---

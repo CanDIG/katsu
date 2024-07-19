@@ -20,6 +20,18 @@ CANCER_CODES.extend([None] * math.floor(len(NON_CANCER_CODES)*.2))
 
 ALL_CODES = CANCER_CODES + NON_CANCER_CODES
 
+SMOKER_TOBACCO_TYPE = [
+    "Chewing Tobacco",
+    "Cigar",
+    "Cigarettes",
+    "Electronic cigarettes",
+    "Pipe",
+    "Roll-ups",
+    "Snuff",
+    "Unknown",
+    "Waterpipe",
+]
+
 # Systemic Therapy Drugs
 CHEMO_DRUGS = {
     "Methotrexate": {"RxNorm": "6851",

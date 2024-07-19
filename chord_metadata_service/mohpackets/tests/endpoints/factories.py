@@ -834,12 +834,14 @@ class ComorbidityFactory(factory.django.DjangoModelFactory):
 class ExposureFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Exposure
+        exclude = ("fill_status", )
 
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
-    tobacco_smoking_status = factory.Faker(
-        "random_element", elements=PERM_VAL.SMOKING_STATUS
-    )
+    fill_status = factory.LazyFunction(lambda: twenty_percent_true())
+    tobacco_smoking_status = factory.Maybe("fill_status",
+                                           factory.Faker("random_element", elements=PERM_VAL.SMOKING_STATUS),
+                                           None)
     tobacco_type = None
     pack_years_smoked = None
     # set foreign keys
@@ -854,7 +856,9 @@ class ExposureFactory(factory.django.DjangoModelFactory):
         elif self.tobacco_smoking_status:
             if self.tobacco_smoking_status not in ["Not applicable", "Smoking history not documented",
                                                    "Lifelong non-smoker (<100 cigarettes smoked in lifetime)"]:
-                self.tobacco_type = random.choices(PERM_VAL.TOBACCO_TYPE, k=random.randint(1, 3))
+                self.tobacco_type = random.sample(SYNTH_VAL.SMOKER_TOBACCO_TYPE, k=random.randint(1, 3))
+                if len(self.tobacco_type) > 1 and "Unknown" in self.tobacco_type:
+                    self.tobacco_type.remove("Unknown")
                 if self.tobacco_smoking_status == "Current reformed smoker, duration not specified":
                     self.pack_years_smoked = None
                 else:
