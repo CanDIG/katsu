@@ -20,7 +20,7 @@ Diagrams below show example linkage relationships for the different objects.
 
 ```mermaid
 ---
-title: Samples, Specimens, Donors, Programs
+title: Samples, Specimens, Diagnoses, Donors, Programs
 ---
 graph LR;  
   SPECIMEN_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
@@ -55,7 +55,7 @@ graph LR;
 
 ```mermaid
 ---
-title: 80 Surgeries, 80 Radiations, 320 Systemic therapies
+title: Surgeries, Radiations, Systemic therapies, Treatments, Diagnoses, Donors
 ---
 graph LR;  
   DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
@@ -134,29 +134,29 @@ Biomarkers may be linked to Donor alone or Donor plus treatment, primary diagnos
 
 ```mermaid
 ---
-title: 40 Biomarkers
+title: Biomarkers, Comorbidities, Exposures
 ---
 graph LR;  
   BIOMARKER_uuid1 --> DONOR_0001 --> PROGRAM_01; 
   EXPOSURE_uuid1 --> DONOR_0021 --> PROGRAM_01;  
-  BIOMARKER_uuid1a --> DONOR_0021;
+  BIOMARKER_uuid2 --> DONOR_0021;
   COMORBIDITY_uuid1 --> DONOR_0041 --> PROGRAM_01;
-  EXPOSURE_uuid1 --> DONOR_0041;
-  BIOMARKER_uuid2 --> DONOR_0002 --> PROGRAM_02;  
-  EXPOSURE_uuid2 --> DONOR_0022 --> PROGRAM_02;
-  BIOMARKER_uuid2a --> DONOR_0022;
+  EXPOSURE_uuid2 --> DONOR_0041;
+  BIOMARKER_uuid3 --> DONOR_0002 --> PROGRAM_02;  
+  EXPOSURE_uuid3 --> DONOR_0022 --> PROGRAM_02;
+  BIOMARKER_uuid4 --> DONOR_0022;
   COMORBIDITY_uuid2 --> DONOR_0042 --> PROGRAM_02;
-  EXPOSURE_uuid2b --> DONOR_0042;
-  BIOMARKER_uuid3 --> DONOR_0003 --> PROGRAM_03;
-  EXPOSURE_uuid3 --> DONOR_0023 --> PROGRAM_03;
-  BIOMARKER_uuid3a --> DONOR_0023;
+  EXPOSURE_uuid4 --> DONOR_0042;
+  BIOMARKER_uuid5 --> DONOR_0003 --> PROGRAM_03;
+  EXPOSURE_uuid5 --> DONOR_0023 --> PROGRAM_03;
+  BIOMARKER_uuid6 --> DONOR_0023;
   COMORBIDITY_uuid3 --> DONOR_0043 --> PROGRAM_03;  
-  EXPOSURE_uuid3b --> DONOR_0043;
-  BIOMARKER_uuid4 --> DONOR_0004 --> PROGRAM_04;
-  EXPOSURE_uuid4 --> DONOR_0024 --> PROGRAM_04;
-  BIOMARKER_uuid4a --> DONOR_0024;
+  EXPOSURE_uuid6 --> DONOR_0043;
+  BIOMARKER_uuid7 --> DONOR_0004 --> PROGRAM_04;
+  EXPOSURE_uuid7 --> DONOR_0024 --> PROGRAM_04;
+  BIOMARKER_uuid8 --> DONOR_0024;
   COMORBIDITY_uuid4 --> DONOR_0044 --> PROGRAM_04;
-  EXPOSURE_uuid4b --> DONOR_0044;
+  EXPOSURE_uuid8 --> DONOR_0044;
 ```
 
 ---
