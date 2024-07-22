@@ -45,15 +45,9 @@ from chord_metadata_service.mohpackets.models import (
     Author: Son Chau
 """
 
-
-#######################
-## Utility functions ##
-#######################
-
 def days_to_months(day_interval):
-    """ Convert a day interval to a month inverval."""
+    """ Convert a day interval to a month interval."""
     return int(math.floor(day_interval * 0.032855))
-
 
 def twenty_percent_true():
     """ Generate True 20% of the time. """
@@ -85,14 +79,13 @@ class DonorFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Donor
         django_get_or_create = ("submitter_donor_id",)
-        exclude = ("fill_dob",)
+        exclude = ("fill_dob", "null_percent")
+
+    class Params:
+        null_percent = 0
 
     # default values
     submitter_donor_id = factory.Sequence(lambda n: f"DONOR_{str(n).zfill(4)}")
-
-    # add 20% nulls to all enum lists:
-    PERM_VAL.GENDER = add_nulls(PERM_VAL.GENDER)
-    PERM_VAL.SEX_AT_BIRTH = add_nulls(PERM_VAL.SEX_AT_BIRTH)
 
     gender = factory.Faker("random_element", elements=PERM_VAL.GENDER)
     sex_at_birth = factory.Faker("random_element", elements=PERM_VAL.SEX_AT_BIRTH)
@@ -109,14 +102,8 @@ class DonorFactory(factory.django.DjangoModelFactory):
         ),
         no_declaration=None,
     )
-    fill_dob = factory.Faker("pybool", truth_probability=80)
-    date_of_birth = factory.Maybe(
-        "fill_dob",
-        yes_declaration=factory.LazyFunction(lambda: {
-            "day_interval": random.randint(-21900, -18220),
-        }),
-        no_declaration=None
-    )
+    date_of_birth = factory.LazyFunction(
+        lambda: {"day_interval": random.randint(-21900, -18220)})
     date_of_death = factory.Maybe(
         "is_deceased",
         yes_declaration=factory.LazyFunction(
@@ -141,26 +128,11 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = PrimaryDiagnosis
         django_get_or_create = ("submitter_primary_diagnosis_id",)
-        exclude = ("fill_dod")
 
     # Default values
     submitter_primary_diagnosis_id = factory.Sequence(lambda n: f"DIAG_{str(n).zfill(4)}")
-    fill_dod = factory.Faker("pybool", truth_probability=80)
-    date_of_diagnosis = factory.Maybe(
-        "fill_dod",
-        yes_declaration={"month_interval": 0, "day_interval": 0},
-        no_declaration=None
-    )
-    cancer_type_code = factory.Faker("random_element", elements=SYNTH_VAL.CANCER_CODES)
-
-    # add 20% nulls to all enum lists
-    PERM_VAL.BASIS_OF_DIAGNOSIS = add_nulls(PERM_VAL.BASIS_OF_DIAGNOSIS)
-    PERM_VAL.PRIMARY_DIAGNOSIS_LATERALITY = add_nulls(PERM_VAL.PRIMARY_DIAGNOSIS_LATERALITY)
-    PERM_VAL.TUMOUR_STAGING_SYSTEM = add_nulls(PERM_VAL.TUMOUR_STAGING_SYSTEM)
-    PERM_VAL.T_CATEGORY = add_nulls(PERM_VAL.T_CATEGORY)
-    PERM_VAL.N_CATEGORY = add_nulls(PERM_VAL.N_CATEGORY)
-    PERM_VAL.M_CATEGORY = add_nulls(PERM_VAL.M_CATEGORY)
-    PERM_VAL.STAGE_GROUP = add_nulls(PERM_VAL.STAGE_GROUP)
+    date_of_diagnosis = {"month_interval": 0, "day_interval": 0}
+    cancer_type_code = None
 
     basis_of_diagnosis = factory.Faker("random_element", elements=PERM_VAL.BASIS_OF_DIAGNOSIS)
     laterality = factory.Faker("random_element", elements=PERM_VAL.PRIMARY_DIAGNOSIS_LATERALITY)
@@ -174,7 +146,7 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     pathological_n_category = factory.Faker("random_element", elements=PERM_VAL.N_CATEGORY)
     pathological_m_category = factory.Faker("random_element", elements=PERM_VAL.M_CATEGORY)
     pathological_stage_group = factory.Faker("random_element", elements=PERM_VAL.STAGE_GROUP)
-    primary_site = factory.Iterator(SYNTH_VAL.PRIMARY_SITE)
+    primary_site = factory.Iterator(PERM_VAL.PRIMARY_SITE)
 
     # Set the foreign keys
     program_id = factory.SelfAttribute("donor_uuid.program_id")

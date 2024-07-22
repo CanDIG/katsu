@@ -1,10 +1,9 @@
-
 import os
 import sys
-import pprint
 import json
 import argparse
 import pathlib
+
 # Add your Django project's root directory to the Python path
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
@@ -14,12 +13,15 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
 os.environ.setdefault("INSTALLED_APPS", "config.settings.local")
 # Initialize Django
 import django
+
 django.setup()
 from django.forms.models import model_to_dict
+import logging
+import factory
+import factory.random
 
 from chord_metadata_service.mohpackets.tests.endpoints.factories import (
     BiomarkerFactory,
-    # ChemotherapyFactory,
     ComorbidityFactory,
     DonorFactory,
     ExposureFactory,
@@ -33,12 +35,16 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
     SystemicTherapyFactory,
     TreatmentFactory,
 )
-import logging
-import factory
+
+from synth_data_factories import (
+    SynthDonorFactory,
+    SynthPrimaryDiagnosisFactory
+)
 
 
 class Dataset:
     """Create a set of programs with synthetic data"""
+
     @classmethod
     def __init__(cls, program_count=4, donor_count=80, pd_count=80, specimen_count=80, sample_count=240,
                  treatment_count=160, radiation_count=80, surgery_count=80, comorbidity_count=40, biomarker_count=40,
@@ -51,9 +57,15 @@ class Dataset:
         cls.Donor = DonorFactory.create_batch(
             donor_count, program_id=factory.Iterator(cls.Program)
         )
+        cls.SynthDonor = SynthDonorFactory.create_batch(
+            donor_count, program_id=factory.Iterator(cls.Program)
+        )
         logging.info("Creating Primary Diagnoses...")
         PrimaryDiagnosisFactory.reset_sequence(1)
         cls.PrimaryDiagnosis = PrimaryDiagnosisFactory.create_batch(
+            pd_count, donor_uuid=factory.Iterator(cls.Donor)
+        )
+        cls.SynthPrimaryDiagnosis = SynthPrimaryDiagnosisFactory.create_batch(
             pd_count, donor_uuid=factory.Iterator(cls.Donor)
         )
         logging.info("Creating Specimens...")
@@ -77,16 +89,16 @@ class Dataset:
         )
         logging.info("Creating Radiations...")
         cls.Radiation = RadiationFactory.create_batch(
-            radiation_count, treatment_uuid=factory.Iterator(cls.Treatment[0:int(treatment_count/2)])
+            radiation_count, treatment_uuid=factory.Iterator(cls.Treatment[0:int(treatment_count / 2)])
         )
         logging.info("Creating Surgeries...")
         cls.Surgery = SurgeryFactory.create_batch(
-            surgery_count, treatment_uuid=factory.Iterator(cls.Treatment[int(treatment_count/2):treatment_count])
+            surgery_count, treatment_uuid=factory.Iterator(cls.Treatment[int(treatment_count / 2):treatment_count])
         )
         logging.info("Creating Comorbidities...")
         cls.Comorbidity = ComorbidityFactory.create_batch(
-            comorbidity_count, donor_uuid=factory.Iterator(cls.Donor[int(donor_count/2):
-                                                                     int(donor_count/2) + comorbidity_count])
+            comorbidity_count, donor_uuid=factory.Iterator(cls.Donor[int(donor_count / 2):
+                                                                     int(donor_count / 2) + comorbidity_count])
         )
         logging.info("Creating Biomarkers...")
         cls.Biomarker = BiomarkerFactory.create_batch(
@@ -94,11 +106,12 @@ class Dataset:
         )
         logging.info("Creating Exposures...")
         cls.Exposure = ExposureFactory.create_batch(
-            exposure_count, donor_uuid=factory.Iterator(cls.Donor[int(exposure_count/2):(int(exposure_count/2) + exposure_count)])
+            exposure_count,
+            donor_uuid=factory.Iterator(cls.Donor[int(exposure_count / 2):(int(exposure_count / 2) + exposure_count)])
         )
         logging.info("Creating Follow Ups...")
         FollowUpFactory.reset_sequence(1)
-        cls.Followup = FollowUpFactory.create_batch(
+        cls.FollowUp = FollowUpFactory.create_batch(
             followup_count,
             donor_uuid=factory.Iterator(cls.Donor),
             primary_diagnosis_uuid=factory.Iterator(cls.PrimaryDiagnosis),
@@ -135,6 +148,7 @@ class Dataset:
         self.Biomarker = [self.clean_dict(x) for x in self.Biomarker]
         self.Comorbidity = [self.clean_dict(x) for x in self.Comorbidity]
         self.Donor = [self.clean_dict(x) for x in self.Donor]
+        self.SynthDonor = [self.clean_dict(x) for x in self.SynthDonor]
         self.Exposure = [self.clean_dict(x) for x in self.Exposure]
         self.PrimaryDiagnosis = [self.clean_dict(x) for x in self.PrimaryDiagnosis]
         self.Specimen = [self.clean_dict(x) for x in self.Specimen]
@@ -143,10 +157,7 @@ class Dataset:
         self.SystemicTherapy = [self.clean_dict(x) for x in self.SystemicTherapy]
         self.Radiation = [self.clean_dict(x) for x in self.Radiation]
         self.Surgery = [self.clean_dict(x) for x in self.Surgery]
-        self.Followup = [self.clean_dict(x) for x in self.Followup]
-
-    def setUp(self):
-        logging.disable(logging.WARNING)
+        self.FollowUp = [self.clean_dict(x) for x in self.FollowUp]
 
 
 def parse_args():
@@ -179,15 +190,16 @@ def parse_args():
 
 
 def main():
+    factory.random.reseed_random('mohccn synthetic data')
     args = parse_args()
-
+    test_donor = DonorFactory(null_percent=20)
     if args.num_programs:
         params = {"program_count": args.num_programs, "donor_count": args.total_donors,
                   "pd_count": args.total_donors, "specimen_count": args.total_donors,
                   "sample_count": 3 * args.total_donors, "treatment_count": args.total_donors * 2,
                   "radiation_count": args.total_donors, "surgery_count": args.total_donors,
-                  "comorbidity_count": int(args.total_donors/2), "biomarker_count": int(args.total_donors/2),
-                  "exposure_count": int(args.total_donors/4), "followup_count": int(args.total_donors/4),
+                  "comorbidity_count": int(args.total_donors / 2), "biomarker_count": int(args.total_donors / 2),
+                  "exposure_count": int(args.total_donors / 4), "followup_count": int(args.total_donors / 4),
                   "sys_therapy_count": args.total_donors * 4}
         programs = Dataset(**params)
         path = f"custom_{args.num_programs}P_{args.total_donors}D_dataset"
