@@ -1,1 +1,324 @@
-[{"program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0007", "tobacco_smoking_status": "Current smoker", "tobacco_type": ["Chewing Tobacco", "Pipe"], "pack_years_smoked": 40}, {"program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0008", "tobacco_smoking_status": "Current reformed smoker, duration not specified", "tobacco_type": ["Snuff", "Cigarettes", "Waterpipe"], "pack_years_smoked": null}, {"program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0009", "tobacco_smoking_status": null, "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0010", "tobacco_smoking_status": null, "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0011", "tobacco_smoking_status": "Current reformed smoker, duration not specified", "tobacco_type": ["Electronic cigarettes", "Cigarettes", "Waterpipe"], "pack_years_smoked": null}, {"program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0012", "tobacco_smoking_status": "Smoking history not documented", "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0013", "tobacco_smoking_status": "Smoking history not documented", "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0014", "tobacco_smoking_status": null, "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0015", "tobacco_smoking_status": "Current reformed smoker for > 15 years", "tobacco_type": ["Waterpipe", "Electronic cigarettes", "Cigar"], "pack_years_smoked": 31}, {"program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0016", "tobacco_smoking_status": "Current smoker", "tobacco_type": ["Cigarettes", "Pipe"], "pack_years_smoked": 58}, {"program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0027", "tobacco_smoking_status": null, "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0028", "tobacco_smoking_status": "Current reformed smoker for > 15 years", "tobacco_type": ["Roll-ups", "Chewing Tobacco", "Cigarettes"], "pack_years_smoked": 10}, {"program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0029", "tobacco_smoking_status": "Current reformed smoker for > 15 years", "tobacco_type": ["Waterpipe"], "pack_years_smoked": 61}, {"program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0030", "tobacco_smoking_status": null, "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0031", "tobacco_smoking_status": "Current smoker", "tobacco_type": ["Cigarettes", "Snuff"], "pack_years_smoked": 30}, {"program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0032", "tobacco_smoking_status": "Current reformed smoker for > 15 years", "tobacco_type": ["Roll-ups", "Cigarettes"], "pack_years_smoked": 39}, {"program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0033", "tobacco_smoking_status": "Not applicable", "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0034", "tobacco_smoking_status": null, "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0035", "tobacco_smoking_status": "Current reformed smoker, duration not specified", "tobacco_type": ["Snuff", "Pipe"], "pack_years_smoked": null}, {"program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0036", "tobacco_smoking_status": "Current reformed smoker for > 15 years", "tobacco_type": ["Roll-ups"], "pack_years_smoked": 53}, {"program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0047", "tobacco_smoking_status": "Current reformed smoker for > 15 years", "tobacco_type": ["Pipe", "Electronic cigarettes", "Chewing Tobacco"], "pack_years_smoked": 6}, {"program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0048", "tobacco_smoking_status": "Current reformed smoker for <= 15 years", "tobacco_type": ["Chewing Tobacco", "Roll-ups"], "pack_years_smoked": 7}, {"program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0049", "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)", "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0050", "tobacco_smoking_status": "Current smoker", "tobacco_type": ["Cigar", "Electronic cigarettes", "Chewing Tobacco"], "pack_years_smoked": 28}, {"program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0051", "tobacco_smoking_status": "Current reformed smoker for > 15 years", "tobacco_type": ["Cigarettes"], "pack_years_smoked": 5}, {"program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0052", "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)", "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0053", "tobacco_smoking_status": "Current reformed smoker for <= 15 years", "tobacco_type": ["Waterpipe"], "pack_years_smoked": 61}, {"program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0054", "tobacco_smoking_status": "Smoking history not documented", "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0055", "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)", "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0056", "tobacco_smoking_status": "Current reformed smoker for <= 15 years", "tobacco_type": ["Cigarettes", "Chewing Tobacco", "Electronic cigarettes"], "pack_years_smoked": 61}, {"program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0067", "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)", "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0068", "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)", "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0069", "tobacco_smoking_status": "Not applicable", "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0070", "tobacco_smoking_status": "Current reformed smoker, duration not specified", "tobacco_type": ["Snuff", "Waterpipe"], "pack_years_smoked": null}, {"program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0071", "tobacco_smoking_status": "Current smoker", "tobacco_type": ["Waterpipe"], "pack_years_smoked": 40}, {"program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0072", "tobacco_smoking_status": "Not applicable", "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0073", "tobacco_smoking_status": "Current smoker", "tobacco_type": ["Pipe", "Snuff"], "pack_years_smoked": 69}, {"program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0074", "tobacco_smoking_status": null, "tobacco_type": null, "pack_years_smoked": null}, {"program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0075", "tobacco_smoking_status": "Current reformed smoker for <= 15 years", "tobacco_type": ["Snuff", "Waterpipe"], "pack_years_smoked": 34}, {"program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0076", "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)", "tobacco_type": null, "pack_years_smoked": null}]
+[
+  {
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0007",
+    "tobacco_smoking_status": "Current reformed smoker for <= 15 years",
+    "tobacco_type": [
+      "Waterpipe",
+      "Pipe"
+    ],
+    "pack_years_smoked": 61
+  },
+  {
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0008",
+    "tobacco_smoking_status": "Current reformed smoker for <= 15 years",
+    "tobacco_type": [
+      "Chewing Tobacco"
+    ],
+    "pack_years_smoked": 57
+  },
+  {
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0009",
+    "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0010",
+    "tobacco_smoking_status": null,
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0011",
+    "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0012",
+    "tobacco_smoking_status": null,
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0013",
+    "tobacco_smoking_status": "Current reformed smoker for <= 15 years",
+    "tobacco_type": [
+      "Unknown"
+    ],
+    "pack_years_smoked": 33
+  },
+  {
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0014",
+    "tobacco_smoking_status": "Current reformed smoker for > 15 years",
+    "tobacco_type": [
+      "Electronic cigarettes"
+    ],
+    "pack_years_smoked": 48
+  },
+  {
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0015",
+    "tobacco_smoking_status": "Smoking history not documented",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0016",
+    "tobacco_smoking_status": "Current smoker",
+    "tobacco_type": [
+      "Roll-ups",
+      "Cigar"
+    ],
+    "pack_years_smoked": 49
+  },
+  {
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0027",
+    "tobacco_smoking_status": "Current reformed smoker for <= 15 years",
+    "tobacco_type": [
+      "Pipe",
+      "Waterpipe",
+      "Snuff"
+    ],
+    "pack_years_smoked": 38
+  },
+  {
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0028",
+    "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0029",
+    "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0030",
+    "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0031",
+    "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0032",
+    "tobacco_smoking_status": "Current smoker",
+    "tobacco_type": [
+      "Pipe"
+    ],
+    "pack_years_smoked": 49
+  },
+  {
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0033",
+    "tobacco_smoking_status": "Current reformed smoker for <= 15 years",
+    "tobacco_type": [
+      "Cigarettes",
+      "Roll-ups"
+    ],
+    "pack_years_smoked": 7
+  },
+  {
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0034",
+    "tobacco_smoking_status": "Current reformed smoker, duration not specified",
+    "tobacco_type": [
+      "Roll-ups",
+      "Snuff"
+    ],
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0035",
+    "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0036",
+    "tobacco_smoking_status": "Smoking history not documented",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0047",
+    "tobacco_smoking_status": "Not applicable",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0048",
+    "tobacco_smoking_status": "Current reformed smoker for <= 15 years",
+    "tobacco_type": [
+      "Roll-ups"
+    ],
+    "pack_years_smoked": 38
+  },
+  {
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0049",
+    "tobacco_smoking_status": "Not applicable",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0050",
+    "tobacco_smoking_status": "Smoking history not documented",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0051",
+    "tobacco_smoking_status": "Current reformed smoker, duration not specified",
+    "tobacco_type": [
+      "Cigar",
+      "Chewing Tobacco"
+    ],
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0052",
+    "tobacco_smoking_status": null,
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0053",
+    "tobacco_smoking_status": "Current reformed smoker for <= 15 years",
+    "tobacco_type": [
+      "Chewing Tobacco",
+      "Cigarettes"
+    ],
+    "pack_years_smoked": 42
+  },
+  {
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0054",
+    "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0055",
+    "tobacco_smoking_status": "Current reformed smoker for <= 15 years",
+    "tobacco_type": [
+      "Roll-ups"
+    ],
+    "pack_years_smoked": 62
+  },
+  {
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0056",
+    "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0067",
+    "tobacco_smoking_status": null,
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0068",
+    "tobacco_smoking_status": null,
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0069",
+    "tobacco_smoking_status": "Smoking history not documented",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0070",
+    "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0071",
+    "tobacco_smoking_status": "Current reformed smoker for > 15 years",
+    "tobacco_type": [
+      "Waterpipe"
+    ],
+    "pack_years_smoked": 63
+  },
+  {
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0072",
+    "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0073",
+    "tobacco_smoking_status": "Current reformed smoker for > 15 years",
+    "tobacco_type": [
+      "Cigar",
+      "Electronic cigarettes"
+    ],
+    "pack_years_smoked": 46
+  },
+  {
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0074",
+    "tobacco_smoking_status": "Not applicable",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  },
+  {
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0075",
+    "tobacco_smoking_status": "Current reformed smoker for > 15 years",
+    "tobacco_type": [
+      "Chewing Tobacco",
+      "Snuff"
+    ],
+    "pack_years_smoked": 53
+  },
+  {
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0076",
+    "tobacco_smoking_status": "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "tobacco_type": null,
+    "pack_years_smoked": null
+  }
+]

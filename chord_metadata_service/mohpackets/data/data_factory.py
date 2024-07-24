@@ -4,6 +4,7 @@ import json
 import argparse
 import pathlib
 import tqdm
+import math
 
 # Add your Django project's root directory to the Python path
 sys.path.append(
@@ -80,7 +81,7 @@ class Dataset:
         cls.Specimen = []
         cls.SampleRegistration = []
         cls.Treatment = []
-        cls.SysTherapy = []
+        cls.SystemicTherapy = []
         cls.Radiation = []
         cls.Surgery = []
         cls.Comorbidity = []
@@ -127,12 +128,23 @@ class Dataset:
                     sys_therapy_batch = SynthSystemicTherapyFactory.create_batch(
                         sys_therapy_per_treatment, treatment_uuid=treatment_batch[k]
                     )
-                    cls.SysTherapy.extend(sys_therapy_batch)
+                    cls.SystemicTherapy.extend(sys_therapy_batch)
                 if j < followups_per_program:
-                    cls.FollowUp.append(FollowUpFactory.create(donor_uuid=donor_batch[j],
-                                                               primary_diagnosis_uuid=pd_batch[j],
-                                                               treatment_uuid=treatment_batch[0]))
                     cls.Biomarker.append(SynthBiomarkerFactory.create(donor_uuid=donor_batch[j]))
+                    num_other_linked = math.ceil(followups_per_program/3)
+                    if j < num_other_linked:
+                        cls.FollowUp.append(FollowUpFactory.create(donor_uuid=donor_batch[j],
+                                                                   primary_diagnosis_uuid=pd_batch[j],
+                                                                   treatment_uuid=None))
+                    elif num_other_linked <= j < 2*num_other_linked:
+                        cls.FollowUp.append(FollowUpFactory.create(donor_uuid=donor_batch[j],
+                                                                   primary_diagnosis_uuid=None,
+                                                                   treatment_uuid=treatment_batch[0]))
+                    else:
+                        cls.FollowUp.append(FollowUpFactory.create(donor_uuid=donor_batch[j],
+                                                                   primary_diagnosis_uuid=None,
+                                                                   treatment_uuid=None))
+
                 if j >= followups_per_program:
                     cls.Comorbidity.append(ComorbidityFactory.create(donor_uuid=donor_batch[j]))
                 if exposure_start_index < j <= exposure_end_index:
@@ -173,7 +185,7 @@ class Dataset:
         self.Specimen = [self.clean_dict(x) for x in self.Specimen]
         self.SampleRegistration = [self.clean_dict(x) for x in self.SampleRegistration]
         self.Treatment = [self.clean_dict(x) for x in self.Treatment]
-        self.SystemicTherapy = [self.clean_dict(x) for x in self.SysTherapy]
+        self.SystemicTherapy = [self.clean_dict(x) for x in self.SystemicTherapy]
         self.Radiation = [self.clean_dict(x) for x in self.Radiation]
         self.Surgery = [self.clean_dict(x) for x in self.Surgery]
         self.FollowUp = [self.clean_dict(x) for x in self.FollowUp]

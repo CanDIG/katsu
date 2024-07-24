@@ -540,7 +540,7 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
 class FollowUpFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = FollowUp
-        exclude = ("fill_pd",)
+        exclude = ("fill_pd", "fill_treatment")
 
     # default values
     submitter_follow_up_id = factory.Sequence(lambda n: f"FOLLOW_UP_{str(n).zfill(4)}")
@@ -563,21 +563,28 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
     donor_uuid = factory.SubFactory(DonorFactory)
     submitter_donor_id = factory.SelfAttribute("donor_uuid.submitter_donor_id")
 
-    fill_pd = factory.Faker("pybool", )
+    # fill_pd = factory.Iterator([True, False, False])
     primary_diagnosis_uuid = factory.Maybe(
-        "fill_pd",
+        "primary_diagnosis_uuid",
         yes_declaration=factory.SubFactory(PrimaryDiagnosisFactory),
         no_declaration=None
     )
     submitter_primary_diagnosis_id = factory.Maybe(
-        "fill_pd",
+        "primary_diagnosis_uuid",
         yes_declaration=factory.SelfAttribute(
             "primary_diagnosis_uuid.submitter_primary_diagnosis_id"),
         no_declaration=None
     )
-    submitter_treatment_id = factory.SelfAttribute(
-        "treatment_uuid.submitter_treatment_id")
-    treatment_uuid = factory.SubFactory(TreatmentFactory)
+
+    fill_treatment = factory.Iterator([False, True, False])
+    submitter_treatment_id = factory.Maybe(
+        "treatment_uuid",
+        yes_declaration=factory.SelfAttribute("treatment_uuid.submitter_treatment_id"),
+        no_declaration=None)
+    treatment_uuid = factory.Maybe(
+        "treatment_uuid",
+        yes_declaration=factory.SubFactory(TreatmentFactory),
+        no_declaration=None)
 
     @factory.post_generation
     def set_relapse_type_date(self, create, extracted, **kwargs):
@@ -598,14 +605,14 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
                 self.date_of_relapse = {'day_interval': relapse_day_int,
                                         'month_interval': relapse_month_int}
 
-    @factory.post_generation
-    def correct_linkage(self, create, extracted, **kwargs):
-        """ Link to either PD or Treatment, not both, 20% link only to Donor"""
-        if random.random() > .15:
-            self.submitter_primary_diagnosis_id = None
-            self.submitter_treatment_id = None
-        elif self.submitter_primary_diagnosis_id:
-            self.submitter_treatment_id = None
+    # @factory.post_generation
+    # def correct_linkage(self, create, extracted, **kwargs):
+    #     """ Link to either PD or Treatment, not both, 20% link only to Donor"""
+    #     if random.random() > .15:
+    #         self.submitter_primary_diagnosis_id = None
+    #         self.submitter_treatment_id = None
+    #     elif self.submitter_primary_diagnosis_id:
+    #         self.submitter_treatment_id = None
 
 
 class BiomarkerFactory(factory.django.DjangoModelFactory):

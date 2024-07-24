@@ -1,1 +1,608 @@
-[{"submitter_follow_up_id": "FOLLOW_UP_0001", "program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0001", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Loco-regional progression", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Physical examination procedure (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0002", "program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0002", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "No evidence of disease", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Imaging (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0003", "program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0003", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Progression not otherwise specified", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Assessment of symptom control (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0004", "program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0004", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Loco-regional progression", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Histopathology test (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0005", "program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0005", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Complete remission", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Histopathology test (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0006", "program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0006", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Progression not otherwise specified", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Imaging (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0007", "program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0007", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "No evidence of disease", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Assessment of symptom control (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0008", "program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0008", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "No evidence of disease", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Histopathology test (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0009", "program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0009", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Relapse or recurrence", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Laboratory data interpretation (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0010", "program_id": "PROGRAM_01", "submitter_donor_id": "DONOR_0010", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Distant progression", "relapse_type": "Progression (liquid tumours)", "date_of_relapse": {"day_interval": 24550, "month_interval": 806}, "method_of_progression_status": ["Histopathology test (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0011", "program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0021", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Loco-regional progression", "relapse_type": "Progression (liquid tumours)", "date_of_relapse": {"day_interval": 20478, "month_interval": 672}, "method_of_progression_status": ["Assessment of symptom control (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0012", "program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0022", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": "TREATMENT_0043", "date_of_followup": null, "disease_status_at_followup": "Partial remission", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Laboratory data interpretation (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0013", "program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0023", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Stable", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Assessment of symptom control (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0014", "program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0024", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Loco-regional progression", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Physical examination procedure (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0015", "program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0025", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Stable", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Laboratory data interpretation (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0016", "program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0026", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Loco-regional progression", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Tumor marker measurement (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0017", "program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0027", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Partial remission", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Tumor marker measurement (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0018", "program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0028", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Complete remission", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Histopathology test (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0019", "program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0029", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Complete remission", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Laboratory data interpretation (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0020", "program_id": "PROGRAM_02", "submitter_donor_id": "DONOR_0030", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Complete remission", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Imaging (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0021", "program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0041", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Progression not otherwise specified", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Imaging (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0022", "program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0042", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": "TREATMENT_0083", "date_of_followup": null, "disease_status_at_followup": "Distant progression", "relapse_type": "Progression (liquid tumours)", "date_of_relapse": {"day_interval": 3904, "month_interval": 128}, "method_of_progression_status": ["Imaging (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0023", "program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0043", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Partial remission", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Physical examination procedure (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0024", "program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0044", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Distant progression", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Assessment of symptom control (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0025", "program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0045", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Distant progression", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Histopathology test (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0026", "program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0046", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": "TREATMENT_0091", "date_of_followup": null, "disease_status_at_followup": "Complete remission", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Laboratory data interpretation (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0027", "program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0047", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Partial remission", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Laboratory data interpretation (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0028", "program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0048", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Complete remission", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Physical examination procedure (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0029", "program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0049", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Stable", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Imaging (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0030", "program_id": "PROGRAM_03", "submitter_donor_id": "DONOR_0050", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Progression not otherwise specified", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Physical examination procedure (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0031", "program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0061", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Loco-regional progression", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Laboratory data interpretation (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0032", "program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0062", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Partial remission", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Tumor marker measurement (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0033", "program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0063", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Progression not otherwise specified", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Assessment of symptom control (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0034", "program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0064", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Relapse or recurrence", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Laboratory data interpretation (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0035", "program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0065", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Stable", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Assessment of symptom control (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0036", "program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0066", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Stable", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Tumor marker measurement (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0037", "program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0067", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Partial remission", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Assessment of symptom control (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0038", "program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0068", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Loco-regional progression", "relapse_type": "Progression (liquid tumours)", "date_of_relapse": {"day_interval": 20266, "month_interval": 665}, "method_of_progression_status": ["Assessment of symptom control (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0039", "program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0069", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Relapse or recurrence", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Tumor marker measurement (procedure)"], "anatomic_site_progression_or_recurrence": null}, {"submitter_follow_up_id": "FOLLOW_UP_0040", "program_id": "PROGRAM_04", "submitter_donor_id": "DONOR_0070", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "date_of_followup": null, "disease_status_at_followup": "Distant progression", "relapse_type": null, "date_of_relapse": null, "method_of_progression_status": ["Imaging (procedure)"], "anatomic_site_progression_or_recurrence": null}]
+[
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0001",
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0001",
+    "submitter_primary_diagnosis_id": "DIAG_0001",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Loco-regional progression",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Physical examination procedure (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0002",
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0002",
+    "submitter_primary_diagnosis_id": "DIAG_0002",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Stable",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Assessment of symptom control (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0003",
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0003",
+    "submitter_primary_diagnosis_id": "DIAG_0003",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Progression not otherwise specified",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Physical examination procedure (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0004",
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0004",
+    "submitter_primary_diagnosis_id": "DIAG_0004",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Loco-regional progression",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Physical examination procedure (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0005",
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0005",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0009",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Loco-regional progression",
+    "relapse_type": "Biochemical progression",
+    "date_of_relapse": {
+      "day_interval": 1500,
+      "month_interval": 49
+    },
+    "method_of_progression_status": [
+      "Histopathology test (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0006",
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0006",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0011",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Partial remission",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Tumor marker measurement (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0007",
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0007",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0013",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Loco-regional progression",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Laboratory data interpretation (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0008",
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0008",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0015",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Stable",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Laboratory data interpretation (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0009",
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0009",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Progression not otherwise specified",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Tumor marker measurement (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0010",
+    "program_id": "PROGRAM_01",
+    "submitter_donor_id": "DONOR_0010",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Partial remission",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Imaging (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0011",
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0021",
+    "submitter_primary_diagnosis_id": "DIAG_0021",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Stable",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Histopathology test (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0012",
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0022",
+    "submitter_primary_diagnosis_id": "DIAG_0022",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Stable",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Histopathology test (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0013",
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0023",
+    "submitter_primary_diagnosis_id": "DIAG_0023",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Relapse or recurrence",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Tumor marker measurement (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0014",
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0024",
+    "submitter_primary_diagnosis_id": "DIAG_0024",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Partial remission",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Imaging (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0015",
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0025",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0049",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Stable",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Tumor marker measurement (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0016",
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0026",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0051",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Partial remission",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Imaging (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0017",
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0027",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0053",
+    "date_of_followup": null,
+    "disease_status_at_followup": "No evidence of disease",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Physical examination procedure (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0018",
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0028",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0055",
+    "date_of_followup": null,
+    "disease_status_at_followup": "No evidence of disease",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Histopathology test (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0019",
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0029",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Distant progression",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Histopathology test (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0020",
+    "program_id": "PROGRAM_02",
+    "submitter_donor_id": "DONOR_0030",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Complete remission",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Physical examination procedure (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0021",
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0041",
+    "submitter_primary_diagnosis_id": "DIAG_0041",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Stable",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Physical examination procedure (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0022",
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0042",
+    "submitter_primary_diagnosis_id": "DIAG_0042",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Complete remission",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Imaging (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0023",
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0043",
+    "submitter_primary_diagnosis_id": "DIAG_0043",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Stable",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Histopathology test (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0024",
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0044",
+    "submitter_primary_diagnosis_id": "DIAG_0044",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Distant progression",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Tumor marker measurement (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0025",
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0045",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0089",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Complete remission",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Assessment of symptom control (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0026",
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0046",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0091",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Distant progression",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Tumor marker measurement (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0027",
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0047",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0093",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Partial remission",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Tumor marker measurement (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0028",
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0048",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0095",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Loco-regional progression",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Tumor marker measurement (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0029",
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0049",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Loco-regional progression",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Tumor marker measurement (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0030",
+    "program_id": "PROGRAM_03",
+    "submitter_donor_id": "DONOR_0050",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Partial remission",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Histopathology test (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0031",
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0061",
+    "submitter_primary_diagnosis_id": "DIAG_0061",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Stable",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Physical examination procedure (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0032",
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0062",
+    "submitter_primary_diagnosis_id": "DIAG_0062",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Stable",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Laboratory data interpretation (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0033",
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0063",
+    "submitter_primary_diagnosis_id": "DIAG_0063",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Stable",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Histopathology test (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0034",
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0064",
+    "submitter_primary_diagnosis_id": "DIAG_0064",
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Progression not otherwise specified",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Laboratory data interpretation (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0035",
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0065",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0129",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Stable",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Histopathology test (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0036",
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0066",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0131",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Complete remission",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Tumor marker measurement (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0037",
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0067",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0133",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Complete remission",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Tumor marker measurement (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0038",
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0068",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0135",
+    "date_of_followup": null,
+    "disease_status_at_followup": "Loco-regional progression",
+    "relapse_type": "Biochemical progression",
+    "date_of_relapse": {
+      "day_interval": 25087,
+      "month_interval": 824
+    },
+    "method_of_progression_status": [
+      "Tumor marker measurement (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0039",
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0069",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Progression not otherwise specified",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Imaging (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  },
+  {
+    "submitter_follow_up_id": "FOLLOW_UP_0040",
+    "program_id": "PROGRAM_04",
+    "submitter_donor_id": "DONOR_0070",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "date_of_followup": null,
+    "disease_status_at_followup": "Distant progression",
+    "relapse_type": null,
+    "date_of_relapse": null,
+    "method_of_progression_status": [
+      "Laboratory data interpretation (procedure)"
+    ],
+    "anatomic_site_progression_or_recurrence": null
+  }
+]
