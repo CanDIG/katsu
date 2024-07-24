@@ -116,7 +116,7 @@ The first four are linked to a primary diagnosis as well as a Donor.
 
 The next four are linked to the first treatment as well as the Donor.
 
-The remaing 2 are linked only to the Donor.
+The remaining 2 are linked only to the Donor.
 
 ```mermaid
 ---
@@ -124,16 +124,16 @@ title: 40 FollowUps, linked to either donor +/- primary diagnosis or treatment
 ---
 graph LR;  
   DIAG_0001_0004 --> DONOR_0001_0004 --> PROGRAM_01;
-  DIAG_0005_0008 --> DONOR_0005_0008 --> PROGRAM_01;
-  DIAG_0009_0010 --> DONOR_0009_10 --> PROGRAM_01;
+  FOLLOW_UP_0001_0004 --> DONOR_0001_0004;
+  FOLLOW_UP_0001_0004 --> DIAG_0001_0004;
+  TREATMENT_0009_11_13_15 --> DIAG_0005_0008 --> DONOR_0005_0008 --> PROGRAM_01;
+  FOLLOW_UP_0005_0008 --> DONOR_0005_0008;
+  FOLLOW_UP_0005_0008 --> TREATMENT_0009_11_13_15;
+  FOLLOW_UP_0009_0010 --> DONOR_0009_10 --> PROGRAM_01;
+  DIAG_0009_0010 --> DONOR_0009_10;
   DIAG_0021_0040 --> DONOR_0021_0040 --> PROGRAM_03;  
   DIAG_0041_0060 --> DONOR_0041_0060 --> PROGRAM_03;  
   DIAG_0061_0080 --> DONOR_0061_0080 --> PROGRAM_04;
-  FOLLOW_UP_0001_0004 --> DONOR_0001_0004;
-  FOLLOW_UP_0001_0004 --> DIAG_0001_0004;
-  FOLLOW_UP_0005_0008 --> DONOR_0005_0008;
-  FOLLOW_UP_0005_0008 --> TREATMENT_0009_11_13_15;
-  FOLLOW_UP_0009_0010 --> DONOR_0009_10;
   
 ```
 
