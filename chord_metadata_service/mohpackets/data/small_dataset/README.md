@@ -9,7 +9,7 @@ The small dataset is composed of:
 * 240 Sample registrations
 * 320 Systemic Therapies
 
-Sub-objects are iterated over and assigned evenly to a parent object until all objects are exhausted. Identifiers show the pattern in the diagrams below.
+Identifiers are numbered sequentially per object.
 
 Diagrams below show example linkage relationships for the different objects.
 
@@ -34,7 +34,7 @@ graph LR;
   SAMPLE_0181_0240--> SPECIMEN_00061_0080;
 ```
 
-Each Specimen has three linked samples, example with SPECIMEN_0001
+Each Specimen has three linked samples, example below with SPECIMEN_0001
 
 ```mermaid
 graph LR;
@@ -48,49 +48,62 @@ graph LR;
 
 ## Treatments and treatment types
 
-Each diagnosis has two treatments, each treatment has two systemic therapies and either a radiation or surgery.
+Each diagnosis has two treatments, 
 
 ```mermaid
 ---
-title: Surgeries, Radiations, Systemic therapies, Treatments, Diagnoses, Donors
+title: Treatments, Diagnoses, Donors
 ---
 graph LR;  
   DIAG_0001_0020 --> DONOR_0001_0020 --> PROGRAM_01;  
   DIAG_0021_0040 --> DONOR_0021_0040 --> PROGRAM_03;  
-  DIAG_0041_60 --> DONOR_0041_60 --> PROGRAM_03;  
-  DIAG_0061_80 --> DONOR_0061_80 --> PROGRAM_04;
+  DIAG_0041_0060 --> DONOR_0041_0060 --> PROGRAM_03;  
+  DIAG_0061_0080 --> DONOR_0061_0080 --> PROGRAM_04;
   TREATMENT_0001_0040 --> DIAG_0001_0020;
-  TREATMENT_0081 --> DIAG_0001;  
-  TREATMENT_0002 --> DIAG_0002; 
-  TREATMENT_0082 --> DIAG_0002;  
-  TREATMENT_0003 --> DIAG_0003; 
-  TREATMENT_0083 --> DIAG_0003; 
-  TREATMENT_0004 --> DIAG_0004; 
-  TREATMENT_0084 --> DIAG_0004; 
-  SYS_THERAPY_uuid1a --> TREATMENT_0001;
-  SYS_THERAPY_uuid1b --> TREATMENT_0001;
-  SYS_THERAPY_uuid2a --> TREATMENT_0081;
-  SYS_THERAPY_uuid2b --> TREATMENT_0081;  
-  SYS_THERAPY_uuid3a --> TREATMENT_0002; 
-  SYS_THERAPY_uuid3b --> TREATMENT_0002; 
-  SYS_THERAPY_uuid4a --> TREATMENT_0082;  
-  SYS_THERAPY_uuid4b --> TREATMENT_0082;  
-  SYS_THERAPY_uuid5a --> TREATMENT_0003; 
-  SYS_THERAPY_uuid5b --> TREATMENT_0003; 
-  SYS_THERAPY_uuid6a --> TREATMENT_0083; 
-  SYS_THERAPY_uuid6b --> TREATMENT_0083; 
-  SYS_THERAPY_uuid7a --> TREATMENT_0004; 
-  SYS_THERAPY_uuid7b --> TREATMENT_0004; 
-  SYS_THERAPY_uuid8a --> TREATMENT_0084;
-  SYS_THERAPY_uuid8b --> TREATMENT_0084;
-  RADIATION_uuid1 --> TREATMENT_0001;
-  RADIATION_uuid2 --> TREATMENT_0002; 
-  RADIATION_uuid3 --> TREATMENT_0003;  
-  RADIATION_uuid4 --> TREATMENT_0004;  
-  SURGERY_uuid1 --> TREATMENT_0081;
-  SURGERY_uuid2 --> TREATMENT_0082; 
-  SURGERY_uuid3 --> TREATMENT_0083;  
-  SURGERY_uuid4 --> TREATMENT_0084;  
+  TREATMENT_0021_0040 --> DIAG_0021_0040;  
+  TREATMENT_0041_0060 --> DIAG_0041_0060; 
+  TREATMENT_0061_0080 --> DIAG_0061_0080;
+```
+Each Diagnosis has two linked treatments, example below with DIAG_0001
+
+```mermaid
+graph LR;
+  TREATMENT_0001 --> DIAG_0001;
+  TREATMENT_0002 --> DIAG_0001;
+  DIAG_0001 --> DONOR_0001 --> PROGRAM_01;
+```
+
+Each treatment has two systemic therapies and either a radiation or surgery.
+
+```mermaid
+graph LR;
+  SYS_THERAPY_uuid1_80 --> TREATMENT_0001_0040;
+  SYS_THERAPY_uuid81_160 --> TREATMENT_0041_80;
+  SYS_THERAPY_uuid161_240 --> TREATMENT_0081_120;
+  SYS_THERAPY_uuid241_320 --> TREATMENT_0121_160;  
+  RADIATION_uuid1_20 --> TREATMENT_0002_0040_even_numbers;
+  RADIATION_uuid21_40 --> TREATMENT_0042_0080_even_numbers; 
+  RADIATION_uuid41_60 --> TREATMENT_0082_0120_even_numbers;  
+  RADIATION_uuid61_80 --> TREATMENT_0122_0160_even_numbers;  
+  SURGERY_uuid1_20 --> TREATMENT_0001_0039_odd_numbers;
+  SURGERY_uuid21_40 --> TREATMENT_0041_0079_odd_numbers; 
+  SURGERY_uuid41_60 --> TREATMENT_081_0119_odd_numbers;  
+  SURGERY_uuid61_80 --> TREATMENT_0121_0159_odd_numbers;  
+```
+
+Radiations are linked to the even numbered treatments while Surgeries are linked to odd numbered treatments. Example with `TREATMENT_0001` below:
+
+```mermaid
+graph LR;
+  TREATMENT_0001 --> DIAG_0001;
+  TREATMENT_0002 --> DIAG_0001;
+  DIAG_0001 --> DONOR_0001 --> PROGRAM_01;
+  SYS_THERAPY_uuid1 --> TREATMENT_0001;
+  SYS_THERAPY_uuid2 --> TREATMENT_0001;
+  SYS_THERAPY_uuid3 --> TREATMENT_0002;
+  SYS_THERAPY_uuid4 --> TREATMENT_0002;
+  SURGERY_uuid1 --> TREATMENT_0001;
+  RADIATION_uuid1 --> TREATMENT_0002;
 ```
 
 ---
