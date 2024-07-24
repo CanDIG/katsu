@@ -110,30 +110,44 @@ graph LR;
 
 ## Follow ups
 
-Follow ups is linked to Donor only or to Donor plus either a Primary Diagnosis or Treatment.
+Follow ups are linked to the first 10 donors of each program. 
+
+The first four are linked to a primary diagnosis as well as a Donor.
+
+The next four are linked to the first treatment as well as the Donor.
+
+The remaing 2 are linked only to the Donor.
 
 ```mermaid
 ---
-title: 20 FollowUps, linked to either donor +/- primary diagnosis or treatment
+title: 40 FollowUps, linked to either donor +/- primary diagnosis or treatment
 ---
 graph LR;  
-  DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  DIAG_0002 --> DONOR_0002 --> PROGRAM_02;  
-  DIAG_0003 --> DONOR_0003 --> PROGRAM_03;  
-  DIAG_0004 --> DONOR_0004 --> PROGRAM_04;
-  TREATMENT_0001 --> DIAG_0001; 
-  TREATMENT_0002 --> DIAG_0002; 
-  TREATMENT_0082 --> DIAG_0002;  
-  TREATMENT_0003 --> DIAG_0003; 
-  TREATMENT_0083 --> DIAG_0003; 
-  TREATMENT_0004 --> DIAG_0004; 
-  FOLLOW_UP_0001 --> DONOR_0001;  
-  FOLLOW_UP_0002 --> DIAG_0002;
-  FOLLOW_UP_0002 --> DONOR_0002; 
-  FOLLOW_UP_0003 --> DONOR_0003; 
-  FOLLOW_UP_0003 --> TREATMENT_0003;  
-  FOLLOW_UP_0004 --> DONOR_0004
+  DIAG_0001_0004 --> DONOR_0001_0004 --> PROGRAM_01;
+  DIAG_0005_0008 --> DONOR_0005_0008 --> PROGRAM_01;
+  DIAG_0009_0010 --> DONOR_0009_10 --> PROGRAM_01;
+  DIAG_0021_0040 --> DONOR_0021_0040 --> PROGRAM_03;  
+  DIAG_0041_0060 --> DONOR_0041_0060 --> PROGRAM_03;  
+  DIAG_0061_0080 --> DONOR_0061_0080 --> PROGRAM_04;
+  FOLLOW_UP_0001_0004 --> DONOR_0001_0004;
+  FOLLOW_UP_0001_0004 --> DIAG_0001_0004;
+  FOLLOW_UP_0005_0008 --> DONOR_0005_0008;
+  FOLLOW_UP_0005_0008 --> TREATMENT_0009_11_13_15;
+  FOLLOW_UP_0009_0010 --> DONOR_0009_10;
   
+```
+
+Example Follow up linkages for follow ups `FOLLOW_UP_0001-0004`
+
+```mermaid
+graph LR;
+  FOLLOW_UP_0001 --> DONOR_0001;
+  FOLLOW_UP_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
+  FOLLOW_UP_0002 --> DONOR_0002 --> PROGRAM_01;
+  FOLLOW_UP_0002 --> TREATMENT_0003 --> DIAG_0002 --> DONOR_0002;
+  FOLLOW_UP_0003 --> DONOR_0003 --> PROGRAM_01; 
+  FOLLOW_UP_0004 --> DONOR_0004 --> PROGRAM_01;
+  FOLLOW_UP_0004 --> DIAG_0004 --> DONOR_0004;
 ```
 
 ---
