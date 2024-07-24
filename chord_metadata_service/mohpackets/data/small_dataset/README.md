@@ -193,4 +193,13 @@ graph LR;
   
 ```
 
+Example relationships 
+
+```mermaid
+graph LR;
+  BIOMARKER_uuid1 --> DONOR_0001 --> PROGRAM_01;
+  BIOMARKER_uuid7  --> DONOR_0007 --> PROGRAM_01;
+```
+
+
 ---
