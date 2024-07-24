@@ -45,20 +45,10 @@ from chord_metadata_service.mohpackets.models import (
     Author: Son Chau
 """
 
+
 def days_to_months(day_interval):
     """ Convert a day interval to a month interval."""
     return int(math.floor(day_interval * 0.032855))
-
-def twenty_percent_true():
-    """ Generate True 20% of the time. """
-    return random.randrange(100) < 20
-
-
-def add_nulls(complete_list: list, prop=0.2):
-    """ Returns a list with 20% of the list as 'None' """
-    num_nulls = math.ceil(len(complete_list) * prop)
-    complete_list.extend([None] * num_nulls)
-    return complete_list
 
 
 ###############
@@ -155,7 +145,7 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def set_clinical_event_identifier(self, create, extracted, **kwargs):
-        if twenty_percent_true():
+        if random.random() > 0.15:
             pass
         else:
             donor = self.donor_uuid
@@ -182,17 +172,6 @@ class SpecimenFactory(factory.django.DjangoModelFactory):
     # default values
     submitter_specimen_id = factory.Sequence(lambda n: f"SPECIMEN_{str(n).zfill(4)}")
     specimen_collection_date = None
-
-    # add 20% nulls to all enum lists
-    PERM_VAL.STORAGE = add_nulls(PERM_VAL.STORAGE)
-    PERM_VAL.SPECIMEN_PROCESSING = add_nulls(PERM_VAL.SPECIMEN_PROCESSING)
-    PERM_VAL.TOPOGRAPHY_CODES = add_nulls(PERM_VAL.TOPOGRAPHY_CODES)
-    PERM_VAL.SPECIMEN_LATERALITY = add_nulls(PERM_VAL.SPECIMEN_LATERALITY)
-    PERM_VAL.CONFIRMED_DIAGNOSIS_TUMOUR = add_nulls(PERM_VAL.CONFIRMED_DIAGNOSIS_TUMOUR)
-    PERM_VAL.TUMOUR_GRADE = add_nulls(PERM_VAL.TUMOUR_GRADE)
-    PERM_VAL.TUMOUR_GRADING_SYSTEM = add_nulls(PERM_VAL.TUMOUR_GRADING_SYSTEM)
-    PERM_VAL.PERCENT_CELLS_RANGE = add_nulls(PERM_VAL.PERCENT_CELLS_RANGE)
-    PERM_VAL.CELLS_MEASURE_METHOD = add_nulls(PERM_VAL.CELLS_MEASURE_METHOD)
 
     specimen_storage = factory.Faker("random_element", elements=PERM_VAL.STORAGE)
     specimen_processing = factory.Faker("random_element", elements=PERM_VAL.SPECIMEN_PROCESSING)
@@ -230,7 +209,7 @@ class SpecimenFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def set_date(self, create, extracted, **kwargs):
-        if twenty_percent_true():
+        if random.random() > .15:
             self.specimen_collection_date = None
         else:
             self.specimen_collection_date = {"day_interval": random.randint(0, 90)}
@@ -239,7 +218,7 @@ class SpecimenFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def generate_histology_code(self, create, extracted, **kwargs):
-        if twenty_percent_true():
+        if random.random() > .15:
             self.tumour_histological_type = None
         else:
             one = str(random.randint(8, 9))
@@ -255,11 +234,6 @@ class SampleRegistrationFactory(factory.django.DjangoModelFactory):
 
     # default values
     submitter_sample_id = factory.Sequence(lambda n: f"SAMPLE_{str(n).zfill(4)}")
-
-    # add 20% nulls to all enum lists
-    PERM_VAL.SPECIMEN_TISSUE_SOURCE = add_nulls(PERM_VAL.SPECIMEN_TISSUE_SOURCE)
-    PERM_VAL.SPECIMEN_TYPE = add_nulls(PERM_VAL.SPECIMEN_TYPE)
-    PERM_VAL.SAMPLE_TYPE = add_nulls(PERM_VAL.SAMPLE_TYPE)
 
     specimen_tissue_source = factory.Faker(
         "random_element", elements=PERM_VAL.SPECIMEN_TISSUE_SOURCE
@@ -284,12 +258,6 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
     # default values
     submitter_treatment_id = factory.Sequence(lambda n: f"TREATMENT_{str(n).zfill(4)}")
 
-    # add 20% nulls to all enum lists
-    PERM_VAL.TREATMENT_INTENT = add_nulls(PERM_VAL.TREATMENT_INTENT)
-    PERM_VAL.TREATMENT_RESPONSE_METHOD = add_nulls(PERM_VAL.TREATMENT_RESPONSE_METHOD)
-    PERM_VAL.TREATMENT_RESPONSE = add_nulls(PERM_VAL.TREATMENT_RESPONSE)
-    PERM_VAL.TREATMENT_STATUS = add_nulls(PERM_VAL.TREATMENT_STATUS)
-
     treatment_type = factory.Faker(
         "random_elements",
         elements=PERM_VAL.TREATMENT_TYPE,
@@ -302,8 +270,6 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
     treatment_intent = factory.Faker(
         "random_element", elements=PERM_VAL.TREATMENT_INTENT
     )
-    # days_per_cycle = factory.Faker("random_int", min=1, max=30)
-    # number_of_cycles = factory.Faker("random_int", min=1, max=10)
     response_to_treatment_criteria_method = factory.Faker(
         "random_element", elements=PERM_VAL.TREATMENT_RESPONSE_METHOD
     )
@@ -328,13 +294,13 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
     @factory.post_generation
     def set_treatment_dates(self, create, extracted, **kwargs):
         treatment = self
-        if twenty_percent_true():
+        if random.random() > .15:
             treatment.treatment_start_date = None
         else:
             day_int = random.randint(5, 180)
             treatment.treatment_start_date = {"day_interval": day_int,
                                               "month_interval": days_to_months(day_int)}
-        if twenty_percent_true():
+        if random.random() > .15:
             treatment.treatment_end_date = None
         else:
             if treatment.treatment_start_date:
@@ -349,7 +315,7 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def correct_treatment_type(self, create, extracted, **kwargs):
-        if twenty_percent_true():
+        if random.random() > .15:
             self.treatment_type = None
         elif self.treatment_type and "No treatment" in self.treatment_type:
             self.treatment_type = ["No treatment"]
@@ -367,7 +333,7 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
 class SystemicTherapyFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = SystemicTherapy
-        exclude = ("null_drug_dose", )
+        exclude = ("null_drug_dose",)
 
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
@@ -375,20 +341,12 @@ class SystemicTherapyFactory(factory.django.DjangoModelFactory):
     drug_name = None
     drug_reference_identifier = None
 
-    # add 20% nulls to all enum lists
-    PERM_VAL.DOSAGE_UNITS = add_nulls(PERM_VAL.DOSAGE_UNITS)
-    PERM_VAL.DRUG_REFERENCE_DB = add_nulls(PERM_VAL.DRUG_REFERENCE_DB)
-
     drug_dose_units = factory.Faker("random_element", elements=PERM_VAL.DOSAGE_UNITS)
-    null_drug_dose = twenty_percent_true()
-    prescribed_cumulative_drug_dose = factory.Maybe("null_drug_dose",
-                                                    None,
-                                                    factory.Faker("pyfloat", left_digits=2, right_digits=1,
-                                                                  positive=True, min_value=20, max_value=50))
-    actual_cumulative_drug_dose = factory.Maybe("null_drug_dose",
-                                                None,
-                                                factory.Faker("pyfloat", left_digits=2, right_digits=1,
-                                                              positive=True, min_value=51, max_value=100))
+
+    prescribed_cumulative_drug_dose = factory.Faker("pyfloat", left_digits=2, right_digits=1, positive=True,
+                                                    min_value=20, max_value=50)
+    actual_cumulative_drug_dose = factory.Faker("pyfloat", left_digits=2, right_digits=1, positive=True,
+                                                min_value=51, max_value=100)
     systemic_therapy_type = factory.Faker("random_element", elements=PERM_VAL.SYSTEMIC_THERAPY_TYPE)
     start_date = None
     end_date = None
@@ -404,7 +362,7 @@ class SystemicTherapyFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def add_dates(self, create, extracted, **kwargs):
-        if twenty_percent_true():
+        if random.random() > .15:
             pass
         else:
             treatment = self.treatment_uuid
@@ -414,14 +372,15 @@ class SystemicTherapyFactory(factory.django.DjangoModelFactory):
                 self.start_date["month_interval"] = days_to_months(self.start_date["day_interval"])
             elif treatment.treatment_start_date:
                 self.start_date = {"day_interval": random.randint(
-                    treatment.treatment_start_date['day_interval'], treatment.treatment_start_date['day_interval'] + 50)}
+                    treatment.treatment_start_date['day_interval'],
+                    treatment.treatment_start_date['day_interval'] + 50)}
                 self.start_date["month_interval"] = days_to_months(self.start_date["day_interval"])
             elif treatment.treatment_end_date:
                 self.start_date = {"day_interval": random.randint(
                     treatment.treatment_end_date['day_interval'] - 50,
                     treatment.treatment_end_date['day_interval'])}
                 self.start_date["month_interval"] = days_to_months(self.start_date["day_interval"])
-            if twenty_percent_true():
+            if random.random() > .15:
                 pass
             else:
                 if treatment.treatment_end_date:
@@ -441,7 +400,7 @@ class SystemicTherapyFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def add_drug_info(self, create, extracted, **kwargs):
-        if twenty_percent_true():
+        if random.random() > .15:
             pass
         else:
             self.drug_reference_database = random.choice(PERM_VAL.DRUG_REFERENCE_DB)
@@ -449,15 +408,18 @@ class SystemicTherapyFactory(factory.django.DjangoModelFactory):
                 if self.systemic_therapy_type == "Chemotherapy":
                     self.drug_name = random.choice(list(SYNTH_VAL.CHEMO_DRUGS.keys()))
                     if self.drug_name:
-                        self.drug_reference_identifier = SYNTH_VAL.CHEMO_DRUGS[self.drug_name][self.drug_reference_database]
+                        self.drug_reference_identifier = SYNTH_VAL.CHEMO_DRUGS[self.drug_name][
+                            self.drug_reference_database]
                 elif self.systemic_therapy_type == "Hormone therapy":
                     self.drug_name = random.choice(list(SYNTH_VAL.HORMONE_DRUGS.keys()))
                     if self.drug_name:
-                        self.drug_reference_identifier = SYNTH_VAL.HORMONE_DRUGS[self.drug_name][self.drug_reference_database]
+                        self.drug_reference_identifier = SYNTH_VAL.HORMONE_DRUGS[self.drug_name][
+                            self.drug_reference_database]
                 elif self.systemic_therapy_type == "Immunotherapy":
                     self.drug_name = random.choice(list(SYNTH_VAL.IMMUNO_DRUGS.keys()))
                     if self.drug_name:
-                        self.drug_reference_identifier = SYNTH_VAL.IMMUNO_DRUGS[self.drug_name][self.drug_reference_database]
+                        self.drug_reference_identifier = SYNTH_VAL.IMMUNO_DRUGS[self.drug_name][
+                            self.drug_reference_database]
 
 
 class RadiationFactory(factory.django.DjangoModelFactory):
@@ -468,17 +430,13 @@ class RadiationFactory(factory.django.DjangoModelFactory):
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
 
-    # add 20% nulls to all enum lists
-    PERM_VAL.RADIATION_THERAPY_MODALITY = add_nulls(PERM_VAL.RADIATION_THERAPY_MODALITY)
-    PERM_VAL.RADIATION_ANATOMICAL_SITE = add_nulls(PERM_VAL.RADIATION_ANATOMICAL_SITE)
-
     radiation_therapy_modality = factory.Faker(
         "random_element", elements=PERM_VAL.RADIATION_THERAPY_MODALITY
     )
     radiation_therapy_type = factory.Faker(
         "random_element", elements=["External", "Internal", None]
     )
-    null_dosage_fraction = twenty_percent_true()
+    null_dosage_fraction = factory.LazyFunction(lambda: random.random() > .15)
     radiation_therapy_fractions = factory.Maybe("null_dosage_fraction",
                                                 None,
                                                 factory.Faker("random_int", min=1, max=30))
@@ -503,26 +461,19 @@ class RadiationFactory(factory.django.DjangoModelFactory):
     @factory.post_generation
     def add_radiation_treatment_type(self, create, extracted, **kwargs):
         treatment = self.treatment_uuid
-        if "Radiation therapy" not in treatment.treatment_type:
-            treatment.treatment_type.append("Radiation therapy")
-        if "No treatment" in treatment.treatment_type:
-            treatment.treatment_type.remove("No treatment")
+        if treatment.treatment_type:
+            if "Radiation therapy" not in treatment.treatment_type:
+                treatment.treatment_type.append("Radiation therapy")
+            if "No treatment" in treatment.treatment_type:
+                treatment.treatment_type.remove("No treatment")
 
 
 class SurgeryFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Surgery
-        exclude = ("null_dimensions", "null_margin_types")
 
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
-
-    # add 20% nulls
-    PERM_VAL.SURGERY_LOCATION = add_nulls(PERM_VAL.SURGERY_LOCATION)
-    PERM_VAL.TUMOUR_FOCALITY = add_nulls(PERM_VAL.TUMOUR_FOCALITY)
-    PERM_VAL.TUMOUR_CLASSIFICATION = add_nulls(PERM_VAL.TUMOUR_CLASSIFICATION)
-    PERM_VAL.LYMPHOVACULAR_INVASION = add_nulls(PERM_VAL.LYMPHOVACULAR_INVASION)
-    PERM_VAL.PERINEURAL_INVASION = add_nulls(PERM_VAL.PERINEURAL_INVASION)
 
     surgery_reference_database = None
     surgery_reference_identifier = None
@@ -531,42 +482,26 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
     surgery_location = factory.Faker(
         "random_element", elements=PERM_VAL.SURGERY_LOCATION
     )
-    null_dimensions = twenty_percent_true()
-    tumour_length = factory.Maybe("null_dimensions",
-                                  None,
-                                  factory.Faker("random_int", min=1, max=10))
-    tumour_width = factory.Maybe("null_dimensions",
-                                 None,
-                                 factory.Faker("random_int", min=1, max=10))
-    greatest_dimension_tumour = factory.Maybe("null_dimensions",
-                                              None,
-                                              factory.Faker("random_int", min=1, max=10))
+    tumour_length = factory.Faker("random_int", min=1, max=10)
+    tumour_width = factory.Faker("random_int", min=1, max=10)
+    greatest_dimension_tumour = factory.Faker("random_int", min=1, max=10)
     tumour_focality = factory.Faker("random_element", elements=PERM_VAL.TUMOUR_FOCALITY)
     residual_tumour_classification = factory.Faker("random_element", elements=PERM_VAL.TUMOUR_CLASSIFICATION)
-    null_margin_types = twenty_percent_true()
-    margin_types_involved = factory.Maybe(
-        "null_margin_type",
-        None,
-        factory.Faker("random_elements",
-                      elements=PERM_VAL.MARGIN_TYPES,
-                      length=random.randint(1, 3),
-                      unique=True))
-    margin_types_not_involved = factory.Maybe(
-        "null_margin_type",
-        None,
-        factory.Faker(
-            "random_elements",
-            elements=PERM_VAL.MARGIN_TYPES,
-            length=random.randint(1, 3),
-            unique=True))
-    margin_types_not_assessed = factory.Maybe(
-        "null_margin_type",
-        None,
-        factory.Faker(
-            "random_elements",
-            elements=PERM_VAL.MARGIN_TYPES,
-            length=random.randint(1, 3),
-            unique=True))
+
+    margin_types_involved = factory.Faker("random_elements",
+                                          elements=PERM_VAL.MARGIN_TYPES,
+                                          length=random.randint(1, 3),
+                                          unique=True)
+    margin_types_not_involved = factory.Faker(
+        "random_elements",
+        elements=PERM_VAL.MARGIN_TYPES,
+        length=random.randint(1, 3),
+        unique=True)
+    margin_types_not_assessed = factory.Faker(
+        "random_elements",
+        elements=PERM_VAL.MARGIN_TYPES,
+        length=random.randint(1, 3),
+        unique=True)
     lymphovascular_invasion = factory.Faker("random_element", elements=PERM_VAL.LYMPHOVACULAR_INVASION)
     perineural_invasion = factory.Faker("random_element", elements=PERM_VAL.PERINEURAL_INVASION)
     # submitter_specimen_id = None
@@ -582,28 +517,30 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def add_surgery_type(self, create, extracted, **kwargs):
-        if twenty_percent_true():
+        if random.random() > .15:
             pass
         else:
             self.surgery_type = random.choice(list(SYNTH_VAL.SURGERY_TYPE.keys()))
             if self.surgery_type:
                 self.surgery_reference_database = random.choice(list(SYNTH_VAL.SURGERY_TYPE[self.surgery_type].keys()))
                 if self.surgery_reference_database:
-                    self.surgery_reference_identifier = SYNTH_VAL.SURGERY_TYPE[self.surgery_type][self.surgery_reference_database]
+                    self.surgery_reference_identifier = SYNTH_VAL.SURGERY_TYPE[self.surgery_type][
+                        self.surgery_reference_database]
 
     @factory.post_generation
     def add_surgery_treatment_type(self, create, extracted, **kwargs):
         treatment = self.treatment_uuid
-        if "Surgery" not in treatment.treatment_type:
-            treatment.treatment_type.append("Surgery")
-        if "No treatment" in treatment.treatment_type:
-            treatment.treatment_type.remove("No treatment")
+        if treatment.treatment_type:
+            if "Surgery" not in treatment.treatment_type:
+                treatment.treatment_type.append("Surgery")
+            if "No treatment" in treatment.treatment_type:
+                treatment.treatment_type.remove("No treatment")
 
 
 class FollowUpFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = FollowUp
-        exclude = ("fill_pd", )
+        exclude = ("fill_pd",)
 
     # default values
     submitter_follow_up_id = factory.Sequence(lambda n: f"FOLLOW_UP_{str(n).zfill(4)}")
@@ -626,7 +563,7 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
     donor_uuid = factory.SubFactory(DonorFactory)
     submitter_donor_id = factory.SelfAttribute("donor_uuid.submitter_donor_id")
 
-    fill_pd = factory.Faker("pybool",)
+    fill_pd = factory.Faker("pybool", )
     primary_diagnosis_uuid = factory.Maybe(
         "fill_pd",
         yes_declaration=factory.SubFactory(PrimaryDiagnosisFactory),
@@ -644,10 +581,10 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def set_relapse_type_date(self, create, extracted, **kwargs):
-        if twenty_percent_true():
+        if random.random() > .15:
             pass
         elif self.disease_status_at_followup in ['Distant progression', 'Loco-regional progression',
-                                               'Progression not otherwise specified']:
+                                                 'Progression not otherwise specified']:
             donor = self.donor_uuid
             self.relapse_type = random.choice(PERM_VAL.RELAPSE_TYPE)
             if donor.date_of_death:
@@ -664,7 +601,7 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
     @factory.post_generation
     def correct_linkage(self, create, extracted, **kwargs):
         """ Link to either PD or Treatment, not both, 20% link only to Donor"""
-        if twenty_percent_true():
+        if random.random() > .15:
             self.submitter_primary_diagnosis_id = None
             self.submitter_treatment_id = None
         elif self.submitter_primary_diagnosis_id:
@@ -674,14 +611,9 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
 class BiomarkerFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Biomarker
-        exclude = ("null_hpv_strain", )
 
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
-
-    # add 20% null values to enums
-    PERM_VAL.ER_PR_HPV_STATUS = add_nulls(PERM_VAL.ER_PR_HPV_STATUS)
-    PERM_VAL.HER2_STATUS = add_nulls(PERM_VAL.HER2_STATUS)
 
     test_date = None
     psa_level = factory.Faker("pyfloat", min_value=0, max_value=20, right_digits=1)
@@ -695,15 +627,10 @@ class BiomarkerFactory(factory.django.DjangoModelFactory):
     her2_ish_status = factory.Faker("random_element", elements=PERM_VAL.HER2_STATUS)
     hpv_ihc_status = factory.Faker("random_element", elements=PERM_VAL.ER_PR_HPV_STATUS)
     hpv_pcr_status = factory.Faker("random_element", elements=PERM_VAL.ER_PR_HPV_STATUS)
-    null_hpv_strain = twenty_percent_true()
-    hpv_strain = factory.Maybe("null_hpv_strain",
-                               None,
-                               factory.Faker(
-                                   "random_elements",
-                                   elements=PERM_VAL.HPV_STRAIN,
-                                   length=random.randint(1, 5),
-                                   unique=True,
-                               ))
+    hpv_strain = factory.Faker("random_elements",
+                               elements=PERM_VAL.HPV_STRAIN,
+                               length=random.randint(1, 5),
+                               unique=True)
     # TODO: figure out how to link to objects below
     submitter_specimen_id = None
     submitter_primary_diagnosis_id = None
@@ -718,7 +645,7 @@ class BiomarkerFactory(factory.django.DjangoModelFactory):
     @factory.post_generation
     def set_date(self, create, extracted, **kwargs):
         donor = self.donor_uuid
-        if twenty_percent_true():
+        if random.random() > .15:
             self.test_date = None
         elif donor.date_of_death and donor.date_of_birth:
             test_day_int = random.randint(donor.date_of_birth['day_interval'], donor.date_of_death['day_interval'])
@@ -806,11 +733,11 @@ class ComorbidityFactory(factory.django.DjangoModelFactory):
 class ExposureFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Exposure
-        exclude = ("fill_status", )
+        exclude = ("fill_status",)
 
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
-    fill_status = factory.LazyFunction(lambda: twenty_percent_true())
+    fill_status = factory.LazyFunction(lambda: random.random() > 0.15)
     tobacco_smoking_status = factory.Maybe("fill_status",
                                            factory.Faker("random_element", elements=PERM_VAL.SMOKING_STATUS),
                                            None)
@@ -823,9 +750,7 @@ class ExposureFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def set_smoking_information(self, create, extracted, **kwargs):
-        if twenty_percent_true():
-            pass
-        elif self.tobacco_smoking_status:
+        if self.tobacco_smoking_status:
             if self.tobacco_smoking_status not in ["Not applicable", "Smoking history not documented",
                                                    "Lifelong non-smoker (<100 cigarettes smoked in lifetime)"]:
                 self.tobacco_type = random.sample(SYNTH_VAL.SMOKER_TOBACCO_TYPE, k=random.randint(1, 3))

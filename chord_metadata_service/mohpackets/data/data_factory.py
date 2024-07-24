@@ -3,6 +3,7 @@ import sys
 import json
 import argparse
 import pathlib
+import tqdm
 
 # Add your Django project's root directory to the Python path
 sys.path.append(
@@ -38,7 +39,15 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
 
 from synth_data_factories import (
     SynthDonorFactory,
-    SynthPrimaryDiagnosisFactory
+    SynthPrimaryDiagnosisFactory,
+    SynthSpecimenFactory,
+    SynthSampleRegistrationFactory,
+    SynthTreatmentFactory,
+    SynthSystemicTherapyFactory,
+    SynthSurgeryFactory,
+    SynthRadiationFactory,
+    SynthBiomarkerFactory,
+
 )
 
 
@@ -48,75 +57,86 @@ class Dataset:
     @classmethod
     def __init__(cls, program_count=4, donor_count=80, pd_count=80, specimen_count=80, sample_count=240,
                  treatment_count=160, radiation_count=80, surgery_count=80, comorbidity_count=40, biomarker_count=40,
-                 exposure_count=30, followup_count=20, sys_therapy_count=320):
+                 exposure_count=40, followup_count=40, sys_therapy_count=320):
         logging.info("Creating Programs...")
         ProgramFactory.reset_sequence(1)
         cls.Program = ProgramFactory.create_batch(program_count)
-        logging.info("Creating Donors...")
+
         DonorFactory.reset_sequence(1)
-        cls.Donor = DonorFactory.create_batch(
-            donor_count, program_id=factory.Iterator(cls.Program)
-        )
-        cls.SynthDonor = SynthDonorFactory.create_batch(
-            donor_count, program_id=factory.Iterator(cls.Program)
-        )
-        logging.info("Creating Primary Diagnoses...")
         PrimaryDiagnosisFactory.reset_sequence(1)
-        cls.PrimaryDiagnosis = PrimaryDiagnosisFactory.create_batch(
-            pd_count, donor_uuid=factory.Iterator(cls.Donor)
-        )
-        cls.SynthPrimaryDiagnosis = SynthPrimaryDiagnosisFactory.create_batch(
-            pd_count, donor_uuid=factory.Iterator(cls.Donor)
-        )
-        logging.info("Creating Specimens...")
         SpecimenFactory.reset_sequence(1)
-        cls.Specimen = SpecimenFactory.create_batch(
-            specimen_count, primary_diagnosis_uuid=factory.Iterator(cls.PrimaryDiagnosis)
-        )
-        logging.info("Creating Sample registrations...")
         SampleRegistrationFactory.reset_sequence(1)
-        cls.SampleRegistration = SampleRegistrationFactory.create_batch(
-            sample_count, specimen_uuid=factory.Iterator(cls.Specimen)
-        )
-        logging.info("Creating Treatments...")
         TreatmentFactory.reset_sequence(1)
-        cls.Treatment = TreatmentFactory.create_batch(
-            treatment_count, primary_diagnosis_uuid=factory.Iterator(cls.PrimaryDiagnosis)
-        )
-        logging.info("Creating Systemic therapies...")
-        cls.SystemicTherapy = SystemicTherapyFactory.create_batch(
-            sys_therapy_count, treatment_uuid=factory.Iterator(cls.Treatment)
-        )
-        logging.info("Creating Radiations...")
-        cls.Radiation = RadiationFactory.create_batch(
-            radiation_count, treatment_uuid=factory.Iterator(cls.Treatment[0:int(treatment_count / 2)])
-        )
-        logging.info("Creating Surgeries...")
-        cls.Surgery = SurgeryFactory.create_batch(
-            surgery_count, treatment_uuid=factory.Iterator(cls.Treatment[int(treatment_count / 2):treatment_count])
-        )
-        logging.info("Creating Comorbidities...")
-        cls.Comorbidity = ComorbidityFactory.create_batch(
-            comorbidity_count, donor_uuid=factory.Iterator(cls.Donor[int(donor_count / 2):
-                                                                     int(donor_count / 2) + comorbidity_count])
-        )
-        logging.info("Creating Biomarkers...")
-        cls.Biomarker = BiomarkerFactory.create_batch(
-            biomarker_count, donor_uuid=factory.Iterator(cls.Donor)
-        )
-        logging.info("Creating Exposures...")
-        cls.Exposure = ExposureFactory.create_batch(
-            exposure_count,
-            donor_uuid=factory.Iterator(cls.Donor[int(exposure_count / 2):(int(exposure_count / 2) + exposure_count)])
-        )
-        logging.info("Creating Follow Ups...")
+        RadiationFactory.reset_sequence(1)
+        SurgeryFactory.reset_sequence(1)
+        SystemicTherapyFactory.reset_sequence(1)
+        BiomarkerFactory.reset_sequence(1)
+        ComorbidityFactory.reset_sequence(1)
+        ExposureFactory.reset_sequence(1)
         FollowUpFactory.reset_sequence(1)
-        cls.FollowUp = FollowUpFactory.create_batch(
-            followup_count,
-            donor_uuid=factory.Iterator(cls.Donor),
-            primary_diagnosis_uuid=factory.Iterator(cls.PrimaryDiagnosis),
-            treatment_uuid=factory.Iterator(cls.Treatment)
-        )
+
+        cls.Donor = []
+        cls.PrimaryDiagnosis = []
+        cls.Specimen = []
+        cls.SampleRegistration = []
+        cls.Treatment = []
+        cls.SysTherapy = []
+        cls.Radiation = []
+        cls.Surgery = []
+        cls.Comorbidity = []
+        cls.Biomarker = []
+        cls.Exposure = []
+        cls.FollowUp = []
+
+        donors_per_program = int(donor_count / program_count)
+        samples_per_specimen = int(sample_count / specimen_count)
+        treatments_per_pd = int(treatment_count / pd_count)
+        sys_therapy_per_treatment = int(sys_therapy_count / treatment_count)
+        followups_per_program = int(followup_count / program_count)
+        exposure_start_index = int(donors_per_program / 4)
+        exposure_end_index = int(exposure_start_index + (exposure_count / program_count))
+        for i in range(0, program_count):
+            logging.info(f"Creating data for PROGRAM_0{i + 1}")
+            logging.info(f"Creating Donors...")
+            donor_batch = SynthDonorFactory.create_batch(
+                donors_per_program, program_id=cls.Program[i]
+            )
+            cls.Donor.extend(donor_batch)
+            logging.info("Primary Diagnoses...")
+            pd_batch = SynthPrimaryDiagnosisFactory.create_batch(
+                donors_per_program, donor_uuid=factory.Iterator(donor_batch)
+            )
+            cls.PrimaryDiagnosis.extend(pd_batch)
+            logging.info("Specimens...")
+            specimen_batch = SynthSpecimenFactory.create_batch(
+                donors_per_program, primary_diagnosis_uuid=factory.Iterator(pd_batch)
+            )
+            cls.Specimen.extend(specimen_batch)
+            logging.info("Creating linked objects per donor")
+            for j in tqdm.tqdm(range(0, donors_per_program)):
+                sample_batch = SynthSampleRegistrationFactory.create_batch(
+                    samples_per_specimen, specimen_uuid=specimen_batch[j])
+                cls.SampleRegistration.extend(sample_batch)
+                treatment_batch = SynthTreatmentFactory.create_batch(
+                    treatments_per_pd, primary_diagnosis_uuid=pd_batch[j]
+                )
+                cls.Treatment.extend(treatment_batch)
+                cls.Surgery.append(SynthSurgeryFactory.create(treatment_uuid=treatment_batch[0]))
+                cls.Radiation.append(SynthRadiationFactory.create(treatment_uuid=treatment_batch[1]))
+                for k in range(0, treatments_per_pd):
+                    sys_therapy_batch = SynthSystemicTherapyFactory.create_batch(
+                        sys_therapy_per_treatment, treatment_uuid=treatment_batch[k]
+                    )
+                    cls.SysTherapy.extend(sys_therapy_batch)
+                if j < followups_per_program:
+                    cls.FollowUp.append(FollowUpFactory.create(donor_uuid=donor_batch[j],
+                                                               primary_diagnosis_uuid=pd_batch[j],
+                                                               treatment_uuid=treatment_batch[0]))
+                    cls.Biomarker.append(SynthBiomarkerFactory.create(donor_uuid=donor_batch[j]))
+                if j >= followups_per_program:
+                    cls.Comorbidity.append(ComorbidityFactory.create(donor_uuid=donor_batch[j]))
+                if exposure_start_index < j <= exposure_end_index:
+                    cls.Exposure.append(ExposureFactory.create(donor_uuid=donor_batch[j]))
 
     def __getitem__(self, item):
         return getattr(self, item)
@@ -148,13 +168,12 @@ class Dataset:
         self.Biomarker = [self.clean_dict(x) for x in self.Biomarker]
         self.Comorbidity = [self.clean_dict(x) for x in self.Comorbidity]
         self.Donor = [self.clean_dict(x) for x in self.Donor]
-        self.SynthDonor = [self.clean_dict(x) for x in self.SynthDonor]
         self.Exposure = [self.clean_dict(x) for x in self.Exposure]
         self.PrimaryDiagnosis = [self.clean_dict(x) for x in self.PrimaryDiagnosis]
         self.Specimen = [self.clean_dict(x) for x in self.Specimen]
         self.SampleRegistration = [self.clean_dict(x) for x in self.SampleRegistration]
         self.Treatment = [self.clean_dict(x) for x in self.Treatment]
-        self.SystemicTherapy = [self.clean_dict(x) for x in self.SystemicTherapy]
+        self.SystemicTherapy = [self.clean_dict(x) for x in self.SysTherapy]
         self.Radiation = [self.clean_dict(x) for x in self.Radiation]
         self.Surgery = [self.clean_dict(x) for x in self.Surgery]
         self.FollowUp = [self.clean_dict(x) for x in self.FollowUp]
@@ -192,7 +211,6 @@ def parse_args():
 def main():
     factory.random.reseed_random('mohccn synthetic data')
     args = parse_args()
-    test_donor = DonorFactory(null_percent=20)
     if args.num_programs:
         params = {"program_count": args.num_programs, "donor_count": args.total_donors,
                   "pd_count": args.total_donors, "specimen_count": args.total_donors,
@@ -208,7 +226,7 @@ def main():
             "s": {"size": "small",
                   "params": {"program_count": 4, "donor_count": 80, "pd_count": 80, "specimen_count": 80,
                              "sample_count": 240, "treatment_count": 160, "radiation_count": 80, "surgery_count": 80,
-                             "comorbidity_count": 40, "biomarker_count": 40, "exposure_count": 40, "followup_count": 20,
+                             "comorbidity_count": 40, "biomarker_count": 40, "exposure_count": 40, "followup_count": 40,
                              "sys_therapy_count": 320}
                   },
             "m": {"size": "medium",
@@ -231,13 +249,14 @@ def main():
     programs.convert_to_dicts()
     path = f"{path}/synthetic_data"
     pathlib.Path(path).mkdir(parents=True, exist_ok=True)
+    logging.info(f"Saving objects to file in: {path}")
     for schema, data in programs.__dict__.items():
-        logging.info(f"Saving {schema} objects to file...")
         with open(f"{path}/{schema}.json", "w+") as f:
             if args.dont_minify:
                 json.dump(data, f, indent=4)
             else:
                 json.dump(data, f)
+    logging.info("All done.")
 
 
 if __name__ == "__main__":
