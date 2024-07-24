@@ -158,51 +158,39 @@ graph LR;
   
 ```
 
-
-Example Follow up linkages for follow ups `FOLLOW_UP_0001-0004`
-
-```mermaid
-graph LR;
-  FOLLOW_UP_0001 --> DONOR_0001;
-  FOLLOW_UP_0001 --> DIAG_0001 --> DONOR_0001 --> PROGRAM_01;  
-  FOLLOW_UP_0002 --> DONOR_0002 --> PROGRAM_01;
-  FOLLOW_UP_0002 --> TREATMENT_0003 --> DIAG_0002 --> DONOR_0002;
-  FOLLOW_UP_0003 --> DONOR_0003 --> PROGRAM_01; 
-  FOLLOW_UP_0004 --> DONOR_0004 --> PROGRAM_01;
-  FOLLOW_UP_0004 --> DIAG_0004 --> DONOR_0004;
-```
-
 ---
 
 ## Biomarkers, Comorbidities, Exposures to Donors
 
-Biomarkers may be linked to Donor alone or Donor plus treatment, primary diagnosis, specimen or followup. Synthetic data is only linked to Donors for now. Half of donors have a linked biomarker object. Comorbidities are linked directly to Donors, half of the donors in the dataset have a linked comorbidity. Exposures are linked directly to Donors, half of donors have a linked exposure.
+Synthetic data is only links Biomarkers to Donors Only. 
+
+The first 10 donors have a linked biomarker objects
+
+The second 10 donors have a linked comorbidity object
+
+Exposures are linked to the 'middle' 10 donors, sometimes linked with comorbidities, sometimes with biomarkers
 
 ```mermaid
 ---
 title: Biomarkers, Comorbidities, Exposures
 ---
 graph LR;  
-  BIOMARKER_uuid1 --> DONOR_0001 --> PROGRAM_01; 
-  EXPOSURE_uuid1 --> DONOR_0021 --> PROGRAM_01;  
-  BIOMARKER_uuid2 --> DONOR_0021;
-  COMORBIDITY_uuid1 --> DONOR_0041 --> PROGRAM_01;
-  EXPOSURE_uuid2 --> DONOR_0041;
-  BIOMARKER_uuid3 --> DONOR_0002 --> PROGRAM_02;  
-  EXPOSURE_uuid3 --> DONOR_0022 --> PROGRAM_02;
-  BIOMARKER_uuid4 --> DONOR_0022;
-  COMORBIDITY_uuid2 --> DONOR_0042 --> PROGRAM_02;
-  EXPOSURE_uuid4 --> DONOR_0042;
-  BIOMARKER_uuid5 --> DONOR_0003 --> PROGRAM_03;
-  EXPOSURE_uuid5 --> DONOR_0023 --> PROGRAM_03;
-  BIOMARKER_uuid6 --> DONOR_0023;
-  COMORBIDITY_uuid3 --> DONOR_0043 --> PROGRAM_03;  
-  EXPOSURE_uuid6 --> DONOR_0043;
-  BIOMARKER_uuid7 --> DONOR_0004 --> PROGRAM_04;
-  EXPOSURE_uuid7 --> DONOR_0024 --> PROGRAM_04;
-  BIOMARKER_uuid8 --> DONOR_0024;
-  COMORBIDITY_uuid4 --> DONOR_0044 --> PROGRAM_04;
-  EXPOSURE_uuid8 --> DONOR_0044;
+  BIOMARKER_uuid1_10 --> DONOR_0001_0010 --> PROGRAM_01; 
+  COMORBIDITY_uuid1_10 --> DONOR_0011_0020 --> PROGRAM_01;
+  EXPOSURE_uuid1_10 --> DONOR_007_16 --> PROGRAM_01;
+  
+  BIOMARKER_uuid11_20 --> DONOR_0021_30 --> PROGRAM_02;
+  COMORBIDITY_uuid11_20 --> DONOR_0031_0040 --> PROGRAM_02;
+  EXPOSURE_uuid11_20 --> DONOR_0027_36 --> PROGRAM_02;
+
+  BIOMARKER_uuid21_30 --> DONOR_0041_50 --> PROGRAM_03;
+  COMORBIDITY_uuid21_30 --> DONOR_0051_0060 --> PROGRAM_03;
+  EXPOSURE_uuid21_30 --> DONOR_0047_56 --> PROGRAM_03;
+
+  BIOMARKER_uuid31_40 --> DONOR_0061_70 --> PROGRAM_04;
+  COMORBIDITY_uuid31_40 --> DONOR_0071_0080 --> PROGRAM_04;
+  EXPOSURE_uuid31_40 --> DONOR_0067_76 --> PROGRAM_04;  
+  
 ```
 
 ---
