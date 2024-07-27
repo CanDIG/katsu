@@ -140,3 +140,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # ------------------------------------------------
 
 KATSU_VERSION = "4.6.0"
+
+
+import candigv2_logging.logging
+
+candigv2_logging.logging.initialize()

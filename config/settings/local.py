@@ -72,29 +72,6 @@ LOCAL_OPA_DATASET = {
 
 QUERY_SERVICE_TOKEN = "query"
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "console": {
-            "format": "[%(asctime)s] [%(name)s] %(levelname)s: %(message)s",
-            "datefmt": "%d/%b/%Y %H:%M:%S",
-        },
-    },
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-            "formatter": "console",
-        },
-    },
-    "loggers": {
-        "": {
-            "level": "INFO",
-            "handlers": ["console"],
-        },
-    },
-}
-
 # Debug toolbar settings
 # ----------------------
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
