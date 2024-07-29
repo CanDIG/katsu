@@ -5,10 +5,8 @@ import factory
 from django.conf import settings
 from django.test import Client, TestCase
 
-from chord_metadata_service.mohpackets.tests.endpoints.factories import (
-    ChemotherapyFactory,
+from chord_metadata_service.mohpackets.tests.factories import (
     DonorFactory,
-    ImmunotherapyFactory,
     PrimaryDiagnosisFactory,
     ProgramFactory,
     SampleRegistrationFactory,
@@ -66,12 +64,11 @@ class BaseTestCase(TestCase):
         cls.treatments = TreatmentFactory.create_batch(
             16, primary_diagnosis_uuid=factory.Iterator(cls.primary_diagnoses)
         )
-        cls.chemotherapies = ChemotherapyFactory.create_batch(
-            4, treatment_uuid=factory.Iterator(cls.treatments[0:4])
-        )
-        cls.immunotherapies = ImmunotherapyFactory.create_batch(
-            4, treatment_uuid=factory.Iterator(cls.treatments[4:8])
-        )
+        # need systemic
+
+        # exposure
+
+        # cormodibility
 
         # Define users permissions based on test data
         # The only different between a normal user and a curator is write permission
