@@ -5,7 +5,7 @@ from django.forms.models import model_to_dict
 
 from chord_metadata_service.mohpackets.models import SampleRegistration
 from chord_metadata_service.mohpackets.tests.endpoints.base import BaseTestCase
-from chord_metadata_service.mohpackets.tests.endpoints.factories import (
+from chord_metadata_service.mohpackets.tests.factories import (
     SampleRegistrationFactory,
 )
 
@@ -15,7 +15,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
 class SampleRegistrationTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.sample_registration_url = "/v2/ingest/sample_registrations/"
+        self.sample_registration_url = "/v3/ingest/sample_registrations/"
 
     def test_sample_registration_create_authorized(self):
         """
@@ -101,7 +101,7 @@ class SampleRegistrationTestCase(BaseTestCase):
 class GETTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.sample_registrations_url = "/v2/authorized/sample_registrations/"
+        self.sample_registrations_url = "/v3/authorized/sample_registrations/"
 
     def test_get_sample_registrations_200_ok(self):
         """
@@ -122,11 +122,11 @@ class GETTestCase(BaseTestCase):
         Test a GET request endpoint with a 301 redirection.
 
         Testing Strategy:
-        - Send a GET request to the '/v2/authorized/sample_registrations' endpoint.
+        - Send a GET request to the '/v3/authorized/sample_registrations' endpoint.
         - The request should receive a 301 redirection response.
         """
         response = self.client.get(
-            "/v2/authorized/sample_registrations",
+            "/v3/authorized/sample_registrations",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.MOVED_PERMANENTLY)
@@ -137,7 +137,7 @@ class GETTestCase(BaseTestCase):
 class OthersTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.sample_registrations_url = "/v2/authorized/sample_registrations/"
+        self.sample_registrations_url = "/v3/authorized/sample_registrations/"
 
     def test_get_datasets_match_permission(self):
         """
