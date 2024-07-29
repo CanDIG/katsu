@@ -34,7 +34,7 @@ class GenderCountSchema(Schema):
 
 
 class PrimarySiteCountSchema(Schema):
-    primary_site_name: str
+    primary_site_name: Optional[str]
     primary_site_count: str
 
 
