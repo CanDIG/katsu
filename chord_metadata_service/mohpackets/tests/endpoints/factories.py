@@ -69,10 +69,6 @@ class DonorFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Donor
         django_get_or_create = ("submitter_donor_id",)
-        exclude = ("fill_dob", "null_percent")
-
-    class Params:
-        null_percent = 0
 
     # default values
     submitter_donor_id = factory.Sequence(lambda n: f"DONOR_{str(n).zfill(4)}")
@@ -108,6 +104,7 @@ class DonorFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def consistent_dates(self, create, extracted, **kwargs):
+        "Calculate a month interval after the object is created so that the day and month intervals are consistent."
         if self.date_of_birth:
             self.date_of_birth['month_interval'] = days_to_months(self.date_of_birth['day_interval'])
         if self.date_of_death:
@@ -136,7 +133,7 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     pathological_n_category = factory.Faker("random_element", elements=PERM_VAL.N_CATEGORY)
     pathological_m_category = factory.Faker("random_element", elements=PERM_VAL.M_CATEGORY)
     pathological_stage_group = factory.Faker("random_element", elements=PERM_VAL.STAGE_GROUP)
-    primary_site = factory.Iterator(PERM_VAL.PRIMARY_SITE)
+    primary_site = factory.Faker("random_element", elements=PERM_VAL.PRIMARY_SITE)
 
     # Set the foreign keys
     program_id = factory.SelfAttribute("donor_uuid.program_id")
@@ -145,6 +142,7 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def set_clinical_event_identifier(self, create, extracted, **kwargs):
+        "If Donor isn't deceased, 85% of the time, fill out the 'lost_to_followup' fields on the linked donor"
         if random.random() > 0.15:
             pass
         else:
@@ -209,6 +207,7 @@ class SpecimenFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def set_date(self, create, extracted, **kwargs):
+        """85% of the time, set a specimen collection date."""
         if random.random() > .15:
             self.specimen_collection_date = None
         else:
@@ -238,7 +237,7 @@ class SampleRegistrationFactory(factory.django.DjangoModelFactory):
     specimen_tissue_source = factory.Faker(
         "random_element", elements=PERM_VAL.SPECIMEN_TISSUE_SOURCE
     )
-    tumour_normal_designation = factory.Iterator(["Normal", "Tumour", None])
+    tumour_normal_designation = factory.Iterator(PERM_VAL.TUMOUR_DESIGNATION)
     specimen_type = factory.Faker("random_element", elements=PERM_VAL.SPECIMEN_TYPE)
     sample_type = factory.Faker("random_element", elements=PERM_VAL.SAMPLE_TYPE)
 
@@ -425,7 +424,6 @@ class SystemicTherapyFactory(factory.django.DjangoModelFactory):
 class RadiationFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Radiation
-        exclude = ("null_dosage_fraction")
 
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
@@ -434,15 +432,10 @@ class RadiationFactory(factory.django.DjangoModelFactory):
         "random_element", elements=PERM_VAL.RADIATION_THERAPY_MODALITY
     )
     radiation_therapy_type = factory.Faker(
-        "random_element", elements=["External", "Internal", None]
+        "random_element", elements=PERM_VAL.THERAPY_TYPE
     )
-    null_dosage_fraction = factory.LazyFunction(lambda: random.random() > .15)
-    radiation_therapy_fractions = factory.Maybe("null_dosage_fraction",
-                                                None,
-                                                factory.Faker("random_int", min=1, max=30))
-    radiation_therapy_dosage = factory.Maybe("null_dosage_fraction",
-                                             None,
-                                             factory.Faker("random_int", min=1, max=100))
+    radiation_therapy_fractions = factory.Faker("random_int", min=1, max=30)
+    radiation_therapy_dosage = factory.Faker("random_int", min=1, max=100)
     anatomical_site_irradiated = factory.Faker(
         "random_element", elements=PERM_VAL.RADIATION_ANATOMICAL_SITE
     )
@@ -527,6 +520,7 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
                     self.surgery_reference_identifier = SYNTH_VAL.SURGERY_TYPE[self.surgery_type][
                         self.surgery_reference_database]
 
+
     @factory.post_generation
     def add_surgery_treatment_type(self, create, extracted, **kwargs):
         treatment = self.treatment_uuid
@@ -605,19 +599,12 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
                 self.date_of_relapse = {'day_interval': relapse_day_int,
                                         'month_interval': relapse_month_int}
 
-    # @factory.post_generation
-    # def correct_linkage(self, create, extracted, **kwargs):
-    #     """ Link to either PD or Treatment, not both, 20% link only to Donor"""
-    #     if random.random() > .15:
-    #         self.submitter_primary_diagnosis_id = None
-    #         self.submitter_treatment_id = None
-    #     elif self.submitter_primary_diagnosis_id:
-    #         self.submitter_treatment_id = None
-
 
 class BiomarkerFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Biomarker
+        exclude = ("fill_specimen", "fill_pd", "fill_treatment", "fill_followup",
+                   "specimen_uuid", "pd_uuid", "treatment_uuid", "followup_uuid")
 
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
@@ -638,11 +625,23 @@ class BiomarkerFactory(factory.django.DjangoModelFactory):
                                elements=PERM_VAL.HPV_STRAIN,
                                length=random.randint(1, 5),
                                unique=True)
-    # TODO: figure out how to link to objects below
-    submitter_specimen_id = None
-    submitter_primary_diagnosis_id = None
-    submitter_treatment_id = None
-    submitter_follow_up_id = None
+    # Alternate between linking biomarker to Donor, specimen, pd, treatment and followup
+    fill_specimen = factory.Iterator([False, True, False, False, False])
+    fill_pd = factory.Iterator([False, False, True, False, False])
+    fill_treatment = factory.Iterator([False, False, False, True, False])
+    fill_followup = factory.Iterator([False, False, False, False, True])
+    submitter_specimen_id = factory.Maybe("fill_specimen",
+                                          factory.SelfAttribute("specimen_uuid.submitter_specimen_id"),
+                                          None)
+    submitter_primary_diagnosis_id = factory.Maybe("fill_pd",
+                                                   factory.SelfAttribute("pd_uuid.submitter_primary_diagnosis_id"),
+                                                   None)
+    submitter_treatment_id = factory.Maybe("fill_treatment",
+                                           factory.SelfAttribute("treatment_uuid.submitter_treatment_id"),
+                                           None)
+    submitter_follow_up_id = factory.Maybe("fill_followup",
+                                           factory.SelfAttribute("followup_uuid.submitter_follow_up_id"),
+                                           None)
 
     # set foreign keys
     program_id = factory.SelfAttribute("donor_uuid.program_id")
@@ -651,6 +650,10 @@ class BiomarkerFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def set_date(self, create, extracted, **kwargs):
+        """Set dates after object generation to ensure consistency with death and birth dates of the donor.
+        Date generated will not necessarily be consistent with other linked objects if linked to a diagnosis, treatment,
+        followup or specimen.
+        """
         donor = self.donor_uuid
         if random.random() > .15:
             self.test_date = None
@@ -703,12 +706,12 @@ class ComorbidityFactory(factory.django.DjangoModelFactory):
 
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
-    prior_malignancy = None
-    laterality_of_prior_malignancy = None
-    age_at_comorbidity_diagnosis = None
-    comorbidity_type_code = factory.Faker("random_element", elements=SYNTH_VAL.ALL_CODES)
-    comorbidity_treatment_status = None
-    comorbidity_treatment = None
+    prior_malignancy = factory.Faker("random_element", elements=PERM_VAL.UBOOLEAN)
+    laterality_of_prior_malignancy = factory.Faker("random_element", elements=PERM_VAL.MALIGNANCY_LATERALITY)
+    age_at_comorbidity_diagnosis = factory.Faker("pyint", min_value=20, max_value=80)
+    comorbidity_type_code = factory.Faker("random_element", elements=['E10', 'C50.1', 'I11', 'M06'])
+    comorbidity_treatment_status = factory.Faker("random_element", elements=PERM_VAL.UBOOLEAN)
+    comorbidity_treatment = factory.Faker("pystr", min_chars=25, max_chars=255)
 
     # set foreign keys
     program_id = factory.SelfAttribute("donor_uuid.program_id")
@@ -726,7 +729,7 @@ class ComorbidityFactory(factory.django.DjangoModelFactory):
             comorbidity.laterality_of_prior_malignancy = random.choice(PERM_VAL.MALIGNANCY_LATERALITY)
             if donor.date_of_birth:
                 comorbidity.age_at_comorbidity_diagnosis = random.randint(10, age_at_diagnosis)
-            comorbidity.prior_malignancy = 'Yes'
+            comorbidity.prior_malignancy = "Yes"
             comorbidity.comorbidity_treatment_status = random.choice(PERM_VAL.UBOOLEAN)
             if comorbidity.comorbidity_treatment_status == "Yes":
                 comorbidity.comorbidity_treatment = random.choice(cancer_treatments)
