@@ -41,8 +41,6 @@ Author: Son Chau
 """
 
 logger = logging.getLogger(__name__)
-SAFE_METHODS = ("GET", "HEAD", "OPTIONS")
-
 
 ##########################################
 #                                        #
