@@ -7,13 +7,11 @@ from ninja import Query
 
 from chord_metadata_service.mohpackets.models import (
     Biomarker,
-    Chemotherapy,
+    SystemicTherapy,
     Comorbidity,
     Donor,
     Exposure,
     FollowUp,
-    HormoneTherapy,
-    Immunotherapy,
     PrimaryDiagnosis,
     Program,
     Radiation,
@@ -27,13 +25,11 @@ from chord_metadata_service.mohpackets.pagination import (
 )
 from chord_metadata_service.mohpackets.schemas.filter import (
     BiomarkerFilterSchema,
-    ChemotherapyFilterSchema,
+    SystemicTherapyFilterSchema,
     ComorbidityFilterSchema,
     DonorFilterSchema,
     ExposureFilterSchema,
     FollowUpFilterSchema,
-    HormoneTherapyFilterSchema,
-    ImmunotherapyFilterSchema,
     PrimaryDiagnosisFilterSchema,
     ProgramFilterSchema,
     RadiationFilterSchema,
@@ -44,13 +40,11 @@ from chord_metadata_service.mohpackets.schemas.filter import (
 )
 from chord_metadata_service.mohpackets.schemas.model import (
     BiomarkerModelSchema,
-    ChemotherapyModelSchema,
+    SystemicTherapyModelSchema,
     ComorbidityModelSchema,
     DonorModelSchema,
     ExposureModelSchema,
     FollowUpModelSchema,
-    HormoneTherapyModelSchema,
-    ImmunotherapyModelSchema,
     PrimaryDiagnosisModelSchema,
     ProgramModelSchema,
     RadiationModelSchema,
@@ -131,9 +125,7 @@ def get_donor_with_clinical_data(request, program_id: str, donor_id: str):
             "biomarker_set",
             "comorbidity_set",
             "exposure_set",
-            "primarydiagnosis_set__treatment_set__chemotherapy_set",
-            "primarydiagnosis_set__treatment_set__hormonetherapy_set",
-            "primarydiagnosis_set__treatment_set__immunotherapy_set",
+            "primarydiagnosis_set__treatment_set__systemictherapy_set",
             "primarydiagnosis_set__treatment_set__radiation_set",
             "primarydiagnosis_set__treatment_set__surgery_set",
             "primarydiagnosis_set__treatment_set__followup_set",
@@ -196,13 +188,13 @@ def list_biomarkers(request, filters: Query[BiomarkerFilterSchema]):
 
 
 @router.get(
-    "/chemotherapies/",
-    response=List[ChemotherapyModelSchema],
+    "/systemictherapies/",
+    response=List[SystemicTherapyModelSchema],
 )
-def list_chemotherapies(request, filters: Query[ChemotherapyFilterSchema]):
+def list_systemictherapies(request, filters: Query[SystemicTherapyFilterSchema]):
     q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
-    return Chemotherapy.objects.filter(q)
+    return SystemicTherapy.objects.filter(q)
 
 
 @router.get(
@@ -233,26 +225,6 @@ def list_follow_ups(request, filters: Query[FollowUpFilterSchema]):
     q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return FollowUp.objects.filter(q)
-
-
-@router.get(
-    "/hormone_therapies/",
-    response=List[HormoneTherapyModelSchema],
-)
-def list_hormone_therapies(request, filters: Query[HormoneTherapyFilterSchema]):
-    q = Q(program_id__in=request.read_datasets)
-    q &= filters.get_filter_expression()
-    return HormoneTherapy.objects.filter(q)
-
-
-@router.get(
-    "/immunotherapies/",
-    response=List[ImmunotherapyModelSchema],
-)
-def list_immunotherapies(request, filters: Query[ImmunotherapyFilterSchema]):
-    q = Q(program_id__in=request.read_datasets)
-    q &= filters.get_filter_expression()
-    return Immunotherapy.objects.filter(q)
 
 
 @router.get(
