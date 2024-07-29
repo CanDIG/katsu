@@ -18,12 +18,11 @@ from django.views.decorators.cache import cache_page
 from ninja.decorators import decorate_view
 
 from chord_metadata_service.mohpackets.models import (
-    Chemotherapy,
+    SystemicTherapy,
     Donor,
-    HormoneTherapy,
-    Immunotherapy,
     Program,
     Treatment,
+    PrimaryDiagnosis,
 )
 from chord_metadata_service.mohpackets.permissible_values import (
     PRIMARY_SITE,
@@ -104,23 +103,8 @@ def discover_sidebar_list(request):
     Retrieve the list of drug names and treatment for frontend usage
     """
     # Drugs queryable for chemotherapy
-    chemotherapy_drug_names = list(
-        Chemotherapy.objects.exclude(drug_name__isnull=True)
-        .values_list("drug_name", flat=True)
-        .order_by("drug_name")
-        .distinct()
-    )
-    # Drugs queryable for immunotherapy
-    immunotherapy_drug_names = list(
-        Immunotherapy.objects.exclude(drug_name__isnull=True)
-        .values_list("drug_name", flat=True)
-        .order_by("drug_name")
-        .distinct()
-    )
-
-    # Drugs queryable for hormone therapy
-    hormone_therapy_drug_names = list(
-        HormoneTherapy.objects.exclude(drug_name__isnull=True)
+    systemictherapy_drug_names = list(
+        SystemicTherapy.objects.exclude(drug_name__isnull=True)
         .values_list("drug_name", flat=True)
         .order_by("drug_name")
         .distinct()
@@ -129,9 +113,7 @@ def discover_sidebar_list(request):
     result = {
         "treatment_types": TREATMENT_TYPE,
         "tumour_primary_sites": PRIMARY_SITE,
-        "chemotherapy_drug_names": chemotherapy_drug_names,
-        "immunotherapy_drug_names": immunotherapy_drug_names,
-        "hormone_therapy_drug_names": hormone_therapy_drug_names,
+        "drug_names": systemictherapy_drug_names,
     }
 
     return result
@@ -224,12 +206,7 @@ def discover_primary_site_count(request):
     Return the count for every cancer type in the database.
     """
     result = (
-        Donor.objects.annotate(
-            primary_site_name=Func(
-                Coalesce(F("primary_site"), Value(["None"])), function="unnest"
-            )
-        )
-        .values("primary_site_name")
+        PrimaryDiagnosis.objects.values("primary_site")
         .annotate(count=Count("uuid"))
         .annotate(
             primary_site_count=Case(
@@ -240,6 +217,7 @@ def discover_primary_site_count(request):
                 default=Cast(F("count"), output_field=CharField()),
             )
         )
+        .annotate(primary_site_name=F("primary_site"))
         .values("primary_site_name", "primary_site_count")
     )
     return result
