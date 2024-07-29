@@ -5,7 +5,7 @@ from django.forms.models import model_to_dict
 
 from chord_metadata_service.mohpackets.models import Treatment
 from chord_metadata_service.mohpackets.tests.endpoints.base import BaseTestCase
-from chord_metadata_service.mohpackets.tests.endpoints.factories import TreatmentFactory
+from chord_metadata_service.mohpackets.tests.factories import TreatmentFactory
 
 
 # INGEST API
@@ -13,7 +13,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import Treatmen
 class TreatmentsIngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.treatment_url = "/v2/ingest/treatments/"
+        self.treatment_url = "/v3/ingest/treatments/"
 
     def test_treatment_create_authorized(self):
         """
@@ -98,7 +98,7 @@ class TreatmentsIngestTestCase(BaseTestCase):
 class GETTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.treatments_url = "/v2/authorized/treatments/"
+        self.treatments_url = "/v3/authorized/treatments/"
 
     def test_get_treatments_200_ok(self):
         """
@@ -119,11 +119,11 @@ class GETTestCase(BaseTestCase):
         Test a GET request endpoint with a 301 redirection.
 
         Testing Strategy:
-        - Send a GET request to the '/v2/authorized/treatments' endpoint.
+        - Send a GET request to the '/v3/authorized/treatments' endpoint.
         - The request should receive a 301 redirection response.
         """
         response = self.client.get(
-            "/v2/authorized/treatments",
+            "/v3/authorized/treatments",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.MOVED_PERMANENTLY)
@@ -134,7 +134,7 @@ class GETTestCase(BaseTestCase):
 class TreatmentsOthersTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.treatments_url = "/v2/authorized/treatments/"
+        self.treatments_url = "/v3/authorized/treatments/"
 
     def test_get_datasets_match_permission(self):
         """
