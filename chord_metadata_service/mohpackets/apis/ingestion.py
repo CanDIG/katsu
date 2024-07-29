@@ -6,13 +6,11 @@ from ninja import Router
 
 from chord_metadata_service.mohpackets.models import (
     Biomarker,
-    Chemotherapy,
+    SystemicTherapy,
     Comorbidity,
     Donor,
     Exposure,
     FollowUp,
-    HormoneTherapy,
-    Immunotherapy,
     PrimaryDiagnosis,
     Program,
     Radiation,
@@ -23,13 +21,11 @@ from chord_metadata_service.mohpackets.models import (
 )
 from chord_metadata_service.mohpackets.schemas.ingestion import (
     BiomarkerIngestSchema,
-    ChemotherapyIngestSchema,
+    SystemicTherapyIngestSchema,
     ComorbidityIngestSchema,
     DonorIngestSchema,
     ExposureIngestSchema,
     FollowUpIngestSchema,
-    HormoneTherapyIngestSchema,
-    ImmunotherapyIngestSchema,
     PrimaryDiagnosisIngestSchema,
     ProgramIngestSchema,
     RadiationIngestSchema,
@@ -94,11 +90,11 @@ def create_biomarkers(
     return create_instances(payload, Biomarker)
 
 
-@router.post("/chemotherapies/")
-def create_chemotherapies(
-    request, payload: List[ChemotherapyIngestSchema], response: HttpResponse
+@router.post("/systemictherapies/")
+def create_systemictherapies(
+    request, payload: List[SystemicTherapyIngestSchema], response: HttpResponse
 ):
-    return create_instances(payload, Chemotherapy)
+    return create_instances(payload, SystemicTherapy)
 
 
 @router.post("/comorbidities/")
@@ -120,21 +116,6 @@ def create_followups(
     request, payload: List[FollowUpIngestSchema], response: HttpResponse
 ):
     return create_instances(payload, FollowUp)
-
-
-@router.post("/hormone_therapies/")
-def create_hormone_therapies(
-    request, payload: List[HormoneTherapyIngestSchema], response: HttpResponse
-):
-    return create_instances(payload, HormoneTherapy)
-
-
-@router.post("/immunotherapies/")
-def create_immunotherapies(
-    request, payload: List[ImmunotherapyIngestSchema], response: HttpResponse
-):
-    return create_instances(payload, Immunotherapy)
-
 
 @router.post("/primary_diagnoses/")
 def create_primary_diagnoses(
