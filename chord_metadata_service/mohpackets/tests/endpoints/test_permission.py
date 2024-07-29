@@ -4,7 +4,7 @@ from django.conf import settings
 from django.forms.models import model_to_dict
 
 from chord_metadata_service.mohpackets.tests.endpoints.base import BaseTestCase
-from chord_metadata_service.mohpackets.tests.endpoints.factories import (
+from chord_metadata_service.mohpackets.tests.factories import (
     DonorFactory,
     PrimaryDiagnosisFactory,
     ProgramFactory,
@@ -30,7 +30,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.donor_url = "/v2/ingest/donors/"
+        self.donor_url = "/v3/ingest/donors/"
 
     def test_ingest_with_normal_user(self):
         """
@@ -139,7 +139,7 @@ class IngestTestCase(BaseTestCase):
 class DeleteTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.delete_url = "/v2/ingest/program/"
+        self.delete_url = "/v3/ingest/program/"
 
     def test_delete_with_normal_user(self):
         """
@@ -205,7 +205,7 @@ class DeleteTestCase(BaseTestCase):
 class GETTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.treatments_url = "/v2/authorized/treatments/"
+        self.treatments_url = "/v3/authorized/treatments/"
 
     def test_get_treatments_with_normal_user(self):
         """
