@@ -27,7 +27,6 @@ class DonorFilterSchema(FilterSchema):
     lost_to_followup_after_clinical_event_identifier: Optional[str] = Field(None)
     lost_to_followup_reason: Optional[str] = Field(None)
     cause_of_death: Optional[str] = Field(None)
-    primary_site: List[str] = Field(None, q="primary_site__overlap")
 
 
 class PrimaryDiagnosisFilterSchema(FilterSchema):
@@ -37,14 +36,17 @@ class PrimaryDiagnosisFilterSchema(FilterSchema):
     cancer_type_code: Optional[str] = Field(None)
     basis_of_diagnosis: Optional[str] = Field(None)
     laterality: Optional[str] = Field(None)
-    lymph_nodes_examined_status: Optional[str] = Field(None)
-    lymph_nodes_examined_method: Optional[str] = Field(None)
-    number_lymph_nodes_positive: Optional[int] = Field(None)
     clinical_tumour_staging_system: Optional[str] = Field(None)
     clinical_t_category: Optional[str] = Field(None)
     clinical_n_category: Optional[str] = Field(None)
     clinical_m_category: Optional[str] = Field(None)
     clinical_stage_group: Optional[str] = Field(None)
+    primary_site: Optional[str] = Field(None)
+    pathological_tumour_staging_system: Optional[str] = Field(None)
+    pathological_t_category: Optional[str] = Field(None)
+    pathological_n_category: Optional[str] = Field(None)
+    pathological_m_category: Optional[str] = Field(None)
+    pathological_stage_group: Optional[str] = Field(None)
 
 
 class SpecimenFilterSchema(FilterSchema):
@@ -52,11 +54,7 @@ class SpecimenFilterSchema(FilterSchema):
     program_id: Optional[str] = Field(None)
     submitter_donor_id: Optional[str] = Field(None)
     submitter_primary_diagnosis_id: Optional[str] = Field(None)
-    pathological_tumour_staging_system: Optional[str] = Field(None)
-    pathological_t_category: Optional[str] = Field(None)
-    pathological_n_category: Optional[str] = Field(None)
-    pathological_m_category: Optional[str] = Field(None)
-    pathological_stage_group: Optional[str] = Field(None)
+    submitter_treatment_id: Optional[str] = Field(None)
     specimen_storage: Optional[str] = Field(None)
     specimen_processing: Optional[str] = Field(None)
     tumour_histological_type: Optional[str] = Field(None)
@@ -88,38 +86,24 @@ class TreatmentFilterSchema(FilterSchema):
     submitter_primary_diagnosis_id: Optional[str] = Field(None)
     treatment_type: List[str] = Field(None, q="treatment_type__overlap")
     is_primary_treatment: Optional[str] = Field(None)
-    line_of_treatment: Optional[int] = Field(None)
-    treatment_setting: Optional[str] = Field(None)
     treatment_intent: Optional[str] = Field(None)
-    days_per_cycle: Optional[int] = Field(None)
-    number_of_cycles: Optional[int] = Field(None)
     response_to_treatment_criteria_method: Optional[str] = Field(None)
     response_to_treatment: Optional[str] = Field(None)
     status_of_treatment: Optional[str] = Field(None)
 
 
-class ChemotherapyFilterSchema(FilterSchema):
+class SystemicTherapyFilterSchema(FilterSchema):
     program_id: Optional[str] = Field(None)
     submitter_donor_id: Optional[str] = Field(None)
     submitter_treatment_id: Optional[str] = Field(None)
     drug_reference_database: Optional[str] = Field(None)
     drug_name: Optional[str] = Field(None)
     drug_reference_identifier: Optional[str] = Field(None)
-    chemotherapy_drug_dose_units: Optional[str] = Field(None)
+    drug_dose_units: Optional[str] = Field(None)
     prescribed_cumulative_drug_dose: Optional[int] = Field(None)
     actual_cumulative_drug_dose: Optional[int] = Field(None)
-
-
-class HormoneTherapyFilterSchema(FilterSchema):
-    program_id: Optional[str] = Field(None)
-    submitter_donor_id: Optional[str] = Field(None)
-    submitter_treatment_id: Optional[str] = Field(None)
-    drug_reference_database: Optional[str] = Field(None)
-    drug_name: Optional[str] = Field(None)
-    drug_reference_identifier: Optional[str] = Field(None)
-    hormone_drug_dose_units: Optional[str] = Field(None)
-    prescribed_cumulative_drug_dose: Optional[int] = Field(None)
-    actual_cumulative_drug_dose: Optional[int] = Field(None)
+    days_per_cycle: Optional[int] = Field(None)
+    number_of_cycles: Optional[int] = Field(None)
 
 
 class RadiationFilterSchema(FilterSchema):
@@ -135,24 +119,10 @@ class RadiationFilterSchema(FilterSchema):
     reference_radiation_treatment_id: Optional[str] = Field(None)
 
 
-class ImmunotherapyFilterSchema(FilterSchema):
-    program_id: Optional[str] = Field(None)
-    submitter_donor_id: Optional[str] = Field(None)
-    submitter_treatment_id: Optional[str] = Field(None)
-    drug_reference_database: Optional[str] = Field(None)
-    immunotherapy_type: Optional[str] = Field(None)
-    drug_name: Optional[str] = Field(None)
-    drug_reference_identifier: Optional[str] = Field(None)
-    immunotherapy_drug_dose_units: Optional[str] = Field(None)
-    prescribed_cumulative_drug_dose: Optional[int] = Field(None)
-    actual_cumulative_drug_dose: Optional[int] = Field(None)
-
-
 class SurgeryFilterSchema(FilterSchema):
     program_id: Optional[str] = Field(None)
     submitter_donor_id: Optional[str] = Field(None)
     submitter_treatment_id: Optional[str] = Field(None)
-    submitter_specimen_id: Optional[str] = Field(None)
     surgery_type: Optional[str] = Field(None)
     surgery_site: Optional[str] = Field(None)
     surgery_location: Optional[str] = Field(None)
@@ -170,6 +140,8 @@ class SurgeryFilterSchema(FilterSchema):
     )
     lymphovascular_invasion: Optional[str] = Field(None)
     perineural_invasion: Optional[str] = Field(None)
+    surgery_reference_database: Optional[str] = Field(None)
+    surgery_reference_identifier: Optional[str] = Field(None)
 
 
 class FollowUpFilterSchema(FilterSchema):
@@ -186,11 +158,6 @@ class FollowUpFilterSchema(FilterSchema):
     anatomic_site_progression_or_recurrence: List[str] = Field(
         None, q="anatomic_site_progression_or_recurrence__overlap"
     )
-    recurrence_tumour_staging_system: Optional[str] = Field(None)
-    recurrence_t_category: Optional[str] = Field(None)
-    recurrence_n_category: Optional[str] = Field(None)
-    recurrence_m_category: Optional[str] = Field(None)
-    recurrence_stage_group: Optional[str] = Field(None)
 
 
 class BiomarkerFilterSchema(FilterSchema):
@@ -240,8 +207,6 @@ class DonorWithClinicalDataFilterSchema(FilterSchema):
 
 class DonorExplorerFilterSchema(FilterSchema):
     treatment_type: List[str] = Field(None, q="treatment_type__overlap")
-    primary_site: List[str] = Field(None, q="primary_site__overlap")
-    chemotherapy_drug_name: List[str] = Field(None)
-    immunotherapy_drug_name: List[str] = Field(None)
-    hormone_therapy_drug_name: List[str] = Field(None)
+    primary_site: List[str] = Field(None)
+    systemic_therapy_drug_name: List[str] = Field(None)
     exclude_cohorts: List[str] = Field(None)
