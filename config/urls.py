@@ -21,12 +21,12 @@ from chord_metadata_service.mohpackets.apis.core import api
 
 
 def redirect_to_default(request):
-    return HttpResponseRedirect("/v2/docs")
+    return HttpResponseRedirect("/v3/docs")
 
 
 urlpatterns = [
     path("", redirect_to_default),
-    path("v2/", api.urls),
+    path("v3/", api.urls),
 ]
 
 if settings.DEBUG:
