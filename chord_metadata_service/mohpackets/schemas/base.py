@@ -5,13 +5,10 @@ from ninja.orm import create_schema
 
 from chord_metadata_service.mohpackets.models import (
     Biomarker,
-    Chemotherapy,
     Comorbidity,
     Donor,
     Exposure,
     FollowUp,
-    HormoneTherapy,
-    Immunotherapy,
     PrimaryDiagnosis,
     Program,
     Radiation,
@@ -19,6 +16,7 @@ from chord_metadata_service.mohpackets.models import (
     Specimen,
     Surgery,
     Treatment,
+    SystemicTherapy,
 )
 from chord_metadata_service.mohpackets.permissible_values import (
     COMORBIDITY_REGEX,
@@ -125,7 +123,6 @@ BaseDonorSchema = create_schema(
         ("submitter_donor_id", str, Field(pattern=ID_REGEX, max_length=64)),
         ("date_of_birth", Optional[DateInterval], None),
         ("date_of_death", Optional[DateInterval], None),
-        ("primary_site", Optional[List[PrimarySiteEnum]], None),
         ("gender", Optional[GenderEnum], None),
         ("sex_at_birth", Optional[SexAtBirthEnum], None),
         ("lost_to_followup_reason", Optional[LostToFollowupReasonEnum], None),
@@ -145,14 +142,18 @@ BasePrimaryDiagnosisSchema = create_schema(
         ),
         ("date_of_diagnosis", Optional[DateInterval], None),
         ("basis_of_diagnosis", Optional[BasisOfDiagnosisEnum], None),
-        ("lymph_nodes_examined_status", Optional[LymphNodeStatusEnum], None),
-        ("lymph_nodes_examined_method", Optional[LymphNodeMethodEnum], None),
         ("clinical_tumour_staging_system", Optional[TumourStagingSystemEnum], None),
         ("clinical_t_category", Optional[TCategoryEnum], None),
         ("clinical_n_category", Optional[NCategoryEnum], None),
         ("clinical_m_category", Optional[MCategoryEnum], None),
         ("clinical_stage_group", Optional[StageGroupEnum], None),
         ("laterality", Optional[PrimaryDiagnosisLateralityEnum], None),
+        ("primary_site", Optional[PrimarySiteEnum], None),
+        ("pathological_tumour_staging_system", Optional[TumourStagingSystemEnum], None),
+        ("pathological_t_category", Optional[TCategoryEnum], None),
+        ("pathological_n_category", Optional[NCategoryEnum], None),
+        ("pathological_m_category", Optional[MCategoryEnum], None),
+        ("pathological_stage_group", Optional[StageGroupEnum], None),
     ],
 )
 
@@ -169,11 +170,6 @@ BaseSpecimenSchema = create_schema(
     ],
     custom_fields=[
         ("submitter_specimen_id", str, Field(pattern=ID_REGEX, max_length=64)),
-        ("pathological_tumour_staging_system", Optional[TumourStagingSystemEnum], None),
-        ("pathological_t_category", Optional[TCategoryEnum], None),
-        ("pathological_n_category", Optional[NCategoryEnum], None),
-        ("pathological_m_category", Optional[MCategoryEnum], None),
-        ("pathological_stage_group", Optional[StageGroupEnum], None),
         ("specimen_storage", Optional[StorageEnum], None),
         (
             "tumour_histological_type",
@@ -249,7 +245,6 @@ BaseTreatmentSchema = create_schema(
         ("is_primary_treatment", Optional[uBooleanEnum], None),
         ("treatment_start_date", Optional[DateInterval], None),
         ("treatment_end_date", Optional[DateInterval], None),
-        ("treatment_setting", Optional[TreatmentSettingEnum], None),
         ("treatment_intent", Optional[TreatmentIntentEnum], None),
         (
             "response_to_treatment_criteria_method",
@@ -261,9 +256,9 @@ BaseTreatmentSchema = create_schema(
     ],
 )
 
-BaseChemotherapySchema = create_schema(
-    Chemotherapy,
-    name="BaseChemotherapySchema",
+BaseSystemicTherapySchema = create_schema(
+    SystemicTherapy,
+    name="BaseSystemicTherapySchema",
     exclude=[
         "uuid",
         "donor_uuid",
@@ -273,27 +268,11 @@ BaseChemotherapySchema = create_schema(
         "treatment_uuid",
     ],
     custom_fields=[
-        ("chemotherapy_drug_dose_units", Optional[DosageUnitsEnum], None),
+        ("drug_dose_units", Optional[DosageUnitsEnum], None),
         ("drug_reference_database", Optional[DrugReferenceDbEnum], None),
     ],
 )
 
-BaseHormoneTherapySchema = create_schema(
-    HormoneTherapy,
-    name="BaseHormoneTherapySchema",
-    exclude=[
-        "uuid",
-        "donor_uuid",
-        "submitter_donor_id",
-        "program_id",
-        "submitter_treatment_id",
-        "treatment_uuid",
-    ],
-    custom_fields=[
-        ("hormone_drug_dose_units", Optional[DosageUnitsEnum], None),
-        ("drug_reference_database", Optional[DrugReferenceDbEnum], None),
-    ],
-)
 
 BaseRadiationSchema = create_schema(
     Radiation,
@@ -313,23 +292,6 @@ BaseRadiationSchema = create_schema(
     ],
 )
 
-BaseImmunotherapySchema = create_schema(
-    Immunotherapy,
-    name="BaseImmunotherapySchema",
-    exclude=[
-        "uuid",
-        "donor_uuid",
-        "submitter_donor_id",
-        "program_id",
-        "submitter_treatment_id",
-        "treatment_uuid",
-    ],
-    custom_fields=[
-        ("immunotherapy_type", Optional[ImmunotherapyTypeEnum], None),
-        ("drug_reference_database", Optional[DrugReferenceDbEnum], None),
-        ("immunotherapy_drug_dose_units", Optional[DosageUnitsEnum], None),
-    ],
-)
 
 BaseSurgerySchema = create_schema(
     Surgery,
@@ -343,7 +305,6 @@ BaseSurgerySchema = create_schema(
         "treatment_uuid",
     ],
     custom_fields=[
-        ("surgery_type", Optional[SurgeryTypeEnum], None),
         (
             "surgery_site",
             Optional[str],
@@ -389,11 +350,6 @@ BaseFollowUpSchema = create_schema(
             None,
         ),
         ("anatomic_site_progression_or_recurrence", Optional[List[str]], None),
-        ("recurrence_tumour_staging_system", Optional[TumourStagingSystemEnum], None),
-        ("recurrence_t_category", Optional[TCategoryEnum], None),
-        ("recurrence_n_category", Optional[NCategoryEnum], None),
-        ("recurrence_m_category", Optional[MCategoryEnum], None),
-        ("recurrence_stage_group", Optional[StageGroupEnum], None),
     ],
 )
 

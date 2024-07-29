@@ -3,13 +3,11 @@ from typing import Optional
 from ninja import Field
 from chord_metadata_service.mohpackets.schemas.base import (
     BaseBiomarkerSchema,
-    BaseChemotherapySchema,
+    BaseSystemicTherapySchema,
     BaseComorbiditySchema,
     BaseDonorSchema,
     BaseExposureSchema,
     BaseFollowUpSchema,
-    BaseHormoneTherapySchema,
-    BaseImmunotherapySchema,
     BasePrimaryDiagnosisSchema,
     BaseProgramSchema,
     BaseRadiationSchema,
@@ -66,13 +64,13 @@ class BiomarkerIngestSchema(BaseBiomarkerSchema):
         use_enum_values = True
 
 
-class ChemotherapyIngestSchema(BaseChemotherapySchema):
+class SystemicTherapyIngestSchema(BaseSystemicTherapySchema):
     program_id_id: str = Field(..., alias="program_id")
     submitter_donor_id: str
     submitter_treatment_id: str
     uuid: Optional[str] = None
 
-    class Config(BaseChemotherapySchema.Config):
+    class Config(BaseSystemicTherapySchema.Config):
         use_enum_values = True
 
 
@@ -105,24 +103,6 @@ class FollowUpIngestSchema(BaseFollowUpSchema):
         use_enum_values = True
 
 
-class HormoneTherapyIngestSchema(BaseHormoneTherapySchema):
-    program_id_id: str = Field(..., alias="program_id")
-    submitter_donor_id: str
-    submitter_treatment_id: str
-    uuid: Optional[str] = None
-
-    class Config(BaseHormoneTherapySchema.Config):
-        use_enum_values = True
-
-
-class ImmunotherapyIngestSchema(BaseImmunotherapySchema):
-    program_id_id: str = Field(..., alias="program_id")
-    submitter_donor_id: str
-    submitter_treatment_id: str
-    uuid: Optional[str] = None
-
-    class Config(BaseImmunotherapySchema.Config):
-        use_enum_values = True
 
 
 class RadiationIngestSchema(BaseRadiationSchema):
