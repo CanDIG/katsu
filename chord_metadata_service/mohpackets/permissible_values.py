@@ -504,9 +504,7 @@ LYMPH_NODE_METHOD = [
 
 TREATMENT_TYPE = [
     "Bone marrow transplant",
-    "Chemotherapy",
-    "Hormonal therapy",
-    "Immunotherapy",
+    "Systemic therapy",
     "No treatment",
     "Other targeting molecular therapy",
     "Photodynamic therapy",
@@ -950,6 +948,7 @@ SURGERY_TYPE = [
 ]
 
 SURGERY_LOCATION = ["Local recurrence", "Metastatic", "Primary"]
+SURGERY_REFERENCE_DATABASE = ["SNOMED", "NCIt", "UMLS"]
 
 TUMOUR_FOCALITY = [
     "Cannot be assessed",
@@ -1085,10 +1084,11 @@ TOBACCO_TYPE = [
 ]
 TUMOUR_DESIGNATION = ["Normal", "Tumour"]
 THERAPY_TYPE = ["External", "Internal"]
+SYSTEMIC_THERAPY_TYPE = ["Chemotherapy", "Hormone therapy", "Immunotherapy"]
 
 # ID format
 # Examples: 90234, BLD_donor_89, AML-90
-ID_REGEX = r"^[A-Za-z0-9\-\._]{1,64}"
+ID_REGEX = r"^[A-Za-z0-9\-\._]{1,64}$"
 
 # Date format
 # A date, or partial date (e.g. just year or year + month) as used in
@@ -1160,6 +1160,9 @@ RadiationAnatomicalSiteEnum = list_to_enum(
 )
 ImmunotherapyTypeEnum = list_to_enum("ImmunotherapyTypeEnum", IMMUNOTHERAPY_TYPE)
 SurgeryTypeEnum = list_to_enum("SurgeryTypeEnum", SURGERY_TYPE)
+SurgeryReferenceDatabaseEnum = list_to_enum(
+    "SurgeryReferenceDatabaseEnum", SURGERY_REFERENCE_DATABASE
+)
 SurgeryLocationEnum = list_to_enum("SurgeryLocationEnum", SURGERY_LOCATION)
 TumourFocalityEnum = list_to_enum("TumourFocalityEnum", TUMOUR_FOCALITY)
 TumourClassificationEnum = list_to_enum(
@@ -1187,3 +1190,4 @@ SmokingStatusEnum = list_to_enum("SmokingStatusEnum", SMOKING_STATUS)
 TobaccoTypeEnum = list_to_enum("TobaccoTypeEnum", TOBACCO_TYPE)
 TumourDesginationEnum = list_to_enum("TumourDesginationEnum", TUMOUR_DESIGNATION)
 TherapyTypeEnum = list_to_enum("TherapyTypeEnum", THERAPY_TYPE)
+SystemicTherapyTypeEnum = list_to_enum("SystemicTherapyTypeEnum", SYSTEMIC_THERAPY_TYPE)
