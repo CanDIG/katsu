@@ -576,7 +576,7 @@ Return the count for age of diagnosis by calculating the date of birth interval.
           "response_to_treatment_criteria_method": "RECIST 1.1",
           "response_to_treatment": "Complete response",
           "status_of_treatment": "Treatment completed as prescribed",
-          "systemictherapies": [
+          "systemic_therapies": [
             {
               "systemic_therapy_type": "string",
               "days_per_cycle": 0,
@@ -6783,7 +6783,7 @@ TreatmentTypeEnum
           "response_to_treatment_criteria_method": "RECIST 1.1",
           "response_to_treatment": "Complete response",
           "status_of_treatment": "Treatment completed as prescribed",
-          "systemictherapies": [
+          "systemic_therapies": [
             {
               "systemic_therapy_type": "string",
               "days_per_cycle": 0,
@@ -7905,7 +7905,7 @@ or
       "response_to_treatment_criteria_method": "RECIST 1.1",
       "response_to_treatment": "Complete response",
       "status_of_treatment": "Treatment completed as prescribed",
-      "systemictherapies": [
+      "systemic_therapies": [
         {
           "systemic_therapy_type": "string",
           "days_per_cycle": 0,
@@ -9361,7 +9361,7 @@ or
   "response_to_treatment_criteria_method": "RECIST 1.1",
   "response_to_treatment": "Complete response",
   "status_of_treatment": "Treatment completed as prescribed",
-  "systemictherapies": [
+  "systemic_therapies": [
     {
       "systemic_therapy_type": "string",
       "days_per_cycle": 0,
@@ -9588,7 +9588,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|systemictherapies|[[NestedSystemicTherapySchema](#schemanestedsystemictherapyschema)]|false|none|none|
+|systemic_therapies|[[NestedSystemicTherapySchema](#schemanestedsystemictherapyschema)]|false|none|none|
 |radiations|[[NestedRadiationSchema](#schemanestedradiationschema)]|false|none|none|
 |surgeries|[[NestedSurgerySchema](#schemanestedsurgeryschema)]|false|none|none|
 |followups|[[NestedFollowUpSchema](#schemanestedfollowupschema)]|false|none|none|

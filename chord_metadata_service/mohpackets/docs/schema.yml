@@ -1887,10 +1887,10 @@ components:
             $ref: '#/components/schemas/NestedSurgerySchema'
           title: Surgeries
           type: array
-        systemictherapies:
+        systemic_therapies:
           items:
             $ref: '#/components/schemas/NestedSystemicTherapySchema'
-          title: Systemictherapies
+          title: Systemic Therapies
           type: array
         treatment_end_date:
           anyOf:

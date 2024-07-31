@@ -67,7 +67,7 @@ class NestedSampleRegistrationSchema(BaseSampleRegistrationSchema):
 
 
 class NestedTreatmentSchema(BaseTreatmentSchema):
-    systemictherapies: List[NestedSystemicTherapySchema] = Field(
+    systemic_therapies: List[NestedSystemicTherapySchema] = Field(
         None, alias="systemictherapy_set"
     )
     radiations: List[NestedRadiationSchema] = Field(None, alias="radiation_set")
