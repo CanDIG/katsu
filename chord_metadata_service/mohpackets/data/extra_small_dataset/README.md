@@ -24,7 +24,8 @@ Each donor has one primary diagnosis, each primary diagnosis has one specimen, e
 title: Samples, Specimens, Diagnoses, Donors, Programs
 ---
 graph LR;  
-  SPECIMEN_0001_5 --> DIAG_0001_5 --> DONOR_0001_5 --> SYNTH_01;  
+  SPECIMEN_0001_5 --> DIAG_0001_5 --> DONOR_0001_5 --> SYNTH_01;
+  SPECIMEN_0006_10 --> DIAG_0006_10 --> DONOR_0006_10 --> SYNTH_02;  
   SPECIMEN_ALL_0001 --> DIAG_ALL_0001 --> DONOR_ALL_0001 --> SYNTH_01;
   SPECIMEN_NULL_0001 --> DIAG_NULL_0001 --> DONOR_NULL_0001 --> SYNTH_01;
   SAMPLE_0001_15--> SPECIMEN_0001_5;
@@ -144,13 +145,7 @@ graph LR;
 
 ## Biomarkers, Comorbidities, Exposures to Donors
 
-Synthetic data is only links Biomarkers to Donors Only. 
-
-The first 3 donors have a linked biomarker objects
-
-The second 3 donors have a linked comorbidity object
-
-Exposures are linked to the 'middle' 3 donors, sometimes linked with comorbidities, sometimes with biomarkers
+Synthetic data is only links Biomarkers to Donors Only.
 
 ```mermaid
 graph LR;  
