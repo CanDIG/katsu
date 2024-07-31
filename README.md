@@ -64,13 +64,45 @@ This will install all the packages needed for development.
 
 ### Step 4: Set up PostgreSQL
 
-Replace "dbname", "username", and "password" with the values in [local.py](config/settings/local.py):
+Install for macOS:
+
+```bash
+# Install PostgreSQL
+brew install postgresql@16
+
+# Set PATH environment variable
+echo 'export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+# Start PostgreSQL service
+brew services start postgresql@16
+
+# Log in to PostgreSQL
+psql -d postgres
+```
+
+Install for Linux:
+
+```bash
+# Install PostgreSQL
+sudo apt install postgresql
+
+# Start PostgreSQL service
+sudo systemctl start postgresql.service
+
+# Log in to PostgreSQL
+sudo -u postgres psql
+```
+
+Create a Role and Database:
 
 ```sql
-sudo -u postgres psql
-CREATE DATABASE dbname;
-CREATE USER username WITH PASSWORD 'password';
-GRANT ALL PRIVILEGES ON DATABASE dbname TO username;
+CREATE ROLE admin_local WITH LOGIN PASSWORD 'password_local' CREATEDB CREATEROLE;
+CREATE DATABASE katsu_local WITH OWNER = admin_local;
+GRANT ALL PRIVILEGES ON DATABASE katsu_local TO admin_local;
+
+-- Quit PostgreSQL
+\q
 ```
 
 ### Step 5: Set up database
