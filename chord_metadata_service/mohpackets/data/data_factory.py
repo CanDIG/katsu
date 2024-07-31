@@ -295,9 +295,9 @@ class Dataset:
                     treatment_uuid=all_treatments[0],
                     followup_uuid=this_followup)
                 )
-            if i >= followups_per_program:
+            if i >= followups_per_program or all_type_donor_count == 1:
                 cls.Comorbidity.append(ComorbidityFactory.create(donor_uuid=all_donors[i]))
-            if exposure_start_index < i <= exposure_end_index:
+            if exposure_start_index < i <= exposure_end_index or all_type_donor_count == 1:
                 cls.Exposure.append(ExposureFactory.create(donor_uuid=all_donors[i]))
 
 
@@ -383,30 +383,32 @@ def main():
                   "pd_count": args.total_donors, "specimen_count": args.total_donors,
                   "sample_count": 3 * args.total_donors, "treatment_count": args.total_donors * 2,
                   "exposure_count": int(args.total_donors / 4), "followup_count": int(args.total_donors / 4),
-                  "sys_therapy_count": args.total_donors * 4}
+                  "sys_therapy_count": args.total_donors * 4, "all_type_donor_count": 2, "null_type_donor_count": 2}
         programs = Dataset(**params)
         path = f"custom_{args.num_programs}P_{args.total_donors}D_dataset"
     else:
         size_mapping = {
             "xs": {"size": "extra_small",
                    "params": {"program_count": 2, "donor_count": 10, "pd_count": 10, "specimen_count": 10,
-                              "sample_count": 30, "treatment_count": 20, "exposure_count": 5, "followup_count": 5,
-                              "sys_therapy_count": 40}
-                  },
+                              "sample_count": 30, "treatment_count": 20, "exposure_count": 5, "followup_count": 6,
+                              "sys_therapy_count": 40, "all_type_donor_count": 1, "null_type_donor_count": 1}
+                   },
             "s": {"size": "small",
                   "params": {"program_count": 4, "donor_count": 80, "pd_count": 80, "specimen_count": 80,
                              "sample_count": 240, "treatment_count": 160, "exposure_count": 40, "followup_count": 40,
-                             "sys_therapy_count": 320}
+                             "sys_therapy_count": 320, "all_type_donor_count": 2, "null_type_donor_count": 2}
                   },
             "m": {"size": "medium",
                   "params": {"program_count": 4, "donor_count": 800, "pd_count": 800, "specimen_count": 800,
                              "sample_count": 2400, "treatment_count": 1600, "exposure_count": 400,
-                             "followup_count": 200, "sys_therapy_count": 3200}
+                             "followup_count": 200, "sys_therapy_count": 3200, "all_type_donor_count": 2,
+                             "null_type_donor_count": 2}
                   },
             "l": {"size": "large",
                   "params": {"program_count": 4, "donor_count": 2000, "pd_count": 2000, "specimen_count": 2000,
                              "sample_count": 6000, "treatment_count": 4000, "exposure_count": 1000,
-                             "followup_count": 500, "sys_therapy_count": 8000}
+                             "followup_count": 500, "sys_therapy_count": 8000, "all_type_donor_count": 2,
+                             "null_type_donor_count": 2}
                   }
         }
         if not args.size:
