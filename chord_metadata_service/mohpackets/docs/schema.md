@@ -298,15 +298,15 @@ Return the count for age of diagnosis by calculating the date of birth interval.
 |---|---|---|---|---|
 |body|body|[BiomarkerIngestSchema](#schemabiomarkeringestschema)|true|none|
 
-## chord_metadata_service_mohpackets_apis_ingestion_create_systemictherapies
+## chord_metadata_service_mohpackets_apis_ingestion_create_systemic_therapies
 
-<a id="opIdchord_metadata_service_mohpackets_apis_ingestion_create_systemictherapies"></a>
+<a id="opIdchord_metadata_service_mohpackets_apis_ingestion_create_systemic_therapies"></a>
 
 `POST /v2/ingest/systemictherapies/`
 
-*Create Systemictherapies*
+*Create Systemic Therapies*
 
-<h3 id="chord_metadata_service_mohpackets_apis_ingestion_create_systemictherapies-parameters">Parameters</h3>
+<h3 id="chord_metadata_service_mohpackets_apis_ingestion_create_systemic_therapies-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1003,6 +1003,7 @@ Return the count for age of diagnosis by calculating the date of birth interval.
 |actual_cumulative_drug_dose|query|any|false|none|
 |days_per_cycle|query|any|false|none|
 |number_of_cycles|query|any|false|none|
+|systemic_therapy_type|query|any|false|none|
 |page|query|integer|false|none|
 |page_size|query|integer|false|none|
 
@@ -11835,7 +11836,8 @@ or
   "prescribed_cumulative_drug_dose": 0,
   "actual_cumulative_drug_dose": 0,
   "days_per_cycle": 0,
-  "number_of_cycles": 0
+  "number_of_cycles": 0,
+  "systemic_therapy_type": "string"
 }
 
 ```
@@ -12033,6 +12035,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|systemic_therapy_type|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
 
 or
 

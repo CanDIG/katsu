@@ -389,8 +389,8 @@
         },
         "/v2/ingest/systemictherapies/": {
             "post": {
-                "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_systemictherapies",
-                "summary": "Create Systemictherapies",
+                "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_systemic_therapies",
+                "summary": "Create Systemic Therapies",
                 "parameters": [],
                 "responses": {
                     "200": {
@@ -1903,6 +1903,22 @@
                                 }
                             ],
                             "title": "Number Of Cycles"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "systemic_therapy_type",
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Systemic Therapy Type"
                         },
                         "required": false
                     },
@@ -9667,6 +9683,17 @@
                             }
                         ],
                         "title": "Number Of Cycles"
+                    },
+                    "systemic_therapy_type": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Systemic Therapy Type"
                     }
                 },
                 "title": "SystemicTherapyFilterSchema",

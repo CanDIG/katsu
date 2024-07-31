@@ -4171,6 +4171,11 @@ components:
           - type: string
           - type: 'null'
           title: Submitter Treatment Id
+        systemic_therapy_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Systemic Therapy Type
       title: SystemicTherapyFilterSchema
       type: object
     SystemicTherapyIngestSchema:
@@ -6192,6 +6197,14 @@ paths:
           - type: 'null'
           title: Number Of Cycles
       - in: query
+        name: systemic_therapy_type
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Systemic Therapy Type
+      - in: query
         name: page
         required: false
         schema:
@@ -6825,7 +6838,7 @@ paths:
       - ingest
   /v2/ingest/systemictherapies/:
     post:
-      operationId: chord_metadata_service_mohpackets_apis_ingestion_create_systemictherapies
+      operationId: chord_metadata_service_mohpackets_apis_ingestion_create_systemic_therapies
       parameters: []
       requestBody:
         content:
@@ -6841,7 +6854,7 @@ paths:
           description: OK
       security:
       - IngestAuth: []
-      summary: Create Systemictherapies
+      summary: Create Systemic Therapies
       tags:
       - ingest
   /v2/ingest/treatments/:
