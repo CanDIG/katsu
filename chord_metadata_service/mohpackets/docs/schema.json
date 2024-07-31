@@ -3899,7 +3899,7 @@
                 "properties": {
                     "program_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Program Id",
                         "type": "string"
                     },
@@ -3970,7 +3970,7 @@
                 "properties": {
                     "submitter_donor_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Donor Id",
                         "type": "string"
                     },
@@ -4799,7 +4799,7 @@
                 "properties": {
                     "submitter_follow_up_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Follow Up Id",
                         "type": "string"
                     },
@@ -5017,7 +5017,7 @@
                 "properties": {
                     "submitter_primary_diagnosis_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Primary Diagnosis Id",
                         "type": "string"
                     },
@@ -5869,7 +5869,7 @@
                 "properties": {
                     "submitter_sample_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Sample Id",
                         "type": "string"
                     },
@@ -6066,7 +6066,7 @@
                 "properties": {
                     "submitter_specimen_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Specimen Id",
                         "type": "string"
                     },
@@ -6610,7 +6610,7 @@
                 "properties": {
                     "submitter_treatment_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Treatment Id",
                         "type": "string"
                     },
@@ -6806,9 +6806,7 @@
             "TreatmentTypeEnum": {
                 "enum": [
                     "Bone marrow transplant",
-                    "Chemotherapy",
-                    "Hormonal therapy",
-                    "Immunotherapy",
+                    "Systemic therapy",
                     "No treatment",
                     "Other targeting molecular therapy",
                     "Photodynamic therapy",
@@ -6823,7 +6821,7 @@
                 "properties": {
                     "submitter_donor_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Donor Id",
                         "type": "string"
                     },
@@ -7289,7 +7287,7 @@
                 "properties": {
                     "submitter_follow_up_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Follow Up Id",
                         "type": "string"
                     },
@@ -7372,7 +7370,7 @@
                 "properties": {
                     "submitter_primary_diagnosis_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Primary Diagnosis Id",
                         "type": "string"
                     },
@@ -7641,7 +7639,7 @@
                 "properties": {
                     "submitter_sample_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Sample Id",
                         "type": "string"
                     },
@@ -7696,7 +7694,7 @@
                 "properties": {
                     "submitter_specimen_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Specimen Id",
                         "type": "string"
                     },
@@ -8165,7 +8163,7 @@
                 "properties": {
                     "submitter_treatment_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Treatment Id",
                         "type": "string"
                     },
@@ -8377,7 +8375,7 @@
                 "properties": {
                     "program_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Program Id",
                         "type": "string"
                     },
@@ -8508,7 +8506,7 @@
                 "properties": {
                     "submitter_donor_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Donor Id",
                         "type": "string"
                     },
@@ -8930,7 +8928,7 @@
                 "properties": {
                     "submitter_primary_diagnosis_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Primary Diagnosis Id",
                         "type": "string"
                     },
@@ -10392,7 +10390,7 @@
                 "properties": {
                     "submitter_follow_up_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Follow Up Id",
                         "type": "string"
                     },
@@ -10971,7 +10969,7 @@
                 "properties": {
                     "submitter_sample_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Sample Id",
                         "type": "string"
                     },
@@ -11275,7 +11273,7 @@
                 "properties": {
                     "submitter_specimen_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Specimen Id",
                         "type": "string"
                     },
@@ -12053,7 +12051,7 @@
                 "properties": {
                     "submitter_treatment_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Treatment Id",
                         "type": "string"
                     },
@@ -12202,13 +12200,13 @@
                 "properties": {
                     "program_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Program Id",
                         "type": "string"
                     },
                     "submitter_donor_id": {
                         "maxLength": 64,
-                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}",
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
                         "title": "Submitter Donor Id",
                         "type": "string"
                     },

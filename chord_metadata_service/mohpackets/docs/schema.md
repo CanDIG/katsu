@@ -6678,9 +6678,7 @@ TreatmentTypeEnum
 |Property|Value|
 |---|---|
 |TreatmentTypeEnum|Bone marrow transplant|
-|TreatmentTypeEnum|Chemotherapy|
-|TreatmentTypeEnum|Hormonal therapy|
-|TreatmentTypeEnum|Immunotherapy|
+|TreatmentTypeEnum|Systemic therapy|
 |TreatmentTypeEnum|No treatment|
 |TreatmentTypeEnum|Other targeting molecular therapy|
 |TreatmentTypeEnum|Photodynamic therapy|

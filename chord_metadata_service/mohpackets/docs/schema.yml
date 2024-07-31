@@ -559,12 +559,12 @@ components:
           title: Primary Site
         program_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Program Id
           type: string
         submitter_donor_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Donor Id
           type: string
         submitter_sample_ids:
@@ -684,7 +684,7 @@ components:
           - type: 'null'
         submitter_donor_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Donor Id
           type: string
         uuid:
@@ -749,7 +749,7 @@ components:
           - type: 'null'
         submitter_donor_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Donor Id
           type: string
       required:
@@ -834,7 +834,7 @@ components:
           - type: 'null'
         submitter_donor_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Donor Id
           type: string
       required:
@@ -1053,7 +1053,7 @@ components:
           type: string
         submitter_follow_up_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Follow Up Id
           type: string
         submitter_primary_diagnosis_id:
@@ -1117,7 +1117,7 @@ components:
           type: string
         submitter_follow_up_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Follow Up Id
           type: string
         submitter_primary_diagnosis_id:
@@ -1468,7 +1468,7 @@ components:
           - type: 'null'
         submitter_follow_up_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Follow Up Id
           type: string
       required:
@@ -1551,7 +1551,7 @@ components:
           type: array
         submitter_primary_diagnosis_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Primary Diagnosis Id
           type: string
         treatments:
@@ -1616,7 +1616,7 @@ components:
           - type: 'null'
         submitter_sample_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Sample Id
           type: string
         tumour_normal_designation:
@@ -1676,7 +1676,7 @@ components:
           - type: 'null'
         submitter_specimen_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Specimen Id
           type: string
         submitter_treatment_id:
@@ -1879,7 +1879,7 @@ components:
           - type: 'null'
         submitter_treatment_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Treatment Id
           type: string
         surgeries:
@@ -2482,7 +2482,7 @@ components:
           type: string
         submitter_primary_diagnosis_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Primary Diagnosis Id
           type: string
         uuid:
@@ -2579,7 +2579,7 @@ components:
           type: string
         submitter_primary_diagnosis_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Primary Diagnosis Id
           type: string
       required:
@@ -2711,7 +2711,7 @@ components:
           title: Metadata
         program_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Program Id
           type: string
         updated:
@@ -2735,7 +2735,7 @@ components:
           title: Metadata
         program_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Program Id
           type: string
         updated:
@@ -3265,7 +3265,7 @@ components:
           type: string
         submitter_sample_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Sample Id
           type: string
         submitter_specimen_id:
@@ -3309,7 +3309,7 @@ components:
           type: string
         submitter_sample_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Sample Id
           type: string
         submitter_specimen_id:
@@ -3495,7 +3495,7 @@ components:
           type: string
         submitter_specimen_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Specimen Id
           type: string
         submitter_treatment_id:
@@ -3592,7 +3592,7 @@ components:
           type: string
         submitter_specimen_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Specimen Id
           type: string
         submitter_treatment_id:
@@ -4489,7 +4489,7 @@ components:
           type: string
         submitter_treatment_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Treatment Id
           type: string
         treatment_end_date:
@@ -4564,7 +4564,7 @@ components:
           type: string
         submitter_treatment_id:
           maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Treatment Id
           type: string
         treatment_end_date:
@@ -4661,9 +4661,7 @@ components:
     TreatmentTypeEnum:
       enum:
       - Bone marrow transplant
-      - Chemotherapy
-      - Hormonal therapy
-      - Immunotherapy
+      - Systemic therapy
       - No treatment
       - Other targeting molecular therapy
       - Photodynamic therapy
