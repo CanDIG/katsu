@@ -102,8 +102,8 @@ def discover_sidebar_list(request):
     """
     Retrieve the list of drug names and treatment for frontend usage
     """
-    # Drugs queryable for chemotherapy
-    systemictherapy_drug_names = list(
+    # Drugs queryable for systemic therapy
+    systemic_therapy_drug_names = list(
         SystemicTherapy.objects.exclude(drug_name__isnull=True)
         .values_list("drug_name", flat=True)
         .order_by("drug_name")
@@ -113,7 +113,7 @@ def discover_sidebar_list(request):
     result = {
         "treatment_types": TREATMENT_TYPE,
         "tumour_primary_sites": PRIMARY_SITE,
-        "drug_names": systemictherapy_drug_names,
+        "drug_names": systemic_therapy_drug_names,
     }
 
     return result

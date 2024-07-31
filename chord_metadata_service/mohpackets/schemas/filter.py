@@ -104,6 +104,7 @@ class SystemicTherapyFilterSchema(FilterSchema):
     actual_cumulative_drug_dose: Optional[int] = Field(None)
     days_per_cycle: Optional[int] = Field(None)
     number_of_cycles: Optional[int] = Field(None)
+    systemic_therapy_type: Optional[str] = Field(None)
 
 
 class RadiationFilterSchema(FilterSchema):

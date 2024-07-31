@@ -91,7 +91,7 @@ def create_biomarkers(
 
 
 @router.post("/systemictherapies/")
-def create_systemictherapies(
+def create_systemic_therapies(
     request, payload: List[SystemicTherapyIngestSchema], response: HttpResponse
 ):
     return create_instances(payload, SystemicTherapy)
