@@ -105,6 +105,8 @@ GRANT ALL PRIVILEGES ON DATABASE katsu_local TO admin_local;
 \q
 ```
 
+Note: In some cases, existing PostgreSQL might cause issues. You may need to clean them up manually.
+
 ### Step 5: Set up database
 
 With the database configured, run the following command to create the necessary database tables:
