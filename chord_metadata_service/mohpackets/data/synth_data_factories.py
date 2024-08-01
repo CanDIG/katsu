@@ -302,6 +302,7 @@ class NullSynthTreatmentFactory(TreatmentFactory):
         """override method to keep null values"""
         pass
 
+
 class AllSynthTreatmentFactory(TreatmentFactory):
     submitter_treatment_id = factory.Sequence(lambda n: f"TREATMENT_ALL_{str(n).zfill(4)}")
     is_primary_treatment = factory.Faker("random_element", elements=["Yes", "No"])

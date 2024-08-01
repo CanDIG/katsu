@@ -143,7 +143,7 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     @factory.post_generation
     def set_clinical_event_identifier(self, create, extracted, **kwargs):
         "If Donor isn't deceased, 85% of the time, fill out the 'lost_to_followup' fields on the linked donor"
-        if random.random() > 0.15:
+        if random.random() < 0.15:
             pass
         else:
             donor = self.donor_uuid
@@ -208,7 +208,7 @@ class SpecimenFactory(factory.django.DjangoModelFactory):
     @factory.post_generation
     def set_date(self, create, extracted, **kwargs):
         """85% of the time, set a specimen collection date."""
-        if random.random() > .15:
+        if random.random() < .15:
             self.specimen_collection_date = None
         else:
             self.specimen_collection_date = {"day_interval": random.randint(0, 90)}
@@ -217,7 +217,7 @@ class SpecimenFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def generate_histology_code(self, create, extracted, **kwargs):
-        if random.random() > .15:
+        if random.random() < .15:
             self.tumour_histological_type = None
         else:
             one = str(random.randint(8, 9))
@@ -293,13 +293,13 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
     @factory.post_generation
     def set_treatment_dates(self, create, extracted, **kwargs):
         treatment = self
-        if random.random() > .15:
+        if random.random() < .15:
             treatment.treatment_start_date = None
         else:
             day_int = random.randint(5, 180)
             treatment.treatment_start_date = {"day_interval": day_int,
                                               "month_interval": days_to_months(day_int)}
-        if random.random() > .15:
+        if random.random() < .15:
             treatment.treatment_end_date = None
         else:
             if treatment.treatment_start_date:
@@ -314,10 +314,11 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def correct_treatment_type(self, create, extracted, **kwargs):
-        if random.random() > .15:
-            self.treatment_type = None
+        if random.random() < .15:
+            self.treatment_type = []
         elif self.treatment_type and "No treatment" in self.treatment_type:
             self.treatment_type = ["No treatment"]
+        self.treatment_type = [x for x in self.treatment_type if x is not None]
 
     # @factory.post_generation
     # def set_treatment_identifier(self, create, extracted, **kwargs):
@@ -361,7 +362,7 @@ class SystemicTherapyFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def add_dates(self, create, extracted, **kwargs):
-        if random.random() > .15:
+        if random.random() < .15:
             pass
         else:
             treatment = self.treatment_uuid
@@ -379,7 +380,7 @@ class SystemicTherapyFactory(factory.django.DjangoModelFactory):
                     treatment.treatment_end_date['day_interval'] - 50,
                     treatment.treatment_end_date['day_interval'])}
                 self.start_date["month_interval"] = days_to_months(self.start_date["day_interval"])
-            if random.random() > .15:
+            if random.random() < .15:
                 pass
             else:
                 if treatment.treatment_end_date:
@@ -396,10 +397,11 @@ class SystemicTherapyFactory(factory.django.DjangoModelFactory):
             treatment.treatment_type.append("Systemic therapy")
         if "No treatment" in treatment.treatment_type:
             treatment.treatment_type.remove("No treatment")
+        treatment = [x for x in treatment.treatment_type if x is not None]
 
     @factory.post_generation
     def add_drug_info(self, create, extracted, **kwargs):
-        if random.random() > .15:
+        if random.random() < .15:
             pass
         else:
             self.drug_reference_database = random.choice(PERM_VAL.DRUG_REFERENCE_DB)
@@ -454,11 +456,14 @@ class RadiationFactory(factory.django.DjangoModelFactory):
     @factory.post_generation
     def add_radiation_treatment_type(self, create, extracted, **kwargs):
         treatment = self.treatment_uuid
+        if not treatment.treatment_type:
+            treatment.treatment_type = []
         if treatment.treatment_type:
             if "Radiation therapy" not in treatment.treatment_type:
                 treatment.treatment_type.append("Radiation therapy")
             if "No treatment" in treatment.treatment_type:
                 treatment.treatment_type.remove("No treatment")
+        treatment.treatment_type = [x for x in treatment.treatment_type if x is not None]
 
 
 class SurgeryFactory(factory.django.DjangoModelFactory):
@@ -510,7 +515,7 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def add_surgery_type(self, create, extracted, **kwargs):
-        if random.random() > .15:
+        if random.random() < .15:
             pass
         else:
             self.surgery_type = random.choice(list(SYNTH_VAL.SURGERY_TYPE.keys()))
@@ -520,15 +525,26 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
                     self.surgery_reference_identifier = SYNTH_VAL.SURGERY_TYPE[self.surgery_type][
                         self.surgery_reference_database]
 
+    @factory.post_generation
+    def clean_margin_nulls(self, create, extracted, **kwargs):
+        if self.margin_types_involved:
+            self.margin_types_involved = [x for x in self.margin_types_involved if x is not None]
+        if self.margin_types_not_involved:
+            self.margin_types_not_involved = [x for x in self.margin_types_not_involved if x is not None]
+        if self.margin_types_not_assessed:
+            self.margin_types_not_assessed = [x for x in self.margin_types_not_assessed if x is not None]
+
 
     @factory.post_generation
     def add_surgery_treatment_type(self, create, extracted, **kwargs):
         treatment = self.treatment_uuid
-        if treatment.treatment_type:
-            if "Surgery" not in treatment.treatment_type:
-                treatment.treatment_type.append("Surgery")
-            if "No treatment" in treatment.treatment_type:
-                treatment.treatment_type.remove("No treatment")
+        if not treatment.treatment_type:
+            treatment.treatment_type = []
+        if "Surgery" not in treatment.treatment_type:
+            treatment.treatment_type.append("Surgery")
+        if "No treatment" in treatment.treatment_type:
+            treatment.treatment_type.remove("No treatment")
+        treatment.treatment_type = [x for x in treatment.treatment_type if x is not None]
 
 
 class FollowUpFactory(factory.django.DjangoModelFactory):
@@ -582,7 +598,7 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
 
     @factory.post_generation
     def set_relapse_type_date(self, create, extracted, **kwargs):
-        if random.random() > .15:
+        if random.random() < .15:
             pass
         elif self.disease_status_at_followup in ['Distant progression', 'Loco-regional progression',
                                                  'Progression not otherwise specified']:
@@ -598,6 +614,11 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
                 relapse_month_int = days_to_months(relapse_day_int)
                 self.date_of_relapse = {'day_interval': relapse_day_int,
                                         'month_interval': relapse_month_int}
+
+    @factory.post_generation
+    def clean_nulls_method(self, create, extracted, **kwargs):
+        if self.method_of_progression_status:
+            self.method_of_progression_status = [x for x in self.method_of_progression_status if x is not None]
 
 
 class BiomarkerFactory(factory.django.DjangoModelFactory):
@@ -655,7 +676,7 @@ class BiomarkerFactory(factory.django.DjangoModelFactory):
         followup or specimen.
         """
         donor = self.donor_uuid
-        if random.random() > .15:
+        if random.random() < .15:
             self.test_date = None
         elif donor.date_of_death and donor.date_of_birth:
             test_day_int = random.randint(donor.date_of_birth['day_interval'], donor.date_of_death['day_interval'])

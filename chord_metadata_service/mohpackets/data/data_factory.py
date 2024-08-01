@@ -120,7 +120,7 @@ class Dataset:
         exposure_start_index = int(donors_per_program / 4)
         exposure_end_index = int(exposure_start_index + (exposure_count / program_count))
         for i in range(0, program_count):
-            logging.info(f"Creating data for PROGRAM_0{i + 1}")
+            logging.info(f"Creating data for SYNTH_0{i + 1}")
             logging.info(f"Creating Donors...")
             donor_batch = SynthDonorFactory.create_batch(
                 donors_per_program, program_id=cls.Program[i]
