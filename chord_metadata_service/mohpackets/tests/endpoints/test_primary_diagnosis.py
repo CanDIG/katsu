@@ -5,7 +5,7 @@ from django.forms.models import model_to_dict
 
 from chord_metadata_service.mohpackets.models import PrimaryDiagnosis
 from chord_metadata_service.mohpackets.tests.endpoints.base import BaseTestCase
-from chord_metadata_service.mohpackets.tests.endpoints.factories import (
+from chord_metadata_service.mohpackets.tests.factories import (
     PrimaryDiagnosisFactory,
 )
 
@@ -15,7 +15,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.primary_diagnosis_url = "/v2/ingest/primary_diagnoses/"
+        self.primary_diagnosis_url = "/v3/ingest/primary_diagnoses/"
 
     def test_primary_diagnosis_create_authorized(self):
         """
@@ -94,7 +94,7 @@ class IngestTestCase(BaseTestCase):
 class GETTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.primary_diagnosis_url = "/v2/authorized/primary_diagnoses/"
+        self.primary_diagnosis_url = "/v3/authorized/primary_diagnoses/"
 
     def test_get_primary_diagnosis_200_ok(self):
         """
@@ -115,11 +115,11 @@ class GETTestCase(BaseTestCase):
         Test a GET request endpoint with a 301 redirection.
 
         Testing Strategy:
-        - Send a GET request to the '/v2/authorized/primary_diagnoses' endpoint.
+        - Send a GET request to the '/v3/authorized/primary_diagnoses' endpoint.
         - The request should receive a 301 redirection response.
         """
         response = self.client.get(
-            "/v2/authorized/primary_diagnoses",
+            "/v3/authorized/primary_diagnoses",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.MOVED_PERMANENTLY)
@@ -130,7 +130,7 @@ class GETTestCase(BaseTestCase):
 class OthersTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.primary_diagnosis_url = "/v2/authorized/primary_diagnoses/"
+        self.primary_diagnosis_url = "/v3/authorized/primary_diagnoses/"
 
     def test_get_datasets_match_permission(self):
         """
