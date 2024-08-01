@@ -4,19 +4,17 @@ from ninja import Field
 
 from chord_metadata_service.mohpackets.schemas.base import (
     BaseBiomarkerSchema,
-    BaseChemotherapySchema,
     BaseComorbiditySchema,
     BaseDonorSchema,
     BaseExposureSchema,
     BaseFollowUpSchema,
-    BaseHormoneTherapySchema,
-    BaseImmunotherapySchema,
     BasePrimaryDiagnosisSchema,
     BaseRadiationSchema,
     BaseSampleRegistrationSchema,
     BaseSpecimenSchema,
     BaseSurgerySchema,
     BaseTreatmentSchema,
+    BaseSystemicTherapySchema,
 )
 
 """
@@ -42,16 +40,10 @@ class NestedComorbiditySchema(BaseComorbiditySchema):
     pass
 
 
-class NestedChemotherapySchema(BaseChemotherapySchema):
+class NestedSystemicTherapySchema(BaseSystemicTherapySchema):
     pass
 
 
-class NestedImmunotherapySchema(BaseImmunotherapySchema):
-    pass
-
-
-class NestedHormoneTherapySchema(BaseHormoneTherapySchema):
-    pass
 
 
 class NestedRadiationSchema(BaseRadiationSchema):
@@ -75,14 +67,8 @@ class NestedSampleRegistrationSchema(BaseSampleRegistrationSchema):
 
 
 class NestedTreatmentSchema(BaseTreatmentSchema):
-    chemotherapies: List[NestedChemotherapySchema] = Field(
-        None, alias="chemotherapy_set"
-    )
-    immunotherapies: List[NestedImmunotherapySchema] = Field(
-        None, alias="immunotherapy_set"
-    )
-    hormone_therapies: List[NestedHormoneTherapySchema] = Field(
-        None, alias="hormonetherapy_set"
+    systemic_therapies: List[NestedSystemicTherapySchema] = Field(
+        None, alias="systemictherapy_set"
     )
     radiations: List[NestedRadiationSchema] = Field(None, alias="radiation_set")
     surgeries: List[NestedSurgerySchema] = Field(None, alias="surgery_set")
