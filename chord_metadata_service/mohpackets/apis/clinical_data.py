@@ -188,10 +188,10 @@ def list_biomarkers(request, filters: Query[BiomarkerFilterSchema]):
 
 
 @router.get(
-    "/systemictherapies/",
+    "/systemic_therapies/",
     response=List[SystemicTherapyModelSchema],
 )
-def list_systemictherapies(request, filters: Query[SystemicTherapyFilterSchema]):
+def list_systemic_therapies(request, filters: Query[SystemicTherapyFilterSchema]):
     q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return SystemicTherapy.objects.filter(q)
