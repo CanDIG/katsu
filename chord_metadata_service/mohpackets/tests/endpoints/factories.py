@@ -631,9 +631,9 @@ class BiomarkerFactory(factory.django.DjangoModelFactory):
     uuid = factory.LazyFunction(uuid.uuid4)
 
     test_date = None
-    psa_level = factory.Faker("pyfloat", min_value=0, max_value=20, right_digits=1)
-    ca125 = factory.Faker("pyfloat", min_value=0, max_value=50, right_digits=1)
-    cea = factory.Faker("pyfloat", min_value=0, max_value=10, right_digits=1)
+    psa_level = factory.Faker("pyint", min_value=0, max_value=20)
+    ca125 = factory.Faker("pyint", min_value=0, max_value=50)
+    cea = factory.Faker("pyint", min_value=0, max_value=10)
     er_status = factory.Faker("random_element", elements=PERM_VAL.ER_PR_HPV_STATUS)
     er_percent_positive = None
     pr_status = factory.Faker("random_element", elements=PERM_VAL.ER_PR_HPV_STATUS)
@@ -728,7 +728,7 @@ class ComorbidityFactory(factory.django.DjangoModelFactory):
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
     prior_malignancy = factory.Faker("random_element", elements=PERM_VAL.UBOOLEAN)
-    laterality_of_prior_malignancy = factory.Faker("random_element", elements=PERM_VAL.MALIGNANCY_LATERALITY)
+    laterality_of_prior_malignancy = None
     age_at_comorbidity_diagnosis = factory.Faker("pyint", min_value=20, max_value=80)
     comorbidity_type_code = factory.Faker("random_element", elements=['E10', 'C50.1', 'I11', 'M06'])
     comorbidity_treatment_status = factory.Faker("random_element", elements=PERM_VAL.UBOOLEAN)
