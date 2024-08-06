@@ -4780,10 +4780,10 @@ components:
 info:
   description: This is the RESTful API for the MoH Service.
   title: MoH Service API
-  version: 4.6.0
+  version: 5.0.0
 openapi: 3.1.0
 paths:
-  /v2/authorized/biomarkers/:
+  /v3/authorized/biomarkers/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_biomarkers
       parameters:
@@ -4958,7 +4958,7 @@ paths:
       summary: List Biomarkers
       tags:
       - authorized
-  /v2/authorized/comorbidities/:
+  /v3/authorized/comorbidities/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_comorbidities
       parameters:
@@ -5052,7 +5052,7 @@ paths:
       summary: List Comorbidities
       tags:
       - authorized
-  /v2/authorized/donor_with_clinical_data/program/{program_id}/donor/{donor_id}:
+  /v3/authorized/donor_with_clinical_data/program/{program_id}/donor/{donor_id}:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_get_donor_with_clinical_data
       parameters:
@@ -5089,7 +5089,7 @@ paths:
       summary: Get Donor With Clinical Data
       tags:
       - authorized
-  /v2/authorized/donors/:
+  /v3/authorized/donors/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_donors
       parameters:
@@ -5184,7 +5184,7 @@ paths:
       summary: List Donors
       tags:
       - authorized
-  /v2/authorized/exposures/:
+  /v3/authorized/exposures/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_exposures
       parameters:
@@ -5255,7 +5255,7 @@ paths:
       summary: List Exposures
       tags:
       - authorized
-  /v2/authorized/follow_ups/:
+  /v3/authorized/follow_ups/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_follow_ups
       parameters:
@@ -5359,7 +5359,7 @@ paths:
       summary: List Follow Ups
       tags:
       - authorized
-  /v2/authorized/primary_diagnoses/:
+  /v3/authorized/primary_diagnoses/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_primary_diagnoses
       parameters:
@@ -5525,7 +5525,7 @@ paths:
       summary: List Primary Diagnoses
       tags:
       - authorized
-  /v2/authorized/programs/:
+  /v3/authorized/programs/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_programs
       parameters:
@@ -5563,7 +5563,7 @@ paths:
       summary: List Programs
       tags:
       - authorized
-  /v2/authorized/radiations/:
+  /v3/authorized/radiations/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_radiations
       parameters:
@@ -5673,7 +5673,7 @@ paths:
       summary: List Radiations
       tags:
       - authorized
-  /v2/authorized/sample_registrations/:
+  /v3/authorized/sample_registrations/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_sample_registrations
       parameters:
@@ -5767,7 +5767,7 @@ paths:
       summary: List Sample Registrations
       tags:
       - authorized
-  /v2/authorized/specimens/:
+  /v3/authorized/specimens/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_specimens
       parameters:
@@ -5925,7 +5925,7 @@ paths:
       summary: List Specimens
       tags:
       - authorized
-  /v2/authorized/surgeries/:
+  /v3/authorized/surgeries/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_surgeries
       parameters:
@@ -6102,9 +6102,9 @@ paths:
       summary: List Surgeries
       tags:
       - authorized
-  /v2/authorized/systemictherapies/:
+  /v3/authorized/systemic_therapies/:
     get:
-      operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_systemictherapies
+      operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_systemic_therapies
       parameters:
       - in: query
         name: program_id
@@ -6225,10 +6225,10 @@ paths:
           description: OK
       security:
       - GetAuth: []
-      summary: List Systemictherapies
+      summary: List Systemic Therapies
       tags:
       - authorized
-  /v2/authorized/treatments/:
+  /v3/authorized/treatments/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_treatments
       parameters:
@@ -6339,7 +6339,7 @@ paths:
       summary: List Treatments
       tags:
       - authorized
-  /v2/discovery/donors/:
+  /v3/discovery/donors/:
     get:
       description: 'Return the number of donors per cohort in the database.
 
@@ -6363,7 +6363,7 @@ paths:
       summary: Discover Donors
       tags:
       - discovery
-  /v2/discovery/overview/cohort_count/:
+  /v3/discovery/overview/cohort_count/:
     get:
       description: Return the number of cohorts in the database.
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_cohort_count
@@ -6381,7 +6381,7 @@ paths:
       summary: Discover Cohort Count
       tags:
       - overview
-  /v2/discovery/overview/diagnosis_age_count/:
+  /v3/discovery/overview/diagnosis_age_count/:
     get:
       description: Return the count for age of diagnosis by calculating the date of
         birth interval.
@@ -6400,7 +6400,7 @@ paths:
       summary: Discover Diagnosis Age Count
       tags:
       - overview
-  /v2/discovery/overview/gender_count/:
+  /v3/discovery/overview/gender_count/:
     get:
       description: Return the count for every gender in the database.
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_gender_count
@@ -6418,7 +6418,7 @@ paths:
       summary: Discover Gender Count
       tags:
       - overview
-  /v2/discovery/overview/individual_count/:
+  /v3/discovery/overview/individual_count/:
     get:
       description: Return the number of individuals in the database.
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_individual_count
@@ -6436,7 +6436,7 @@ paths:
       summary: Discover Individual Count
       tags:
       - overview
-  /v2/discovery/overview/patients_per_cohort/:
+  /v3/discovery/overview/patients_per_cohort/:
     get:
       description: Return the number of patients per cohort in the database.
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_patients_per_cohort
@@ -6454,7 +6454,7 @@ paths:
       summary: Discover Patients Per Cohort
       tags:
       - overview
-  /v2/discovery/overview/primary_site_count/:
+  /v3/discovery/overview/primary_site_count/:
     get:
       description: Return the count for every cancer type in the database.
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_primary_site_count
@@ -6472,7 +6472,7 @@ paths:
       summary: Discover Primary Site Count
       tags:
       - overview
-  /v2/discovery/overview/treatment_type_count/:
+  /v3/discovery/overview/treatment_type_count/:
     get:
       description: Return the count for every treatment type in the database.
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_treatment_type_count
@@ -6490,7 +6490,7 @@ paths:
       summary: Discover Treatment Type Count
       tags:
       - overview
-  /v2/discovery/programs/:
+  /v3/discovery/programs/:
     get:
       description: Return all the programs in the database.
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_programs
@@ -6508,7 +6508,7 @@ paths:
       summary: Discover Programs
       tags:
       - discovery
-  /v2/discovery/sidebar_list/:
+  /v3/discovery/sidebar_list/:
     get:
       description: Retrieve the list of drug names and treatment for frontend usage
       operationId: chord_metadata_service_mohpackets_apis_discovery_discover_sidebar_list
@@ -6524,7 +6524,7 @@ paths:
       summary: Discover Sidebar List
       tags:
       - discovery
-  /v2/explorer/donors/:
+  /v3/explorer/donors/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_explorer_explorer_donor
       parameters:
@@ -6576,7 +6576,7 @@ paths:
       summary: Explorer Donor
       tags:
       - explorer
-  /v2/ingest/biomarkers/:
+  /v3/ingest/biomarkers/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_biomarkers
       parameters: []
@@ -6597,7 +6597,7 @@ paths:
       summary: Create Biomarkers
       tags:
       - ingest
-  /v2/ingest/comorbidities/:
+  /v3/ingest/comorbidities/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_comorbidities
       parameters: []
@@ -6618,7 +6618,7 @@ paths:
       summary: Create Comorbidities
       tags:
       - ingest
-  /v2/ingest/donors/:
+  /v3/ingest/donors/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_donors
       parameters: []
@@ -6639,7 +6639,7 @@ paths:
       summary: Create Donors
       tags:
       - ingest
-  /v2/ingest/exposures/:
+  /v3/ingest/exposures/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_exposures
       parameters: []
@@ -6660,7 +6660,7 @@ paths:
       summary: Create Exposures
       tags:
       - ingest
-  /v2/ingest/followups/:
+  /v3/ingest/followups/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_followups
       parameters: []
@@ -6681,7 +6681,7 @@ paths:
       summary: Create Followups
       tags:
       - ingest
-  /v2/ingest/primary_diagnoses/:
+  /v3/ingest/primary_diagnoses/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_primary_diagnoses
       parameters: []
@@ -6702,7 +6702,7 @@ paths:
       summary: Create Primary Diagnoses
       tags:
       - ingest
-  /v2/ingest/program/{program_id}/:
+  /v3/ingest/program/{program_id}/:
     delete:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_delete_program
       parameters:
@@ -6729,7 +6729,7 @@ paths:
       summary: Delete Program
       tags:
       - delete
-  /v2/ingest/programs/:
+  /v3/ingest/programs/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_programs
       parameters: []
@@ -6750,7 +6750,7 @@ paths:
       summary: Create Programs
       tags:
       - ingest
-  /v2/ingest/radiations/:
+  /v3/ingest/radiations/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_radiations
       parameters: []
@@ -6771,7 +6771,7 @@ paths:
       summary: Create Radiations
       tags:
       - ingest
-  /v2/ingest/sample_registrations/:
+  /v3/ingest/sample_registrations/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_sample_registrations
       parameters: []
@@ -6792,7 +6792,7 @@ paths:
       summary: Create Sample Registrations
       tags:
       - ingest
-  /v2/ingest/specimens/:
+  /v3/ingest/specimens/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_specimens
       parameters: []
@@ -6813,7 +6813,7 @@ paths:
       summary: Create Specimens
       tags:
       - ingest
-  /v2/ingest/surgeries/:
+  /v3/ingest/surgeries/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_surgeries
       parameters: []
@@ -6834,7 +6834,7 @@ paths:
       summary: Create Surgeries
       tags:
       - ingest
-  /v2/ingest/systemictherapies/:
+  /v3/ingest/systemic_therapies/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_systemic_therapies
       parameters: []
@@ -6855,7 +6855,7 @@ paths:
       summary: Create Systemic Therapies
       tags:
       - ingest
-  /v2/ingest/treatments/:
+  /v3/ingest/treatments/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_treatments
       parameters: []
@@ -6876,7 +6876,7 @@ paths:
       summary: Create Treatments
       tags:
       - ingest
-  /v2/service-info:
+  /v3/service-info:
     get:
       operationId: chord_metadata_service_mohpackets_apis_core_service_info
       parameters: []

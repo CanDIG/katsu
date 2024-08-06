@@ -15,7 +15,7 @@ from chord_metadata_service.mohpackets.tests.factories import (
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.systemic_therapy_url = "/v3/ingest/systemictherapies/"
+        self.systemic_therapy_url = "/v3/ingest/systemic_therapies/"
 
     def test_systemic_therapy_create_authorized(self):
         """
@@ -100,7 +100,7 @@ class IngestTestCase(BaseTestCase):
 class GETTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.systemic_therapy_url = "/v3/authorized/systemictherapies/"
+        self.systemic_therapy_url = "/v3/authorized/systemic_therapies/"
 
     def test_get_chemotherapy_200_ok(self):
         """
@@ -125,7 +125,7 @@ class GETTestCase(BaseTestCase):
         - The request should receive a 301 redirection response.
         """
         response = self.client.get(
-            "/v3/authorized/systemictherapies",
+            "/v3/authorized/systemic_therapies",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.MOVED_PERMANENTLY)
@@ -136,7 +136,7 @@ class GETTestCase(BaseTestCase):
 class SystemicTherapyOthersTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.systemic_therapy_url = "/v3/authorized/systemictherapies/"
+        self.systemic_therapy_url = "/v3/authorized/systemic_therapies/"
 
     def test_get_datasets_match_permission(self):
         """

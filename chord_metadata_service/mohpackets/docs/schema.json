@@ -2,11 +2,11 @@
     "openapi": "3.1.0",
     "info": {
         "title": "MoH Service API",
-        "version": "4.6.0",
+        "version": "5.0.0",
         "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
-        "/v2/service-info": {
+        "/v3/service-info": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_core_service_info",
                 "summary": "Service Info",
@@ -18,7 +18,7 @@
                 }
             }
         },
-        "/v2/discovery/programs/": {
+        "/v3/discovery/programs/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_programs",
                 "summary": "Discover Programs",
@@ -45,7 +45,7 @@
                 ]
             }
         },
-        "/v2/discovery/donors/": {
+        "/v3/discovery/donors/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_donors",
                 "summary": "Discover Donors",
@@ -72,7 +72,7 @@
                 ]
             }
         },
-        "/v2/discovery/sidebar_list/": {
+        "/v3/discovery/sidebar_list/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_sidebar_list",
                 "summary": "Discover Sidebar List",
@@ -96,7 +96,7 @@
                 ]
             }
         },
-        "/v2/discovery/overview/cohort_count/": {
+        "/v3/discovery/overview/cohort_count/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_cohort_count",
                 "summary": "Discover Cohort Count",
@@ -123,7 +123,7 @@
                 ]
             }
         },
-        "/v2/discovery/overview/patients_per_cohort/": {
+        "/v3/discovery/overview/patients_per_cohort/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_patients_per_cohort",
                 "summary": "Discover Patients Per Cohort",
@@ -150,7 +150,7 @@
                 ]
             }
         },
-        "/v2/discovery/overview/individual_count/": {
+        "/v3/discovery/overview/individual_count/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_individual_count",
                 "summary": "Discover Individual Count",
@@ -177,7 +177,7 @@
                 ]
             }
         },
-        "/v2/discovery/overview/gender_count/": {
+        "/v3/discovery/overview/gender_count/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_gender_count",
                 "summary": "Discover Gender Count",
@@ -204,7 +204,7 @@
                 ]
             }
         },
-        "/v2/discovery/overview/primary_site_count/": {
+        "/v3/discovery/overview/primary_site_count/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_primary_site_count",
                 "summary": "Discover Primary Site Count",
@@ -231,7 +231,7 @@
                 ]
             }
         },
-        "/v2/discovery/overview/treatment_type_count/": {
+        "/v3/discovery/overview/treatment_type_count/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_treatment_type_count",
                 "summary": "Discover Treatment Type Count",
@@ -258,7 +258,7 @@
                 ]
             }
         },
-        "/v2/discovery/overview/diagnosis_age_count/": {
+        "/v3/discovery/overview/diagnosis_age_count/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_discovery_discover_diagnosis_age_count",
                 "summary": "Discover Diagnosis Age Count",
@@ -285,7 +285,7 @@
                 ]
             }
         },
-        "/v2/ingest/programs/": {
+        "/v3/ingest/programs/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_programs",
                 "summary": "Create Programs",
@@ -319,7 +319,7 @@
                 ]
             }
         },
-        "/v2/ingest/donors/": {
+        "/v3/ingest/donors/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_donors",
                 "summary": "Create Donors",
@@ -353,7 +353,7 @@
                 ]
             }
         },
-        "/v2/ingest/biomarkers/": {
+        "/v3/ingest/biomarkers/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_biomarkers",
                 "summary": "Create Biomarkers",
@@ -387,7 +387,7 @@
                 ]
             }
         },
-        "/v2/ingest/systemictherapies/": {
+        "/v3/ingest/systemic_therapies/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_systemic_therapies",
                 "summary": "Create Systemic Therapies",
@@ -421,7 +421,7 @@
                 ]
             }
         },
-        "/v2/ingest/comorbidities/": {
+        "/v3/ingest/comorbidities/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_comorbidities",
                 "summary": "Create Comorbidities",
@@ -455,7 +455,7 @@
                 ]
             }
         },
-        "/v2/ingest/exposures/": {
+        "/v3/ingest/exposures/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_exposures",
                 "summary": "Create Exposures",
@@ -489,7 +489,7 @@
                 ]
             }
         },
-        "/v2/ingest/followups/": {
+        "/v3/ingest/followups/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_followups",
                 "summary": "Create Followups",
@@ -523,7 +523,7 @@
                 ]
             }
         },
-        "/v2/ingest/primary_diagnoses/": {
+        "/v3/ingest/primary_diagnoses/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_primary_diagnoses",
                 "summary": "Create Primary Diagnoses",
@@ -557,7 +557,7 @@
                 ]
             }
         },
-        "/v2/ingest/radiations/": {
+        "/v3/ingest/radiations/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_radiations",
                 "summary": "Create Radiations",
@@ -591,7 +591,7 @@
                 ]
             }
         },
-        "/v2/ingest/sample_registrations/": {
+        "/v3/ingest/sample_registrations/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_sample_registrations",
                 "summary": "Create Sample Registrations",
@@ -625,7 +625,7 @@
                 ]
             }
         },
-        "/v2/ingest/specimens/": {
+        "/v3/ingest/specimens/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_specimens",
                 "summary": "Create Specimens",
@@ -659,7 +659,7 @@
                 ]
             }
         },
-        "/v2/ingest/surgeries/": {
+        "/v3/ingest/surgeries/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_surgeries",
                 "summary": "Create Surgeries",
@@ -693,7 +693,7 @@
                 ]
             }
         },
-        "/v2/ingest/treatments/": {
+        "/v3/ingest/treatments/": {
             "post": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_create_treatments",
                 "summary": "Create Treatments",
@@ -727,7 +727,7 @@
                 ]
             }
         },
-        "/v2/ingest/program/{program_id}/": {
+        "/v3/ingest/program/{program_id}/": {
             "delete": {
                 "operationId": "chord_metadata_service_mohpackets_apis_ingestion_delete_program",
                 "summary": "Delete Program",
@@ -771,7 +771,7 @@
                 ]
             }
         },
-        "/v2/authorized/donor_with_clinical_data/program/{program_id}/donor/{donor_id}": {
+        "/v3/authorized/donor_with_clinical_data/program/{program_id}/donor/{donor_id}": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_get_donor_with_clinical_data",
                 "summary": "Get Donor With Clinical Data",
@@ -831,7 +831,7 @@
                 ]
             }
         },
-        "/v2/authorized/programs/": {
+        "/v3/authorized/programs/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_programs",
                 "summary": "List Programs",
@@ -895,7 +895,7 @@
                 ]
             }
         },
-        "/v2/authorized/donors/": {
+        "/v3/authorized/donors/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_donors",
                 "summary": "List Donors",
@@ -1072,7 +1072,7 @@
                 ]
             }
         },
-        "/v2/authorized/primary_diagnoses/": {
+        "/v3/authorized/primary_diagnoses/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_primary_diagnoses",
                 "summary": "List Primary Diagnoses",
@@ -1392,7 +1392,7 @@
                 ]
             }
         },
-        "/v2/authorized/biomarkers/": {
+        "/v3/authorized/biomarkers/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_biomarkers",
                 "summary": "List Biomarkers",
@@ -1725,10 +1725,10 @@
                 ]
             }
         },
-        "/v2/authorized/systemictherapies/": {
+        "/v3/authorized/systemic_therapies/": {
             "get": {
-                "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_systemictherapies",
-                "summary": "List Systemictherapies",
+                "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_systemic_therapies",
+                "summary": "List Systemic Therapies",
                 "parameters": [
                     {
                         "in": "query",
@@ -1965,7 +1965,7 @@
                 ]
             }
         },
-        "/v2/authorized/comorbidities/": {
+        "/v3/authorized/comorbidities/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_comorbidities",
                 "summary": "List Comorbidities",
@@ -2141,7 +2141,7 @@
                 ]
             }
         },
-        "/v2/authorized/exposures/": {
+        "/v3/authorized/exposures/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_exposures",
                 "summary": "List Exposures",
@@ -2266,7 +2266,7 @@
                 ]
             }
         },
-        "/v2/authorized/follow_ups/": {
+        "/v3/authorized/follow_ups/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_follow_ups",
                 "summary": "List Follow Ups",
@@ -2452,7 +2452,7 @@
                 ]
             }
         },
-        "/v2/authorized/radiations/": {
+        "/v3/authorized/radiations/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_radiations",
                 "summary": "List Radiations",
@@ -2660,7 +2660,7 @@
                 ]
             }
         },
-        "/v2/authorized/sample_registrations/": {
+        "/v3/authorized/sample_registrations/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_sample_registrations",
                 "summary": "List Sample Registrations",
@@ -2836,7 +2836,7 @@
                 ]
             }
         },
-        "/v2/authorized/specimens/": {
+        "/v3/authorized/specimens/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_specimens",
                 "summary": "List Specimens",
@@ -3140,7 +3140,7 @@
                 ]
             }
         },
-        "/v2/authorized/surgeries/": {
+        "/v3/authorized/surgeries/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_surgeries",
                 "summary": "List Surgeries",
@@ -3467,7 +3467,7 @@
                 ]
             }
         },
-        "/v2/authorized/treatments/": {
+        "/v3/authorized/treatments/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_treatments",
                 "summary": "List Treatments",
@@ -3672,7 +3672,7 @@
                 ]
             }
         },
-        "/v2/explorer/donors/": {
+        "/v3/explorer/donors/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_explorer_explorer_donor",
                 "summary": "Explorer Donor",
