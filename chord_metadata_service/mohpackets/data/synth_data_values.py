@@ -10,7 +10,7 @@ def add_nulls(complete_list: list, prop=0.2):
 
 
 # add 20% nulls to all enums
-GENDER = add_nulls(PERM_VAL.GENDER)
+GENDER = PERM_VAL.GENDER + [None]
 SEX_AT_BIRTH = add_nulls(PERM_VAL.SEX_AT_BIRTH)
 
 BASIS_OF_DIAGNOSIS = add_nulls(PERM_VAL.BASIS_OF_DIAGNOSIS)
@@ -37,6 +37,15 @@ SAMPLE_TYPE = add_nulls(PERM_VAL.SAMPLE_TYPE)
 TUMOUR_DESIGNATION = add_nulls(PERM_VAL.TUMOUR_DESIGNATION)
 
 TREATMENT_TYPE = add_nulls(PERM_VAL.TREATMENT_TYPE)
+
+# remove typed treatments, they get added if there is a specific treatment linked
+TREATMENT_TYPE_FOR_ALL = [
+    "Bone marrow transplant",
+    "No treatment",
+    "Other targeting molecular therapy",
+    "Photodynamic therapy",
+    "Stem cell transplant",
+]
 TREATMENT_INTENT = add_nulls(PERM_VAL.TREATMENT_INTENT)
 TREATMENT_RESPONSE_METHOD = add_nulls(PERM_VAL.TREATMENT_RESPONSE_METHOD)
 TREATMENT_RESPONSE = add_nulls(PERM_VAL.TREATMENT_RESPONSE)
@@ -182,4 +191,88 @@ SURGERY_TYPE = {
                           "UMLS": "C1304782",
                           None: None},
     None: {None: None}
+}
+
+RISS_DURIE_STAGES = ["Stage I",
+                     "Stage II",
+                     "Stage III"]
+
+LUGANO_STAGES = ["Stage I",
+                 "Stage IA",
+                 "Stage IB",
+                 "Stage IE",
+                 "Stage II",
+                 "Stage II bulky",
+                 "Stage IIE",
+                 "Stage IIA",
+                 "Stage IIB",
+                 "Stage III",
+                 "Stage IIIA1",
+                 "Stage IV"]
+
+ST_JUDE = ["Stage I",
+           "Stage II",
+           "Stage III",
+           "Stage IV"]
+
+ANN_ARBOR = ["Stage I",
+             "Stage II",
+             "Stage III",
+             "Stage IV",
+             "Stage IA",
+             "Stage IIA",
+             "Stage IIIA",
+             "Stage IVA",
+             "Stage IB",
+             "Stage IIB",
+             "Stage IIIB",
+             "Stage IVB",
+             "Stage IE",
+             "Stage IIE",
+             "Stage IIIE",
+             "Stage IVE",
+             "Stage IS",
+             "Stage IIS",
+             "Stage IIIS",
+             "Stage IVS"
+             ]
+
+FIGO_STAGING = [
+    "Stage IA",
+    "Stage IA1",
+    "Stage IA2",
+    "Stage IB",
+    "Stage IB1",
+    "Stage IB2",
+    "Stage IIA",
+    "Stage IAB",
+    "Stage IIIA",
+    "Stage IIIB",
+    "Stage IVA",
+    "Stage IVB"
+]
+
+BINET_STAGING = [
+    "Stage A",
+    "Stage B",
+    "Stage C"
+]
+
+RAI_STAGING = [
+    "Stage 0",
+    "Stage I",
+    "Stage II",
+    "Stage III",
+    "Stage IV"
+]
+
+STAGE_GROUP_KEY = {
+    "Ann Arbor staging system": ANN_ARBOR,
+    "Binet staging system": BINET_STAGING,
+    "Durie-Salmon staging system": RISS_DURIE_STAGES,
+    "FIGO staging system": FIGO_STAGING,
+    "Lugano staging system": LUGANO_STAGES,
+    "Rai staging system": RAI_STAGING,
+    "Revised International staging system(R-ISS)": RISS_DURIE_STAGES,
+    "St Jude staging system": ST_JUDE
 }

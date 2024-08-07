@@ -8,6 +8,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
     BiomarkerFactory,
     ComorbidityFactory,
     DonorFactory,
+    ExposureFactory,
     FollowUpFactory,
     PrimaryDiagnosisFactory,
     RadiationFactory,
@@ -108,17 +109,36 @@ class SynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
     basis_of_diagnosis = factory.Faker("random_element", elements=SYNTH_VAL.BASIS_OF_DIAGNOSIS)
     laterality = factory.Faker("random_element", elements=SYNTH_VAL.PRIMARY_DIAGNOSIS_LATERALITY)
     clinical_tumour_staging_system = factory.Faker("random_element", elements=SYNTH_VAL.TUMOUR_STAGING_SYSTEM)
-    clinical_t_category = factory.Faker("random_element", elements=SYNTH_VAL.T_CATEGORY)
-    clinical_n_category = factory.Faker("random_element", elements=SYNTH_VAL.N_CATEGORY)
-    clinical_m_category = factory.Faker("random_element", elements=SYNTH_VAL.M_CATEGORY)
+    clinical_t_category = None
+    clinical_n_category = None
+    clinical_m_category = None
     clinical_stage_group = factory.Faker("random_element", elements=SYNTH_VAL.STAGE_GROUP)
     pathological_tumour_staging_system = factory.Faker("random_element", elements=SYNTH_VAL.TUMOUR_STAGING_SYSTEM)
-    pathological_t_category = factory.Faker("random_element", elements=SYNTH_VAL.T_CATEGORY)
-    pathological_n_category = factory.Faker("random_element", elements=SYNTH_VAL.N_CATEGORY)
-    pathological_m_category = factory.Faker("random_element", elements=SYNTH_VAL.M_CATEGORY)
+    pathological_t_category = None
+    pathological_n_category = None
+    pathological_m_category = None
     pathological_stage_group = factory.Faker("random_element", elements=SYNTH_VAL.STAGE_GROUP)
-
     primary_site = factory.Iterator(SYNTH_VAL.PRIMARY_SITE)
+
+    @factory.post_generation
+    def consistent_stages(self, create, extracted, **kwargs):
+        if self.clinical_tumour_staging_system is None and self.pathological_tumour_staging_system is None:
+            self.clinical_tumour_staging_system = random.choice(PERM_VAL.TUMOUR_STAGING_SYSTEM)
+        if self.clinical_tumour_staging_system and self.clinical_tumour_staging_system.startswith("AJCC"):
+            self.clinical_t_category = random.choice(PERM_VAL.T_CATEGORY)
+            self.clinical_m_category = random.choice(PERM_VAL.M_CATEGORY)
+            self.clinical_n_category = random.choice(PERM_VAL.N_CATEGORY)
+        if self.pathological_tumour_staging_system and self.pathological_tumour_staging_system.startswith("AJCC"):
+            self.pathological_t_category = random.choice(PERM_VAL.T_CATEGORY)
+            self.pathological_m_category = random.choice(PERM_VAL.M_CATEGORY)
+            self.pathological_n_category = random.choice(PERM_VAL.N_CATEGORY)
+        if (self.clinical_tumour_staging_system and
+                self.clinical_tumour_staging_system in SYNTH_VAL.STAGE_GROUP_KEY.keys()):
+            self.clinical_stage_group = random.choice(SYNTH_VAL.STAGE_GROUP_KEY[self.clinical_tumour_staging_system])
+        if (self.pathological_tumour_staging_system and
+                self.pathological_tumour_staging_system in SYNTH_VAL.STAGE_GROUP_KEY.keys()):
+            self.pathological_stage_group = (
+                random.choice(SYNTH_VAL.STAGE_GROUP_KEY[self.pathological_tumour_staging_system]))
 
 
 class NullSynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
@@ -306,20 +326,20 @@ class NullSynthTreatmentFactory(TreatmentFactory):
 class AllSynthTreatmentFactory(TreatmentFactory):
     submitter_treatment_id = factory.Sequence(lambda n: f"TREATMENT_ALL_{str(n).zfill(4)}")
     is_primary_treatment = factory.Faker("random_element", elements=["Yes", "No"])
+    treatment_type = factory.Faker("random_elements", elements=SYNTH_VAL.TREATMENT_TYPE_FOR_ALL,
+                                   unique=True, length=random.randint(1, 3))
 
     @factory.post_generation
     def set_treatment_dates(self, create, extracted, **kwargs):
         """override method to prevent 15% nulls"""
-        treatment = self
         day_int = random.randint(5, 180)
-        treatment.treatment_start_date = {"day_interval": day_int,
-                                          "month_interval": days_to_months(day_int)}
-        min_start = treatment.treatment_start_date["day_interval"] + 30
+        self.treatment_start_date = {"day_interval": day_int,
+                                     "month_interval": days_to_months(day_int)}
+        min_start = self.treatment_start_date["day_interval"] + 30
         min_end = min_start + 365
-        day_int = random.randint(min_start, min_end)
-        treatment.treatment_end_date = {"day_interval": day_int,
-                                        "month_interval": days_to_months(day_int)}
-        treatment.save()
+        day_int = random.randint(self.treatment_start_date["day_interval"], min_end)
+        self.treatment_end_date = {"day_interval": day_int,
+                                   "month_interval": days_to_months(day_int)}
 
     @factory.post_generation
     def correct_treatment_type(self, create, extracted, **kwargs):
@@ -345,6 +365,29 @@ class SynthSystemicTherapyFactory(SystemicTherapyFactory):
                                                 factory.Faker("pyfloat", left_digits=2, right_digits=1,
                                                               positive=True, min_value=51, max_value=100))
 
+    @factory.post_generation
+    def add_drug_info(self, create, extracted, **kwargs):
+        if random.random() < .15:
+            pass
+        else:
+            self.drug_reference_database = random.choice(PERM_VAL.DRUG_REFERENCE_DB)
+            if self.drug_reference_database:
+                if self.systemic_therapy_type == "Chemotherapy":
+                    self.drug_name = random.choice(list(SYNTH_VAL.CHEMO_DRUGS.keys()))
+                    if self.drug_name:
+                        self.drug_reference_identifier = SYNTH_VAL.CHEMO_DRUGS[self.drug_name][
+                            self.drug_reference_database]
+                elif self.systemic_therapy_type == "Hormone therapy":
+                    self.drug_name = random.choice(list(SYNTH_VAL.HORMONE_DRUGS.keys()))
+                    if self.drug_name:
+                        self.drug_reference_identifier = SYNTH_VAL.HORMONE_DRUGS[self.drug_name][
+                            self.drug_reference_database]
+                elif self.systemic_therapy_type == "Immunotherapy":
+                    self.drug_name = random.choice(list(SYNTH_VAL.IMMUNO_DRUGS.keys()))
+                    if self.drug_name:
+                        self.drug_reference_identifier = SYNTH_VAL.IMMUNO_DRUGS[self.drug_name][
+                            self.drug_reference_database]
+
 
 class NullSynthSystemicTherapyFactory(SystemicTherapyFactory):
     drug_dose_units = None
@@ -365,26 +408,72 @@ class NullSynthSystemicTherapyFactory(SystemicTherapyFactory):
 class AllSynthSystemicTherapyFactory(SystemicTherapyFactory):
 
     @factory.post_generation
+    def add_drug_info(self, create, extracted, **kwargs):
+        if self.systemic_therapy_type == "Chemotherapy":
+            self.drug_name = random.choice(list(SYNTH_VAL.CHEMO_DRUGS.keys()))
+            if self.drug_name:
+                self.drug_reference_identifier = SYNTH_VAL.CHEMO_DRUGS[self.drug_name][
+                    self.drug_reference_database]
+        elif self.systemic_therapy_type == "Hormone therapy":
+            self.drug_name = random.choice(list(SYNTH_VAL.HORMONE_DRUGS.keys()))
+            if self.drug_name:
+                self.drug_reference_identifier = SYNTH_VAL.HORMONE_DRUGS[self.drug_name][
+                    self.drug_reference_database]
+        elif self.systemic_therapy_type == "Immunotherapy":
+            self.drug_name = random.choice(list(SYNTH_VAL.IMMUNO_DRUGS.keys()))
+            if self.drug_name:
+                self.drug_reference_identifier = SYNTH_VAL.IMMUNO_DRUGS[self.drug_name][
+                    self.drug_reference_database]
+        # I don't know why but it is sometimes null but I don't want any nulls so catching it here
+        if self.drug_name is None:
+            self.drug_name = "Nivolumab"
+            self.drug_reference_identifier = "1597876"
+            self.drug_reference_database = "RxNorm"
+        if self.drug_dose_units is None:
+            self.drug_dose_units = "mg/kg"
+
+    @factory.post_generation
     def add_dates(self, create, extracted, **kwargs):
+        """Override function so no nulls"""
         treatment = self.treatment_uuid
         if treatment.treatment_start_date and treatment.treatment_end_date:
-            self.start_date = {"day_interval": random.randint(
-                treatment.treatment_start_date['day_interval'], treatment.treatment_end_date['day_interval'])}
+            self.start_date = {
+                "day_interval": random.randint(
+                    treatment.treatment_start_date['day_interval'], treatment.treatment_end_date['day_interval'])}
             self.start_date["month_interval"] = days_to_months(self.start_date["day_interval"])
+            self.end_date = {
+                "day_interval": random.randint(
+                    self.start_date["day_interval"], treatment.treatment_end_date["day_interval"]
+                )
+            }
+            self.end_date["month_interval"] = days_to_months(self.end_date["day_interval"])
         elif treatment.treatment_start_date:
-            self.start_date = {"day_interval": random.randint(
-                treatment.treatment_start_date['day_interval'],
-                treatment.treatment_start_date['day_interval'] + 50)}
+            self.start_date = {
+                "day_interval": random.randint(
+                    treatment.treatment_start_date['day_interval'], treatment.treatment_start_date['day_interval'] + 50
+                )
+            }
             self.start_date["month_interval"] = days_to_months(self.start_date["day_interval"])
+            self.end_date = {
+                "day_interval": random.randint(
+                    self.start_date["day_interval"], self.start_date["day_interval"] + 50
+                )
+            }
+            self.end_date["month_interval"] = days_to_months(self.end_date["day_interval"])
         elif treatment.treatment_end_date:
-            self.start_date = {"day_interval": random.randint(
-                treatment.treatment_end_date['day_interval'] - 50,
-                treatment.treatment_end_date['day_interval'])}
+            self.start_date = {
+                "day_interval": random.randint(
+                    treatment.treatment_end_date['day_interval'] - 50,
+                    treatment.treatment_end_date['day_interval']
+                )
+            }
             self.start_date["month_interval"] = days_to_months(self.start_date["day_interval"])
-            if treatment.treatment_end_date:
-                self.end_date = {"day_interval": random.randint(
-                    self.start_date["day_interval"], treatment.treatment_end_date['day_interval'])}
-                self.end_date["month_interval"] = days_to_months(self.end_date["day_interval"])
+            self.end_date = {
+                "day_interval": random.randint(
+                    self.start_date["day_interval"], treatment.treatment_end_date["day_interval"]
+                )
+            }
+            self.end_date["month_interval"] = days_to_months(self.end_date["day_interval"])
 
     @factory.post_generation
     def add_systemic_therapy_treatment_type(self, create, extracted, **kwargs):
@@ -473,6 +562,18 @@ class SynthSurgeryFactory(SurgeryFactory):
             elements=SYNTH_VAL.MARGIN_TYPES,
             length=random.randint(1, 3),
             unique=True))
+
+    @factory.post_generation
+    def add_surgery_type(self, create, extracted, **kwargs):
+        if random.random() < .15:
+            pass
+        else:
+            self.surgery_type = random.choice(list(SYNTH_VAL.SURGERY_TYPE.keys()))
+            if self.surgery_type:
+                self.surgery_reference_database = random.choice(list(SYNTH_VAL.SURGERY_TYPE[self.surgery_type].keys()))
+                if self.surgery_reference_database:
+                    self.surgery_reference_identifier = SYNTH_VAL.SURGERY_TYPE[self.surgery_type][
+                        self.surgery_reference_database]
 
 
 class NullSynthSurgeryFactory(SurgeryFactory):
@@ -578,6 +679,27 @@ class SynthComorbidityFactory(ComorbidityFactory):
     laterality_of_prior_malignancy = factory.Faker("random_element", elements=SYNTH_VAL.MALIGNANCY_LATERALITY)
     comorbidity_type_code = factory.Faker("random_element", elements=SYNTH_VAL.ALL_CODES)
 
+    @factory.post_generation
+    def set_priors(self, create, extracted, **kwargs):
+        comorbidity = self
+        donor = self.donor_uuid
+        cancer_treatments = ["Chemotherapy", "Hormone therapy", "Immunotherapy", "Radiation"]
+        if donor.date_of_birth:
+            age_at_diagnosis = math.floor(donor.date_of_birth['month_interval'] / -12)
+        if comorbidity.comorbidity_type_code in SYNTH_VAL.CANCER_CODES:
+            comorbidity.laterality_of_prior_malignancy = random.choice(PERM_VAL.MALIGNANCY_LATERALITY)
+            if donor.date_of_birth:
+                comorbidity.age_at_comorbidity_diagnosis = random.randint(10, age_at_diagnosis)
+            comorbidity.prior_malignancy = "Yes"
+            comorbidity.comorbidity_treatment_status = random.choice(PERM_VAL.UBOOLEAN)
+            if comorbidity.comorbidity_treatment_status == "Yes":
+                comorbidity.comorbidity_treatment = random.choice(cancer_treatments)
+        elif comorbidity.comorbidity_type_code:
+            comorbidity.comorbidity_treatment_status = random.choice(PERM_VAL.UBOOLEAN)
+            if donor.date_of_birth:
+                comorbidity.age_at_comorbidity_diagnosis = random.randint(10, age_at_diagnosis)
+        comorbidity.save()
+
 
 class NullSynthComorbidityFactory(ComorbidityFactory):
     prior_malignancy = None
@@ -636,3 +758,19 @@ class AllSynthFollowUpFactory(FollowUpFactory):
                 relapse_month_int = days_to_months(relapse_day_int)
                 self.date_of_relapse = {'day_interval': relapse_day_int,
                                         'month_interval': relapse_month_int}
+
+
+class SynthExposureFactory(ExposureFactory):
+
+    @factory.post_generation
+    def set_smoking_information(self, create, extracted, **kwargs):
+        if self.tobacco_smoking_status:
+            if self.tobacco_smoking_status not in ["Not applicable", "Smoking history not documented",
+                                                   "Lifelong non-smoker (<100 cigarettes smoked in lifetime)"]:
+                self.tobacco_type = random.sample(SYNTH_VAL.SMOKER_TOBACCO_TYPE, k=random.randint(1, 3))
+                if len(self.tobacco_type) > 1 and "Unknown" in self.tobacco_type:
+                    self.tobacco_type.remove("Unknown")
+                if self.tobacco_smoking_status == "Current reformed smoker, duration not specified":
+                    self.pack_years_smoked = None
+                else:
+                    self.pack_years_smoked = random.randint(5, 70)

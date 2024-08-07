@@ -5,7 +5,6 @@ import math
 import factory
 
 import chord_metadata_service.mohpackets.permissible_values as PERM_VAL
-import chord_metadata_service.mohpackets.data.synth_data_values as SYNTH_VAL
 from chord_metadata_service.mohpackets.models import (
     Biomarker,
     Comorbidity,
@@ -72,7 +71,6 @@ class DonorFactory(factory.django.DjangoModelFactory):
 
     # default values
     submitter_donor_id = factory.Sequence(lambda n: f"DONOR_{str(n).zfill(4)}")
-
     gender = factory.Faker("random_element", elements=PERM_VAL.GENDER)
     sex_at_birth = factory.Faker("random_element", elements=PERM_VAL.SEX_AT_BIRTH)
     is_deceased = factory.Faker("random_element", elements=[True, False, None])
@@ -263,7 +261,7 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
         length=random.randint(1, 3),
         unique=True,
     )
-    is_primary_treatment = factory.Faker("random_element", elements=["Yes", "No", None])
+    is_primary_treatment = factory.Faker("random_element", elements=["Yes", "No"])
     treatment_start_date = None
     treatment_end_date = None
     treatment_intent = factory.Faker(
@@ -333,20 +331,19 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
 class SystemicTherapyFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = SystemicTherapy
-        exclude = ("null_drug_dose",)
 
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
-    drug_reference_database = None
-    drug_name = None
-    drug_reference_identifier = None
-
+    drug_reference_database = factory.Faker("random_element", elements=PERM_VAL.DRUG_REFERENCE_DB)
+    drug_name = factory.Faker("pystr", min_chars=10, max_chars=30)
+    drug_reference_identifier = factory.Faker("pystr", min_chars=10, max_chars=30)
     drug_dose_units = factory.Faker("random_element", elements=PERM_VAL.DOSAGE_UNITS)
-
     prescribed_cumulative_drug_dose = factory.Faker("pyfloat", left_digits=2, right_digits=1, positive=True,
                                                     min_value=20, max_value=50)
     actual_cumulative_drug_dose = factory.Faker("pyfloat", left_digits=2, right_digits=1, positive=True,
                                                 min_value=51, max_value=100)
+    days_per_cycle = factory.Faker("pyint", min_value=3, max_value=18)
+    number_of_cycles = factory.Faker("pyint", min_value=3, max_value=10)
     systemic_therapy_type = factory.Faker("random_element", elements=PERM_VAL.SYSTEMIC_THERAPY_TYPE)
     start_date = None
     end_date = None
@@ -397,30 +394,9 @@ class SystemicTherapyFactory(factory.django.DjangoModelFactory):
             treatment.treatment_type.append("Systemic therapy")
         if "No treatment" in treatment.treatment_type:
             treatment.treatment_type.remove("No treatment")
-        treatment = [x for x in treatment.treatment_type if x is not None]
+        treatment.treatment_type = [x for x in treatment.treatment_type if x is not None]
 
-    @factory.post_generation
-    def add_drug_info(self, create, extracted, **kwargs):
-        if random.random() < .15:
-            pass
-        else:
-            self.drug_reference_database = random.choice(PERM_VAL.DRUG_REFERENCE_DB)
-            if self.drug_reference_database:
-                if self.systemic_therapy_type == "Chemotherapy":
-                    self.drug_name = random.choice(list(SYNTH_VAL.CHEMO_DRUGS.keys()))
-                    if self.drug_name:
-                        self.drug_reference_identifier = SYNTH_VAL.CHEMO_DRUGS[self.drug_name][
-                            self.drug_reference_database]
-                elif self.systemic_therapy_type == "Hormone therapy":
-                    self.drug_name = random.choice(list(SYNTH_VAL.HORMONE_DRUGS.keys()))
-                    if self.drug_name:
-                        self.drug_reference_identifier = SYNTH_VAL.HORMONE_DRUGS[self.drug_name][
-                            self.drug_reference_database]
-                elif self.systemic_therapy_type == "Immunotherapy":
-                    self.drug_name = random.choice(list(SYNTH_VAL.IMMUNO_DRUGS.keys()))
-                    if self.drug_name:
-                        self.drug_reference_identifier = SYNTH_VAL.IMMUNO_DRUGS[self.drug_name][
-                            self.drug_reference_database]
+
 
 
 class RadiationFactory(factory.django.DjangoModelFactory):
@@ -473,9 +449,9 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
 
-    surgery_reference_database = None
-    surgery_reference_identifier = None
-    surgery_type = None
+    surgery_reference_database = factory.Faker("random_element", elements=PERM_VAL.SURGERY_REFERENCE_DATABASE)
+    surgery_reference_identifier = factory.Faker("pystr", min_chars=10, max_chars=20)
+    surgery_type = factory.Faker("pystr", min_chars=10, max_chars=64)
     surgery_site = factory.Faker("random_element", elements=PERM_VAL.TOPOGRAPHY_CODES)
     surgery_location = factory.Faker(
         "random_element", elements=PERM_VAL.SURGERY_LOCATION
@@ -512,18 +488,6 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
         "treatment_uuid.submitter_treatment_id"
     )
     treatment_uuid = factory.SubFactory(TreatmentFactory)
-
-    @factory.post_generation
-    def add_surgery_type(self, create, extracted, **kwargs):
-        if random.random() < .15:
-            pass
-        else:
-            self.surgery_type = random.choice(list(SYNTH_VAL.SURGERY_TYPE.keys()))
-            if self.surgery_type:
-                self.surgery_reference_database = random.choice(list(SYNTH_VAL.SURGERY_TYPE[self.surgery_type].keys()))
-                if self.surgery_reference_database:
-                    self.surgery_reference_identifier = SYNTH_VAL.SURGERY_TYPE[self.surgery_type][
-                        self.surgery_reference_database]
 
     @factory.post_generation
     def clean_margin_nulls(self, create, extracted, **kwargs):
@@ -746,15 +710,7 @@ class ComorbidityFactory(factory.django.DjangoModelFactory):
         cancer_treatments = ["Chemotherapy", "Hormone therapy", "Immunotherapy", "Radiation"]
         if donor.date_of_birth:
             age_at_diagnosis = math.floor(donor.date_of_birth['month_interval'] / -12)
-        if comorbidity.comorbidity_type_code in SYNTH_VAL.CANCER_CODES:
-            comorbidity.laterality_of_prior_malignancy = random.choice(PERM_VAL.MALIGNANCY_LATERALITY)
-            if donor.date_of_birth:
-                comorbidity.age_at_comorbidity_diagnosis = random.randint(10, age_at_diagnosis)
-            comorbidity.prior_malignancy = "Yes"
-            comorbidity.comorbidity_treatment_status = random.choice(PERM_VAL.UBOOLEAN)
-            if comorbidity.comorbidity_treatment_status == "Yes":
-                comorbidity.comorbidity_treatment = random.choice(cancer_treatments)
-        elif comorbidity.comorbidity_type_code:
+        if comorbidity.comorbidity_type_code:
             comorbidity.comorbidity_treatment_status = random.choice(PERM_VAL.UBOOLEAN)
             if donor.date_of_birth:
                 comorbidity.age_at_comorbidity_diagnosis = random.randint(10, age_at_diagnosis)
@@ -784,9 +740,11 @@ class ExposureFactory(factory.django.DjangoModelFactory):
         if self.tobacco_smoking_status:
             if self.tobacco_smoking_status not in ["Not applicable", "Smoking history not documented",
                                                    "Lifelong non-smoker (<100 cigarettes smoked in lifetime)"]:
-                self.tobacco_type = random.sample(SYNTH_VAL.SMOKER_TOBACCO_TYPE, k=random.randint(1, 3))
+                self.tobacco_type = random.sample(PERM_VAL.TOBACCO_TYPE, k=random.randint(1, 3))
                 if len(self.tobacco_type) > 1 and "Unknown" in self.tobacco_type:
                     self.tobacco_type.remove("Unknown")
+                if len(self.tobacco_type) > 1 and "Not applicable" in self.tobacco_type:
+                    self.tobacco_type.remove("Not applicable")
                 if self.tobacco_smoking_status == "Current reformed smoker, duration not specified":
                     self.pack_years_smoked = None
                 else:

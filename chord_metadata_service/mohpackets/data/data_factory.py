@@ -44,6 +44,7 @@ from synth_data_factories import (
     SynthDonorFactory,
     NullSynthDonorFactory,
     AllSynthDonorFactory,
+    SynthExposureFactory,
     SynthPrimaryDiagnosisFactory,
     NullSynthPrimaryDiagnosisFactory,
     AllSynthPrimaryDiagnosisFactory,
@@ -253,6 +254,7 @@ class Dataset:
         ComorbidityFactory.reset_sequence(1)
         ExposureFactory.reset_sequence(1)
         FollowUpFactory.reset_sequence(1)
+        num_other_linked = math.ceil(followups_per_program / 3)
         all_donors = AllSynthDonorFactory.create_batch(all_type_donor_count, program_id=cls.Program[0])
         cls.Donor.extend(all_donors)
         all_pds = AllSynthPrimaryDiagnosisFactory.create_batch(all_type_donor_count,
