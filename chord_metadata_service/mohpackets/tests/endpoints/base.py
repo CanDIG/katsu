@@ -5,16 +5,12 @@ import factory
 from django.conf import settings
 from django.test import Client, TestCase
 
-from chord_metadata_service.mohpackets.tests.endpoints.factories import (
-    # SystemicTherapyFactory,
+from chord_metadata_service.mohpackets.tests.factories import (
     DonorFactory,
-    FollowUpFactory,
     PrimaryDiagnosisFactory,
     ProgramFactory,
-    RadiationFactory,
     SampleRegistrationFactory,
     SpecimenFactory,
-    SurgeryFactory,
     TreatmentFactory,
 )
 
@@ -57,34 +53,22 @@ class BaseTestCase(TestCase):
             4, program_id=factory.Iterator(cls.programs)
         )
         cls.primary_diagnoses = PrimaryDiagnosisFactory.create_batch(
-            4, donor_uuid=factory.Iterator(cls.donors)
+            8, donor_uuid=factory.Iterator(cls.donors)
         )
         cls.specimens = SpecimenFactory.create_batch(
-            4, primary_diagnosis_uuid=factory.Iterator(cls.primary_diagnoses)
+            16, primary_diagnosis_uuid=factory.Iterator(cls.primary_diagnoses)
         )
         cls.sample_registrations = SampleRegistrationFactory.create_batch(
-            12, specimen_uuid=factory.Iterator(cls.specimens)
+            32, specimen_uuid=factory.Iterator(cls.specimens)
         )
         cls.treatments = TreatmentFactory.create_batch(
-            4, primary_diagnosis_uuid=factory.Iterator(cls.primary_diagnoses)
+            16, primary_diagnosis_uuid=factory.Iterator(cls.primary_diagnoses)
         )
-        # cls.systemic_therapies = SystemicTherapyFactory.create_batch(
-        #     6, treatment_uuid=factory.Iterator(cls.treatments[0:2])
-        # )
-        cls.radiations = RadiationFactory.create_batch(
-            4, treatment_uuid=factory.Iterator(cls.treatments[2:3])
-        )
-        cls.surgeries = SurgeryFactory.create_batch(
-            4, treatment_uuid=factory.Iterator(cls.treatments[3:4])
-        )
-        # cls.followups = FollowUpFactory.create_batch(
-        #     2,
-        #     primary_diagnosis_uuid=factory.Faker("random_element", [None, cls.primary_diagnoses]),
-        #     treatment_uuid=factory.Maybe(decider="primary_diagnosis_uuid",
-        #                                  yes_declaration=None,
-        #                                  no_declaration=factory.Faker("random_element",
-        #                                                               [None, cls.primary_diagnoses]))
-        # )
+        # need systemic
+
+        # exposure
+
+        # cormodibility
 
         # Define users permissions based on test data
         # The only different between a normal user and a curator is write permission

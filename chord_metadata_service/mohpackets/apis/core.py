@@ -15,19 +15,19 @@ from ninja.parser import Parser
 from ninja.renderers import BaseRenderer
 from ninja.security import APIKeyHeader, HttpBearer
 
-# from chord_metadata_service.mohpackets.apis.clinical_data import (
-#     router as authorzied_router,
-# )
-# from chord_metadata_service.mohpackets.apis.discovery import (
-#     discovery_router as discovery_router,
-# )
-# from chord_metadata_service.mohpackets.apis.explorer import (
-#     explorer_router as explorer_router,
-# )
-# from chord_metadata_service.mohpackets.apis.ingestion import (
-#     router as ingest_router,
-#     delete_router,
-# )
+from chord_metadata_service.mohpackets.apis.clinical_data import (
+    router as authorzied_router,
+)
+from chord_metadata_service.mohpackets.apis.discovery import (
+    discovery_router as discovery_router,
+)
+from chord_metadata_service.mohpackets.apis.explorer import (
+    explorer_router as explorer_router,
+)
+from chord_metadata_service.mohpackets.apis.ingestion import (
+    router as ingest_router,
+    delete_router,
+)
 
 from chord_metadata_service.mohpackets.utils import get_schema_version
 
@@ -270,15 +270,15 @@ api = NinjaAPI(
     version=settings.KATSU_VERSION,
     description="This is the RESTful API for the MoH Service.",
 )
-# api.add_router("/discovery/", discovery_router, tags=["discovery"])
-# api.add_router("/ingest/", ingest_router, auth=auth.IngestAuth(), tags=["ingest"])
-# api.add_router("/ingest/", delete_router, auth=auth.DeleteAuth(), tags=["delete"])
-# api.add_router(
-#     "/authorized/", authorzied_router, auth=auth.GetAuth(), tags=["authorized"]
-# )
-# api.add_router(
-#     "/explorer", explorer_router, auth=auth.ServiceTokenAuth(), tags=["explorer"]
-# )
+api.add_router("/discovery/", discovery_router, tags=["discovery"])
+api.add_router("/ingest/", ingest_router, auth=auth.IngestAuth(), tags=["ingest"])
+api.add_router("/ingest/", delete_router, auth=auth.DeleteAuth(), tags=["delete"])
+api.add_router(
+    "/authorized/", authorzied_router, auth=auth.GetAuth(), tags=["authorized"]
+)
+api.add_router(
+    "/explorer", explorer_router, auth=auth.ServiceTokenAuth(), tags=["explorer"]
+)
 
 
 @api.get("/service-info")
