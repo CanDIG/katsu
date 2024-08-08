@@ -266,6 +266,7 @@ class NullSynthSpecimenFactory(SpecimenFactory):
 
 class AllSynthSpecimenFactory(SpecimenFactory):
     submitter_specimen_id = factory.Sequence(lambda n: f"SPECIMEN_ALL_{str(n).zfill(4)}")
+    specimen_anatomic_location = factory.Faker("random_element", elements=SYNTH_VAL.TOPOGRAPHY_CODES)
 
     @factory.post_generation
     def generate_histology_code(self, create, extracted, **kwargs):
@@ -701,6 +702,8 @@ class NullSynthSurgeryFactory(SurgeryFactory):
 
 
 class AllSynthSurgeryFactory(SurgeryFactory):
+    surgery_site = factory.Faker("random_element", elements=SYNTH_VAL.TOPOGRAPHY_CODES)
+
     @factory.post_generation
     def add_surgery_type(self, create, extracted, **kwargs):
         self.surgery_type = random.choice(list(SYNTH_VAL.SURGERY_TYPE.keys()))
@@ -844,7 +847,7 @@ class AllSynthBiomarkerFactory(BiomarkerFactory):
 
 class SynthComorbidityFactory(ComorbidityFactory):
     prior_malignancy = factory.Faker("random_element", elements=SYNTH_VAL.UBOOLEAN)
-    laterality_of_prior_malignancy = factory.Faker("random_element", elements=SYNTH_VAL.MALIGNANCY_LATERALITY)
+    laterality_of_prior_malignancy = None
     comorbidity_type_code = factory.Faker("random_element", elements=SYNTH_VAL.ALL_CODES)
 
     @factory.post_generation
@@ -889,8 +892,6 @@ class AllSynthComorbidityFactory(SynthComorbidityFactory):
 
 
 class SynthFollowUpFactory(FollowUpFactory):
-    class Meta:
-        exclude = ("fill_treatment",)
 
     submitter_follow_up_id = factory.Sequence(lambda n: f"FOLLOW_UP_{str(n).zfill(4)}")
     disease_status_at_followup = factory.Faker(
@@ -902,7 +903,48 @@ class SynthFollowUpFactory(FollowUpFactory):
         length=random.randint(1, 5),
         unique=True,
     )
+    primary_diagnosis_uuid = factory.Maybe(
+        "primary_diagnosis_uuid",
+        yes_declaration=factory.SubFactory(PrimaryDiagnosisFactory),
+        no_declaration=None
+    )
+    submitter_primary_diagnosis_id = factory.Maybe(
+        "primary_diagnosis_uuid",
+        yes_declaration=factory.SelfAttribute(
+            "primary_diagnosis_uuid.submitter_primary_diagnosis_id"),
+        no_declaration=None
+    )
 
+    submitter_treatment_id = factory.Maybe(
+        "treatment_uuid",
+        yes_declaration=factory.SelfAttribute("treatment_uuid.submitter_treatment_id"),
+        no_declaration=None)
+    treatment_uuid = factory.Maybe(
+        "treatment_uuid",
+        yes_declaration=factory.SubFactory(TreatmentFactory),
+        no_declaration=None)
+
+    @factory.post_generation
+    def set_followup_date(self, create, extracted, **kwargs):
+        if random.random() < .15:
+            pass
+        else:
+            if self.submitter_treatment_id:
+                treatment = self.treatment_uuid
+                if treatment.treatment_start_date:
+                    day_int = random.randint(treatment.treatment_start_date["day_interval"] + 365,
+                                             treatment.treatment_start_date["day_interval"] + 1000)
+                    self.date_of_followup = {"day_interval": day_int,
+                                             "month_interval": days_to_months(day_int)}
+            else:
+                if self.donor_uuid.date_of_death:
+                    day_int = random.randint(400,
+                                             self.donor_uuid.date_of_death["day_interval"])
+                else:
+                    day_int = random.randint(400,
+                                             2000)
+                self.date_of_followup = {"day_interval": day_int,
+                                         "month_interval": days_to_months(day_int)}
     @factory.post_generation
     def set_relapse_type_date(self, create, extracted, **kwargs):
         if random.random() < .15:
@@ -911,22 +953,29 @@ class SynthFollowUpFactory(FollowUpFactory):
                                                  'Progression not otherwise specified']:
             donor = self.donor_uuid
             self.relapse_type = random.choice(PERM_VAL.RELAPSE_TYPE)
-            if donor.date_of_death:
-                relapse_day_int = random.randint(0, donor.date_of_death['day_interval'])
+            if self.date_of_followup:
+                relapse_day_int = random.randint(0, self.date_of_followup["day_interval"])
                 relapse_month_int = days_to_months(relapse_day_int)
                 self.date_of_relapse = {'day_interval': relapse_day_int,
                                         'month_interval': relapse_month_int}
             else:
-                relapse_day_int = random.randint(0, 32850)
+                relapse_day_int = random.randint(0, 500)
                 relapse_month_int = days_to_months(relapse_day_int)
                 self.date_of_relapse = {'day_interval': relapse_day_int,
                                         'month_interval': relapse_month_int}
 
 
-class NullSynthFollowUpFactory(FollowUpFactory):
+
+
+
+class NullSynthFollowUpFactory(SynthFollowUpFactory):
     submitter_follow_up_id = factory.Sequence(lambda n: f"FOLLOW_UP_NULL_{str(n).zfill(4)}")
+    date_of_followup = None
     disease_status_at_followup = None
+    relapse_type = None
+    date_of_relapse = None
     method_of_progression_status = None
+    anatomic_site_progression_or_recurrence = None
 
     @factory.post_generation
     def set_relapse_type_date(self, create, extracted, **kwargs):
@@ -934,7 +983,7 @@ class NullSynthFollowUpFactory(FollowUpFactory):
         pass
 
 
-class AllSynthFollowUpFactory(FollowUpFactory):
+class AllSynthFollowUpFactory(SynthFollowUpFactory):
     submitter_follow_up_id = factory.Sequence(lambda n: f"FOLLOW_UP_ALL_{str(n).zfill(4)}")
 
     @factory.post_generation
@@ -964,6 +1013,9 @@ class SynthExposureFactory(ExposureFactory):
     tobacco_smoking_status = factory.Maybe("fill_status",
                                            factory.Faker("random_element", elements=PERM_VAL.SMOKING_STATUS),
                                            None)
+    tobacco_type = None
+    pack_years_smoked = None
+
     @factory.post_generation
     def set_smoking_information(self, create, extracted, **kwargs):
         if self.tobacco_smoking_status:
@@ -976,6 +1028,7 @@ class SynthExposureFactory(ExposureFactory):
                     self.pack_years_smoked = None
                 else:
                     self.pack_years_smoked = random.randint(5, 70)
+
 
 class AllSynthExposureFactory(SynthExposureFactory):
     fill_status = True

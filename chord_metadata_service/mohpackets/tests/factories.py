@@ -92,14 +92,18 @@ class DonorFactory(factory.django.DjangoModelFactory):
         no_declaration=None,
     )
 
-    # set foregin key
+    # set foreign key
     program_id = factory.SubFactory(ProgramFactory)
 
     @factory.post_generation
     def consistent_dates(self, create, extracted, **kwargs):
         "Calculate a month interval after the object is created so that the day and month intervals are consistent."
         if self.date_of_birth:
-            self.date_of_birth['month_interval'] = days_to_months(self.date_of_birth['day_interval'])
+            try:
+                self.date_of_birth['month_interval'] = days_to_months(self.date_of_birth['day_interval'])
+            except KeyError as e:
+                self.date_of_birth = {'day_interval': random.randint(-21900, -18220)}
+                self.date_of_birth['month_interval'] = days_to_months(self.date_of_birth['day_interval'])
         if self.date_of_death:
             self.date_of_death['month_interval'] = days_to_months(self.date_of_death['day_interval'])
 
@@ -185,7 +189,9 @@ class SpecimenFactory(factory.django.DjangoModelFactory):
         "random_element", elements=PERM_VAL.SPECIMEN_PROCESSING
     )
     tumour_histological_type = None
-    specimen_anatomic_location = factory.Faker("word")
+    specimen_anatomic_location = factory.Faker("random_element",
+                                               elements=["C00.6", "C00.8", "C01.9", "C02.0", "C02.1", "C02.2", "C02.3",
+                                                         "C02.4", "C02.8", "C02.9", "C03.0", "C03.1"])
     specimen_laterality = factory.Faker(
         "random_element", elements=PERM_VAL.SPECIMEN_LATERALITY
     )
@@ -459,7 +465,9 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
     surgery_type = factory.Faker("pystr", min_chars=10, max_chars=64)
-    surgery_site = factory.Faker("word")
+    surgery_site = factory.Faker("random_element",
+                                 elements=["C00.0", "C00.1", "C00.2", "C00.3", "C00.4", "C00.5", "C00.6", "C02.3",
+                                           "C02.4", "C02.8", "C02.9", "C03.0", "C03.1"])
     surgery_location = factory.Faker(
         "random_element", elements=PERM_VAL.SURGERY_LOCATION
     )
@@ -533,7 +541,7 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
 class FollowUpFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = FollowUp
-        exclude = ("fill_treatment", )
+        exclude = ("fill_treatment", "fill_pd")
 
     # default values
     submitter_follow_up_id = factory.Sequence(lambda n: "FOLLOW_UP_%d" % n)
@@ -556,14 +564,14 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
     donor_uuid = factory.SubFactory(DonorFactory)
     submitter_donor_id = factory.SelfAttribute("donor_uuid.submitter_donor_id")
 
-    # fill_pd = factory.Iterator([True, False, False])
+    fill_pd = factory.Iterator([True, False, False])
     primary_diagnosis_uuid = factory.Maybe(
-        "primary_diagnosis_uuid",
+        "fill_pd",
         yes_declaration=factory.SubFactory(PrimaryDiagnosisFactory),
         no_declaration=None
     )
     submitter_primary_diagnosis_id = factory.Maybe(
-        "primary_diagnosis_uuid",
+        "fill_pd",
         yes_declaration=factory.SelfAttribute(
             "primary_diagnosis_uuid.submitter_primary_diagnosis_id"),
         no_declaration=None
@@ -571,11 +579,11 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
 
     fill_treatment = factory.Iterator([False, True, False])
     submitter_treatment_id = factory.Maybe(
-        "treatment_uuid",
+        "fill_treatment",
         yes_declaration=factory.SelfAttribute("treatment_uuid.submitter_treatment_id"),
         no_declaration=None)
     treatment_uuid = factory.Maybe(
-        "treatment_uuid",
+        "fill_treatment",
         yes_declaration=factory.SubFactory(TreatmentFactory),
         no_declaration=None)
 
