@@ -221,307 +221,266 @@ class OthersTestCase(BaseTestCase):
 
 # EXPLORER API
 # ------------
-# class DonorExplorerTestCase(BaseTestCase):
-#     def setUp(self):
-#         super().setUp()
-#         self.donor_url = "/v3/explorer/donors/"
+class DonorExplorerTestCase(BaseTestCase):
+    def setUp(self):
+        super().setUp()
+        self.donor_url = "/v3/explorer/donors/"
 
-#     def test_request_not_from_query(self):
-#         """
-#         Verifies that a request made with an invalid query service token
-#         receives an unauthorized response (HTTP status code 401).
+    def test_request_not_from_query(self):
+        """
+        Verifies that a request made with an invalid query service token
+        receives an unauthorized response (HTTP status code 401).
 
-#         Testing Strategy:
-#         - Send a request with an invalid query service token.
-#         - Ensure that the response status code is 401 (Unauthorized).
-#         """
+        Testing Strategy:
+        - Send a request with an invalid query service token.
+        - Ensure that the response status code is 401 (Unauthorized).
+        """
 
-#         response = self.client.get(
-#             self.donor_url,
-#             HTTP_X_SERVICE_TOKEN="invalid_token",
-#         )
-#         self.assertEqual(response.status_code, HTTPStatus.UNAUTHORIZED)
+        response = self.client.get(
+            self.donor_url,
+            HTTP_X_SERVICE_TOKEN="invalid_token",
+        )
+        self.assertEqual(response.status_code, HTTPStatus.UNAUTHORIZED)
 
-#     def test_request_from_query(self):
-#         """
-#         Verifies that a request made with a query service token
-#         receives a successful response (HTTP status code 200).
+    def test_request_from_query(self):
+        """
+        Verifies that a request made with a query service token
+        receives a successful response (HTTP status code 200).
 
-#         Testing Strategy:
-#         - Send a request with a query service token.
-#         - Ensure that the response status code is 200 (OK).
-#         """
+        Testing Strategy:
+        - Send a request with a query service token.
+        - Ensure that the response status code is 200 (OK).
+        """
 
-#         response = self.client.get(
-#             self.donor_url,
-#             HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
-#         )
-#         self.assertEqual(response.status_code, HTTPStatus.OK)
+        response = self.client.get(
+            self.donor_url,
+            HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
+        )
+        self.assertEqual(response.status_code, HTTPStatus.OK)
 
-#     def test_with_no_filter(self):
-#         """
-#         Test request without applying any filters.
-#         Verifies request returns all donors as expected.
+    def test_with_no_filter(self):
+        """
+        Test request without applying any filters.
+        Verifies request returns all donors as expected.
 
-#         Testing Strategy:
-#         - Send a valid request with no filter applied.
-#         - Confirm the expected count of programs, donors, and sample registrations.
-#         - 2 programs, 4 donors, and 32 sample registrations
-#         """
-#         response = self.client.get(
-#             self.donor_url,
-#             HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
-#         )
-#         self.assertEqual(response.status_code, HTTPStatus.OK)
-#         donors = response.json()
+        Testing Strategy:
+        - Send a valid request with no filter applied.
+        - Confirm the expected count of programs, donors, and sample registrations.
+        - 2 programs, 4 donors, and 32 sample registrations
+        """
+        response = self.client.get(
+            self.donor_url,
+            HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
+        )
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        donors = response.json()
 
-#         # Calculate the number of unique programs
-#         programs = {donor["program_id"] for donor in donors}
-#         self.assertEqual(len(programs), 2)  # 2 programs
+        # Calculate the number of unique programs
+        programs = {donor["program_id"] for donor in donors}
+        self.assertEqual(len(programs), 2)  # 2 programs
 
-#         # Confirm the number of donors
-#         self.assertEqual(len(donors), 4)  # 4 donors
+        # Confirm the number of donors
+        self.assertEqual(len(donors), 4)  # 4 donors
 
-#         # Calculate the total number of sample registrations
-#         sample_registrations = sum(
-#             len(donor["submitter_sample_ids"]) for donor in donors
-#         )
-#         self.assertEqual(sample_registrations, 32)  # 32 sample registrations
+        # Calculate the total number of sample registrations
+        sample_registrations = sum(
+            len(donor["submitter_sample_ids"]) for donor in donors
+        )
+        self.assertEqual(sample_registrations, 32)  # 32 sample registrations
 
-#     def test_filter_cohorts(self):
-#         """
-#         Test filtering donors by cohort.
-#         Verifies the correct count of donors, excluding a specified program.
+    def test_filter_cohorts(self):
+        """
+        Test filtering donors by cohort.
+        Verifies the correct count of donors, excluding a specified program.
 
-#         Testing Strategy:
-#         - Send a valid request with a filter to exclude a specific program.
-#         - Confirm the expected count of programs, donors, and sample registrations.
-#         - 1 program, 2 donors, and 16 sample registrations
-#         """
-#         response = self.client.get(
-#             self.donor_url,
-#             {"exclude_cohorts": [self.programs[0].program_id]},  # exclude the first one
-#             HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
-#         )
-#         donors = response.json()
+        Testing Strategy:
+        - Send a valid request with a filter to exclude a specific program.
+        - Confirm the expected count of programs, donors, and sample registrations.
+        - 1 program, 2 donors, and 16 sample registrations
+        """
+        response = self.client.get(
+            self.donor_url,
+            {"exclude_cohorts": [self.programs[0].program_id]},  # exclude the first one
+            HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
+        )
+        donors = response.json()
 
-#         # Calculate the number of unique programs
-#         programs = {donor["program_id"] for donor in donors}
-#         self.assertEqual(len(programs), 1)  # 1 program
+        # Calculate the number of unique programs
+        programs = {donor["program_id"] for donor in donors}
+        self.assertEqual(len(programs), 1)  # 1 program
 
-#         # Confirm the number of donors
-#         self.assertEqual(len(donors), 2)  # 2 donors
+        # Confirm the number of donors
+        self.assertEqual(len(donors), 2)  # 2 donors
 
-#         # Calculate the total number of sample registrations
-#         sample_registrations = sum(
-#             len(donor["submitter_sample_ids"]) for donor in donors
-#         )
-#         self.assertEqual(sample_registrations, 16)  # 16 sample registrations
+        # Calculate the total number of sample registrations
+        sample_registrations = sum(
+            len(donor["submitter_sample_ids"]) for donor in donors
+        )
+        self.assertEqual(sample_registrations, 16)  # 16 sample registrations
 
-#     def test_filter_primary_sites(self):
-#         """
-#         Test filtering donors by primary site.
-#         Verifies the correct count of donors.
+    def test_filter_primary_sites(self):
+        """
+        Test filtering donors by primary site.
+        Verifies the correct count of primary site.
 
-#         Testing Strategy:
-#         - Extract the primary site from the first donor.
-#         - Count the number of donors with that primary site.
-#         - Send a valid request with a filter on the primary site.
-#         - Ensure that the count of returned donors matches the expected count.
-#         - Check each returned donor to confirm that it contains the specified primary site.
-#         """
-#         selected_primary_site = self.donors[0].primary_site[0]
+        Testing Strategy:
+        - Extract the primary site from the first primary diagnosis.
+        - Count the number of that primary site in the db
+        - Send a valid request with a filter on the primary site.
+        - Ensure that the count of returned matches the expected count.
+        - Check each returned donor to confirm that it contains the specified primary site.
+        """
+        selected_primary_site = self.primary_diagnoses[0].primary_site
 
-#         # Count the number of donors with the selected primary site
-#         count = sum(
-#             1 for donor in self.donors if selected_primary_site in donor.primary_site
-#         )
+        # Calculate total count of the primary_site in all primary diagnoses
+        primary_site_count = sum(
+            1
+            for pd in self.primary_diagnoses
+            if selected_primary_site == pd.primary_site
+        )
 
-#         response = self.client.get(
-#             self.donor_url,
-#             {"primary_site": [selected_primary_site]},
-#             HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
-#         )
-#         donors = response.json()
+        response = self.client.get(
+            self.donor_url,
+            {"primary_site": [selected_primary_site]},
+            HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
+        )
+        donors = response.json()
 
-#         # Ensure that the count of returned donors matches the expected count
-#         self.assertEqual(len(donors), count)
+        # Calculate count of primary_site for returned donors
+        response_primary_site_count = sum(
+            1 for donor in donors if selected_primary_site in donor["primary_site"]
+        )
 
-#         # Check each returned donor to confirm that it contains the specified primary site
-#         for donor in donors:
-#             self.assertIn(selected_primary_site, donor["primary_site"])
+        self.assertEqual(primary_site_count, response_primary_site_count)
 
-#     def test_filter_treatment_type(self):
-#         """
-#         Test the filtering donors by treatment type.
-#         Verifies the correct count of treatment type from return donors,
-#         including repeated treatment types.
+        # Check each returned donor to confirm that it contains the specified primary site
+        for donor in donors:
+            self.assertIn(selected_primary_site, donor["primary_site"])
 
-#         Testing Strategy:
-#         - Extract treatment type from the first treatment.
-#         - Calculate the total count of the treatment type in all treatments.
-#         - Send a valid request with a filter on the treatment type.
-#         - Ensure that the count of treatment type for returned donors matches the expected count.
-#         """
-#         selected_treatment_type = self.treatments[0].treatment_type
+    def test_filter_treatment_type(self):
+        """
+        Test the filtering donors by treatment type.
+        Verifies the correct count of treatment type from return donors,
+        including repeated treatment types.
 
-#         # Calculate total count of the treatment type in all treatments
-#         treatment_type_count = sum(
-#             1
-#             for treatment in self.treatments
-#             if selected_treatment_type in treatment.treatment_type
-#         )
+        Testing Strategy:
+        - Extract treatment type from the first treatment.
+        - Calculate the total count of the treatment type in all treatments.
+        - Send a valid request with a filter on the treatment type.
+        - Ensure that the count of treatment type for returned donors matches the expected count.
+        """
+        selected_treatment_type = self.treatments[0].treatment_type
 
-#         response = self.client.get(
-#             self.donor_url,
-#             {"treatment_type": [selected_treatment_type]},
-#             HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
-#         )
-#         donors = response.json()
+        # Calculate total count of the treatment type in all treatments
+        treatment_type_count = sum(
+            1
+            for treatment in self.treatments
+            if selected_treatment_type in treatment.treatment_type
+        )
 
-#         # Calculate count of treatment type for returned donors
-#         response_treatment_type_count = sum(
-#             1 for donor in donors if selected_treatment_type in donor["treatment_type"]
-#         )
+        response = self.client.get(
+            self.donor_url,
+            {"treatment_type": [selected_treatment_type]},
+            HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
+        )
+        donors = response.json()
 
-#         self.assertEqual(treatment_type_count, response_treatment_type_count)
+        # Calculate count of treatment type for returned donors
+        response_treatment_type_count = sum(
+            1 for donor in donors if selected_treatment_type in donor["treatment_type"]
+        )
 
-#     def test_filter_one_drug_name(self):
-#         """
-#         Test filtering donors by a drug name.
-#         Verifies the correct count of return donors.
+        self.assertEqual(treatment_type_count, response_treatment_type_count)
 
-#         Testing Strategy:
-#         - Extract drug name from the first chemotherapy.
-#         - Collect distinct donors associated with the specified drug name.
-#         - Send a valid request with a filter on the drug name.
-#         - Ensure that the count of returned donors matches the expected count.
-#         """
-#         selected_drug_name = self.chemotherapies[0].drug_name
+    def test_filter_one_drug_name(self):
+        """
+        Test filtering donors by a drug name.
+        Verifies the correct count of return donors.
 
-#         donors_with_selected_drug_name = {
-#             chemo.treatment_uuid.donor_uuid_id
-#             for chemo in self.chemotherapies
-#             if chemo.drug_name == selected_drug_name
-#         }
+        Testing Strategy:
+        - Extract drug name from the first systemic therapy.
+        - Collect distinct donors associated with the specified drug name.
+        - Send a valid request with a filter on the drug name.
+        - Ensure that the count of returned donors matches the expected count.
+        """
+        selected_drug_name = self.systemic_therapies[0].drug_name
 
-#         response = self.client.get(
-#             self.donor_url,
-#             {"chemotherapy_drug_name": [selected_drug_name]},
-#             HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
-#         )
-#         donors = response.json()
+        donors_with_selected_drug_name = {
+            systemic_therapy.treatment_uuid.donor_uuid_id
+            for systemic_therapy in self.systemic_therapies
+            if systemic_therapy.drug_name == selected_drug_name
+        }
 
-#         assert len(donors) == len(donors_with_selected_drug_name)
+        response = self.client.get(
+            self.donor_url,
+            {"systemic_therapy_drug_name": [selected_drug_name]},
+            HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
+        )
+        donors = response.json()
 
-#     def test_filter_two_drug_names_same_treatment(self):
-#         """
-#         Test filtering donors by 2 drug names on the same treatment.
-#         Verifies the correct count of return donors.
+        assert len(donors) == len(donors_with_selected_drug_name)
 
-#         Testing Strategy:
-#         - Extract 2 drug names from chemotherapies.
-#         - Collect donors associated with each drug name.
-#         - Ex: [donor_1, donor_2] + [donor_2, donor_3] = [donor_1, donor_2, donor_3])
-#         - Send a valid request with a filter on both drug names.
-#         - Ensure that the count of returned donors matches the expected count.
-#         """
-#         selected_chemotherapy_drug_names = [
-#             chemo.drug_name for chemo in self.chemotherapies[:2]
-#         ]
+    def test_filter_two_drug_names(self):
+        """
+        Test filtering donors by 2 drug names.
+        Verifies the correct count of return donors.
 
-#         donors_with_selected_chemotherapy_drug_names = set()
-#         for chemotherapy in self.chemotherapies:
-#             if chemotherapy.drug_name in selected_chemotherapy_drug_names:
-#                 donors_with_selected_chemotherapy_drug_names.add(
-#                     chemotherapy.treatment_uuid.donor_uuid_id
-#                 )
+        Testing Strategy:
+        - Extract 2 drug names from systemic therapies.
+        - Collect donors associated with each drug name.
+        - Send a valid request with a filter on both drug names.
+        - Ensure that the count of returned donors matches the expected count.
+        """
+        selected_drug_names = [
+            therapy.drug_name for therapy in self.systemic_therapies[:2]
+        ]
 
-#         response = self.client.get(
-#             self.donor_url,
-#             {"chemotherapy_drug_name": selected_chemotherapy_drug_names},
-#             HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
-#         )
-#         donors = response.json()
+        donors_with_selected_drug_names = set()
+        for systemic_therapy in self.systemic_therapies:
+            if systemic_therapy.drug_name in selected_drug_names:
+                donors_with_selected_drug_names.add(
+                    systemic_therapy.treatment_uuid.donor_uuid_id
+                )
 
-#         assert len(donors) == len(donors_with_selected_chemotherapy_drug_names)
+        response = self.client.get(
+            self.donor_url,
+            {"systemic_therapy_drug_name": selected_drug_names},
+            HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
+        )
+        donors = response.json()
 
-#     def test_filter_two_drug_names_different_treatments(self):
-#         """
-#         Test filtering donors by different drug names on different treatments.
-#         Verifies the correct count of return donors.
+        assert len(donors) == len(donors_with_selected_drug_names)
 
-#         Testing Strategy:
-#         - Extract drug names from chemotherapies and immunotherapies.
-#         - Collect distinct donors associated with each drug name.
-#         - Find the donors associated with both drug names.
-#         - Ex: [donor_1, donor_2] + [donor_2, donor_3] = [donor_2])
-#         - Send a valid request with filters on both drug names.
-#         - Ensure that the count of returned donors matches the expected count.
-#         """
-#         selected_chemotherapy_drug_name = self.chemotherapies[0].drug_name
-#         selected_immunotherapy_drug_name = self.immunotherapies[0].drug_name
+    def test_donor_with_missing_data(self):
+        """
+        Test donor with missing data.
+        Verifies that the API can still return the donor correctly.
 
-#         donors_with_selected_chemotherapy_drug_name = {
-#             chemo.treatment_uuid.donor_uuid_id
-#             for chemo in self.chemotherapies
-#             if chemo.drug_name == selected_chemotherapy_drug_name
-#         }
+        Testing Strategy:
+        - Add a new donor without anything (e.g sample registrations or treatments)
+        - Send a valid request with no filters.
+        - Ensure that the response contains the donor with empty submitter_sample_ids and treatment_type.
+        """
 
-#         donors_with_selected_immunotherapy_drug_name = {
-#             immuno.treatment_uuid.donor_uuid_id
-#             for immuno in self.immunotherapies
-#             if immuno.drug_name == selected_immunotherapy_drug_name
-#         }
+        DonorFactory.create(
+            program_id=self.programs[0], submitter_donor_id="DONOR_MISSING_DATA"
+        )
 
-#         donors_with_both_drug_names = (
-#             donors_with_selected_chemotherapy_drug_name.intersection(
-#                 donors_with_selected_immunotherapy_drug_name
-#             )
-#         )
-
-#         response = self.client.get(
-#             self.donor_url,
-#             {
-#                 "chemotherapy_drug_name": [selected_chemotherapy_drug_name],
-#                 "immunotherapy_drug_name": [selected_immunotherapy_drug_name],
-#             },
-#             HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
-#         )
-#         donors = response.json()
-
-#         assert len(donors) == len(donors_with_both_drug_names)
-
-#     def test_donor_with_missing_data(self):
-#         """
-#         Test donor with missing data.
-#         Verifies that the API can still return the donor correctly.
-
-#         Testing Strategy:
-#         - Add a new donor without anything (e.g sample registrations or treatments)
-#         - Send a valid request with no filters.
-#         - Ensure that the response contains the donor with empty submitter_sample_ids and treatment_type.
-#         """
-
-#         DonorFactory.create(
-#             program_id=self.programs[0], submitter_donor_id="DONOR_MISSING_DATA"
-#         )
-
-#         response = self.client.get(
-#             self.donor_url,
-#             HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
-#         )
-#         self.assertEqual(response.status_code, HTTPStatus.OK)
-#         missing_data_donor = next(
-#             (
-#                 donor
-#                 for donor in response.json()
-#                 if donor["submitter_donor_id"] == "DONOR_MISSING_DATA"
-#             ),
-#             None,  # Default value if donor is not found
-#         )
-#         self.assertIsNotNone(
-#             missing_data_donor, "Donor with missing data  not found in response"
-#         )
-#         self.assertIsNone(missing_data_donor["submitter_sample_ids"])
-#         self.assertEqual(missing_data_donor["treatment_type"], [])
+        response = self.client.get(
+            self.donor_url,
+            HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
+        )
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        missing_data_donor = next(
+            (
+                donor
+                for donor in response.json()
+                if donor["submitter_donor_id"] == "DONOR_MISSING_DATA"
+            ),
+            None,  # Default value if donor is not found
+        )
+        self.assertIsNotNone(
+            missing_data_donor, "Donor with missing data  not found in response"
+        )
+        self.assertIsNone(missing_data_donor["submitter_sample_ids"])
+        self.assertEqual(missing_data_donor["treatment_type"], [])
