@@ -159,19 +159,9 @@ class Dataset:
                     )
                     cls.SystemicTherapy.extend(sys_therapy_batch)
                 if j < followups_per_program:
-                    num_other_linked = math.ceil(followups_per_program/3)
-                    if j < num_other_linked:
-                        this_followup = SynthFollowUpFactory.create(donor_uuid=donor_batch[j],
-                                                               primary_diagnosis_uuid=pd_batch[j],
-                                                               treatment_uuid=None)
-                    elif num_other_linked <= j < 2 * num_other_linked:
-                        this_followup = SynthFollowUpFactory.create(donor_uuid=donor_batch[j],
-                                                               primary_diagnosis_uuid=None,
-                                                               treatment_uuid=treatment_batch[0])
-                    else:
-                        this_followup = SynthFollowUpFactory.create(donor_uuid=donor_batch[j],
-                                                               primary_diagnosis_uuid=None,
-                                                               treatment_uuid=None)
+                    this_followup = SynthFollowUpFactory.create(donor_uuid=donor_batch[j],
+                                                                primary_diagnosis_uuid=pd_batch[j],
+                                                                treatment_uuid=treatment_batch[0])
                     cls.FollowUp.append(this_followup)
                     cls.Biomarker.append(SynthBiomarkerFactory.create(
                         donor_uuid=donor_batch[j],
@@ -221,18 +211,9 @@ class Dataset:
                 )
                 cls.SystemicTherapy.extend(sys_therapy_batch)
             if i < followups_per_program:
-                if i < num_other_linked:
-                    this_followup = NullSynthFollowUpFactory.create(donor_uuid=null_donors[i],
-                                                                    primary_diagnosis_uuid=null_pds[i],
-                                                                    treatment_uuid=None)
-                elif num_other_linked <= i < 2 * num_other_linked:
-                    this_followup = NullSynthFollowUpFactory.create(donor_uuid=null_donors[i],
-                                                                    primary_diagnosis_uuid=None,
-                                                                    treatment_uuid=null_treatments[0])
-                else:
-                    this_followup = NullSynthFollowUpFactory.create(donor_uuid=null_donors[i],
-                                                                    primary_diagnosis_uuid=None,
-                                                                    treatment_uuid=None)
+                this_followup = NullSynthFollowUpFactory.create(donor_uuid=null_donors[i],
+                                                                primary_diagnosis_uuid=null_pds[i],
+                                                                treatment_uuid=null_treatments[0])
                 cls.FollowUp.append(this_followup)
                 cls.Biomarker.append(NullSynthBiomarkerFactory.create(
                     donor_uuid=null_donors[i],
@@ -282,18 +263,9 @@ class Dataset:
                 )
                 cls.SystemicTherapy.extend(sys_therapy_batch)
             if i < followups_per_program:
-                if i < num_other_linked:
-                    this_followup = AllSynthFollowUpFactory.create(donor_uuid=all_donors[i],
-                                                           primary_diagnosis_uuid=all_pds[i],
-                                                           treatment_uuid=None)
-                elif num_other_linked <= i < 2 * num_other_linked:
-                    this_followup = AllSynthFollowUpFactory.create(donor_uuid=all_donors[i],
-                                                           primary_diagnosis_uuid=None,
-                                                           treatment_uuid=all_treatments[0])
-                else:
-                    this_followup = AllSynthFollowUpFactory.create(donor_uuid=all_donors[i],
-                                                           primary_diagnosis_uuid=None,
-                                                           treatment_uuid=None)
+                this_followup = AllSynthFollowUpFactory.create(donor_uuid=all_donors[i],
+                                                               primary_diagnosis_uuid=all_pds[i],
+                                                               treatment_uuid=all_treatments[0])
                 cls.FollowUp.append(this_followup)
                 cls.Biomarker.append(AllSynthBiomarkerFactory.create(
                     donor_uuid=all_donors[i],
@@ -306,11 +278,6 @@ class Dataset:
                 cls.Comorbidity.append(AllSynthComorbidityFactory.create(donor_uuid=all_donors[i]))
             if exposure_start_index < i <= exposure_end_index or all_type_donor_count == 1:
                 cls.Exposure.append(AllSynthExposureFactory.create(donor_uuid=all_donors[i]))
-
-
-
-
-
 
     def __getitem__(self, item):
         return getattr(self, item)

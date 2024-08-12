@@ -54,12 +54,15 @@ from chord_metadata_service.mohpackets.tests.factories import (
 
 
 class SynthProgramFactory(ProgramFactory):
-
+    class Meta:
+        django_get_or_create = ("program_id",)
     # default values
     program_id = factory.Sequence(lambda n: f"SYNTH_{str(n).zfill(2)}")
 
 
 class SynthDonorFactory(DonorFactory):
+    class Meta:
+        django_get_or_create = ("submitter_donor_id",)
     class Meta:
         exclude = ("fill_dob", "null_percent")
 
@@ -91,11 +94,17 @@ class NullSynthDonorFactory(SynthDonorFactory):
 
 
 class AllSynthDonorFactory(DonorFactory):
+    class Meta:
+        django_get_or_create = ("submitter_donor_id",)
+
     submitter_donor_id = factory.Sequence(lambda n: f"DONOR_ALL_{str(n).zfill(4)}")
     is_deceased = factory.Iterator([True, False])
 
 
 class SynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
+    class Meta:
+        django_get_or_create = ("submitter_primary_diagnosis_id",)
+
     class Meta:
         exclude = ("fill_dod")
 
@@ -188,12 +197,18 @@ class NullSynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
 
 
 class AllSynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
+    class Meta:
+        django_get_or_create = ("submitter_primary_diagnosis_id",)
+
     submitter_primary_diagnosis_id = factory.Sequence(lambda n: f"DIAG_ALL_{str(n).zfill(4)}")
     cancer_type_code = "C06.9"
     primary_site = "Floor of mouth"
 
 
 class SynthSpecimenFactory(SpecimenFactory):
+    class Meta:
+        django_get_or_create = ("submitter_specimen_id",)
+
     submitter_specimen_id = factory.Sequence(lambda n: f"SPECIMEN_{str(n).zfill(4)}")
     specimen_storage = factory.Faker("random_element", elements=SYNTH_VAL.STORAGE)
     specimen_processing = factory.Faker("random_element", elements=SYNTH_VAL.SPECIMEN_PROCESSING)
@@ -265,6 +280,9 @@ class NullSynthSpecimenFactory(SpecimenFactory):
 
 
 class AllSynthSpecimenFactory(SpecimenFactory):
+    class Meta:
+        django_get_or_create = ("submitter_specimen_id",)
+
     submitter_specimen_id = factory.Sequence(lambda n: f"SPECIMEN_ALL_{str(n).zfill(4)}")
     specimen_anatomic_location = factory.Faker("random_element", elements=SYNTH_VAL.TOPOGRAPHY_CODES)
 
@@ -278,6 +296,9 @@ class AllSynthSpecimenFactory(SpecimenFactory):
 
 
 class SynthSampleRegistrationFactory(SampleRegistrationFactory):
+    class Meta:
+        django_get_or_create = ("submitter_sample_id",)
+
     submitter_sample_id = factory.Sequence(lambda n: f"SAMPLE_{str(n).zfill(4)}")
     specimen_tissue_source = factory.Faker(
         "random_element", elements=SYNTH_VAL.SPECIMEN_TISSUE_SOURCE
@@ -297,10 +318,16 @@ class NullSynthSampleRegistrationFactory(SampleRegistrationFactory):
 
 
 class AllSynthSampleRegistrationFactory(SampleRegistrationFactory):
+    class Meta:
+        django_get_or_create = ("submitter_sample_id",)
+
     submitter_sample_id = factory.Sequence(lambda n: f"SAMPLE_ALL_{str(n).zfill(4)}")
 
 
 class SynthTreatmentFactory(TreatmentFactory):
+    class Meta:
+        django_get_or_create = ("submitter_treatment_id",)
+
     submitter_treatment_id = factory.Sequence(lambda n: f"TREATMENT_{str(n).zfill(4)}")
     treatment_type = factory.Faker(
         "random_elements",
@@ -375,6 +402,8 @@ class NullSynthTreatmentFactory(TreatmentFactory):
 
 
 class AllSynthTreatmentFactory(TreatmentFactory):
+    class Meta:
+        django_get_or_create = ("submitter_treatment_id",)
     submitter_treatment_id = factory.Sequence(lambda n: f"TREATMENT_ALL_{str(n).zfill(4)}")
     is_primary_treatment = factory.Faker("random_element", elements=["Yes", "No"])
     treatment_type = factory.Faker("random_elements", elements=SYNTH_VAL.TREATMENT_TYPE_FOR_ALL,
@@ -788,7 +817,11 @@ class SynthBiomarkerFactory(BiomarkerFactory):
             self.pr_percent_positive = round(random.random() * 100, 2)
 
 
-class NullSynthBiomarkerFactory(BiomarkerFactory):
+class NullSynthBiomarkerFactory(SynthBiomarkerFactory):
+    class Meta:
+        exclude = ("null_hpv_strain", "fill_specimen", "fill_pd", "fill_treatment", "fill_followup",
+                   "specimen_uuid", "pd_uuid", "treatment_uuid", "followup_uuid")
+
     psa_level = None
     ca125 = None
     cea = None
@@ -813,7 +846,10 @@ class NullSynthBiomarkerFactory(BiomarkerFactory):
         pass
 
 
-class AllSynthBiomarkerFactory(BiomarkerFactory):
+class AllSynthBiomarkerFactory(SynthBiomarkerFactory):
+    class Meta:
+        exclude = ("null_hpv_strain", "fill_specimen", "fill_pd", "fill_treatment", "fill_followup",
+                   "specimen_uuid", "pd_uuid", "treatment_uuid", "followup_uuid")
     @factory.post_generation
     def set_date(self, create, extracted, **kwargs):
         donor = self.donor_uuid
@@ -892,6 +928,9 @@ class AllSynthComorbidityFactory(SynthComorbidityFactory):
 
 
 class SynthFollowUpFactory(FollowUpFactory):
+    class Meta:
+        django_get_or_create = ("submitter_follow_up_id",)
+        exclude = ("fill_pd", "fill_treatment")
 
     submitter_follow_up_id = factory.Sequence(lambda n: f"FOLLOW_UP_{str(n).zfill(4)}")
     disease_status_at_followup = factory.Faker(
@@ -903,24 +942,25 @@ class SynthFollowUpFactory(FollowUpFactory):
         length=random.randint(1, 5),
         unique=True,
     )
+    fill_pd = factory.Faker("pybool")
     primary_diagnosis_uuid = factory.Maybe(
-        "primary_diagnosis_uuid",
+        "fill_pd",
         yes_declaration=factory.SubFactory(PrimaryDiagnosisFactory),
         no_declaration=None
     )
     submitter_primary_diagnosis_id = factory.Maybe(
-        "primary_diagnosis_uuid",
+        "fill_pd",
         yes_declaration=factory.SelfAttribute(
             "primary_diagnosis_uuid.submitter_primary_diagnosis_id"),
         no_declaration=None
     )
-
+    fill_treatment = factory.Faker("pybool")
     submitter_treatment_id = factory.Maybe(
-        "treatment_uuid",
+        "fill_treatment",
         yes_declaration=factory.SelfAttribute("treatment_uuid.submitter_treatment_id"),
         no_declaration=None)
     treatment_uuid = factory.Maybe(
-        "treatment_uuid",
+        "fill_treatment",
         yes_declaration=factory.SubFactory(TreatmentFactory),
         no_declaration=None)
 
@@ -965,9 +1005,6 @@ class SynthFollowUpFactory(FollowUpFactory):
                                         'month_interval': relapse_month_int}
 
 
-
-
-
 class NullSynthFollowUpFactory(SynthFollowUpFactory):
     submitter_follow_up_id = factory.Sequence(lambda n: f"FOLLOW_UP_NULL_{str(n).zfill(4)}")
     date_of_followup = None
@@ -984,6 +1021,7 @@ class NullSynthFollowUpFactory(SynthFollowUpFactory):
 
 
 class AllSynthFollowUpFactory(SynthFollowUpFactory):
+
     submitter_follow_up_id = factory.Sequence(lambda n: f"FOLLOW_UP_ALL_{str(n).zfill(4)}")
 
     @factory.post_generation

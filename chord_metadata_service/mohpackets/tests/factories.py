@@ -53,7 +53,6 @@ def days_to_months(day_interval):
 class ProgramFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Program
-        django_get_or_create = ("program_id",)
 
     # default values
     program_id = factory.Sequence(lambda n: "PROGRAM_%d" % n)
@@ -62,7 +61,6 @@ class ProgramFactory(factory.django.DjangoModelFactory):
 class DonorFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Donor
-        django_get_or_create = ("submitter_donor_id",)
 
     # default values
     submitter_donor_id = factory.Sequence(lambda n: "DONOR_%d" % n)
@@ -111,7 +109,6 @@ class DonorFactory(factory.django.DjangoModelFactory):
 class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = PrimaryDiagnosis
-        django_get_or_create = ("submitter_primary_diagnosis_id",)
 
     # Default values
     submitter_primary_diagnosis_id = factory.Sequence(lambda n: "DIAG_%d" % n)
@@ -178,7 +175,6 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
 class SpecimenFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Specimen
-        django_get_or_create = ("submitter_specimen_id",)
 
     # default values
     submitter_specimen_id = factory.Sequence(lambda n: "SPECIMEN_%d" % n)
@@ -241,7 +237,6 @@ class SpecimenFactory(factory.django.DjangoModelFactory):
 class SampleRegistrationFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = SampleRegistration
-        django_get_or_create = ("submitter_sample_id",)
 
     # default values
     submitter_sample_id = factory.Sequence(lambda n: "SAMPLE_%d" % n)
@@ -263,7 +258,6 @@ class SampleRegistrationFactory(factory.django.DjangoModelFactory):
 class TreatmentFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Treatment
-        django_get_or_create = ("submitter_treatment_id",)
 
     # default values
     submitter_treatment_id = factory.Sequence(lambda n: "TREATMENT_%d" % n)
@@ -541,7 +535,6 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
 class FollowUpFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = FollowUp
-        exclude = ("fill_treatment", "fill_pd")
 
     # default values
     submitter_follow_up_id = factory.Sequence(lambda n: "FOLLOW_UP_%d" % n)
@@ -560,32 +553,19 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
     anatomic_site_progression_or_recurrence = None
 
     # set foreign keys
-    program_id = factory.SelfAttribute("donor_uuid.program_id")
-    donor_uuid = factory.SubFactory(DonorFactory)
-    submitter_donor_id = factory.SelfAttribute("donor_uuid.submitter_donor_id")
-
-    fill_pd = factory.Iterator([True, False, False])
-    primary_diagnosis_uuid = factory.Maybe(
-        "fill_pd",
-        yes_declaration=factory.SubFactory(PrimaryDiagnosisFactory),
-        no_declaration=None
+    program_id = factory.SelfAttribute("treatment_uuid.program_id")
+    submitter_donor_id = factory.SelfAttribute("treatment_uuid.submitter_donor_id")
+    donor_uuid = factory.SelfAttribute("treatment_uuid.donor_uuid")
+    submitter_primary_diagnosis_id = factory.SelfAttribute(
+        "treatment_uuid.submitter_primary_diagnosis_id"
     )
-    submitter_primary_diagnosis_id = factory.Maybe(
-        "fill_pd",
-        yes_declaration=factory.SelfAttribute(
-            "primary_diagnosis_uuid.submitter_primary_diagnosis_id"),
-        no_declaration=None
+    primary_diagnosis_uuid = factory.SelfAttribute(
+        "treatment_uuid.primary_diagnosis_uuid"
     )
-
-    fill_treatment = factory.Iterator([False, True, False])
-    submitter_treatment_id = factory.Maybe(
-        "fill_treatment",
-        yes_declaration=factory.SelfAttribute("treatment_uuid.submitter_treatment_id"),
-        no_declaration=None)
-    treatment_uuid = factory.Maybe(
-        "fill_treatment",
-        yes_declaration=factory.SubFactory(TreatmentFactory),
-        no_declaration=None)
+    submitter_treatment_id = factory.SelfAttribute(
+        "treatment_uuid.submitter_treatment_id"
+    )
+    treatment_uuid = factory.SubFactory(TreatmentFactory)
 
 
 
@@ -598,7 +578,6 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
 class BiomarkerFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Biomarker
-        exclude = ("specimen_uuid", "pd_uuid", "treatment_uuid", "followup_uuid")
 
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
