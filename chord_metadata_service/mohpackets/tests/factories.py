@@ -86,7 +86,7 @@ class DonorFactory(factory.django.DjangoModelFactory):
         "is_deceased",
         yes_declaration=factory.LazyFunction(
             lambda: {
-                "day_interval": random.randint(25551, 32850)
+                "day_interval": random.randint(3650, 16425)
             }
         ),
         no_declaration=None,
