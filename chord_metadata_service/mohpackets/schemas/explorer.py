@@ -4,6 +4,11 @@ from ninja import Schema, Field
 
 from chord_metadata_service.mohpackets.permissible_values import ID_REGEX
 
+"""
+Module with schema used for explorer response
+
+Author: Son Chau
+"""
 
 class DonorExplorerSchema(Schema):
     program_id: str = Field(pattern=ID_REGEX, max_length=64)

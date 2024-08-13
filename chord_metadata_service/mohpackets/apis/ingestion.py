@@ -36,8 +36,7 @@ from chord_metadata_service.mohpackets.schemas.ingestion import (
 )
 
 """
-Module with create APIs for clinical data.
-These APIs require admin authorization
+CRUD APIs for clinical data. Require authorization
 
 Author: Son Chau
 """
@@ -46,6 +45,18 @@ router = Router()
 
 
 def create_instances(payload: List, model_cls: Type):
+    """
+    Create instances of a specified model using data from the provided payload.
+
+    Args:
+        payload (List): A list of data objects, where each object contains
+                        the data required to create a model instance.
+        model_cls (Type): The model class for which instances are to be created.
+
+    Returns:
+        JsonResponse: A response with a 201 status and a list of created instances if successful.
+                      If an error occurs, it returns a 400 status with an error message.
+    """
     instances = []
     try:
         for item in payload:

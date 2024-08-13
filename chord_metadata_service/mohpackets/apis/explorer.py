@@ -27,6 +27,13 @@ from chord_metadata_service.mohpackets.schemas.filter import (
     DonorExplorerFilterSchema,
 )
 
+"""
+Module with explorer APIs for statistic.
+These APIs requires a service token and bypass user authorization.
+
+Author: Son Chau
+"""
+
 explorer_router = Router()
 
 

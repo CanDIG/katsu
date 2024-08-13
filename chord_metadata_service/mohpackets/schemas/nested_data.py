@@ -20,7 +20,7 @@ from chord_metadata_service.mohpackets.schemas.base import (
 """
 Schemas for nested donor with clinical models, inherted from base schemas.
 
-Donor would include other models. Remove FKs as not needed.
+Donor would include other models, exclude the FKs.
 
 Author: Son Chau
 """

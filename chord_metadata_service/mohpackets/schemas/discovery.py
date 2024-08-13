@@ -14,10 +14,6 @@ class ProgramDiscoverySchema(Schema):
     metadata: object
 
 
-# class DiscoverySchema(Schema):
-#     donors_by_cohort: Dict[str, int]
-
-
 class DiscoveryDonorSchema(Schema):
     program_id: str
     donors_count: str

@@ -75,6 +75,11 @@ router = CustomRouterPaginated()
 #                                        #
 ##########################################
 def require_donor_by_program(func):
+    """
+    Decorator that make sure `submitter_donor_id` filters must have a corresponding
+    `program_id`. Returns an error if `program_id` is missing, preventing filtering
+    by `submitter_donor_id` alone.
+    """
     @wraps(func)
     def wrapper(request, filters):
         if filters.submitter_donor_id and not filters.program_id:
@@ -96,6 +101,9 @@ def require_donor_by_program(func):
     response={200: DonorWithClinicalDataSchema, 404: Dict[str, str]},
 )
 def get_donor_with_clinical_data(request, program_id: str, donor_id: str):
+    """
+    Retrieves a single donor along with all related clinical data, organized in a nested JSON format.
+    """
     q = (
         Q(program_id__in=request.read_datasets)
         & Q(program_id=program_id)

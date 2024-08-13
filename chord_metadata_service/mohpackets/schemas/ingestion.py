@@ -21,7 +21,7 @@ from chord_metadata_service.mohpackets.schemas.base import (
 """
 Module with schema used for ingesting
 
-All fields are derived from the model, with the fix for FK and uuid
+All fields are derived from the model but FK and uuid
 
 Author: Son Chau
 """

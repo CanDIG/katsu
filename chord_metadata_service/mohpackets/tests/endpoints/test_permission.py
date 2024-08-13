@@ -14,11 +14,9 @@ from chord_metadata_service.mohpackets.tests.factories import (
 """
     This module tests users with different roles to ensure they
     can perform ingestion and deletion operations as appropriate.
-
-    - Site Admin: Bypasses permission checks, allowing them to
-    ingest and delete any data. However, they can only read from authorized_datasets.
     It is OPA responsibility to ensure authorized_datasets is up to date.
-    - Curator: Can read and write within their authorized_datasets.
+
+    - Site Admin and Curator: Can read and write within their authorized_datasets.
     - Normal User: Has read-only access.
 
     Author: Son Chau
@@ -94,7 +92,7 @@ class IngestTestCase(BaseTestCase):
 
     def test_authorized_ingest_with_site_admin(self):
         """
-        Test that an admin also required authorized program from OPA to ingest
+        Test that an admin can ingest
 
         Testing Strategy:
         - Build Donor data based on the existing program_id
@@ -114,10 +112,10 @@ class IngestTestCase(BaseTestCase):
 
     def test_unauthorized_ingest_with_site_admin(self):
         """
-        Test that an admin also required authorized program from OPA to ingest
+        Test that an admin cannot ingest without permission
 
         Testing Strategy:
-        - Build Donor data based on new a program
+        - Build Donor data based on new a program (not authorized in OPA yet)
         - An authorized admin (user_2) don't have permission on that program_id
         - User cannot perform a POST request for donor creation.
         """
