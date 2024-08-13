@@ -1,7 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.utils import IntegrityError
 from django.test import TestCase
-from pydantic import ValidationError as SchemaValidationError
 
 from chord_metadata_service.mohpackets.models import Radiation, Program
 from chord_metadata_service.mohpackets.permissible_values import (

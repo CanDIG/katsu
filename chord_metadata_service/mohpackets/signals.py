@@ -121,7 +121,6 @@ def create_systemic_therapy_foreign_key(sender, instance, **kwargs):
     )
 
 
-
 @receiver(pre_save, sender=Radiation)
 def create_radiation_foreign_key(sender, instance, **kwargs):
     set_foreign_key(sender, instance, Donor, "submitter_donor_id", "donor_uuid_id")

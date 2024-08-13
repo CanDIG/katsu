@@ -5,7 +5,6 @@ import factory
 from django.conf import settings
 from django.test import Client, TestCase
 
-from chord_metadata_service.mohpackets.models import Biomarker
 from chord_metadata_service.mohpackets.tests.factories import (
     BiomarkerFactory,
     ComorbidityFactory,

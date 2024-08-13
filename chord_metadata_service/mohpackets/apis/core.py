@@ -42,6 +42,7 @@ Author: Son Chau
 
 logger = logging.getLogger(__name__)
 
+
 ##########################################
 #                                        #
 #               RENDERER                 #

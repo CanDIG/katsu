@@ -3,9 +3,7 @@ from django.test import TestCase
 
 from chord_metadata_service.mohpackets.models import Biomarker, Program
 from chord_metadata_service.mohpackets.permissible_values import HER2_STATUS
-from chord_metadata_service.mohpackets.schemas.model import DonorModelSchema
 from chord_metadata_service.mohpackets.tests.factories import BiomarkerFactory
-from chord_metadata_service.mohpackets.tests.utils import INVALID_ID_LIST
 
 
 class BiomarkerModelTest(TestCase):

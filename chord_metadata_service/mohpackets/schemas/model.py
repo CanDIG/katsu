@@ -77,7 +77,6 @@ class RadiationModelSchema(BaseRadiationSchema):
     submitter_treatment_id: str
 
 
-
 class SystemicTherapyModelSchema(BaseSystemicTherapySchema):
     program_id: str = Field(..., alias="program_id_id")
     submitter_donor_id: str

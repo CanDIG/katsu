@@ -103,8 +103,6 @@ class FollowUpIngestSchema(BaseFollowUpSchema):
         use_enum_values = True
 
 
-
-
 class RadiationIngestSchema(BaseRadiationSchema):
     program_id_id: str = Field(..., alias="program_id")
     submitter_donor_id: str

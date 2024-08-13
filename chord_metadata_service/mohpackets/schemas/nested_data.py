@@ -44,8 +44,6 @@ class NestedSystemicTherapySchema(BaseSystemicTherapySchema):
     pass
 
 
-
-
 class NestedRadiationSchema(BaseRadiationSchema):
     pass
 

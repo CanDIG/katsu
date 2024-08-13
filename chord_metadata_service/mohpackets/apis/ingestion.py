@@ -117,6 +117,7 @@ def create_followups(
 ):
     return create_instances(payload, FollowUp)
 
+
 @router.post("/primary_diagnoses/")
 def create_primary_diagnoses(
     request, payload: List[PrimaryDiagnosisIngestSchema], response: HttpResponse

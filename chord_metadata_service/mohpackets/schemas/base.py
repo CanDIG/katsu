@@ -15,8 +15,8 @@ from chord_metadata_service.mohpackets.models import (
     SampleRegistration,
     Specimen,
     Surgery,
-    Treatment,
     SystemicTherapy,
+    Treatment,
 )
 from chord_metadata_service.mohpackets.permissible_values import (
     COMORBIDITY_REGEX,
@@ -34,10 +34,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     GenderEnum,
     Her2StatusEnum,
     HpvStrainEnum,
-    ImmunotherapyTypeEnum,
     LostToFollowupReasonEnum,
-    LymphNodeMethodEnum,
-    LymphNodeStatusEnum,
     LymphovascularInvasionEnum,
     MalignancyLateralityEnum,
     MarginTypesEnum,
@@ -61,14 +58,12 @@ from chord_metadata_service.mohpackets.permissible_values import (
     StageGroupEnum,
     StorageEnum,
     SurgeryLocationEnum,
-    SurgeryTypeEnum,
     TCategoryEnum,
     TherapyTypeEnum,
     TobaccoTypeEnum,
     TreatmentIntentEnum,
     TreatmentResponseEnum,
     TreatmentResponseMethodEnum,
-    TreatmentSettingEnum,
     TreatmentStatusEnum,
     TreatmentTypeEnum,
     TumourClassificationEnum,
@@ -79,7 +74,6 @@ from chord_metadata_service.mohpackets.permissible_values import (
     TumourStagingSystemEnum,
     uBooleanEnum,
 )
-
 
 """
 Module containing base schemas for clinical data models.

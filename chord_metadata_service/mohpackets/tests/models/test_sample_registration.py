@@ -65,7 +65,7 @@ class SampleRegistrationModelTest(TestCase):
         This test changes a field value, saves it, and then retrieves it from
         the database to verify the update.
         """
-        update_source = SAMPLE_TYPE[0]  #  Amplified DNA
+        update_source = SAMPLE_TYPE[0]  # Amplified DNA
         self.instance.specimen_tissue_source = update_source
         self.instance.save()
         updated_object = SampleRegistration.objects.get(
