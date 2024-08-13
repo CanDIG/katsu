@@ -145,7 +145,7 @@ class SynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
                     PERM_VAL.LOST_TO_FOLLOWUP_REASON
                 )
                 donor.date_alive_after_lost_to_followup = {
-                    "day_interval": random.randint(25551, 32850),
+                    "day_interval": random.randint(3650, 4380),
                 }
                 donor.date_alive_after_lost_to_followup["month_interval"] = (
                     days_to_months(donor.date_alive_after_lost_to_followup["day_interval"]))
@@ -795,12 +795,12 @@ class SynthBiomarkerFactory(BiomarkerFactory):
             self.test_date = {'day_interval': test_day_int,
                               'month_interval': test_month_int}
         elif donor.date_of_birth:
-            test_day_int = random.randint(donor.date_of_birth['day_interval'], 32850)
+            test_day_int = random.randint(donor.date_of_birth['day_interval'], 3650)
             test_month_int = days_to_months(test_day_int)
             self.test_date = {'day_interval': test_day_int,
                               'month_interval': test_month_int}
         else:
-            test_day_int = random.randint(7500, 32850)
+            test_day_int = random.randint(-3650, 3650)
             test_month_int = days_to_months(test_day_int)
             self.test_date = {'day_interval': test_day_int,
                               'month_interval': test_month_int}
@@ -859,12 +859,12 @@ class AllSynthBiomarkerFactory(SynthBiomarkerFactory):
             self.test_date = {'day_interval': test_day_int,
                               'month_interval': test_month_int}
         elif donor.date_of_birth:
-            test_day_int = random.randint(donor.date_of_birth['day_interval'], 32850)
+            test_day_int = random.randint(donor.date_of_birth['day_interval'], 10950)
             test_month_int = days_to_months(test_day_int)
             self.test_date = {'day_interval': test_day_int,
                               'month_interval': test_month_int}
         else:
-            test_day_int = random.randint(7500, 32850)
+            test_day_int = random.randint(7500, 10950)
             test_month_int = days_to_months(test_day_int)
             self.test_date = {'day_interval': test_day_int,
                               'month_interval': test_month_int}
@@ -942,7 +942,7 @@ class SynthFollowUpFactory(FollowUpFactory):
         length=random.randint(1, 5),
         unique=True,
     )
-    fill_pd = factory.Faker("pybool")
+    fill_pd = factory.Iterator([True, False, False])
     primary_diagnosis_uuid = factory.Maybe(
         "fill_pd",
         yes_declaration=factory.SubFactory(PrimaryDiagnosisFactory),
@@ -954,7 +954,7 @@ class SynthFollowUpFactory(FollowUpFactory):
             "primary_diagnosis_uuid.submitter_primary_diagnosis_id"),
         no_declaration=None
     )
-    fill_treatment = factory.Faker("pybool")
+    fill_treatment = factory.Iterator([False, True, False])
     submitter_treatment_id = factory.Maybe(
         "fill_treatment",
         yes_declaration=factory.SelfAttribute("treatment_uuid.submitter_treatment_id"),
@@ -980,11 +980,15 @@ class SynthFollowUpFactory(FollowUpFactory):
                 if self.donor_uuid.date_of_death:
                     day_int = random.randint(400,
                                              self.donor_uuid.date_of_death["day_interval"])
+                elif self.donor_uuid.date_alive_after_lost_to_followup:
+                    day_int = random.randint(400,
+                                             self.donor_uuid.date_alive_after_lost_to_followup["day_interval"])
                 else:
                     day_int = random.randint(400,
                                              2000)
                 self.date_of_followup = {"day_interval": day_int,
                                          "month_interval": days_to_months(day_int)}
+
     @factory.post_generation
     def set_relapse_type_date(self, create, extracted, **kwargs):
         if random.random() < .15:
@@ -1037,7 +1041,7 @@ class AllSynthFollowUpFactory(SynthFollowUpFactory):
                 self.date_of_relapse = {'day_interval': relapse_day_int,
                                         'month_interval': relapse_month_int}
             else:
-                relapse_day_int = random.randint(0, 32850)
+                relapse_day_int = random.randint(0, 3650)
                 relapse_month_int = days_to_months(relapse_day_int)
                 self.date_of_relapse = {'day_interval': relapse_day_int,
                                         'month_interval': relapse_month_int}

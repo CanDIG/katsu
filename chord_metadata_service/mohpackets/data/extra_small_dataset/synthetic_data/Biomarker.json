@@ -1,1 +1,221 @@
-[{"program_id": "SYNTH_01", "submitter_donor_id": "DONOR_0001", "submitter_specimen_id": null, "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "submitter_follow_up_id": null, "test_date": {"day_interval": 10801, "month_interval": 354}, "psa_level": 57, "ca125": 78, "cea": 13, "er_status": "Cannot be determined", "er_percent_positive": null, "pr_status": "Unknown", "pr_percent_positive": null, "her2_ihc_status": "Equivocal", "her2_ish_status": null, "hpv_ihc_status": null, "hpv_pcr_status": "Negative", "hpv_strain": ["HPV52"]}, {"program_id": "SYNTH_01", "submitter_donor_id": "DONOR_0002", "submitter_specimen_id": "SPECIMEN_0002", "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "submitter_follow_up_id": null, "test_date": {"day_interval": -3897, "month_interval": -129}, "psa_level": 26, "ca125": 6, "cea": 63, "er_status": "Negative", "er_percent_positive": null, "pr_status": "Cannot be determined", "pr_percent_positive": null, "her2_ihc_status": null, "her2_ish_status": "Equivocal", "hpv_ihc_status": "Unknown", "hpv_pcr_status": null, "hpv_strain": ["HPV18"]}, {"program_id": "SYNTH_01", "submitter_donor_id": "DONOR_0003", "submitter_specimen_id": null, "submitter_primary_diagnosis_id": "DIAG_0003", "submitter_treatment_id": null, "submitter_follow_up_id": null, "test_date": {"day_interval": 15864, "month_interval": 521}, "psa_level": 51, "ca125": 31, "cea": 100, "er_status": "Unknown", "er_percent_positive": null, "pr_status": "Unknown", "pr_percent_positive": null, "her2_ihc_status": "Positive", "her2_ish_status": "Not applicable", "hpv_ihc_status": "Cannot be determined", "hpv_pcr_status": "Negative", "hpv_strain": null}, {"program_id": "SYNTH_02", "submitter_donor_id": "DONOR_0006", "submitter_specimen_id": null, "submitter_primary_diagnosis_id": null, "submitter_treatment_id": "TREATMENT_0011", "submitter_follow_up_id": null, "test_date": {"day_interval": -7702, "month_interval": -254}, "psa_level": 42, "ca125": 19, "cea": 30, "er_status": "Not applicable", "er_percent_positive": null, "pr_status": null, "pr_percent_positive": 26.48, "her2_ihc_status": null, "her2_ish_status": "Negative", "hpv_ihc_status": "Negative", "hpv_pcr_status": "Unknown", "hpv_strain": ["HPV31"]}, {"program_id": "SYNTH_02", "submitter_donor_id": "DONOR_0007", "submitter_specimen_id": null, "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "submitter_follow_up_id": "FOLLOW_UP_0005", "test_date": {"day_interval": 7974, "month_interval": 261}, "psa_level": 63, "ca125": 90, "cea": 61, "er_status": "Not applicable", "er_percent_positive": null, "pr_status": "Positive", "pr_percent_positive": 72.06, "her2_ihc_status": null, "her2_ish_status": "Not applicable", "hpv_ihc_status": "Negative", "hpv_pcr_status": "Cannot be determined", "hpv_strain": null}, {"program_id": "SYNTH_02", "submitter_donor_id": "DONOR_0008", "submitter_specimen_id": null, "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "submitter_follow_up_id": null, "test_date": {"day_interval": 22179, "month_interval": 728}, "psa_level": 49, "ca125": 12, "cea": 91, "er_status": "Unknown", "er_percent_positive": null, "pr_status": "Negative", "pr_percent_positive": null, "her2_ihc_status": "Negative", "her2_ish_status": "Unknown", "hpv_ihc_status": "Positive", "hpv_pcr_status": "Not applicable", "hpv_strain": ["HPV33"]}, {"program_id": "SYNTH_01", "submitter_donor_id": "DONOR_NULL_0001", "submitter_specimen_id": null, "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "submitter_follow_up_id": null, "test_date": {"month_interval": 554, "day_interval": 1951}, "psa_level": null, "ca125": null, "cea": null, "er_status": null, "er_percent_positive": null, "pr_status": null, "pr_percent_positive": null, "her2_ihc_status": null, "her2_ish_status": null, "hpv_ihc_status": null, "hpv_pcr_status": null, "hpv_strain": null}, {"program_id": "SYNTH_01", "submitter_donor_id": "DONOR_ALL_0001", "submitter_specimen_id": null, "submitter_primary_diagnosis_id": null, "submitter_treatment_id": null, "submitter_follow_up_id": null, "test_date": {"day_interval": 6437, "month_interval": 211}, "psa_level": 70, "ca125": 44, "cea": 2, "er_status": "Negative", "er_percent_positive": null, "pr_status": "Negative", "pr_percent_positive": null, "her2_ihc_status": null, "her2_ish_status": "Negative", "hpv_ihc_status": "Positive", "hpv_pcr_status": null, "hpv_strain": ["HPV18"]}]
+[
+  {
+    "program_id": "SYNTH_01",
+    "submitter_donor_id": "DONOR_0001",
+    "submitter_specimen_id": null,
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "submitter_follow_up_id": null,
+    "test_date": null,
+    "psa_level": 19,
+    "ca125": 27,
+    "cea": 66,
+    "er_status": null,
+    "er_percent_positive": 37.58,
+    "pr_status": "Cannot be determined",
+    "pr_percent_positive": null,
+    "her2_ihc_status": "Positive",
+    "her2_ish_status": "Cannot be determined",
+    "hpv_ihc_status": "Positive",
+    "hpv_pcr_status": "Unknown",
+    "hpv_strain": [
+      "HPV73",
+      "HPV18",
+      "HPV68",
+      "HPV52",
+      "HPV35"
+    ]
+  },
+  {
+    "program_id": "SYNTH_01",
+    "submitter_donor_id": "DONOR_0002",
+    "submitter_specimen_id": "SPECIMEN_0002",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "submitter_follow_up_id": null,
+    "test_date": {
+      "day_interval": 766,
+      "month_interval": 25
+    },
+    "psa_level": 98,
+    "ca125": 53,
+    "cea": 31,
+    "er_status": "Not applicable",
+    "er_percent_positive": null,
+    "pr_status": "Not applicable",
+    "pr_percent_positive": null,
+    "her2_ihc_status": "Unknown",
+    "her2_ish_status": "Negative",
+    "hpv_ihc_status": "Positive",
+    "hpv_pcr_status": "Positive",
+    "hpv_strain": [
+      "HPV59",
+      "HPV16",
+      "HPV33",
+      "HPV39",
+      "HPV68"
+    ]
+  },
+  {
+    "program_id": "SYNTH_01",
+    "submitter_donor_id": "DONOR_0003",
+    "submitter_specimen_id": null,
+    "submitter_primary_diagnosis_id": "DIAG_0003",
+    "submitter_treatment_id": null,
+    "submitter_follow_up_id": null,
+    "test_date": {
+      "day_interval": -9309,
+      "month_interval": -306
+    },
+    "psa_level": 11,
+    "ca125": 96,
+    "cea": 94,
+    "er_status": "Unknown",
+    "er_percent_positive": null,
+    "pr_status": "Not applicable",
+    "pr_percent_positive": null,
+    "her2_ihc_status": "Negative",
+    "her2_ish_status": "Unknown",
+    "hpv_ihc_status": "Not applicable",
+    "hpv_pcr_status": "Negative",
+    "hpv_strain": [
+      "HPV56",
+      "HPV33",
+      "HPV35",
+      "HPV59",
+      "HPV39"
+    ]
+  },
+  {
+    "program_id": "SYNTH_02",
+    "submitter_donor_id": "DONOR_0006",
+    "submitter_specimen_id": null,
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": "TREATMENT_0011",
+    "submitter_follow_up_id": null,
+    "test_date": {
+      "day_interval": -16576,
+      "month_interval": -545
+    },
+    "psa_level": 25,
+    "ca125": 10,
+    "cea": 55,
+    "er_status": "Cannot be determined",
+    "er_percent_positive": null,
+    "pr_status": "Positive",
+    "pr_percent_positive": 48.85,
+    "her2_ihc_status": "Cannot be determined",
+    "her2_ish_status": "Cannot be determined",
+    "hpv_ihc_status": "Positive",
+    "hpv_pcr_status": "Unknown",
+    "hpv_strain": null
+  },
+  {
+    "program_id": "SYNTH_02",
+    "submitter_donor_id": "DONOR_0007",
+    "submitter_specimen_id": null,
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "submitter_follow_up_id": "FOLLOW_UP_0005",
+    "test_date": {
+      "day_interval": 384,
+      "month_interval": 12
+    },
+    "psa_level": 6,
+    "ca125": 58,
+    "cea": 76,
+    "er_status": "Positive",
+    "er_percent_positive": 77.5,
+    "pr_status": "Not applicable",
+    "pr_percent_positive": null,
+    "her2_ihc_status": "Equivocal",
+    "her2_ish_status": "Positive",
+    "hpv_ihc_status": "Positive",
+    "hpv_pcr_status": "Cannot be determined",
+    "hpv_strain": [
+      "HPV58",
+      "HPV59",
+      "HPV18",
+      "HPV56",
+      "HPV51"
+    ]
+  },
+  {
+    "program_id": "SYNTH_02",
+    "submitter_donor_id": "DONOR_0008",
+    "submitter_specimen_id": null,
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "submitter_follow_up_id": null,
+    "test_date": {
+      "day_interval": 2134,
+      "month_interval": 70
+    },
+    "psa_level": 51,
+    "ca125": 29,
+    "cea": 86,
+    "er_status": "Negative",
+    "er_percent_positive": null,
+    "pr_status": "Positive",
+    "pr_percent_positive": 48.07,
+    "her2_ihc_status": "Unknown",
+    "her2_ish_status": "Negative",
+    "hpv_ihc_status": "Cannot be determined",
+    "hpv_pcr_status": "Cannot be determined",
+    "hpv_strain": [
+      "HPV31",
+      "HPV73",
+      "HPV39",
+      "HPV68",
+      "HPV18"
+    ]
+  },
+  {
+    "program_id": "SYNTH_01",
+    "submitter_donor_id": "DONOR_NULL_0001",
+    "submitter_specimen_id": "SPECIMEN_NULL_0001",
+    "submitter_primary_diagnosis_id": null,
+    "submitter_treatment_id": null,
+    "submitter_follow_up_id": null,
+    "test_date": {
+      "month_interval": 298,
+      "day_interval": 291
+    },
+    "psa_level": null,
+    "ca125": null,
+    "cea": null,
+    "er_status": null,
+    "er_percent_positive": null,
+    "pr_status": null,
+    "pr_percent_positive": null,
+    "her2_ihc_status": null,
+    "her2_ish_status": null,
+    "hpv_ihc_status": null,
+    "hpv_pcr_status": null,
+    "hpv_strain": null
+  },
+  {
+    "program_id": "SYNTH_01",
+    "submitter_donor_id": "DONOR_ALL_0001",
+    "submitter_specimen_id": null,
+    "submitter_primary_diagnosis_id": "DIAG_ALL_0001",
+    "submitter_treatment_id": null,
+    "submitter_follow_up_id": null,
+    "test_date": {
+      "day_interval": -9805,
+      "month_interval": -323
+    },
+    "psa_level": 37,
+    "ca125": 96,
+    "cea": 7,
+    "er_status": "Unknown",
+    "er_percent_positive": null,
+    "pr_status": "Unknown",
+    "pr_percent_positive": null,
+    "her2_ihc_status": "Cannot be determined",
+    "her2_ish_status": "Positive",
+    "hpv_ihc_status": "Positive",
+    "hpv_pcr_status": "Unknown",
+    "hpv_strain": null
+  }
+]

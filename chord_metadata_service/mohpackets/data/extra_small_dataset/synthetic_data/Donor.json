@@ -1,1 +1,214 @@
-[{"submitter_donor_id": "DONOR_0001", "program_id": "SYNTH_01", "gender": "Non-binary", "sex_at_birth": "Unknown", "is_deceased": false, "lost_to_followup_after_clinical_event_identifier": "DIAG_0001", "lost_to_followup_reason": "Not applicable", "date_alive_after_lost_to_followup": {"day_interval": 31199, "month_interval": 1025}, "cause_of_death": null, "date_of_birth": {"day_interval": -18611, "month_interval": -612}, "date_of_death": null, "date_resolution": "day"}, {"submitter_donor_id": "DONOR_0002", "program_id": "SYNTH_01", "gender": "Non-binary", "sex_at_birth": "Female", "is_deceased": false, "lost_to_followup_after_clinical_event_identifier": "DIAG_0002", "lost_to_followup_reason": "Unknown", "date_alive_after_lost_to_followup": {"day_interval": 31473, "month_interval": 1034}, "cause_of_death": null, "date_of_birth": {"day_interval": -20310, "month_interval": -668}, "date_of_death": null, "date_resolution": "day"}, {"submitter_donor_id": "DONOR_0003", "program_id": "SYNTH_01", "gender": "Non-binary", "sex_at_birth": "Other", "is_deceased": true, "lost_to_followup_after_clinical_event_identifier": null, "lost_to_followup_reason": null, "date_alive_after_lost_to_followup": null, "cause_of_death": "Died of other reasons", "date_of_birth": {"day_interval": -20933, "month_interval": -688}, "date_of_death": {"day_interval": 25635, "month_interval": 842}, "date_resolution": "day"}, {"submitter_donor_id": "DONOR_0004", "program_id": "SYNTH_01", "gender": "Man", "sex_at_birth": "Male", "is_deceased": true, "lost_to_followup_after_clinical_event_identifier": null, "lost_to_followup_reason": null, "date_alive_after_lost_to_followup": null, "cause_of_death": "Died of cancer", "date_of_birth": {"day_interval": -20067, "month_interval": -660}, "date_of_death": {"day_interval": 30862, "month_interval": 1013}, "date_resolution": "day"}, {"submitter_donor_id": "DONOR_0005", "program_id": "SYNTH_01", "gender": "Non-binary", "sex_at_birth": "Female", "is_deceased": true, "lost_to_followup_after_clinical_event_identifier": null, "lost_to_followup_reason": null, "date_alive_after_lost_to_followup": null, "cause_of_death": "Unknown", "date_of_birth": {"day_interval": -18908, "month_interval": -622}, "date_of_death": {"day_interval": 26823, "month_interval": 881}, "date_resolution": "day"}, {"submitter_donor_id": "DONOR_0006", "program_id": "SYNTH_02", "gender": "Non-binary", "sex_at_birth": "Male", "is_deceased": false, "lost_to_followup_after_clinical_event_identifier": "DIAG_0006", "lost_to_followup_reason": "Not applicable", "date_alive_after_lost_to_followup": {"day_interval": 30301, "month_interval": 995}, "cause_of_death": null, "date_of_birth": {"day_interval": -20407, "month_interval": -671}, "date_of_death": null, "date_resolution": "day"}, {"submitter_donor_id": "DONOR_0007", "program_id": "SYNTH_02", "gender": "Woman", "sex_at_birth": null, "is_deceased": false, "lost_to_followup_after_clinical_event_identifier": "DIAG_0007", "lost_to_followup_reason": "Unknown", "date_alive_after_lost_to_followup": {"day_interval": 29133, "month_interval": 957}, "cause_of_death": null, "date_of_birth": {"day_interval": -18589, "month_interval": -611}, "date_of_death": null, "date_resolution": "day"}, {"submitter_donor_id": "DONOR_0008", "program_id": "SYNTH_02", "gender": null, "sex_at_birth": "Other", "is_deceased": true, "lost_to_followup_after_clinical_event_identifier": null, "lost_to_followup_reason": null, "date_alive_after_lost_to_followup": null, "cause_of_death": "Unknown", "date_of_birth": {"day_interval": -19125, "month_interval": -629}, "date_of_death": {"day_interval": 32633, "month_interval": 1072}, "date_resolution": "day"}, {"submitter_donor_id": "DONOR_0009", "program_id": "SYNTH_02", "gender": "Man", "sex_at_birth": "Unknown", "is_deceased": false, "lost_to_followup_after_clinical_event_identifier": "DIAG_0009", "lost_to_followup_reason": "Lost contact", "date_alive_after_lost_to_followup": {"day_interval": 25685, "month_interval": 843}, "cause_of_death": null, "date_of_birth": {"day_interval": -18405, "month_interval": -605}, "date_of_death": null, "date_resolution": "day"}, {"submitter_donor_id": "DONOR_0010", "program_id": "SYNTH_02", "gender": "Man", "sex_at_birth": null, "is_deceased": true, "lost_to_followup_after_clinical_event_identifier": null, "lost_to_followup_reason": null, "date_alive_after_lost_to_followup": null, "cause_of_death": "Unknown", "date_of_birth": null, "date_of_death": {"day_interval": 30803, "month_interval": 1012}, "date_resolution": "day"}, {"submitter_donor_id": "DONOR_NULL_0001", "program_id": "SYNTH_01", "gender": null, "sex_at_birth": null, "is_deceased": null, "lost_to_followup_after_clinical_event_identifier": null, "lost_to_followup_reason": null, "date_alive_after_lost_to_followup": null, "cause_of_death": null, "date_of_birth": null, "date_of_death": null, "date_resolution": "day"}, {"submitter_donor_id": "DONOR_ALL_0001", "program_id": "SYNTH_01", "gender": "Non-binary", "sex_at_birth": null, "is_deceased": true, "lost_to_followup_after_clinical_event_identifier": null, "lost_to_followup_reason": null, "date_alive_after_lost_to_followup": null, "cause_of_death": "Died of other reasons", "date_of_birth": {"day_interval": -18639, "month_interval": -613}, "date_of_death": {"day_interval": 26528, "month_interval": 871}, "date_resolution": "day"}]
+[
+  {
+    "submitter_donor_id": "DONOR_0001",
+    "program_id": "SYNTH_01",
+    "gender": "Non-binary",
+    "sex_at_birth": "Unknown",
+    "is_deceased": false,
+    "lost_to_followup_after_clinical_event_identifier": "DIAG_0001",
+    "lost_to_followup_reason": "Completed study",
+    "date_alive_after_lost_to_followup": {
+      "day_interval": 4044,
+      "month_interval": 132
+    },
+    "cause_of_death": null,
+    "date_of_birth": {
+      "day_interval": -21339,
+      "month_interval": -702
+    },
+    "date_of_death": null,
+    "date_resolution": "day"
+  },
+  {
+    "submitter_donor_id": "DONOR_0002",
+    "program_id": "SYNTH_01",
+    "gender": "Non-binary",
+    "sex_at_birth": "Female",
+    "is_deceased": false,
+    "lost_to_followup_after_clinical_event_identifier": "DIAG_0002",
+    "lost_to_followup_reason": "Unknown",
+    "date_alive_after_lost_to_followup": {
+      "day_interval": 4258,
+      "month_interval": 139
+    },
+    "cause_of_death": null,
+    "date_of_birth": {
+      "day_interval": -20083,
+      "month_interval": -660
+    },
+    "date_of_death": null,
+    "date_resolution": "day"
+  },
+  {
+    "submitter_donor_id": "DONOR_0003",
+    "program_id": "SYNTH_01",
+    "gender": "Non-binary",
+    "sex_at_birth": "Other",
+    "is_deceased": true,
+    "lost_to_followup_after_clinical_event_identifier": null,
+    "lost_to_followup_reason": null,
+    "date_alive_after_lost_to_followup": null,
+    "cause_of_death": "Died of other reasons",
+    "date_of_birth": {
+      "day_interval": -20958,
+      "month_interval": -689
+    },
+    "date_of_death": {
+      "day_interval": 8689,
+      "month_interval": 285
+    },
+    "date_resolution": "day"
+  },
+  {
+    "submitter_donor_id": "DONOR_0004",
+    "program_id": "SYNTH_01",
+    "gender": "Man",
+    "sex_at_birth": "Male",
+    "is_deceased": true,
+    "lost_to_followup_after_clinical_event_identifier": null,
+    "lost_to_followup_reason": null,
+    "date_alive_after_lost_to_followup": null,
+    "cause_of_death": "Died of cancer",
+    "date_of_birth": {
+      "day_interval": -20420,
+      "month_interval": -671
+    },
+    "date_of_death": {
+      "day_interval": 6608,
+      "month_interval": 217
+    },
+    "date_resolution": "day"
+  },
+  {
+    "submitter_donor_id": "DONOR_0005",
+    "program_id": "SYNTH_01",
+    "gender": "Non-binary",
+    "sex_at_birth": "Female",
+    "is_deceased": true,
+    "lost_to_followup_after_clinical_event_identifier": null,
+    "lost_to_followup_reason": null,
+    "date_alive_after_lost_to_followup": null,
+    "cause_of_death": "Unknown",
+    "date_of_birth": {
+      "day_interval": -20432,
+      "month_interval": -672
+    },
+    "date_of_death": {
+      "day_interval": 10934,
+      "month_interval": 359
+    },
+    "date_resolution": "day"
+  },
+  {
+    "submitter_donor_id": "DONOR_0006",
+    "program_id": "SYNTH_02",
+    "gender": "Man",
+    "sex_at_birth": "Male",
+    "is_deceased": true,
+    "lost_to_followup_after_clinical_event_identifier": null,
+    "lost_to_followup_reason": null,
+    "date_alive_after_lost_to_followup": null,
+    "cause_of_death": "Unknown",
+    "date_of_birth": {
+      "day_interval": -21163,
+      "month_interval": -696
+    },
+    "date_of_death": {
+      "day_interval": 13532,
+      "month_interval": 444
+    },
+    "date_resolution": "day"
+  },
+  {
+    "submitter_donor_id": "DONOR_0007",
+    "program_id": "SYNTH_02",
+    "gender": "Man",
+    "sex_at_birth": "Female",
+    "is_deceased": false,
+    "lost_to_followup_after_clinical_event_identifier": "DIAG_0007",
+    "lost_to_followup_reason": "Unknown",
+    "date_alive_after_lost_to_followup": {
+      "day_interval": 3719,
+      "month_interval": 122
+    },
+    "cause_of_death": null,
+    "date_of_birth": {
+      "day_interval": -18569,
+      "month_interval": -611
+    },
+    "date_of_death": null,
+    "date_resolution": "day"
+  },
+  {
+    "submitter_donor_id": "DONOR_0008",
+    "program_id": "SYNTH_02",
+    "gender": null,
+    "sex_at_birth": "Unknown",
+    "is_deceased": true,
+    "lost_to_followup_after_clinical_event_identifier": null,
+    "lost_to_followup_reason": null,
+    "date_alive_after_lost_to_followup": null,
+    "cause_of_death": "Died of other reasons",
+    "date_of_birth": null,
+    "date_of_death": {
+      "day_interval": 10440,
+      "month_interval": 343
+    },
+    "date_resolution": "day"
+  },
+  {
+    "submitter_donor_id": "DONOR_0009",
+    "program_id": "SYNTH_02",
+    "gender": null,
+    "sex_at_birth": "Other",
+    "is_deceased": true,
+    "lost_to_followup_after_clinical_event_identifier": null,
+    "lost_to_followup_reason": null,
+    "date_alive_after_lost_to_followup": null,
+    "cause_of_death": "Died of other reasons",
+    "date_of_birth": {
+      "day_interval": -21155,
+      "month_interval": -696
+    },
+    "date_of_death": {
+      "day_interval": 12708,
+      "month_interval": 417
+    },
+    "date_resolution": "day"
+  },
+  {
+    "submitter_donor_id": "DONOR_0010",
+    "program_id": "SYNTH_02",
+    "gender": null,
+    "sex_at_birth": "Unknown",
+    "is_deceased": true,
+    "lost_to_followup_after_clinical_event_identifier": null,
+    "lost_to_followup_reason": null,
+    "date_alive_after_lost_to_followup": null,
+    "cause_of_death": "Unknown",
+    "date_of_birth": {
+      "day_interval": -19883,
+      "month_interval": -654
+    },
+    "date_of_death": {
+      "day_interval": 12197,
+      "month_interval": 400
+    },
+    "date_resolution": "day"
+  },
+  {
+    "submitter_donor_id": "DONOR_NULL_0001",
+    "program_id": "SYNTH_01",
+    "gender": null,
+    "sex_at_birth": null,
+    "is_deceased": null,
+    "lost_to_followup_after_clinical_event_identifier": null,
+    "lost_to_followup_reason": null,
+    "date_alive_after_lost_to_followup": null,
+    "cause_of_death": null,
+    "date_of_birth": null,
+    "date_of_death": null,
+    "date_resolution": "day"
+  },
+  {
+    "submitter_donor_id": "DONOR_ALL_0001", "program_id": "SYNTH_01", "gender": "Woman", "sex_at_birth": "Male", "is_deceased": true, "lost_to_followup_after_clinical_event_identifier": null, "lost_to_followup_reason": null, "date_alive_after_lost_to_followup": null, "cause_of_death": "Died of cancer", "date_of_birth": {"day_interval": -19735, "month_interval": -649}, "date_of_death": {"day_interval": 4500, "month_interval": 147}, "date_resolution": "day"}]
