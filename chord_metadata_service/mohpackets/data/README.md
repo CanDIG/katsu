@@ -1,6 +1,6 @@
 # Synthetic Data for MoH Models
 
-Synthetic data is generated based on the factory boy factories in [`../tests/endpoints/factories.py`](../tests/endpoints/factories.py)
+Synthetic data is generated based on the factory boy factories in [`../tests/factories.py`](../tests/factories.py)
 
 This folder contains the necessary tools to generate synthetic data. Each dataset is organized into the following subfolders:
 
@@ -20,7 +20,7 @@ python manage.py flush
 
 ## Customize and Generate the Data Yourself
 
-If you want to modify the mock data to your preferences, you would need to edit the factories in [`../tests/endpoints/factories.py`](../tests/endpoints/factories.py)
+If you want to modify the mock data to your preferences, you would need to edit the factories in [`../tests/factories.py`](../tests/factories.py)
 
 Then run the [`data_factory.py`](data_factory.py) with the parameters of the size of dataset you would like to generate. 
 
