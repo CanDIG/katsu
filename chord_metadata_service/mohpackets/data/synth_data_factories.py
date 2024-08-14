@@ -24,7 +24,7 @@ from chord_metadata_service.mohpackets.tests.factories import (
 """
     This file contains factory classes for generating synthetic data.
 
-    They inherit from factories used for code testing at chord_metadata_service.mohpackets.tests.endpoints.factories but
+    They inherit from factories used for code testing at chord_metadata_service.mohpackets.tests.factories but
     override some variables to make them more suitable for synthetic data testing.
 
     They are primarily used in the `data_factory.py` script to create a set of programs with linked MoHCCN data for 
@@ -63,7 +63,6 @@ class SynthProgramFactory(ProgramFactory):
 class SynthDonorFactory(DonorFactory):
     class Meta:
         django_get_or_create = ("submitter_donor_id",)
-    class Meta:
         exclude = ("fill_dob", "null_percent")
 
     submitter_donor_id = factory.Sequence(lambda n: f"DONOR_{str(n).zfill(4)}")
@@ -104,8 +103,6 @@ class AllSynthDonorFactory(DonorFactory):
 class SynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
     class Meta:
         django_get_or_create = ("submitter_primary_diagnosis_id",)
-
-    class Meta:
         exclude = ("fill_dod")
 
     submitter_primary_diagnosis_id = factory.Sequence(lambda n: f"DIAG_{str(n).zfill(4)}")
