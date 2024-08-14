@@ -120,9 +120,7 @@ CHEMO_DRUGS = {
                    "NCI Thesaurus": "C562"},
     "Paclitaxel": {"RxNorm": "56946",
                    "PubChem": "36314",
-                   "NCI Thesaurus": "C1411"},
-    None: {}
-
+                   "NCI Thesaurus": "C1411"}
 }
 
 IMMUNO_DRUGS = {
@@ -141,8 +139,6 @@ IMMUNO_DRUGS = {
     "Ipilimumab": {"RxNorm": "1094833",
                    "PubChem": "472634117",
                    "NCI Thesaurus": "C2654"},
-    None: {}
-
 }
 
 HORMONE_DRUGS = {
@@ -160,36 +156,27 @@ HORMONE_DRUGS = {
                   "NCI Thesaurus": "C320"},
     "Degarelix": {"RxNorm": "475230",
                   "PubChem": "16136245",
-                  "NCI Thesaurus": "C48385"},
-    None: {}
+                  "NCI Thesaurus": "C48385"}
 }
 
 SURGERY_TYPE = {
     "Biopsy": {"NCIt": "C15189",
                "SNOMED": "86273004",
-               "UMLS": "C0005558",
-               None: None},
+               "UMLS": "C0005558"},
     "Bypass Gastrojejunostomy": {"NCIt": "C51758",
                                  "SNOMED": "49245001",
-                                 "UMLS": "C0399839",
-                                 None: None},
+                                 "UMLS": "C0399839"},
     "Exploratory laparotomy": {"NCIt": "C51779",
                                "SNOMED": "74770008",
-                               "UMLS": "C0085704",
-                               None: None},
-    "Total Mastectomy": {"NCIt": "C15281",
-                         None: None},
-    "Mastectomy with excision of regional lymph nodes": {"SNOMED": "66398006",
-                                                         None: None},
+                               "UMLS": "C0085704"},
+    "Total Mastectomy": {"NCIt": "C15281"},
+    "Mastectomy with excision of regional lymph nodes": {"SNOMED": "66398006"},
     "Radical prostatectomy": {"NCIt": "C15399",
                               "SNOMED": "26294005",
-                              "UMLS": "C0194810",
-                              None: None},
+                              "UMLS": "C0194810"},
     "Total gastrectomy": {"NCIt": "C185240",
                           "SNOMED": "26452005",
-                          "UMLS": "C1304782",
-                          None: None},
-    None: {None: None}
+                          "UMLS": "C1304782"}
 }
 
 RISS_DURIE_STAGES = ["Stage I",

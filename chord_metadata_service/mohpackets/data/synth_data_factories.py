@@ -73,7 +73,7 @@ class SynthDonorFactory(DonorFactory):
     date_of_birth = factory.Maybe(
         "fill_dob",
         yes_declaration=factory.LazyFunction(lambda: {
-            "day_interval": random.randint(-21900, -18220),
+            "day_interval": random.randint(-21900, -12775),
         }),
         no_declaration=None
     )
@@ -432,10 +432,11 @@ class SynthSystemicTherapyFactory(SystemicTherapyFactory):
     class Meta:
         exclude = ("null_drug_dose", )
 
-    # add 20% nulls to all enum lists
-
+    drug_name = None
+    drug_reference_database = None
+    drug_reference_identifier = None
     drug_dose_units = factory.Faker("random_element", elements=SYNTH_VAL.DOSAGE_UNITS)
-    null_drug_dose = factory.LazyFunction(lambda: random.random() > 0.15)
+    null_drug_dose = factory.LazyFunction(lambda: random.random() < 0.15)
     prescribed_cumulative_drug_dose = factory.Maybe("null_drug_dose",
                                                     None,
                                                     factory.Faker("pyfloat", left_digits=2, right_digits=1,
@@ -502,7 +503,9 @@ class SynthSystemicTherapyFactory(SystemicTherapyFactory):
     @factory.post_generation
     def add_drug_info(self, create, extracted, **kwargs):
         if random.random() < .15:
-            pass
+            self.drug_name = None
+            self.drug_reference_database = None
+            self.drug_reference_identifier = None
         else:
             self.drug_reference_database = random.choice(PERM_VAL.DRUG_REFERENCE_DB)
             if self.drug_reference_database:
@@ -533,11 +536,20 @@ class NullSynthSystemicTherapyFactory(SystemicTherapyFactory):
         """Override method to keep null values."""
         pass
 
+    @factory.post_generation
+    def remove_drug_info(self, create, extracted, **kwargs):
+        self.drug_name = None
+        self.drug_reference_database = None
+        self.drug_reference_identifier = None
 
-class AllSynthSystemicTherapyFactory(SystemicTherapyFactory):
+
+class AllSynthSystemicTherapyFactory(SynthSystemicTherapyFactory):
+    drug_reference_database = factory.Faker("random_element", elements=PERM_VAL.DRUG_REFERENCE_DB)
 
     @factory.post_generation
     def add_drug_info(self, create, extracted, **kwargs):
+        if not self.systemic_therapy_type:
+            self.systemic_therapy_type = random.choice(PERM_VAL.SYSTEMIC_THERAPY_TYPE)
         if self.systemic_therapy_type == "Chemotherapy":
             self.drug_name = random.choice(list(SYNTH_VAL.CHEMO_DRUGS.keys()))
             if self.drug_name:
@@ -660,7 +672,7 @@ class SynthSurgeryFactory(SurgeryFactory):
     surgery_location = factory.Faker(
         "random_element", elements=SYNTH_VAL.SURGERY_LOCATION
     )
-    null_dimensions = factory.LazyFunction(lambda: random.random() > 0.15)
+    null_dimensions = factory.LazyFunction(lambda: random.random() < 0.15)
     tumour_length = factory.Maybe("null_dimensions",
                                   None,
                                   factory.Faker("random_int", min=1, max=10))
@@ -672,7 +684,7 @@ class SynthSurgeryFactory(SurgeryFactory):
                                               factory.Faker("random_int", min=1, max=10))
     tumour_focality = factory.Faker("random_element", elements=SYNTH_VAL.TUMOUR_FOCALITY)
     residual_tumour_classification = factory.Faker("random_element", elements=SYNTH_VAL.TUMOUR_CLASSIFICATION)
-    null_margin_types = factory.LazyFunction(lambda: random.random() > 0.15)
+    null_margin_types = factory.LazyFunction(lambda: random.random() < 0.15)
     margin_types_involved = factory.Maybe(
         "null_margin_type",
         None,
