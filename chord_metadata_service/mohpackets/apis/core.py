@@ -124,7 +124,7 @@ class NetworkAuth:
                     for program_id in program_ids
                 )
 
-                logger.debug(f"Requesting WRITE for: {program_ids}. Authorized WRITE programs: {write_datasets}.", request)
+                logger.debug(f"Requesting WRITE for: {program_ids}. Authorized to write: {write_datasets}.", request)
                 return write_datasets
 
             except Exception as e:
