@@ -92,11 +92,11 @@ class NetworkAuth:
                     path=request.path,
                     program=program_id,
                 )
-                logger.log_message("DEBUG", f"Requesting DELETE for: {program_id}. Result: {write_permission}.", request)
+                logger.debug(f"Requesting DELETE for: {program_id}. Result: {write_permission}.", request)
                 return write_permission
 
             except Exception as e:
-                logger.log_message("EXCEPTION",f"An error occurred in OPA: {e}")
+                logger.error(f"An error occurred in OPA: {e}")
                 raise Exception("Error with OPA authentication.")
 
     class IngestAuth(HttpBearer):
@@ -125,11 +125,11 @@ class NetworkAuth:
                     for program_id in program_ids
                 )
 
-                logger.log_message("DEBUG", f"Requesting WRITE for: {program_ids}. Authorized WRITE programs: {write_datasets}.", request)
+                logger.debug(f"Requesting WRITE for: {program_ids}. Authorized WRITE programs: {write_datasets}.", request)
                 return write_datasets
 
             except Exception as e:
-                logger.log_message("EXCEPTION",f"An error occurred in OPA: {e}")
+                logger.error(f"An error occurred in OPA: {e}")
                 raise Exception("Error with OPA authentication.")
 
     class GetAuth(HttpBearer):
@@ -154,15 +154,14 @@ class NetworkAuth:
             try:
                 read_datasets = get_opa_datasets(request)
                 result = True if read_datasets else None
-                logger.log_message("DEBUG",
-                f"Authorized READ programs: {read_datasets}. Result: {result}", request)
+                logger.debug(f"Authorized READ programs: {read_datasets}. Result: {result}", request)
 
                 if result:
                     request.read_datasets = read_datasets
                 return result
 
             except Exception as e:
-                logger.log_message("EXCEPTION",f"An error occurred in OPA: {e}")
+                logger.error(f"An error occurred in OPA: {e}")
                 raise Exception("Error with OPA authentication.")
 
     class ServiceTokenAuth(APIKeyHeader):
@@ -173,11 +172,10 @@ class NetworkAuth:
                 is_valid_token = verify_service_token(
                     service="query", token=service_token
                 )
-                logger.log_message("DEBUG",
-                    f"verify_service_token: {is_valid_token}. X-Service-Token is: {service_token}", request)
+                logger.debug(f"verify_service_token: {is_valid_token}. X-Service-Token is: {service_token}", request)
                 return is_valid_token
 
-            logger.log_message("DEBUG", "No X-Service-Token in headers. Not a query service request.")
+            logger.warning("No X-Service-Token in headers. Not a query service request.")
             return False
 
 
