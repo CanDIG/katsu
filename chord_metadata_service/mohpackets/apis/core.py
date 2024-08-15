@@ -89,8 +89,7 @@ class NetworkAuth:
                     path=request.path,
                     program=program_id,
                 )
-                log_message("DEBUG",
-                    f"DELETE request authentication for '{request.get_full_path()}'. Program ID: {program_id}. Write permission: {write_permission}.", request)
+                log_message("DEBUG", f"Requesting DELETE for: {program_id}. Result: {write_permission}.", request)
                 return write_permission
 
             except Exception as e:
@@ -123,9 +122,7 @@ class NetworkAuth:
                     for program_id in program_ids
                 )
 
-                log_message("DEBUG",
-                f"INGEST request authentication for '{request.get_full_path()}'. Program ID: {program_ids}. Write permission: {write_datasets}.", request)
-
+                log_message("DEBUG", f"Requesting WRITE for: {program_ids}. Authorized WRITE programs: {write_datasets}.", request)
                 return write_datasets
 
             except Exception as e:
@@ -155,7 +152,7 @@ class NetworkAuth:
                 read_datasets = get_opa_datasets(request)
                 result = True if read_datasets else None
                 log_message("DEBUG",
-                f"READ request authentication for '{request.get_full_path()}'. Datasets: {read_datasets}. Result: {result}", request)
+                f"Authorized READ programs: {read_datasets}. Result: {result}", request)
 
                 if result:
                     request.read_datasets = read_datasets
@@ -174,8 +171,7 @@ class NetworkAuth:
                     service="query", token=service_token
                 )
                 log_message("DEBUG",
-                    f"verify_service_token for {request.get_full_path()}: {is_valid_token}. X-Service-Token is: {service_token}", request
-                )
+                    f"verify_service_token: {is_valid_token}. X-Service-Token is: {service_token}", request)
                 return is_valid_token
 
             log_message("DEBUG", "No X-Service-Token in headers. Not a query service request.")
