@@ -1,10 +1,9 @@
-import logging
-
 from django.core.cache import cache
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.signals import post_delete, post_save, pre_save
 from django.dispatch import receiver
 
+from chord_metadata_service.mohpackets.apis.core import logger
 from chord_metadata_service.mohpackets.models import (
     Biomarker,
     Chemotherapy,
@@ -22,7 +21,6 @@ from chord_metadata_service.mohpackets.models import (
     Treatment,
 )
 
-logger = logging.getLogger(__name__)
 """
     This module contains the SIGNALS for the MoH Models.
     Due to the change to include UUID in each models, the UUID and FK have to be either provided
