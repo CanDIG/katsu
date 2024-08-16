@@ -44,7 +44,7 @@ class OverviewTestCase(BaseTestCase):
                 5,
                 program_id=self.programs[0],
                 gender=self.gender_man,
-                date_of_birth={"month_interval": 840},  # 70-79 age
+                date_of_birth={"day_interval": 27394},  # 70-79 age
             )
         )
         self.primary_diagnoses.extend(
