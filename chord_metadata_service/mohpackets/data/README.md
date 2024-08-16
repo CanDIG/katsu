@@ -22,13 +22,13 @@ python manage.py flush
 
 If you want to modify the mock data to your preferences, you would need to edit the factories in [`../tests/factories.py`](../tests/factories.py)
 
-Then run the [`data_factory.py`](data_factory.py) with the parameters of the size of dataset you would like to generate. 
+Then run the [`data_factory.py`](data_factory.py) with the parameters of the size of dataset you would like to generate.
 
 Using the `s/m/l` options will overwrite the data contained in the `small_dataset`/`medium_dataset`/`large_dataset` folders.
 
 ```python
-#  --size {s,m,l}     Size of the dataset to convert, options: 's' for small, 'm' for medium, 'l' for large (default: small)
-python chord_metadata_service/mohpackets/data/data_factory.py --size m
+# To specify a size, use: --size {xs, s, m, l} (default: xs)
+python chord_metadata_service/mohpackets/data/data_factory.py
 ```
 
 `data_factory.py` can also be run with the options `--num-programs` and `--total-donors` to specify a custom dataset. In this case, the number of donors given by `--total-donors` will be distributed amongst the number of programs given by `--num-programs`. Other objects are created in proportion to the number of total donors. The below example will generate 8 programs with 100 donors in each program and will output to a folder called `custom_8P_800D_dataset`.
