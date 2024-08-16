@@ -519,7 +519,8 @@ def main():
         path = f"{size_mapping[args.size]["size"]}_dataset"
         programs = Dataset(**size_mapping[args.size]["params"])
     programs.convert_to_dicts()
-    path = f"{path}/synthetic_data"
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    path = f"{script_dir}/{path}/synthetic_data"
     pathlib.Path(path).mkdir(parents=True, exist_ok=True)
     logging.info(f"Saving objects to file in: {path}")
     for schema, data in programs.__dict__.items():
