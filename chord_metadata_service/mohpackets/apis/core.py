@@ -39,10 +39,6 @@ Module with configurations for APIs
 Author: Son Chau
 """
 
-from candigv2_logging.logging import CanDIGLogger
-
-
-logger = CanDIGLogger(__file__)
 
 SAFE_METHODS = ("GET", "HEAD", "OPTIONS")
 
@@ -235,8 +231,16 @@ class LocalAuth:
 settings_module = os.environ.get("DJANGO_SETTINGS_MODULE")
 # Use OPA in prod/dev environment
 if "dev" in settings_module or "prod" in settings_module:
+    from candigv2_logging.logging import CanDIGLogger, initialize
+
+    initialize()
+    logger = CanDIGLogger(__file__)
+
     auth = NetworkAuth()
 else:
+    import logging
+
+    logger = logging.getLogger(__name__)
     auth = LocalAuth()
 
 if "test" in sys.argv:
