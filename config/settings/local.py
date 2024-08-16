@@ -72,6 +72,14 @@ LOCAL_OPA_DATASET = {
 
 QUERY_SERVICE_TOKEN = "query"
 
+# Debug toolbar settings
+# ----------------------
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
+    "127.0.0.1",
+    "10.0.2.2",
+]
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -89,16 +97,8 @@ LOGGING = {
     },
     "loggers": {
         "": {
-            "level": "INFO",
+            "level": "DEBUG",
             "handlers": ["console"],
         },
     },
 }
-
-# Debug toolbar settings
-# ----------------------
-hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
-    "127.0.0.1",
-    "10.0.2.2",
-]

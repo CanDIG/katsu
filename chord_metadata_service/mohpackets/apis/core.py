@@ -1,4 +1,3 @@
-import logging
 import os
 import json
 import sys
@@ -40,7 +39,7 @@ Module with configurations for APIs
 Author: Son Chau
 """
 
-logger = logging.getLogger(__name__)
+
 SAFE_METHODS = ("GET", "HEAD", "OPTIONS")
 
 
@@ -88,17 +87,11 @@ class NetworkAuth:
                     path=request.path,
                     program=program_id,
                 )
-                logger.debug(
-                    "DELETE request authentication for '%s' with token: %s. Program ID: %s. Write permission: %s.",
-                    request.get_full_path(),
-                    bearer_token,
-                    program_id,
-                    write_permission,
-                )
+                logger.debug(f"Requesting DELETE for: {program_id}. Result: {write_permission}.", request)
                 return write_permission
 
             except Exception as e:
-                logger.exception(f"An error occurred in OPA: {e}")
+                logger.error(f"An error occurred in OPA: {e}")
                 raise Exception("Error with OPA authentication.")
 
     class IngestAuth(HttpBearer):
@@ -127,18 +120,11 @@ class NetworkAuth:
                     for program_id in program_ids
                 )
 
-                logger.debug(
-                    "INGEST request authentication for '%s' with token: %s and programs: %s. Write datasets: %s.",
-                    request.get_full_path(),
-                    bearer_token,
-                    program_ids,
-                    write_datasets,
-                )
-
+                logger.debug(f"Requesting WRITE for: {program_ids}. Authorized to write: {write_datasets}.", request)
                 return write_datasets
 
             except Exception as e:
-                logger.exception(f"An error occurred in OPA: {e}")
+                logger.error(f"An error occurred in OPA: {e}")
                 raise Exception("Error with OPA authentication.")
 
     class GetAuth(HttpBearer):
@@ -163,21 +149,14 @@ class NetworkAuth:
             try:
                 read_datasets = get_opa_datasets(request)
                 result = True if read_datasets else None
-                logger.debug(
-                    "OPA Authentication completed for request '%s' with token: %s. "
-                    "Read datasets: %s. Result: %s.",
-                    request.get_full_path(),
-                    bearer_token,
-                    read_datasets,
-                    result,
-                )
+                logger.debug(f"Authorized READ programs: {read_datasets}. Result: {result}", request)
 
                 if result:
                     request.read_datasets = read_datasets
                 return result
 
             except Exception as e:
-                logger.exception(f"An error occurred in OPA: {e}")
+                logger.error(f"An error occurred in OPA: {e}")
                 raise Exception("Error with OPA authentication.")
 
     class ServiceTokenAuth(APIKeyHeader):
@@ -188,13 +167,10 @@ class NetworkAuth:
                 is_valid_token = verify_service_token(
                     service="query", token=service_token
                 )
-                logger.debug(
-                    f"verify_service_token for {request.get_full_path()}: {is_valid_token}."
-                    f" X-Service-Token is: {service_token}"
-                )
+                logger.debug(f"verify_service_token: {is_valid_token}. X-Service-Token is: {service_token}", request)
                 return is_valid_token
 
-            logger.debug("No X-Service-Token in headers. Not a query service request.")
+            logger.warning("No X-Service-Token in headers. Not a query service request.")
             return False
 
 
@@ -255,8 +231,16 @@ class LocalAuth:
 settings_module = os.environ.get("DJANGO_SETTINGS_MODULE")
 # Use OPA in prod/dev environment
 if "dev" in settings_module or "prod" in settings_module:
+    from candigv2_logging.logging import CanDIGLogger, initialize
+
+    initialize()
+    logger = CanDIGLogger(__file__)
+
     auth = NetworkAuth()
 else:
+    import logging
+
+    logger = logging.getLogger(__name__)
     auth = LocalAuth()
 
 if "test" in sys.argv:

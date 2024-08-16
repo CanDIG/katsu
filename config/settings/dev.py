@@ -24,20 +24,3 @@ DEBUG_TOOLBAR_CONFIG = {
     "RESULTS_CACHE_SIZE": 100,
 }
 
-# Logging
-# -------
-LOGGING["handlers"]["console"]["level"] = "DEBUG"
-LOGGING["handlers"]["file"]["level"] = "DEBUG"
-LOGGING["loggers"][""]["level"] = "DEBUG"
-
-# Additional loggers specific to the development environment
-LOGGING["loggers"].update(
-    {
-        "factory": {
-            "level": "ERROR",
-        },
-        "faker": {
-            "level": "ERROR",
-        },
-    }
-)
