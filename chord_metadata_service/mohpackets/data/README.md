@@ -2,6 +2,7 @@
 
 Synthetic data is generated based on the factory boy factories in [`../tests/factories.py`](../tests/factories.py)
 
+
 This folder contains the necessary tools to generate synthetic data. Each dataset is organized into the following subfolders:
 
 - `synthetic_data`: assigned relationships data, can be used for ingest APIs.
@@ -20,11 +21,14 @@ python manage.py flush
 
 ## Customize and Generate the Data Yourself
 
-If you want to modify the mock data to your preferences, you would need to edit the factories in [`../tests/factories.py`](../tests/factories.py)
+You should not need to run this script unless you want to modify the synthetic data to your preferences. If you do, you would need to edit the factories in [`../tests/factories.py`](../tests/factories.py)
 
 Then run the [`data_factory.py`](data_factory.py) with the parameters of the size of dataset you would like to generate.
 
 Using the `s/m/l` options will overwrite the data contained in the `small_dataset`/`medium_dataset`/`large_dataset` folders.
+
+> [!CAUTION]
+> Running this script will load test data into your running katsu database. It is not recommended to run this in a production environment. To experiment with creating synthetic data, please use a local environment.
 
 ```python
 # To specify a size, use: --size {xs, s, m, l} (default: xs)
