@@ -202,20 +202,20 @@ title: katsu object level MoH ER diagram
 erDiagram
 
 Program ||--o{ Donor : ""
-Donor ||--o{ PrimaryDiagnosis : ""
 Donor ||--o{ Comorbidity : ""
 Donor ||--o{ Biomarker : "" 
 Donor ||--o{ Exposure : "" 
 Donor ||--o{ FollowUp : "" 
+Donor ||--o{ PrimaryDiagnosis : ""
 Donor ||--o{ Treatment : "" 
 PrimaryDiagnosis ||--o{ Specimen : "" 
 PrimaryDiagnosis ||--o{ Treatment : "" 
-PrimaryDiagnosis ||--o{ FollowUp : "" 
+PrimaryDiagnosis o|--o{ FollowUp : ""
 Specimen ||--o{ SampleRegistration : "" 
 Treatment ||--o| Radiation : "" 
 Treatment ||--o| Surgery : "" 
 Treatment ||--o{ Systemictherapy : "" 
-Treatment ||--o{ FollowUp : "" 
+Treatment o|--o{ FollowUp : "" 
 
 ```
 
