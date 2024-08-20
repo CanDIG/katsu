@@ -240,12 +240,12 @@ class LocalAuth:
 settings_module = os.environ.get("DJANGO_SETTINGS_MODULE")
 # Use OPA in prod/dev environment
 if "dev" in settings_module or "prod" in settings_module:
-    from authx.auth import (
+    from authx.auth import (  # type: ignore
         get_opa_datasets,
         verify_service_token,
         is_action_allowed_for_program,
     )
-    from candigv2_logging.logging import CanDIGLogger, initialize
+    from candigv2_logging.logging import CanDIGLogger, initialize  # type: ignore
 
     initialize()
     logger = CanDIGLogger(__file__)
