@@ -5054,6 +5054,8 @@ paths:
       - authorized
   /v3/authorized/donor_with_clinical_data/program/{program_id}/donor/{donor_id}:
     get:
+      description: Retrieves a single donor along with all related clinical data,
+        organized in a nested JSON format.
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_get_donor_with_clinical_data
       parameters:
       - in: path
@@ -6526,6 +6528,10 @@ paths:
       - discovery
   /v3/explorer/donors/:
     get:
+      description: 'Returns a list of donors with their sample IDs, treatment types,
+        age, and primary site.
+
+        This endpoint is called by the query service and bypasses user authorization.'
       operationId: chord_metadata_service_mohpackets_apis_explorer_explorer_donor
       parameters:
       - in: query
@@ -6885,3 +6891,4 @@ paths:
           description: OK
       summary: Service Info
 servers: []
+

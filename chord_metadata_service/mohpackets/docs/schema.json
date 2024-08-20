@@ -821,6 +821,7 @@
                         }
                     }
                 },
+                "description": "Retrieves a single donor along with all related clinical data, organized in a nested JSON format.",
                 "tags": [
                     "authorized"
                 ],
@@ -3743,6 +3744,7 @@
                         }
                     }
                 },
+                "description": "Returns a list of donors with their sample IDs, treatment types, age, and primary site.\nThis endpoint is called by the query service and bypasses user authorization.",
                 "tags": [
                     "explorer"
                 ],

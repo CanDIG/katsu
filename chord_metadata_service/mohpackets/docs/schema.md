@@ -475,6 +475,8 @@ Return the count for age of diagnosis by calculating the date of birth interval.
 
 *Get Donor With Clinical Data*
 
+Retrieves a single donor along with all related clinical data, organized in a nested JSON format.
+
 <h3 id="chord_metadata_service_mohpackets_apis_clinical_data_get_donor_with_clinical_data-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
@@ -1493,6 +1495,9 @@ Return the count for age of diagnosis by calculating the date of birth interval.
 `GET /v3/explorer/donors/`
 
 *Explorer Donor*
+
+Returns a list of donors with their sample IDs, treatment types, age, and primary site.
+This endpoint is called by the query service and bypasses user authorization.
 
 <h3 id="chord_metadata_service_mohpackets_apis_explorer_explorer_donor-parameters">Parameters</h3>
 
@@ -16314,3 +16319,4 @@ or
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|null|false|none|none|
+
