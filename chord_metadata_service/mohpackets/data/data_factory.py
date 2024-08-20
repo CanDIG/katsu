@@ -83,6 +83,7 @@ from chord_metadata_service.mohpackets.tests.factories import (  # noqa: E402
     TreatmentFactory,
 )
 
+
 class Bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
