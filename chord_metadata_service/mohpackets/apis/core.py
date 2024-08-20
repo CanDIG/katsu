@@ -2,11 +2,6 @@ import os
 import json
 import sys
 import orjson
-from authx.auth import (
-    get_opa_datasets,
-    verify_service_token,
-    is_action_allowed_for_program,
-)
 from django.conf import settings
 from django.http import JsonResponse
 from ninja import NinjaAPI, Swagger
@@ -40,7 +35,7 @@ Author: Son Chau
 """
 
 
-SAFE_METHODS = ("GET", "HEAD", "OPTIONS")
+# SAFE_METHODS = ("GET", "HEAD", "OPTIONS")
 
 
 ##########################################
@@ -245,6 +240,11 @@ class LocalAuth:
 settings_module = os.environ.get("DJANGO_SETTINGS_MODULE")
 # Use OPA in prod/dev environment
 if "dev" in settings_module or "prod" in settings_module:
+    from authx.auth import (
+        get_opa_datasets,
+        verify_service_token,
+        is_action_allowed_for_program,
+    )
     from candigv2_logging.logging import CanDIGLogger, initialize
 
     initialize()
