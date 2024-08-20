@@ -100,5 +100,14 @@ LOGGING = {
             "level": "DEBUG",
             "handlers": ["console"],
         },
+        "psycopg": {
+            "level": "ERROR",
+        },
+        "factory": {
+            "level": "ERROR",
+        },
+        "faker": {
+            "level": "ERROR",
+        },
     },
 }
