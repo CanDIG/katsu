@@ -5,14 +5,16 @@ import factory
 from django.conf import settings
 from django.test import Client, TestCase
 
-from chord_metadata_service.mohpackets.tests.endpoints.factories import (
-    ChemotherapyFactory,
+from chord_metadata_service.mohpackets.tests.factories import (
+    BiomarkerFactory,
+    ComorbidityFactory,
     DonorFactory,
-    ImmunotherapyFactory,
+    ExposureFactory,
     PrimaryDiagnosisFactory,
     ProgramFactory,
     SampleRegistrationFactory,
     SpecimenFactory,
+    SystemicTherapyFactory,
     TreatmentFactory,
 )
 
@@ -22,8 +24,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
     It sets up initial test data, including programs, donors with other models,
     and defines test users with different permission levels and dataset access.
     By utilizing this, there is no need to create the same test data
-    for every individual test method, thereby speeding up the tests and promoting
-    consistency.
+    for every individual test method.
 
     Example:
         To use this base test case, inherit from it in your test classes and use
@@ -66,11 +67,17 @@ class BaseTestCase(TestCase):
         cls.treatments = TreatmentFactory.create_batch(
             16, primary_diagnosis_uuid=factory.Iterator(cls.primary_diagnoses)
         )
-        cls.chemotherapies = ChemotherapyFactory.create_batch(
-            4, treatment_uuid=factory.Iterator(cls.treatments[0:4])
+        cls.systemic_therapies = SystemicTherapyFactory.create_batch(
+            16, treatment_uuid=factory.Iterator(cls.treatments)
         )
-        cls.immunotherapies = ImmunotherapyFactory.create_batch(
-            4, treatment_uuid=factory.Iterator(cls.treatments[4:8])
+        cls.exposures = ExposureFactory.create_batch(
+            8, donor_uuid=factory.Iterator(cls.donors)
+        )
+        cls.comorbidities = ComorbidityFactory.create_batch(
+            8, donor_uuid=factory.Iterator(cls.donors)
+        )
+        cls.biomarker = BiomarkerFactory.create_batch(
+            8, donor_uuid=factory.Iterator(cls.donors)
         )
 
         # Define users permissions based on test data

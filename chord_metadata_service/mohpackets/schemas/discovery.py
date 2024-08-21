@@ -14,10 +14,6 @@ class ProgramDiscoverySchema(Schema):
     metadata: object
 
 
-# class DiscoverySchema(Schema):
-#     donors_by_cohort: Dict[str, int]
-
-
 class DiscoveryDonorSchema(Schema):
     program_id: str
     donors_count: str
@@ -34,7 +30,7 @@ class GenderCountSchema(Schema):
 
 
 class PrimarySiteCountSchema(Schema):
-    primary_site_name: str
+    primary_site_name: Optional[str]
     primary_site_count: str
 
 

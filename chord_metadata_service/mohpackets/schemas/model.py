@@ -4,13 +4,11 @@ from ninja import Field
 
 from chord_metadata_service.mohpackets.schemas.base import (
     BaseBiomarkerSchema,
-    BaseChemotherapySchema,
+    BaseSystemicTherapySchema,
     BaseComorbiditySchema,
     BaseDonorSchema,
     BaseExposureSchema,
     BaseFollowUpSchema,
-    BaseHormoneTherapySchema,
-    BaseImmunotherapySchema,
     BasePrimaryDiagnosisSchema,
     BaseProgramSchema,
     BaseRadiationSchema,
@@ -73,25 +71,13 @@ class SurgeryModelSchema(BaseSurgerySchema):
     submitter_treatment_id: str
 
 
-class ImmunotherapyModelSchema(BaseImmunotherapySchema):
-    program_id: str = Field(..., alias="program_id_id")
-    submitter_donor_id: str
-    submitter_treatment_id: str
-
-
 class RadiationModelSchema(BaseRadiationSchema):
     program_id: str = Field(..., alias="program_id_id")
     submitter_donor_id: str
     submitter_treatment_id: str
 
 
-class HormoneTherapyModelSchema(BaseHormoneTherapySchema):
-    program_id: str = Field(..., alias="program_id_id")
-    submitter_donor_id: str
-    submitter_treatment_id: str
-
-
-class ChemotherapyModelSchema(BaseChemotherapySchema):
+class SystemicTherapyModelSchema(BaseSystemicTherapySchema):
     program_id: str = Field(..., alias="program_id_id")
     submitter_donor_id: str
     submitter_treatment_id: str

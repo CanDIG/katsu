@@ -24,3 +24,5 @@ katsu.code-workspace
 
 # Staticfiles
 config/staticfiles/*
+
+chord_metadata_service/mohpackets/data/custom*

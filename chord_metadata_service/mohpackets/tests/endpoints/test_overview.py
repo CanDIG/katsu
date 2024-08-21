@@ -1,10 +1,11 @@
 from http import HTTPStatus
 
 import chord_metadata_service.mohpackets.permissible_values as PERM_VAL
-from chord_metadata_service.mohpackets.models import Donor, Treatment
+from chord_metadata_service.mohpackets.models import Donor, PrimaryDiagnosis, Treatment
 from chord_metadata_service.mohpackets.tests.endpoints.base import BaseTestCase
-from chord_metadata_service.mohpackets.tests.endpoints.factories import (
+from chord_metadata_service.mohpackets.tests.factories import (
     DonorFactory,
+    PrimaryDiagnosisFactory,
     TreatmentFactory,
 )
 
@@ -22,15 +23,19 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
 class OverviewTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.patients_per_cohort_url = "/v2/discovery/overview/patients_per_cohort/"
-        self.individual_count_url = "/v2/discovery/overview/individual_count/"
-        self.gender_count_url = "/v2/discovery/overview/gender_count/"
-        self.primary_site_count_url = "/v2/discovery/overview/primary_site_count/"
-        self.treatment_type_count_url = "/v2/discovery/overview/treatment_type_count/"
-        self.diagnosis_age_count_url = "/v2/discovery/overview/diagnosis_age_count/"
-        self.discover_donors_url = "/v2/discovery/donors/"
-        # The default dataset are <5 so we need to add 5 more donors
-        # and 5 more treatments to display data >5
+        self.patients_per_cohort_url = "/v3/discovery/overview/patients_per_cohort/"
+        self.individual_count_url = "/v3/discovery/overview/individual_count/"
+        self.gender_count_url = "/v3/discovery/overview/gender_count/"
+        self.primary_site_count_url = "/v3/discovery/overview/primary_site_count/"
+        self.treatment_type_count_url = "/v3/discovery/overview/treatment_type_count/"
+        self.diagnosis_age_count_url = "/v3/discovery/overview/diagnosis_age_count/"
+        self.discover_donors_url = "/v3/discovery/donors/"
+        # The default dataset contains fewer than 5 entries.
+        # To test the censor requirement, we need to add:
+        # - 5 more donors
+        # - 5 more primary diagnoses
+        # - 5 more treatments
+        # This will help the dataset displays more than 5 entries.
         self.gender_man = PERM_VAL.GENDER[0]  # Man
         self.primary_site_sinus = PERM_VAL.PRIMARY_SITE[0]  # Accessory sinuses
         self.treatment_type_bone = PERM_VAL.TREATMENT_TYPE[0]  # Bone marrow transplant
@@ -39,8 +44,14 @@ class OverviewTestCase(BaseTestCase):
                 5,
                 program_id=self.programs[0],
                 gender=self.gender_man,
-                primary_site=[self.primary_site_sinus],
-                date_of_birth={"month_interval": 840},  # 70-79 age
+                date_of_birth={"day_interval": 27394},  # 70-79 age
+            )
+        )
+        self.primary_diagnoses.extend(
+            PrimaryDiagnosisFactory.create_batch(
+                5,
+                donor_uuid=self.donors[0],
+                primary_site=self.primary_site_sinus,
             )
         )
         self.treatments.extend(
@@ -137,8 +148,8 @@ class OverviewTestCase(BaseTestCase):
         self.assertEqual(response.status_code, HTTPStatus.OK)
         for item in response.json():
             primary_site_count_value = item["primary_site_count"]
-            primary_site_count = Donor.objects.filter(
-                primary_site__contains=[item["primary_site_name"]]
+            primary_site_count = PrimaryDiagnosis.objects.filter(
+                primary_site=item["primary_site_name"]
             ).count()
             if primary_site_count < 5:
                 self.assertEqual(primary_site_count_value, "<5")

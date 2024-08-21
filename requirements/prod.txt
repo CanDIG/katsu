@@ -1,5 +1,5 @@
 -r base.txt # inherit from base.txt
-whitenoise==6.6.0 # serve static files
-redis[hiredis]==5.0.4 # cache server
-gunicorn==22.0.0 #  web server
-uvicorn[standard]==0.29.0 #  web server
+whitenoise==6.7.0 # serve static files
+redis[hiredis]==5.0.8 # cache server
+gunicorn==23.0.0 #  web server
+uvicorn[standard]==0.30.6 #  web server

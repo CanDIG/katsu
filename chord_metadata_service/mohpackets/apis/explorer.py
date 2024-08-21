@@ -27,45 +27,47 @@ from chord_metadata_service.mohpackets.schemas.filter import (
     DonorExplorerFilterSchema,
 )
 
+"""
+Module with explorer APIs for statistic.
+These APIs requires a service token and bypass user authorization.
+
+Author: Son Chau
+"""
+
 explorer_router = Router()
 
 
 @explorer_router.get("/donors/", response=List[DonorExplorerSchema])
 def explorer_donor(request, filters: DonorExplorerFilterSchema = Query(...)):
+    """
+    Returns a list of donors with their sample IDs, treatment types, age, and primary site.
+    This endpoint is called by the query service and bypasses user authorization.
+    """
     filter_dict = filters.dict()
     queryset = (
         Donor.objects.select_related("program_id")
         .prefetch_related(
             "treatment_set",
-            "chemotherapy_set",
-            "hormonetherapy_set",
-            "immunotherapy_set",
+            "primarydiagnosis_set",
+            "systemictherapy_set",
             "sampleregistration_set",
         )
         .distinct()
     )
 
     if filter_dict["primary_site"]:
-        queryset = queryset.filter(primary_site__overlap=filter_dict["primary_site"])
+        queryset = queryset.filter(
+            primarydiagnosis__primary_site__in=filter_dict["primary_site"]
+        )
 
     if filter_dict["treatment_type"]:
         queryset = queryset.filter(
             treatment__treatment_type__overlap=filter_dict["treatment_type"]
         )
 
-    if filter_dict["chemotherapy_drug_name"]:
+    if filter_dict["systemic_therapy_drug_name"]:
         queryset = queryset.filter(
-            chemotherapy__drug_name__in=filter_dict["chemotherapy_drug_name"]
-        )
-
-    if filter_dict["immunotherapy_drug_name"]:
-        queryset = queryset.filter(
-            immunotherapy__drug_name__in=filter_dict["immunotherapy_drug_name"]
-        )
-
-    if filter_dict["hormone_therapy_drug_name"]:
-        queryset = queryset.filter(
-            hormonetherapy__drug_name__in=filter_dict["hormone_therapy_drug_name"]
+            systemictherapy__drug_name__in=filter_dict["systemic_therapy_drug_name"]
         )
 
     if filter_dict["exclude_cohorts"]:
@@ -75,6 +77,7 @@ def explorer_donor(request, filters: DonorExplorerFilterSchema = Query(...)):
         contains_subquery = True
         function = "unnest"
 
+    # treatment can have duplicates for counting purpose
     treatment_type_names = (
         Treatment.objects.filter(donor_uuid_id=OuterRef("uuid"))
         .annotate(treatment_type_list=Unnest("treatment_type"))
@@ -101,6 +104,11 @@ def explorer_donor(request, filters: DonorExplorerFilterSchema = Query(...)):
             "sampleregistration__submitter_sample_id",
             distinct=True,
             filter=~Q(sampleregistration__submitter_sample_id=None),
+        ),
+        primary_site=ArrayAgg(
+            "primarydiagnosis__primary_site",
+            distinct=True,
+            filter=~Q(primarydiagnosis__primary_site=None),
         ),
         treatment_type=ArraySubquery(Subquery(treatment_type_names)),
     ).values(

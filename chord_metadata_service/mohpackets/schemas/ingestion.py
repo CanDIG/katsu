@@ -3,13 +3,11 @@ from typing import Optional
 from ninja import Field
 from chord_metadata_service.mohpackets.schemas.base import (
     BaseBiomarkerSchema,
-    BaseChemotherapySchema,
+    BaseSystemicTherapySchema,
     BaseComorbiditySchema,
     BaseDonorSchema,
     BaseExposureSchema,
     BaseFollowUpSchema,
-    BaseHormoneTherapySchema,
-    BaseImmunotherapySchema,
     BasePrimaryDiagnosisSchema,
     BaseProgramSchema,
     BaseRadiationSchema,
@@ -23,7 +21,7 @@ from chord_metadata_service.mohpackets.schemas.base import (
 """
 Module with schema used for ingesting
 
-All fields are derived from the model, with the fix for FK and uuid
+All fields are derived from the model but FK and uuid
 
 Author: Son Chau
 """
@@ -66,13 +64,13 @@ class BiomarkerIngestSchema(BaseBiomarkerSchema):
         use_enum_values = True
 
 
-class ChemotherapyIngestSchema(BaseChemotherapySchema):
+class SystemicTherapyIngestSchema(BaseSystemicTherapySchema):
     program_id_id: str = Field(..., alias="program_id")
     submitter_donor_id: str
     submitter_treatment_id: str
     uuid: Optional[str] = None
 
-    class Config(BaseChemotherapySchema.Config):
+    class Config(BaseSystemicTherapySchema.Config):
         use_enum_values = True
 
 
@@ -102,26 +100,6 @@ class FollowUpIngestSchema(BaseFollowUpSchema):
     uuid: Optional[str] = None
 
     class Config(BaseFollowUpSchema.Config):
-        use_enum_values = True
-
-
-class HormoneTherapyIngestSchema(BaseHormoneTherapySchema):
-    program_id_id: str = Field(..., alias="program_id")
-    submitter_donor_id: str
-    submitter_treatment_id: str
-    uuid: Optional[str] = None
-
-    class Config(BaseHormoneTherapySchema.Config):
-        use_enum_values = True
-
-
-class ImmunotherapyIngestSchema(BaseImmunotherapySchema):
-    program_id_id: str = Field(..., alias="program_id")
-    submitter_donor_id: str
-    submitter_treatment_id: str
-    uuid: Optional[str] = None
-
-    class Config(BaseImmunotherapySchema.Config):
         use_enum_values = True
 
 

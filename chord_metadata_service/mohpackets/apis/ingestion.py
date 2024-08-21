@@ -6,13 +6,11 @@ from ninja import Router
 
 from chord_metadata_service.mohpackets.models import (
     Biomarker,
-    Chemotherapy,
+    SystemicTherapy,
     Comorbidity,
     Donor,
     Exposure,
     FollowUp,
-    HormoneTherapy,
-    Immunotherapy,
     PrimaryDiagnosis,
     Program,
     Radiation,
@@ -23,13 +21,11 @@ from chord_metadata_service.mohpackets.models import (
 )
 from chord_metadata_service.mohpackets.schemas.ingestion import (
     BiomarkerIngestSchema,
-    ChemotherapyIngestSchema,
+    SystemicTherapyIngestSchema,
     ComorbidityIngestSchema,
     DonorIngestSchema,
     ExposureIngestSchema,
     FollowUpIngestSchema,
-    HormoneTherapyIngestSchema,
-    ImmunotherapyIngestSchema,
     PrimaryDiagnosisIngestSchema,
     ProgramIngestSchema,
     RadiationIngestSchema,
@@ -40,8 +36,7 @@ from chord_metadata_service.mohpackets.schemas.ingestion import (
 )
 
 """
-Module with create APIs for clinical data.
-These APIs require admin authorization
+CRUD APIs for clinical data. Require authorization
 
 Author: Son Chau
 """
@@ -50,6 +45,18 @@ router = Router()
 
 
 def create_instances(payload: List, model_cls: Type):
+    """
+    Create instances of a specified model using data from the provided payload.
+
+    Args:
+        payload (List): A list of data objects, where each object contains
+                        the data required to create a model instance.
+        model_cls (Type): The model class for which instances are to be created.
+
+    Returns:
+        JsonResponse: A response with a 201 status and a list of created instances if successful.
+                      If an error occurs, it returns a 400 status with an error message.
+    """
     instances = []
     try:
         for item in payload:
@@ -94,11 +101,11 @@ def create_biomarkers(
     return create_instances(payload, Biomarker)
 
 
-@router.post("/chemotherapies/")
-def create_chemotherapies(
-    request, payload: List[ChemotherapyIngestSchema], response: HttpResponse
+@router.post("/systemic_therapies/")
+def create_systemic_therapies(
+    request, payload: List[SystemicTherapyIngestSchema], response: HttpResponse
 ):
-    return create_instances(payload, Chemotherapy)
+    return create_instances(payload, SystemicTherapy)
 
 
 @router.post("/comorbidities/")
@@ -120,20 +127,6 @@ def create_followups(
     request, payload: List[FollowUpIngestSchema], response: HttpResponse
 ):
     return create_instances(payload, FollowUp)
-
-
-@router.post("/hormone_therapies/")
-def create_hormone_therapies(
-    request, payload: List[HormoneTherapyIngestSchema], response: HttpResponse
-):
-    return create_instances(payload, HormoneTherapy)
-
-
-@router.post("/immunotherapies/")
-def create_immunotherapies(
-    request, payload: List[ImmunotherapyIngestSchema], response: HttpResponse
-):
-    return create_instances(payload, Immunotherapy)
 
 
 @router.post("/primary_diagnoses/")

@@ -2,11 +2,6 @@ import os
 import json
 import sys
 import orjson
-from authx.auth import (
-    get_opa_datasets,
-    verify_service_token,
-    is_action_allowed_for_program,
-)
 from django.conf import settings
 from django.http import JsonResponse
 from ninja import NinjaAPI, Swagger
@@ -87,7 +82,10 @@ class NetworkAuth:
                     path=request.path,
                     program=program_id,
                 )
-                logger.debug(f"Requesting DELETE for: {program_id}. Result: {write_permission}.", request)
+                logger.debug(
+                    f"Requesting DELETE for: {program_id}. Result: {write_permission}.",
+                    request,
+                )
                 return write_permission
 
             except Exception as e:
@@ -120,7 +118,10 @@ class NetworkAuth:
                     for program_id in program_ids
                 )
 
-                logger.debug(f"Requesting WRITE for: {program_ids}. Authorized to write: {write_datasets}.", request)
+                logger.debug(
+                    f"Requesting WRITE for: {program_ids}. Authorized to write: {write_datasets}.",
+                    request,
+                )
                 return write_datasets
 
             except Exception as e:
@@ -149,7 +150,10 @@ class NetworkAuth:
             try:
                 read_datasets = get_opa_datasets(request)
                 result = True if read_datasets else None
-                logger.debug(f"Authorized READ programs: {read_datasets}. Result: {result}", request)
+                logger.debug(
+                    f"Authorized READ programs: {read_datasets}. Result: {result}",
+                    request,
+                )
 
                 if result:
                     request.read_datasets = read_datasets
@@ -167,10 +171,15 @@ class NetworkAuth:
                 is_valid_token = verify_service_token(
                     service="query", token=service_token
                 )
-                logger.debug(f"verify_service_token: {is_valid_token}. X-Service-Token is: {service_token}", request)
+                logger.debug(
+                    f"verify_service_token: {is_valid_token}. X-Service-Token is: {service_token}",
+                    request,
+                )
                 return is_valid_token
 
-            logger.warning("No X-Service-Token in headers. Not a query service request.")
+            logger.warning(
+                "No X-Service-Token in headers. Not a query service request."
+            )
             return False
 
 
@@ -231,7 +240,12 @@ class LocalAuth:
 settings_module = os.environ.get("DJANGO_SETTINGS_MODULE")
 # Use OPA in prod/dev environment
 if "dev" in settings_module or "prod" in settings_module:
-    from candigv2_logging.logging import CanDIGLogger, initialize
+    from authx.auth import (  # type: ignore
+        get_opa_datasets,
+        verify_service_token,
+        is_action_allowed_for_program,
+    )
+    from candigv2_logging.logging import CanDIGLogger, initialize  # type: ignore
 
     initialize()
     logger = CanDIGLogger(__file__)

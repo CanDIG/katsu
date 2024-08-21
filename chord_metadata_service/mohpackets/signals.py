@@ -6,13 +6,11 @@ from django.dispatch import receiver
 from chord_metadata_service.mohpackets.apis.core import logger
 from chord_metadata_service.mohpackets.models import (
     Biomarker,
-    Chemotherapy,
+    SystemicTherapy,
     Comorbidity,
     Donor,
     Exposure,
     FollowUp,
-    HormoneTherapy,
-    Immunotherapy,
     PrimaryDiagnosis,
     Radiation,
     SampleRegistration,
@@ -109,20 +107,8 @@ def create_treatment_foreign_key(sender, instance, **kwargs):
     )
 
 
-@receiver(pre_save, sender=Chemotherapy)
-def create_chemotherapy_foreign_key(sender, instance, **kwargs):
-    set_foreign_key(sender, instance, Donor, "submitter_donor_id", "donor_uuid_id")
-    set_foreign_key(
-        sender,
-        instance,
-        Treatment,
-        "submitter_treatment_id",
-        "treatment_uuid_id",
-    )
-
-
-@receiver(pre_save, sender=HormoneTherapy)
-def create_hormone_therapy_foreign_key(sender, instance, **kwargs):
+@receiver(pre_save, sender=SystemicTherapy)
+def create_systemic_therapy_foreign_key(sender, instance, **kwargs):
     set_foreign_key(sender, instance, Donor, "submitter_donor_id", "donor_uuid_id")
     set_foreign_key(
         sender,
@@ -135,18 +121,6 @@ def create_hormone_therapy_foreign_key(sender, instance, **kwargs):
 
 @receiver(pre_save, sender=Radiation)
 def create_radiation_foreign_key(sender, instance, **kwargs):
-    set_foreign_key(sender, instance, Donor, "submitter_donor_id", "donor_uuid_id")
-    set_foreign_key(
-        sender,
-        instance,
-        Treatment,
-        "submitter_treatment_id",
-        "treatment_uuid_id",
-    )
-
-
-@receiver(pre_save, sender=Immunotherapy)
-def create_immunotherapy_foreign_key(sender, instance, **kwargs):
     set_foreign_key(sender, instance, Donor, "submitter_donor_id", "donor_uuid_id")
     set_foreign_key(
         sender,

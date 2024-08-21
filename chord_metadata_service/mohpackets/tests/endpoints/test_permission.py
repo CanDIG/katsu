@@ -4,7 +4,7 @@ from django.conf import settings
 from django.forms.models import model_to_dict
 
 from chord_metadata_service.mohpackets.tests.endpoints.base import BaseTestCase
-from chord_metadata_service.mohpackets.tests.endpoints.factories import (
+from chord_metadata_service.mohpackets.tests.factories import (
     DonorFactory,
     PrimaryDiagnosisFactory,
     ProgramFactory,
@@ -14,11 +14,9 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
 """
     This module tests users with different roles to ensure they
     can perform ingestion and deletion operations as appropriate.
-
-    - Site Admin: Bypasses permission checks, allowing them to
-    ingest and delete any data. However, they can only read from authorized_datasets.
     It is OPA responsibility to ensure authorized_datasets is up to date.
-    - Curator: Can read and write within their authorized_datasets.
+
+    - Site Admin and Curator: Can read and write within their authorized_datasets.
     - Normal User: Has read-only access.
 
     Author: Son Chau
@@ -30,7 +28,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.donor_url = "/v2/ingest/donors/"
+        self.donor_url = "/v3/ingest/donors/"
 
     def test_ingest_with_normal_user(self):
         """
@@ -94,7 +92,7 @@ class IngestTestCase(BaseTestCase):
 
     def test_authorized_ingest_with_site_admin(self):
         """
-        Test that an admin also required authorized program from OPA to ingest
+        Test that an admin can ingest
 
         Testing Strategy:
         - Build Donor data based on the existing program_id
@@ -114,10 +112,10 @@ class IngestTestCase(BaseTestCase):
 
     def test_unauthorized_ingest_with_site_admin(self):
         """
-        Test that an admin also required authorized program from OPA to ingest
+        Test that an admin cannot ingest without permission
 
         Testing Strategy:
-        - Build Donor data based on new a program
+        - Build Donor data based on new a program (not authorized in OPA yet)
         - An authorized admin (user_2) don't have permission on that program_id
         - User cannot perform a POST request for donor creation.
         """
@@ -139,7 +137,7 @@ class IngestTestCase(BaseTestCase):
 class DeleteTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.delete_url = "/v2/ingest/program/"
+        self.delete_url = "/v3/ingest/program/"
 
     def test_delete_with_normal_user(self):
         """
@@ -205,7 +203,7 @@ class DeleteTestCase(BaseTestCase):
 class GETTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.treatments_url = "/v2/authorized/treatments/"
+        self.treatments_url = "/v3/authorized/treatments/"
 
     def test_get_treatments_with_normal_user(self):
         """
