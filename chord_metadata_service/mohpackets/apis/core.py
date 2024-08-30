@@ -234,6 +234,14 @@ class LocalAuth:
 
             return False
 
+    class IngestTokenAuth(APIKeyHeader):
+        param_name = "X-Service-Token"
+
+        def authenticate(self, request, service_token):
+            if service_token:
+                return service_token == settings.INGEST_SERVICE_TOKEN
+            return False
+
     class GetAuth(HttpBearer):
         def authenticate(self, request, bearer_token):
             if bearer_token in settings.LOCAL_OPA_DATASET:

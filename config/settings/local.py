@@ -71,6 +71,7 @@ LOCAL_OPA_DATASET = {
 }
 
 QUERY_SERVICE_TOKEN = "query"
+INGEST_SERVICE_TOKEN = "candig-ingest"
 
 # Debug toolbar settings
 # ----------------------
