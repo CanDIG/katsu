@@ -128,6 +128,25 @@ class NetworkAuth:
                 logger.error(f"An error occurred in OPA: {e}")
                 raise Exception("Error with OPA authentication.")
 
+    class IngestTokenAuth(APIKeyHeader):
+        param_name = "X-Service-Token"
+
+        def authenticate(self, request, service_token):
+            if service_token:
+                is_valid_token = verify_service_token(
+                    service="candig-ingest", token=service_token
+                )
+                logger.debug(
+                    f"verify_service_token: {is_valid_token}. X-Service-Token is: {service_token}",
+                    request,
+                )
+                return is_valid_token
+
+            logger.warning(
+                "No X-Service-Token in headers. Not an ingest service request."
+            )
+            return False
+
     class GetAuth(HttpBearer):
         def authenticate(self, request, bearer_token):
             """
@@ -215,6 +234,14 @@ class LocalAuth:
 
             return False
 
+    class IngestTokenAuth(APIKeyHeader):
+        param_name = "X-Service-Token"
+
+        def authenticate(self, request, service_token):
+            if service_token:
+                return service_token == settings.INGEST_SERVICE_TOKEN
+            return False
+
     class GetAuth(HttpBearer):
         def authenticate(self, request, bearer_token):
             if bearer_token in settings.LOCAL_OPA_DATASET:
@@ -271,7 +298,7 @@ api = NinjaAPI(
     description="This is the RESTful API for the MoH Service.",
 )
 api.add_router("/discovery/", discovery_router, tags=["discovery"])
-api.add_router("/ingest/", ingest_router, auth=auth.IngestAuth(), tags=["ingest"])
+api.add_router("/ingest/", ingest_router, auth=[auth.IngestAuth(), auth.IngestTokenAuth()], tags=["ingest"])
 api.add_router("/ingest/", delete_router, auth=auth.DeleteAuth(), tags=["delete"])
 api.add_router(
     "/authorized/", authorzied_router, auth=auth.GetAuth(), tags=["authorized"]
