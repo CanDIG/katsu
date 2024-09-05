@@ -283,6 +283,7 @@ BaseRadiationSchema = create_schema(
         ("radiation_therapy_modality", Optional[RadiationTherapyModalityEnum], None),
         ("radiation_therapy_type", Optional[TherapyTypeEnum], None),
         ("anatomical_site_irradiated", Optional[RadiationAnatomicalSiteEnum], None),
+        ("radiation_boost", Optional[uBooleanEnum], None)
     ],
 )
 

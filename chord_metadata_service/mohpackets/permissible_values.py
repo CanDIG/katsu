@@ -91,6 +91,7 @@ LOST_TO_FOLLOWUP_REASON = [
     "Lost contact",
     "Not Available",
     "Withdrew from study",
+    "Discharged from follow-up"
 ]
 
 TUMOUR_STAGING_SYSTEM = [
@@ -321,6 +322,7 @@ STORAGE = [
     "Frozen in liquid nitrogen",
     "Frozen in vapour phase",
     "Not Applicable",
+    "OCT embedded",
     "Other",
     "Paraffin block",
     "RNA later frozen",
@@ -403,6 +405,7 @@ CELLS_MEASURE_METHOD = [
     "Genomics",
     "Image analysis",
     "Pathology estimate by percent nuclei",
+    "Other",
     "Not Available",
 ]
 
@@ -430,6 +433,7 @@ SPECIMEN_TISSUE_SOURCE = [
     "Fetal blood",
     "Hydrocele fluid",
     "Male genital fluid",
+    "Other",
     "Pancreatic fluid",
     "Pericardial effusion",
     "Pleural fluid",
@@ -510,11 +514,12 @@ TREATMENT_TYPE = [
     "Bone marrow transplant",
     "Systemic therapy",
     "No treatment",
-    "Other targeting molecular therapy",
+    "Targeted molecular therapy",
     "Photodynamic therapy",
     "Radiation therapy",
     "Stem cell transplant",
     "Surgery",
+    "Other",
 ]
 
 TREATMENT_SETTING = [
@@ -591,6 +596,7 @@ TREATMENT_STATUS = [
     "Physician decision (stopped or interrupted treatment)",
     "Treatment stopped due to lack of efficacy (disease progression)",
     "Treatment stopped due to acute toxicity",
+    "Treatment ongoing",
     "Other",
     "Not Available",
 ]
@@ -957,7 +963,7 @@ SURGERY_TYPE = [
 ]
 
 SURGERY_LOCATION = ["Local recurrence", "Metastatic", "Primary"]
-SURGERY_REFERENCE_DATABASE = ["SNOMED", "NCIt", "UMLS"]
+SURGERY_REFERENCE_DATABASE = ["SNOMED", "NCIt", "UMLS", "CCI"]
 
 TUMOUR_FOCALITY = [
     "Cannot be assessed",
@@ -1012,7 +1018,7 @@ RELAPSE_TYPE = [
     "Distant recurrence/metastasis",
     "Local recurrence",
     "Local recurrence and distant metastasis",
-    "Progression (liquid tumours)",
+    "Progression",
     "Biochemical progression",
     "Not Available",
 ]
