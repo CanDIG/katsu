@@ -9,6 +9,9 @@ Base URLs:
 
 - HTTP Authentication, scheme: bearer
 
+* API Key (IngestTokenAuth)
+    - Parameter Name: **X-Service-Token**, in: header. 
+
 - HTTP Authentication, scheme: bearer
 
 - HTTP Authentication, scheme: bearer
@@ -600,7 +603,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "radiation_therapy_fractions": 0,
               "radiation_therapy_dosage": 0,
               "anatomical_site_irradiated": "Left Abdomen",
-              "radiation_boost": true,
+              "radiation_boost": "Yes",
               "reference_radiation_treatment_id": "string"
             }
           ],
@@ -1228,7 +1231,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "radiation_therapy_fractions": 0,
       "radiation_therapy_dosage": 0,
       "anatomical_site_irradiated": "Left Abdomen",
-      "radiation_boost": true,
+      "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string",
       "program_id": "string",
       "submitter_donor_id": "string",
@@ -1806,7 +1809,7 @@ CauseOfDeathEnum
 |---|---|
 |CauseOfDeathEnum|Died of cancer|
 |CauseOfDeathEnum|Died of other reasons|
-|CauseOfDeathEnum|Unknown|
+|CauseOfDeathEnum|Not Available|
 
 <h2 id="tocS_DateInterval">DateInterval</h2>
 
@@ -2113,6 +2116,9 @@ GenderEnum
 |GenderEnum|Man|
 |GenderEnum|Woman|
 |GenderEnum|Non-binary|
+|GenderEnum|Other|
+|GenderEnum|Prefer not to disclose|
+|GenderEnum|Not Available|
 
 <h2 id="tocS_LostToFollowupReasonEnum">LostToFollowupReasonEnum</h2>
 
@@ -2141,9 +2147,9 @@ LostToFollowupReasonEnum
 |LostToFollowupReasonEnum|Completed study|
 |LostToFollowupReasonEnum|Discharged to palliative care|
 |LostToFollowupReasonEnum|Lost contact|
-|LostToFollowupReasonEnum|Not applicable|
-|LostToFollowupReasonEnum|Unknown|
+|LostToFollowupReasonEnum|Not Available|
 |LostToFollowupReasonEnum|Withdrew from study|
+|LostToFollowupReasonEnum|Discharged from follow-up|
 
 <h2 id="tocS_SexAtBirthEnum">SexAtBirthEnum</h2>
 
@@ -2172,7 +2178,7 @@ SexAtBirthEnum
 |SexAtBirthEnum|Male|
 |SexAtBirthEnum|Female|
 |SexAtBirthEnum|Other|
-|SexAtBirthEnum|Unknown|
+|SexAtBirthEnum|Not Available|
 
 <h2 id="tocS_BiomarkerIngestSchema">BiomarkerIngestSchema</h2>
 
@@ -2568,7 +2574,7 @@ ErPrHpvStatusEnum
 |ErPrHpvStatusEnum|Negative|
 |ErPrHpvStatusEnum|Not applicable|
 |ErPrHpvStatusEnum|Positive|
-|ErPrHpvStatusEnum|Unknown|
+|ErPrHpvStatusEnum|Not Available|
 
 <h2 id="tocS_Her2StatusEnum">Her2StatusEnum</h2>
 
@@ -2599,7 +2605,7 @@ Her2StatusEnum
 |Her2StatusEnum|Positive|
 |Her2StatusEnum|Negative|
 |Her2StatusEnum|Not applicable|
-|Her2StatusEnum|Unknown|
+|Her2StatusEnum|Not Available|
 
 <h2 id="tocS_HpvStrainEnum">HpvStrainEnum</h2>
 
@@ -2672,6 +2678,7 @@ DosageUnitsEnum
 |DosageUnitsEnum|g/m2|
 |DosageUnitsEnum|mg/kg|
 |DosageUnitsEnum|cells/kg|
+|DosageUnitsEnum|Not Available|
 
 <h2 id="tocS_DrugReferenceDbEnum">DrugReferenceDbEnum</h2>
 
@@ -3132,7 +3139,7 @@ MalignancyLateralityEnum
 |MalignancyLateralityEnum|Not applicable|
 |MalignancyLateralityEnum|Right|
 |MalignancyLateralityEnum|Unilateral, Side not specified|
-|MalignancyLateralityEnum|Unknown|
+|MalignancyLateralityEnum|Not Available|
 
 <h2 id="tocS_uBooleanEnum">uBooleanEnum</h2>
 
@@ -3160,7 +3167,7 @@ uBooleanEnum
 |---|---|
 |uBooleanEnum|Yes|
 |uBooleanEnum|No|
-|uBooleanEnum|Unknown|
+|uBooleanEnum|Not Available|
 
 <h2 id="tocS_ExposureIngestSchema">ExposureIngestSchema</h2>
 
@@ -3289,7 +3296,7 @@ SmokingStatusEnum
 |SmokingStatusEnum|Current smoker|
 |SmokingStatusEnum|Lifelong non-smoker (<100 cigarettes smoked in lifetime)|
 |SmokingStatusEnum|Not applicable|
-|SmokingStatusEnum|Smoking history not documented|
+|SmokingStatusEnum|Not Available|
 
 <h2 id="tocS_TobaccoTypeEnum">TobaccoTypeEnum</h2>
 
@@ -3323,7 +3330,7 @@ TobaccoTypeEnum
 |TobaccoTypeEnum|Pipe|
 |TobaccoTypeEnum|Roll-ups|
 |TobaccoTypeEnum|Snuff|
-|TobaccoTypeEnum|Unknown|
+|TobaccoTypeEnum|Not Available|
 |TobaccoTypeEnum|Waterpipe|
 
 <h2 id="tocS_DiseaseStatusFollowupEnum">DiseaseStatusFollowupEnum</h2>
@@ -3358,6 +3365,7 @@ DiseaseStatusFollowupEnum
 |DiseaseStatusFollowupEnum|Progression not otherwise specified|
 |DiseaseStatusFollowupEnum|Relapse or recurrence|
 |DiseaseStatusFollowupEnum|Stable|
+|DiseaseStatusFollowupEnum|Not Available|
 
 <h2 id="tocS_FollowUpIngestSchema">FollowUpIngestSchema</h2>
 
@@ -3619,8 +3627,9 @@ RelapseTypeEnum
 |RelapseTypeEnum|Distant recurrence/metastasis|
 |RelapseTypeEnum|Local recurrence|
 |RelapseTypeEnum|Local recurrence and distant metastasis|
-|RelapseTypeEnum|Progression (liquid tumours)|
+|RelapseTypeEnum|Progression|
 |RelapseTypeEnum|Biochemical progression|
+|RelapseTypeEnum|Not Available|
 
 <h2 id="tocS_BasisOfDiagnosisEnum">BasisOfDiagnosisEnum</h2>
 
@@ -3653,7 +3662,7 @@ BasisOfDiagnosisEnum
 |BasisOfDiagnosisEnum|Histology of a metastasis|
 |BasisOfDiagnosisEnum|Histology of a primary tumour|
 |BasisOfDiagnosisEnum|Specific tumour markers|
-|BasisOfDiagnosisEnum|Unknown|
+|BasisOfDiagnosisEnum|Not Available|
 
 <h2 id="tocS_MCategoryEnum">MCategoryEnum</h2>
 
@@ -4106,7 +4115,7 @@ PrimaryDiagnosisLateralityEnum
 |PrimaryDiagnosisLateralityEnum|Not a paired site|
 |PrimaryDiagnosisLateralityEnum|Right|
 |PrimaryDiagnosisLateralityEnum|Unilateral, side not specified|
-|PrimaryDiagnosisLateralityEnum|Unknown|
+|PrimaryDiagnosisLateralityEnum|Not Available|
 
 <h2 id="tocS_PrimarySiteEnum">PrimarySiteEnum</h2>
 
@@ -4202,6 +4211,7 @@ PrimarySiteEnum
 |PrimarySiteEnum|Vagina|
 |PrimarySiteEnum|Vulva|
 |PrimarySiteEnum|Unknown primary site|
+|PrimarySiteEnum|Not Available|
 
 <h2 id="tocS_StageGroupEnum">StageGroupEnum</h2>
 
@@ -4322,6 +4332,7 @@ StageGroupEnum
 |StageGroupEnum|Stage 4|
 |StageGroupEnum|Stage 4S|
 |StageGroupEnum|Occult Carcinoma|
+|StageGroupEnum|Not Available|
 
 <h2 id="tocS_TCategoryEnum">TCategoryEnum</h2>
 
@@ -4438,6 +4449,7 @@ TumourStagingSystemEnum
 |TumourStagingSystemEnum|Revised International staging system (RISS)|
 |TumourStagingSystemEnum|SEER staging system|
 |TumourStagingSystemEnum|St Jude staging system|
+|TumourStagingSystemEnum|Not Available|
 
 <h2 id="tocS_RadiationAnatomicalSiteEnum">RadiationAnatomicalSiteEnum</h2>
 
@@ -4723,6 +4735,7 @@ RadiationAnatomicalSiteEnum
 |RadiationAnatomicalSiteEnum|Skin|
 |RadiationAnatomicalSiteEnum|Spine|
 |RadiationAnatomicalSiteEnum|Upper Limb|
+|RadiationAnatomicalSiteEnum|Not Available|
 
 <h2 id="tocS_RadiationIngestSchema">RadiationIngestSchema</h2>
 
@@ -4738,7 +4751,7 @@ RadiationAnatomicalSiteEnum
   "radiation_therapy_fractions": 0,
   "radiation_therapy_dosage": 0,
   "anatomical_site_irradiated": "Left Abdomen",
-  "radiation_boost": true,
+  "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string",
   "program_id": "string",
   "submitter_donor_id": "string",
@@ -4850,7 +4863,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
@@ -4928,6 +4941,7 @@ RadiationTherapyModalityEnum
 |RadiationTherapyModalityEnum|Teleradiotherapy neutrons (procedure)|
 |RadiationTherapyModalityEnum|Brachytherapy (procedure)|
 |RadiationTherapyModalityEnum|Other|
+|RadiationTherapyModalityEnum|Not Available|
 
 <h2 id="tocS_TherapyTypeEnum">TherapyTypeEnum</h2>
 
@@ -4955,6 +4969,7 @@ TherapyTypeEnum
 |---|---|
 |TherapyTypeEnum|External|
 |TherapyTypeEnum|Internal|
+|TherapyTypeEnum|Not Available|
 
 <h2 id="tocS_SampleRegistrationIngestSchema">SampleRegistrationIngestSchema</h2>
 
@@ -5151,6 +5166,7 @@ SpecimenTissueSourceEnum
 |SpecimenTissueSourceEnum|Fetal blood|
 |SpecimenTissueSourceEnum|Hydrocele fluid|
 |SpecimenTissueSourceEnum|Male genital fluid|
+|SpecimenTissueSourceEnum|Other|
 |SpecimenTissueSourceEnum|Pancreatic fluid|
 |SpecimenTissueSourceEnum|Pericardial effusion|
 |SpecimenTissueSourceEnum|Pleural fluid|
@@ -5264,7 +5280,8 @@ CellsMeasureMethodEnum
 |CellsMeasureMethodEnum|Genomics|
 |CellsMeasureMethodEnum|Image analysis|
 |CellsMeasureMethodEnum|Pathology estimate by percent nuclei|
-|CellsMeasureMethodEnum|Unknown|
+|CellsMeasureMethodEnum|Other|
+|CellsMeasureMethodEnum|Not Available|
 
 <h2 id="tocS_ConfirmedDiagnosisTumourEnum">ConfirmedDiagnosisTumourEnum</h2>
 
@@ -5293,7 +5310,7 @@ ConfirmedDiagnosisTumourEnum
 |ConfirmedDiagnosisTumourEnum|Yes|
 |ConfirmedDiagnosisTumourEnum|No|
 |ConfirmedDiagnosisTumourEnum|Not done|
-|ConfirmedDiagnosisTumourEnum|Unknown|
+|ConfirmedDiagnosisTumourEnum|Not Available|
 
 <h2 id="tocS_PercentCellsRangeEnum">PercentCellsRangeEnum</h2>
 
@@ -5322,6 +5339,7 @@ PercentCellsRangeEnum
 |PercentCellsRangeEnum|0-19%|
 |PercentCellsRangeEnum|20-50%|
 |PercentCellsRangeEnum|51-100%|
+|PercentCellsRangeEnum|Not Available|
 
 <h2 id="tocS_SpecimenIngestSchema">SpecimenIngestSchema</h2>
 
@@ -5639,7 +5657,7 @@ SpecimenLateralityEnum
 |SpecimenLateralityEnum|Left|
 |SpecimenLateralityEnum|Not applicable|
 |SpecimenLateralityEnum|Right|
-|SpecimenLateralityEnum|Unknown|
+|SpecimenLateralityEnum|Not Available|
 
 <h2 id="tocS_SpecimenProcessingEnum">SpecimenProcessingEnum</h2>
 
@@ -5674,7 +5692,7 @@ SpecimenProcessingEnum
 |SpecimenProcessingEnum|Formalin fixed - unbuffered|
 |SpecimenProcessingEnum|Fresh|
 |SpecimenProcessingEnum|Other|
-|SpecimenProcessingEnum|Unknown|
+|SpecimenProcessingEnum|Not Available|
 
 <h2 id="tocS_StorageEnum">StorageEnum</h2>
 
@@ -5705,10 +5723,11 @@ StorageEnum
 |StorageEnum|Frozen in liquid nitrogen|
 |StorageEnum|Frozen in vapour phase|
 |StorageEnum|Not Applicable|
+|StorageEnum|OCT embedded|
 |StorageEnum|Other|
 |StorageEnum|Paraffin block|
 |StorageEnum|RNA later frozen|
-|StorageEnum|Unknown|
+|StorageEnum|Not Available|
 
 <h2 id="tocS_TumourGradeEnum">TumourGradeEnum</h2>
 
@@ -5756,6 +5775,7 @@ TumourGradeEnum
 |TumourGradeEnum|Grade Group 3|
 |TumourGradeEnum|Grade Group 4|
 |TumourGradeEnum|Grade Group 5|
+|TumourGradeEnum|Not Available|
 
 <h2 id="tocS_TumourGradingSystemEnum">TumourGradingSystemEnum</h2>
 
@@ -5794,6 +5814,7 @@ TumourGradingSystemEnum
 |TumourGradingSystemEnum|Three-tier grading system|
 |TumourGradingSystemEnum|Two-tier grading system|
 |TumourGradingSystemEnum|WHO grading system for CNS tumours|
+|TumourGradingSystemEnum|Not Available|
 
 <h2 id="tocS_LymphovascularInvasionEnum">LymphovascularInvasionEnum</h2>
 
@@ -5825,7 +5846,7 @@ LymphovascularInvasionEnum
 |LymphovascularInvasionEnum|Not applicable|
 |LymphovascularInvasionEnum|Present|
 |LymphovascularInvasionEnum|Venous (large vessel) invasion only|
-|LymphovascularInvasionEnum|Unknown|
+|LymphovascularInvasionEnum|Not Available|
 
 <h2 id="tocS_MarginTypesEnum">MarginTypesEnum</h2>
 
@@ -5856,7 +5877,7 @@ MarginTypesEnum
 |MarginTypesEnum|Distal margin|
 |MarginTypesEnum|Not applicable|
 |MarginTypesEnum|Proximal margin|
-|MarginTypesEnum|Unknown|
+|MarginTypesEnum|Not Available|
 
 <h2 id="tocS_PerineuralInvasionEnum">PerineuralInvasionEnum</h2>
 
@@ -5886,7 +5907,7 @@ PerineuralInvasionEnum
 |PerineuralInvasionEnum|Cannot be assessed|
 |PerineuralInvasionEnum|Not applicable|
 |PerineuralInvasionEnum|Present|
-|PerineuralInvasionEnum|Unknown|
+|PerineuralInvasionEnum|Not Available|
 
 <h2 id="tocS_SurgeryIngestSchema">SurgeryIngestSchema</h2>
 
@@ -6276,7 +6297,7 @@ TumourClassificationEnum
 |TumourClassificationEnum|R0|
 |TumourClassificationEnum|R1|
 |TumourClassificationEnum|R2|
-|TumourClassificationEnum|Unknown|
+|TumourClassificationEnum|Not Available|
 
 <h2 id="tocS_TumourFocalityEnum">TumourFocalityEnum</h2>
 
@@ -6306,7 +6327,7 @@ TumourFocalityEnum
 |TumourFocalityEnum|Multifocal|
 |TumourFocalityEnum|Not applicable|
 |TumourFocalityEnum|Unifocal|
-|TumourFocalityEnum|Unknown|
+|TumourFocalityEnum|Not Available|
 
 <h2 id="tocS_TreatmentIngestSchema">TreatmentIngestSchema</h2>
 
@@ -6542,6 +6563,7 @@ TreatmentIntentEnum
 |TreatmentIntentEnum|Guidance|
 |TreatmentIntentEnum|Screening|
 |TreatmentIntentEnum|Forensic|
+|TreatmentIntentEnum|Not Available|
 
 <h2 id="tocS_TreatmentResponseEnum">TreatmentResponseEnum</h2>
 
@@ -6590,6 +6612,7 @@ TreatmentResponseEnum
 |TreatmentResponseEnum|Physician assessed stable disease|
 |TreatmentResponseEnum|No evidence of disease (NED)|
 |TreatmentResponseEnum|Major response|
+|TreatmentResponseEnum|Not Available|
 
 <h2 id="tocS_TreatmentResponseMethodEnum">TreatmentResponseMethodEnum</h2>
 
@@ -6622,6 +6645,7 @@ TreatmentResponseMethodEnum
 |TreatmentResponseMethodEnum|AML Response Criteria|
 |TreatmentResponseMethodEnum|Physician Assessed Response Criteria|
 |TreatmentResponseMethodEnum|Blazer score|
+|TreatmentResponseMethodEnum|Not Available|
 
 <h2 id="tocS_TreatmentStatusEnum">TreatmentStatusEnum</h2>
 
@@ -6654,9 +6678,9 @@ TreatmentStatusEnum
 |TreatmentStatusEnum|Physician decision (stopped or interrupted treatment)|
 |TreatmentStatusEnum|Treatment stopped due to lack of efficacy (disease progression)|
 |TreatmentStatusEnum|Treatment stopped due to acute toxicity|
+|TreatmentStatusEnum|Treatment ongoing|
 |TreatmentStatusEnum|Other|
-|TreatmentStatusEnum|Not applicable|
-|TreatmentStatusEnum|Unknown|
+|TreatmentStatusEnum|Not Available|
 
 <h2 id="tocS_TreatmentTypeEnum">TreatmentTypeEnum</h2>
 
@@ -6685,11 +6709,12 @@ TreatmentTypeEnum
 |TreatmentTypeEnum|Bone marrow transplant|
 |TreatmentTypeEnum|Systemic therapy|
 |TreatmentTypeEnum|No treatment|
-|TreatmentTypeEnum|Other targeting molecular therapy|
+|TreatmentTypeEnum|Targeted molecular therapy|
 |TreatmentTypeEnum|Photodynamic therapy|
 |TreatmentTypeEnum|Radiation therapy|
 |TreatmentTypeEnum|Stem cell transplant|
 |TreatmentTypeEnum|Surgery|
+|TreatmentTypeEnum|Other|
 
 <h2 id="tocS_DonorWithClinicalDataSchema">DonorWithClinicalDataSchema</h2>
 
@@ -6810,7 +6835,7 @@ TreatmentTypeEnum
               "radiation_therapy_fractions": 0,
               "radiation_therapy_dosage": 0,
               "anatomical_site_irradiated": "Left Abdomen",
-              "radiation_boost": true,
+              "radiation_boost": "Yes",
               "reference_radiation_treatment_id": "string"
             }
           ],
@@ -7932,7 +7957,7 @@ or
           "radiation_therapy_fractions": 0,
           "radiation_therapy_dosage": 0,
           "anatomical_site_irradiated": "Left Abdomen",
-          "radiation_boost": true,
+          "radiation_boost": "Yes",
           "reference_radiation_treatment_id": "string"
         }
       ],
@@ -8304,7 +8329,7 @@ continued
   "radiation_therapy_fractions": 0,
   "radiation_therapy_dosage": 0,
   "anatomical_site_irradiated": "Left Abdomen",
-  "radiation_boost": true,
+  "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string"
 }
 
@@ -8412,7 +8437,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
@@ -9388,7 +9413,7 @@ or
       "radiation_therapy_fractions": 0,
       "radiation_therapy_dosage": 0,
       "anatomical_site_irradiated": "Left Abdomen",
-      "radiation_boost": true,
+      "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string"
     }
   ],
@@ -13704,7 +13729,7 @@ or
       "radiation_therapy_fractions": 0,
       "radiation_therapy_dosage": 0,
       "anatomical_site_irradiated": "Left Abdomen",
-      "radiation_boost": true,
+      "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string",
       "program_id": "string",
       "submitter_donor_id": "string",
@@ -13789,7 +13814,7 @@ or
   "radiation_therapy_fractions": 0,
   "radiation_therapy_dosage": 0,
   "anatomical_site_irradiated": "Left Abdomen",
-  "radiation_boost": true,
+  "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string",
   "program_id": "string",
   "submitter_donor_id": "string",
@@ -13900,7 +13925,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
