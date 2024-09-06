@@ -6578,14 +6578,12 @@
                     "surgery_reference_database": {
                         "anyOf": [
                             {
-                                "maxLength": 64,
-                                "type": "string"
+                                "$ref": "#/components/schemas/SurgeryReferenceDatabaseEnum"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Surgery Reference Database"
+                        ]
                     },
                     "surgery_reference_identifier": {
                         "anyOf": [
@@ -6638,6 +6636,16 @@
                     "Primary"
                 ],
                 "title": "SurgeryLocationEnum",
+                "type": "string"
+            },
+            "SurgeryReferenceDatabaseEnum": {
+                "enum": [
+                    "SNOMED",
+                    "NCIt",
+                    "UMLS",
+                    "CCI"
+                ],
+                "title": "SurgeryReferenceDatabaseEnum",
                 "type": "string"
             },
             "TumourClassificationEnum": {
@@ -8065,14 +8073,12 @@
                     "surgery_reference_database": {
                         "anyOf": [
                             {
-                                "maxLength": 64,
-                                "type": "string"
+                                "$ref": "#/components/schemas/SurgeryReferenceDatabaseEnum"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Surgery Reference Database"
+                        ]
                     },
                     "surgery_reference_identifier": {
                         "anyOf": [
@@ -11897,14 +11903,12 @@
                     "surgery_reference_database": {
                         "anyOf": [
                             {
-                                "maxLength": 64,
-                                "type": "string"
+                                "$ref": "#/components/schemas/SurgeryReferenceDatabaseEnum"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Surgery Reference Database"
+                        ]
                     },
                     "surgery_reference_identifier": {
                         "anyOf": [

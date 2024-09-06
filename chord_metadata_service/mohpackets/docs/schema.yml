@@ -1752,10 +1752,8 @@ components:
           - type: 'null'
         surgery_reference_database:
           anyOf:
-          - maxLength: 64
-            type: string
+          - $ref: '#/components/schemas/SurgeryReferenceDatabaseEnum'
           - type: 'null'
-          title: Surgery Reference Database
         surgery_reference_identifier:
           anyOf:
           - maxLength: 64
@@ -3969,10 +3967,8 @@ components:
           - type: 'null'
         surgery_reference_database:
           anyOf:
-          - maxLength: 64
-            type: string
+          - $ref: '#/components/schemas/SurgeryReferenceDatabaseEnum'
           - type: 'null'
-          title: Surgery Reference Database
         surgery_reference_identifier:
           anyOf:
           - maxLength: 64
@@ -4079,10 +4075,8 @@ components:
           - type: 'null'
         surgery_reference_database:
           anyOf:
-          - maxLength: 64
-            type: string
+          - $ref: '#/components/schemas/SurgeryReferenceDatabaseEnum'
           - type: 'null'
-          title: Surgery Reference Database
         surgery_reference_identifier:
           anyOf:
           - maxLength: 64
@@ -4122,6 +4116,14 @@ components:
       - submitter_treatment_id
       title: SurgeryModelSchema
       type: object
+    SurgeryReferenceDatabaseEnum:
+      enum:
+      - SNOMED
+      - NCIt
+      - UMLS
+      - CCI
+      title: SurgeryReferenceDatabaseEnum
+      type: string
     SystemicTherapyFilterSchema:
       properties:
         actual_cumulative_drug_dose:

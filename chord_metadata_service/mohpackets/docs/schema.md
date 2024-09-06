@@ -628,7 +628,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               ],
               "lymphovascular_invasion": "Absent",
               "perineural_invasion": "Absent",
-              "surgery_reference_database": "string",
+              "surgery_reference_database": "SNOMED",
               "surgery_reference_identifier": "string"
             }
           ],
@@ -1415,7 +1415,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       ],
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
-      "surgery_reference_database": "string",
+      "surgery_reference_database": "SNOMED",
       "surgery_reference_identifier": "string",
       "program_id": "string",
       "submitter_donor_id": "string",
@@ -5937,7 +5937,7 @@ PerineuralInvasionEnum
   ],
   "lymphovascular_invasion": "Absent",
   "perineural_invasion": "Absent",
-  "surgery_reference_database": "string",
+  "surgery_reference_database": "SNOMED",
   "surgery_reference_identifier": "string",
   "program_id": "string",
   "submitter_donor_id": "string",
@@ -6193,7 +6193,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[SurgeryReferenceDatabaseEnum](#schemasurgeryreferencedatabaseenum)|false|none|none|
 
 or
 
@@ -6267,6 +6267,35 @@ SurgeryLocationEnum
 |SurgeryLocationEnum|Local recurrence|
 |SurgeryLocationEnum|Metastatic|
 |SurgeryLocationEnum|Primary|
+
+<h2 id="tocS_SurgeryReferenceDatabaseEnum">SurgeryReferenceDatabaseEnum</h2>
+
+<a id="schemasurgeryreferencedatabaseenum"></a>
+<a id="schema_SurgeryReferenceDatabaseEnum"></a>
+<a id="tocSsurgeryreferencedatabaseenum"></a>
+<a id="tocssurgeryreferencedatabaseenum"></a>
+
+```json
+"SNOMED"
+
+```
+
+SurgeryReferenceDatabaseEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|SurgeryReferenceDatabaseEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|SurgeryReferenceDatabaseEnum|SNOMED|
+|SurgeryReferenceDatabaseEnum|NCIt|
+|SurgeryReferenceDatabaseEnum|UMLS|
+|SurgeryReferenceDatabaseEnum|CCI|
 
 <h2 id="tocS_TumourClassificationEnum">TumourClassificationEnum</h2>
 
@@ -6860,7 +6889,7 @@ TreatmentTypeEnum
               ],
               "lymphovascular_invasion": "Absent",
               "perineural_invasion": "Absent",
-              "surgery_reference_database": "string",
+              "surgery_reference_database": "SNOMED",
               "surgery_reference_identifier": "string"
             }
           ],
@@ -7982,7 +8011,7 @@ or
           ],
           "lymphovascular_invasion": "Absent",
           "perineural_invasion": "Absent",
-          "surgery_reference_database": "string",
+          "surgery_reference_database": "SNOMED",
           "surgery_reference_identifier": "string"
         }
       ],
@@ -8863,7 +8892,7 @@ continued
   ],
   "lymphovascular_invasion": "Absent",
   "perineural_invasion": "Absent",
-  "surgery_reference_database": "string",
+  "surgery_reference_database": "SNOMED",
   "surgery_reference_identifier": "string"
 }
 
@@ -9115,7 +9144,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[SurgeryReferenceDatabaseEnum](#schemasurgeryreferencedatabaseenum)|false|none|none|
 
 or
 
@@ -9438,7 +9467,7 @@ or
       ],
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
-      "surgery_reference_database": "string",
+      "surgery_reference_database": "SNOMED",
       "surgery_reference_identifier": "string"
     }
   ],
@@ -15345,7 +15374,7 @@ or
       ],
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
-      "surgery_reference_database": "string",
+      "surgery_reference_database": "SNOMED",
       "surgery_reference_identifier": "string",
       "program_id": "string",
       "submitter_donor_id": "string",
@@ -15444,7 +15473,7 @@ or
   ],
   "lymphovascular_invasion": "Absent",
   "perineural_invasion": "Absent",
-  "surgery_reference_database": "string",
+  "surgery_reference_database": "SNOMED",
   "surgery_reference_identifier": "string",
   "program_id": "string",
   "submitter_donor_id": "string",
@@ -15699,7 +15728,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[SurgeryReferenceDatabaseEnum](#schemasurgeryreferencedatabaseenum)|false|none|none|
 
 or
 
