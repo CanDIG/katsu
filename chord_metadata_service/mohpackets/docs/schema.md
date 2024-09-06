@@ -9820,7 +9820,7 @@ continued
   "program_id": "string",
   "gender": "string",
   "sex_at_birth": "string",
-  "is_deceased": true,
+  "is_deceased": "string",
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "string",
   "cause_of_death": "string"
@@ -9912,7 +9912,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|string|false|none|none|
 
 or
 
@@ -13525,7 +13525,7 @@ or
   "radiation_therapy_fractions": 0,
   "radiation_therapy_dosage": 0,
   "anatomical_site_irradiated": "string",
-  "radiation_boost": true,
+  "radiation_boost": "string",
   "reference_radiation_treatment_id": "string"
 }
 
@@ -13687,7 +13687,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|string|false|none|none|
 
 or
 

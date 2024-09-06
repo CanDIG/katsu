@@ -1011,7 +1011,7 @@
                         "schema": {
                             "anyOf": [
                                 {
-                                    "type": "boolean"
+                                    "type": "string"
                                 },
                                 {
                                     "type": "null"
@@ -2631,7 +2631,7 @@
                         "schema": {
                             "anyOf": [
                                 {
-                                    "type": "boolean"
+                                    "type": "string"
                                 },
                                 {
                                     "type": "null"
@@ -8516,7 +8516,7 @@
                     "is_deceased": {
                         "anyOf": [
                             {
-                                "type": "boolean"
+                                "type": "string"
                             },
                             {
                                 "type": "null"
@@ -10704,7 +10704,7 @@
                     "radiation_boost": {
                         "anyOf": [
                             {
-                                "type": "boolean"
+                                "type": "string"
                             },
                             {
                                 "type": "null"

@@ -604,7 +604,7 @@ components:
           title: Gender
         is_deceased:
           anyOf:
-          - type: boolean
+          - type: string
           - type: 'null'
           title: Is Deceased
         lost_to_followup_after_clinical_event_identifier:
@@ -3039,7 +3039,7 @@ components:
           title: Program Id
         radiation_boost:
           anyOf:
-          - type: boolean
+          - type: string
           - type: 'null'
           title: Radiation Boost
         radiation_therapy_dosage:
@@ -5153,7 +5153,7 @@ paths:
         required: false
         schema:
           anyOf:
-          - type: boolean
+          - type: string
           - type: 'null'
           title: Is Deceased
       - in: query
@@ -5658,7 +5658,7 @@ paths:
         required: false
         schema:
           anyOf:
-          - type: boolean
+          - type: string
           - type: 'null'
           title: Radiation Boost
       - in: query
