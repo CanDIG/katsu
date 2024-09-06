@@ -496,7 +496,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
   "submitter_donor_id": "string",
   "gender": "Man",
   "sex_at_birth": "Male",
-  "is_deceased": true,
+  "is_deceased": "Yes",
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
   "date_alive_after_lost_to_followup": {
@@ -817,7 +817,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "submitter_donor_id": "string",
       "gender": "Man",
       "sex_at_birth": "Male",
-      "is_deceased": true,
+      "is_deceased": "Yes",
       "lost_to_followup_after_clinical_event_identifier": "string",
       "lost_to_followup_reason": "Completed study",
       "date_alive_after_lost_to_followup": {
@@ -1864,7 +1864,7 @@ continued
   "submitter_donor_id": "string",
   "gender": "Man",
   "sex_at_birth": "Male",
-  "is_deceased": true,
+  "is_deceased": "Yes",
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
   "date_alive_after_lost_to_followup": {
@@ -1936,7 +1936,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
@@ -2179,6 +2179,34 @@ SexAtBirthEnum
 |SexAtBirthEnum|Female|
 |SexAtBirthEnum|Other|
 |SexAtBirthEnum|Not Available|
+
+<h2 id="tocS_uBooleanEnum">uBooleanEnum</h2>
+
+<a id="schemaubooleanenum"></a>
+<a id="schema_uBooleanEnum"></a>
+<a id="tocSubooleanenum"></a>
+<a id="tocsubooleanenum"></a>
+
+```json
+"Yes"
+
+```
+
+uBooleanEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|uBooleanEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|uBooleanEnum|Yes|
+|uBooleanEnum|No|
+|uBooleanEnum|Not Available|
 
 <h2 id="tocS_BiomarkerIngestSchema">BiomarkerIngestSchema</h2>
 
@@ -3140,34 +3168,6 @@ MalignancyLateralityEnum
 |MalignancyLateralityEnum|Right|
 |MalignancyLateralityEnum|Unilateral, Side not specified|
 |MalignancyLateralityEnum|Not Available|
-
-<h2 id="tocS_uBooleanEnum">uBooleanEnum</h2>
-
-<a id="schemaubooleanenum"></a>
-<a id="schema_uBooleanEnum"></a>
-<a id="tocSubooleanenum"></a>
-<a id="tocsubooleanenum"></a>
-
-```json
-"Yes"
-
-```
-
-uBooleanEnum
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|uBooleanEnum|string|false|none|none|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|uBooleanEnum|Yes|
-|uBooleanEnum|No|
-|uBooleanEnum|Not Available|
 
 <h2 id="tocS_ExposureIngestSchema">ExposureIngestSchema</h2>
 
@@ -6728,7 +6728,7 @@ TreatmentTypeEnum
   "submitter_donor_id": "string",
   "gender": "Man",
   "sex_at_birth": "Male",
-  "is_deceased": true,
+  "is_deceased": "Yes",
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
   "date_alive_after_lost_to_followup": {
@@ -7029,7 +7029,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
@@ -9986,7 +9986,7 @@ or
   "submitter_donor_id": "string",
   "gender": "Man",
   "sex_at_birth": "Male",
-  "is_deceased": true,
+  "is_deceased": "Yes",
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
   "date_alive_after_lost_to_followup": {
@@ -10057,7 +10057,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
@@ -10211,7 +10211,7 @@ continued
       "submitter_donor_id": "string",
       "gender": "Man",
       "sex_at_birth": "Male",
-      "is_deceased": true,
+      "is_deceased": "Yes",
       "lost_to_followup_after_clinical_event_identifier": "string",
       "lost_to_followup_reason": "Completed study",
       "date_alive_after_lost_to_followup": {
