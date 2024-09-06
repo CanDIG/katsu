@@ -114,6 +114,7 @@ BaseDonorSchema = create_schema(
     exclude=["uuid", "program_id"],
     custom_fields=[
         ("cause_of_death", Optional[CauseOfDeathEnum], None),
+        ("is_deceased", Optional[uBooleanEnum], None),
         ("submitter_donor_id", str, Field(pattern=ID_REGEX, max_length=64)),
         ("date_of_birth", Optional[DateInterval], None),
         ("date_of_death", Optional[DateInterval], None),
