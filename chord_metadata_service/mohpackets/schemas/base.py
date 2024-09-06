@@ -73,6 +73,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     TumourGradingSystemEnum,
     TumourStagingSystemEnum,
     uBooleanEnum,
+    SurgeryReferenceDatabaseEnum,
 )
 
 """
@@ -314,6 +315,7 @@ BaseSurgerySchema = create_schema(
         ("margin_types_not_assessed", Optional[List[MarginTypesEnum]], None),
         ("lymphovascular_invasion", Optional[LymphovascularInvasionEnum], None),
         ("perineural_invasion", Optional[PerineuralInvasionEnum], None),
+        ("surgery_reference_database", Optional[SurgeryReferenceDatabaseEnum], None),
     ],
 )
 
