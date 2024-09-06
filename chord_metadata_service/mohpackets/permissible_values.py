@@ -3,7 +3,6 @@ These lists contain the permissible values for their respective
 MoH model fields and are used for validation during serialization.
 """
 
-# Unknown + Boolean
 from chord_metadata_service.mohpackets.utils import list_to_enum
 
 UBOOLEAN = ["Yes", "No", "Not Available"]
