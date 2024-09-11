@@ -56,17 +56,17 @@ LOCAL_OPA_DATASET = {
     "user_1": {
         "is_admin": False,
         "write_datasets": [],
-        "read_datasets": ["PROGRAM_01", "PROGRAM_02"],
+        "read_datasets": ["SYNTH_01", "SYNTH_02"],
     },
     "user_2": {
         "is_admin": False,
-        "write_datasets": ["PROGRAM_03", "PROGRAM_04"],
-        "read_datasets": ["PROGRAM_03", "PROGRAM_04"],
+        "write_datasets": ["SYNTH_01"],
+        "read_datasets": ["SYNTH_01", "SYNTH_02"],
     },
     "site_admin": {
         "is_admin": True,
-        "write_datasets": ["PROGRAM_01", "PROGRAM_02", "PROGRAM_03", "PROGRAM_04"],
-        "read_datasets": ["PROGRAM_01", "PROGRAM_02", "PROGRAM_03", "PROGRAM_04"],
+        "write_datasets": ["SYNTH_01", "SYNTH_02"],
+        "read_datasets": ["SYNTH_01", "SYNTH_02"],
     },
 }
 
