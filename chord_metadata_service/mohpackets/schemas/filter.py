@@ -23,7 +23,7 @@ class DonorFilterSchema(FilterSchema):
     program_id: Optional[str] = Field(None)
     gender: Optional[str] = Field(None, q="gender__icontains")
     sex_at_birth: Optional[str] = Field(None)
-    is_deceased: Optional[bool] = Field(None)
+    is_deceased: Optional[str] = Field(None)
     lost_to_followup_after_clinical_event_identifier: Optional[str] = Field(None)
     lost_to_followup_reason: Optional[str] = Field(None)
     cause_of_death: Optional[str] = Field(None)
@@ -116,7 +116,7 @@ class RadiationFilterSchema(FilterSchema):
     radiation_therapy_fractions: Optional[int] = Field(None)
     radiation_therapy_dosage: Optional[int] = Field(None)
     anatomical_site_irradiated: Optional[str] = Field(None)
-    radiation_boost: Optional[bool] = Field(None)
+    radiation_boost: Optional[str] = Field(None)
     reference_radiation_treatment_id: Optional[str] = Field(None)
 
 

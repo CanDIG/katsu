@@ -66,7 +66,7 @@ class DonorFactory(factory.django.DjangoModelFactory):
     submitter_donor_id = factory.Sequence(lambda n: "DONOR_%d" % n)
     gender = factory.Faker("random_element", elements=PERM_VAL.GENDER)
     sex_at_birth = factory.Faker("random_element", elements=PERM_VAL.SEX_AT_BIRTH)
-    is_deceased = factory.Faker("boolean")
+    is_deceased = factory.Faker("random_element", elements=PERM_VAL.UBOOLEAN)
     lost_to_followup_reason = None
     lost_to_followup_after_clinical_event_identifier = None
     date_alive_after_lost_to_followup = None
@@ -476,7 +476,7 @@ class RadiationFactory(factory.django.DjangoModelFactory):
     anatomical_site_irradiated = factory.Faker(
         "random_element", elements=PERM_VAL.RADIATION_ANATOMICAL_SITE
     )
-    radiation_boost = factory.Faker("pybool")
+    radiation_boost = factory.Faker("random_element", elements=PERM_VAL.UBOOLEAN)
     reference_radiation_treatment_id = factory.Faker("word")
 
     # set foreign keys

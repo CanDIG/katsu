@@ -1,5 +1,5 @@
 
-<h1 id="moh-service-api">MoH Service API v5.0.0</h1>
+<h1 id="moh-service-api">MoH Service API v5.1.0</h1>
 
 This is the RESTful API for the MoH Service.
 
@@ -8,6 +8,9 @@ Base URLs:
 # Authentication
 
 - HTTP Authentication, scheme: bearer
+
+* API Key (IngestTokenAuth)
+    - Parameter Name: **X-Service-Token**, in: header. 
 
 - HTTP Authentication, scheme: bearer
 
@@ -493,7 +496,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
   "submitter_donor_id": "string",
   "gender": "Man",
   "sex_at_birth": "Male",
-  "is_deceased": true,
+  "is_deceased": "Yes",
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
   "date_alive_after_lost_to_followup": {
@@ -599,8 +602,8 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "radiation_therapy_type": "External",
               "radiation_therapy_fractions": 0,
               "radiation_therapy_dosage": 0,
-              "anatomical_site_irradiated": "Left Abdomen",
-              "radiation_boost": true,
+              "anatomical_site_irradiated": "LEFT ABDOMEN",
+              "radiation_boost": "Yes",
               "reference_radiation_treatment_id": "string"
             }
           ],
@@ -625,7 +628,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               ],
               "lymphovascular_invasion": "Absent",
               "perineural_invasion": "Absent",
-              "surgery_reference_database": "string",
+              "surgery_reference_database": "SNOMED",
               "surgery_reference_identifier": "string"
             }
           ],
@@ -814,7 +817,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "submitter_donor_id": "string",
       "gender": "Man",
       "sex_at_birth": "Male",
-      "is_deceased": true,
+      "is_deceased": "Yes",
       "lost_to_followup_after_clinical_event_identifier": "string",
       "lost_to_followup_reason": "Completed study",
       "date_alive_after_lost_to_followup": {
@@ -1227,8 +1230,8 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "radiation_therapy_type": "External",
       "radiation_therapy_fractions": 0,
       "radiation_therapy_dosage": 0,
-      "anatomical_site_irradiated": "Left Abdomen",
-      "radiation_boost": true,
+      "anatomical_site_irradiated": "LEFT ABDOMEN",
+      "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string",
       "program_id": "string",
       "submitter_donor_id": "string",
@@ -1412,7 +1415,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       ],
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
-      "surgery_reference_database": "string",
+      "surgery_reference_database": "SNOMED",
       "surgery_reference_identifier": "string",
       "program_id": "string",
       "submitter_donor_id": "string",
@@ -1806,7 +1809,7 @@ CauseOfDeathEnum
 |---|---|
 |CauseOfDeathEnum|Died of cancer|
 |CauseOfDeathEnum|Died of other reasons|
-|CauseOfDeathEnum|Unknown|
+|CauseOfDeathEnum|Not Available|
 
 <h2 id="tocS_DateInterval">DateInterval</h2>
 
@@ -1861,7 +1864,7 @@ continued
   "submitter_donor_id": "string",
   "gender": "Man",
   "sex_at_birth": "Male",
-  "is_deceased": true,
+  "is_deceased": "Yes",
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
   "date_alive_after_lost_to_followup": {
@@ -1933,7 +1936,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
@@ -2113,6 +2116,9 @@ GenderEnum
 |GenderEnum|Man|
 |GenderEnum|Woman|
 |GenderEnum|Non-binary|
+|GenderEnum|Other|
+|GenderEnum|Prefer not to disclose|
+|GenderEnum|Not Available|
 
 <h2 id="tocS_LostToFollowupReasonEnum">LostToFollowupReasonEnum</h2>
 
@@ -2141,9 +2147,9 @@ LostToFollowupReasonEnum
 |LostToFollowupReasonEnum|Completed study|
 |LostToFollowupReasonEnum|Discharged to palliative care|
 |LostToFollowupReasonEnum|Lost contact|
-|LostToFollowupReasonEnum|Not applicable|
-|LostToFollowupReasonEnum|Unknown|
+|LostToFollowupReasonEnum|Not Available|
 |LostToFollowupReasonEnum|Withdrew from study|
+|LostToFollowupReasonEnum|Discharged from follow-up|
 
 <h2 id="tocS_SexAtBirthEnum">SexAtBirthEnum</h2>
 
@@ -2172,7 +2178,35 @@ SexAtBirthEnum
 |SexAtBirthEnum|Male|
 |SexAtBirthEnum|Female|
 |SexAtBirthEnum|Other|
-|SexAtBirthEnum|Unknown|
+|SexAtBirthEnum|Not Available|
+
+<h2 id="tocS_uBooleanEnum">uBooleanEnum</h2>
+
+<a id="schemaubooleanenum"></a>
+<a id="schema_uBooleanEnum"></a>
+<a id="tocSubooleanenum"></a>
+<a id="tocsubooleanenum"></a>
+
+```json
+"Yes"
+
+```
+
+uBooleanEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|uBooleanEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|uBooleanEnum|Yes|
+|uBooleanEnum|No|
+|uBooleanEnum|Not Available|
 
 <h2 id="tocS_BiomarkerIngestSchema">BiomarkerIngestSchema</h2>
 
@@ -2568,7 +2602,7 @@ ErPrHpvStatusEnum
 |ErPrHpvStatusEnum|Negative|
 |ErPrHpvStatusEnum|Not applicable|
 |ErPrHpvStatusEnum|Positive|
-|ErPrHpvStatusEnum|Unknown|
+|ErPrHpvStatusEnum|Not Available|
 
 <h2 id="tocS_Her2StatusEnum">Her2StatusEnum</h2>
 
@@ -2599,7 +2633,7 @@ Her2StatusEnum
 |Her2StatusEnum|Positive|
 |Her2StatusEnum|Negative|
 |Her2StatusEnum|Not applicable|
-|Her2StatusEnum|Unknown|
+|Her2StatusEnum|Not Available|
 
 <h2 id="tocS_HpvStrainEnum">HpvStrainEnum</h2>
 
@@ -2672,6 +2706,7 @@ DosageUnitsEnum
 |DosageUnitsEnum|g/m2|
 |DosageUnitsEnum|mg/kg|
 |DosageUnitsEnum|cells/kg|
+|DosageUnitsEnum|Not Available|
 
 <h2 id="tocS_DrugReferenceDbEnum">DrugReferenceDbEnum</h2>
 
@@ -3132,35 +3167,7 @@ MalignancyLateralityEnum
 |MalignancyLateralityEnum|Not applicable|
 |MalignancyLateralityEnum|Right|
 |MalignancyLateralityEnum|Unilateral, Side not specified|
-|MalignancyLateralityEnum|Unknown|
-
-<h2 id="tocS_uBooleanEnum">uBooleanEnum</h2>
-
-<a id="schemaubooleanenum"></a>
-<a id="schema_uBooleanEnum"></a>
-<a id="tocSubooleanenum"></a>
-<a id="tocsubooleanenum"></a>
-
-```json
-"Yes"
-
-```
-
-uBooleanEnum
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|uBooleanEnum|string|false|none|none|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|uBooleanEnum|Yes|
-|uBooleanEnum|No|
-|uBooleanEnum|Unknown|
+|MalignancyLateralityEnum|Not Available|
 
 <h2 id="tocS_ExposureIngestSchema">ExposureIngestSchema</h2>
 
@@ -3289,7 +3296,7 @@ SmokingStatusEnum
 |SmokingStatusEnum|Current smoker|
 |SmokingStatusEnum|Lifelong non-smoker (<100 cigarettes smoked in lifetime)|
 |SmokingStatusEnum|Not applicable|
-|SmokingStatusEnum|Smoking history not documented|
+|SmokingStatusEnum|Not Available|
 
 <h2 id="tocS_TobaccoTypeEnum">TobaccoTypeEnum</h2>
 
@@ -3323,7 +3330,7 @@ TobaccoTypeEnum
 |TobaccoTypeEnum|Pipe|
 |TobaccoTypeEnum|Roll-ups|
 |TobaccoTypeEnum|Snuff|
-|TobaccoTypeEnum|Unknown|
+|TobaccoTypeEnum|Not Available|
 |TobaccoTypeEnum|Waterpipe|
 
 <h2 id="tocS_DiseaseStatusFollowupEnum">DiseaseStatusFollowupEnum</h2>
@@ -3358,6 +3365,7 @@ DiseaseStatusFollowupEnum
 |DiseaseStatusFollowupEnum|Progression not otherwise specified|
 |DiseaseStatusFollowupEnum|Relapse or recurrence|
 |DiseaseStatusFollowupEnum|Stable|
+|DiseaseStatusFollowupEnum|Not Available|
 
 <h2 id="tocS_FollowUpIngestSchema">FollowUpIngestSchema</h2>
 
@@ -3619,8 +3627,9 @@ RelapseTypeEnum
 |RelapseTypeEnum|Distant recurrence/metastasis|
 |RelapseTypeEnum|Local recurrence|
 |RelapseTypeEnum|Local recurrence and distant metastasis|
-|RelapseTypeEnum|Progression (liquid tumours)|
+|RelapseTypeEnum|Progression|
 |RelapseTypeEnum|Biochemical progression|
+|RelapseTypeEnum|Not Available|
 
 <h2 id="tocS_BasisOfDiagnosisEnum">BasisOfDiagnosisEnum</h2>
 
@@ -3653,7 +3662,7 @@ BasisOfDiagnosisEnum
 |BasisOfDiagnosisEnum|Histology of a metastasis|
 |BasisOfDiagnosisEnum|Histology of a primary tumour|
 |BasisOfDiagnosisEnum|Specific tumour markers|
-|BasisOfDiagnosisEnum|Unknown|
+|BasisOfDiagnosisEnum|Not Available|
 
 <h2 id="tocS_MCategoryEnum">MCategoryEnum</h2>
 
@@ -4106,7 +4115,7 @@ PrimaryDiagnosisLateralityEnum
 |PrimaryDiagnosisLateralityEnum|Not a paired site|
 |PrimaryDiagnosisLateralityEnum|Right|
 |PrimaryDiagnosisLateralityEnum|Unilateral, side not specified|
-|PrimaryDiagnosisLateralityEnum|Unknown|
+|PrimaryDiagnosisLateralityEnum|Not Available|
 
 <h2 id="tocS_PrimarySiteEnum">PrimarySiteEnum</h2>
 
@@ -4202,6 +4211,7 @@ PrimarySiteEnum
 |PrimarySiteEnum|Vagina|
 |PrimarySiteEnum|Vulva|
 |PrimarySiteEnum|Unknown primary site|
+|PrimarySiteEnum|Not Available|
 
 <h2 id="tocS_StageGroupEnum">StageGroupEnum</h2>
 
@@ -4322,6 +4332,7 @@ StageGroupEnum
 |StageGroupEnum|Stage 4|
 |StageGroupEnum|Stage 4S|
 |StageGroupEnum|Occult Carcinoma|
+|StageGroupEnum|Not Available|
 
 <h2 id="tocS_TCategoryEnum">TCategoryEnum</h2>
 
@@ -4438,6 +4449,7 @@ TumourStagingSystemEnum
 |TumourStagingSystemEnum|Revised International staging system (RISS)|
 |TumourStagingSystemEnum|SEER staging system|
 |TumourStagingSystemEnum|St Jude staging system|
+|TumourStagingSystemEnum|Not Available|
 
 <h2 id="tocS_RadiationAnatomicalSiteEnum">RadiationAnatomicalSiteEnum</h2>
 
@@ -4447,7 +4459,7 @@ TumourStagingSystemEnum
 <a id="tocsradiationanatomicalsiteenum"></a>
 
 ```json
-"Left Abdomen"
+"LEFT ABDOMEN"
 
 ```
 
@@ -4463,266 +4475,267 @@ RadiationAnatomicalSiteEnum
 
 |Property|Value|
 |---|---|
-|RadiationAnatomicalSiteEnum|Left Abdomen|
-|RadiationAnatomicalSiteEnum|Whole Abdomen|
-|RadiationAnatomicalSiteEnum|Right Abdomen|
-|RadiationAnatomicalSiteEnum|Lower Abdomen|
-|RadiationAnatomicalSiteEnum|Left Lower Abdomen|
-|RadiationAnatomicalSiteEnum|Right Lower Abdomen|
-|RadiationAnatomicalSiteEnum|Upper Abdomen|
-|RadiationAnatomicalSiteEnum|Left Upper Abdomen|
-|RadiationAnatomicalSiteEnum|Right Upper Abdomen|
-|RadiationAnatomicalSiteEnum|Left Adrenal|
-|RadiationAnatomicalSiteEnum|Right Adrenal|
-|RadiationAnatomicalSiteEnum|Bilateral Ankle|
-|RadiationAnatomicalSiteEnum|Left Ankle|
-|RadiationAnatomicalSiteEnum|Right Ankle|
-|RadiationAnatomicalSiteEnum|Bilateral Antrum (Bull's Eye)|
-|RadiationAnatomicalSiteEnum|Left Antrum|
-|RadiationAnatomicalSiteEnum|Right Antrum|
-|RadiationAnatomicalSiteEnum|Anus|
-|RadiationAnatomicalSiteEnum|Lower Left Arm|
-|RadiationAnatomicalSiteEnum|Lower Right Arm|
-|RadiationAnatomicalSiteEnum|Bilateral Arms|
-|RadiationAnatomicalSiteEnum|Left Arm|
-|RadiationAnatomicalSiteEnum|Right Arm|
-|RadiationAnatomicalSiteEnum|Upper Left Arm|
-|RadiationAnatomicalSiteEnum|Upper Right Arm|
-|RadiationAnatomicalSiteEnum|Left Axilla|
-|RadiationAnatomicalSiteEnum|Right Axilla|
-|RadiationAnatomicalSiteEnum|Skin or Soft Tissue of Back|
-|RadiationAnatomicalSiteEnum|Bile Duct|
-|RadiationAnatomicalSiteEnum|Bladder|
-|RadiationAnatomicalSiteEnum|Lower Body|
-|RadiationAnatomicalSiteEnum|Middle Body|
-|RadiationAnatomicalSiteEnum|Upper Body|
-|RadiationAnatomicalSiteEnum|Whole Body|
-|RadiationAnatomicalSiteEnum|Boost - Area Previously Treated|
-|RadiationAnatomicalSiteEnum|Brain|
-|RadiationAnatomicalSiteEnum|Left Breast Boost|
-|RadiationAnatomicalSiteEnum|Right Breast Boost|
-|RadiationAnatomicalSiteEnum|Bilateral Breast|
-|RadiationAnatomicalSiteEnum|Left Breast|
-|RadiationAnatomicalSiteEnum|Right Breast|
-|RadiationAnatomicalSiteEnum|Bilateral Breasts with Nodes|
-|RadiationAnatomicalSiteEnum|Left Breast with Nodes|
-|RadiationAnatomicalSiteEnum|Right Breast with Nodes|
-|RadiationAnatomicalSiteEnum|Bilateral Buttocks|
-|RadiationAnatomicalSiteEnum|Left Buttock|
-|RadiationAnatomicalSiteEnum|Right Buttock|
-|RadiationAnatomicalSiteEnum|Inner Canthus|
-|RadiationAnatomicalSiteEnum|Outer Canthus|
-|RadiationAnatomicalSiteEnum|Cervix|
-|RadiationAnatomicalSiteEnum|Bilateral Chest Lung & Area Involve|
-|RadiationAnatomicalSiteEnum|Left Chest|
-|RadiationAnatomicalSiteEnum|Right Chest|
-|RadiationAnatomicalSiteEnum|Chin|
-|RadiationAnatomicalSiteEnum|Left Cheek|
-|RadiationAnatomicalSiteEnum|Right Cheek|
-|RadiationAnatomicalSiteEnum|Bilateral Chest Wall (W/o Breast)|
-|RadiationAnatomicalSiteEnum|Left Chest Wall|
-|RadiationAnatomicalSiteEnum|Right Chest Wall|
-|RadiationAnatomicalSiteEnum|Bilateral Clavicle|
-|RadiationAnatomicalSiteEnum|Left Clavicle|
-|RadiationAnatomicalSiteEnum|Right Clavicle|
-|RadiationAnatomicalSiteEnum|Coccyx|
-|RadiationAnatomicalSiteEnum|Colon|
-|RadiationAnatomicalSiteEnum|Whole C.N.S. (Medulla Techinque)|
-|RadiationAnatomicalSiteEnum|Csf Spine (Medull Tech 2 Diff Machi|
-|RadiationAnatomicalSiteEnum|Left Chestwall Boost|
-|RadiationAnatomicalSiteEnum|Right Chestwall Boost|
-|RadiationAnatomicalSiteEnum|Bilateral Chestwall with Nodes|
-|RadiationAnatomicalSiteEnum|Left Chestwall with Nodes|
-|RadiationAnatomicalSiteEnum|Right Chestwall with Nodes|
-|RadiationAnatomicalSiteEnum|Left Ear|
-|RadiationAnatomicalSiteEnum|Right Ear|
-|RadiationAnatomicalSiteEnum|Epigastrium|
-|RadiationAnatomicalSiteEnum|Lower Esophagus|
-|RadiationAnatomicalSiteEnum|Middle Esophagus|
-|RadiationAnatomicalSiteEnum|Upper Esophagus|
-|RadiationAnatomicalSiteEnum|Entire Esophagus|
-|RadiationAnatomicalSiteEnum|Ethmoid Sinus|
-|RadiationAnatomicalSiteEnum|Bilateral Eyes|
-|RadiationAnatomicalSiteEnum|Left Eye|
-|RadiationAnatomicalSiteEnum|Right Eye|
-|RadiationAnatomicalSiteEnum|Bilateral Face|
-|RadiationAnatomicalSiteEnum|Left Face|
-|RadiationAnatomicalSiteEnum|Right Face|
-|RadiationAnatomicalSiteEnum|Left Fallopian Tubes|
-|RadiationAnatomicalSiteEnum|Right Fallopian Tubes|
-|RadiationAnatomicalSiteEnum|Bilateral Femur|
-|RadiationAnatomicalSiteEnum|Left Femur|
-|RadiationAnatomicalSiteEnum|Right Femur|
-|RadiationAnatomicalSiteEnum|Left Fibula|
-|RadiationAnatomicalSiteEnum|Right Fibula|
-|RadiationAnatomicalSiteEnum|Finger (Including Thumbs)|
-|RadiationAnatomicalSiteEnum|Floor of Mouth (Boosts)|
-|RadiationAnatomicalSiteEnum|Bilateral Feet|
-|RadiationAnatomicalSiteEnum|Left Foot|
-|RadiationAnatomicalSiteEnum|Right Foot|
-|RadiationAnatomicalSiteEnum|Forehead|
-|RadiationAnatomicalSiteEnum|Posterior Fossa|
-|RadiationAnatomicalSiteEnum|Gall Bladder|
-|RadiationAnatomicalSiteEnum|Gingiva|
-|RadiationAnatomicalSiteEnum|Bilateral Hand|
-|RadiationAnatomicalSiteEnum|Left Hand|
-|RadiationAnatomicalSiteEnum|Right Hand|
-|RadiationAnatomicalSiteEnum|Head|
-|RadiationAnatomicalSiteEnum|Bilateral Heel|
-|RadiationAnatomicalSiteEnum|Left Heel|
-|RadiationAnatomicalSiteEnum|Right Heel|
-|RadiationAnatomicalSiteEnum|Left Hemimantle|
-|RadiationAnatomicalSiteEnum|Right Hemimantle|
-|RadiationAnatomicalSiteEnum|Heart|
-|RadiationAnatomicalSiteEnum|Bilateral Hip|
-|RadiationAnatomicalSiteEnum|Left Hip|
-|RadiationAnatomicalSiteEnum|Right Hip|
-|RadiationAnatomicalSiteEnum|Left Humerus|
-|RadiationAnatomicalSiteEnum|Right Humerus|
-|RadiationAnatomicalSiteEnum|Hypopharynx|
-|RadiationAnatomicalSiteEnum|Bilateral Internal Mammary Chain|
-|RadiationAnatomicalSiteEnum|Bilateral Inguinal Nodes|
-|RadiationAnatomicalSiteEnum|Left Inguinal Nodes|
-|RadiationAnatomicalSiteEnum|Right Inguinal Nodes|
-|RadiationAnatomicalSiteEnum|Inverted 'Y' (Dog-Leg,Hockey-Stick)|
-|RadiationAnatomicalSiteEnum|Left Kidney|
-|RadiationAnatomicalSiteEnum|Right Kidney|
-|RadiationAnatomicalSiteEnum|Bilateral Knee|
-|RadiationAnatomicalSiteEnum|Left Knee|
-|RadiationAnatomicalSiteEnum|Right Knee|
-|RadiationAnatomicalSiteEnum|Bilateral Lacrimal Gland|
-|RadiationAnatomicalSiteEnum|Left Lacrimal Gland|
-|RadiationAnatomicalSiteEnum|Right Lacrimal Gland|
-|RadiationAnatomicalSiteEnum|Larygopharynx|
-|RadiationAnatomicalSiteEnum|Larynx|
-|RadiationAnatomicalSiteEnum|Bilateral Leg|
-|RadiationAnatomicalSiteEnum|Left Leg|
-|RadiationAnatomicalSiteEnum|Right Leg|
-|RadiationAnatomicalSiteEnum|Lower Bilateral Leg|
-|RadiationAnatomicalSiteEnum|Lower Left Leg|
-|RadiationAnatomicalSiteEnum|Lower Right Leg|
-|RadiationAnatomicalSiteEnum|Upper Bilateral Leg|
-|RadiationAnatomicalSiteEnum|Upper Left Leg|
-|RadiationAnatomicalSiteEnum|Upper Right Leg|
-|RadiationAnatomicalSiteEnum|Both Eyelid(s)|
-|RadiationAnatomicalSiteEnum|Left Eyelid|
-|RadiationAnatomicalSiteEnum|Right Eyelid|
-|RadiationAnatomicalSiteEnum|Both Lip(s)|
-|RadiationAnatomicalSiteEnum|Lower Lip|
-|RadiationAnatomicalSiteEnum|Upper Lip|
-|RadiationAnatomicalSiteEnum|Liver|
-|RadiationAnatomicalSiteEnum|Bilateral Lung|
-|RadiationAnatomicalSiteEnum|Left Lung|
-|RadiationAnatomicalSiteEnum|Right Lung|
-|RadiationAnatomicalSiteEnum|Bilateral Mandible|
-|RadiationAnatomicalSiteEnum|Left Mandible|
-|RadiationAnatomicalSiteEnum|Right Mandible|
-|RadiationAnatomicalSiteEnum|Mantle|
-|RadiationAnatomicalSiteEnum|Bilateral Maxilla|
-|RadiationAnatomicalSiteEnum|Left Maxilla|
-|RadiationAnatomicalSiteEnum|Right Maxilla|
-|RadiationAnatomicalSiteEnum|Mediastinum|
-|RadiationAnatomicalSiteEnum|Multiple Skin|
-|RadiationAnatomicalSiteEnum|Nasal Fossa|
-|RadiationAnatomicalSiteEnum|Nasopharynx|
-|RadiationAnatomicalSiteEnum|Bilateral Neck Includes Nodes|
-|RadiationAnatomicalSiteEnum|Left Neck Includes Nodes|
-|RadiationAnatomicalSiteEnum|Right Neck Includes Nodes|
-|RadiationAnatomicalSiteEnum|Neck - Skin|
-|RadiationAnatomicalSiteEnum|Nose|
-|RadiationAnatomicalSiteEnum|Oral Cavity / Buccal Mucosa|
-|RadiationAnatomicalSiteEnum|Bilateral Orbit|
-|RadiationAnatomicalSiteEnum|Left Orbit|
-|RadiationAnatomicalSiteEnum|Right Orbit|
-|RadiationAnatomicalSiteEnum|Oropharynx|
-|RadiationAnatomicalSiteEnum|Bilateral Ovary|
-|RadiationAnatomicalSiteEnum|Left Ovary|
-|RadiationAnatomicalSiteEnum|Right Ovary|
-|RadiationAnatomicalSiteEnum|Hard Palate|
-|RadiationAnatomicalSiteEnum|Soft Palate|
-|RadiationAnatomicalSiteEnum|Palate Unspecified|
-|RadiationAnatomicalSiteEnum|Pancreas|
-|RadiationAnatomicalSiteEnum|Para-Aortic Nodes|
-|RadiationAnatomicalSiteEnum|Left Parotid|
-|RadiationAnatomicalSiteEnum|Right Parotid|
-|RadiationAnatomicalSiteEnum|Bilateral Pelvis|
-|RadiationAnatomicalSiteEnum|Left Pelvis|
-|RadiationAnatomicalSiteEnum|Right Pelvis|
-|RadiationAnatomicalSiteEnum|Penis|
-|RadiationAnatomicalSiteEnum|Perineum|
-|RadiationAnatomicalSiteEnum|Pituitary|
-|RadiationAnatomicalSiteEnum|Left Pleura (As in Mesothelioma)|
-|RadiationAnatomicalSiteEnum|Right Pleura|
-|RadiationAnatomicalSiteEnum|Prostate|
-|RadiationAnatomicalSiteEnum|Pubis|
-|RadiationAnatomicalSiteEnum|Pyriform Fossa (Sinuses)|
-|RadiationAnatomicalSiteEnum|Left Radius|
-|RadiationAnatomicalSiteEnum|Right Radius|
-|RadiationAnatomicalSiteEnum|Rectum (Includes Sigmoid)|
-|RadiationAnatomicalSiteEnum|Left Ribs|
-|RadiationAnatomicalSiteEnum|Right Ribs|
-|RadiationAnatomicalSiteEnum|Sacrum|
-|RadiationAnatomicalSiteEnum|Left Salivary Gland|
-|RadiationAnatomicalSiteEnum|Right Salivary Gland|
-|RadiationAnatomicalSiteEnum|Bilateral Scapula|
-|RadiationAnatomicalSiteEnum|Left Scapula|
-|RadiationAnatomicalSiteEnum|Right Scapula|
-|RadiationAnatomicalSiteEnum|Bilateral Supraclavicular Nodes|
-|RadiationAnatomicalSiteEnum|Left Supraclavicular Nodes|
-|RadiationAnatomicalSiteEnum|Right Supraclavicular Nodes|
-|RadiationAnatomicalSiteEnum|Bilateral Scalp|
-|RadiationAnatomicalSiteEnum|Left Scalp|
-|RadiationAnatomicalSiteEnum|Right Scalp|
-|RadiationAnatomicalSiteEnum|Scrotum|
-|RadiationAnatomicalSiteEnum|Bilateral Shoulder|
-|RadiationAnatomicalSiteEnum|Left Shoulder|
-|RadiationAnatomicalSiteEnum|Right Shoulder|
-|RadiationAnatomicalSiteEnum|Whole Body - Skin|
-|RadiationAnatomicalSiteEnum|Skull|
-|RadiationAnatomicalSiteEnum|Cervical & Thoracic Spine|
-|RadiationAnatomicalSiteEnum|Sphenoid Sinus|
-|RadiationAnatomicalSiteEnum|Cervical Spine|
-|RadiationAnatomicalSiteEnum|Lumbar Spine|
-|RadiationAnatomicalSiteEnum|Thoracic Spine|
-|RadiationAnatomicalSiteEnum|Whole Spine|
-|RadiationAnatomicalSiteEnum|Spleen|
-|RadiationAnatomicalSiteEnum|Lumbo-Sacral Spine|
-|RadiationAnatomicalSiteEnum|Thoracic & Lumbar Spine|
-|RadiationAnatomicalSiteEnum|Sternum|
-|RadiationAnatomicalSiteEnum|Stomach|
-|RadiationAnatomicalSiteEnum|Submandibular Glands|
-|RadiationAnatomicalSiteEnum|Left Temple|
-|RadiationAnatomicalSiteEnum|Right Temple|
-|RadiationAnatomicalSiteEnum|Bilateral Testis|
-|RadiationAnatomicalSiteEnum|Left Testis|
-|RadiationAnatomicalSiteEnum|Right Testis|
-|RadiationAnatomicalSiteEnum|Thyroid|
-|RadiationAnatomicalSiteEnum|Left Tibia|
-|RadiationAnatomicalSiteEnum|Right Tibia|
-|RadiationAnatomicalSiteEnum|Left Toes|
-|RadiationAnatomicalSiteEnum|Right Toes|
-|RadiationAnatomicalSiteEnum|Tongue|
-|RadiationAnatomicalSiteEnum|Tonsil|
-|RadiationAnatomicalSiteEnum|Trachea|
-|RadiationAnatomicalSiteEnum|Left Ulna|
-|RadiationAnatomicalSiteEnum|Right Ulna|
-|RadiationAnatomicalSiteEnum|Left Ureter|
-|RadiationAnatomicalSiteEnum|Right Ureter|
-|RadiationAnatomicalSiteEnum|Urethra|
-|RadiationAnatomicalSiteEnum|Uterus|
-|RadiationAnatomicalSiteEnum|Uvula|
-|RadiationAnatomicalSiteEnum|Vagina|
-|RadiationAnatomicalSiteEnum|Vulva|
-|RadiationAnatomicalSiteEnum|Abdomen|
-|RadiationAnatomicalSiteEnum|Body|
-|RadiationAnatomicalSiteEnum|Chest|
-|RadiationAnatomicalSiteEnum|Lower Limb|
-|RadiationAnatomicalSiteEnum|Neck|
-|RadiationAnatomicalSiteEnum|Other|
-|RadiationAnatomicalSiteEnum|Pelvis|
-|RadiationAnatomicalSiteEnum|Skin|
-|RadiationAnatomicalSiteEnum|Spine|
-|RadiationAnatomicalSiteEnum|Upper Limb|
+|RadiationAnatomicalSiteEnum|LEFT ABDOMEN|
+|RadiationAnatomicalSiteEnum|WHOLE ABDOMEN|
+|RadiationAnatomicalSiteEnum|RIGHT ABDOMEN|
+|RadiationAnatomicalSiteEnum|LOWER ABDOMEN|
+|RadiationAnatomicalSiteEnum|LEFT LOWER ABDOMEN|
+|RadiationAnatomicalSiteEnum|RIGHT LOWER ABDOMEN|
+|RadiationAnatomicalSiteEnum|UPPER ABDOMEN|
+|RadiationAnatomicalSiteEnum|LEFT UPPER ABDOMEN|
+|RadiationAnatomicalSiteEnum|RIGHT UPPER ABDOMEN|
+|RadiationAnatomicalSiteEnum|LEFT ADRENAL|
+|RadiationAnatomicalSiteEnum|RIGHT ADRENAL|
+|RadiationAnatomicalSiteEnum|BILATERAL ANKLE|
+|RadiationAnatomicalSiteEnum|LEFT ANKLE|
+|RadiationAnatomicalSiteEnum|RIGHT ANKLE|
+|RadiationAnatomicalSiteEnum|BILATERAL ANTRUM (BULL'S EYE)|
+|RadiationAnatomicalSiteEnum|LEFT ANTRUM|
+|RadiationAnatomicalSiteEnum|RIGHT ANTRUM|
+|RadiationAnatomicalSiteEnum|ANUS|
+|RadiationAnatomicalSiteEnum|LOWER LEFT ARM|
+|RadiationAnatomicalSiteEnum|LOWER RIGHT ARM|
+|RadiationAnatomicalSiteEnum|BILATERAL ARMS|
+|RadiationAnatomicalSiteEnum|LEFT ARM|
+|RadiationAnatomicalSiteEnum|RIGHT ARM|
+|RadiationAnatomicalSiteEnum|UPPER LEFT ARM|
+|RadiationAnatomicalSiteEnum|UPPER RIGHT ARM|
+|RadiationAnatomicalSiteEnum|LEFT AXILLA|
+|RadiationAnatomicalSiteEnum|RIGHT AXILLA|
+|RadiationAnatomicalSiteEnum|SKIN OR SOFT TISSUE OF BACK|
+|RadiationAnatomicalSiteEnum|BILE DUCT|
+|RadiationAnatomicalSiteEnum|BLADDER|
+|RadiationAnatomicalSiteEnum|LOWER BODY|
+|RadiationAnatomicalSiteEnum|MIDDLE BODY|
+|RadiationAnatomicalSiteEnum|UPPER BODY|
+|RadiationAnatomicalSiteEnum|WHOLE BODY|
+|RadiationAnatomicalSiteEnum|BOOST - AREA PREVIOUSLY TREATED|
+|RadiationAnatomicalSiteEnum|BRAIN|
+|RadiationAnatomicalSiteEnum|LEFT BREAST BOOST|
+|RadiationAnatomicalSiteEnum|RIGHT BREAST BOOST|
+|RadiationAnatomicalSiteEnum|BILATERAL BREAST|
+|RadiationAnatomicalSiteEnum|LEFT BREAST|
+|RadiationAnatomicalSiteEnum|RIGHT BREAST|
+|RadiationAnatomicalSiteEnum|BILATERAL BREASTS WITH NODES|
+|RadiationAnatomicalSiteEnum|LEFT BREAST WITH NODES|
+|RadiationAnatomicalSiteEnum|RIGHT BREAST WITH NODES|
+|RadiationAnatomicalSiteEnum|BILATERAL BUTTOCKS|
+|RadiationAnatomicalSiteEnum|LEFT BUTTOCK|
+|RadiationAnatomicalSiteEnum|RIGHT BUTTOCK|
+|RadiationAnatomicalSiteEnum|INNER CANTHUS|
+|RadiationAnatomicalSiteEnum|OUTER CANTHUS|
+|RadiationAnatomicalSiteEnum|CERVIX|
+|RadiationAnatomicalSiteEnum|BILATERAL CHEST LUNG & AREA INVOLVE|
+|RadiationAnatomicalSiteEnum|LEFT CHEST|
+|RadiationAnatomicalSiteEnum|RIGHT CHEST|
+|RadiationAnatomicalSiteEnum|CHIN|
+|RadiationAnatomicalSiteEnum|LEFT CHEEK|
+|RadiationAnatomicalSiteEnum|RIGHT CHEEK|
+|RadiationAnatomicalSiteEnum|BILATERAL CHEST WALL (W/O BREAST)|
+|RadiationAnatomicalSiteEnum|LEFT CHEST WALL|
+|RadiationAnatomicalSiteEnum|RIGHT CHEST WALL|
+|RadiationAnatomicalSiteEnum|BILATERAL CLAVICLE|
+|RadiationAnatomicalSiteEnum|LEFT CLAVICLE|
+|RadiationAnatomicalSiteEnum|RIGHT CLAVICLE|
+|RadiationAnatomicalSiteEnum|COCCYX|
+|RadiationAnatomicalSiteEnum|COLON|
+|RadiationAnatomicalSiteEnum|WHOLE C.N.S. (MEDULLA TECHINQUE)|
+|RadiationAnatomicalSiteEnum|CSF SPINE (MEDULL TECH 2 DIFF MACHI|
+|RadiationAnatomicalSiteEnum|LEFT CHESTWALL BOOST|
+|RadiationAnatomicalSiteEnum|RIGHT CHESTWALL BOOST|
+|RadiationAnatomicalSiteEnum|BILATERAL CHESTWALL WITH NODES|
+|RadiationAnatomicalSiteEnum|LEFT CHESTWALL WITH NODES|
+|RadiationAnatomicalSiteEnum|RIGHT CHESTWALL WITH NODES|
+|RadiationAnatomicalSiteEnum|LEFT EAR|
+|RadiationAnatomicalSiteEnum|RIGHT EAR|
+|RadiationAnatomicalSiteEnum|EPIGASTRIUM|
+|RadiationAnatomicalSiteEnum|LOWER ESOPHAGUS|
+|RadiationAnatomicalSiteEnum|MIDDLE ESOPHAGUS|
+|RadiationAnatomicalSiteEnum|UPPER ESOPHAGUS|
+|RadiationAnatomicalSiteEnum|ENTIRE ESOPHAGUS|
+|RadiationAnatomicalSiteEnum|ETHMOID SINUS|
+|RadiationAnatomicalSiteEnum|BILATERAL EYES|
+|RadiationAnatomicalSiteEnum|LEFT EYE|
+|RadiationAnatomicalSiteEnum|RIGHT EYE|
+|RadiationAnatomicalSiteEnum|BILATERAL FACE|
+|RadiationAnatomicalSiteEnum|LEFT FACE|
+|RadiationAnatomicalSiteEnum|RIGHT FACE|
+|RadiationAnatomicalSiteEnum|LEFT FALLOPIAN TUBES|
+|RadiationAnatomicalSiteEnum|RIGHT FALLOPIAN TUBES|
+|RadiationAnatomicalSiteEnum|BILATERAL FEMUR|
+|RadiationAnatomicalSiteEnum|LEFT FEMUR|
+|RadiationAnatomicalSiteEnum|RIGHT FEMUR|
+|RadiationAnatomicalSiteEnum|LEFT FIBULA|
+|RadiationAnatomicalSiteEnum|RIGHT FIBULA|
+|RadiationAnatomicalSiteEnum|FINGER (INCLUDING THUMBS)|
+|RadiationAnatomicalSiteEnum|FLOOR OF MOUTH (BOOSTS)|
+|RadiationAnatomicalSiteEnum|BILATERAL FEET|
+|RadiationAnatomicalSiteEnum|LEFT FOOT|
+|RadiationAnatomicalSiteEnum|RIGHT FOOT|
+|RadiationAnatomicalSiteEnum|FOREHEAD|
+|RadiationAnatomicalSiteEnum|POSTERIOR FOSSA|
+|RadiationAnatomicalSiteEnum|GALL BLADDER|
+|RadiationAnatomicalSiteEnum|GINGIVA|
+|RadiationAnatomicalSiteEnum|BILATERAL HAND|
+|RadiationAnatomicalSiteEnum|LEFT HAND|
+|RadiationAnatomicalSiteEnum|RIGHT HAND|
+|RadiationAnatomicalSiteEnum|HEAD|
+|RadiationAnatomicalSiteEnum|BILATERAL HEEL|
+|RadiationAnatomicalSiteEnum|LEFT HEEL|
+|RadiationAnatomicalSiteEnum|RIGHT HEEL|
+|RadiationAnatomicalSiteEnum|LEFT HEMIMANTLE|
+|RadiationAnatomicalSiteEnum|RIGHT HEMIMANTLE|
+|RadiationAnatomicalSiteEnum|HEART|
+|RadiationAnatomicalSiteEnum|BILATERAL HIP|
+|RadiationAnatomicalSiteEnum|LEFT HIP|
+|RadiationAnatomicalSiteEnum|RIGHT HIP|
+|RadiationAnatomicalSiteEnum|LEFT HUMERUS|
+|RadiationAnatomicalSiteEnum|RIGHT HUMERUS|
+|RadiationAnatomicalSiteEnum|HYPOPHARYNX|
+|RadiationAnatomicalSiteEnum|BILATERAL INTERNAL MAMMARY CHAIN|
+|RadiationAnatomicalSiteEnum|BILATERAL INGUINAL NODES|
+|RadiationAnatomicalSiteEnum|LEFT INGUINAL NODES|
+|RadiationAnatomicalSiteEnum|RIGHT INGUINAL NODES|
+|RadiationAnatomicalSiteEnum|INVERTED 'Y' (DOG-LEG,HOCKEY-STICK)|
+|RadiationAnatomicalSiteEnum|LEFT KIDNEY|
+|RadiationAnatomicalSiteEnum|RIGHT KIDNEY|
+|RadiationAnatomicalSiteEnum|BILATERAL KNEE|
+|RadiationAnatomicalSiteEnum|LEFT KNEE|
+|RadiationAnatomicalSiteEnum|RIGHT KNEE|
+|RadiationAnatomicalSiteEnum|BILATERAL LACRIMAL GLAND|
+|RadiationAnatomicalSiteEnum|LEFT LACRIMAL GLAND|
+|RadiationAnatomicalSiteEnum|RIGHT LACRIMAL GLAND|
+|RadiationAnatomicalSiteEnum|LARYGOPHARYNX|
+|RadiationAnatomicalSiteEnum|LARYNX|
+|RadiationAnatomicalSiteEnum|BILATERAL LEG|
+|RadiationAnatomicalSiteEnum|LEFT LEG|
+|RadiationAnatomicalSiteEnum|RIGHT LEG|
+|RadiationAnatomicalSiteEnum|LOWER BILATERAL LEG|
+|RadiationAnatomicalSiteEnum|LOWER LEFT LEG|
+|RadiationAnatomicalSiteEnum|LOWER RIGHT LEG|
+|RadiationAnatomicalSiteEnum|UPPER BILATERAL LEG|
+|RadiationAnatomicalSiteEnum|UPPER LEFT LEG|
+|RadiationAnatomicalSiteEnum|UPPER RIGHT LEG|
+|RadiationAnatomicalSiteEnum|BOTH EYELID(S)|
+|RadiationAnatomicalSiteEnum|LEFT EYELID|
+|RadiationAnatomicalSiteEnum|RIGHT EYELID|
+|RadiationAnatomicalSiteEnum|BOTH LIP(S)|
+|RadiationAnatomicalSiteEnum|LOWER LIP|
+|RadiationAnatomicalSiteEnum|UPPER LIP|
+|RadiationAnatomicalSiteEnum|LIVER|
+|RadiationAnatomicalSiteEnum|BILATERAL LUNG|
+|RadiationAnatomicalSiteEnum|LEFT LUNG|
+|RadiationAnatomicalSiteEnum|RIGHT LUNG|
+|RadiationAnatomicalSiteEnum|BILATERAL MANDIBLE|
+|RadiationAnatomicalSiteEnum|LEFT MANDIBLE|
+|RadiationAnatomicalSiteEnum|RIGHT MANDIBLE|
+|RadiationAnatomicalSiteEnum|MANTLE|
+|RadiationAnatomicalSiteEnum|BILATERAL MAXILLA|
+|RadiationAnatomicalSiteEnum|LEFT MAXILLA|
+|RadiationAnatomicalSiteEnum|RIGHT MAXILLA|
+|RadiationAnatomicalSiteEnum|MEDIASTINUM|
+|RadiationAnatomicalSiteEnum|MULTIPLE SKIN|
+|RadiationAnatomicalSiteEnum|NASAL FOSSA|
+|RadiationAnatomicalSiteEnum|NASOPHARYNX|
+|RadiationAnatomicalSiteEnum|BILATERAL NECK INCLUDES NODES|
+|RadiationAnatomicalSiteEnum|LEFT NECK INCLUDES NODES|
+|RadiationAnatomicalSiteEnum|RIGHT NECK INCLUDES NODES|
+|RadiationAnatomicalSiteEnum|NECK - SKIN|
+|RadiationAnatomicalSiteEnum|NOSE|
+|RadiationAnatomicalSiteEnum|ORAL CAVITY / BUCCAL MUCOSA|
+|RadiationAnatomicalSiteEnum|BILATERAL ORBIT|
+|RadiationAnatomicalSiteEnum|LEFT ORBIT|
+|RadiationAnatomicalSiteEnum|RIGHT ORBIT|
+|RadiationAnatomicalSiteEnum|OROPHARYNX|
+|RadiationAnatomicalSiteEnum|BILATERAL OVARY|
+|RadiationAnatomicalSiteEnum|LEFT OVARY|
+|RadiationAnatomicalSiteEnum|RIGHT OVARY|
+|RadiationAnatomicalSiteEnum|HARD PALATE|
+|RadiationAnatomicalSiteEnum|SOFT PALATE|
+|RadiationAnatomicalSiteEnum|PALATE UNSPECIFIED|
+|RadiationAnatomicalSiteEnum|PANCREAS|
+|RadiationAnatomicalSiteEnum|PARA-AORTIC NODES|
+|RadiationAnatomicalSiteEnum|LEFT PAROTID|
+|RadiationAnatomicalSiteEnum|RIGHT PAROTID|
+|RadiationAnatomicalSiteEnum|BILATERAL PELVIS|
+|RadiationAnatomicalSiteEnum|LEFT PELVIS|
+|RadiationAnatomicalSiteEnum|RIGHT PELVIS|
+|RadiationAnatomicalSiteEnum|PENIS|
+|RadiationAnatomicalSiteEnum|PERINEUM|
+|RadiationAnatomicalSiteEnum|PITUITARY|
+|RadiationAnatomicalSiteEnum|LEFT PLEURA (AS IN MESOTHELIOMA)|
+|RadiationAnatomicalSiteEnum|RIGHT PLEURA|
+|RadiationAnatomicalSiteEnum|PROSTATE|
+|RadiationAnatomicalSiteEnum|PUBIS|
+|RadiationAnatomicalSiteEnum|PYRIFORM FOSSA (SINUSES)|
+|RadiationAnatomicalSiteEnum|LEFT RADIUS|
+|RadiationAnatomicalSiteEnum|RIGHT RADIUS|
+|RadiationAnatomicalSiteEnum|RECTUM (INCLUDES SIGMOID)|
+|RadiationAnatomicalSiteEnum|LEFT RIBS|
+|RadiationAnatomicalSiteEnum|RIGHT RIBS|
+|RadiationAnatomicalSiteEnum|SACRUM|
+|RadiationAnatomicalSiteEnum|LEFT SALIVARY GLAND|
+|RadiationAnatomicalSiteEnum|RIGHT SALIVARY GLAND|
+|RadiationAnatomicalSiteEnum|BILATERAL SCAPULA|
+|RadiationAnatomicalSiteEnum|LEFT SCAPULA|
+|RadiationAnatomicalSiteEnum|RIGHT SCAPULA|
+|RadiationAnatomicalSiteEnum|BILATERAL SUPRACLAVICULAR NODES|
+|RadiationAnatomicalSiteEnum|LEFT SUPRACLAVICULAR NODES|
+|RadiationAnatomicalSiteEnum|RIGHT SUPRACLAVICULAR NODES|
+|RadiationAnatomicalSiteEnum|BILATERAL SCALP|
+|RadiationAnatomicalSiteEnum|LEFT SCALP|
+|RadiationAnatomicalSiteEnum|RIGHT SCALP|
+|RadiationAnatomicalSiteEnum|SCROTUM|
+|RadiationAnatomicalSiteEnum|BILATERAL SHOULDER|
+|RadiationAnatomicalSiteEnum|LEFT SHOULDER|
+|RadiationAnatomicalSiteEnum|RIGHT SHOULDER|
+|RadiationAnatomicalSiteEnum|WHOLE BODY - SKIN|
+|RadiationAnatomicalSiteEnum|SKULL|
+|RadiationAnatomicalSiteEnum|CERVICAL & THORACIC SPINE|
+|RadiationAnatomicalSiteEnum|SPHENOID SINUS|
+|RadiationAnatomicalSiteEnum|CERVICAL SPINE|
+|RadiationAnatomicalSiteEnum|LUMBAR SPINE|
+|RadiationAnatomicalSiteEnum|THORACIC SPINE|
+|RadiationAnatomicalSiteEnum|WHOLE SPINE|
+|RadiationAnatomicalSiteEnum|SPLEEN|
+|RadiationAnatomicalSiteEnum|LUMBO-SACRAL SPINE|
+|RadiationAnatomicalSiteEnum|THORACIC & LUMBAR SPINE|
+|RadiationAnatomicalSiteEnum|STERNUM|
+|RadiationAnatomicalSiteEnum|STOMACH|
+|RadiationAnatomicalSiteEnum|SUBMANDIBULAR GLANDS|
+|RadiationAnatomicalSiteEnum|LEFT TEMPLE|
+|RadiationAnatomicalSiteEnum|RIGHT TEMPLE|
+|RadiationAnatomicalSiteEnum|BILATERAL TESTIS|
+|RadiationAnatomicalSiteEnum|LEFT TESTIS|
+|RadiationAnatomicalSiteEnum|RIGHT TESTIS|
+|RadiationAnatomicalSiteEnum|THYROID|
+|RadiationAnatomicalSiteEnum|LEFT TIBIA|
+|RadiationAnatomicalSiteEnum|RIGHT TIBIA|
+|RadiationAnatomicalSiteEnum|LEFT TOES|
+|RadiationAnatomicalSiteEnum|RIGHT TOES|
+|RadiationAnatomicalSiteEnum|TONGUE|
+|RadiationAnatomicalSiteEnum|TONSIL|
+|RadiationAnatomicalSiteEnum|TRACHEA|
+|RadiationAnatomicalSiteEnum|LEFT ULNA|
+|RadiationAnatomicalSiteEnum|RIGHT ULNA|
+|RadiationAnatomicalSiteEnum|LEFT URETER|
+|RadiationAnatomicalSiteEnum|RIGHT URETER|
+|RadiationAnatomicalSiteEnum|URETHRA|
+|RadiationAnatomicalSiteEnum|UTERUS|
+|RadiationAnatomicalSiteEnum|UVULA|
+|RadiationAnatomicalSiteEnum|VAGINA|
+|RadiationAnatomicalSiteEnum|VULVA|
+|RadiationAnatomicalSiteEnum|ABDOMEN|
+|RadiationAnatomicalSiteEnum|BODY|
+|RadiationAnatomicalSiteEnum|CHEST|
+|RadiationAnatomicalSiteEnum|LOWER LIMB|
+|RadiationAnatomicalSiteEnum|NECK|
+|RadiationAnatomicalSiteEnum|OTHER|
+|RadiationAnatomicalSiteEnum|PELVIS|
+|RadiationAnatomicalSiteEnum|SKIN|
+|RadiationAnatomicalSiteEnum|SPINE|
+|RadiationAnatomicalSiteEnum|UPPER LIMB|
+|RadiationAnatomicalSiteEnum|Not Available|
 
 <h2 id="tocS_RadiationIngestSchema">RadiationIngestSchema</h2>
 
@@ -4737,8 +4750,8 @@ RadiationAnatomicalSiteEnum
   "radiation_therapy_type": "External",
   "radiation_therapy_fractions": 0,
   "radiation_therapy_dosage": 0,
-  "anatomical_site_irradiated": "Left Abdomen",
-  "radiation_boost": true,
+  "anatomical_site_irradiated": "LEFT ABDOMEN",
+  "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string",
   "program_id": "string",
   "submitter_donor_id": "string",
@@ -4850,7 +4863,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
@@ -4928,6 +4941,7 @@ RadiationTherapyModalityEnum
 |RadiationTherapyModalityEnum|Teleradiotherapy neutrons (procedure)|
 |RadiationTherapyModalityEnum|Brachytherapy (procedure)|
 |RadiationTherapyModalityEnum|Other|
+|RadiationTherapyModalityEnum|Not Available|
 
 <h2 id="tocS_TherapyTypeEnum">TherapyTypeEnum</h2>
 
@@ -4955,6 +4969,7 @@ TherapyTypeEnum
 |---|---|
 |TherapyTypeEnum|External|
 |TherapyTypeEnum|Internal|
+|TherapyTypeEnum|Not Available|
 
 <h2 id="tocS_SampleRegistrationIngestSchema">SampleRegistrationIngestSchema</h2>
 
@@ -5151,6 +5166,7 @@ SpecimenTissueSourceEnum
 |SpecimenTissueSourceEnum|Fetal blood|
 |SpecimenTissueSourceEnum|Hydrocele fluid|
 |SpecimenTissueSourceEnum|Male genital fluid|
+|SpecimenTissueSourceEnum|Other|
 |SpecimenTissueSourceEnum|Pancreatic fluid|
 |SpecimenTissueSourceEnum|Pericardial effusion|
 |SpecimenTissueSourceEnum|Pleural fluid|
@@ -5264,7 +5280,8 @@ CellsMeasureMethodEnum
 |CellsMeasureMethodEnum|Genomics|
 |CellsMeasureMethodEnum|Image analysis|
 |CellsMeasureMethodEnum|Pathology estimate by percent nuclei|
-|CellsMeasureMethodEnum|Unknown|
+|CellsMeasureMethodEnum|Other|
+|CellsMeasureMethodEnum|Not Available|
 
 <h2 id="tocS_ConfirmedDiagnosisTumourEnum">ConfirmedDiagnosisTumourEnum</h2>
 
@@ -5293,7 +5310,7 @@ ConfirmedDiagnosisTumourEnum
 |ConfirmedDiagnosisTumourEnum|Yes|
 |ConfirmedDiagnosisTumourEnum|No|
 |ConfirmedDiagnosisTumourEnum|Not done|
-|ConfirmedDiagnosisTumourEnum|Unknown|
+|ConfirmedDiagnosisTumourEnum|Not Available|
 
 <h2 id="tocS_PercentCellsRangeEnum">PercentCellsRangeEnum</h2>
 
@@ -5322,6 +5339,7 @@ PercentCellsRangeEnum
 |PercentCellsRangeEnum|0-19%|
 |PercentCellsRangeEnum|20-50%|
 |PercentCellsRangeEnum|51-100%|
+|PercentCellsRangeEnum|Not Available|
 
 <h2 id="tocS_SpecimenIngestSchema">SpecimenIngestSchema</h2>
 
@@ -5639,7 +5657,7 @@ SpecimenLateralityEnum
 |SpecimenLateralityEnum|Left|
 |SpecimenLateralityEnum|Not applicable|
 |SpecimenLateralityEnum|Right|
-|SpecimenLateralityEnum|Unknown|
+|SpecimenLateralityEnum|Not Available|
 
 <h2 id="tocS_SpecimenProcessingEnum">SpecimenProcessingEnum</h2>
 
@@ -5674,7 +5692,7 @@ SpecimenProcessingEnum
 |SpecimenProcessingEnum|Formalin fixed - unbuffered|
 |SpecimenProcessingEnum|Fresh|
 |SpecimenProcessingEnum|Other|
-|SpecimenProcessingEnum|Unknown|
+|SpecimenProcessingEnum|Not Available|
 
 <h2 id="tocS_StorageEnum">StorageEnum</h2>
 
@@ -5705,10 +5723,11 @@ StorageEnum
 |StorageEnum|Frozen in liquid nitrogen|
 |StorageEnum|Frozen in vapour phase|
 |StorageEnum|Not Applicable|
+|StorageEnum|OCT embedded|
 |StorageEnum|Other|
 |StorageEnum|Paraffin block|
 |StorageEnum|RNA later frozen|
-|StorageEnum|Unknown|
+|StorageEnum|Not Available|
 
 <h2 id="tocS_TumourGradeEnum">TumourGradeEnum</h2>
 
@@ -5756,6 +5775,7 @@ TumourGradeEnum
 |TumourGradeEnum|Grade Group 3|
 |TumourGradeEnum|Grade Group 4|
 |TumourGradeEnum|Grade Group 5|
+|TumourGradeEnum|Not Available|
 
 <h2 id="tocS_TumourGradingSystemEnum">TumourGradingSystemEnum</h2>
 
@@ -5794,6 +5814,7 @@ TumourGradingSystemEnum
 |TumourGradingSystemEnum|Three-tier grading system|
 |TumourGradingSystemEnum|Two-tier grading system|
 |TumourGradingSystemEnum|WHO grading system for CNS tumours|
+|TumourGradingSystemEnum|Not Available|
 
 <h2 id="tocS_LymphovascularInvasionEnum">LymphovascularInvasionEnum</h2>
 
@@ -5825,7 +5846,7 @@ LymphovascularInvasionEnum
 |LymphovascularInvasionEnum|Not applicable|
 |LymphovascularInvasionEnum|Present|
 |LymphovascularInvasionEnum|Venous (large vessel) invasion only|
-|LymphovascularInvasionEnum|Unknown|
+|LymphovascularInvasionEnum|Not Available|
 
 <h2 id="tocS_MarginTypesEnum">MarginTypesEnum</h2>
 
@@ -5856,7 +5877,7 @@ MarginTypesEnum
 |MarginTypesEnum|Distal margin|
 |MarginTypesEnum|Not applicable|
 |MarginTypesEnum|Proximal margin|
-|MarginTypesEnum|Unknown|
+|MarginTypesEnum|Not Available|
 
 <h2 id="tocS_PerineuralInvasionEnum">PerineuralInvasionEnum</h2>
 
@@ -5886,7 +5907,7 @@ PerineuralInvasionEnum
 |PerineuralInvasionEnum|Cannot be assessed|
 |PerineuralInvasionEnum|Not applicable|
 |PerineuralInvasionEnum|Present|
-|PerineuralInvasionEnum|Unknown|
+|PerineuralInvasionEnum|Not Available|
 
 <h2 id="tocS_SurgeryIngestSchema">SurgeryIngestSchema</h2>
 
@@ -5916,7 +5937,7 @@ PerineuralInvasionEnum
   ],
   "lymphovascular_invasion": "Absent",
   "perineural_invasion": "Absent",
-  "surgery_reference_database": "string",
+  "surgery_reference_database": "SNOMED",
   "surgery_reference_identifier": "string",
   "program_id": "string",
   "submitter_donor_id": "string",
@@ -6172,7 +6193,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[SurgeryReferenceDatabaseEnum](#schemasurgeryreferencedatabaseenum)|false|none|none|
 
 or
 
@@ -6247,6 +6268,35 @@ SurgeryLocationEnum
 |SurgeryLocationEnum|Metastatic|
 |SurgeryLocationEnum|Primary|
 
+<h2 id="tocS_SurgeryReferenceDatabaseEnum">SurgeryReferenceDatabaseEnum</h2>
+
+<a id="schemasurgeryreferencedatabaseenum"></a>
+<a id="schema_SurgeryReferenceDatabaseEnum"></a>
+<a id="tocSsurgeryreferencedatabaseenum"></a>
+<a id="tocssurgeryreferencedatabaseenum"></a>
+
+```json
+"SNOMED"
+
+```
+
+SurgeryReferenceDatabaseEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|SurgeryReferenceDatabaseEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|SurgeryReferenceDatabaseEnum|SNOMED|
+|SurgeryReferenceDatabaseEnum|NCIt|
+|SurgeryReferenceDatabaseEnum|UMLS|
+|SurgeryReferenceDatabaseEnum|CCI|
+
 <h2 id="tocS_TumourClassificationEnum">TumourClassificationEnum</h2>
 
 <a id="schematumourclassificationenum"></a>
@@ -6276,7 +6326,7 @@ TumourClassificationEnum
 |TumourClassificationEnum|R0|
 |TumourClassificationEnum|R1|
 |TumourClassificationEnum|R2|
-|TumourClassificationEnum|Unknown|
+|TumourClassificationEnum|Not Available|
 
 <h2 id="tocS_TumourFocalityEnum">TumourFocalityEnum</h2>
 
@@ -6306,7 +6356,7 @@ TumourFocalityEnum
 |TumourFocalityEnum|Multifocal|
 |TumourFocalityEnum|Not applicable|
 |TumourFocalityEnum|Unifocal|
-|TumourFocalityEnum|Unknown|
+|TumourFocalityEnum|Not Available|
 
 <h2 id="tocS_TreatmentIngestSchema">TreatmentIngestSchema</h2>
 
@@ -6542,6 +6592,7 @@ TreatmentIntentEnum
 |TreatmentIntentEnum|Guidance|
 |TreatmentIntentEnum|Screening|
 |TreatmentIntentEnum|Forensic|
+|TreatmentIntentEnum|Not Available|
 
 <h2 id="tocS_TreatmentResponseEnum">TreatmentResponseEnum</h2>
 
@@ -6590,6 +6641,7 @@ TreatmentResponseEnum
 |TreatmentResponseEnum|Physician assessed stable disease|
 |TreatmentResponseEnum|No evidence of disease (NED)|
 |TreatmentResponseEnum|Major response|
+|TreatmentResponseEnum|Not Available|
 
 <h2 id="tocS_TreatmentResponseMethodEnum">TreatmentResponseMethodEnum</h2>
 
@@ -6622,6 +6674,7 @@ TreatmentResponseMethodEnum
 |TreatmentResponseMethodEnum|AML Response Criteria|
 |TreatmentResponseMethodEnum|Physician Assessed Response Criteria|
 |TreatmentResponseMethodEnum|Blazer score|
+|TreatmentResponseMethodEnum|Not Available|
 
 <h2 id="tocS_TreatmentStatusEnum">TreatmentStatusEnum</h2>
 
@@ -6654,9 +6707,9 @@ TreatmentStatusEnum
 |TreatmentStatusEnum|Physician decision (stopped or interrupted treatment)|
 |TreatmentStatusEnum|Treatment stopped due to lack of efficacy (disease progression)|
 |TreatmentStatusEnum|Treatment stopped due to acute toxicity|
+|TreatmentStatusEnum|Treatment ongoing|
 |TreatmentStatusEnum|Other|
-|TreatmentStatusEnum|Not applicable|
-|TreatmentStatusEnum|Unknown|
+|TreatmentStatusEnum|Not Available|
 
 <h2 id="tocS_TreatmentTypeEnum">TreatmentTypeEnum</h2>
 
@@ -6685,11 +6738,12 @@ TreatmentTypeEnum
 |TreatmentTypeEnum|Bone marrow transplant|
 |TreatmentTypeEnum|Systemic therapy|
 |TreatmentTypeEnum|No treatment|
-|TreatmentTypeEnum|Other targeting molecular therapy|
+|TreatmentTypeEnum|Targeted molecular therapy|
 |TreatmentTypeEnum|Photodynamic therapy|
 |TreatmentTypeEnum|Radiation therapy|
 |TreatmentTypeEnum|Stem cell transplant|
 |TreatmentTypeEnum|Surgery|
+|TreatmentTypeEnum|Other|
 
 <h2 id="tocS_DonorWithClinicalDataSchema">DonorWithClinicalDataSchema</h2>
 
@@ -6703,7 +6757,7 @@ TreatmentTypeEnum
   "submitter_donor_id": "string",
   "gender": "Man",
   "sex_at_birth": "Male",
-  "is_deceased": true,
+  "is_deceased": "Yes",
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
   "date_alive_after_lost_to_followup": {
@@ -6809,8 +6863,8 @@ TreatmentTypeEnum
               "radiation_therapy_type": "External",
               "radiation_therapy_fractions": 0,
               "radiation_therapy_dosage": 0,
-              "anatomical_site_irradiated": "Left Abdomen",
-              "radiation_boost": true,
+              "anatomical_site_irradiated": "LEFT ABDOMEN",
+              "radiation_boost": "Yes",
               "reference_radiation_treatment_id": "string"
             }
           ],
@@ -6835,7 +6889,7 @@ TreatmentTypeEnum
               ],
               "lymphovascular_invasion": "Absent",
               "perineural_invasion": "Absent",
-              "surgery_reference_database": "string",
+              "surgery_reference_database": "SNOMED",
               "surgery_reference_identifier": "string"
             }
           ],
@@ -7004,7 +7058,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
@@ -7931,8 +7985,8 @@ or
           "radiation_therapy_type": "External",
           "radiation_therapy_fractions": 0,
           "radiation_therapy_dosage": 0,
-          "anatomical_site_irradiated": "Left Abdomen",
-          "radiation_boost": true,
+          "anatomical_site_irradiated": "LEFT ABDOMEN",
+          "radiation_boost": "Yes",
           "reference_radiation_treatment_id": "string"
         }
       ],
@@ -7957,7 +8011,7 @@ or
           ],
           "lymphovascular_invasion": "Absent",
           "perineural_invasion": "Absent",
-          "surgery_reference_database": "string",
+          "surgery_reference_database": "SNOMED",
           "surgery_reference_identifier": "string"
         }
       ],
@@ -8303,8 +8357,8 @@ continued
   "radiation_therapy_type": "External",
   "radiation_therapy_fractions": 0,
   "radiation_therapy_dosage": 0,
-  "anatomical_site_irradiated": "Left Abdomen",
-  "radiation_boost": true,
+  "anatomical_site_irradiated": "LEFT ABDOMEN",
+  "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string"
 }
 
@@ -8412,7 +8466,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
@@ -8838,7 +8892,7 @@ continued
   ],
   "lymphovascular_invasion": "Absent",
   "perineural_invasion": "Absent",
-  "surgery_reference_database": "string",
+  "surgery_reference_database": "SNOMED",
   "surgery_reference_identifier": "string"
 }
 
@@ -9090,7 +9144,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[SurgeryReferenceDatabaseEnum](#schemasurgeryreferencedatabaseenum)|false|none|none|
 
 or
 
@@ -9387,8 +9441,8 @@ or
       "radiation_therapy_type": "External",
       "radiation_therapy_fractions": 0,
       "radiation_therapy_dosage": 0,
-      "anatomical_site_irradiated": "Left Abdomen",
-      "radiation_boost": true,
+      "anatomical_site_irradiated": "LEFT ABDOMEN",
+      "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string"
     }
   ],
@@ -9413,7 +9467,7 @@ or
       ],
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
-      "surgery_reference_database": "string",
+      "surgery_reference_database": "SNOMED",
       "surgery_reference_identifier": "string"
     }
   ],
@@ -9795,7 +9849,7 @@ continued
   "program_id": "string",
   "gender": "string",
   "sex_at_birth": "string",
-  "is_deceased": true,
+  "is_deceased": "string",
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "string",
   "cause_of_death": "string"
@@ -9887,7 +9941,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|string|false|none|none|
 
 or
 
@@ -9961,7 +10015,7 @@ or
   "submitter_donor_id": "string",
   "gender": "Man",
   "sex_at_birth": "Male",
-  "is_deceased": true,
+  "is_deceased": "Yes",
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
   "date_alive_after_lost_to_followup": {
@@ -10032,7 +10086,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
@@ -10186,7 +10240,7 @@ continued
       "submitter_donor_id": "string",
       "gender": "Man",
       "sex_at_birth": "Male",
-      "is_deceased": true,
+      "is_deceased": "Yes",
       "lost_to_followup_after_clinical_event_identifier": "string",
       "lost_to_followup_reason": "Completed study",
       "date_alive_after_lost_to_followup": {
@@ -13500,7 +13554,7 @@ or
   "radiation_therapy_fractions": 0,
   "radiation_therapy_dosage": 0,
   "anatomical_site_irradiated": "string",
-  "radiation_boost": true,
+  "radiation_boost": "string",
   "reference_radiation_treatment_id": "string"
 }
 
@@ -13662,7 +13716,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|string|false|none|none|
 
 or
 
@@ -13703,8 +13757,8 @@ or
       "radiation_therapy_type": "External",
       "radiation_therapy_fractions": 0,
       "radiation_therapy_dosage": 0,
-      "anatomical_site_irradiated": "Left Abdomen",
-      "radiation_boost": true,
+      "anatomical_site_irradiated": "LEFT ABDOMEN",
+      "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string",
       "program_id": "string",
       "submitter_donor_id": "string",
@@ -13788,8 +13842,8 @@ or
   "radiation_therapy_type": "External",
   "radiation_therapy_fractions": 0,
   "radiation_therapy_dosage": 0,
-  "anatomical_site_irradiated": "Left Abdomen",
-  "radiation_boost": true,
+  "anatomical_site_irradiated": "LEFT ABDOMEN",
+  "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string",
   "program_id": "string",
   "submitter_donor_id": "string",
@@ -13900,7 +13954,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
@@ -15320,7 +15374,7 @@ or
       ],
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
-      "surgery_reference_database": "string",
+      "surgery_reference_database": "SNOMED",
       "surgery_reference_identifier": "string",
       "program_id": "string",
       "submitter_donor_id": "string",
@@ -15419,7 +15473,7 @@ or
   ],
   "lymphovascular_invasion": "Absent",
   "perineural_invasion": "Absent",
-  "surgery_reference_database": "string",
+  "surgery_reference_database": "SNOMED",
   "surgery_reference_identifier": "string",
   "program_id": "string",
   "submitter_donor_id": "string",
@@ -15674,7 +15728,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[SurgeryReferenceDatabaseEnum](#schemasurgeryreferencedatabaseenum)|false|none|none|
 
 or
 

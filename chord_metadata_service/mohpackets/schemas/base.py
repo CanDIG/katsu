@@ -73,6 +73,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     TumourGradingSystemEnum,
     TumourStagingSystemEnum,
     uBooleanEnum,
+    SurgeryReferenceDatabaseEnum,
 )
 
 """
@@ -114,6 +115,7 @@ BaseDonorSchema = create_schema(
     exclude=["uuid", "program_id"],
     custom_fields=[
         ("cause_of_death", Optional[CauseOfDeathEnum], None),
+        ("is_deceased", Optional[uBooleanEnum], None),
         ("submitter_donor_id", str, Field(pattern=ID_REGEX, max_length=64)),
         ("date_of_birth", Optional[DateInterval], None),
         ("date_of_death", Optional[DateInterval], None),
@@ -283,6 +285,7 @@ BaseRadiationSchema = create_schema(
         ("radiation_therapy_modality", Optional[RadiationTherapyModalityEnum], None),
         ("radiation_therapy_type", Optional[TherapyTypeEnum], None),
         ("anatomical_site_irradiated", Optional[RadiationAnatomicalSiteEnum], None),
+        ("radiation_boost", Optional[uBooleanEnum], None)
     ],
 )
 
@@ -312,6 +315,7 @@ BaseSurgerySchema = create_schema(
         ("margin_types_not_assessed", Optional[List[MarginTypesEnum]], None),
         ("lymphovascular_invasion", Optional[LymphovascularInvasionEnum], None),
         ("perineural_invasion", Optional[PerineuralInvasionEnum], None),
+        ("surgery_reference_database", Optional[SurgeryReferenceDatabaseEnum], None),
     ],
 )
 
