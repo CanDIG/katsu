@@ -1,4 +1,4 @@
-Django==5.1 # Python web framework
+Django==5.1.1 # Python web framework
 psycopg[binary]==3.2.1 # PostgreSQL driver for Python
 django-cors-headers==4.4.0 # handling the server headers required for CORS
 django-ninja==1.3.0 # API & schema
