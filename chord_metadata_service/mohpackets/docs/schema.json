@@ -4256,6 +4256,11 @@
                         ],
                         "title": "Psa Level"
                     },
+                    "psa_level_not_available": {
+                        "default": false,
+                        "title": "Psa Level Not Available",
+                        "type": "boolean"
+                    },
                     "ca125": {
                         "anyOf": [
                             {
@@ -4267,6 +4272,11 @@
                         ],
                         "title": "Ca125"
                     },
+                    "ca125_not_available": {
+                        "default": false,
+                        "title": "Ca125 Not Available",
+                        "type": "boolean"
+                    },
                     "cea": {
                         "anyOf": [
                             {
@@ -4277,6 +4287,11 @@
                             }
                         ],
                         "title": "Cea"
+                    },
+                    "cea_not_available": {
+                        "default": false,
+                        "title": "Cea Not Available",
+                        "type": "boolean"
                     },
                     "er_status": {
                         "anyOf": [
@@ -4493,6 +4508,11 @@
                         ],
                         "title": "Days Per Cycle"
                     },
+                    "days_per_cycle_not_available": {
+                        "default": false,
+                        "title": "Days Per Cycle Not Available",
+                        "type": "boolean"
+                    },
                     "number_of_cycles": {
                         "anyOf": [
                             {
@@ -4503,6 +4523,11 @@
                             }
                         ],
                         "title": "Number Of Cycles"
+                    },
+                    "number_of_cycles_not_available": {
+                        "default": false,
+                        "title": "Number Of Cycles Not Available",
+                        "type": "boolean"
                     },
                     "start_date": {
                         "anyOf": [
@@ -4656,6 +4681,11 @@
                             }
                         ],
                         "title": "Age At Comorbidity Diagnosis"
+                    },
+                    "age_at_comorbidity_diagnosis_not_available": {
+                        "default": false,
+                        "title": "Age At Comorbidity Diagnosis Not Available",
+                        "type": "boolean"
                     },
                     "comorbidity_type_code": {
                         "anyOf": [
@@ -5818,6 +5848,11 @@
                         ],
                         "title": "Radiation Therapy Fractions"
                     },
+                    "radiation_therapy_fractions_not_available": {
+                        "default": false,
+                        "title": "Radiation Therapy Fractions Not Available",
+                        "type": "boolean"
+                    },
                     "radiation_therapy_dosage": {
                         "anyOf": [
                             {
@@ -5828,6 +5863,11 @@
                             }
                         ],
                         "title": "Radiation Therapy Dosage"
+                    },
+                    "radiation_therapy_dosage_not_available": {
+                        "default": false,
+                        "title": "Radiation Therapy Dosage Not Available",
+                        "type": "boolean"
                     },
                     "anatomical_site_irradiated": {
                         "anyOf": [
@@ -6471,6 +6511,11 @@
                         ],
                         "title": "Tumour Length"
                     },
+                    "tumour_length_not_available": {
+                        "default": false,
+                        "title": "Tumour Length Not Available",
+                        "type": "boolean"
+                    },
                     "tumour_width": {
                         "anyOf": [
                             {
@@ -6482,6 +6527,11 @@
                         ],
                         "title": "Tumour Width"
                     },
+                    "tumour_width_not_available": {
+                        "default": false,
+                        "title": "Tumour Width Not Available",
+                        "type": "boolean"
+                    },
                     "greatest_dimension_tumour": {
                         "anyOf": [
                             {
@@ -6492,6 +6542,11 @@
                             }
                         ],
                         "title": "Greatest Dimension Tumour"
+                    },
+                    "greatest_dimension_tumour_not_available": {
+                        "default": false,
+                        "title": "Greatest Dimension Tumour Not Available",
+                        "type": "boolean"
                     },
                     "tumour_focality": {
                         "anyOf": [
@@ -7116,6 +7171,11 @@
                         ],
                         "title": "Psa Level"
                     },
+                    "psa_level_not_available": {
+                        "default": false,
+                        "title": "Psa Level Not Available",
+                        "type": "boolean"
+                    },
                     "ca125": {
                         "anyOf": [
                             {
@@ -7127,6 +7187,11 @@
                         ],
                         "title": "Ca125"
                     },
+                    "ca125_not_available": {
+                        "default": false,
+                        "title": "Ca125 Not Available",
+                        "type": "boolean"
+                    },
                     "cea": {
                         "anyOf": [
                             {
@@ -7137,6 +7202,11 @@
                             }
                         ],
                         "title": "Cea"
+                    },
+                    "cea_not_available": {
+                        "default": false,
+                        "title": "Cea Not Available",
+                        "type": "boolean"
                     },
                     "er_status": {
                         "anyOf": [
@@ -7270,6 +7340,11 @@
                             }
                         ],
                         "title": "Age At Comorbidity Diagnosis"
+                    },
+                    "age_at_comorbidity_diagnosis_not_available": {
+                        "default": false,
+                        "title": "Age At Comorbidity Diagnosis Not Available",
+                        "type": "boolean"
                     },
                     "comorbidity_type_code": {
                         "anyOf": [
@@ -7655,6 +7730,11 @@
                         ],
                         "title": "Radiation Therapy Fractions"
                     },
+                    "radiation_therapy_fractions_not_available": {
+                        "default": false,
+                        "title": "Radiation Therapy Fractions Not Available",
+                        "type": "boolean"
+                    },
                     "radiation_therapy_dosage": {
                         "anyOf": [
                             {
@@ -7665,6 +7745,11 @@
                             }
                         ],
                         "title": "Radiation Therapy Dosage"
+                    },
+                    "radiation_therapy_dosage_not_available": {
+                        "default": false,
+                        "title": "Radiation Therapy Dosage Not Available",
+                        "type": "boolean"
                     },
                     "anatomical_site_irradiated": {
                         "anyOf": [
@@ -7966,6 +8051,11 @@
                         ],
                         "title": "Tumour Length"
                     },
+                    "tumour_length_not_available": {
+                        "default": false,
+                        "title": "Tumour Length Not Available",
+                        "type": "boolean"
+                    },
                     "tumour_width": {
                         "anyOf": [
                             {
@@ -7977,6 +8067,11 @@
                         ],
                         "title": "Tumour Width"
                     },
+                    "tumour_width_not_available": {
+                        "default": false,
+                        "title": "Tumour Width Not Available",
+                        "type": "boolean"
+                    },
                     "greatest_dimension_tumour": {
                         "anyOf": [
                             {
@@ -7987,6 +8082,11 @@
                             }
                         ],
                         "title": "Greatest Dimension Tumour"
+                    },
+                    "greatest_dimension_tumour_not_available": {
+                        "default": false,
+                        "title": "Greatest Dimension Tumour Not Available",
+                        "type": "boolean"
                     },
                     "tumour_focality": {
                         "anyOf": [
@@ -8121,6 +8221,11 @@
                         ],
                         "title": "Days Per Cycle"
                     },
+                    "days_per_cycle_not_available": {
+                        "default": false,
+                        "title": "Days Per Cycle Not Available",
+                        "type": "boolean"
+                    },
                     "number_of_cycles": {
                         "anyOf": [
                             {
@@ -8131,6 +8236,11 @@
                             }
                         ],
                         "title": "Number Of Cycles"
+                    },
+                    "number_of_cycles_not_available": {
+                        "default": false,
+                        "title": "Number Of Cycles Not Available",
+                        "type": "boolean"
                     },
                     "start_date": {
                         "anyOf": [
@@ -9437,6 +9547,11 @@
                         ],
                         "title": "Psa Level"
                     },
+                    "psa_level_not_available": {
+                        "default": false,
+                        "title": "Psa Level Not Available",
+                        "type": "boolean"
+                    },
                     "ca125": {
                         "anyOf": [
                             {
@@ -9448,6 +9563,11 @@
                         ],
                         "title": "Ca125"
                     },
+                    "ca125_not_available": {
+                        "default": false,
+                        "title": "Ca125 Not Available",
+                        "type": "boolean"
+                    },
                     "cea": {
                         "anyOf": [
                             {
@@ -9458,6 +9578,11 @@
                             }
                         ],
                         "title": "Cea"
+                    },
+                    "cea_not_available": {
+                        "default": false,
+                        "title": "Cea Not Available",
+                        "type": "boolean"
                     },
                     "er_status": {
                         "anyOf": [
@@ -9838,6 +9963,11 @@
                         ],
                         "title": "Days Per Cycle"
                     },
+                    "days_per_cycle_not_available": {
+                        "default": false,
+                        "title": "Days Per Cycle Not Available",
+                        "type": "boolean"
+                    },
                     "number_of_cycles": {
                         "anyOf": [
                             {
@@ -9848,6 +9978,11 @@
                             }
                         ],
                         "title": "Number Of Cycles"
+                    },
+                    "number_of_cycles_not_available": {
+                        "default": false,
+                        "title": "Number Of Cycles Not Available",
+                        "type": "boolean"
                     },
                     "start_date": {
                         "anyOf": [
@@ -10084,6 +10219,11 @@
                             }
                         ],
                         "title": "Age At Comorbidity Diagnosis"
+                    },
+                    "age_at_comorbidity_diagnosis_not_available": {
+                        "default": false,
+                        "title": "Age At Comorbidity Diagnosis Not Available",
+                        "type": "boolean"
                     },
                     "comorbidity_type_code": {
                         "anyOf": [
@@ -10818,6 +10958,11 @@
                         ],
                         "title": "Radiation Therapy Fractions"
                     },
+                    "radiation_therapy_fractions_not_available": {
+                        "default": false,
+                        "title": "Radiation Therapy Fractions Not Available",
+                        "type": "boolean"
+                    },
                     "radiation_therapy_dosage": {
                         "anyOf": [
                             {
@@ -10828,6 +10973,11 @@
                             }
                         ],
                         "title": "Radiation Therapy Dosage"
+                    },
+                    "radiation_therapy_dosage_not_available": {
+                        "default": false,
+                        "title": "Radiation Therapy Dosage Not Available",
+                        "type": "boolean"
                     },
                     "anatomical_site_irradiated": {
                         "anyOf": [
@@ -11796,6 +11946,11 @@
                         ],
                         "title": "Tumour Length"
                     },
+                    "tumour_length_not_available": {
+                        "default": false,
+                        "title": "Tumour Length Not Available",
+                        "type": "boolean"
+                    },
                     "tumour_width": {
                         "anyOf": [
                             {
@@ -11807,6 +11962,11 @@
                         ],
                         "title": "Tumour Width"
                     },
+                    "tumour_width_not_available": {
+                        "default": false,
+                        "title": "Tumour Width Not Available",
+                        "type": "boolean"
+                    },
                     "greatest_dimension_tumour": {
                         "anyOf": [
                             {
@@ -11817,6 +11977,11 @@
                             }
                         ],
                         "title": "Greatest Dimension Tumour"
+                    },
+                    "greatest_dimension_tumour_not_available": {
+                        "default": false,
+                        "title": "Greatest Dimension Tumour Not Available",
+                        "type": "boolean"
                     },
                     "tumour_focality": {
                         "anyOf": [
