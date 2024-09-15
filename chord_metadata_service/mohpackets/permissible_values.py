@@ -5,9 +5,9 @@ MoH model fields and are used for validation during serialization.
 
 from chord_metadata_service.mohpackets.utils import list_to_enum
 
-UBOOLEAN = ["Yes", "No", "Not Available"]
+UBOOLEAN = ["Yes", "No", "Not available"]
 
-CAUSE_OF_DEATH = ["Died of cancer", "Died of other reasons", "Not Available"]
+CAUSE_OF_DEATH = ["Died of cancer", "Died of other reasons", "Not available"]
 
 PRIMARY_SITE = [
     "Accessory sinuses",
@@ -80,7 +80,7 @@ PRIMARY_SITE = [
     "Vagina",
     "Vulva",
     "Unknown primary site",
-    "Not Available"
+    "Not available"
 ]
 
 
@@ -88,7 +88,7 @@ LOST_TO_FOLLOWUP_REASON = [
     "Completed study",
     "Discharged to palliative care",
     "Lost contact",
-    "Not Available",
+    "Not available",
     "Withdrew from study",
     "Discharged from follow-up"
 ]
@@ -108,7 +108,7 @@ TUMOUR_STAGING_SYSTEM = [
     "Revised International staging system (RISS)",
     "SEER staging system",
     "St Jude staging system",
-    "Not Available"
+    "Not available"
 ]
 
 T_CATEGORY = [
@@ -311,7 +311,7 @@ STAGE_GROUP = [
     "Stage 4",
     "Stage 4S",
     "Occult Carcinoma",
-    "Not Available"
+    "Not available"
 ]
 
 
@@ -325,7 +325,7 @@ STORAGE = [
     "Other",
     "Paraffin block",
     "RNA later frozen",
-    "Not Available",
+    "Not available",
 ]
 
 SPECIMEN_PROCESSING = [
@@ -338,10 +338,10 @@ SPECIMEN_PROCESSING = [
     "Formalin fixed - unbuffered",
     "Fresh",
     "Other",
-    "Not Available",
+    "Not available",
 ]
 
-SPECIMEN_LATERALITY = ["Left", "Not applicable", "Right", "Not Available"]
+SPECIMEN_LATERALITY = ["Left", "Not applicable", "Right", "Not available"]
 
 PRIMARY_DIAGNOSIS_LATERALITY = [
     "Bilateral",
@@ -350,10 +350,10 @@ PRIMARY_DIAGNOSIS_LATERALITY = [
     "Not a paired site",
     "Right",
     "Unilateral, side not specified",
-    "Not Available",
+    "Not available",
 ]
 
-CONFIRMED_DIAGNOSIS_TUMOUR = ["Yes", "No", "Not done", "Not Available"]
+CONFIRMED_DIAGNOSIS_TUMOUR = ["Yes", "No", "Not done", "Not available"]
 
 TUMOUR_GRADING_SYSTEM = [
     "FNCLCC grading system",
@@ -369,7 +369,7 @@ TUMOUR_GRADING_SYSTEM = [
     "Three-tier grading system",
     "Two-tier grading system",
     "WHO grading system for CNS tumours",
-    "Not Available"
+    "Not available"
 ]
 
 TUMOUR_GRADE = [
@@ -395,22 +395,22 @@ TUMOUR_GRADE = [
     "Grade Group 3",
     "Grade Group 4",
     "Grade Group 5",
-    "Not Available",
+    "Not available",
 ]
 
-PERCENT_CELLS_RANGE = ["0-19%", "20-50%", "51-100%", "Not Available"]
+PERCENT_CELLS_RANGE = ["0-19%", "20-50%", "51-100%", "Not available"]
 
 CELLS_MEASURE_METHOD = [
     "Genomics",
     "Image analysis",
     "Pathology estimate by percent nuclei",
     "Other",
-    "Not Available",
+    "Not available",
 ]
 
-GENDER = ["Man", "Woman", "Non-binary", "Other", "Prefer not to disclose", "Not Available"]
+GENDER = ["Man", "Woman", "Non-binary", "Other", "Prefer not to disclose", "Not available"]
 
-SEX_AT_BIRTH = ["Male", "Female", "Other", "Not Available"]
+SEX_AT_BIRTH = ["Male", "Female", "Other", "Not available"]
 
 SPECIMEN_TISSUE_SOURCE = [
     "Abdominal fluid",
@@ -492,7 +492,7 @@ BASIS_OF_DIAGNOSIS = [
     "Histology of a metastasis",
     "Histology of a primary tumour",
     "Specific tumour markers",
-    "Not Available",
+    "Not available",
 ]
 
 LYMPH_NODE_STATUS = [
@@ -544,7 +544,7 @@ TREATMENT_INTENT = [
     "Guidance",
     "Screening",
     "Forensic",
-    "Not Available"
+    "Not available"
 ]
 
 TREATMENT_RESPONSE_METHOD = [
@@ -555,7 +555,7 @@ TREATMENT_RESPONSE_METHOD = [
     "AML Response Criteria",
     "Physician Assessed Response Criteria",
     "Blazer score",
-    "Not Available",
+    "Not available",
 ]
 
 TREATMENT_RESPONSE = [
@@ -584,7 +584,7 @@ TREATMENT_RESPONSE = [
     "Minor response",
     "Major response",
     "Complete response",
-    "Not Available",
+    "Not available",
 ]
 
 TREATMENT_STATUS = [
@@ -597,7 +597,7 @@ TREATMENT_STATUS = [
     "Treatment stopped due to acute toxicity",
     "Treatment ongoing",
     "Other",
-    "Not Available",
+    "Not available",
 ]
 
 DRUG_REFERENCE_DB = [
@@ -614,7 +614,7 @@ DOSAGE_UNITS = [
     "g/m2",
     "mg/kg",
     "cells/kg",
-    "Not Available",
+    "Not available",
 ]
 
 RADIATION_THERAPY_MODALITY = [
@@ -625,7 +625,7 @@ RADIATION_THERAPY_MODALITY = [
     "Teleradiotherapy neutrons (procedure)",
     "Brachytherapy (procedure)",
     "Other",
-    "Not Available"
+    "Not available"
 ]
 
 RADIATION_ANATOMICAL_SITE = [
@@ -890,7 +890,7 @@ RADIATION_ANATOMICAL_SITE = [
     "SKIN",
     "SPINE",
     "UPPER LIMB",
-    "Not Available",
+    "Not available",
 ]
 
 
@@ -969,10 +969,10 @@ TUMOUR_FOCALITY = [
     "Multifocal",
     "Not applicable",
     "Unifocal",
-    "Not Available",
+    "Not available",
 ]
 
-TUMOUR_CLASSIFICATION = ["Not applicable", "RX", "R0", "R1", "R2", "Not Available"]
+TUMOUR_CLASSIFICATION = ["Not applicable", "RX", "R0", "R1", "R2", "Not available"]
 
 MARGIN_TYPES = [
     "Circumferential resection margin",
@@ -980,7 +980,7 @@ MARGIN_TYPES = [
     "Distal margin",
     "Not applicable",
     "Proximal margin",
-    "Not Available",
+    "Not available",
 ]
 
 LYMPHOVACULAR_INVASION = [
@@ -990,7 +990,7 @@ LYMPHOVACULAR_INVASION = [
     "Not applicable",
     "Present",
     "Venous (large vessel) invasion only",
-    "Not Available",
+    "Not available",
 ]
 
 PERINEURAL_INVASION = [
@@ -998,7 +998,7 @@ PERINEURAL_INVASION = [
     "Cannot be assessed",
     "Not applicable",
     "Present",
-    "Not Available",
+    "Not available",
 ]
 
 DISEASE_STATUS_FOLLOWUP = [
@@ -1010,7 +1010,7 @@ DISEASE_STATUS_FOLLOWUP = [
     "Progression not otherwise specified",
     "Relapse or recurrence",
     "Stable",
-    "Not Available",
+    "Not available",
 ]
 
 RELAPSE_TYPE = [
@@ -1019,7 +1019,7 @@ RELAPSE_TYPE = [
     "Local recurrence and distant metastasis",
     "Progression",
     "Biochemical progression",
-    "Not Available",
+    "Not available",
 ]
 
 PROGRESSION_STATUS_METHOD = [
@@ -1038,7 +1038,7 @@ MALIGNANCY_LATERALITY = [
     "Not applicable",
     "Right",
     "Unilateral, Side not specified",
-    "Not Available",
+    "Not available",
 ]
 
 ER_PR_HPV_STATUS = [
@@ -1046,7 +1046,7 @@ ER_PR_HPV_STATUS = [
     "Negative",
     "Not applicable",
     "Positive",
-    "Not Available",
+    "Not available",
 ]
 
 HER2_STATUS = [
@@ -1055,7 +1055,7 @@ HER2_STATUS = [
     "Positive",
     "Negative",
     "Not applicable",
-    "Not Available",
+    "Not available",
 ]
 
 HPV_STRAIN = [
@@ -1083,7 +1083,7 @@ SMOKING_STATUS = [
     "Current smoker",
     "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
     "Not applicable",
-    "Not Available",
+    "Not available",
 ]
 
 TOBACCO_TYPE = [
@@ -1095,11 +1095,11 @@ TOBACCO_TYPE = [
     "Pipe",
     "Roll-ups",
     "Snuff",
-    "Not Available",
+    "Not available",
     "Waterpipe",
 ]
 TUMOUR_DESIGNATION = ["Normal", "Tumour"]
-THERAPY_TYPE = ["External", "Internal", "Not Available"]
+THERAPY_TYPE = ["External", "Internal", "Not available"]
 SYSTEMIC_THERAPY_TYPE = ["Chemotherapy", "Hormone therapy", "Immunotherapy"]
 
 # ID format
@@ -1114,15 +1114,15 @@ DATE_REGEX = r"^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-
 
 # ICD-O-3 morphology codes
 # Examples: 8260/3, 9691/36
-MORPHOLOGY_REGEX = r"^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not Available$"
+MORPHOLOGY_REGEX = r"^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$"
 
 # ICD-O-3 topography codes
 # Examples: C50.1, C18
-TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(.[0-9]{1})?$|^Not Available$"
+TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(.[0-9]{1})?$|^Not available$"
 
 # WHO ICD-10 codes
 # Examples: E10, C50.1, I11, M06
-COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not Available$"
+COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$"
 
 CauseOfDeathEnum = list_to_enum("CauseOfDeathEnum", CAUSE_OF_DEATH)
 PrimarySiteEnum = list_to_enum("PrimarySiteEnum", PRIMARY_SITE)
