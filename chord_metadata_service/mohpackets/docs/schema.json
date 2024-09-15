@@ -4606,6 +4606,11 @@
                         ],
                         "title": "Prescribed Cumulative Drug Dose"
                     },
+                    "prescribed_cumulative_drug_dose_not_available": {
+                        "default": false,
+                        "title": "Prescribed Cumulative Drug Dose Not Available",
+                        "type": "boolean"
+                    },
                     "actual_cumulative_drug_dose": {
                         "anyOf": [
                             {
@@ -4616,6 +4621,11 @@
                             }
                         ],
                         "title": "Actual Cumulative Drug Dose"
+                    },
+                    "actual_cumulative_drug_dose_not_available": {
+                        "default": false,
+                        "title": "Actual Cumulative Drug Dose Not Available",
+                        "type": "boolean"
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -4798,6 +4808,11 @@
                             }
                         ],
                         "title": "Pack Years Smoked"
+                    },
+                    "pack_years_smoked_not_available": {
+                        "default": false,
+                        "title": "Pack Years Smoked Not Available",
+                        "type": "boolean"
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -7421,6 +7436,11 @@
                             }
                         ],
                         "title": "Pack Years Smoked"
+                    },
+                    "pack_years_smoked_not_available": {
+                        "default": false,
+                        "title": "Pack Years Smoked Not Available",
+                        "type": "boolean"
                     }
                 },
                 "title": "NestedExposureSchema",
@@ -8319,6 +8339,11 @@
                         ],
                         "title": "Prescribed Cumulative Drug Dose"
                     },
+                    "prescribed_cumulative_drug_dose_not_available": {
+                        "default": false,
+                        "title": "Prescribed Cumulative Drug Dose Not Available",
+                        "type": "boolean"
+                    },
                     "actual_cumulative_drug_dose": {
                         "anyOf": [
                             {
@@ -8329,6 +8354,11 @@
                             }
                         ],
                         "title": "Actual Cumulative Drug Dose"
+                    },
+                    "actual_cumulative_drug_dose_not_available": {
+                        "default": false,
+                        "title": "Actual Cumulative Drug Dose Not Available",
+                        "type": "boolean"
                     }
                 },
                 "title": "NestedSystemicTherapySchema",
@@ -10061,6 +10091,11 @@
                         ],
                         "title": "Prescribed Cumulative Drug Dose"
                     },
+                    "prescribed_cumulative_drug_dose_not_available": {
+                        "default": false,
+                        "title": "Prescribed Cumulative Drug Dose Not Available",
+                        "type": "boolean"
+                    },
                     "actual_cumulative_drug_dose": {
                         "anyOf": [
                             {
@@ -10071,6 +10106,11 @@
                             }
                         ],
                         "title": "Actual Cumulative Drug Dose"
+                    },
+                    "actual_cumulative_drug_dose_not_available": {
+                        "default": false,
+                        "title": "Actual Cumulative Drug Dose Not Available",
+                        "type": "boolean"
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -10422,6 +10462,11 @@
                             }
                         ],
                         "title": "Pack Years Smoked"
+                    },
+                    "pack_years_smoked_not_available": {
+                        "default": false,
+                        "title": "Pack Years Smoked Not Available",
+                        "type": "boolean"
                     },
                     "program_id": {
                         "title": "Program Id",

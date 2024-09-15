@@ -595,7 +595,9 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "drug_reference_identifier": "string",
               "drug_dose_units": "mg/m2",
               "prescribed_cumulative_drug_dose": 0,
-              "actual_cumulative_drug_dose": 0
+              "prescribed_cumulative_drug_dose_not_available": false,
+              "actual_cumulative_drug_dose": 0,
+              "actual_cumulative_drug_dose_not_available": false
             }
           ],
           "radiations": [
@@ -741,7 +743,8 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "tobacco_type": [
         "Chewing Tobacco"
       ],
-      "pack_years_smoked": 0
+      "pack_years_smoked": 0,
+      "pack_years_smoked_not_available": false
     }
   ],
   "comorbidities": [
@@ -1046,7 +1049,9 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "drug_reference_identifier": "string",
       "drug_dose_units": "mg/m2",
       "prescribed_cumulative_drug_dose": 0,
+      "prescribed_cumulative_drug_dose_not_available": false,
       "actual_cumulative_drug_dose": 0,
+      "actual_cumulative_drug_dose_not_available": false,
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -1139,6 +1144,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
         "Chewing Tobacco"
       ],
       "pack_years_smoked": 0,
+      "pack_years_smoked_not_available": false,
       "program_id": "string",
       "submitter_donor_id": "string"
     }
@@ -2785,7 +2791,9 @@ DrugReferenceDbEnum
   "drug_reference_identifier": "string",
   "drug_dose_units": "mg/m2",
   "prescribed_cumulative_drug_dose": 0,
+  "prescribed_cumulative_drug_dose_not_available": false,
   "actual_cumulative_drug_dose": 0,
+  "actual_cumulative_drug_dose_not_available": false,
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_treatment_id": "string",
@@ -2982,6 +2990,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|prescribed_cumulative_drug_dose_not_available|boolean|false|none|none|
 |actual_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -3000,6 +3009,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|actual_cumulative_drug_dose_not_available|boolean|false|none|none|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |submitter_treatment_id|string|true|none|none|
@@ -3217,6 +3227,7 @@ MalignancyLateralityEnum
     "Chewing Tobacco"
   ],
   "pack_years_smoked": 0,
+  "pack_years_smoked_not_available": false,
   "program_id": "string",
   "submitter_donor_id": "string",
   "uuid": "string"
@@ -3284,6 +3295,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|pack_years_smoked_not_available|boolean|false|none|none|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |uuid|any|false|none|none|
@@ -6900,7 +6912,9 @@ TreatmentTypeEnum
               "drug_reference_identifier": "string",
               "drug_dose_units": "mg/m2",
               "prescribed_cumulative_drug_dose": 0,
-              "actual_cumulative_drug_dose": 0
+              "prescribed_cumulative_drug_dose_not_available": false,
+              "actual_cumulative_drug_dose": 0,
+              "actual_cumulative_drug_dose_not_available": false
             }
           ],
           "radiations": [
@@ -7046,7 +7060,8 @@ TreatmentTypeEnum
       "tobacco_type": [
         "Chewing Tobacco"
       ],
-      "pack_years_smoked": 0
+      "pack_years_smoked": 0,
+      "pack_years_smoked_not_available": false
     }
   ],
   "comorbidities": [
@@ -7751,7 +7766,8 @@ or
   "tobacco_type": [
     "Chewing Tobacco"
   ],
-  "pack_years_smoked": 0
+  "pack_years_smoked": 0,
+  "pack_years_smoked_not_available": false
 }
 
 ```
@@ -7811,6 +7827,12 @@ or
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|pack_years_smoked_not_available|boolean|false|none|none|
 
 <h2 id="tocS_NestedFollowUpSchema">NestedFollowUpSchema</h2>
 
@@ -8041,7 +8063,9 @@ or
           "drug_reference_identifier": "string",
           "drug_dose_units": "mg/m2",
           "prescribed_cumulative_drug_dose": 0,
-          "actual_cumulative_drug_dose": 0
+          "prescribed_cumulative_drug_dose_not_available": false,
+          "actual_cumulative_drug_dose": 0,
+          "actual_cumulative_drug_dose_not_available": false
         }
       ],
       "radiations": [
@@ -9271,7 +9295,9 @@ or
   "drug_reference_identifier": "string",
   "drug_dose_units": "mg/m2",
   "prescribed_cumulative_drug_dose": 0,
-  "actual_cumulative_drug_dose": 0
+  "prescribed_cumulative_drug_dose_not_available": false,
+  "actual_cumulative_drug_dose": 0,
+  "actual_cumulative_drug_dose_not_available": false
 }
 
 ```
@@ -9464,6 +9490,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|prescribed_cumulative_drug_dose_not_available|boolean|false|none|none|
 |actual_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -9477,6 +9504,12 @@ or
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|actual_cumulative_drug_dose_not_available|boolean|false|none|none|
 
 <h2 id="tocS_NestedTreatmentSchema">NestedTreatmentSchema</h2>
 
@@ -9518,7 +9551,9 @@ or
       "drug_reference_identifier": "string",
       "drug_dose_units": "mg/m2",
       "prescribed_cumulative_drug_dose": 0,
-      "actual_cumulative_drug_dose": 0
+      "prescribed_cumulative_drug_dose_not_available": false,
+      "actual_cumulative_drug_dose": 0,
+      "actual_cumulative_drug_dose_not_available": false
     }
   ],
   "radiations": [
@@ -12240,7 +12275,9 @@ or
       "drug_reference_identifier": "string",
       "drug_dose_units": "mg/m2",
       "prescribed_cumulative_drug_dose": 0,
+      "prescribed_cumulative_drug_dose_not_available": false,
       "actual_cumulative_drug_dose": 0,
+      "actual_cumulative_drug_dose_not_available": false,
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -12331,7 +12368,9 @@ or
   "drug_reference_identifier": "string",
   "drug_dose_units": "mg/m2",
   "prescribed_cumulative_drug_dose": 0,
+  "prescribed_cumulative_drug_dose_not_available": false,
   "actual_cumulative_drug_dose": 0,
+  "actual_cumulative_drug_dose_not_available": false,
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_treatment_id": "string"
@@ -12527,6 +12566,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|prescribed_cumulative_drug_dose_not_available|boolean|false|none|none|
 |actual_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -12545,6 +12585,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|actual_cumulative_drug_dose_not_available|boolean|false|none|none|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |submitter_treatment_id|string|true|none|none|
@@ -13051,6 +13092,7 @@ or
     "Chewing Tobacco"
   ],
   "pack_years_smoked": 0,
+  "pack_years_smoked_not_available": false,
   "program_id": "string",
   "submitter_donor_id": "string"
 }
@@ -13117,6 +13159,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|pack_years_smoked_not_available|boolean|false|none|none|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 
@@ -13136,6 +13179,7 @@ continued
         "Chewing Tobacco"
       ],
       "pack_years_smoked": 0,
+      "pack_years_smoked_not_available": false,
       "program_id": "string",
       "submitter_donor_id": "string"
     }

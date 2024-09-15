@@ -938,6 +938,10 @@ components:
           - type: number
           - type: 'null'
           title: Pack Years Smoked
+        pack_years_smoked_not_available:
+          default: false
+          title: Pack Years Smoked Not Available
+          type: boolean
         program_id:
           title: Program Id
           type: string
@@ -972,6 +976,10 @@ components:
           - type: number
           - type: 'null'
           title: Pack Years Smoked
+        pack_years_smoked_not_available:
+          default: false
+          title: Pack Years Smoked Not Available
+          type: boolean
         program_id:
           title: Program Id
           type: string
@@ -1472,6 +1480,10 @@ components:
           - type: number
           - type: 'null'
           title: Pack Years Smoked
+        pack_years_smoked_not_available:
+          default: false
+          title: Pack Years Smoked Not Available
+          type: boolean
         tobacco_smoking_status:
           anyOf:
           - $ref: '#/components/schemas/SmokingStatusEnum'
@@ -1864,6 +1876,10 @@ components:
           - type: number
           - type: 'null'
           title: Actual Cumulative Drug Dose
+        actual_cumulative_drug_dose_not_available:
+          default: false
+          title: Actual Cumulative Drug Dose Not Available
+          type: boolean
         days_per_cycle:
           anyOf:
           - type: integer
@@ -1912,6 +1928,10 @@ components:
           - type: number
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
+        prescribed_cumulative_drug_dose_not_available:
+          default: false
+          title: Prescribed Cumulative Drug Dose Not Available
+          type: boolean
         start_date:
           anyOf:
           - type: object
@@ -4311,6 +4331,10 @@ components:
           - type: number
           - type: 'null'
           title: Actual Cumulative Drug Dose
+        actual_cumulative_drug_dose_not_available:
+          default: false
+          title: Actual Cumulative Drug Dose Not Available
+          type: boolean
         days_per_cycle:
           anyOf:
           - type: integer
@@ -4359,6 +4383,10 @@ components:
           - type: number
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
+        prescribed_cumulative_drug_dose_not_available:
+          default: false
+          title: Prescribed Cumulative Drug Dose Not Available
+          type: boolean
         program_id:
           title: Program Id
           type: string
@@ -4397,6 +4425,10 @@ components:
           - type: number
           - type: 'null'
           title: Actual Cumulative Drug Dose
+        actual_cumulative_drug_dose_not_available:
+          default: false
+          title: Actual Cumulative Drug Dose Not Available
+          type: boolean
         days_per_cycle:
           anyOf:
           - type: integer
@@ -4445,6 +4477,10 @@ components:
           - type: number
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
+        prescribed_cumulative_drug_dose_not_available:
+          default: false
+          title: Prescribed Cumulative Drug Dose Not Available
+          type: boolean
         program_id:
           title: Program Id
           type: string
