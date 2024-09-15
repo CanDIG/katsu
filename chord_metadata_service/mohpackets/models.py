@@ -237,7 +237,9 @@ class SystemicTherapy(models.Model):
     drug_reference_identifier = models.CharField(max_length=64, null=True, blank=True)
     drug_dose_units = models.CharField(max_length=64, null=True, blank=True)
     prescribed_cumulative_drug_dose = models.FloatField(blank=True, null=True)
+    prescribed_cumulative_drug_dose_not_available = models.BooleanField(default=False)
     actual_cumulative_drug_dose = models.FloatField(blank=True, null=True)
+    actual_cumulative_drug_dose_not_available = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["uuid"]
@@ -457,6 +459,7 @@ class Exposure(models.Model):
         models.CharField(max_length=128, null=True, blank=True), null=True, blank=True
     )
     pack_years_smoked = models.FloatField(null=True, blank=True)
+    pack_years_smoked_not_available = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["uuid"]
