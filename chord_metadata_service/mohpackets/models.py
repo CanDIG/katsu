@@ -227,7 +227,9 @@ class SystemicTherapy(models.Model):
     submitter_treatment_id = models.CharField(max_length=64, null=False, blank=False)
     systemic_therapy_type = models.CharField(max_length=32, null=True, blank=True)
     days_per_cycle = models.IntegerField(null=True, blank=True)
+    days_per_cycle_not_available = models.BooleanField(default=False)
     number_of_cycles = models.IntegerField(null=True, blank=True)
+    number_of_cycles_not_available = models.BooleanField(default=False)
     start_date = models.JSONField(null=True, blank=True)
     end_date = models.JSONField(null=True, blank=True)
     drug_reference_database = models.CharField(max_length=64, null=True, blank=True)
@@ -235,7 +237,9 @@ class SystemicTherapy(models.Model):
     drug_reference_identifier = models.CharField(max_length=64, null=True, blank=True)
     drug_dose_units = models.CharField(max_length=64, null=True, blank=True)
     prescribed_cumulative_drug_dose = models.FloatField(blank=True, null=True)
+    prescribed_cumulative_drug_dose_not_available = models.BooleanField(default=False)
     actual_cumulative_drug_dose = models.FloatField(blank=True, null=True)
+    actual_cumulative_drug_dose_not_available = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["uuid"]
@@ -260,7 +264,9 @@ class Radiation(models.Model):
     radiation_therapy_modality = models.CharField(max_length=255, null=True, blank=True)
     radiation_therapy_type = models.CharField(max_length=64, null=True, blank=True)
     radiation_therapy_fractions = models.IntegerField(null=True, blank=True)
+    radiation_therapy_fractions_not_available = models.BooleanField(default=False)
     radiation_therapy_dosage = models.IntegerField(null=True, blank=True)
+    radiation_therapy_dosage_not_available = models.BooleanField(default=False)
     anatomical_site_irradiated = models.CharField(max_length=255, null=True, blank=True)
     radiation_boost = models.CharField(max_length=32, blank=True, null=True)
     reference_radiation_treatment_id = models.CharField(
@@ -291,8 +297,11 @@ class Surgery(models.Model):
     surgery_site = models.CharField(max_length=255, null=True, blank=True)
     surgery_location = models.CharField(max_length=128, null=True, blank=True)
     tumour_length = models.IntegerField(null=True, blank=True)
+    tumour_length_not_available = models.BooleanField(default=False)
     tumour_width = models.IntegerField(null=True, blank=True)
+    tumour_width_not_available = models.BooleanField(default=False)
     greatest_dimension_tumour = models.IntegerField(null=True, blank=True)
+    greatest_dimension_tumour_not_available = models.BooleanField(default=False)
     tumour_focality = models.CharField(max_length=64, null=True, blank=True)
     residual_tumour_classification = models.CharField(
         max_length=64, null=True, blank=True
@@ -384,8 +393,11 @@ class Biomarker(models.Model):
     )  # ref field, not true id
     test_date = models.JSONField(null=True, blank=True)
     psa_level = models.IntegerField(null=True, blank=True)
+    psa_level_not_available = models.BooleanField(default=False)
     ca125 = models.IntegerField(null=True, blank=True)
+    ca125_not_available = models.BooleanField(default=False)
     cea = models.IntegerField(null=True, blank=True)
+    cea_not_available = models.BooleanField(default=False)
     er_status = models.CharField(max_length=64, null=True, blank=True)
     er_percent_positive = models.FloatField(null=True, blank=True)
     pr_status = models.CharField(max_length=64, null=True, blank=True)
@@ -419,6 +431,7 @@ class Comorbidity(models.Model):
         max_length=64, null=True, blank=True
     )
     age_at_comorbidity_diagnosis = models.IntegerField(null=True, blank=True)
+    age_at_comorbidity_diagnosis_not_available = models.BooleanField(default=False)
     comorbidity_type_code = models.CharField(max_length=64, null=True, blank=True)
     comorbidity_treatment_status = models.CharField(
         max_length=32, null=True, blank=True
@@ -446,6 +459,7 @@ class Exposure(models.Model):
         models.CharField(max_length=128, null=True, blank=True), null=True, blank=True
     )
     pack_years_smoked = models.FloatField(null=True, blank=True)
+    pack_years_smoked_not_available = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["uuid"]

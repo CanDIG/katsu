@@ -585,7 +585,9 @@ Retrieves a single donor along with all related clinical data, organized in a ne
             {
               "systemic_therapy_type": "string",
               "days_per_cycle": 0,
+              "days_per_cycle_not_available": false,
               "number_of_cycles": 0,
+              "number_of_cycles_not_available": false,
               "start_date": {},
               "end_date": {},
               "drug_reference_database": "RxNorm",
@@ -593,7 +595,9 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "drug_reference_identifier": "string",
               "drug_dose_units": "mg/m2",
               "prescribed_cumulative_drug_dose": 0,
-              "actual_cumulative_drug_dose": 0
+              "prescribed_cumulative_drug_dose_not_available": false,
+              "actual_cumulative_drug_dose": 0,
+              "actual_cumulative_drug_dose_not_available": false
             }
           ],
           "radiations": [
@@ -601,7 +605,9 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
               "radiation_therapy_type": "External",
               "radiation_therapy_fractions": 0,
+              "radiation_therapy_fractions_not_available": false,
               "radiation_therapy_dosage": 0,
+              "radiation_therapy_dosage_not_available": false,
               "anatomical_site_irradiated": "LEFT ABDOMEN",
               "radiation_boost": "Yes",
               "reference_radiation_treatment_id": "string"
@@ -613,8 +619,11 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "surgery_site": "string",
               "surgery_location": "Local recurrence",
               "tumour_length": 0,
+              "tumour_length_not_available": false,
               "tumour_width": 0,
+              "tumour_width_not_available": false,
               "greatest_dimension_tumour": 0,
+              "greatest_dimension_tumour_not_available": false,
               "tumour_focality": "Cannot be assessed",
               "residual_tumour_classification": "Not applicable",
               "margin_types_involved": [
@@ -710,8 +719,11 @@ Retrieves a single donor along with all related clinical data, organized in a ne
         "month_interval": 0
       },
       "psa_level": 0,
+      "psa_level_not_available": false,
       "ca125": 0,
+      "ca125_not_available": false,
       "cea": 0,
+      "cea_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
       "pr_status": "Cannot be determined",
@@ -731,7 +743,8 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "tobacco_type": [
         "Chewing Tobacco"
       ],
-      "pack_years_smoked": 0
+      "pack_years_smoked": 0,
+      "pack_years_smoked_not_available": false
     }
   ],
   "comorbidities": [
@@ -739,6 +752,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "prior_malignancy": "Yes",
       "laterality_of_prior_malignancy": "Bilateral",
       "age_at_comorbidity_diagnosis": 0,
+      "age_at_comorbidity_diagnosis_not_available": false,
       "comorbidity_type_code": "string",
       "comorbidity_treatment_status": "Yes",
       "comorbidity_treatment": "string"
@@ -962,8 +976,11 @@ Retrieves a single donor along with all related clinical data, organized in a ne
         "month_interval": 0
       },
       "psa_level": 0,
+      "psa_level_not_available": false,
       "ca125": 0,
+      "ca125_not_available": false,
       "cea": 0,
+      "cea_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
       "pr_status": "Cannot be determined",
@@ -1022,7 +1039,9 @@ Retrieves a single donor along with all related clinical data, organized in a ne
     {
       "systemic_therapy_type": "string",
       "days_per_cycle": 0,
+      "days_per_cycle_not_available": false,
       "number_of_cycles": 0,
+      "number_of_cycles_not_available": false,
       "start_date": {},
       "end_date": {},
       "drug_reference_database": "RxNorm",
@@ -1030,7 +1049,9 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "drug_reference_identifier": "string",
       "drug_dose_units": "mg/m2",
       "prescribed_cumulative_drug_dose": 0,
+      "prescribed_cumulative_drug_dose_not_available": false,
       "actual_cumulative_drug_dose": 0,
+      "actual_cumulative_drug_dose_not_available": false,
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -1076,6 +1097,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "prior_malignancy": "Yes",
       "laterality_of_prior_malignancy": "Bilateral",
       "age_at_comorbidity_diagnosis": 0,
+      "age_at_comorbidity_diagnosis_not_available": false,
       "comorbidity_type_code": "string",
       "comorbidity_treatment_status": "Yes",
       "comorbidity_treatment": "string",
@@ -1122,6 +1144,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
         "Chewing Tobacco"
       ],
       "pack_years_smoked": 0,
+      "pack_years_smoked_not_available": false,
       "program_id": "string",
       "submitter_donor_id": "string"
     }
@@ -1229,7 +1252,9 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
       "radiation_therapy_type": "External",
       "radiation_therapy_fractions": 0,
+      "radiation_therapy_fractions_not_available": false,
       "radiation_therapy_dosage": 0,
+      "radiation_therapy_dosage_not_available": false,
       "anatomical_site_irradiated": "LEFT ABDOMEN",
       "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string",
@@ -1400,8 +1425,11 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "surgery_site": "string",
       "surgery_location": "Local recurrence",
       "tumour_length": 0,
+      "tumour_length_not_available": false,
       "tumour_width": 0,
+      "tumour_width_not_available": false,
       "greatest_dimension_tumour": 0,
+      "greatest_dimension_tumour_not_available": false,
       "tumour_focality": "Cannot be assessed",
       "residual_tumour_classification": "Not applicable",
       "margin_types_involved": [
@@ -2226,8 +2254,11 @@ uBooleanEnum
     "month_interval": 0
   },
   "psa_level": 0,
+  "psa_level_not_available": false,
   "ca125": 0,
+  "ca125_not_available": false,
   "cea": 0,
+  "cea_not_available": false,
   "er_status": "Cannot be determined",
   "er_percent_positive": 0,
   "pr_status": "Cannot be determined",
@@ -2360,6 +2391,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|psa_level_not_available|boolean|false|none|none|
 |ca125|any|false|none|none|
 
 anyOf
@@ -2378,6 +2410,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|ca125_not_available|boolean|false|none|none|
 |cea|any|false|none|none|
 
 anyOf
@@ -2396,6 +2429,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|cea_not_available|boolean|false|none|none|
 |er_status|any|false|none|none|
 
 anyOf
@@ -2747,7 +2781,9 @@ DrugReferenceDbEnum
 {
   "systemic_therapy_type": "string",
   "days_per_cycle": 0,
+  "days_per_cycle_not_available": false,
   "number_of_cycles": 0,
+  "number_of_cycles_not_available": false,
   "start_date": {},
   "end_date": {},
   "drug_reference_database": "RxNorm",
@@ -2755,7 +2791,9 @@ DrugReferenceDbEnum
   "drug_reference_identifier": "string",
   "drug_dose_units": "mg/m2",
   "prescribed_cumulative_drug_dose": 0,
+  "prescribed_cumulative_drug_dose_not_available": false,
   "actual_cumulative_drug_dose": 0,
+  "actual_cumulative_drug_dose_not_available": false,
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_treatment_id": "string",
@@ -2806,6 +2844,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|days_per_cycle_not_available|boolean|false|none|none|
 |number_of_cycles|any|false|none|none|
 
 anyOf
@@ -2824,6 +2863,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|number_of_cycles_not_available|boolean|false|none|none|
 |start_date|any|false|none|none|
 
 anyOf
@@ -2950,6 +2990,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|prescribed_cumulative_drug_dose_not_available|boolean|false|none|none|
 |actual_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -2968,6 +3009,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|actual_cumulative_drug_dose_not_available|boolean|false|none|none|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |submitter_treatment_id|string|true|none|none|
@@ -2997,6 +3039,7 @@ or
   "prior_malignancy": "Yes",
   "laterality_of_prior_malignancy": "Bilateral",
   "age_at_comorbidity_diagnosis": 0,
+  "age_at_comorbidity_diagnosis_not_available": false,
   "comorbidity_type_code": "string",
   "comorbidity_treatment_status": "Yes",
   "comorbidity_treatment": "string",
@@ -3067,6 +3110,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|age_at_comorbidity_diagnosis_not_available|boolean|false|none|none|
 |comorbidity_type_code|any|false|none|none|
 
 anyOf
@@ -3183,6 +3227,7 @@ MalignancyLateralityEnum
     "Chewing Tobacco"
   ],
   "pack_years_smoked": 0,
+  "pack_years_smoked_not_available": false,
   "program_id": "string",
   "submitter_donor_id": "string",
   "uuid": "string"
@@ -3250,6 +3295,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|pack_years_smoked_not_available|boolean|false|none|none|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |uuid|any|false|none|none|
@@ -4749,7 +4795,9 @@ RadiationAnatomicalSiteEnum
   "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
   "radiation_therapy_type": "External",
   "radiation_therapy_fractions": 0,
+  "radiation_therapy_fractions_not_available": false,
   "radiation_therapy_dosage": 0,
+  "radiation_therapy_dosage_not_available": false,
   "anatomical_site_irradiated": "LEFT ABDOMEN",
   "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string",
@@ -4821,6 +4869,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|radiation_therapy_fractions_not_available|boolean|false|none|none|
 |radiation_therapy_dosage|any|false|none|none|
 
 anyOf
@@ -4839,6 +4888,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|radiation_therapy_dosage_not_available|boolean|false|none|none|
 |anatomical_site_irradiated|any|false|none|none|
 
 anyOf
@@ -5922,8 +5972,11 @@ PerineuralInvasionEnum
   "surgery_site": "string",
   "surgery_location": "Local recurrence",
   "tumour_length": 0,
+  "tumour_length_not_available": false,
   "tumour_width": 0,
+  "tumour_width_not_available": false,
   "greatest_dimension_tumour": 0,
+  "greatest_dimension_tumour_not_available": false,
   "tumour_focality": "Cannot be assessed",
   "residual_tumour_classification": "Not applicable",
   "margin_types_involved": [
@@ -6025,6 +6078,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|tumour_length_not_available|boolean|false|none|none|
 |tumour_width|any|false|none|none|
 
 anyOf
@@ -6043,6 +6097,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|tumour_width_not_available|boolean|false|none|none|
 |greatest_dimension_tumour|any|false|none|none|
 
 anyOf
@@ -6061,6 +6116,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|greatest_dimension_tumour_not_available|boolean|false|none|none|
 |tumour_focality|any|false|none|none|
 
 anyOf
@@ -6846,7 +6902,9 @@ TreatmentTypeEnum
             {
               "systemic_therapy_type": "string",
               "days_per_cycle": 0,
+              "days_per_cycle_not_available": false,
               "number_of_cycles": 0,
+              "number_of_cycles_not_available": false,
               "start_date": {},
               "end_date": {},
               "drug_reference_database": "RxNorm",
@@ -6854,7 +6912,9 @@ TreatmentTypeEnum
               "drug_reference_identifier": "string",
               "drug_dose_units": "mg/m2",
               "prescribed_cumulative_drug_dose": 0,
-              "actual_cumulative_drug_dose": 0
+              "prescribed_cumulative_drug_dose_not_available": false,
+              "actual_cumulative_drug_dose": 0,
+              "actual_cumulative_drug_dose_not_available": false
             }
           ],
           "radiations": [
@@ -6862,7 +6922,9 @@ TreatmentTypeEnum
               "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
               "radiation_therapy_type": "External",
               "radiation_therapy_fractions": 0,
+              "radiation_therapy_fractions_not_available": false,
               "radiation_therapy_dosage": 0,
+              "radiation_therapy_dosage_not_available": false,
               "anatomical_site_irradiated": "LEFT ABDOMEN",
               "radiation_boost": "Yes",
               "reference_radiation_treatment_id": "string"
@@ -6874,8 +6936,11 @@ TreatmentTypeEnum
               "surgery_site": "string",
               "surgery_location": "Local recurrence",
               "tumour_length": 0,
+              "tumour_length_not_available": false,
               "tumour_width": 0,
+              "tumour_width_not_available": false,
               "greatest_dimension_tumour": 0,
+              "greatest_dimension_tumour_not_available": false,
               "tumour_focality": "Cannot be assessed",
               "residual_tumour_classification": "Not applicable",
               "margin_types_involved": [
@@ -6971,8 +7036,11 @@ TreatmentTypeEnum
         "month_interval": 0
       },
       "psa_level": 0,
+      "psa_level_not_available": false,
       "ca125": 0,
+      "ca125_not_available": false,
       "cea": 0,
+      "cea_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
       "pr_status": "Cannot be determined",
@@ -6992,7 +7060,8 @@ TreatmentTypeEnum
       "tobacco_type": [
         "Chewing Tobacco"
       ],
-      "pack_years_smoked": 0
+      "pack_years_smoked": 0,
+      "pack_years_smoked_not_available": false
     }
   ],
   "comorbidities": [
@@ -7000,6 +7069,7 @@ TreatmentTypeEnum
       "prior_malignancy": "Yes",
       "laterality_of_prior_malignancy": "Bilateral",
       "age_at_comorbidity_diagnosis": 0,
+      "age_at_comorbidity_diagnosis_not_available": false,
       "comorbidity_type_code": "string",
       "comorbidity_treatment_status": "Yes",
       "comorbidity_treatment": "string"
@@ -7221,8 +7291,11 @@ continued
     "month_interval": 0
   },
   "psa_level": 0,
+  "psa_level_not_available": false,
   "ca125": 0,
+  "ca125_not_available": false,
   "cea": 0,
+  "cea_not_available": false,
   "er_status": "Cannot be determined",
   "er_percent_positive": 0,
   "pr_status": "Cannot be determined",
@@ -7352,6 +7425,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|psa_level_not_available|boolean|false|none|none|
 |ca125|any|false|none|none|
 
 anyOf
@@ -7370,6 +7444,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|ca125_not_available|boolean|false|none|none|
 |cea|any|false|none|none|
 
 anyOf
@@ -7388,6 +7463,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|cea_not_available|boolean|false|none|none|
 |er_status|any|false|none|none|
 
 anyOf
@@ -7558,6 +7634,7 @@ or
   "prior_malignancy": "Yes",
   "laterality_of_prior_malignancy": "Bilateral",
   "age_at_comorbidity_diagnosis": 0,
+  "age_at_comorbidity_diagnosis_not_available": false,
   "comorbidity_type_code": "string",
   "comorbidity_treatment_status": "Yes",
   "comorbidity_treatment": "string"
@@ -7625,6 +7702,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|age_at_comorbidity_diagnosis_not_available|boolean|false|none|none|
 |comorbidity_type_code|any|false|none|none|
 
 anyOf
@@ -7688,7 +7766,8 @@ or
   "tobacco_type": [
     "Chewing Tobacco"
   ],
-  "pack_years_smoked": 0
+  "pack_years_smoked": 0,
+  "pack_years_smoked_not_available": false
 }
 
 ```
@@ -7748,6 +7827,12 @@ or
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|pack_years_smoked_not_available|boolean|false|none|none|
 
 <h2 id="tocS_NestedFollowUpSchema">NestedFollowUpSchema</h2>
 
@@ -7968,7 +8053,9 @@ or
         {
           "systemic_therapy_type": "string",
           "days_per_cycle": 0,
+          "days_per_cycle_not_available": false,
           "number_of_cycles": 0,
+          "number_of_cycles_not_available": false,
           "start_date": {},
           "end_date": {},
           "drug_reference_database": "RxNorm",
@@ -7976,7 +8063,9 @@ or
           "drug_reference_identifier": "string",
           "drug_dose_units": "mg/m2",
           "prescribed_cumulative_drug_dose": 0,
-          "actual_cumulative_drug_dose": 0
+          "prescribed_cumulative_drug_dose_not_available": false,
+          "actual_cumulative_drug_dose": 0,
+          "actual_cumulative_drug_dose_not_available": false
         }
       ],
       "radiations": [
@@ -7984,7 +8073,9 @@ or
           "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
           "radiation_therapy_type": "External",
           "radiation_therapy_fractions": 0,
+          "radiation_therapy_fractions_not_available": false,
           "radiation_therapy_dosage": 0,
+          "radiation_therapy_dosage_not_available": false,
           "anatomical_site_irradiated": "LEFT ABDOMEN",
           "radiation_boost": "Yes",
           "reference_radiation_treatment_id": "string"
@@ -7996,8 +8087,11 @@ or
           "surgery_site": "string",
           "surgery_location": "Local recurrence",
           "tumour_length": 0,
+          "tumour_length_not_available": false,
           "tumour_width": 0,
+          "tumour_width_not_available": false,
           "greatest_dimension_tumour": 0,
+          "greatest_dimension_tumour_not_available": false,
           "tumour_focality": "Cannot be assessed",
           "residual_tumour_classification": "Not applicable",
           "margin_types_involved": [
@@ -8356,7 +8450,9 @@ continued
   "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
   "radiation_therapy_type": "External",
   "radiation_therapy_fractions": 0,
+  "radiation_therapy_fractions_not_available": false,
   "radiation_therapy_dosage": 0,
+  "radiation_therapy_dosage_not_available": false,
   "anatomical_site_irradiated": "LEFT ABDOMEN",
   "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string"
@@ -8424,6 +8520,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|radiation_therapy_fractions_not_available|boolean|false|none|none|
 |radiation_therapy_dosage|any|false|none|none|
 
 anyOf
@@ -8442,6 +8539,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|radiation_therapy_dosage_not_available|boolean|false|none|none|
 |anatomical_site_irradiated|any|false|none|none|
 
 anyOf
@@ -8877,8 +8975,11 @@ continued
   "surgery_site": "string",
   "surgery_location": "Local recurrence",
   "tumour_length": 0,
+  "tumour_length_not_available": false,
   "tumour_width": 0,
+  "tumour_width_not_available": false,
   "greatest_dimension_tumour": 0,
+  "greatest_dimension_tumour_not_available": false,
   "tumour_focality": "Cannot be assessed",
   "residual_tumour_classification": "Not applicable",
   "margin_types_involved": [
@@ -8976,6 +9077,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|tumour_length_not_available|boolean|false|none|none|
 |tumour_width|any|false|none|none|
 
 anyOf
@@ -8994,6 +9096,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|tumour_width_not_available|boolean|false|none|none|
 |greatest_dimension_tumour|any|false|none|none|
 
 anyOf
@@ -9012,6 +9115,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|greatest_dimension_tumour_not_available|boolean|false|none|none|
 |tumour_focality|any|false|none|none|
 
 anyOf
@@ -9181,7 +9285,9 @@ or
 {
   "systemic_therapy_type": "string",
   "days_per_cycle": 0,
+  "days_per_cycle_not_available": false,
   "number_of_cycles": 0,
+  "number_of_cycles_not_available": false,
   "start_date": {},
   "end_date": {},
   "drug_reference_database": "RxNorm",
@@ -9189,7 +9295,9 @@ or
   "drug_reference_identifier": "string",
   "drug_dose_units": "mg/m2",
   "prescribed_cumulative_drug_dose": 0,
-  "actual_cumulative_drug_dose": 0
+  "prescribed_cumulative_drug_dose_not_available": false,
+  "actual_cumulative_drug_dose": 0,
+  "actual_cumulative_drug_dose_not_available": false
 }
 
 ```
@@ -9236,6 +9344,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|days_per_cycle_not_available|boolean|false|none|none|
 |number_of_cycles|any|false|none|none|
 
 anyOf
@@ -9254,6 +9363,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|number_of_cycles_not_available|boolean|false|none|none|
 |start_date|any|false|none|none|
 
 anyOf
@@ -9380,6 +9490,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|prescribed_cumulative_drug_dose_not_available|boolean|false|none|none|
 |actual_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -9393,6 +9504,12 @@ or
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|actual_cumulative_drug_dose_not_available|boolean|false|none|none|
 
 <h2 id="tocS_NestedTreatmentSchema">NestedTreatmentSchema</h2>
 
@@ -9424,7 +9541,9 @@ or
     {
       "systemic_therapy_type": "string",
       "days_per_cycle": 0,
+      "days_per_cycle_not_available": false,
       "number_of_cycles": 0,
+      "number_of_cycles_not_available": false,
       "start_date": {},
       "end_date": {},
       "drug_reference_database": "RxNorm",
@@ -9432,7 +9551,9 @@ or
       "drug_reference_identifier": "string",
       "drug_dose_units": "mg/m2",
       "prescribed_cumulative_drug_dose": 0,
-      "actual_cumulative_drug_dose": 0
+      "prescribed_cumulative_drug_dose_not_available": false,
+      "actual_cumulative_drug_dose": 0,
+      "actual_cumulative_drug_dose_not_available": false
     }
   ],
   "radiations": [
@@ -9440,7 +9561,9 @@ or
       "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
       "radiation_therapy_type": "External",
       "radiation_therapy_fractions": 0,
+      "radiation_therapy_fractions_not_available": false,
       "radiation_therapy_dosage": 0,
+      "radiation_therapy_dosage_not_available": false,
       "anatomical_site_irradiated": "LEFT ABDOMEN",
       "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string"
@@ -9452,8 +9575,11 @@ or
       "surgery_site": "string",
       "surgery_location": "Local recurrence",
       "tumour_length": 0,
+      "tumour_length_not_available": false,
       "tumour_width": 0,
+      "tumour_width_not_available": false,
       "greatest_dimension_tumour": 0,
+      "greatest_dimension_tumour_not_available": false,
       "tumour_focality": "Cannot be assessed",
       "residual_tumour_classification": "Not applicable",
       "margin_types_involved": [
@@ -11439,8 +11565,11 @@ continued
     "month_interval": 0
   },
   "psa_level": 0,
+  "psa_level_not_available": false,
   "ca125": 0,
+  "ca125_not_available": false,
   "cea": 0,
+  "cea_not_available": false,
   "er_status": "Cannot be determined",
   "er_percent_positive": 0,
   "pr_status": "Cannot be determined",
@@ -11572,6 +11701,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|psa_level_not_available|boolean|false|none|none|
 |ca125|any|false|none|none|
 
 anyOf
@@ -11590,6 +11720,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|ca125_not_available|boolean|false|none|none|
 |cea|any|false|none|none|
 
 anyOf
@@ -11608,6 +11739,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|cea_not_available|boolean|false|none|none|
 |er_status|any|false|none|none|
 
 anyOf
@@ -11793,8 +11925,11 @@ continued
         "month_interval": 0
       },
       "psa_level": 0,
+      "psa_level_not_available": false,
       "ca125": 0,
+      "ca125_not_available": false,
       "cea": 0,
+      "cea_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
       "pr_status": "Cannot be determined",
@@ -12130,7 +12265,9 @@ or
     {
       "systemic_therapy_type": "string",
       "days_per_cycle": 0,
+      "days_per_cycle_not_available": false,
       "number_of_cycles": 0,
+      "number_of_cycles_not_available": false,
       "start_date": {},
       "end_date": {},
       "drug_reference_database": "RxNorm",
@@ -12138,7 +12275,9 @@ or
       "drug_reference_identifier": "string",
       "drug_dose_units": "mg/m2",
       "prescribed_cumulative_drug_dose": 0,
+      "prescribed_cumulative_drug_dose_not_available": false,
       "actual_cumulative_drug_dose": 0,
+      "actual_cumulative_drug_dose_not_available": false,
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -12219,7 +12358,9 @@ or
 {
   "systemic_therapy_type": "string",
   "days_per_cycle": 0,
+  "days_per_cycle_not_available": false,
   "number_of_cycles": 0,
+  "number_of_cycles_not_available": false,
   "start_date": {},
   "end_date": {},
   "drug_reference_database": "RxNorm",
@@ -12227,7 +12368,9 @@ or
   "drug_reference_identifier": "string",
   "drug_dose_units": "mg/m2",
   "prescribed_cumulative_drug_dose": 0,
+  "prescribed_cumulative_drug_dose_not_available": false,
   "actual_cumulative_drug_dose": 0,
+  "actual_cumulative_drug_dose_not_available": false,
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_treatment_id": "string"
@@ -12277,6 +12420,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|days_per_cycle_not_available|boolean|false|none|none|
 |number_of_cycles|any|false|none|none|
 
 anyOf
@@ -12295,6 +12439,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|number_of_cycles_not_available|boolean|false|none|none|
 |start_date|any|false|none|none|
 
 anyOf
@@ -12421,6 +12566,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|prescribed_cumulative_drug_dose_not_available|boolean|false|none|none|
 |actual_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -12439,6 +12585,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|actual_cumulative_drug_dose_not_available|boolean|false|none|none|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |submitter_treatment_id|string|true|none|none|
@@ -12622,6 +12769,7 @@ or
   "prior_malignancy": "Yes",
   "laterality_of_prior_malignancy": "Bilateral",
   "age_at_comorbidity_diagnosis": 0,
+  "age_at_comorbidity_diagnosis_not_available": false,
   "comorbidity_type_code": "string",
   "comorbidity_treatment_status": "Yes",
   "comorbidity_treatment": "string",
@@ -12691,6 +12839,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|age_at_comorbidity_diagnosis_not_available|boolean|false|none|none|
 |comorbidity_type_code|any|false|none|none|
 
 anyOf
@@ -12762,6 +12911,7 @@ continued
       "prior_malignancy": "Yes",
       "laterality_of_prior_malignancy": "Bilateral",
       "age_at_comorbidity_diagnosis": 0,
+      "age_at_comorbidity_diagnosis_not_available": false,
       "comorbidity_type_code": "string",
       "comorbidity_treatment_status": "Yes",
       "comorbidity_treatment": "string",
@@ -12942,6 +13092,7 @@ or
     "Chewing Tobacco"
   ],
   "pack_years_smoked": 0,
+  "pack_years_smoked_not_available": false,
   "program_id": "string",
   "submitter_donor_id": "string"
 }
@@ -13008,6 +13159,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|pack_years_smoked_not_available|boolean|false|none|none|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 
@@ -13027,6 +13179,7 @@ continued
         "Chewing Tobacco"
       ],
       "pack_years_smoked": 0,
+      "pack_years_smoked_not_available": false,
       "program_id": "string",
       "submitter_donor_id": "string"
     }
@@ -13756,7 +13909,9 @@ or
       "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
       "radiation_therapy_type": "External",
       "radiation_therapy_fractions": 0,
+      "radiation_therapy_fractions_not_available": false,
       "radiation_therapy_dosage": 0,
+      "radiation_therapy_dosage_not_available": false,
       "anatomical_site_irradiated": "LEFT ABDOMEN",
       "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string",
@@ -13841,7 +13996,9 @@ or
   "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
   "radiation_therapy_type": "External",
   "radiation_therapy_fractions": 0,
+  "radiation_therapy_fractions_not_available": false,
   "radiation_therapy_dosage": 0,
+  "radiation_therapy_dosage_not_available": false,
   "anatomical_site_irradiated": "LEFT ABDOMEN",
   "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string",
@@ -13912,6 +14069,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|radiation_therapy_fractions_not_available|boolean|false|none|none|
 |radiation_therapy_dosage|any|false|none|none|
 
 anyOf
@@ -13930,6 +14088,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|radiation_therapy_dosage_not_available|boolean|false|none|none|
 |anatomical_site_irradiated|any|false|none|none|
 
 anyOf
@@ -15359,8 +15518,11 @@ or
       "surgery_site": "string",
       "surgery_location": "Local recurrence",
       "tumour_length": 0,
+      "tumour_length_not_available": false,
       "tumour_width": 0,
+      "tumour_width_not_available": false,
       "greatest_dimension_tumour": 0,
+      "greatest_dimension_tumour_not_available": false,
       "tumour_focality": "Cannot be assessed",
       "residual_tumour_classification": "Not applicable",
       "margin_types_involved": [
@@ -15458,8 +15620,11 @@ or
   "surgery_site": "string",
   "surgery_location": "Local recurrence",
   "tumour_length": 0,
+  "tumour_length_not_available": false,
   "tumour_width": 0,
+  "tumour_width_not_available": false,
   "greatest_dimension_tumour": 0,
+  "greatest_dimension_tumour_not_available": false,
   "tumour_focality": "Cannot be assessed",
   "residual_tumour_classification": "Not applicable",
   "margin_types_involved": [
@@ -15560,6 +15725,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|tumour_length_not_available|boolean|false|none|none|
 |tumour_width|any|false|none|none|
 
 anyOf
@@ -15578,6 +15744,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|tumour_width_not_available|boolean|false|none|none|
 |greatest_dimension_tumour|any|false|none|none|
 
 anyOf
@@ -15596,6 +15763,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|greatest_dimension_tumour_not_available|boolean|false|none|none|
 |tumour_focality|any|false|none|none|
 
 anyOf

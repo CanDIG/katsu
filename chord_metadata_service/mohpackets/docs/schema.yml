@@ -114,11 +114,19 @@ components:
           - type: integer
           - type: 'null'
           title: Ca125
+        ca125_not_available:
+          default: false
+          title: Ca125 Not Available
+          type: boolean
         cea:
           anyOf:
           - type: integer
           - type: 'null'
           title: Cea
+        cea_not_available:
+          default: false
+          title: Cea Not Available
+          type: boolean
         er_percent_positive:
           anyOf:
           - type: number
@@ -168,6 +176,10 @@ components:
           - type: integer
           - type: 'null'
           title: Psa Level
+        psa_level_not_available:
+          default: false
+          title: Psa Level Not Available
+          type: boolean
         submitter_donor_id:
           title: Submitter Donor Id
           type: string
@@ -216,11 +228,19 @@ components:
           - type: integer
           - type: 'null'
           title: Ca125
+        ca125_not_available:
+          default: false
+          title: Ca125 Not Available
+          type: boolean
         cea:
           anyOf:
           - type: integer
           - type: 'null'
           title: Cea
+        cea_not_available:
+          default: false
+          title: Cea Not Available
+          type: boolean
         er_percent_positive:
           anyOf:
           - type: number
@@ -270,6 +290,10 @@ components:
           - type: integer
           - type: 'null'
           title: Psa Level
+        psa_level_not_available:
+          default: false
+          title: Psa Level Not Available
+          type: boolean
         submitter_donor_id:
           title: Submitter Donor Id
           type: string
@@ -373,6 +397,10 @@ components:
           - type: integer
           - type: 'null'
           title: Age At Comorbidity Diagnosis
+        age_at_comorbidity_diagnosis_not_available:
+          default: false
+          title: Age At Comorbidity Diagnosis Not Available
+          type: boolean
         comorbidity_treatment:
           anyOf:
           - maxLength: 255
@@ -421,6 +449,10 @@ components:
           - type: integer
           - type: 'null'
           title: Age At Comorbidity Diagnosis
+        age_at_comorbidity_diagnosis_not_available:
+          default: false
+          title: Age At Comorbidity Diagnosis Not Available
+          type: boolean
         comorbidity_treatment:
           anyOf:
           - maxLength: 255
@@ -906,6 +938,10 @@ components:
           - type: number
           - type: 'null'
           title: Pack Years Smoked
+        pack_years_smoked_not_available:
+          default: false
+          title: Pack Years Smoked Not Available
+          type: boolean
         program_id:
           title: Program Id
           type: string
@@ -940,6 +976,10 @@ components:
           - type: number
           - type: 'null'
           title: Pack Years Smoked
+        pack_years_smoked_not_available:
+          default: false
+          title: Pack Years Smoked Not Available
+          type: boolean
         program_id:
           title: Program Id
           type: string
@@ -1302,11 +1342,19 @@ components:
           - type: integer
           - type: 'null'
           title: Ca125
+        ca125_not_available:
+          default: false
+          title: Ca125 Not Available
+          type: boolean
         cea:
           anyOf:
           - type: integer
           - type: 'null'
           title: Cea
+        cea_not_available:
+          default: false
+          title: Cea Not Available
+          type: boolean
         er_percent_positive:
           anyOf:
           - type: number
@@ -1353,6 +1401,10 @@ components:
           - type: integer
           - type: 'null'
           title: Psa Level
+        psa_level_not_available:
+          default: false
+          title: Psa Level Not Available
+          type: boolean
         submitter_follow_up_id:
           anyOf:
           - maxLength: 64
@@ -1390,6 +1442,10 @@ components:
           - type: integer
           - type: 'null'
           title: Age At Comorbidity Diagnosis
+        age_at_comorbidity_diagnosis_not_available:
+          default: false
+          title: Age At Comorbidity Diagnosis Not Available
+          type: boolean
         comorbidity_treatment:
           anyOf:
           - maxLength: 255
@@ -1424,6 +1480,10 @@ components:
           - type: number
           - type: 'null'
           title: Pack Years Smoked
+        pack_years_smoked_not_available:
+          default: false
+          title: Pack Years Smoked Not Available
+          type: boolean
         tobacco_smoking_status:
           anyOf:
           - $ref: '#/components/schemas/SmokingStatusEnum'
@@ -1581,11 +1641,19 @@ components:
           - type: integer
           - type: 'null'
           title: Radiation Therapy Dosage
+        radiation_therapy_dosage_not_available:
+          default: false
+          title: Radiation Therapy Dosage Not Available
+          type: boolean
         radiation_therapy_fractions:
           anyOf:
           - type: integer
           - type: 'null'
           title: Radiation Therapy Fractions
+        radiation_therapy_fractions_not_available:
+          default: false
+          title: Radiation Therapy Fractions Not Available
+          type: boolean
         radiation_therapy_modality:
           anyOf:
           - $ref: '#/components/schemas/RadiationTherapyModalityEnum'
@@ -1713,6 +1781,10 @@ components:
           - type: integer
           - type: 'null'
           title: Greatest Dimension Tumour
+        greatest_dimension_tumour_not_available:
+          default: false
+          title: Greatest Dimension Tumour Not Available
+          type: boolean
         lymphovascular_invasion:
           anyOf:
           - $ref: '#/components/schemas/LymphovascularInvasionEnum'
@@ -1782,11 +1854,19 @@ components:
           - type: integer
           - type: 'null'
           title: Tumour Length
+        tumour_length_not_available:
+          default: false
+          title: Tumour Length Not Available
+          type: boolean
         tumour_width:
           anyOf:
           - type: integer
           - type: 'null'
           title: Tumour Width
+        tumour_width_not_available:
+          default: false
+          title: Tumour Width Not Available
+          type: boolean
       title: NestedSurgerySchema
       type: object
     NestedSystemicTherapySchema:
@@ -1796,11 +1876,19 @@ components:
           - type: number
           - type: 'null'
           title: Actual Cumulative Drug Dose
+        actual_cumulative_drug_dose_not_available:
+          default: false
+          title: Actual Cumulative Drug Dose Not Available
+          type: boolean
         days_per_cycle:
           anyOf:
           - type: integer
           - type: 'null'
           title: Days Per Cycle
+        days_per_cycle_not_available:
+          default: false
+          title: Days Per Cycle Not Available
+          type: boolean
         drug_dose_units:
           anyOf:
           - $ref: '#/components/schemas/DosageUnitsEnum'
@@ -1831,11 +1919,19 @@ components:
           - type: integer
           - type: 'null'
           title: Number Of Cycles
+        number_of_cycles_not_available:
+          default: false
+          title: Number Of Cycles Not Available
+          type: boolean
         prescribed_cumulative_drug_dose:
           anyOf:
           - type: number
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
+        prescribed_cumulative_drug_dose_not_available:
+          default: false
+          title: Prescribed Cumulative Drug Dose Not Available
+          type: boolean
         start_date:
           anyOf:
           - type: object
@@ -3095,11 +3191,19 @@ components:
           - type: integer
           - type: 'null'
           title: Radiation Therapy Dosage
+        radiation_therapy_dosage_not_available:
+          default: false
+          title: Radiation Therapy Dosage Not Available
+          type: boolean
         radiation_therapy_fractions:
           anyOf:
           - type: integer
           - type: 'null'
           title: Radiation Therapy Fractions
+        radiation_therapy_fractions_not_available:
+          default: false
+          title: Radiation Therapy Fractions Not Available
+          type: boolean
         radiation_therapy_modality:
           anyOf:
           - $ref: '#/components/schemas/RadiationTherapyModalityEnum'
@@ -3149,11 +3253,19 @@ components:
           - type: integer
           - type: 'null'
           title: Radiation Therapy Dosage
+        radiation_therapy_dosage_not_available:
+          default: false
+          title: Radiation Therapy Dosage Not Available
+          type: boolean
         radiation_therapy_fractions:
           anyOf:
           - type: integer
           - type: 'null'
           title: Radiation Therapy Fractions
+        radiation_therapy_fractions_not_available:
+          default: false
+          title: Radiation Therapy Fractions Not Available
+          type: boolean
         radiation_therapy_modality:
           anyOf:
           - $ref: '#/components/schemas/RadiationTherapyModalityEnum'
@@ -3919,6 +4031,10 @@ components:
           - type: integer
           - type: 'null'
           title: Greatest Dimension Tumour
+        greatest_dimension_tumour_not_available:
+          default: false
+          title: Greatest Dimension Tumour Not Available
+          type: boolean
         lymphovascular_invasion:
           anyOf:
           - $ref: '#/components/schemas/LymphovascularInvasionEnum'
@@ -3997,11 +4113,19 @@ components:
           - type: integer
           - type: 'null'
           title: Tumour Length
+        tumour_length_not_available:
+          default: false
+          title: Tumour Length Not Available
+          type: boolean
         tumour_width:
           anyOf:
           - type: integer
           - type: 'null'
           title: Tumour Width
+        tumour_width_not_available:
+          default: false
+          title: Tumour Width Not Available
+          type: boolean
         uuid:
           anyOf:
           - type: string
@@ -4027,6 +4151,10 @@ components:
           - type: integer
           - type: 'null'
           title: Greatest Dimension Tumour
+        greatest_dimension_tumour_not_available:
+          default: false
+          title: Greatest Dimension Tumour Not Available
+          type: boolean
         lymphovascular_invasion:
           anyOf:
           - $ref: '#/components/schemas/LymphovascularInvasionEnum'
@@ -4105,11 +4233,19 @@ components:
           - type: integer
           - type: 'null'
           title: Tumour Length
+        tumour_length_not_available:
+          default: false
+          title: Tumour Length Not Available
+          type: boolean
         tumour_width:
           anyOf:
           - type: integer
           - type: 'null'
           title: Tumour Width
+        tumour_width_not_available:
+          default: false
+          title: Tumour Width Not Available
+          type: boolean
       required:
       - program_id
       - submitter_donor_id
@@ -4195,11 +4331,19 @@ components:
           - type: number
           - type: 'null'
           title: Actual Cumulative Drug Dose
+        actual_cumulative_drug_dose_not_available:
+          default: false
+          title: Actual Cumulative Drug Dose Not Available
+          type: boolean
         days_per_cycle:
           anyOf:
           - type: integer
           - type: 'null'
           title: Days Per Cycle
+        days_per_cycle_not_available:
+          default: false
+          title: Days Per Cycle Not Available
+          type: boolean
         drug_dose_units:
           anyOf:
           - $ref: '#/components/schemas/DosageUnitsEnum'
@@ -4230,11 +4374,19 @@ components:
           - type: integer
           - type: 'null'
           title: Number Of Cycles
+        number_of_cycles_not_available:
+          default: false
+          title: Number Of Cycles Not Available
+          type: boolean
         prescribed_cumulative_drug_dose:
           anyOf:
           - type: number
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
+        prescribed_cumulative_drug_dose_not_available:
+          default: false
+          title: Prescribed Cumulative Drug Dose Not Available
+          type: boolean
         program_id:
           title: Program Id
           type: string
@@ -4273,11 +4425,19 @@ components:
           - type: number
           - type: 'null'
           title: Actual Cumulative Drug Dose
+        actual_cumulative_drug_dose_not_available:
+          default: false
+          title: Actual Cumulative Drug Dose Not Available
+          type: boolean
         days_per_cycle:
           anyOf:
           - type: integer
           - type: 'null'
           title: Days Per Cycle
+        days_per_cycle_not_available:
+          default: false
+          title: Days Per Cycle Not Available
+          type: boolean
         drug_dose_units:
           anyOf:
           - $ref: '#/components/schemas/DosageUnitsEnum'
@@ -4308,11 +4468,19 @@ components:
           - type: integer
           - type: 'null'
           title: Number Of Cycles
+        number_of_cycles_not_available:
+          default: false
+          title: Number Of Cycles Not Available
+          type: boolean
         prescribed_cumulative_drug_dose:
           anyOf:
           - type: number
           - type: 'null'
           title: Prescribed Cumulative Drug Dose
+        prescribed_cumulative_drug_dose_not_available:
+          default: false
+          title: Prescribed Cumulative Drug Dose Not Available
+          type: boolean
         program_id:
           title: Program Id
           type: string
