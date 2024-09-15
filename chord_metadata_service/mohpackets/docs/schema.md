@@ -1837,7 +1837,7 @@ CauseOfDeathEnum
 |---|---|
 |CauseOfDeathEnum|Died of cancer|
 |CauseOfDeathEnum|Died of other reasons|
-|CauseOfDeathEnum|Not Available|
+|CauseOfDeathEnum|Not available|
 
 <h2 id="tocS_DateInterval">DateInterval</h2>
 
@@ -2146,7 +2146,7 @@ GenderEnum
 |GenderEnum|Non-binary|
 |GenderEnum|Other|
 |GenderEnum|Prefer not to disclose|
-|GenderEnum|Not Available|
+|GenderEnum|Not available|
 
 <h2 id="tocS_LostToFollowupReasonEnum">LostToFollowupReasonEnum</h2>
 
@@ -2175,7 +2175,7 @@ LostToFollowupReasonEnum
 |LostToFollowupReasonEnum|Completed study|
 |LostToFollowupReasonEnum|Discharged to palliative care|
 |LostToFollowupReasonEnum|Lost contact|
-|LostToFollowupReasonEnum|Not Available|
+|LostToFollowupReasonEnum|Not available|
 |LostToFollowupReasonEnum|Withdrew from study|
 |LostToFollowupReasonEnum|Discharged from follow-up|
 
@@ -2206,7 +2206,7 @@ SexAtBirthEnum
 |SexAtBirthEnum|Male|
 |SexAtBirthEnum|Female|
 |SexAtBirthEnum|Other|
-|SexAtBirthEnum|Not Available|
+|SexAtBirthEnum|Not available|
 
 <h2 id="tocS_uBooleanEnum">uBooleanEnum</h2>
 
@@ -2234,7 +2234,7 @@ uBooleanEnum
 |---|---|
 |uBooleanEnum|Yes|
 |uBooleanEnum|No|
-|uBooleanEnum|Not Available|
+|uBooleanEnum|Not available|
 
 <h2 id="tocS_BiomarkerIngestSchema">BiomarkerIngestSchema</h2>
 
@@ -2636,7 +2636,7 @@ ErPrHpvStatusEnum
 |ErPrHpvStatusEnum|Negative|
 |ErPrHpvStatusEnum|Not applicable|
 |ErPrHpvStatusEnum|Positive|
-|ErPrHpvStatusEnum|Not Available|
+|ErPrHpvStatusEnum|Not available|
 
 <h2 id="tocS_Her2StatusEnum">Her2StatusEnum</h2>
 
@@ -2667,7 +2667,7 @@ Her2StatusEnum
 |Her2StatusEnum|Positive|
 |Her2StatusEnum|Negative|
 |Her2StatusEnum|Not applicable|
-|Her2StatusEnum|Not Available|
+|Her2StatusEnum|Not available|
 
 <h2 id="tocS_HpvStrainEnum">HpvStrainEnum</h2>
 
@@ -2740,7 +2740,7 @@ DosageUnitsEnum
 |DosageUnitsEnum|g/m2|
 |DosageUnitsEnum|mg/kg|
 |DosageUnitsEnum|cells/kg|
-|DosageUnitsEnum|Not Available|
+|DosageUnitsEnum|Not available|
 
 <h2 id="tocS_DrugReferenceDbEnum">DrugReferenceDbEnum</h2>
 
@@ -3211,7 +3211,7 @@ MalignancyLateralityEnum
 |MalignancyLateralityEnum|Not applicable|
 |MalignancyLateralityEnum|Right|
 |MalignancyLateralityEnum|Unilateral, Side not specified|
-|MalignancyLateralityEnum|Not Available|
+|MalignancyLateralityEnum|Not available|
 
 <h2 id="tocS_ExposureIngestSchema">ExposureIngestSchema</h2>
 
@@ -3342,7 +3342,7 @@ SmokingStatusEnum
 |SmokingStatusEnum|Current smoker|
 |SmokingStatusEnum|Lifelong non-smoker (<100 cigarettes smoked in lifetime)|
 |SmokingStatusEnum|Not applicable|
-|SmokingStatusEnum|Not Available|
+|SmokingStatusEnum|Not available|
 
 <h2 id="tocS_TobaccoTypeEnum">TobaccoTypeEnum</h2>
 
@@ -3376,7 +3376,7 @@ TobaccoTypeEnum
 |TobaccoTypeEnum|Pipe|
 |TobaccoTypeEnum|Roll-ups|
 |TobaccoTypeEnum|Snuff|
-|TobaccoTypeEnum|Not Available|
+|TobaccoTypeEnum|Not available|
 |TobaccoTypeEnum|Waterpipe|
 
 <h2 id="tocS_DiseaseStatusFollowupEnum">DiseaseStatusFollowupEnum</h2>
@@ -3411,7 +3411,7 @@ DiseaseStatusFollowupEnum
 |DiseaseStatusFollowupEnum|Progression not otherwise specified|
 |DiseaseStatusFollowupEnum|Relapse or recurrence|
 |DiseaseStatusFollowupEnum|Stable|
-|DiseaseStatusFollowupEnum|Not Available|
+|DiseaseStatusFollowupEnum|Not available|
 
 <h2 id="tocS_FollowUpIngestSchema">FollowUpIngestSchema</h2>
 
@@ -3675,7 +3675,7 @@ RelapseTypeEnum
 |RelapseTypeEnum|Local recurrence and distant metastasis|
 |RelapseTypeEnum|Progression|
 |RelapseTypeEnum|Biochemical progression|
-|RelapseTypeEnum|Not Available|
+|RelapseTypeEnum|Not available|
 
 <h2 id="tocS_BasisOfDiagnosisEnum">BasisOfDiagnosisEnum</h2>
 
@@ -3708,7 +3708,7 @@ BasisOfDiagnosisEnum
 |BasisOfDiagnosisEnum|Histology of a metastasis|
 |BasisOfDiagnosisEnum|Histology of a primary tumour|
 |BasisOfDiagnosisEnum|Specific tumour markers|
-|BasisOfDiagnosisEnum|Not Available|
+|BasisOfDiagnosisEnum|Not available|
 
 <h2 id="tocS_MCategoryEnum">MCategoryEnum</h2>
 
@@ -4161,7 +4161,7 @@ PrimaryDiagnosisLateralityEnum
 |PrimaryDiagnosisLateralityEnum|Not a paired site|
 |PrimaryDiagnosisLateralityEnum|Right|
 |PrimaryDiagnosisLateralityEnum|Unilateral, side not specified|
-|PrimaryDiagnosisLateralityEnum|Not Available|
+|PrimaryDiagnosisLateralityEnum|Not available|
 
 <h2 id="tocS_PrimarySiteEnum">PrimarySiteEnum</h2>
 
@@ -4257,7 +4257,7 @@ PrimarySiteEnum
 |PrimarySiteEnum|Vagina|
 |PrimarySiteEnum|Vulva|
 |PrimarySiteEnum|Unknown primary site|
-|PrimarySiteEnum|Not Available|
+|PrimarySiteEnum|Not available|
 
 <h2 id="tocS_StageGroupEnum">StageGroupEnum</h2>
 
@@ -4378,7 +4378,7 @@ StageGroupEnum
 |StageGroupEnum|Stage 4|
 |StageGroupEnum|Stage 4S|
 |StageGroupEnum|Occult Carcinoma|
-|StageGroupEnum|Not Available|
+|StageGroupEnum|Not available|
 
 <h2 id="tocS_TCategoryEnum">TCategoryEnum</h2>
 
@@ -4495,7 +4495,7 @@ TumourStagingSystemEnum
 |TumourStagingSystemEnum|Revised International staging system (RISS)|
 |TumourStagingSystemEnum|SEER staging system|
 |TumourStagingSystemEnum|St Jude staging system|
-|TumourStagingSystemEnum|Not Available|
+|TumourStagingSystemEnum|Not available|
 
 <h2 id="tocS_RadiationAnatomicalSiteEnum">RadiationAnatomicalSiteEnum</h2>
 
@@ -4781,7 +4781,7 @@ RadiationAnatomicalSiteEnum
 |RadiationAnatomicalSiteEnum|SKIN|
 |RadiationAnatomicalSiteEnum|SPINE|
 |RadiationAnatomicalSiteEnum|UPPER LIMB|
-|RadiationAnatomicalSiteEnum|Not Available|
+|RadiationAnatomicalSiteEnum|Not available|
 
 <h2 id="tocS_RadiationIngestSchema">RadiationIngestSchema</h2>
 
@@ -4991,7 +4991,7 @@ RadiationTherapyModalityEnum
 |RadiationTherapyModalityEnum|Teleradiotherapy neutrons (procedure)|
 |RadiationTherapyModalityEnum|Brachytherapy (procedure)|
 |RadiationTherapyModalityEnum|Other|
-|RadiationTherapyModalityEnum|Not Available|
+|RadiationTherapyModalityEnum|Not available|
 
 <h2 id="tocS_TherapyTypeEnum">TherapyTypeEnum</h2>
 
@@ -5019,7 +5019,7 @@ TherapyTypeEnum
 |---|---|
 |TherapyTypeEnum|External|
 |TherapyTypeEnum|Internal|
-|TherapyTypeEnum|Not Available|
+|TherapyTypeEnum|Not available|
 
 <h2 id="tocS_SampleRegistrationIngestSchema">SampleRegistrationIngestSchema</h2>
 
@@ -5331,7 +5331,7 @@ CellsMeasureMethodEnum
 |CellsMeasureMethodEnum|Image analysis|
 |CellsMeasureMethodEnum|Pathology estimate by percent nuclei|
 |CellsMeasureMethodEnum|Other|
-|CellsMeasureMethodEnum|Not Available|
+|CellsMeasureMethodEnum|Not available|
 
 <h2 id="tocS_ConfirmedDiagnosisTumourEnum">ConfirmedDiagnosisTumourEnum</h2>
 
@@ -5360,7 +5360,7 @@ ConfirmedDiagnosisTumourEnum
 |ConfirmedDiagnosisTumourEnum|Yes|
 |ConfirmedDiagnosisTumourEnum|No|
 |ConfirmedDiagnosisTumourEnum|Not done|
-|ConfirmedDiagnosisTumourEnum|Not Available|
+|ConfirmedDiagnosisTumourEnum|Not available|
 
 <h2 id="tocS_PercentCellsRangeEnum">PercentCellsRangeEnum</h2>
 
@@ -5389,7 +5389,7 @@ PercentCellsRangeEnum
 |PercentCellsRangeEnum|0-19%|
 |PercentCellsRangeEnum|20-50%|
 |PercentCellsRangeEnum|51-100%|
-|PercentCellsRangeEnum|Not Available|
+|PercentCellsRangeEnum|Not available|
 
 <h2 id="tocS_SpecimenIngestSchema">SpecimenIngestSchema</h2>
 
@@ -5707,7 +5707,7 @@ SpecimenLateralityEnum
 |SpecimenLateralityEnum|Left|
 |SpecimenLateralityEnum|Not applicable|
 |SpecimenLateralityEnum|Right|
-|SpecimenLateralityEnum|Not Available|
+|SpecimenLateralityEnum|Not available|
 
 <h2 id="tocS_SpecimenProcessingEnum">SpecimenProcessingEnum</h2>
 
@@ -5742,7 +5742,7 @@ SpecimenProcessingEnum
 |SpecimenProcessingEnum|Formalin fixed - unbuffered|
 |SpecimenProcessingEnum|Fresh|
 |SpecimenProcessingEnum|Other|
-|SpecimenProcessingEnum|Not Available|
+|SpecimenProcessingEnum|Not available|
 
 <h2 id="tocS_StorageEnum">StorageEnum</h2>
 
@@ -5777,7 +5777,7 @@ StorageEnum
 |StorageEnum|Other|
 |StorageEnum|Paraffin block|
 |StorageEnum|RNA later frozen|
-|StorageEnum|Not Available|
+|StorageEnum|Not available|
 
 <h2 id="tocS_TumourGradeEnum">TumourGradeEnum</h2>
 
@@ -5825,7 +5825,7 @@ TumourGradeEnum
 |TumourGradeEnum|Grade Group 3|
 |TumourGradeEnum|Grade Group 4|
 |TumourGradeEnum|Grade Group 5|
-|TumourGradeEnum|Not Available|
+|TumourGradeEnum|Not available|
 
 <h2 id="tocS_TumourGradingSystemEnum">TumourGradingSystemEnum</h2>
 
@@ -5864,7 +5864,7 @@ TumourGradingSystemEnum
 |TumourGradingSystemEnum|Three-tier grading system|
 |TumourGradingSystemEnum|Two-tier grading system|
 |TumourGradingSystemEnum|WHO grading system for CNS tumours|
-|TumourGradingSystemEnum|Not Available|
+|TumourGradingSystemEnum|Not available|
 
 <h2 id="tocS_LymphovascularInvasionEnum">LymphovascularInvasionEnum</h2>
 
@@ -5896,7 +5896,7 @@ LymphovascularInvasionEnum
 |LymphovascularInvasionEnum|Not applicable|
 |LymphovascularInvasionEnum|Present|
 |LymphovascularInvasionEnum|Venous (large vessel) invasion only|
-|LymphovascularInvasionEnum|Not Available|
+|LymphovascularInvasionEnum|Not available|
 
 <h2 id="tocS_MarginTypesEnum">MarginTypesEnum</h2>
 
@@ -5927,7 +5927,7 @@ MarginTypesEnum
 |MarginTypesEnum|Distal margin|
 |MarginTypesEnum|Not applicable|
 |MarginTypesEnum|Proximal margin|
-|MarginTypesEnum|Not Available|
+|MarginTypesEnum|Not available|
 
 <h2 id="tocS_PerineuralInvasionEnum">PerineuralInvasionEnum</h2>
 
@@ -5957,7 +5957,7 @@ PerineuralInvasionEnum
 |PerineuralInvasionEnum|Cannot be assessed|
 |PerineuralInvasionEnum|Not applicable|
 |PerineuralInvasionEnum|Present|
-|PerineuralInvasionEnum|Not Available|
+|PerineuralInvasionEnum|Not available|
 
 <h2 id="tocS_SurgeryIngestSchema">SurgeryIngestSchema</h2>
 
@@ -6382,7 +6382,7 @@ TumourClassificationEnum
 |TumourClassificationEnum|R0|
 |TumourClassificationEnum|R1|
 |TumourClassificationEnum|R2|
-|TumourClassificationEnum|Not Available|
+|TumourClassificationEnum|Not available|
 
 <h2 id="tocS_TumourFocalityEnum">TumourFocalityEnum</h2>
 
@@ -6412,7 +6412,7 @@ TumourFocalityEnum
 |TumourFocalityEnum|Multifocal|
 |TumourFocalityEnum|Not applicable|
 |TumourFocalityEnum|Unifocal|
-|TumourFocalityEnum|Not Available|
+|TumourFocalityEnum|Not available|
 
 <h2 id="tocS_TreatmentIngestSchema">TreatmentIngestSchema</h2>
 
@@ -6648,7 +6648,7 @@ TreatmentIntentEnum
 |TreatmentIntentEnum|Guidance|
 |TreatmentIntentEnum|Screening|
 |TreatmentIntentEnum|Forensic|
-|TreatmentIntentEnum|Not Available|
+|TreatmentIntentEnum|Not available|
 
 <h2 id="tocS_TreatmentResponseEnum">TreatmentResponseEnum</h2>
 
@@ -6697,7 +6697,7 @@ TreatmentResponseEnum
 |TreatmentResponseEnum|Physician assessed stable disease|
 |TreatmentResponseEnum|No evidence of disease (NED)|
 |TreatmentResponseEnum|Major response|
-|TreatmentResponseEnum|Not Available|
+|TreatmentResponseEnum|Not available|
 
 <h2 id="tocS_TreatmentResponseMethodEnum">TreatmentResponseMethodEnum</h2>
 
@@ -6730,7 +6730,7 @@ TreatmentResponseMethodEnum
 |TreatmentResponseMethodEnum|AML Response Criteria|
 |TreatmentResponseMethodEnum|Physician Assessed Response Criteria|
 |TreatmentResponseMethodEnum|Blazer score|
-|TreatmentResponseMethodEnum|Not Available|
+|TreatmentResponseMethodEnum|Not available|
 
 <h2 id="tocS_TreatmentStatusEnum">TreatmentStatusEnum</h2>
 
@@ -6765,7 +6765,7 @@ TreatmentStatusEnum
 |TreatmentStatusEnum|Treatment stopped due to acute toxicity|
 |TreatmentStatusEnum|Treatment ongoing|
 |TreatmentStatusEnum|Other|
-|TreatmentStatusEnum|Not Available|
+|TreatmentStatusEnum|Not available|
 
 <h2 id="tocS_TreatmentTypeEnum">TreatmentTypeEnum</h2>
 
