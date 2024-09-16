@@ -5376,6 +5376,62 @@ paths:
       summary: List Donors
       tags:
       - authorized
+  /v3/explorer/query/:
+    get:
+      description: 'Returns a list of donors with their sample IDs, treatment types,
+        age, and primary site.
+
+        This endpoint is called by the query service and bypasses user authorization.'
+      operationId: chord_metadata_service_mohpackets_apis_explorer_explorer_donor
+      parameters:
+      - in: query
+        name: treatment_type
+        required: false
+        schema:
+          items:
+            type: string
+          q: treatment_type__overlap
+          title: Treatment Type
+          type: array
+      - in: query
+        name: primary_site
+        required: false
+        schema:
+          items:
+            type: string
+          title: Primary Site
+          type: array
+      - in: query
+        name: systemic_therapy_drug_name
+        required: false
+        schema:
+          items:
+            type: string
+          title: Systemic Therapy Drug Name
+          type: array
+      - in: query
+        name: exclude_cohorts
+        required: false
+        schema:
+          items:
+            type: string
+          title: Exclude Cohorts
+          type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PagedDonorModelSchema'
+                title: Response
+                type: array
+          description: OK
+      security:
+      - ServiceTokenAuth: []
+      summary: Explorer Donor
+      tags:
+      - explorer
   /v3/authorized/exposures/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_exposures
