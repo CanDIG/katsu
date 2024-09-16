@@ -9,7 +9,7 @@ components:
       - Histology of a metastasis
       - Histology of a primary tumour
       - Specific tumour markers
-      - Not Available
+      - Not available
       title: BasisOfDiagnosisEnum
       type: string
     BiomarkerFilterSchema:
@@ -334,7 +334,7 @@ components:
       enum:
       - Died of cancer
       - Died of other reasons
-      - Not Available
+      - Not available
       title: CauseOfDeathEnum
       type: string
     CellsMeasureMethodEnum:
@@ -343,7 +343,7 @@ components:
       - Image analysis
       - Pathology estimate by percent nuclei
       - Other
-      - Not Available
+      - Not available
       title: CellsMeasureMethodEnum
       type: string
     ComorbidityFilterSchema:
@@ -414,7 +414,7 @@ components:
         comorbidity_type_code:
           anyOf:
           - maxLength: 64
-            pattern: ^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not Available$
+            pattern: ^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$
             type: string
           - type: 'null'
           title: Comorbidity Type Code
@@ -466,7 +466,7 @@ components:
         comorbidity_type_code:
           anyOf:
           - maxLength: 64
-            pattern: ^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not Available$
+            pattern: ^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$
             type: string
           - type: 'null'
           title: Comorbidity Type Code
@@ -494,7 +494,7 @@ components:
       - 'Yes'
       - 'No'
       - Not done
-      - Not Available
+      - Not available
       title: ConfirmedDiagnosisTumourEnum
       type: string
     DateInterval:
@@ -549,7 +549,7 @@ components:
       - Progression not otherwise specified
       - Relapse or recurrence
       - Stable
-      - Not Available
+      - Not available
       title: DiseaseStatusFollowupEnum
       type: string
     DonorExplorerFilterSchema:
@@ -882,7 +882,7 @@ components:
       - g/m2
       - mg/kg
       - cells/kg
-      - Not Available
+      - Not available
       title: DosageUnitsEnum
       type: string
     DrugReferenceDbEnum:
@@ -898,7 +898,7 @@ components:
       - Negative
       - Not applicable
       - Positive
-      - Not Available
+      - Not available
       title: ErPrHpvStatusEnum
       type: string
     ExposureFilterSchema:
@@ -1198,7 +1198,7 @@ components:
       - Non-binary
       - Other
       - Prefer not to disclose
-      - Not Available
+      - Not available
       title: GenderEnum
       type: string
     Her2StatusEnum:
@@ -1208,7 +1208,7 @@ components:
       - Positive
       - Negative
       - Not applicable
-      - Not Available
+      - Not available
       title: Her2StatusEnum
       type: string
     HpvStrainEnum:
@@ -1247,7 +1247,7 @@ components:
       - Completed study
       - Discharged to palliative care
       - Lost contact
-      - Not Available
+      - Not available
       - Withdrew from study
       - Discharged from follow-up
       title: LostToFollowupReasonEnum
@@ -1260,7 +1260,7 @@ components:
       - Not applicable
       - Present
       - Venous (large vessel) invasion only
-      - Not Available
+      - Not available
       title: LymphovascularInvasionEnum
       type: string
     MCategoryEnum:
@@ -1292,7 +1292,7 @@ components:
       - Not applicable
       - Right
       - Unilateral, Side not specified
-      - Not Available
+      - Not available
       title: MalignancyLateralityEnum
       type: string
     MarginTypesEnum:
@@ -1302,7 +1302,7 @@ components:
       - Distal margin
       - Not applicable
       - Proximal margin
-      - Not Available
+      - Not available
       title: MarginTypesEnum
       type: string
     NCategoryEnum:
@@ -1459,7 +1459,7 @@ components:
         comorbidity_type_code:
           anyOf:
           - maxLength: 64
-            pattern: ^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not Available$
+            pattern: ^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$
             type: string
           - type: 'null'
           title: Comorbidity Type Code
@@ -1723,7 +1723,7 @@ components:
         specimen_anatomic_location:
           anyOf:
           - maxLength: 32
-            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not Available$
+            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not available$
             type: string
           - type: 'null'
           title: Specimen Anatomic Location
@@ -1766,7 +1766,7 @@ components:
         tumour_histological_type:
           anyOf:
           - maxLength: 128
-            pattern: ^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not Available$
+            pattern: ^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$
             type: string
           - type: 'null'
           title: Tumour Histological Type
@@ -1835,7 +1835,7 @@ components:
         surgery_site:
           anyOf:
           - maxLength: 255
-            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not Available$
+            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not available$
             type: string
           - type: 'null'
           title: Surgery Site
@@ -2406,7 +2406,7 @@ components:
       - 0-19%
       - 20-50%
       - 51-100%
-      - Not Available
+      - Not available
       title: PercentCellsRangeEnum
       type: string
     PerineuralInvasionEnum:
@@ -2415,7 +2415,7 @@ components:
       - Cannot be assessed
       - Not applicable
       - Present
-      - Not Available
+      - Not available
       title: PerineuralInvasionEnum
       type: string
     PrimaryDiagnosisFilterSchema:
@@ -2601,7 +2601,7 @@ components:
       - Not a paired site
       - Right
       - Unilateral, side not specified
-      - Not Available
+      - Not available
       title: PrimaryDiagnosisLateralityEnum
       type: string
     PrimaryDiagnosisModelSchema:
@@ -2772,7 +2772,7 @@ components:
       - Vagina
       - Vulva
       - Unknown primary site
-      - Not Available
+      - Not available
       title: PrimarySiteEnum
       type: string
     ProgramDiscoverySchema:
@@ -3116,7 +3116,7 @@ components:
       - SKIN
       - SPINE
       - UPPER LIMB
-      - Not Available
+      - Not available
       title: RadiationAnatomicalSiteEnum
       type: string
     RadiationFilterSchema:
@@ -3301,7 +3301,7 @@ components:
       - Teleradiotherapy neutrons (procedure)
       - Brachytherapy (procedure)
       - Other
-      - Not Available
+      - Not available
       title: RadiationTherapyModalityEnum
       type: string
     RelapseTypeEnum:
@@ -3311,7 +3311,7 @@ components:
       - Local recurrence and distant metastasis
       - Progression
       - Biochemical progression
-      - Not Available
+      - Not available
       title: RelapseTypeEnum
       type: string
     SampleRegistrationFilterSchema:
@@ -3459,7 +3459,7 @@ components:
       - Male
       - Female
       - Other
-      - Not Available
+      - Not available
       title: SexAtBirthEnum
       type: string
     SmokingStatusEnum:
@@ -3470,7 +3470,7 @@ components:
       - Current smoker
       - Lifelong non-smoker (<100 cigarettes smoked in lifetime)
       - Not applicable
-      - Not Available
+      - Not available
       title: SmokingStatusEnum
       type: string
     SpecimenFilterSchema:
@@ -3581,7 +3581,7 @@ components:
         specimen_anatomic_location:
           anyOf:
           - maxLength: 32
-            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not Available$
+            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not available$
             type: string
           - type: 'null'
           title: Specimen Anatomic Location
@@ -3630,7 +3630,7 @@ components:
         tumour_histological_type:
           anyOf:
           - maxLength: 128
-            pattern: ^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not Available$
+            pattern: ^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$
             type: string
           - type: 'null'
           title: Tumour Histological Type
@@ -3651,7 +3651,7 @@ components:
       - Left
       - Not applicable
       - Right
-      - Not Available
+      - Not available
       title: SpecimenLateralityEnum
       type: string
     SpecimenModelSchema:
@@ -3678,7 +3678,7 @@ components:
         specimen_anatomic_location:
           anyOf:
           - maxLength: 32
-            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not Available$
+            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not available$
             type: string
           - type: 'null'
           title: Specimen Anatomic Location
@@ -3727,7 +3727,7 @@ components:
         tumour_histological_type:
           anyOf:
           - maxLength: 128
-            pattern: ^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not Available$
+            pattern: ^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$
             type: string
           - type: 'null'
           title: Tumour Histological Type
@@ -3749,7 +3749,7 @@ components:
       - Formalin fixed - unbuffered
       - Fresh
       - Other
-      - Not Available
+      - Not available
       title: SpecimenProcessingEnum
       type: string
     SpecimenTissueSourceEnum:
@@ -3910,7 +3910,7 @@ components:
       - Stage 4
       - Stage 4S
       - Occult Carcinoma
-      - Not Available
+      - Not available
       title: StageGroupEnum
       type: string
     StorageEnum:
@@ -3924,7 +3924,7 @@ components:
       - Other
       - Paraffin block
       - RNA later frozen
-      - Not Available
+      - Not available
       title: StorageEnum
       type: string
     SurgeryFilterSchema:
@@ -4094,7 +4094,7 @@ components:
         surgery_site:
           anyOf:
           - maxLength: 255
-            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not Available$
+            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not available$
             type: string
           - type: 'null'
           title: Surgery Site
@@ -4214,7 +4214,7 @@ components:
         surgery_site:
           anyOf:
           - maxLength: 255
-            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not Available$
+            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not available$
             type: string
           - type: 'null'
           title: Surgery Site
@@ -4567,7 +4567,7 @@ components:
       enum:
       - External
       - Internal
-      - Not Available
+      - Not available
       title: TherapyTypeEnum
       type: string
     TobaccoTypeEnum:
@@ -4580,7 +4580,7 @@ components:
       - Pipe
       - Roll-ups
       - Snuff
-      - Not Available
+      - Not available
       - Waterpipe
       title: TobaccoTypeEnum
       type: string
@@ -4712,7 +4712,7 @@ components:
       - Guidance
       - Screening
       - Forensic
-      - Not Available
+      - Not available
       title: TreatmentIntentEnum
       type: string
     TreatmentModelSchema:
@@ -4798,7 +4798,7 @@ components:
       - Physician assessed stable disease
       - No evidence of disease (NED)
       - Major response
-      - Not Available
+      - Not available
       title: TreatmentResponseEnum
       type: string
     TreatmentResponseMethodEnum:
@@ -4810,7 +4810,7 @@ components:
       - AML Response Criteria
       - Physician Assessed Response Criteria
       - Blazer score
-      - Not Available
+      - Not available
       title: TreatmentResponseMethodEnum
       type: string
     TreatmentStatusEnum:
@@ -4824,7 +4824,7 @@ components:
       - Treatment stopped due to acute toxicity
       - Treatment ongoing
       - Other
-      - Not Available
+      - Not available
       title: TreatmentStatusEnum
       type: string
     TreatmentTypeCountSchema:
@@ -4860,7 +4860,7 @@ components:
       - R0
       - R1
       - R2
-      - Not Available
+      - Not available
       title: TumourClassificationEnum
       type: string
     TumourDesginationEnum:
@@ -4875,7 +4875,7 @@ components:
       - Multifocal
       - Not applicable
       - Unifocal
-      - Not Available
+      - Not available
       title: TumourFocalityEnum
       type: string
     TumourGradeEnum:
@@ -4902,7 +4902,7 @@ components:
       - Grade Group 3
       - Grade Group 4
       - Grade Group 5
-      - Not Available
+      - Not available
       title: TumourGradeEnum
       type: string
     TumourGradingSystemEnum:
@@ -4920,7 +4920,7 @@ components:
       - Three-tier grading system
       - Two-tier grading system
       - WHO grading system for CNS tumours
-      - Not Available
+      - Not available
       title: TumourGradingSystemEnum
       type: string
     TumourStagingSystemEnum:
@@ -4939,14 +4939,14 @@ components:
       - Revised International staging system (RISS)
       - SEER staging system
       - St Jude staging system
-      - Not Available
+      - Not available
       title: TumourStagingSystemEnum
       type: string
     uBooleanEnum:
       enum:
       - 'Yes'
       - 'No'
-      - Not Available
+      - Not available
       title: uBooleanEnum
       type: string
   securitySchemes:
