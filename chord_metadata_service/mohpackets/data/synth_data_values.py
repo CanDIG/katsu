@@ -41,7 +41,7 @@ TREATMENT_TYPE = add_nulls(PERM_VAL.TREATMENT_TYPE)
 TREATMENT_TYPE_FOR_ALL = [
     "Bone marrow transplant",
     "No treatment",
-    "Other targeting molecular therapy",
+    "Targeted molecular therapy",
     "Photodynamic therapy",
     "Stem cell transplant",
 ]
@@ -57,6 +57,7 @@ RADIATION_ANATOMICAL_SITE = add_nulls(PERM_VAL.RADIATION_ANATOMICAL_SITE)
 THERAPY_TYPE = add_nulls(PERM_VAL.THERAPY_TYPE)
 
 SURGERY_LOCATION = add_nulls(PERM_VAL.SURGERY_LOCATION)
+SURGERY_REFERENCE_DATABASE = add_nulls(PERM_VAL.SURGERY_REFERENCE_DATABASE)
 TUMOUR_FOCALITY = add_nulls(PERM_VAL.TUMOUR_FOCALITY)
 TUMOUR_CLASSIFICATION = add_nulls(PERM_VAL.TUMOUR_CLASSIFICATION)
 LYMPHOVACULAR_INVASION = add_nulls(PERM_VAL.LYMPHOVACULAR_INVASION)
@@ -100,7 +101,7 @@ SMOKER_TOBACCO_TYPE = [
     "Pipe",
     "Roll-ups",
     "Snuff",
-    "Unknown",
+    "Not available",
     "Waterpipe",
 ]
 

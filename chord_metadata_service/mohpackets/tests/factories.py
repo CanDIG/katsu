@@ -61,18 +61,23 @@ class ProgramFactory(factory.django.DjangoModelFactory):
 class DonorFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Donor
+        exclude = ("is_deceased_bool",)
 
     # default values
     submitter_donor_id = factory.Sequence(lambda n: "DONOR_%d" % n)
     gender = factory.Faker("random_element", elements=PERM_VAL.GENDER)
     sex_at_birth = factory.Faker("random_element", elements=PERM_VAL.SEX_AT_BIRTH)
-    is_deceased = factory.Faker("random_element", elements=PERM_VAL.UBOOLEAN)
+    is_deceased_bool = factory.Faker("pybool")
+    is_deceased = factory.Maybe("is_deceased_bool",
+                                "Yes",
+                                factory.Faker("random_element", elements=["No", "Not available"]))
     lost_to_followup_reason = None
     lost_to_followup_after_clinical_event_identifier = None
     date_alive_after_lost_to_followup = None
     date_resolution = "day"
+
     cause_of_death = factory.Maybe(
-        "is_deceased",
+        "is_deceased_bool",
         yes_declaration=factory.Faker(
             "random_element", elements=PERM_VAL.CAUSE_OF_DEATH
         ),
@@ -82,7 +87,7 @@ class DonorFactory(factory.django.DjangoModelFactory):
         lambda: {"day_interval": random.randint(-21900, -18220)}
     )
     date_of_death = factory.Maybe(
-        "is_deceased",
+        "is_deceased_bool",
         yes_declaration=factory.LazyFunction(
             lambda: {"day_interval": random.randint(3650, 16425)}
         ),
@@ -162,7 +167,7 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     @factory.post_generation
     def set_clinical_event_identifier(self, create, extracted, **kwargs):
         donor = self.donor_uuid
-        if not donor.is_deceased:
+        if donor.is_deceased == "No":
             donor.lost_to_followup_after_clinical_event_identifier = (
                 self.submitter_primary_diagnosis_id
             )
@@ -563,7 +568,7 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
         "random_element", elements=PERM_VAL.PERINEURAL_INVASION
     )
     surgery_reference_database = factory.Faker(
-        "random_element", elements=PERM_VAL.SYSTEMIC_THERAPY_TYPE
+        "random_element", elements=PERM_VAL.SURGERY_REFERENCE_DATABASE
     )
     surgery_reference_identifier = None
 
