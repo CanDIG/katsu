@@ -229,43 +229,7 @@ def query(request, filters: DonorExplorerFilterSchema = Query(...)):
         .annotate(treatment_type_list=Unnest("treatment_type"))
         .values_list("treatment_type_list", flat=True)
     )
-
-    donors = queryset.annotate(
-        abs_month_interval=Abs(
-            Cast("date_of_birth__month_interval", output_field=IntegerField())
-        ),
-        age_at_diagnosis=Case(
-            When(Q(date_of_birth__isnull=True), then=Value(None)),
-            When(abs_month_interval__lt=240, then=Value("0-19")),
-            When(abs_month_interval__lt=360, then=Value("20-29")),
-            When(abs_month_interval__lt=480, then=Value("30-39")),
-            When(abs_month_interval__lt=600, then=Value("40-49")),
-            When(abs_month_interval__lt=720, then=Value("50-59")),
-            When(abs_month_interval__lt=840, then=Value("60-69")),
-            When(abs_month_interval__lt=960, then=Value("70-79")),
-            default=Value("80+"),
-            output_field=CharField(),
-        ),
-        submitter_sample_ids=ArrayAgg(
-            "sampleregistration__submitter_sample_id",
-            distinct=True,
-            filter=~Q(sampleregistration__submitter_sample_id=None),
-        ),
-        primary_site=ArrayAgg(
-            "primarydiagnosis__primary_site",
-            distinct=True,
-            filter=~Q(primarydiagnosis__primary_site=None),
-        ),
-        treatment_type=ArraySubquery(Subquery(treatment_type_names)),
-    ).values(
-        "program_id",
-        "submitter_donor_id",
-        "submitter_sample_ids",
-        "primary_site",
-        "treatment_type",
-        "age_at_diagnosis",
-    )
-    return donors
+    return queryset
 
 
 def check_filter_donor_with_program(filters):
