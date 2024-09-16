@@ -832,7 +832,7 @@ class AllSynthRadiationFactory(SynthRadiationFactory):
 
 class SynthSurgeryFactory(SurgeryFactory):
     class Meta:
-        exclude = ( "null_margin_types", )
+        exclude = ("null_margin_types",)
 
     surgery_site = factory.Faker("random_element", elements=SYNTH_VAL.TOPOGRAPHY_CODES)
     surgery_location = factory.Faker(
@@ -1227,9 +1227,10 @@ class AllSynthComorbidityFactory(SynthComorbidityFactory):
     prior_malignancy = factory.Maybe("is_prior_malignancy",
                                      "Yes",
                                      factory.Faker("random_element", elements=["No", "Not available"]))
-    laterality_of_prior_malignancy = factory.Maybe("is_prior_malignancy",
-                                                   factory.Faker("random_element", elements=PERM_VAL.MALIGNANCY_LATERALITY),
-                                                   None)
+    laterality_of_prior_malignancy = (
+        factory.Maybe("is_prior_malignancy",
+                      factory.Faker("random_element", elements=PERM_VAL.MALIGNANCY_LATERALITY),
+                      None))
 
 
 class SynthFollowUpFactory(FollowUpFactory):
