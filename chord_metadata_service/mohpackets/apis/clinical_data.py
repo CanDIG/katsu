@@ -62,11 +62,15 @@ from chord_metadata_service.mohpackets.schemas.model import (
     FollowUpModelSchema,
     PrimaryDiagnosisModelSchema,
     ProgramModelSchema,
+    QueryDonorSchema,
     RadiationModelSchema,
     SampleRegistrationModelSchema,
     SpecimenModelSchema,
     SurgeryModelSchema,
     TreatmentModelSchema,
+)
+from chord_metadata_service.mohpackets.schemas.explorer import (
+    DonorExplorerSchema,
 )
 from chord_metadata_service.mohpackets.schemas.nested_data import (
     DonorWithClinicalDataSchema,
@@ -183,15 +187,16 @@ def list_donors(request, filters: Query[DonorFilterSchema]):
     return Donor.objects.filter(q)
 
 
-@router.get("/query/", response=List[DonorModelSchema])
-def query(request, filters: DonorExplorerFilterSchema = Query(...)):
+@router.get("/query/", response=List[QueryDonorSchema])
+def explorer_donor(request, filters: DonorExplorerFilterSchema = Query(...)):
     """
     Returns a list of donors with their sample IDs, treatment types, age, and primary site.
     This endpoint is called by the query service and bypasses user authorization.
     """
     filter_dict = filters.dict()
     queryset = (
-        Donor.objects.select_related("program_id")
+        Donor.objects.filter(Q(program_id__in=request.read_datasets))
+        .select_related("program_id")
         .prefetch_related(
             "treatment_set",
             "primarydiagnosis_set",
@@ -229,7 +234,22 @@ def query(request, filters: DonorExplorerFilterSchema = Query(...)):
         .annotate(treatment_type_list=Unnest("treatment_type"))
         .values_list("treatment_type_list", flat=True)
     )
-    return queryset
+
+    donors = queryset.annotate(
+        submitter_sample_ids=ArrayAgg(
+            "sampleregistration__submitter_sample_id",
+            distinct=True,
+            filter=~Q(sampleregistration__submitter_sample_id=None),
+        ),
+        primary_site=ArrayAgg(
+            "primarydiagnosis__primary_site",
+            distinct=True,
+            filter=~Q(primarydiagnosis__primary_site=None),
+        ),
+        treatment_type=ArraySubquery(Subquery(treatment_type_names)),
+    )
+    return donors
+
 
 
 def check_filter_donor_with_program(filters):
