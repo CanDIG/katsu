@@ -7,8 +7,6 @@ from chord_metadata_service.mohpackets.models import Donor
 from chord_metadata_service.mohpackets.tests.endpoints.base import BaseTestCase
 from chord_metadata_service.mohpackets.tests.factories import DonorFactory
 
-import logging
-
 """
     This module contains API tests related to the Donor model endpoints.
 
@@ -488,6 +486,7 @@ class DonorExplorerTestCase(BaseTestCase):
         self.assertIsNone(missing_data_donor["submitter_sample_ids"])
         self.assertEqual(missing_data_donor["treatment_type"], [])
 
+
 # QUERY API
 # ------------
 class DonorQueryTestCase(BaseTestCase):
@@ -728,7 +727,6 @@ class DonorQueryTestCase(BaseTestCase):
         donors = response.json()["items"]
 
         assert len(donors) == len(donors_with_selected_drug_names)
-
 
     def test_donor_with_missing_data(self):
         """

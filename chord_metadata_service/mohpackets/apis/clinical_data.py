@@ -5,18 +5,12 @@ from typing import Dict, List
 from django.contrib.postgres.aggregates import ArrayAgg
 from django.contrib.postgres.expressions import ArraySubquery
 from django.db.models import (
-    Case,
-    CharField,
     Func,
-    IntegerField,
     OuterRef,
     Prefetch,
     Q,
     Subquery,
-    Value,
-    When,
 )
-from django.db.models.functions import Abs, Cast
 from ninja import Query
 
 from chord_metadata_service.mohpackets.models import (
@@ -68,9 +62,6 @@ from chord_metadata_service.mohpackets.schemas.model import (
     SpecimenModelSchema,
     SurgeryModelSchema,
     TreatmentModelSchema,
-)
-from chord_metadata_service.mohpackets.schemas.explorer import (
-    DonorExplorerSchema,
 )
 from chord_metadata_service.mohpackets.schemas.nested_data import (
     DonorWithClinicalDataSchema,
@@ -249,7 +240,6 @@ def query_donors(request, filters: DonorExplorerFilterSchema = Query(...)):
         treatment_type=ArraySubquery(Subquery(treatment_type_names)),
     )
     return donors
-
 
 
 def check_filter_donor_with_program(filters):
