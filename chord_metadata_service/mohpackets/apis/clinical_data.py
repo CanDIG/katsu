@@ -188,7 +188,7 @@ def list_donors(request, filters: Query[DonorFilterSchema]):
 
 
 @router.get("/query/", response=List[QueryDonorSchema])
-def explorer_donor(request, filters: DonorExplorerFilterSchema = Query(...)):
+def query_donors(request, filters: DonorExplorerFilterSchema = Query(...)):
     """
     Returns a list of donors with their sample IDs, treatment types, age, and primary site.
     This endpoint is called by the query service and bypasses user authorization.
