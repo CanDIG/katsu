@@ -4,21 +4,18 @@ This folder contains the schema and documentation for **MoH models**
 
 ## Katsu API Documentation
 
-To view the API documentation, simply open [schema.md](schema.md) or [Redoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/CanDIG/katsu/feature/manual_schema/chord_metadata_service/mohpackets/docs/schema_manual.yml).
-
-> [!IMPORTANT]
-> Katsu is currently being transitioned to MoH clinical data model v3.0.0. There is a manually created v3.0.0 of the OpenAPI schema at [schema_v3.yml](schema_v3.yml) that can be used as a reference in the interim period. This file will be replaced by the automatically generated schema documentaion files once katsu is fully transitioned to model v3.0.0.
+To view the API documentation, simply open [schemas/schema.md](schema.md) or [Redoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/CanDIG/katsu/feature/manual_schema/chord_metadata_service/mohpackets/docs/schemas/schema.json).
 
 To generate the `schema.json` file, run the following command:
 
 ```bash
-python manage.py export_openapi_schema --api chord_metadata_service.mohpackets.apis.core.api | python -m json.tool > chord_metadata_service/mohpackets/docs/schema.json
+python manage.py export_openapi_schema --api chord_metadata_service.mohpackets.apis.core.api | python -m json.tool > chord_metadata_service/mohpackets/docs/schemas/schema.json
 ```
 
 To generate the `schema.md` file, install [widdershins](https://github.com/Mermade/widdershins) and then run the following command:
 
 ```bash
-widdershins ./chord_metadata_service/mohpackets/docs/schema.json -o ./chord_metadata_service/mohpackets/docs/schema.md -u ./chord_metadata_service/mohpackets/docs/widdershins/templates/openapi3 -c true --omitHeader true
+widdershins ./chord_metadata_service/mohpackets/docs/schemas/schema.json -o ./chord_metadata_service/mohpackets/docs/schemas/schema.md -u ./chord_metadata_service/mohpackets/docs/widdershins/templates/openapi3 -c true --omitHeader true
 ```
 
 This will create the schema.md file with the updated documentation.
