@@ -789,84 +789,6 @@ components:
       - program_id
       title: DonorModelSchema
       type: object
-    QueryDonorSchema:
-      properties:
-        cause_of_death:
-          anyOf:
-          - $ref: '#/components/schemas/CauseOfDeathEnum'
-          - type: 'null'
-        date_alive_after_lost_to_followup:
-          anyOf:
-          - $ref: '#/components/schemas/DateInterval'
-          - type: 'null'
-        date_of_birth:
-          anyOf:
-          - $ref: '#/components/schemas/DateInterval'
-          - type: 'null'
-        date_of_death:
-          anyOf:
-          - $ref: '#/components/schemas/DateInterval'
-          - type: 'null'
-        date_resolution:
-          anyOf:
-          - maxLength: 32
-            type: string
-          - type: 'null'
-          title: Date Resolution
-        gender:
-          anyOf:
-          - $ref: '#/components/schemas/GenderEnum'
-          - type: 'null'
-        is_deceased:
-          anyOf:
-          - type: boolean
-          - type: 'null'
-          title: Is Deceased
-        lost_to_followup_after_clinical_event_identifier:
-          anyOf:
-          - maxLength: 255
-            type: string
-          - type: 'null'
-          title: Lost To Followup After Clinical Event Identifier
-        lost_to_followup_reason:
-          anyOf:
-          - $ref: '#/components/schemas/LostToFollowupReasonEnum'
-          - type: 'null'
-        program_id:
-          title: Program Id
-          type: string
-        sex_at_birth:
-          anyOf:
-          - $ref: '#/components/schemas/SexAtBirthEnum'
-          - type: 'null'
-        submitter_donor_id:
-          maxLength: 64
-          pattern: ^[A-Za-z0-9\-\._]{1,64}$
-          title: Submitter Donor Id
-          type: string
-        primary_site:
-          anyOf:
-          - $ref: '#/components/schemas/PrimarySiteEnum'
-          - type: 'null'
-        treatment_type:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/TreatmentTypeEnum'
-            type: array
-          - type: 'null'
-          title: Treatment Type
-        submitter_sample_ids:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Submitter Sample Ids
-      required:
-      - submitter_donor_id
-      - program_id
-      title: QueryDonorSchema
-      type: object
     DonorWithClinicalDataSchema:
       properties:
         biomarkers:
@@ -2175,35 +2097,6 @@ components:
       - next_page
       - previous_page
       title: PagedDonorModelSchema
-      type: objectQuery
-    PagedQueryDonorSchema:
-      properties:
-        count:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Count
-        items:
-          items:
-            $ref: '#/components/schemas/QueryDonorSchema'
-          title: Items
-          type: array
-        next_page:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Next Page
-        previous_page:
-          anyOf:
-          - type: integer
-          - type: 'null'
-          title: Previous Page
-      required:
-      - items
-      - count
-      - next_page
-      - previous_page
-      title: PagedQueryDonorSchema
       type: object
     PagedExposureModelSchema:
       properties:
@@ -2320,6 +2213,35 @@ components:
       - next_page
       - previous_page
       title: PagedProgramModelSchema
+      type: object
+    PagedQueryDonorSchema:
+      properties:
+        count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Count
+        items:
+          items:
+            $ref: '#/components/schemas/QueryDonorSchema'
+          title: Items
+          type: array
+        next_page:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Next Page
+        previous_page:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Previous Page
+      required:
+      - items
+      - count
+      - next_page
+      - previous_page
+      title: PagedQueryDonorSchema
       type: object
     PagedRadiationModelSchema:
       properties:
@@ -2961,6 +2883,87 @@ components:
       - Laboratory data interpretation (procedure)
       title: ProgressionStatusMethodEnum
       type: string
+    QueryDonorSchema:
+      properties:
+        cause_of_death:
+          anyOf:
+          - $ref: '#/components/schemas/CauseOfDeathEnum'
+          - type: 'null'
+        date_alive_after_lost_to_followup:
+          anyOf:
+          - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_of_birth:
+          anyOf:
+          - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_of_death:
+          anyOf:
+          - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_resolution:
+          anyOf:
+          - maxLength: 32
+            type: string
+          - type: 'null'
+          title: Date Resolution
+        gender:
+          anyOf:
+          - $ref: '#/components/schemas/GenderEnum'
+          - type: 'null'
+        is_deceased:
+          anyOf:
+          - type: boolean
+          - type: 'null'
+          title: Is Deceased
+        lost_to_followup_after_clinical_event_identifier:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Lost To Followup After Clinical Event Identifier
+        lost_to_followup_reason:
+          anyOf:
+          - $ref: '#/components/schemas/LostToFollowupReasonEnum'
+          - type: 'null'
+        primary_site:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Primary Site
+        program_id:
+          title: Program Id
+          type: string
+        sex_at_birth:
+          anyOf:
+          - $ref: '#/components/schemas/SexAtBirthEnum'
+          - type: 'null'
+        submitter_donor_id:
+          maxLength: 64
+          pattern: ^[A-Za-z0-9\-\._]{1,64}$
+          title: Submitter Donor Id
+          type: string
+        submitter_sample_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Submitter Sample Ids
+        treatment_type:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Treatment Type
+      required:
+      - submitter_donor_id
+      - program_id
+      title: QueryDonorSchema
+      type: object
     RadiationAnatomicalSiteEnum:
       enum:
       - LEFT ABDOMEN
@@ -5483,116 +5486,6 @@ paths:
       summary: List Donors
       tags:
       - authorized
-  /v3/authorized/query/:
-    get:
-      description: 'Returns a list of donors with their sample IDs, treatment types,
-        and primary site.'
-      operationId: chord_metadata_service_mohpackets_apis_clinical_data_query_donors
-      parameters:
-      - in: query
-        name: treatment_type
-        required: false
-        schema:
-          items:
-            type: string
-          q: treatment_type__overlap
-          title: Treatment Type
-          type: array
-      - in: query
-        name: primary_site
-        required: false
-        schema:
-          items:
-            type: string
-          title: Primary Site
-          type: array
-      - in: query
-        name: systemic_therapy_drug_name
-        required: false
-        schema:
-          items:
-            type: string
-          title: Systemic Therapy Drug Name
-          type: array
-      - in: query
-        name: exclude_cohorts
-        required: false
-        schema:
-          items:
-            type: string
-          title: Exclude Cohorts
-          type: array
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/PagedDonorModelSchema'
-                title: Response
-                type: array
-          description: OK
-      security:
-      - ServiceTokenAuth: []
-      summary: Explorer Donor
-      tags:
-      - explorer
-  /v3/explorer/query/:
-    get:
-      description: 'Returns a list of donors with their sample IDs, treatment types,
-        age, and primary site.
-
-        This endpoint is called by the query service and bypasses user authorization.'
-      operationId: chord_metadata_service_mohpackets_apis_explorer_explorer_donor
-      parameters:
-      - in: query
-        name: treatment_type
-        required: false
-        schema:
-          items:
-            type: string
-          q: treatment_type__overlap
-          title: Treatment Type
-          type: array
-      - in: query
-        name: primary_site
-        required: false
-        schema:
-          items:
-            type: string
-          title: Primary Site
-          type: array
-      - in: query
-        name: systemic_therapy_drug_name
-        required: false
-        schema:
-          items:
-            type: string
-          title: Systemic Therapy Drug Name
-          type: array
-      - in: query
-        name: exclude_cohorts
-        required: false
-        schema:
-          items:
-            type: string
-          title: Exclude Cohorts
-          type: array
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                items:
-                  $ref: '#/components/schemas/PagedDonorModelSchema'
-                title: Response
-                type: array
-          description: OK
-      security:
-      - ServiceTokenAuth: []
-      summary: Explorer Donor
-      tags:
-      - explorer
   /v3/authorized/exposures/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_list_exposures
@@ -5970,6 +5863,73 @@ paths:
       security:
       - GetAuth: []
       summary: List Programs
+      tags:
+      - authorized
+  /v3/authorized/query/:
+    get:
+      description: 'Returns a list of donors with their sample IDs, treatment types,
+        age, and primary site.
+
+        This endpoint is called by the query service and bypasses user authorization.'
+      operationId: chord_metadata_service_mohpackets_apis_clinical_data_query_donors
+      parameters:
+      - in: query
+        name: treatment_type
+        required: false
+        schema:
+          items:
+            type: string
+          q: treatment_type__overlap
+          title: Treatment Type
+          type: array
+      - in: query
+        name: primary_site
+        required: false
+        schema:
+          items:
+            type: string
+          title: Primary Site
+          type: array
+      - in: query
+        name: systemic_therapy_drug_name
+        required: false
+        schema:
+          items:
+            type: string
+          title: Systemic Therapy Drug Name
+          type: array
+      - in: query
+        name: exclude_cohorts
+        required: false
+        schema:
+          items:
+            type: string
+          title: Exclude Cohorts
+          type: array
+      - in: query
+        name: page
+        required: false
+        schema:
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedQueryDonorSchema'
+          description: OK
+      security:
+      - GetAuth: []
+      summary: Query Donors
       tags:
       - authorized
   /v3/authorized/radiations/:
