@@ -9099,13 +9099,12 @@
                     "is_deceased": {
                         "anyOf": [
                             {
-                                "type": "boolean"
+                                "$ref": "#/components/schemas/uBooleanEnum"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Is Deceased"
+                        ]
                     },
                     "lost_to_followup_after_clinical_event_identifier": {
                         "anyOf": [

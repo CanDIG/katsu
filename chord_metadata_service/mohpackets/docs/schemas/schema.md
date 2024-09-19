@@ -890,7 +890,7 @@ This endpoint is called by the query service and bypasses user authorization.
       "submitter_donor_id": "string",
       "gender": "Man",
       "sex_at_birth": "Male",
-      "is_deceased": true,
+      "is_deceased": "Yes",
       "lost_to_followup_after_clinical_event_identifier": "string",
       "lost_to_followup_reason": "Completed study",
       "date_alive_after_lost_to_followup": {
@@ -10568,7 +10568,7 @@ DonorExplorerFilterSchema
       "submitter_donor_id": "string",
       "gender": "Man",
       "sex_at_birth": "Male",
-      "is_deceased": true,
+      "is_deceased": "Yes",
       "lost_to_followup_after_clinical_event_identifier": "string",
       "lost_to_followup_reason": "Completed study",
       "date_alive_after_lost_to_followup": {
@@ -10673,7 +10673,7 @@ or
   "submitter_donor_id": "string",
   "gender": "Man",
   "sex_at_birth": "Male",
-  "is_deceased": true,
+  "is_deceased": "Yes",
   "lost_to_followup_after_clinical_event_identifier": "string",
   "lost_to_followup_reason": "Completed study",
   "date_alive_after_lost_to_followup": {
@@ -10753,7 +10753,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|boolean|false|none|none|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
 
 or
 
