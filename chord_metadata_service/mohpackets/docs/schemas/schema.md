@@ -865,8 +865,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
 
 *Query Donors*
 
-Returns a list of donors with their sample IDs, treatment types, age, and primary site.
-This endpoint is called by the query service and bypasses user authorization.
+Used by the query service to return donors along with their sample IDs, treatment types, and primary sites.
 
 <h3 id="chord_metadata_service_mohpackets_apis_clinical_data_query_donors-parameters">Parameters</h3>
 

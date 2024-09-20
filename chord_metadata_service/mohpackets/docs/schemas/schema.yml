@@ -5866,10 +5866,8 @@ paths:
       - authorized
   /v3/authorized/query/:
     get:
-      description: 'Returns a list of donors with their sample IDs, treatment types,
-        age, and primary site.
-
-        This endpoint is called by the query service and bypasses user authorization.'
+      description: Used by the query service to return donors along with their sample
+        IDs, treatment types, and primary sites.
       operationId: chord_metadata_service_mohpackets_apis_clinical_data_query_donors
       parameters:
       - in: query

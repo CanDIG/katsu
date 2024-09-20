@@ -1199,7 +1199,7 @@
                         }
                     }
                 },
-                "description": "Returns a list of donors with their sample IDs, treatment types, age, and primary site.\nThis endpoint is called by the query service and bypasses user authorization.",
+                "description": "Used by the query service to return donors along with their sample IDs, treatment types, and primary sites.",
                 "tags": [
                     "authorized"
                 ],
