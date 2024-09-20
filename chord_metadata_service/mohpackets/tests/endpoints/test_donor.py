@@ -276,7 +276,6 @@ class DonorExplorerTestCase(BaseTestCase):
         donors = response.json()
 
         # Calculate the number of unique programs
-        print(donors)
         programs = {donor["program_id"] for donor in donors}
         self.assertEqual(len(programs), 2)  # 2 programs
 
