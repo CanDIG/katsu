@@ -4314,6 +4314,11 @@
                         ],
                         "title": "Er Percent Positive"
                     },
+                    "er_percent_positive_not_available": {
+                        "default": false,
+                        "title": "Er Percent Positive Not Available",
+                        "type": "boolean"
+                    },
                     "pr_status": {
                         "anyOf": [
                             {
@@ -4334,6 +4339,11 @@
                             }
                         ],
                         "title": "Pr Percent Positive"
+                    },
+                    "pr_percent_positive_not_available": {
+                        "default": false,
+                        "title": "Pr Percent Positive Not Available",
+                        "type": "boolean"
                     },
                     "her2_ihc_status": {
                         "anyOf": [
@@ -7244,6 +7254,11 @@
                         ],
                         "title": "Er Percent Positive"
                     },
+                    "er_percent_positive_not_available": {
+                        "default": false,
+                        "title": "Er Percent Positive Not Available",
+                        "type": "boolean"
+                    },
                     "pr_status": {
                         "anyOf": [
                             {
@@ -7264,6 +7279,11 @@
                             }
                         ],
                         "title": "Pr Percent Positive"
+                    },
+                    "pr_percent_positive_not_available": {
+                        "default": false,
+                        "title": "Pr Percent Positive Not Available",
+                        "type": "boolean"
                     },
                     "her2_ihc_status": {
                         "anyOf": [
@@ -9635,6 +9655,11 @@
                         ],
                         "title": "Er Percent Positive"
                     },
+                    "er_percent_positive_not_available": {
+                        "default": false,
+                        "title": "Er Percent Positive Not Available",
+                        "type": "boolean"
+                    },
                     "pr_status": {
                         "anyOf": [
                             {
@@ -9655,6 +9680,11 @@
                             }
                         ],
                         "title": "Pr Percent Positive"
+                    },
+                    "pr_percent_positive_not_available": {
+                        "default": false,
+                        "title": "Pr Percent Positive Not Available",
+                        "type": "boolean"
                     },
                     "her2_ihc_status": {
                         "anyOf": [
