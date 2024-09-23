@@ -857,6 +857,73 @@ Retrieves a single donor along with all related clinical data, organized in a ne
 }
 ```
 
+## chord_metadata_service_mohpackets_apis_clinical_data_query_donors
+
+<a id="opIdchord_metadata_service_mohpackets_apis_clinical_data_query_donors"></a>
+
+`GET /v3/authorized/query/`
+
+*Query Donors*
+
+Used by the query service to return donors along with their sample IDs, treatment types, and primary sites.
+
+<h3 id="chord_metadata_service_mohpackets_apis_clinical_data_query_donors-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|treatment_type|query|array[string]|false|none|
+|primary_site|query|array[string]|false|none|
+|systemic_therapy_drug_name|query|array[string]|false|none|
+|exclude_cohorts|query|array[string]|false|none|
+|page|query|integer|false|none|
+|page_size|query|integer|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "items": [
+    {
+      "submitter_donor_id": "string",
+      "gender": "Man",
+      "sex_at_birth": "Male",
+      "is_deceased": "Yes",
+      "lost_to_followup_after_clinical_event_identifier": "string",
+      "lost_to_followup_reason": "Completed study",
+      "date_alive_after_lost_to_followup": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "cause_of_death": "Died of cancer",
+      "date_of_birth": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "date_of_death": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "date_resolution": "string",
+      "program_id": "string",
+      "primary_site": [
+        "string"
+      ],
+      "treatment_type": [
+        "string"
+      ],
+      "submitter_sample_ids": [
+        "string"
+      ]
+    }
+  ],
+  "count": 0,
+  "next_page": 0,
+  "previous_page": 0
+}
+```
+
 ## chord_metadata_service_mohpackets_apis_clinical_data_list_primary_diagnoses
 
 <a id="opIdchord_metadata_service_mohpackets_apis_clinical_data_list_primary_diagnoses"></a>
@@ -10450,6 +10517,430 @@ or
 |---|---|---|---|---|
 |» *anonymous*|null|false|none|none|
 
+<h2 id="tocS_DonorExplorerFilterSchema">DonorExplorerFilterSchema</h2>
+
+<a id="schemadonorexplorerfilterschema"></a>
+<a id="schema_DonorExplorerFilterSchema"></a>
+<a id="tocSdonorexplorerfilterschema"></a>
+<a id="tocsdonorexplorerfilterschema"></a>
+
+```json
+{
+  "treatment_type": [
+    "string"
+  ],
+  "primary_site": [
+    "string"
+  ],
+  "systemic_therapy_drug_name": [
+    "string"
+  ],
+  "exclude_cohorts": [
+    "string"
+  ]
+}
+
+```
+
+DonorExplorerFilterSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|treatment_type|[string]|false|none|none|
+|primary_site|[string]|false|none|none|
+|systemic_therapy_drug_name|[string]|false|none|none|
+|exclude_cohorts|[string]|false|none|none|
+
+<h2 id="tocS_PagedQueryDonorSchema">PagedQueryDonorSchema</h2>
+
+<a id="schemapagedquerydonorschema"></a>
+<a id="schema_PagedQueryDonorSchema"></a>
+<a id="tocSpagedquerydonorschema"></a>
+<a id="tocspagedquerydonorschema"></a>
+
+```json
+{
+  "items": [
+    {
+      "submitter_donor_id": "string",
+      "gender": "Man",
+      "sex_at_birth": "Male",
+      "is_deceased": "Yes",
+      "lost_to_followup_after_clinical_event_identifier": "string",
+      "lost_to_followup_reason": "Completed study",
+      "date_alive_after_lost_to_followup": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "cause_of_death": "Died of cancer",
+      "date_of_birth": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "date_of_death": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "date_resolution": "string",
+      "program_id": "string",
+      "primary_site": [
+        "string"
+      ],
+      "treatment_type": [
+        "string"
+      ],
+      "submitter_sample_ids": [
+        "string"
+      ]
+    }
+  ],
+  "count": 0,
+  "next_page": 0,
+  "previous_page": 0
+}
+
+```
+
+PagedQueryDonorSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|items|[[QueryDonorSchema](#schemaquerydonorschema)]|true|none|none|
+|count|any|true|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|next_page|any|true|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|previous_page|any|true|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+<h2 id="tocS_QueryDonorSchema">QueryDonorSchema</h2>
+
+<a id="schemaquerydonorschema"></a>
+<a id="schema_QueryDonorSchema"></a>
+<a id="tocSquerydonorschema"></a>
+<a id="tocsquerydonorschema"></a>
+
+```json
+{
+  "submitter_donor_id": "string",
+  "gender": "Man",
+  "sex_at_birth": "Male",
+  "is_deceased": "Yes",
+  "lost_to_followup_after_clinical_event_identifier": "string",
+  "lost_to_followup_reason": "Completed study",
+  "date_alive_after_lost_to_followup": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "cause_of_death": "Died of cancer",
+  "date_of_birth": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "date_of_death": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "date_resolution": "string",
+  "program_id": "string",
+  "primary_site": [
+    "string"
+  ],
+  "treatment_type": [
+    "string"
+  ],
+  "submitter_sample_ids": [
+    "string"
+  ]
+}
+
+```
+
+QueryDonorSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|submitter_donor_id|string|true|none|none|
+|gender|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[GenderEnum](#schemagenderenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|sex_at_birth|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[SexAtBirthEnum](#schemasexatbirthenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|is_deceased|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|lost_to_followup_after_clinical_event_identifier|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|lost_to_followup_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[LostToFollowupReasonEnum](#schemalosttofollowupreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_alive_after_lost_to_followup|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cause_of_death|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[CauseOfDeathEnum](#schemacauseofdeathenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_birth|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_death|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_resolution|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|program_id|string|true|none|none|
+|primary_site|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[string]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|treatment_type|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[string]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|submitter_sample_ids|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[string]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
 <h2 id="tocS_PrimaryDiagnosisFilterSchema">PrimaryDiagnosisFilterSchema</h2>
 
 <a id="schemaprimarydiagnosisfilterschema"></a>
@@ -16404,42 +16895,6 @@ continued
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |submitter_primary_diagnosis_id|string|true|none|none|
-
-<h2 id="tocS_DonorExplorerFilterSchema">DonorExplorerFilterSchema</h2>
-
-<a id="schemadonorexplorerfilterschema"></a>
-<a id="schema_DonorExplorerFilterSchema"></a>
-<a id="tocSdonorexplorerfilterschema"></a>
-<a id="tocsdonorexplorerfilterschema"></a>
-
-```json
-{
-  "treatment_type": [
-    "string"
-  ],
-  "primary_site": [
-    "string"
-  ],
-  "systemic_therapy_drug_name": [
-    "string"
-  ],
-  "exclude_cohorts": [
-    "string"
-  ]
-}
-
-```
-
-DonorExplorerFilterSchema
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|treatment_type|[string]|false|none|none|
-|primary_site|[string]|false|none|none|
-|systemic_therapy_drug_name|[string]|false|none|none|
-|exclude_cohorts|[string]|false|none|none|
 
 <h2 id="tocS_DonorExplorerSchema">DonorExplorerSchema</h2>
 

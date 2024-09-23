@@ -2,7 +2,15 @@ from functools import wraps
 from http import HTTPStatus
 from typing import Dict, List
 
-from django.db.models import Prefetch, Q
+from django.contrib.postgres.aggregates import ArrayAgg
+from django.contrib.postgres.expressions import ArraySubquery
+from django.db.models import (
+    Func,
+    OuterRef,
+    Prefetch,
+    Q,
+    Subquery,
+)
 from ninja import Query
 
 from chord_metadata_service.mohpackets.models import (
@@ -28,6 +36,7 @@ from chord_metadata_service.mohpackets.schemas.filter import (
     SystemicTherapyFilterSchema,
     ComorbidityFilterSchema,
     DonorFilterSchema,
+    DonorExplorerFilterSchema,
     ExposureFilterSchema,
     FollowUpFilterSchema,
     PrimaryDiagnosisFilterSchema,
@@ -47,6 +56,7 @@ from chord_metadata_service.mohpackets.schemas.model import (
     FollowUpModelSchema,
     PrimaryDiagnosisModelSchema,
     ProgramModelSchema,
+    QueryDonorSchema,
     RadiationModelSchema,
     SampleRegistrationModelSchema,
     SpecimenModelSchema,
@@ -166,6 +176,69 @@ def list_donors(request, filters: Query[DonorFilterSchema]):
     q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Donor.objects.filter(q)
+
+
+@router.get("/query/", response=List[QueryDonorSchema])
+def query_donors(request, filters: DonorExplorerFilterSchema = Query(...)):
+    """
+    Used by the query service to return donors along with their sample IDs, treatment types, and primary sites.
+    """
+    filter_dict = filters.dict()
+    queryset = (
+        Donor.objects.filter(Q(program_id__in=request.read_datasets))
+        .select_related("program_id")
+        .prefetch_related(
+            "treatment_set",
+            "primarydiagnosis_set",
+            "systemictherapy_set",
+            "sampleregistration_set",
+        )
+        .distinct()
+    )
+
+    if filter_dict["primary_site"]:
+        queryset = queryset.filter(
+            primarydiagnosis__primary_site__in=filter_dict["primary_site"]
+        )
+
+    if filter_dict["treatment_type"]:
+        queryset = queryset.filter(
+            treatment__treatment_type__overlap=filter_dict["treatment_type"]
+        )
+
+    if filter_dict["systemic_therapy_drug_name"]:
+        queryset = queryset.filter(
+            systemictherapy__drug_name__in=filter_dict["systemic_therapy_drug_name"]
+        )
+
+    if filter_dict["exclude_cohorts"]:
+        queryset = queryset.exclude(program_id__in=filter_dict["exclude_cohorts"])
+
+    class Unnest(Func):
+        contains_subquery = True
+        function = "unnest"
+
+    # treatment can have duplicates for counting purpose
+    treatment_type_names = (
+        Treatment.objects.filter(donor_uuid_id=OuterRef("uuid"))
+        .annotate(treatment_type_list=Unnest("treatment_type"))
+        .values_list("treatment_type_list", flat=True)
+    )
+
+    donors = queryset.annotate(
+        submitter_sample_ids=ArrayAgg(
+            "sampleregistration__submitter_sample_id",
+            distinct=True,
+            filter=~Q(sampleregistration__submitter_sample_id=None),
+        ),
+        primary_site=ArrayAgg(
+            "primarydiagnosis__primary_site",
+            distinct=True,
+            filter=~Q(primarydiagnosis__primary_site=None),
+        ),
+        treatment_type=ArraySubquery(Subquery(treatment_type_names)),
+    )
+    return donors
 
 
 def check_filter_donor_with_program(filters):
