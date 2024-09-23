@@ -726,8 +726,10 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "cea_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
+      "er_percent_positive_not_available": false,
       "pr_status": "Cannot be determined",
       "pr_percent_positive": 0,
+      "pr_percent_positive_not_available": false,
       "her2_ihc_status": "Cannot be determined",
       "her2_ish_status": "Cannot be determined",
       "hpv_ihc_status": "Cannot be determined",
@@ -1050,8 +1052,10 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "cea_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
+      "er_percent_positive_not_available": false,
       "pr_status": "Cannot be determined",
       "pr_percent_positive": 0,
+      "pr_percent_positive_not_available": false,
       "her2_ihc_status": "Cannot be determined",
       "her2_ish_status": "Cannot be determined",
       "hpv_ihc_status": "Cannot be determined",
@@ -2328,8 +2332,10 @@ uBooleanEnum
   "cea_not_available": false,
   "er_status": "Cannot be determined",
   "er_percent_positive": 0,
+  "er_percent_positive_not_available": false,
   "pr_status": "Cannot be determined",
   "pr_percent_positive": 0,
+  "pr_percent_positive_not_available": false,
   "her2_ihc_status": "Cannot be determined",
   "her2_ish_status": "Cannot be determined",
   "hpv_ihc_status": "Cannot be determined",
@@ -2533,6 +2539,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|er_percent_positive_not_available|boolean|false|none|none|
 |pr_status|any|false|none|none|
 
 anyOf
@@ -2569,6 +2576,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|pr_percent_positive_not_available|boolean|false|none|none|
 |her2_ihc_status|any|false|none|none|
 
 anyOf
@@ -7110,8 +7118,10 @@ TreatmentTypeEnum
       "cea_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
+      "er_percent_positive_not_available": false,
       "pr_status": "Cannot be determined",
       "pr_percent_positive": 0,
+      "pr_percent_positive_not_available": false,
       "her2_ihc_status": "Cannot be determined",
       "her2_ish_status": "Cannot be determined",
       "hpv_ihc_status": "Cannot be determined",
@@ -7365,8 +7375,10 @@ continued
   "cea_not_available": false,
   "er_status": "Cannot be determined",
   "er_percent_positive": 0,
+  "er_percent_positive_not_available": false,
   "pr_status": "Cannot be determined",
   "pr_percent_positive": 0,
+  "pr_percent_positive_not_available": false,
   "her2_ihc_status": "Cannot be determined",
   "her2_ish_status": "Cannot be determined",
   "hpv_ihc_status": "Cannot be determined",
@@ -7567,6 +7579,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|er_percent_positive_not_available|boolean|false|none|none|
 |pr_status|any|false|none|none|
 
 anyOf
@@ -7603,6 +7616,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|pr_percent_positive_not_available|boolean|false|none|none|
 |her2_ihc_status|any|false|none|none|
 
 anyOf
@@ -12063,8 +12077,10 @@ continued
   "cea_not_available": false,
   "er_status": "Cannot be determined",
   "er_percent_positive": 0,
+  "er_percent_positive_not_available": false,
   "pr_status": "Cannot be determined",
   "pr_percent_positive": 0,
+  "pr_percent_positive_not_available": false,
   "her2_ihc_status": "Cannot be determined",
   "her2_ish_status": "Cannot be determined",
   "hpv_ihc_status": "Cannot be determined",
@@ -12267,6 +12283,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|er_percent_positive_not_available|boolean|false|none|none|
 |pr_status|any|false|none|none|
 
 anyOf
@@ -12303,6 +12320,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|pr_percent_positive_not_available|boolean|false|none|none|
 |her2_ihc_status|any|false|none|none|
 
 anyOf
@@ -12423,8 +12441,10 @@ continued
       "cea_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
+      "er_percent_positive_not_available": false,
       "pr_status": "Cannot be determined",
       "pr_percent_positive": 0,
+      "pr_percent_positive_not_available": false,
       "her2_ihc_status": "Cannot be determined",
       "her2_ish_status": "Cannot be determined",
       "hpv_ihc_status": "Cannot be determined",

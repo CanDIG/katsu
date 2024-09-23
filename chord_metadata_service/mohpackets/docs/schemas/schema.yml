@@ -132,6 +132,10 @@ components:
           - type: number
           - type: 'null'
           title: Er Percent Positive
+        er_percent_positive_not_available:
+          default: false
+          title: Er Percent Positive Not Available
+          type: boolean
         er_status:
           anyOf:
           - $ref: '#/components/schemas/ErPrHpvStatusEnum'
@@ -164,6 +168,10 @@ components:
           - type: number
           - type: 'null'
           title: Pr Percent Positive
+        pr_percent_positive_not_available:
+          default: false
+          title: Pr Percent Positive Not Available
+          type: boolean
         pr_status:
           anyOf:
           - $ref: '#/components/schemas/ErPrHpvStatusEnum'
@@ -246,6 +254,10 @@ components:
           - type: number
           - type: 'null'
           title: Er Percent Positive
+        er_percent_positive_not_available:
+          default: false
+          title: Er Percent Positive Not Available
+          type: boolean
         er_status:
           anyOf:
           - $ref: '#/components/schemas/ErPrHpvStatusEnum'
@@ -278,6 +290,10 @@ components:
           - type: number
           - type: 'null'
           title: Pr Percent Positive
+        pr_percent_positive_not_available:
+          default: false
+          title: Pr Percent Positive Not Available
+          type: boolean
         pr_status:
           anyOf:
           - $ref: '#/components/schemas/ErPrHpvStatusEnum'
@@ -1360,6 +1376,10 @@ components:
           - type: number
           - type: 'null'
           title: Er Percent Positive
+        er_percent_positive_not_available:
+          default: false
+          title: Er Percent Positive Not Available
+          type: boolean
         er_status:
           anyOf:
           - $ref: '#/components/schemas/ErPrHpvStatusEnum'
@@ -1392,6 +1412,10 @@ components:
           - type: number
           - type: 'null'
           title: Pr Percent Positive
+        pr_percent_positive_not_available:
+          default: false
+          title: Pr Percent Positive Not Available
+          type: boolean
         pr_status:
           anyOf:
           - $ref: '#/components/schemas/ErPrHpvStatusEnum'
