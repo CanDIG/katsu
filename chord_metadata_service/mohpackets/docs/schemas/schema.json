@@ -1112,6 +1112,104 @@
                 ]
             }
         },
+        "/v3/authorized/query/": {
+            "get": {
+                "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_query_donors",
+                "summary": "Query Donors",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "treatment_type",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "q": "treatment_type__overlap",
+                            "title": "Treatment Type",
+                            "type": "array"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "primary_site",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "title": "Primary Site",
+                            "type": "array"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "systemic_therapy_drug_name",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "title": "Systemic Therapy Drug Name",
+                            "type": "array"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "exclude_cohorts",
+                        "schema": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "title": "Exclude Cohorts",
+                            "type": "array"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "minimum": 1,
+                            "title": "Page",
+                            "type": "integer"
+                        },
+                        "required": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "page_size",
+                        "schema": {
+                            "minimum": 1,
+                            "title": "Page Size",
+                            "type": "integer"
+                        },
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PagedQueryDonorSchema"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "Used by the query service to return donors along with their sample IDs, treatment types, and primary sites.",
+                "tags": [
+                    "authorized"
+                ],
+                "security": [
+                    {
+                        "GetAuth": []
+                    }
+                ]
+            }
+        },
         "/v3/authorized/primary_diagnoses/": {
             "get": {
                 "operationId": "chord_metadata_service_mohpackets_apis_clinical_data_list_primary_diagnoses",
@@ -8903,6 +9001,259 @@
                 "title": "PagedDonorModelSchema",
                 "type": "object"
             },
+            "DonorExplorerFilterSchema": {
+                "properties": {
+                    "treatment_type": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "q": "treatment_type__overlap",
+                        "title": "Treatment Type",
+                        "type": "array"
+                    },
+                    "primary_site": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Primary Site",
+                        "type": "array"
+                    },
+                    "systemic_therapy_drug_name": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Systemic Therapy Drug Name",
+                        "type": "array"
+                    },
+                    "exclude_cohorts": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Exclude Cohorts",
+                        "type": "array"
+                    }
+                },
+                "title": "DonorExplorerFilterSchema",
+                "type": "object"
+            },
+            "PagedQueryDonorSchema": {
+                "properties": {
+                    "items": {
+                        "items": {
+                            "$ref": "#/components/schemas/QueryDonorSchema"
+                        },
+                        "title": "Items",
+                        "type": "array"
+                    },
+                    "count": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Count"
+                    },
+                    "next_page": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Next Page"
+                    },
+                    "previous_page": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Previous Page"
+                    }
+                },
+                "required": [
+                    "items",
+                    "count",
+                    "next_page",
+                    "previous_page"
+                ],
+                "title": "PagedQueryDonorSchema",
+                "type": "object"
+            },
+            "QueryDonorSchema": {
+                "properties": {
+                    "submitter_donor_id": {
+                        "maxLength": 64,
+                        "pattern": "^[A-Za-z0-9\\-\\._]{1,64}$",
+                        "title": "Submitter Donor Id",
+                        "type": "string"
+                    },
+                    "gender": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/GenderEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "sex_at_birth": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SexAtBirthEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "is_deceased": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/uBooleanEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "lost_to_followup_after_clinical_event_identifier": {
+                        "anyOf": [
+                            {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Lost To Followup After Clinical Event Identifier"
+                    },
+                    "lost_to_followup_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/LostToFollowupReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_alive_after_lost_to_followup": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "cause_of_death": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/CauseOfDeathEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_birth": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_resolution": {
+                        "anyOf": [
+                            {
+                                "maxLength": 32,
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Date Resolution"
+                    },
+                    "program_id": {
+                        "title": "Program Id",
+                        "type": "string"
+                    },
+                    "primary_site": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Primary Site"
+                    },
+                    "treatment_type": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Treatment Type"
+                    },
+                    "submitter_sample_ids": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Submitter Sample Ids"
+                    }
+                },
+                "required": [
+                    "submitter_donor_id",
+                    "program_id"
+                ],
+                "title": "QueryDonorSchema",
+                "type": "object"
+            },
             "PrimaryDiagnosisFilterSchema": {
                 "properties": {
                     "submitter_primary_diagnosis_id": {
@@ -12460,41 +12811,6 @@
                     "submitter_primary_diagnosis_id"
                 ],
                 "title": "TreatmentModelSchema",
-                "type": "object"
-            },
-            "DonorExplorerFilterSchema": {
-                "properties": {
-                    "treatment_type": {
-                        "items": {
-                            "type": "string"
-                        },
-                        "q": "treatment_type__overlap",
-                        "title": "Treatment Type",
-                        "type": "array"
-                    },
-                    "primary_site": {
-                        "items": {
-                            "type": "string"
-                        },
-                        "title": "Primary Site",
-                        "type": "array"
-                    },
-                    "systemic_therapy_drug_name": {
-                        "items": {
-                            "type": "string"
-                        },
-                        "title": "Systemic Therapy Drug Name",
-                        "type": "array"
-                    },
-                    "exclude_cohorts": {
-                        "items": {
-                            "type": "string"
-                        },
-                        "title": "Exclude Cohorts",
-                        "type": "array"
-                    }
-                },
-                "title": "DonorExplorerFilterSchema",
                 "type": "object"
             },
             "DonorExplorerSchema": {

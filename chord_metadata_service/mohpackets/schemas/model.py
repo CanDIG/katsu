@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 
 from ninja import Field
 
@@ -40,6 +40,13 @@ class ProgramModelSchema(BaseProgramSchema):
 
 class DonorModelSchema(BaseDonorSchema):
     program_id: str = Field(..., alias="program_id_id")
+
+
+class QueryDonorSchema(BaseDonorSchema):
+    program_id: str = Field(..., alias="program_id_id")
+    primary_site: Optional[List[str]] = None
+    treatment_type: Optional[List[str]] = None
+    submitter_sample_ids: Optional[List[str]] = None
 
 
 class PrimaryDiagnosisModelSchema(BasePrimaryDiagnosisSchema):

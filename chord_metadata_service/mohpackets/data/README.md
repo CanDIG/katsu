@@ -10,6 +10,7 @@ This folder contains the necessary tools to generate synthetic data. Each datase
 ## To load data
 
 ```python
+# for docker environment, run: export DJANGO_SETTINGS_MODULE='config.settings.dev'
 python chord_metadata_service/mohpackets/data/data_loader.py
 ```
 
