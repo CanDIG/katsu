@@ -100,7 +100,7 @@ class AllSynthDonorFactory(DonorFactory):
         django_get_or_create = ("submitter_donor_id",)
 
     submitter_donor_id = factory.Sequence(lambda n: f"DONOR_ALL_{str(n).zfill(4)}")
-    is_deceased = factory.Iterator(SYNTH_VAL.UBOOLEAN)
+    is_deceased = factory.Iterator(PERM_VAL.UBOOLEAN)
 
 
 class SynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
@@ -266,6 +266,33 @@ class AllSynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
             donor.cause_of_death = None
             donor.date_of_death = None
             donor.save()
+        elif donor.is_deceased == "Yes":
+            donor.cause_of_death = random.choice(PERM_VAL.CAUSE_OF_DEATH)
+            donor.date_of_death = {"day_interval": random.randint(3650, 16425)}
+            donor.date_of_death["month_interval"] = days_to_months(donor.date_of_death["day_interval"])
+
+    @factory.post_generation
+    def all_staging_filled(self, create, extracted, **kwargs):
+        if self.clinical_tumour_staging_system is None:
+            self.clinical_tumour_staging_system = random.choice(PERM_VAL.TUMOUR_STAGING_SYSTEM)
+        if self.clinical_stage_group is None:
+            self.clinical_stage_group = random.choice(PERM_VAL.STAGE_GROUP)
+        if self.clinical_n_category is None:
+            self.clinical_n_category = random.choice(PERM_VAL.N_CATEGORY)
+        if self.clinical_m_category is None:
+            self.clinical_m_category = random.choice(PERM_VAL.M_CATEGORY)
+        if self.clinical_t_category is None:
+            self.clinical_t_category = random.choice(PERM_VAL.T_CATEGORY)
+        if self.pathological_tumour_staging_system is None:
+            self.pathological_tumour_staging_system = random.choice(PERM_VAL.TUMOUR_STAGING_SYSTEM)
+        if self.pathological_stage_group is None:
+            self.pathological_stage_group = random.choice(PERM_VAL.STAGE_GROUP)
+        if self.pathological_n_category is None:
+            self.pathological_n_category = random.choice(PERM_VAL.N_CATEGORY)
+        if self.pathological_m_category is None:
+            self.pathological_m_category = random.choice(PERM_VAL.M_CATEGORY)
+        if self.pathological_t_category is None:
+            self.pathological_t_category = random.choice(PERM_VAL.T_CATEGORY)
 
 
 class SynthSpecimenFactory(SpecimenFactory):
@@ -1366,6 +1393,7 @@ class AllSynthFollowUpFactory(SynthFollowUpFactory):
             "Distant progression",
             "Loco-regional progression",
             "Progression not otherwise specified",
+            "Relapse or recurrence"
         ]:
             donor = self.donor_uuid
             self.relapse_type = random.choice(PERM_VAL.RELAPSE_TYPE)
@@ -1383,6 +1411,9 @@ class AllSynthFollowUpFactory(SynthFollowUpFactory):
                     "day_interval": relapse_day_int,
                     "month_interval": relapse_month_int,
                 }
+            if self.method_of_progression_status is None:
+                self.method_of_progression_status = random.choices(PERM_VAL.PROGRESSION_STATUS_METHOD,
+                                                                   k=random.randint(1, 5))
 
 
 class SynthExposureFactory(ExposureFactory):
