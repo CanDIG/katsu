@@ -3,12 +3,11 @@ These lists contain the permissible values for their respective
 MoH model fields and are used for validation during serialization.
 """
 
-# Unknown + Boolean
 from chord_metadata_service.mohpackets.utils import list_to_enum
 
-UBOOLEAN = ["Yes", "No", "Unknown"]
+UBOOLEAN = ["Yes", "No", "Not available"]
 
-CAUSE_OF_DEATH = ["Died of cancer", "Died of other reasons", "Unknown"]
+CAUSE_OF_DEATH = ["Died of cancer", "Died of other reasons", "Not available"]
 
 PRIMARY_SITE = [
     "Accessory sinuses",
@@ -81,6 +80,7 @@ PRIMARY_SITE = [
     "Vagina",
     "Vulva",
     "Unknown primary site",
+    "Not available"
 ]
 
 
@@ -88,9 +88,9 @@ LOST_TO_FOLLOWUP_REASON = [
     "Completed study",
     "Discharged to palliative care",
     "Lost contact",
-    "Not applicable",
-    "Unknown",
+    "Not available",
     "Withdrew from study",
+    "Discharged from follow-up"
 ]
 
 TUMOUR_STAGING_SYSTEM = [
@@ -108,6 +108,7 @@ TUMOUR_STAGING_SYSTEM = [
     "Revised International staging system (RISS)",
     "SEER staging system",
     "St Jude staging system",
+    "Not available"
 ]
 
 T_CATEGORY = [
@@ -310,6 +311,7 @@ STAGE_GROUP = [
     "Stage 4",
     "Stage 4S",
     "Occult Carcinoma",
+    "Not available"
 ]
 
 
@@ -319,10 +321,11 @@ STORAGE = [
     "Frozen in liquid nitrogen",
     "Frozen in vapour phase",
     "Not Applicable",
+    "OCT embedded",
     "Other",
     "Paraffin block",
     "RNA later frozen",
-    "Unknown",
+    "Not available",
 ]
 
 SPECIMEN_PROCESSING = [
@@ -335,10 +338,10 @@ SPECIMEN_PROCESSING = [
     "Formalin fixed - unbuffered",
     "Fresh",
     "Other",
-    "Unknown",
+    "Not available",
 ]
 
-SPECIMEN_LATERALITY = ["Left", "Not applicable", "Right", "Unknown"]
+SPECIMEN_LATERALITY = ["Left", "Not applicable", "Right", "Not available"]
 
 PRIMARY_DIAGNOSIS_LATERALITY = [
     "Bilateral",
@@ -347,10 +350,10 @@ PRIMARY_DIAGNOSIS_LATERALITY = [
     "Not a paired site",
     "Right",
     "Unilateral, side not specified",
-    "Unknown",
+    "Not available",
 ]
 
-CONFIRMED_DIAGNOSIS_TUMOUR = ["Yes", "No", "Not done", "Unknown"]
+CONFIRMED_DIAGNOSIS_TUMOUR = ["Yes", "No", "Not done", "Not available"]
 
 TUMOUR_GRADING_SYSTEM = [
     "FNCLCC grading system",
@@ -366,6 +369,7 @@ TUMOUR_GRADING_SYSTEM = [
     "Three-tier grading system",
     "Two-tier grading system",
     "WHO grading system for CNS tumours",
+    "Not available"
 ]
 
 TUMOUR_GRADE = [
@@ -391,20 +395,22 @@ TUMOUR_GRADE = [
     "Grade Group 3",
     "Grade Group 4",
     "Grade Group 5",
+    "Not available",
 ]
 
-PERCENT_CELLS_RANGE = ["0-19%", "20-50%", "51-100%"]
+PERCENT_CELLS_RANGE = ["0-19%", "20-50%", "51-100%", "Not available"]
 
 CELLS_MEASURE_METHOD = [
     "Genomics",
     "Image analysis",
     "Pathology estimate by percent nuclei",
-    "Unknown",
+    "Other",
+    "Not available",
 ]
 
-GENDER = ["Man", "Woman", "Non-binary"]
+GENDER = ["Man", "Woman", "Non-binary", "Other", "Prefer not to disclose", "Not available"]
 
-SEX_AT_BIRTH = ["Male", "Female", "Other", "Unknown"]
+SEX_AT_BIRTH = ["Male", "Female", "Other", "Not available"]
 
 SPECIMEN_TISSUE_SOURCE = [
     "Abdominal fluid",
@@ -426,6 +432,7 @@ SPECIMEN_TISSUE_SOURCE = [
     "Fetal blood",
     "Hydrocele fluid",
     "Male genital fluid",
+    "Other",
     "Pancreatic fluid",
     "Pericardial effusion",
     "Pleural fluid",
@@ -485,7 +492,7 @@ BASIS_OF_DIAGNOSIS = [
     "Histology of a metastasis",
     "Histology of a primary tumour",
     "Specific tumour markers",
-    "Unknown",
+    "Not available",
 ]
 
 LYMPH_NODE_STATUS = [
@@ -504,15 +511,14 @@ LYMPH_NODE_METHOD = [
 
 TREATMENT_TYPE = [
     "Bone marrow transplant",
-    "Chemotherapy",
-    "Hormonal therapy",
-    "Immunotherapy",
+    "Systemic therapy",
     "No treatment",
-    "Other targeting molecular therapy",
+    "Targeted molecular therapy",
     "Photodynamic therapy",
     "Radiation therapy",
     "Stem cell transplant",
     "Surgery",
+    "Other",
 ]
 
 TREATMENT_SETTING = [
@@ -538,6 +544,7 @@ TREATMENT_INTENT = [
     "Guidance",
     "Screening",
     "Forensic",
+    "Not available"
 ]
 
 TREATMENT_RESPONSE_METHOD = [
@@ -548,6 +555,7 @@ TREATMENT_RESPONSE_METHOD = [
     "AML Response Criteria",
     "Physician Assessed Response Criteria",
     "Blazer score",
+    "Not available",
 ]
 
 TREATMENT_RESPONSE = [
@@ -576,6 +584,7 @@ TREATMENT_RESPONSE = [
     "Minor response",
     "Major response",
     "Complete response",
+    "Not available",
 ]
 
 TREATMENT_STATUS = [
@@ -586,9 +595,9 @@ TREATMENT_STATUS = [
     "Physician decision (stopped or interrupted treatment)",
     "Treatment stopped due to lack of efficacy (disease progression)",
     "Treatment stopped due to acute toxicity",
+    "Treatment ongoing",
     "Other",
-    "Not applicable",
-    "Unknown",
+    "Not available",
 ]
 
 DRUG_REFERENCE_DB = [
@@ -605,6 +614,7 @@ DOSAGE_UNITS = [
     "g/m2",
     "mg/kg",
     "cells/kg",
+    "Not available",
 ]
 
 RADIATION_THERAPY_MODALITY = [
@@ -615,270 +625,272 @@ RADIATION_THERAPY_MODALITY = [
     "Teleradiotherapy neutrons (procedure)",
     "Brachytherapy (procedure)",
     "Other",
+    "Not available"
 ]
 
 RADIATION_ANATOMICAL_SITE = [
-    "Left Abdomen",
-    "Whole Abdomen",
-    "Right Abdomen",
-    "Lower Abdomen",
-    "Left Lower Abdomen",
-    "Right Lower Abdomen",
-    "Upper Abdomen",
-    "Left Upper Abdomen",
-    "Right Upper Abdomen",
-    "Left Adrenal",
-    "Right Adrenal",
-    "Bilateral Ankle",
-    "Left Ankle",
-    "Right Ankle",
-    "Bilateral Antrum (Bull's Eye)",
-    "Left Antrum",
-    "Right Antrum",
-    "Anus",
-    "Lower Left Arm",
-    "Lower Right Arm",
-    "Bilateral Arms",
-    "Left Arm",
-    "Right Arm",
-    "Upper Left Arm",
-    "Upper Right Arm",
-    "Left Axilla",
-    "Right Axilla",
-    "Skin or Soft Tissue of Back",
-    "Bile Duct",
-    "Bladder",
-    "Lower Body",
-    "Middle Body",
-    "Upper Body",
-    "Whole Body",
-    "Boost - Area Previously Treated",
-    "Brain",
-    "Left Breast Boost",
-    "Right Breast Boost",
-    "Bilateral Breast",
-    "Left Breast",
-    "Right Breast",
-    "Bilateral Breasts with Nodes",
-    "Left Breast with Nodes",
-    "Right Breast with Nodes",
-    "Bilateral Buttocks",
-    "Left Buttock",
-    "Right Buttock",
-    "Inner Canthus",
-    "Outer Canthus",
-    "Cervix",
-    "Bilateral Chest Lung & Area Involve",
-    "Left Chest",
-    "Right Chest",
-    "Chin",
-    "Left Cheek",
-    "Right Cheek",
-    "Bilateral Chest Wall (W/o Breast)",
-    "Left Chest Wall",
-    "Right Chest Wall",
-    "Bilateral Clavicle",
-    "Left Clavicle",
-    "Right Clavicle",
-    "Coccyx",
-    "Colon",
-    "Whole C.N.S. (Medulla Techinque)",
-    "Csf Spine (Medull Tech 2 Diff Machi",
-    "Left Chestwall Boost",
-    "Right Chestwall Boost",
-    "Bilateral Chestwall with Nodes",
-    "Left Chestwall with Nodes",
-    "Right Chestwall with Nodes",
-    "Left Ear",
-    "Right Ear",
-    "Epigastrium",
-    "Lower Esophagus",
-    "Middle Esophagus",
-    "Upper Esophagus",
-    "Entire Esophagus",
-    "Ethmoid Sinus",
-    "Bilateral Eyes",
-    "Left Eye",
-    "Right Eye",
-    "Bilateral Face",
-    "Left Face",
-    "Right Face",
-    "Left Fallopian Tubes",
-    "Right Fallopian Tubes",
-    "Bilateral Femur",
-    "Left Femur",
-    "Right Femur",
-    "Left Fibula",
-    "Right Fibula",
-    "Finger (Including Thumbs)",
-    "Floor of Mouth (Boosts)",
-    "Bilateral Feet",
-    "Left Foot",
-    "Right Foot",
-    "Forehead",
-    "Posterior Fossa",
-    "Gall Bladder",
-    "Gingiva",
-    "Bilateral Hand",
-    "Left Hand",
-    "Right Hand",
-    "Head",
-    "Bilateral Heel",
-    "Left Heel",
-    "Right Heel",
-    "Left Hemimantle",
-    "Right Hemimantle",
-    "Heart",
-    "Bilateral Hip",
-    "Left Hip",
-    "Right Hip",
-    "Left Humerus",
-    "Right Humerus",
-    "Hypopharynx",
-    "Bilateral Internal Mammary Chain",
-    "Bilateral Inguinal Nodes",
-    "Left Inguinal Nodes",
-    "Right Inguinal Nodes",
-    "Inverted 'Y' (Dog-Leg,Hockey-Stick)",
-    "Left Kidney",
-    "Right Kidney",
-    "Bilateral Knee",
-    "Left Knee",
-    "Right Knee",
-    "Bilateral Lacrimal Gland",
-    "Left Lacrimal Gland",
-    "Right Lacrimal Gland",
-    "Larygopharynx",
-    "Larynx",
-    "Bilateral Leg",
-    "Left Leg",
-    "Right Leg",
-    "Lower Bilateral Leg",
-    "Lower Left Leg",
-    "Lower Right Leg",
-    "Upper Bilateral Leg",
-    "Upper Left Leg",
-    "Upper Right Leg",
-    "Both Eyelid(s)",
-    "Left Eyelid",
-    "Right Eyelid",
-    "Both Lip(s)",
-    "Lower Lip",
-    "Upper Lip",
-    "Liver",
-    "Bilateral Lung",
-    "Left Lung",
-    "Right Lung",
-    "Bilateral Mandible",
-    "Left Mandible",
-    "Right Mandible",
-    "Mantle",
-    "Bilateral Maxilla",
-    "Left Maxilla",
-    "Right Maxilla",
-    "Mediastinum",
-    "Multiple Skin",
-    "Nasal Fossa",
-    "Nasopharynx",
-    "Bilateral Neck Includes Nodes",
-    "Left Neck Includes Nodes",
-    "Right Neck Includes Nodes",
-    "Neck - Skin",
-    "Nose",
-    "Oral Cavity / Buccal Mucosa",
-    "Bilateral Orbit",
-    "Left Orbit",
-    "Right Orbit",
-    "Oropharynx",
-    "Bilateral Ovary",
-    "Left Ovary",
-    "Right Ovary",
-    "Hard Palate",
-    "Soft Palate",
-    "Palate Unspecified",
-    "Pancreas",
-    "Para-Aortic Nodes",
-    "Left Parotid",
-    "Right Parotid",
-    "Bilateral Pelvis",
-    "Left Pelvis",
-    "Right Pelvis",
-    "Penis",
-    "Perineum",
-    "Pituitary",
-    "Left Pleura (As in Mesothelioma)",
-    "Right Pleura",
-    "Prostate",
-    "Pubis",
-    "Pyriform Fossa (Sinuses)",
-    "Left Radius",
-    "Right Radius",
-    "Rectum (Includes Sigmoid)",
-    "Left Ribs",
-    "Right Ribs",
-    "Sacrum",
-    "Left Salivary Gland",
-    "Right Salivary Gland",
-    "Bilateral Scapula",
-    "Left Scapula",
-    "Right Scapula",
-    "Bilateral Supraclavicular Nodes",
-    "Left Supraclavicular Nodes",
-    "Right Supraclavicular Nodes",
-    "Bilateral Scalp",
-    "Left Scalp",
-    "Right Scalp",
-    "Scrotum",
-    "Bilateral Shoulder",
-    "Left Shoulder",
-    "Right Shoulder",
-    "Whole Body - Skin",
-    "Skull",
-    "Cervical & Thoracic Spine",
-    "Sphenoid Sinus",
-    "Cervical Spine",
-    "Lumbar Spine",
-    "Thoracic Spine",
-    "Whole Spine",
-    "Spleen",
-    "Lumbo-Sacral Spine",
-    "Thoracic & Lumbar Spine",
-    "Sternum",
-    "Stomach",
-    "Submandibular Glands",
-    "Left Temple",
-    "Right Temple",
-    "Bilateral Testis",
-    "Left Testis",
-    "Right Testis",
-    "Thyroid",
-    "Left Tibia",
-    "Right Tibia",
-    "Left Toes",
-    "Right Toes",
-    "Tongue",
-    "Tonsil",
-    "Trachea",
-    "Left Ulna",
-    "Right Ulna",
-    "Left Ureter",
-    "Right Ureter",
-    "Urethra",
-    "Uterus",
-    "Uvula",
-    "Vagina",
-    "Vulva",
-    "Abdomen",
-    "Body",
-    "Chest",
-    "Head",
-    "Lower Limb",
-    "Neck",
-    "Other",
-    "Pelvis",
-    "Skin",
-    "Spine",
-    "Upper Limb",
+    "LEFT ABDOMEN",
+    "WHOLE ABDOMEN",
+    "RIGHT ABDOMEN",
+    "LOWER ABDOMEN",
+    "LEFT LOWER ABDOMEN",
+    "RIGHT LOWER ABDOMEN",
+    "UPPER ABDOMEN",
+    "LEFT UPPER ABDOMEN",
+    "RIGHT UPPER ABDOMEN",
+    "LEFT ADRENAL",
+    "RIGHT ADRENAL",
+    "BILATERAL ANKLE",
+    "LEFT ANKLE",
+    "RIGHT ANKLE",
+    "BILATERAL ANTRUM (BULL'S EYE)",
+    "LEFT ANTRUM",
+    "RIGHT ANTRUM",
+    "ANUS",
+    "LOWER LEFT ARM",
+    "LOWER RIGHT ARM",
+    "BILATERAL ARMS",
+    "LEFT ARM",
+    "RIGHT ARM",
+    "UPPER LEFT ARM",
+    "UPPER RIGHT ARM",
+    "LEFT AXILLA",
+    "RIGHT AXILLA",
+    "SKIN OR SOFT TISSUE OF BACK",
+    "BILE DUCT",
+    "BLADDER",
+    "LOWER BODY",
+    "MIDDLE BODY",
+    "UPPER BODY",
+    "WHOLE BODY",
+    "BOOST - AREA PREVIOUSLY TREATED",
+    "BRAIN",
+    "LEFT BREAST BOOST",
+    "RIGHT BREAST BOOST",
+    "BILATERAL BREAST",
+    "LEFT BREAST",
+    "RIGHT BREAST",
+    "BILATERAL BREASTS WITH NODES",
+    "LEFT BREAST WITH NODES",
+    "RIGHT BREAST WITH NODES",
+    "BILATERAL BUTTOCKS",
+    "LEFT BUTTOCK",
+    "RIGHT BUTTOCK",
+    "INNER CANTHUS",
+    "OUTER CANTHUS",
+    "CERVIX",
+    "BILATERAL CHEST LUNG & AREA INVOLVE",
+    "LEFT CHEST",
+    "RIGHT CHEST",
+    "CHIN",
+    "LEFT CHEEK",
+    "RIGHT CHEEK",
+    "BILATERAL CHEST WALL (W/O BREAST)",
+    "LEFT CHEST WALL",
+    "RIGHT CHEST WALL",
+    "BILATERAL CLAVICLE",
+    "LEFT CLAVICLE",
+    "RIGHT CLAVICLE",
+    "COCCYX",
+    "COLON",
+    "WHOLE C.N.S. (MEDULLA TECHINQUE)",
+    "CSF SPINE (MEDULL TECH 2 DIFF MACHI",
+    "LEFT CHESTWALL BOOST",
+    "RIGHT CHESTWALL BOOST",
+    "BILATERAL CHESTWALL WITH NODES",
+    "LEFT CHESTWALL WITH NODES",
+    "RIGHT CHESTWALL WITH NODES",
+    "LEFT EAR",
+    "RIGHT EAR",
+    "EPIGASTRIUM",
+    "LOWER ESOPHAGUS",
+    "MIDDLE ESOPHAGUS",
+    "UPPER ESOPHAGUS",
+    "ENTIRE ESOPHAGUS",
+    "ETHMOID SINUS",
+    "BILATERAL EYES",
+    "LEFT EYE",
+    "RIGHT EYE",
+    "BILATERAL FACE",
+    "LEFT FACE",
+    "RIGHT FACE",
+    "LEFT FALLOPIAN TUBES",
+    "RIGHT FALLOPIAN TUBES",
+    "BILATERAL FEMUR",
+    "LEFT FEMUR",
+    "RIGHT FEMUR",
+    "LEFT FIBULA",
+    "RIGHT FIBULA",
+    "FINGER (INCLUDING THUMBS)",
+    "FLOOR OF MOUTH (BOOSTS)",
+    "BILATERAL FEET",
+    "LEFT FOOT",
+    "RIGHT FOOT",
+    "FOREHEAD",
+    "POSTERIOR FOSSA",
+    "GALL BLADDER",
+    "GINGIVA",
+    "BILATERAL HAND",
+    "LEFT HAND",
+    "RIGHT HAND",
+    "HEAD",
+    "BILATERAL HEEL",
+    "LEFT HEEL",
+    "RIGHT HEEL",
+    "LEFT HEMIMANTLE",
+    "RIGHT HEMIMANTLE",
+    "HEART",
+    "BILATERAL HIP",
+    "LEFT HIP",
+    "RIGHT HIP",
+    "LEFT HUMERUS",
+    "RIGHT HUMERUS",
+    "HYPOPHARYNX",
+    "BILATERAL INTERNAL MAMMARY CHAIN",
+    "BILATERAL INGUINAL NODES",
+    "LEFT INGUINAL NODES",
+    "RIGHT INGUINAL NODES",
+    "INVERTED 'Y' (DOG-LEG,HOCKEY-STICK)",
+    "LEFT KIDNEY",
+    "RIGHT KIDNEY",
+    "BILATERAL KNEE",
+    "LEFT KNEE",
+    "RIGHT KNEE",
+    "BILATERAL LACRIMAL GLAND",
+    "LEFT LACRIMAL GLAND",
+    "RIGHT LACRIMAL GLAND",
+    "LARYGOPHARYNX",
+    "LARYNX",
+    "BILATERAL LEG",
+    "LEFT LEG",
+    "RIGHT LEG",
+    "LOWER BILATERAL LEG",
+    "LOWER LEFT LEG",
+    "LOWER RIGHT LEG",
+    "UPPER BILATERAL LEG",
+    "UPPER LEFT LEG",
+    "UPPER RIGHT LEG",
+    "BOTH EYELID(S)",
+    "LEFT EYELID",
+    "RIGHT EYELID",
+    "BOTH LIP(S)",
+    "LOWER LIP",
+    "UPPER LIP",
+    "LIVER",
+    "BILATERAL LUNG",
+    "LEFT LUNG",
+    "RIGHT LUNG",
+    "BILATERAL MANDIBLE",
+    "LEFT MANDIBLE",
+    "RIGHT MANDIBLE",
+    "MANTLE",
+    "BILATERAL MAXILLA",
+    "LEFT MAXILLA",
+    "RIGHT MAXILLA",
+    "MEDIASTINUM",
+    "MULTIPLE SKIN",
+    "NASAL FOSSA",
+    "NASOPHARYNX",
+    "BILATERAL NECK INCLUDES NODES",
+    "LEFT NECK INCLUDES NODES",
+    "RIGHT NECK INCLUDES NODES",
+    "NECK - SKIN",
+    "NOSE",
+    "ORAL CAVITY / BUCCAL MUCOSA",
+    "BILATERAL ORBIT",
+    "LEFT ORBIT",
+    "RIGHT ORBIT",
+    "OROPHARYNX",
+    "BILATERAL OVARY",
+    "LEFT OVARY",
+    "RIGHT OVARY",
+    "HARD PALATE",
+    "SOFT PALATE",
+    "PALATE UNSPECIFIED",
+    "PANCREAS",
+    "PARA-AORTIC NODES",
+    "LEFT PAROTID",
+    "RIGHT PAROTID",
+    "BILATERAL PELVIS",
+    "LEFT PELVIS",
+    "RIGHT PELVIS",
+    "PENIS",
+    "PERINEUM",
+    "PITUITARY",
+    "LEFT PLEURA (AS IN MESOTHELIOMA)",
+    "RIGHT PLEURA",
+    "PROSTATE",
+    "PUBIS",
+    "PYRIFORM FOSSA (SINUSES)",
+    "LEFT RADIUS",
+    "RIGHT RADIUS",
+    "RECTUM (INCLUDES SIGMOID)",
+    "LEFT RIBS",
+    "RIGHT RIBS",
+    "SACRUM",
+    "LEFT SALIVARY GLAND",
+    "RIGHT SALIVARY GLAND",
+    "BILATERAL SCAPULA",
+    "LEFT SCAPULA",
+    "RIGHT SCAPULA",
+    "BILATERAL SUPRACLAVICULAR NODES",
+    "LEFT SUPRACLAVICULAR NODES",
+    "RIGHT SUPRACLAVICULAR NODES",
+    "BILATERAL SCALP",
+    "LEFT SCALP",
+    "RIGHT SCALP",
+    "SCROTUM",
+    "BILATERAL SHOULDER",
+    "LEFT SHOULDER",
+    "RIGHT SHOULDER",
+    "WHOLE BODY - SKIN",
+    "SKULL",
+    "CERVICAL & THORACIC SPINE",
+    "SPHENOID SINUS",
+    "CERVICAL SPINE",
+    "LUMBAR SPINE",
+    "THORACIC SPINE",
+    "WHOLE SPINE",
+    "SPLEEN",
+    "LUMBO-SACRAL SPINE",
+    "THORACIC & LUMBAR SPINE",
+    "STERNUM",
+    "STOMACH",
+    "SUBMANDIBULAR GLANDS",
+    "LEFT TEMPLE",
+    "RIGHT TEMPLE",
+    "BILATERAL TESTIS",
+    "LEFT TESTIS",
+    "RIGHT TESTIS",
+    "THYROID",
+    "LEFT TIBIA",
+    "RIGHT TIBIA",
+    "LEFT TOES",
+    "RIGHT TOES",
+    "TONGUE",
+    "TONSIL",
+    "TRACHEA",
+    "LEFT ULNA",
+    "RIGHT ULNA",
+    "LEFT URETER",
+    "RIGHT URETER",
+    "URETHRA",
+    "UTERUS",
+    "UVULA",
+    "VAGINA",
+    "VULVA",
+    "ABDOMEN",
+    "BODY",
+    "CHEST",
+    "HEAD",
+    "LOWER LIMB",
+    "NECK",
+    "OTHER",
+    "PELVIS",
+    "SKIN",
+    "SPINE",
+    "UPPER LIMB",
+    "Not available",
 ]
 
 
@@ -950,16 +962,17 @@ SURGERY_TYPE = [
 ]
 
 SURGERY_LOCATION = ["Local recurrence", "Metastatic", "Primary"]
+SURGERY_REFERENCE_DATABASE = ["SNOMED", "NCIt", "UMLS", "CCI"]
 
 TUMOUR_FOCALITY = [
     "Cannot be assessed",
     "Multifocal",
     "Not applicable",
     "Unifocal",
-    "Unknown",
+    "Not available",
 ]
 
-TUMOUR_CLASSIFICATION = ["Not applicable", "RX", "R0", "R1", "R2", "Unknown"]
+TUMOUR_CLASSIFICATION = ["Not applicable", "RX", "R0", "R1", "R2", "Not available"]
 
 MARGIN_TYPES = [
     "Circumferential resection margin",
@@ -967,7 +980,7 @@ MARGIN_TYPES = [
     "Distal margin",
     "Not applicable",
     "Proximal margin",
-    "Unknown",
+    "Not available",
 ]
 
 LYMPHOVACULAR_INVASION = [
@@ -977,7 +990,7 @@ LYMPHOVACULAR_INVASION = [
     "Not applicable",
     "Present",
     "Venous (large vessel) invasion only",
-    "Unknown",
+    "Not available",
 ]
 
 PERINEURAL_INVASION = [
@@ -985,7 +998,7 @@ PERINEURAL_INVASION = [
     "Cannot be assessed",
     "Not applicable",
     "Present",
-    "Unknown",
+    "Not available",
 ]
 
 DISEASE_STATUS_FOLLOWUP = [
@@ -997,14 +1010,16 @@ DISEASE_STATUS_FOLLOWUP = [
     "Progression not otherwise specified",
     "Relapse or recurrence",
     "Stable",
+    "Not available",
 ]
 
 RELAPSE_TYPE = [
     "Distant recurrence/metastasis",
     "Local recurrence",
     "Local recurrence and distant metastasis",
-    "Progression (liquid tumours)",
+    "Progression",
     "Biochemical progression",
+    "Not available",
 ]
 
 PROGRESSION_STATUS_METHOD = [
@@ -1023,7 +1038,7 @@ MALIGNANCY_LATERALITY = [
     "Not applicable",
     "Right",
     "Unilateral, Side not specified",
-    "Unknown",
+    "Not available",
 ]
 
 ER_PR_HPV_STATUS = [
@@ -1031,7 +1046,7 @@ ER_PR_HPV_STATUS = [
     "Negative",
     "Not applicable",
     "Positive",
-    "Unknown",
+    "Not available",
 ]
 
 HER2_STATUS = [
@@ -1040,7 +1055,7 @@ HER2_STATUS = [
     "Positive",
     "Negative",
     "Not applicable",
-    "Unknown",
+    "Not available",
 ]
 
 HPV_STRAIN = [
@@ -1068,7 +1083,7 @@ SMOKING_STATUS = [
     "Current smoker",
     "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
     "Not applicable",
-    "Smoking history not documented",
+    "Not available",
 ]
 
 TOBACCO_TYPE = [
@@ -1080,15 +1095,16 @@ TOBACCO_TYPE = [
     "Pipe",
     "Roll-ups",
     "Snuff",
-    "Unknown",
+    "Not available",
     "Waterpipe",
 ]
 TUMOUR_DESIGNATION = ["Normal", "Tumour"]
-THERAPY_TYPE = ["External", "Internal"]
+THERAPY_TYPE = ["External", "Internal", "Not available"]
+SYSTEMIC_THERAPY_TYPE = ["Chemotherapy", "Hormone therapy", "Immunotherapy"]
 
 # ID format
 # Examples: 90234, BLD_donor_89, AML-90
-ID_REGEX = r"^[A-Za-z0-9\-\._]{1,64}"
+ID_REGEX = r"^[A-Za-z0-9\-\._]{1,64}$"
 
 # Date format
 # A date, or partial date (e.g. just year or year + month) as used in
@@ -1098,15 +1114,15 @@ DATE_REGEX = r"^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-
 
 # ICD-O-3 morphology codes
 # Examples: 8260/3, 9691/36
-MORPHOLOGY_REGEX = r"^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$"
+MORPHOLOGY_REGEX = r"^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$"
 
 # ICD-O-3 topography codes
 # Examples: C50.1, C18
-TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(.[0-9]{1})?$"
+TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(.[0-9]{1})?$|^Not available$"
 
 # WHO ICD-10 codes
 # Examples: E10, C50.1, I11, M06
-COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$"
+COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$"
 
 CauseOfDeathEnum = list_to_enum("CauseOfDeathEnum", CAUSE_OF_DEATH)
 PrimarySiteEnum = list_to_enum("PrimarySiteEnum", PRIMARY_SITE)
@@ -1160,6 +1176,9 @@ RadiationAnatomicalSiteEnum = list_to_enum(
 )
 ImmunotherapyTypeEnum = list_to_enum("ImmunotherapyTypeEnum", IMMUNOTHERAPY_TYPE)
 SurgeryTypeEnum = list_to_enum("SurgeryTypeEnum", SURGERY_TYPE)
+SurgeryReferenceDatabaseEnum = list_to_enum(
+    "SurgeryReferenceDatabaseEnum", SURGERY_REFERENCE_DATABASE
+)
 SurgeryLocationEnum = list_to_enum("SurgeryLocationEnum", SURGERY_LOCATION)
 TumourFocalityEnum = list_to_enum("TumourFocalityEnum", TUMOUR_FOCALITY)
 TumourClassificationEnum = list_to_enum(
@@ -1187,3 +1206,4 @@ SmokingStatusEnum = list_to_enum("SmokingStatusEnum", SMOKING_STATUS)
 TobaccoTypeEnum = list_to_enum("TobaccoTypeEnum", TOBACCO_TYPE)
 TumourDesginationEnum = list_to_enum("TumourDesginationEnum", TUMOUR_DESIGNATION)
 TherapyTypeEnum = list_to_enum("TherapyTypeEnum", THERAPY_TYPE)
+SystemicTherapyTypeEnum = list_to_enum("SystemicTherapyTypeEnum", SYSTEMIC_THERAPY_TYPE)

@@ -5,14 +5,16 @@ import factory
 from django.conf import settings
 from django.test import Client, TestCase
 
-from chord_metadata_service.mohpackets.tests.endpoints.factories import (
-    ChemotherapyFactory,
+from chord_metadata_service.mohpackets.tests.factories import (
+    BiomarkerFactory,
+    ComorbidityFactory,
     DonorFactory,
-    ImmunotherapyFactory,
+    ExposureFactory,
     PrimaryDiagnosisFactory,
     ProgramFactory,
     SampleRegistrationFactory,
     SpecimenFactory,
+    SystemicTherapyFactory,
     TreatmentFactory,
 )
 
@@ -22,8 +24,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
     It sets up initial test data, including programs, donors with other models,
     and defines test users with different permission levels and dataset access.
     By utilizing this, there is no need to create the same test data
-    for every individual test method, thereby speeding up the tests and promoting
-    consistency.
+    for every individual test method.
 
     Example:
         To use this base test case, inherit from it in your test classes and use
@@ -38,10 +39,11 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import (
 
 
 class TestUser:
-    def __init__(self, token, is_admin, datasets):
+    def __init__(self, token, is_admin, write_datasets, read_datasets):
         self.token = token
         self.is_admin = is_admin
-        self.datasets = datasets
+        self.write_datasets = write_datasets
+        self.read_datasets = read_datasets
 
 
 class BaseTestCase(TestCase):
@@ -65,50 +67,72 @@ class BaseTestCase(TestCase):
         cls.treatments = TreatmentFactory.create_batch(
             16, primary_diagnosis_uuid=factory.Iterator(cls.primary_diagnoses)
         )
-        cls.chemotherapies = ChemotherapyFactory.create_batch(
-            4, treatment_uuid=factory.Iterator(cls.treatments[0:4])
+        cls.systemic_therapies = SystemicTherapyFactory.create_batch(
+            16, treatment_uuid=factory.Iterator(cls.treatments)
         )
-        cls.immunotherapies = ImmunotherapyFactory.create_batch(
-            4, treatment_uuid=factory.Iterator(cls.treatments[4:8])
+        cls.exposures = ExposureFactory.create_batch(
+            8, donor_uuid=factory.Iterator(cls.donors)
+        )
+        cls.comorbidities = ComorbidityFactory.create_batch(
+            8, donor_uuid=factory.Iterator(cls.donors)
+        )
+        cls.biomarker = BiomarkerFactory.create_batch(
+            8, donor_uuid=factory.Iterator(cls.donors)
         )
 
-        # Define test users with permission and datasets access
+        # Define users permissions based on test data
+        # The only different between a normal user and a curator is write permission
         cls.user_0 = TestUser(
-            token="token_0",
+            token="user_0",
             is_admin=False,
-            datasets=[],
+            write_datasets=[],
+            read_datasets=[cls.programs[0].program_id],
         )
         cls.user_1 = TestUser(
             token="user_1",
             is_admin=False,
-            datasets=[cls.programs[0].program_id],
+            write_datasets=[cls.programs[1].program_id],
+            read_datasets=[
+                cls.programs[0].program_id,
+                cls.programs[1].program_id,
+            ],
         )
         cls.user_2 = TestUser(
-            token="user_2",
+            token="site_admin",
             is_admin=True,
-            datasets=[cls.programs[0].program_id, cls.programs[1].program_id],
+            write_datasets=[
+                cls.programs[0].program_id,
+                cls.programs[1].program_id,
+                "admin_authorized_program_id",
+            ],
+            read_datasets=[
+                cls.programs[0].program_id,
+                cls.programs[1].program_id,
+            ],
         )
+
         # remember to add all the custom users into this list
         cls.users = [cls.user_0, cls.user_1, cls.user_2]
         os.environ["DJANGO_SETTINGS_MODULE"] = "config.settings.local"
 
-        settings.LOCAL_AUTHORIZED_DATASET = [
-            {
-                "token": cls.user_0.token,
+        # Overrides local settings to allow new testing data
+        settings.LOCAL_OPA_DATASET = {
+            cls.user_0.token: {
                 "is_admin": cls.user_0.is_admin,
-                "datasets": cls.user_0.datasets,
+                "write_datasets": cls.user_0.write_datasets,
+                "read_datasets": cls.user_0.read_datasets,
             },
-            {
-                "token": cls.user_1.token,
+            cls.user_1.token: {
                 "is_admin": cls.user_1.is_admin,
-                "datasets": cls.user_1.datasets,
+                "write_datasets": cls.user_1.write_datasets,
+                "read_datasets": cls.user_1.read_datasets,
             },
-            {
-                "token": cls.user_2.token,
+            cls.user_2.token: {
                 "is_admin": cls.user_2.is_admin,
-                "datasets": cls.user_2.datasets,
+                "write_datasets": cls.user_2.write_datasets,
+                "read_datasets": cls.user_2.read_datasets,
             },
-        ]
+        }
 
     def setUp(self):
         logging.disable(logging.WARNING)

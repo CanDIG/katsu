@@ -1,4 +1,7 @@
 -r local.txt # inherit from local.txt
-uwsgi==2.0.24 #  web server
-whitenoise==6.6.0 # serve static files
-redis[hiredis]==5.0.3 # cache server
+whitenoise==6.7.0 # serve static files
+redis[hiredis]==5.0.8 # cache server
+gunicorn==23.0.0 #  web server
+uvicorn[standard]==0.30.6 #  web server
+candigv2-logging@git+https://github.com/CanDIG/candigv2-logging.git@v1.0.0 # CANDIG logging wrapper
+candigv2-authx@git+https://github.com/CanDIG/candigv2-authx.git@v2.5.0 # CANDIG authorization wrapper

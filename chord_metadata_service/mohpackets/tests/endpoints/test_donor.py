@@ -5,7 +5,7 @@ from django.forms.models import model_to_dict
 
 from chord_metadata_service.mohpackets.models import Donor
 from chord_metadata_service.mohpackets.tests.endpoints.base import BaseTestCase
-from chord_metadata_service.mohpackets.tests.endpoints.factories import DonorFactory
+from chord_metadata_service.mohpackets.tests.factories import DonorFactory
 
 """
     This module contains API tests related to the Donor model endpoints.
@@ -26,7 +26,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import DonorFac
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.donor_url = "/v2/ingest/donor/"
+        self.donor_url = "/v3/ingest/donors/"
 
     def test_donor_create_authorized(self):
         """
@@ -38,10 +38,10 @@ class IngestTestCase(BaseTestCase):
         - User can perform a POST request for donor creation.
         """
         donor = DonorFactory.build(program_id=self.programs[0])
-        donor_dict = model_to_dict(donor)
+        data_dict = model_to_dict(donor)
         response = self.client.post(
             self.donor_url,
-            data=donor_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -63,10 +63,10 @@ class IngestTestCase(BaseTestCase):
         - User cannot perform a POST request for donor creation.
         """
         donor = DonorFactory.build(program_id=self.programs[0])
-        donor_dict = model_to_dict(donor)
+        data_dict = model_to_dict(donor)
         response = self.client.post(
             self.donor_url,
-            data=donor_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",
@@ -83,11 +83,11 @@ class IngestTestCase(BaseTestCase):
         - User cannot perform a POST request for donor creation.
         """
         donor = DonorFactory.build(program_id=self.programs[0])
-        donor_dict = model_to_dict(donor)
-        donor_dict["cause_of_death"] = "invalid"
+        data_dict = model_to_dict(donor)
+        data_dict["cause_of_death"] = "invalid"
         response = self.client.post(
             self.donor_url,
-            data=donor_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -105,7 +105,7 @@ class IngestTestCase(BaseTestCase):
 class GETTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.donor_url = "/v2/authorized/donors/"
+        self.donor_url = "/v3/authorized/donors/"
 
     def test_get_donor_200_ok(self):
         """
@@ -126,11 +126,11 @@ class GETTestCase(BaseTestCase):
         Test a GET request endpoint with a 301 redirection.
 
         Testing Strategy:
-        - Send a GET request to the '/v2/authorized/donors' endpoint.
+        - Send a GET request to the '/v3/authorized/donors' endpoint.
         - The request should receive a 301 redirection response.
         """
         response = self.client.get(
-            "/v2/authorized/donors", HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}"
+            "/v3/authorized/donors", HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}"
         )
         self.assertEqual(response.status_code, HTTPStatus.MOVED_PERMANENTLY)
 
@@ -140,7 +140,7 @@ class GETTestCase(BaseTestCase):
 class OthersTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.donor_url = "/v2/authorized/donors/"
+        self.donor_url = "/v3/authorized/donors/"
 
     def test_get_datasets_match_permission(self):
         """
@@ -153,10 +153,8 @@ class OthersTestCase(BaseTestCase):
           for each of the test users.
         """
         for user in self.users:
-            authorized_datasets = next(
-                user_data["datasets"]
-                for user_data in settings.LOCAL_AUTHORIZED_DATASET
-                if user_data["token"] == user.token
+            authorized_datasets = settings.LOCAL_OPA_DATASET.get(user.token, {}).get(
+                "read_datasets", []
             )
             # get donors from the database
             expected_donors = list(
@@ -226,7 +224,7 @@ class OthersTestCase(BaseTestCase):
 class DonorExplorerTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.donor_url = "/v2/explorer/donors/"
+        self.donor_url = "/v3/explorer/donors/"
 
     def test_request_not_from_query(self):
         """
@@ -323,20 +321,22 @@ class DonorExplorerTestCase(BaseTestCase):
     def test_filter_primary_sites(self):
         """
         Test filtering donors by primary site.
-        Verifies the correct count of donors.
+        Verifies the correct count of primary site.
 
         Testing Strategy:
-        - Extract the primary site from the first donor.
-        - Count the number of donors with that primary site.
+        - Extract the primary site from the first primary diagnosis.
+        - Count the number of that primary site in the db
         - Send a valid request with a filter on the primary site.
-        - Ensure that the count of returned donors matches the expected count.
+        - Ensure that the count of returned matches the expected count.
         - Check each returned donor to confirm that it contains the specified primary site.
         """
-        selected_primary_site = self.donors[0].primary_site[0]
+        selected_primary_site = self.primary_diagnoses[0].primary_site
 
-        # Count the number of donors with the selected primary site
-        count = sum(
-            1 for donor in self.donors if selected_primary_site in donor.primary_site
+        # Calculate total count of the primary_site in all primary diagnoses
+        primary_site_count = sum(
+            1
+            for pd in self.primary_diagnoses
+            if selected_primary_site == pd.primary_site
         )
 
         response = self.client.get(
@@ -346,8 +346,12 @@ class DonorExplorerTestCase(BaseTestCase):
         )
         donors = response.json()
 
-        # Ensure that the count of returned donors matches the expected count
-        self.assertEqual(len(donors), count)
+        # Calculate count of primary_site for returned donors
+        response_primary_site_count = sum(
+            1 for donor in donors if selected_primary_site in donor["primary_site"]
+        )
+
+        self.assertEqual(primary_site_count, response_primary_site_count)
 
         # Check each returned donor to confirm that it contains the specified primary site
         for donor in donors:
@@ -394,105 +398,58 @@ class DonorExplorerTestCase(BaseTestCase):
         Verifies the correct count of return donors.
 
         Testing Strategy:
-        - Extract drug name from the first chemotherapy.
+        - Extract drug name from the first systemic therapy.
         - Collect distinct donors associated with the specified drug name.
         - Send a valid request with a filter on the drug name.
         - Ensure that the count of returned donors matches the expected count.
         """
-        selected_drug_name = self.chemotherapies[0].drug_name
+        selected_drug_name = self.systemic_therapies[0].drug_name
 
         donors_with_selected_drug_name = {
-            chemo.treatment_uuid.donor_uuid_id
-            for chemo in self.chemotherapies
-            if chemo.drug_name == selected_drug_name
+            systemic_therapy.treatment_uuid.donor_uuid_id
+            for systemic_therapy in self.systemic_therapies
+            if systemic_therapy.drug_name == selected_drug_name
         }
 
         response = self.client.get(
             self.donor_url,
-            {"chemotherapy_drug_name": [selected_drug_name]},
+            {"systemic_therapy_drug_name": [selected_drug_name]},
             HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
         )
         donors = response.json()
 
         assert len(donors) == len(donors_with_selected_drug_name)
 
-    def test_filter_two_drug_names_same_treatment(self):
+    def test_filter_two_drug_names(self):
         """
-        Test filtering donors by 2 drug names on the same treatment.
+        Test filtering donors by 2 drug names.
         Verifies the correct count of return donors.
 
         Testing Strategy:
-        - Extract 2 drug names from chemotherapies.
+        - Extract 2 drug names from systemic therapies.
         - Collect donors associated with each drug name.
-        - Ex: [donor_1, donor_2] + [donor_2, donor_3] = [donor_1, donor_2, donor_3])
         - Send a valid request with a filter on both drug names.
         - Ensure that the count of returned donors matches the expected count.
         """
-        selected_chemotherapy_drug_names = [
-            chemo.drug_name for chemo in self.chemotherapies[:2]
+        selected_drug_names = [
+            therapy.drug_name for therapy in self.systemic_therapies[:2]
         ]
 
-        donors_with_selected_chemotherapy_drug_names = set()
-        for chemotherapy in self.chemotherapies:
-            if chemotherapy.drug_name in selected_chemotherapy_drug_names:
-                donors_with_selected_chemotherapy_drug_names.add(
-                    chemotherapy.treatment_uuid.donor_uuid_id
+        donors_with_selected_drug_names = set()
+        for systemic_therapy in self.systemic_therapies:
+            if systemic_therapy.drug_name in selected_drug_names:
+                donors_with_selected_drug_names.add(
+                    systemic_therapy.treatment_uuid.donor_uuid_id
                 )
 
         response = self.client.get(
             self.donor_url,
-            {"chemotherapy_drug_name": selected_chemotherapy_drug_names},
+            {"systemic_therapy_drug_name": selected_drug_names},
             HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
         )
         donors = response.json()
 
-        assert len(donors) == len(donors_with_selected_chemotherapy_drug_names)
-
-    def test_filter_two_drug_names_different_treatments(self):
-        """
-        Test filtering donors by different drug names on different treatments.
-        Verifies the correct count of return donors.
-
-        Testing Strategy:
-        - Extract drug names from chemotherapies and immunotherapies.
-        - Collect distinct donors associated with each drug name.
-        - Find the donors associated with both drug names.
-        - Ex: [donor_1, donor_2] + [donor_2, donor_3] = [donor_2])
-        - Send a valid request with filters on both drug names.
-        - Ensure that the count of returned donors matches the expected count.
-        """
-        selected_chemotherapy_drug_name = self.chemotherapies[0].drug_name
-        selected_immunotherapy_drug_name = self.immunotherapies[0].drug_name
-
-        donors_with_selected_chemotherapy_drug_name = {
-            chemo.treatment_uuid.donor_uuid_id
-            for chemo in self.chemotherapies
-            if chemo.drug_name == selected_chemotherapy_drug_name
-        }
-
-        donors_with_selected_immunotherapy_drug_name = {
-            immuno.treatment_uuid.donor_uuid_id
-            for immuno in self.immunotherapies
-            if immuno.drug_name == selected_immunotherapy_drug_name
-        }
-
-        donors_with_both_drug_names = (
-            donors_with_selected_chemotherapy_drug_name.intersection(
-                donors_with_selected_immunotherapy_drug_name
-            )
-        )
-
-        response = self.client.get(
-            self.donor_url,
-            {
-                "chemotherapy_drug_name": [selected_chemotherapy_drug_name],
-                "immunotherapy_drug_name": [selected_immunotherapy_drug_name],
-            },
-            HTTP_X_SERVICE_TOKEN=settings.QUERY_SERVICE_TOKEN,
-        )
-        donors = response.json()
-
-        assert len(donors) == len(donors_with_both_drug_names)
+        assert len(donors) == len(donors_with_selected_drug_names)
 
     def test_donor_with_missing_data(self):
         """
@@ -524,6 +481,282 @@ class DonorExplorerTestCase(BaseTestCase):
         )
         self.assertIsNotNone(
             missing_data_donor, "Donor with missing data  not found in response"
+        )
+        self.assertIsNone(missing_data_donor["submitter_sample_ids"])
+        self.assertEqual(missing_data_donor["treatment_type"], [])
+
+
+# QUERY API
+# ------------
+class DonorQueryTestCase(BaseTestCase):
+    def setUp(self):
+        super().setUp()
+        self.donor_url = "/v3/authorized/query/"
+
+    def test_get_datasets_match_permission(self):
+        """
+        Test that the response datasets match the authorized datasets for each user.
+
+        Testing Strategy:
+        - Get a list of donors associated with datasets of each user
+        - Call the endpoint to get all donors
+        - Verify that the response datasets match the donors in the authorized datasets
+          for each of the test users.
+        """
+        for user in self.users:
+            authorized_datasets = settings.LOCAL_OPA_DATASET.get(user.token, {}).get(
+                "read_datasets", []
+            )
+            # get donors from the database
+            expected_donors = list(
+                Donor.objects.filter(program_id__in=authorized_datasets).values_list(
+                    "submitter_donor_id", flat=True
+                )
+            )
+
+            # get donors from the api
+            response = self.client.get(
+                self.donor_url,
+                HTTP_AUTHORIZATION=f"Bearer {user.token}",
+            )
+            response = response.json()
+            response_data = [donor["submitter_donor_id"] for donor in response["items"]]
+
+            self.assertEqual(sorted(response_data), sorted(expected_donors))
+
+    def test_post_request_405(self):
+        """
+        Test a POST request to the '/authorized/query/' endpoint.
+        The request should receive a 405 Method Not Allowed response.
+        """
+        response = self.client.post(
+            self.donor_url, HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}"
+        )
+        self.assertEqual(response.status_code, HTTPStatus.METHOD_NOT_ALLOWED)
+
+    def test_put_request_405(self):
+        """
+        Test a PUT request to the '/authorized/query/' endpoint.
+        The request should receive a 405 Method Not Allowed response.
+        """
+        response = self.client.put(
+            self.donor_url, HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}"
+        )
+        self.assertEqual(response.status_code, HTTPStatus.METHOD_NOT_ALLOWED)
+
+    def test_patch_request_405(self):
+        """
+        Test a PATCH request to the '/authorized/query/' endpoint.
+        The request should receive a 405 Method Not Allowed response.
+        """
+        response = self.client.patch(
+            self.donor_url, HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}"
+        )
+        self.assertEqual(response.status_code, HTTPStatus.METHOD_NOT_ALLOWED)
+
+    def test_delete_request_405(self):
+        """
+        Test a DELETE request to the '/authorized/query/' endpoint.
+        The request should receive a 405 Method Not Allowed response.
+        """
+        response = self.client.delete(
+            self.donor_url, HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}"
+        )
+        self.assertEqual(response.status_code, HTTPStatus.METHOD_NOT_ALLOWED)
+
+    def test_filter_cohorts(self):
+        """
+        Test filtering donors by cohort.
+        Verifies the correct count of donors, excluding a specified program.
+
+        Testing Strategy:
+        - Send a valid request with a filter to exclude a specific program.
+        - Confirm the expected count of programs, donors, and sample registrations.
+        - 1 program, 2 donors, and 16 sample registrations
+        """
+        response = self.client.get(
+            self.donor_url,
+            {"exclude_cohorts": [self.programs[0].program_id]},  # exclude the first one
+            HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
+        )
+        donors = response.json()["items"]
+
+        # Calculate the number of unique programs
+        programs = {donor["program_id"] for donor in donors}
+        self.assertEqual(len(programs), 1)  # 1 program
+
+        # Confirm the number of donors
+        self.assertEqual(len(donors), 2)  # 2 donors
+
+        # Calculate the total number of sample registrations
+        sample_registrations = sum(
+            len(donor["submitter_sample_ids"]) for donor in donors
+        )
+        self.assertEqual(sample_registrations, 16)  # 16 sample registrations
+
+    def test_filter_primary_sites(self):
+        """
+        Test filtering donors by primary site.
+        Verifies the correct count of primary site.
+
+        Testing Strategy:
+        - Extract the primary site from the first primary diagnosis.
+        - Count the number of that primary site in the db
+        - Send a valid request with a filter on the primary site.
+        - Ensure that the count of returned matches the expected count.
+        - Check each returned donor to confirm that it contains the specified primary site.
+        """
+        selected_primary_site = self.primary_diagnoses[0].primary_site
+
+        # Calculate total count of the primary_site in all primary diagnoses
+        primary_site_count = sum(
+            1
+            for pd in self.primary_diagnoses
+            if selected_primary_site == pd.primary_site
+        )
+
+        response = self.client.get(
+            self.donor_url,
+            {"primary_site": [selected_primary_site]},
+            HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}"
+        )
+        donors = response.json()["items"]
+
+        # Calculate count of primary_site for returned donors
+        response_primary_site_count = sum(
+            1 for donor in donors if selected_primary_site in donor["primary_site"]
+        )
+
+        self.assertEqual(primary_site_count, response_primary_site_count)
+
+        # Check each returned donor to confirm that it contains the specified primary site
+        for donor in donors:
+            self.assertIn(selected_primary_site, donor["primary_site"])
+
+    def test_filter_treatment_type(self):
+        """
+        Test the filtering donors by treatment type.
+        Verifies the correct count of treatment type from return donors,
+        including repeated treatment types.
+
+        Testing Strategy:
+        - Extract treatment type from the first treatment.
+        - Calculate the total count of the treatment type in all treatments.
+        - Send a valid request with a filter on the treatment type.
+        - Ensure that the count of treatment type for returned donors matches the expected count.
+        """
+        selected_treatment_type = self.treatments[0].treatment_type
+
+        # Calculate total count of the treatment type in all treatments
+        treatment_type_count = sum(
+            1
+            for treatment in self.treatments
+            if selected_treatment_type in treatment.treatment_type
+        )
+
+        response = self.client.get(
+            self.donor_url,
+            {"treatment_type": [selected_treatment_type]},
+            HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}"
+        )
+        donors = response.json()["items"]
+
+        # Calculate count of treatment type for returned donors
+        response_treatment_type_count = sum(
+            1 for donor in donors if selected_treatment_type in donor["treatment_type"]
+        )
+
+        self.assertEqual(treatment_type_count, response_treatment_type_count)
+
+    def test_filter_one_drug_name(self):
+        """
+        Test filtering donors by a drug name.
+        Verifies the correct count of return donors.
+
+        Testing Strategy:
+        - Extract drug name from the first systemic therapy.
+        - Collect distinct donors associated with the specified drug name.
+        - Send a valid request with a filter on the drug name.
+        - Ensure that the count of returned donors matches the expected count.
+        """
+        selected_drug_name = self.systemic_therapies[0].drug_name
+
+        donors_with_selected_drug_name = {
+            systemic_therapy.treatment_uuid.donor_uuid_id
+            for systemic_therapy in self.systemic_therapies
+            if systemic_therapy.drug_name == selected_drug_name
+        }
+
+        response = self.client.get(
+            self.donor_url,
+            {"systemic_therapy_drug_name": [selected_drug_name]},
+            HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
+        )
+        donors = response.json()["items"]
+
+        assert len(donors) == len(donors_with_selected_drug_name)
+
+    def test_filter_two_drug_names(self):
+        """
+        Test filtering donors by 2 drug names.
+        Verifies the correct count of return donors.
+
+        Testing Strategy:
+        - Extract 2 drug names from systemic therapies.
+        - Collect donors associated with each drug name.
+        - Send a valid request with a filter on both drug names.
+        - Ensure that the count of returned donors matches the expected count.
+        """
+        selected_drug_names = [
+            therapy.drug_name for therapy in self.systemic_therapies[:2]
+        ]
+
+        donors_with_selected_drug_names = set()
+        for systemic_therapy in self.systemic_therapies:
+            if systemic_therapy.drug_name in selected_drug_names:
+                donors_with_selected_drug_names.add(
+                    systemic_therapy.treatment_uuid.donor_uuid_id
+                )
+
+        response = self.client.get(
+            self.donor_url,
+            {"systemic_therapy_drug_name": selected_drug_names},
+            HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
+        )
+        donors = response.json()["items"]
+
+        assert len(donors) == len(donors_with_selected_drug_names)
+
+    def test_donor_with_missing_data(self):
+        """
+        Test donor with missing data.
+        Verifies that the API can still return the donor correctly.
+
+        Testing Strategy:
+        - Add a new donor without anything (e.g sample registrations or treatments)
+        - Send a valid request with no filters.
+        - Ensure that the response contains the donor with empty submitter_sample_ids and treatment_type.
+        """
+
+        DonorFactory.create(
+            program_id=self.programs[0], submitter_donor_id="DONOR_MISSING_DATA"
+        )
+
+        response = self.client.get(
+            self.donor_url,
+            HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
+        )
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        missing_data_donor = next(
+            (
+                donor
+                for donor in response.json()["items"]
+                if donor["submitter_donor_id"] == "DONOR_MISSING_DATA"
+            ),
+            None,  # Default value if donor is not found
+        )
+        self.assertIsNotNone(
+            missing_data_donor, "Donor with missing data not found in response"
         )
         self.assertIsNone(missing_data_donor["submitter_sample_ids"])
         self.assertEqual(missing_data_donor["treatment_type"], [])

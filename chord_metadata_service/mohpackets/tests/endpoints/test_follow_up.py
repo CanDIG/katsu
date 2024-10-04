@@ -5,7 +5,7 @@ from django.forms.models import model_to_dict
 
 from chord_metadata_service.mohpackets.models import FollowUp
 from chord_metadata_service.mohpackets.tests.endpoints.base import BaseTestCase
-from chord_metadata_service.mohpackets.tests.endpoints.factories import FollowUpFactory
+from chord_metadata_service.mohpackets.tests.factories import FollowUpFactory
 
 
 # INGEST API
@@ -13,7 +13,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import FollowUp
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.follow_up_url = "/v2/ingest/follow_up/"
+        self.follow_up_url = "/v3/ingest/followups/"
 
     def test_follow_up_create_authorized(self):
         """
@@ -28,7 +28,7 @@ class IngestTestCase(BaseTestCase):
         data_dict = model_to_dict(follow_up)
         response = self.client.post(
             self.follow_up_url,
-            data=data_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -53,7 +53,7 @@ class IngestTestCase(BaseTestCase):
         data_dict = model_to_dict(follow_up)
         response = self.client.post(
             self.follow_up_url,
-            data=data_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",
@@ -70,11 +70,11 @@ class IngestTestCase(BaseTestCase):
         - User cannot perform a POST request for follow-up creation.
         """
         follow_up = FollowUpFactory.build(treatment_uuid=self.treatments[0])
-        follow_up_dict = model_to_dict(follow_up)
-        follow_up_dict["relapse_type"] = "invalid"
+        data_dict = model_to_dict(follow_up)
+        data_dict["relapse_type"] = "invalid"
         response = self.client.post(
             self.follow_up_url,
-            data=follow_up_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -92,7 +92,7 @@ class IngestTestCase(BaseTestCase):
 class GETTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.follow_ups_url = "/v2/authorized/follow_ups/"
+        self.follow_ups_url = "/v3/authorized/follow_ups/"
 
     def test_get_follow_ups_200_ok(self):
         """
@@ -113,11 +113,11 @@ class GETTestCase(BaseTestCase):
         Test a GET request endpoint with a 301 redirection.
 
         Testing Strategy:
-        - Send a GET request to the '/v2/authorized/follow_ups' endpoint.
+        - Send a GET request to the '/v3/authorized/follow_ups' endpoint.
         - The request should receive a 301 redirection response.
         """
         response = self.client.get(
-            "/v2/authorized/follow_ups",
+            "/v3/authorized/follow_ups",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.MOVED_PERMANENTLY)
@@ -128,7 +128,7 @@ class GETTestCase(BaseTestCase):
 class OthersTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.follow_ups_url = "/v2/authorized/follow_ups/"
+        self.follow_ups_url = "/v3/authorized/follow_ups/"
 
     def test_get_datasets_match_permission(self):
         """
@@ -141,10 +141,8 @@ class OthersTestCase(BaseTestCase):
           for each of the test users.
         """
         for user in self.users:
-            authorized_datasets = next(
-                user_data["datasets"]
-                for user_data in settings.LOCAL_AUTHORIZED_DATASET
-                if user_data["token"] == user.token
+            authorized_datasets = settings.LOCAL_OPA_DATASET.get(user.token, {}).get(
+                "read_datasets", []
             )
             # get follow-ups' datasets from the database
             expected_datasets = list(

@@ -9,23 +9,22 @@ USER root
 RUN groupadd -r candig && useradd -r -g candig candig
 
 RUN apt-get update && apt-get -y install \
-	postgresql-client
-	
+    postgresql-client
+
+RUN mkdir -p /home/candig && chown -R candig:candig /home/candig
+
 RUN mkdir /app
 WORKDIR /app
 
 COPY ./requirements /app/requirements
 
 # Conditionally install dependencies based on the environment
-ARG katsu_env
-RUN if [ ${katsu_env} = "dev" ]; then \
-    echo "Installing dev.txt" && \
+ARG debug_mode 
+RUN if [ ${debug_mode} = 1 ]; then \
     pip install --no-cache-dir -r requirements/dev.txt; \
 else \
-    echo "Installing prod.txt" && \
     pip install --no-cache-dir -r requirements/prod.txt; \
 fi
-
 
 COPY . /app/chord_metadata_service
 
@@ -41,4 +40,3 @@ RUN chmod +x /app/chord_metadata_service/create_db.sh
 USER candig
 
 CMD ["/app/chord_metadata_service/entrypoint.sh"]
-

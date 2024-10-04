@@ -17,13 +17,10 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
 django.setup()
 from chord_metadata_service.mohpackets.models import (  # noqa: E402
     Biomarker,
-    Chemotherapy,
     Comorbidity,
     Donor,
     Exposure,
     FollowUp,
-    HormoneTherapy,
-    Immunotherapy,
     PrimaryDiagnosis,
     Program,
     Radiation,
@@ -31,6 +28,7 @@ from chord_metadata_service.mohpackets.models import (  # noqa: E402
     Specimen,
     Surgery,
     Treatment,
+    SystemicTherapy
 )
 
 
@@ -51,11 +49,9 @@ def ingest_data(path):
             (Specimen, "Specimen.json"),
             (SampleRegistration, "SampleRegistration.json"),
             (Treatment, "Treatment.json"),
-            (Chemotherapy, "Chemotherapy.json"),
-            (HormoneTherapy, "HormoneTherapy.json"),
             (Radiation, "Radiation.json"),
-            (Immunotherapy, "Immunotherapy.json"),
             (Surgery, "Surgery.json"),
+            (SystemicTherapy, "SystemicTherapy.json"),
             (FollowUp, "FollowUp.json"),
             (Biomarker, "Biomarker.json"),
             (Comorbidity, "Comorbidity.json"),
@@ -92,20 +88,23 @@ def ingest_data(path):
 
 def main():
     print("Select an option:")
-    print("1. Load small dataset")
-    print("2. Load medium dataset")
-    print("3. Load large dataset")
-    print("4. Exit")
+    print("1. Load extra small dataset")
+    print("2. Load small dataset")
+    print("3. Load medium dataset")
+    print("4. Load large dataset")
+    print("5. Exit")
 
-    choice = int(input("Enter your choice [1-4]: "))
+    choice = int(input("Enter your choice [1-5]: "))
 
     if choice == 1:
-        path = "small_dataset"
+        path = "extra_small_dataset"
     elif choice == 2:
-        path = "medium_dataset"
+        path = "small_dataset"
     elif choice == 3:
-        path = "large_dataset"
+        path = "medium_dataset"
     elif choice == 4:
+        path = "large_dataset"
+    elif choice == 5:
         print("Exiting...")
         exit()
     else:

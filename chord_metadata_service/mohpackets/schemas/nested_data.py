@@ -4,25 +4,23 @@ from ninja import Field
 
 from chord_metadata_service.mohpackets.schemas.base import (
     BaseBiomarkerSchema,
-    BaseChemotherapySchema,
     BaseComorbiditySchema,
     BaseDonorSchema,
     BaseExposureSchema,
     BaseFollowUpSchema,
-    BaseHormoneTherapySchema,
-    BaseImmunotherapySchema,
     BasePrimaryDiagnosisSchema,
     BaseRadiationSchema,
     BaseSampleRegistrationSchema,
     BaseSpecimenSchema,
     BaseSurgerySchema,
     BaseTreatmentSchema,
+    BaseSystemicTherapySchema,
 )
 
 """
 Schemas for nested donor with clinical models, inherted from base schemas.
 
-Donor would include other models. Remove FKs as not needed.
+Donor would include other models, exclude the FKs.
 
 Author: Son Chau
 """
@@ -42,15 +40,7 @@ class NestedComorbiditySchema(BaseComorbiditySchema):
     pass
 
 
-class NestedChemotherapySchema(BaseChemotherapySchema):
-    pass
-
-
-class NestedImmunotherapySchema(BaseImmunotherapySchema):
-    pass
-
-
-class NestedHormoneTherapySchema(BaseHormoneTherapySchema):
+class NestedSystemicTherapySchema(BaseSystemicTherapySchema):
     pass
 
 
@@ -75,14 +65,8 @@ class NestedSampleRegistrationSchema(BaseSampleRegistrationSchema):
 
 
 class NestedTreatmentSchema(BaseTreatmentSchema):
-    chemotherapies: List[NestedChemotherapySchema] = Field(
-        None, alias="chemotherapy_set"
-    )
-    immunotherapies: List[NestedImmunotherapySchema] = Field(
-        None, alias="immunotherapy_set"
-    )
-    hormone_therapies: List[NestedHormoneTherapySchema] = Field(
-        None, alias="hormonetherapy_set"
+    systemic_therapies: List[NestedSystemicTherapySchema] = Field(
+        None, alias="systemictherapy_set"
     )
     radiations: List[NestedRadiationSchema] = Field(None, alias="radiation_set")
     surgeries: List[NestedSurgerySchema] = Field(None, alias="surgery_set")

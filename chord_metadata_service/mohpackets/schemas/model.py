@@ -1,16 +1,14 @@
-from typing import Optional
+from typing import Optional, List
 
 from ninja import Field
 
 from chord_metadata_service.mohpackets.schemas.base import (
     BaseBiomarkerSchema,
-    BaseChemotherapySchema,
+    BaseSystemicTherapySchema,
     BaseComorbiditySchema,
     BaseDonorSchema,
     BaseExposureSchema,
     BaseFollowUpSchema,
-    BaseHormoneTherapySchema,
-    BaseImmunotherapySchema,
     BasePrimaryDiagnosisSchema,
     BaseProgramSchema,
     BaseRadiationSchema,
@@ -44,6 +42,13 @@ class DonorModelSchema(BaseDonorSchema):
     program_id: str = Field(..., alias="program_id_id")
 
 
+class QueryDonorSchema(BaseDonorSchema):
+    program_id: str = Field(..., alias="program_id_id")
+    primary_site: Optional[List[str]] = None
+    treatment_type: Optional[List[str]] = None
+    submitter_sample_ids: Optional[List[str]] = None
+
+
 class PrimaryDiagnosisModelSchema(BasePrimaryDiagnosisSchema):
     program_id: str = Field(..., alias="program_id_id")
     submitter_donor_id: str
@@ -73,25 +78,13 @@ class SurgeryModelSchema(BaseSurgerySchema):
     submitter_treatment_id: str
 
 
-class ImmunotherapyModelSchema(BaseImmunotherapySchema):
-    program_id: str = Field(..., alias="program_id_id")
-    submitter_donor_id: str
-    submitter_treatment_id: str
-
-
 class RadiationModelSchema(BaseRadiationSchema):
     program_id: str = Field(..., alias="program_id_id")
     submitter_donor_id: str
     submitter_treatment_id: str
 
 
-class HormoneTherapyModelSchema(BaseHormoneTherapySchema):
-    program_id: str = Field(..., alias="program_id_id")
-    submitter_donor_id: str
-    submitter_treatment_id: str
-
-
-class ChemotherapyModelSchema(BaseChemotherapySchema):
+class SystemicTherapyModelSchema(BaseSystemicTherapySchema):
     program_id: str = Field(..., alias="program_id_id")
     submitter_donor_id: str
     submitter_treatment_id: str

@@ -17,6 +17,7 @@ from .base import *
 DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "0.0.0.0"]
+AGGREGATE_COUNT_THRESHOLD = 5
 
 # Debug toolbar settings
 # ----------------------
@@ -48,20 +49,37 @@ CACHES = {
     }
 }
 
-# You can change username and datasets to suit your needs
-LOCAL_AUTHORIZED_DATASET = [
-    {
-        "token": "user_1",
+# user_1 is a normal user
+# user_2 is a curator
+# site_admin is admin
+LOCAL_OPA_DATASET = {
+    "user_1": {
         "is_admin": False,
-        "datasets": ["SYNTHETIC-1"],
+        "write_datasets": [],
+        "read_datasets": ["SYNTH_01", "SYNTH_02"],
     },
-    {
-        "token": "user_2",
+    "user_2": {
+        "is_admin": False,
+        "write_datasets": ["SYNTH_01"],
+        "read_datasets": ["SYNTH_01", "SYNTH_02"],
+    },
+    "site_admin": {
         "is_admin": True,
-        "datasets": ["SYNTHETIC-1", "SYNTHETIC-2"],
+        "write_datasets": ["SYNTH_01", "SYNTH_02"],
+        "read_datasets": ["SYNTH_01", "SYNTH_02"],
     },
-]
+}
+
 QUERY_SERVICE_TOKEN = "query"
+INGEST_SERVICE_TOKEN = "candig-ingest"
+
+# Debug toolbar settings
+# ----------------------
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
+    "127.0.0.1",
+    "10.0.2.2",
+]
 
 LOGGING = {
     "version": 1,
@@ -80,16 +98,17 @@ LOGGING = {
     },
     "loggers": {
         "": {
-            "level": "INFO",
+            "level": "DEBUG",
             "handlers": ["console"],
+        },
+        "psycopg": {
+            "level": "ERROR",
+        },
+        "factory": {
+            "level": "ERROR",
+        },
+        "faker": {
+            "level": "ERROR",
         },
     },
 }
-
-# Debug toolbar settings
-# ----------------------
-hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + [
-    "127.0.0.1",
-    "10.0.2.2",
-]

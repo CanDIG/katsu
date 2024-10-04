@@ -5,7 +5,7 @@ from django.forms.models import model_to_dict
 
 from chord_metadata_service.mohpackets.models import Specimen
 from chord_metadata_service.mohpackets.tests.endpoints.base import BaseTestCase
-from chord_metadata_service.mohpackets.tests.endpoints.factories import SpecimenFactory
+from chord_metadata_service.mohpackets.tests.factories import SpecimenFactory
 
 
 # INGEST API
@@ -13,7 +13,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import Specimen
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.specimen_url = "/v2/ingest/specimen/"
+        self.specimen_url = "/v3/ingest/specimens/"
 
     def test_specimen_create_authorized(self):
         """
@@ -30,7 +30,7 @@ class IngestTestCase(BaseTestCase):
         data_dict = model_to_dict(specimen)
         response = self.client.post(
             self.specimen_url,
-            data=data_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -57,7 +57,7 @@ class IngestTestCase(BaseTestCase):
         data_dict = model_to_dict(specimen)
         response = self.client.post(
             self.specimen_url,
-            data=data_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",
@@ -76,11 +76,11 @@ class IngestTestCase(BaseTestCase):
         specimen = SpecimenFactory.build(
             primary_diagnosis_uuid=self.primary_diagnoses[0]
         )
-        specimen_dict = model_to_dict(specimen)
-        specimen_dict["tumour_grade"] = "invalid"
+        data_dict = model_to_dict(specimen)
+        data_dict["tumour_grade"] = "invalid"
         response = self.client.post(
             self.specimen_url,
-            data=specimen_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -98,7 +98,7 @@ class IngestTestCase(BaseTestCase):
 class GETTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.specimen_url = "/v2/authorized/specimens/"
+        self.specimen_url = "/v3/authorized/specimens/"
 
     def test_get_specimen_200_ok(self):
         """
@@ -119,11 +119,11 @@ class GETTestCase(BaseTestCase):
         Test a GET request endpoint with a 301 redirection.
 
         Testing Strategy:
-        - Send a GET request to the '/v2/authorized/specimen' endpoint.
+        - Send a GET request to the '/v3/authorized/specimen' endpoint.
         - The request should receive a 301 redirection response.
         """
         response = self.client.get(
-            "/v2/authorized/specimens",
+            "/v3/authorized/specimens",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.MOVED_PERMANENTLY)
@@ -134,7 +134,7 @@ class GETTestCase(BaseTestCase):
 class OthersTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.specimen_url = "/v2/authorized/specimens/"
+        self.specimen_url = "/v3/authorized/specimens/"
 
     def test_get_datasets_match_permission(self):
         """
@@ -147,10 +147,8 @@ class OthersTestCase(BaseTestCase):
           for each of the test users.
         """
         for user in self.users:
-            authorized_datasets = next(
-                user_data["datasets"]
-                for user_data in settings.LOCAL_AUTHORIZED_DATASET
-                if user_data["token"] == user.token
+            authorized_datasets = settings.LOCAL_OPA_DATASET.get(user.token, {}).get(
+                "read_datasets", []
             )
             # get specimens from the database
             # get primary diagnoses from the database

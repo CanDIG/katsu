@@ -64,14 +64,48 @@ This will install all the packages needed for development.
 
 ### Step 4: Set up PostgreSQL
 
-Replace "dbname", "username", and "password" with the values in [local.py](config/settings/local.py):
+Install for macOS:
+
+```bash
+# Install PostgreSQL
+brew install postgresql@16
+
+# Set PATH environment variable
+echo 'export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+# Start PostgreSQL service
+brew services start postgresql@16
+
+# Log in to PostgreSQL
+psql -d postgres
+```
+
+Install for Linux:
+
+```bash
+# Install PostgreSQL
+sudo apt install postgresql
+
+# Start PostgreSQL service
+sudo systemctl start postgresql.service
+
+# Log in to PostgreSQL
+sudo -u postgres psql
+```
+
+Create a Role and Database:
 
 ```sql
-sudo -u postgres psql
-CREATE DATABASE dbname;
-CREATE USER username WITH PASSWORD 'password';
-GRANT ALL PRIVILEGES ON DATABASE dbname TO username;
+CREATE ROLE admin_local WITH LOGIN PASSWORD 'password_local' CREATEDB CREATEROLE;
+CREATE DATABASE katsu_local WITH OWNER = admin_local;
+GRANT ALL PRIVILEGES ON DATABASE katsu_local TO admin_local;
+
+-- Quit PostgreSQL
+\q
 ```
+
+Note: In some cases, existing PostgreSQL might cause issues. You may need to clean them up manually.
 
 ### Step 5: Set up database
 
@@ -135,7 +169,6 @@ coverage html
 │       │   └── ingestion.py
 │       ├── data/
 │       │   ├── ...
-│       │   ├── data_converter.py
 │       │   ├── data_loader.py
 │       │   └── README.md
 │       ├── docs/
@@ -153,10 +186,12 @@ coverage html
 │       ├── tests/
 │       │   ├── endpoints/
 │       │   │   ├── base.py
-│       │   │   ├── factories.py
-│       │   │   ├── test_chemotherapy.py
+│       │   │   ├── test_donor.py
 │       │   │   └── ...
-│       │   └── test_models.py
+│       │   ├── models/
+│       │   │   ├── test_biomarker.py
+│       │   │   └── ...
+│       │   └── factories.py
 │       ├── apps.py
 │       ├── models.py
 │       ├── pagination.py
@@ -188,7 +223,7 @@ coverage html
 
 ## MOHCCN Clinical Data Model
 
-Katsu uses an underlying data model that is a compatible interpretation, but does not exactly match the MOHCCN data model. Katsu is currently compliant with version 2 of the model, released February 2023. Some relationships between objects have been modified to avoid excessive complexity in the katsu database and allow for the submission of data that is incomplete compared to the MOHCCN gold standard requirements. Permissable values for controlled fields are not validated by the underlying database.
+Katsu uses an underlying data model that is a compatible interpretation, but does not exactly match the MOHCCN data model. Katsu is currently compliant with version 3 of the model, released May 2024. Some relationships between objects have been modified to avoid excessive complexity in the katsu database and allow for the submission of data that is incomplete compared to the MOHCCN gold standard requirements. Permissable values for controlled fields are not validated by the underlying database.
 
 The katsu MoH model is explicitly defined as a set of classes in [models.py](chord_metadata_service/mohpackets/models.py). Permissable values for controlled fields, conditionally required fields and relationships are enforced by the [serializers](chord_metadata_service/mohpackets), [clinical ETL](https://github.com/CanDIG/clinical_ETL_code) and [ingest](https://github.com/CanDIG/candigv2-ingest) validation steps.
 
@@ -201,42 +236,20 @@ title: katsu object level MoH ER diagram
 erDiagram
 
 Program ||--o{ Donor : ""
-Program ||--o{ PrimaryDiagnosis : ""
-Program ||--o{ Comorbidity : ""
-Program ||--o{ Biomarker : ""
-Program ||--o{ Exposure : ""
-Program ||--o{ FollowUp : ""
-Program ||--o{ Specimen : ""
-Program ||--o{ Treatment : ""
-Program ||--o{ SampleRegistration : ""
-Program ||--o{ Chemotherapy : ""
-Program ||--o{ HormoneTherapy : ""
-Program ||--o{ Immunotherapy : ""
-Program ||--o{ Radiation : ""
-Program ||--o{ Surgery : ""
-Donor ||--o{ PrimaryDiagnosis : ""
 Donor ||--o{ Comorbidity : ""
 Donor ||--o{ Biomarker : "" 
 Donor ||--o{ Exposure : "" 
 Donor ||--o{ FollowUp : "" 
-Donor ||--o{ Specimen : "" 
+Donor ||--o{ PrimaryDiagnosis : ""
 Donor ||--o{ Treatment : "" 
-Donor ||--o{ SampleRegistration : "" 
-Donor ||--o{ Chemotherapy : "" 
-Donor ||--o{ HormoneTherapy : "" 
-Donor ||--o{ Immunotherapy : "" 
-Donor ||--o{ Radiation : "" 
-Donor ||--o{ Surgery : "" 
 PrimaryDiagnosis ||--o{ Specimen : "" 
 PrimaryDiagnosis ||--o{ Treatment : "" 
-PrimaryDiagnosis ||--o{ FollowUp : "" 
+PrimaryDiagnosis o|--o{ FollowUp : ""
 Specimen ||--o{ SampleRegistration : "" 
-Treatment ||--o{ Chemotherapy : "" 
-Treatment ||--o{ HormoneTherapy : "" 
-Treatment ||--o{ Immunotherapy : "" 
 Treatment ||--o| Radiation : "" 
 Treatment ||--o| Surgery : "" 
-Treatment ||--o{ FollowUp : "" 
+Treatment ||--o{ Systemictherapy : "" 
+Treatment o|--o{ FollowUp : "" 
 
 ```
 
@@ -253,9 +266,9 @@ Treatment ||--o{ FollowUp : ""
 
 ### References
 
-[Clinical Data Model](https://www.marathonofhopecancercentres.ca/docs/default-source/policies-and-guidelines/mohccn-clinical-data-model_v1_endorsed6oct-2022.pdf?Status=Master&sfvrsn=7f6bd159_7)
+[Clinical Data Model](https://www.marathonofhopecancercentres.ca/docs/default-source/policies-and-guidelines/clinical-data-model-v3/mohccn_clinical_data_modelv3-0_may2024.xlsx?sfvrsn=80e1f917_1)
 
-[ER Diagram](https://www.marathonofhopecancercentres.ca/docs/default-source/policies-and-guidelines/mohccn_data_standard_er_diagram_endorsed6oct22.pdf?Status=Master&sfvrsn=dd57a75e_5)
+[ER Diagram](https://www.marathonofhopecancercentres.ca/docs/default-source/policies-and-guidelines/clinical-data-model-v3/mohccn_clinical_data_modelv3-0_er_diagram_may2024.png?sfvrsn=cdbcd90b_1)
 
 ## Authentication and Authorization
 

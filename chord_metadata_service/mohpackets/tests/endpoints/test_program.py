@@ -4,7 +4,7 @@ from django.conf import settings
 from django.forms.models import model_to_dict
 
 from chord_metadata_service.mohpackets.tests.endpoints.base import BaseTestCase
-from chord_metadata_service.mohpackets.tests.endpoints.factories import ProgramFactory
+from chord_metadata_service.mohpackets.tests.factories import ProgramFactory
 
 """
     This file contains test cases for Program API endpoints.
@@ -19,7 +19,7 @@ from chord_metadata_service.mohpackets.tests.endpoints.factories import ProgramF
 class IngestTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.ingest_url = "/v2/ingest/program/"
+        self.ingest_url = "/v3/ingest/programs/"
 
     def test_ingest_authorized(self):
         """
@@ -29,11 +29,11 @@ class IngestTestCase(BaseTestCase):
         - An authorized user (user_2) with admin permission.
         - User can perform a POST request for program ingestion.
         """
-        ingest_program = ProgramFactory.build()
-        program_dict = model_to_dict(ingest_program)
+        ingest_program = ProgramFactory.build(program_id="admin_authorized_program_id")
+        data_dict = model_to_dict(ingest_program)
         response = self.client.post(
             self.ingest_url,
-            data=program_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
@@ -54,10 +54,10 @@ class IngestTestCase(BaseTestCase):
         - User cannot perform a POST request for program ingestion.
         """
         ingest_program = ProgramFactory.build()
-        program_dict = model_to_dict(ingest_program)
+        data_dict = model_to_dict(ingest_program)
         response = self.client.post(
             self.ingest_url,
-            data=program_dict,
+            data=[data_dict],
             content_type="application/json",
             format="json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",
@@ -70,7 +70,7 @@ class IngestTestCase(BaseTestCase):
 class DeleteTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.authorized_url = "/v2/authorized/program/"
+        self.delete_url = "/v3/ingest/program/"
 
     def test_delete_authorized(self):
         """
@@ -83,14 +83,14 @@ class DeleteTestCase(BaseTestCase):
         """
         program_to_delete = ProgramFactory()
         response = self.client.delete(
-            f"{self.authorized_url}{program_to_delete.program_id}/",
+            f"{self.delete_url}{program_to_delete.program_id}/",
             HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.NO_CONTENT)
 
     def test_delete_unauthorized(self):
         """
-        Test an unauthorized DELETE request 'authorized/programs/{program_id}/' endpoint.
+        Test an unauthorized DELETE request 'ingest/programs/{program_id}/' endpoint.
 
         Testing Strategy:
         - Create a new program to delete
@@ -99,7 +99,7 @@ class DeleteTestCase(BaseTestCase):
         """
         program_to_delete = ProgramFactory()
         response = self.client.delete(
-            f"{self.authorized_url}{program_to_delete.program_id}/",
+            f"{self.delete_url}{program_to_delete.program_id}/",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.UNAUTHORIZED)
@@ -110,7 +110,7 @@ class DeleteTestCase(BaseTestCase):
 class GETTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.authorized_url = "/v2/authorized/programs/"
+        self.authorized_url = "/v3/authorized/programs/"
 
     def test_get_200_ok(self):
         """
@@ -131,11 +131,11 @@ class GETTestCase(BaseTestCase):
         Test a GET request endpoint with a 301 redirection.
 
         Testing Strategy:
-        - Send a GET request to the '/v2/authorized/programs' endpoint.
+        - Send a GET request to the '/v3/authorized/programs' endpoint.
         - The request should receive a 301 redirection response.
         """
         response = self.client.get(
-            "/v2/authorized/programs", HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}"
+            "/v3/authorized/programs", HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}"
         )
         self.assertEqual(response.status_code, HTTPStatus.MOVED_PERMANENTLY)
 
@@ -148,7 +148,7 @@ class GETTestCase(BaseTestCase):
         - The request should receive a 404 Not Found response.
         """
         response = self.client.get(
-            "/v2/authorized/invalid/",
+            "/v3/authorized/invalid/",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
@@ -159,7 +159,7 @@ class GETTestCase(BaseTestCase):
 class OthersTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self.authorized_url = "/v2/authorized/programs/"
+        self.authorized_url = "/v3/authorized/programs/"
 
     def test_get_datasets_match_permission(self):
         """
@@ -176,10 +176,8 @@ class OthersTestCase(BaseTestCase):
             )
             response = response.json()
 
-            authorized_datasets = next(
-                user_data["datasets"]
-                for user_data in settings.LOCAL_AUTHORIZED_DATASET
-                if user_data["token"] == user.token
+            authorized_datasets = settings.LOCAL_OPA_DATASET.get(user.token, {}).get(
+                "read_datasets", []
             )
             response_datasets = [program["program_id"] for program in response["items"]]
             self.assertEqual(response_datasets, authorized_datasets)
