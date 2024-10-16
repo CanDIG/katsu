@@ -525,12 +525,12 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "cancer_type_code": "string",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
-      "clinical_tumour_staging_system": "AJCC 8th edition",
+      "clinical_tumour_staging_system": "AJCC cancer staging system",
       "clinical_t_category": "T0",
       "clinical_n_category": "N0",
       "clinical_m_category": "M0",
       "clinical_stage_group": "Stage 0",
-      "pathological_tumour_staging_system": "AJCC 8th edition",
+      "pathological_tumour_staging_system": "AJCC cancer staging system",
       "pathological_t_category": "T0",
       "pathological_n_category": "N0",
       "pathological_m_category": "M0",
@@ -975,12 +975,12 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "cancer_type_code": "string",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
-      "clinical_tumour_staging_system": "AJCC 8th edition",
+      "clinical_tumour_staging_system": "AJCC cancer staging system",
       "clinical_t_category": "T0",
       "clinical_n_category": "N0",
       "clinical_m_category": "M0",
       "clinical_stage_group": "Stage 0",
-      "pathological_tumour_staging_system": "AJCC 8th edition",
+      "pathological_tumour_staging_system": "AJCC cancer staging system",
       "pathological_t_category": "T0",
       "pathological_n_category": "N0",
       "pathological_m_category": "M0",
@@ -3896,12 +3896,12 @@ NCategoryEnum
   "cancer_type_code": "string",
   "basis_of_diagnosis": "Clinical investigation",
   "laterality": "Bilateral",
-  "clinical_tumour_staging_system": "AJCC 8th edition",
+  "clinical_tumour_staging_system": "AJCC cancer staging system",
   "clinical_t_category": "T0",
   "clinical_n_category": "N0",
   "clinical_m_category": "M0",
   "clinical_stage_group": "Stage 0",
-  "pathological_tumour_staging_system": "AJCC 8th edition",
+  "pathological_tumour_staging_system": "AJCC cancer staging system",
   "pathological_t_category": "T0",
   "pathological_n_category": "N0",
   "pathological_m_category": "M0",
@@ -4540,7 +4540,7 @@ TCategoryEnum
 <a id="tocstumourstagingsystemenum"></a>
 
 ```json
-"AJCC 8th edition"
+"AJCC cancer staging system"
 
 ```
 
@@ -4556,9 +4556,7 @@ TumourStagingSystemEnum
 
 |Property|Value|
 |---|---|
-|TumourStagingSystemEnum|AJCC 8th edition|
-|TumourStagingSystemEnum|AJCC 7th edition|
-|TumourStagingSystemEnum|AJCC 6th edition|
+|TumourStagingSystemEnum|AJCC cancer staging system|
 |TumourStagingSystemEnum|Ann Arbor staging system|
 |TumourStagingSystemEnum|Binet staging system|
 |TumourStagingSystemEnum|Durie-Salmon staging system|
@@ -4567,7 +4565,7 @@ TumourStagingSystemEnum
 |TumourStagingSystemEnum|International Neuroblastoma Staging System|
 |TumourStagingSystemEnum|Lugano staging system|
 |TumourStagingSystemEnum|Rai staging system|
-|TumourStagingSystemEnum|Revised International staging system (RISS)|
+|TumourStagingSystemEnum|Revised International staging system (R-ISS)|
 |TumourStagingSystemEnum|SEER staging system|
 |TumourStagingSystemEnum|St Jude staging system|
 |TumourStagingSystemEnum|Not available|
@@ -6917,12 +6915,12 @@ TreatmentTypeEnum
       "cancer_type_code": "string",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
-      "clinical_tumour_staging_system": "AJCC 8th edition",
+      "clinical_tumour_staging_system": "AJCC cancer staging system",
       "clinical_t_category": "T0",
       "clinical_n_category": "N0",
       "clinical_m_category": "M0",
       "clinical_stage_group": "Stage 0",
-      "pathological_tumour_staging_system": "AJCC 8th edition",
+      "pathological_tumour_staging_system": "AJCC cancer staging system",
       "pathological_t_category": "T0",
       "pathological_n_category": "N0",
       "pathological_m_category": "M0",
@@ -8074,12 +8072,12 @@ or
   "cancer_type_code": "string",
   "basis_of_diagnosis": "Clinical investigation",
   "laterality": "Bilateral",
-  "clinical_tumour_staging_system": "AJCC 8th edition",
+  "clinical_tumour_staging_system": "AJCC cancer staging system",
   "clinical_t_category": "T0",
   "clinical_n_category": "N0",
   "clinical_m_category": "M0",
   "clinical_stage_group": "Stage 0",
-  "pathological_tumour_staging_system": "AJCC 8th edition",
+  "pathological_tumour_staging_system": "AJCC cancer staging system",
   "pathological_t_category": "T0",
   "pathological_n_category": "N0",
   "pathological_m_category": "M0",
@@ -11313,12 +11311,12 @@ or
       "cancer_type_code": "string",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
-      "clinical_tumour_staging_system": "AJCC 8th edition",
+      "clinical_tumour_staging_system": "AJCC cancer staging system",
       "clinical_t_category": "T0",
       "clinical_n_category": "N0",
       "clinical_m_category": "M0",
       "clinical_stage_group": "Stage 0",
-      "pathological_tumour_staging_system": "AJCC 8th edition",
+      "pathological_tumour_staging_system": "AJCC cancer staging system",
       "pathological_t_category": "T0",
       "pathological_n_category": "N0",
       "pathological_m_category": "M0",
@@ -11409,12 +11407,12 @@ or
   "cancer_type_code": "string",
   "basis_of_diagnosis": "Clinical investigation",
   "laterality": "Bilateral",
-  "clinical_tumour_staging_system": "AJCC 8th edition",
+  "clinical_tumour_staging_system": "AJCC cancer staging system",
   "clinical_t_category": "T0",
   "clinical_n_category": "N0",
   "clinical_m_category": "M0",
   "clinical_stage_group": "Stage 0",
-  "pathological_tumour_staging_system": "AJCC 8th edition",
+  "pathological_tumour_staging_system": "AJCC cancer staging system",
   "pathological_t_category": "T0",
   "pathological_n_category": "N0",
   "pathological_m_category": "M0",

@@ -94,9 +94,7 @@ LOST_TO_FOLLOWUP_REASON = [
 ]
 
 TUMOUR_STAGING_SYSTEM = [
-    "AJCC 8th edition",
-    "AJCC 7th edition",
-    "AJCC 6th edition",
+    "AJCC cancer staging system",
     "Ann Arbor staging system",
     "Binet staging system",
     "Durie-Salmon staging system",
@@ -105,7 +103,7 @@ TUMOUR_STAGING_SYSTEM = [
     "International Neuroblastoma Staging System",
     "Lugano staging system",
     "Rai staging system",
-    "Revised International staging system (RISS)",
+    "Revised International staging system (R-ISS)",
     "SEER staging system",
     "St Jude staging system",
     "Not available"
