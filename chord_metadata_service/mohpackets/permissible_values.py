@@ -1119,6 +1119,10 @@ MORPHOLOGY_REGEX = r"^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not availabl
 # Examples: C50.1, C18
 TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(.[0-9]{1})?$|^Not available$"
 
+# WHO ICD-10 Cancer codes
+# Examples: C10, C50.1
+CANCER_TYPE_CODE_REGEX = r"^C[0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$"
+
 # WHO ICD-10 codes
 # Examples: E10, C50.1, I11, M06
 COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$"

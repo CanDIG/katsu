@@ -19,6 +19,7 @@ from chord_metadata_service.mohpackets.models import (
     Treatment,
 )
 from chord_metadata_service.mohpackets.permissible_values import (
+    CANCER_TYPE_CODE_REGEX,
     COMORBIDITY_REGEX,
     ID_REGEX,
     MORPHOLOGY_REGEX,
@@ -150,6 +151,7 @@ BasePrimaryDiagnosisSchema = create_schema(
         ("pathological_n_category", Optional[NCategoryEnum], None),
         ("pathological_m_category", Optional[MCategoryEnum], None),
         ("pathological_stage_group", Optional[StageGroupEnum], None),
+        ("cancer_type_code", str, Field(pattern=CANCER_TYPE_CODE_REGEX, max_length=64))
     ],
 )
 

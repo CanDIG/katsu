@@ -123,7 +123,23 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     # Default values
     submitter_primary_diagnosis_id = factory.Sequence(lambda n: "DIAG_%d" % n)
     date_of_diagnosis = {"month_interval": 0, "day_interval": 0}
-    cancer_type_code = factory.Faker("uuid4")
+    cancer_type_code = factory.Faker(
+        "random_element",
+        elements=[
+            "C00.6",
+            "C50.8",
+            "C04",
+            "C76.1",
+            "C09.9",
+            "C13.2",
+            "C30",
+            "C31.3",
+            "C33",
+            "C47.6",
+            "C49.0",
+            "C69.6",
+        ],
+    )
     basis_of_diagnosis = factory.Faker(
         "random_element", elements=PERM_VAL.BASIS_OF_DIAGNOSIS
     )
