@@ -1557,11 +1557,10 @@ components:
           - $ref: '#/components/schemas/BasisOfDiagnosisEnum'
           - type: 'null'
         cancer_type_code:
-          anyOf:
-          - maxLength: 64
-            type: string
-          - type: 'null'
+          maxLength: 64
+          pattern: ^C[0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$
           title: Cancer Type Code
+          type: string
         clinical_m_category:
           anyOf:
           - $ref: '#/components/schemas/MCategoryEnum'
@@ -1636,6 +1635,7 @@ components:
           type: array
       required:
       - submitter_primary_diagnosis_id
+      - cancer_type_code
       title: NestedPrimaryDiagnosisSchema
       type: object
     NestedRadiationSchema:
@@ -2555,11 +2555,10 @@ components:
           - $ref: '#/components/schemas/BasisOfDiagnosisEnum'
           - type: 'null'
         cancer_type_code:
-          anyOf:
-          - maxLength: 64
-            type: string
-          - type: 'null'
+          maxLength: 64
+          pattern: ^C[0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$
           title: Cancer Type Code
+          type: string
         clinical_m_category:
           anyOf:
           - $ref: '#/components/schemas/MCategoryEnum'
@@ -2630,6 +2629,7 @@ components:
           title: Uuid
       required:
       - submitter_primary_diagnosis_id
+      - cancer_type_code
       - program_id
       - submitter_donor_id
       title: PrimaryDiagnosisIngestSchema
@@ -2652,11 +2652,10 @@ components:
           - $ref: '#/components/schemas/BasisOfDiagnosisEnum'
           - type: 'null'
         cancer_type_code:
-          anyOf:
-          - maxLength: 64
-            type: string
-          - type: 'null'
+          maxLength: 64
+          pattern: ^C[0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$
           title: Cancer Type Code
+          type: string
         clinical_m_category:
           anyOf:
           - $ref: '#/components/schemas/MCategoryEnum'
@@ -2722,6 +2721,7 @@ components:
           type: string
       required:
       - submitter_primary_diagnosis_id
+      - cancer_type_code
       - program_id
       - submitter_donor_id
       title: PrimaryDiagnosisModelSchema
@@ -6882,6 +6882,7 @@ paths:
           content:
             application/json:
               schema:
+                additionalProperties: true
                 title: Response
                 type: object
           description: OK
