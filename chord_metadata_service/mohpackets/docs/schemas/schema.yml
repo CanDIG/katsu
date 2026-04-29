@@ -7438,5 +7438,6 @@ paths:
         '200':
           description: OK
       summary: Service Info
-servers: []
+servers:
+- url: /katsu
 
