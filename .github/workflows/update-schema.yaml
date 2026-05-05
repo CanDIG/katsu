@@ -1,6 +1,8 @@
 name: Docs
 
 on:
+  workflow_call:
+  # Allows you to run this workflow manually from the Actions tab
   pull_request:
     branches:
       - develop
