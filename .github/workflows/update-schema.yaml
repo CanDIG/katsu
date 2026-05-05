@@ -19,15 +19,15 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: true
           ref: ${{ github.head_ref }}
 
       - name: Install Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: "3.12"
+          python-version: "3.14"
 
       - name: Install dependencies
         run: python -m pip install -r requirements/base.txt
@@ -57,7 +57,7 @@ jobs:
           python -c 'import json, yaml; print(yaml.dump(json.load(open("chord_metadata_service/mohpackets/docs/schemas/schema_prod.json"))))' > chord_metadata_service/mohpackets/docs/schemas/schema_prod.yml
 
       - name: Update schemas
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: Update schemas
           file_pattern: "chord_metadata_service/mohpackets/docs/schemas/schema.json chord_metadata_service/mohpackets/docs/schemas/schema.md chord_metadata_service/mohpackets/docs/schemas/schema.yml chord_metadata_service/mohpackets/docs/schemas/schema_prod.json chord_metadata_service/mohpackets/docs/schemas/schema_prod.md chord_metadata_service/mohpackets/docs/schemas/schema_prod.yml"
@@ -70,7 +70,7 @@ jobs:
         run: echo ${{ env.SHA }} > chord_metadata_service/mohpackets/docs/schema_version.txt
 
       - name: Commit updated schema_version.txt
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: Update schema version
           file_pattern: "chord_metadata_service/mohpackets/docs/schema_version.txt"
