@@ -5,6 +5,8 @@ This is the RESTful API for the MoH Services.
 
 Base URLs:
 
+* <a href="/katsu">/katsu</a>
+
 # Authentication
 
 * API Key (ServiceTokenAuth)
