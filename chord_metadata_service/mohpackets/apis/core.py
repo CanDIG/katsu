@@ -322,7 +322,7 @@ api = NinjaAPI(
     ),  # collapse all endpoints by default
     title="MoH Service API",
     version=settings.KATSU_VERSION,
-    description="This is the RESTful API for the MoH Service.",
+    description="This is the RESTful API for the MoH Services.",
 )
 api.add_router(
     "/discovery/",
