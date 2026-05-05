@@ -47,15 +47,15 @@ jobs:
     # If you want to test multiple python version(s)
     strategy:
       matrix:
-        python-version: ['3.12']
+        python-version: ['3.14']
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         submodules: true
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install requirements
@@ -72,7 +72,7 @@ jobs:
         DB_PORT: ${{ env.POSTGRES_PORT }}
       run: |
         coverage run manage.py test chord_metadata_service/mohpackets
-    - uses: codecov/codecov-action@v3
+    - uses: codecov/codecov-action@v6
       with:
         name: codecov-umbrella
         token: ${{ secrets.CODECOV_TOKEN }}
