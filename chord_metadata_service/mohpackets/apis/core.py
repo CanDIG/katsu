@@ -323,7 +323,6 @@ api = NinjaAPI(
     title="MoH Service API",
     version=settings.KATSU_VERSION,
     description="This is the RESTful API for the MoH Service.",
-    servers=[{"url": "/katsu"}],
 )
 api.add_router(
     "/discovery/",
