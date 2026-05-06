@@ -5227,7 +5227,7 @@ components:
       name: X-Service-Token
       type: apiKey
 info:
-  description: This is the RESTful API for the MoH Services.
+  description: This is the RESTful API for the MoH Service.
   title: MoH Service API
   version: 5.3.1
 openapi: 3.1.0
@@ -7439,5 +7439,5 @@ paths:
           description: OK
       summary: Service Info
 servers:
-- url: /katsu
+- url: https://your-candig-domain/katsu
 

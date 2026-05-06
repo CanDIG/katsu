@@ -3,7 +3,7 @@
     "info": {
         "title": "MoH Service API",
         "version": "5.3.1",
-        "description": "This is the RESTful API for the MoH Services."
+        "description": "This is the RESTful API for the MoH Service."
     },
     "paths": {
         "/v3/service-info": {
@@ -13157,7 +13157,7 @@
     },
     "servers": [
         {
-            "url": "/katsu"
+            "url": "https://your-candig-domain/katsu"
         }
     ]
 }

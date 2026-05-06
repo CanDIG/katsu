@@ -1,11 +1,11 @@
 
 <h1 id="moh-service-api">MoH Service API v5.3.1</h1>
 
-This is the RESTful API for the MoH Services.
+This is the RESTful API for the MoH Service.
 
 Base URLs:
 
-* <a href="/katsu">/katsu</a>
+* <a href="https://your-candig-domain/katsu">https://your-candig-domain/katsu</a>
 
 # Authentication
 
