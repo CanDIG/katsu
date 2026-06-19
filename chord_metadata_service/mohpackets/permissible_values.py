@@ -465,11 +465,13 @@ SPECIMEN_TYPE = [
     "Primary tumour - additional new primary",
     "Primary tumour - adjacent to normal",
     "Primary tumour",
-    "Recurrent tumour",
     "Tumour - unknown if derived from primary or metastatic tumour",
     "Xenograft - derived from primary tumour",
     "Xenograft - derived from metastatic tumour",
     "Xenograft - derived from tumour cell line",
+    "Locally recurrent tumour (non-metastatic)",
+    "Recurrent tumour, NOS",
+    "Metastatic tumour of uncertain primary",
 ]
 
 
