@@ -496,9 +496,13 @@ BASIS_OF_DIAGNOSIS = [
     "Cytology",
     "Death certificate only",
     "Histology of a metastasis",
-    "Histology of a primary tumour",
     "Specific tumour markers",
     "Not available",
+    "Cytogenetic and/or molecular testing",
+    "Histology at autopsy",
+    "Histology of a metastasis",
+    "Histology of the primary tumor",
+    "Histology",
 ]
 
 LYMPH_NODE_STATUS = [
