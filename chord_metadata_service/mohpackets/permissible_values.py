@@ -522,6 +522,9 @@ TREATMENT_TYPE = [
     "Stem cell transplant",
     "Surgery",
     "Other",
+    "Unknown whether patient received treatment",
+    "Patient referred for treatment at other center, details unknown",
+    "Radiopharmaceutical Therapy",
 ]
 
 TREATMENT_SETTING = [
