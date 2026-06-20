@@ -546,6 +546,7 @@ TREATMENT_SETTING = [
     "Preventative",
     "Radiosensitization",
     "Salvage",
+    "Not available",
 ]
 
 TREATMENT_INTENT = [
@@ -557,7 +558,9 @@ TREATMENT_INTENT = [
     "Guidance",
     "Screening",
     "Forensic",
-    "Not available"
+    "Not available",
+    "Combined diagnostic and therapeutic intent (SNOMED: 1279505009)",
+    "Life-sustaining intent (SNOMED: 1290527003)",
 ]
 
 TREATMENT_RESPONSE_METHOD = [
