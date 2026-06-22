@@ -999,6 +999,14 @@ MARGIN_TYPES = [
     "Not available",
 ]
 
+MARGINS_STATUS = [
+    "Margins clear",
+    "Margin(s) involved",
+    "Not applicable",
+    "Not available",
+    "Unknown",
+]
+
 LYMPHOVACULAR_INVASION = [
     "Absent",
     "Both lymphatic and small vessel and venous (large vessel) invasion",
