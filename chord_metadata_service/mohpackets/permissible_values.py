@@ -641,7 +641,8 @@ RADIATION_THERAPY_MODALITY = [
     "Teleradiotherapy neutrons (procedure)",
     "Brachytherapy (procedure)",
     "Other",
-    "Not available"
+    "Not available",
+    "Teleradiotherapy using photons",
 ]
 
 RADIATION_ANATOMICAL_SITE = [
