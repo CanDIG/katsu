@@ -559,8 +559,8 @@ TREATMENT_INTENT = [
     "Screening",
     "Forensic",
     "Not available",
-    "Combined diagnostic and therapeutic intent (SNOMED: 1279505009)",
-    "Life-sustaining intent (SNOMED: 1290527003)",
+    "Combined diagnostic and therapeutic intent",
+    "Life-sustaining intent",
 ]
 
 TREATMENT_RESPONSE_METHOD = [
