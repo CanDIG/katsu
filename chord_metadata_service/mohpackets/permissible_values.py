@@ -313,9 +313,9 @@ STAGE_GROUP = [
     "Stage 4S",
     "Occult Carcinoma",
     "Not available",
-    "IC1",
-    "IC2",
-    "IC3",
+    "Stage IC1",
+    "Stage IC2",
+    "Stage IC3",
 ]
 
 
