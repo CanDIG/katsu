@@ -31,7 +31,7 @@ class RadiationModelTest(TestCase):
         self.assertIsInstance(
             self.instance.anatomical_site_irradiated, (str, type(None))
         )
-        self.assertIsInstance(self.instance.radiation_boost, (bool, type(None)))
+        self.assertIsInstance(self.instance.radiation_boost, (str, type(None)))
         self.assertIsInstance(
             self.instance.reference_radiation_treatment_id, (str, type(None))
         )
