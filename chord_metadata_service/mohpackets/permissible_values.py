@@ -1277,6 +1277,15 @@ MASS_UNIT_UCUM = [
     "umol",
 ]
 
+DRUG_DOSE_UNITS = [
+    "Bq", 
+    "kBq", 
+    "MBq", 
+    "GBq", 
+    "Ci", 
+    "mCi",
+    ]
+
 # ID format
 # Examples: 90234, BLD_donor_89, AML-90
 ID_REGEX = r"^[A-Za-z0-9\-\._]{1,64}$"
