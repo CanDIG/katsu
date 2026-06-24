@@ -1270,6 +1270,13 @@ TUMOUR_DESIGNATION = ["Normal", "Tumour"]
 THERAPY_TYPE = ["External", "Internal", "Not available"]
 SYSTEMIC_THERAPY_TYPE = ["Chemotherapy", "Hormone therapy", "Immunotherapy"]
 
+MASS_UNIT_UCUM = [
+    "ug",
+    "mg",
+    "nmol",
+    "umol",
+]
+
 # ID format
 # Examples: 90234, BLD_donor_89, AML-90
 ID_REGEX = r"^[A-Za-z0-9\-\._]{1,64}$"
