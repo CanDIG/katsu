@@ -536,16 +536,7 @@ TREATMENT_TYPE = [
 
 TREATMENT_SETTING = [
     "Adjuvant",
-    "Advanced/Metastatic",
     "Neoadjuvant",
-    "Conditioning",
-    "Induction",
-    "Locally advanced",
-    "Maintenance",
-    "Mobilization",
-    "Preventative",
-    "Radiosensitization",
-    "Salvage",
     "Not available",
 ]
 
