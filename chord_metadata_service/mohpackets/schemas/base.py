@@ -115,6 +115,20 @@ BaseProgramSchema = create_schema(
     ],
 )
 
+# Schema for partial updates of a Program's clinical fields.
+# program_id is immutable (path param) and metadata is excluded on purpose:
+# users may update clinical fields but never the metadata field.
+ProgramUpdateSchema = create_schema(
+    Program,
+    name="ProgramUpdateSchema",
+    exclude=["program_id", "metadata", "created", "updated"],
+    custom_fields=[
+        ("status", Optional[StatusEnum], None),
+        ("context", Optional[ContextEnum], None),
+        ("domain", Optional[List[DomainEnum]], None),
+    ],
+)
+
 BaseDonorSchema = create_schema(
     Donor,
     name="BaseDonorSchema",
