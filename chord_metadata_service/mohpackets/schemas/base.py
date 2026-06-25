@@ -27,7 +27,9 @@ from chord_metadata_service.mohpackets.permissible_values import (
     CauseOfDeathEnum,
     CellsMeasureMethodEnum,
     ConfirmedDiagnosisTumourEnum,
+    ContextEnum,
     DiseaseStatusFollowupEnum,
+    DomainEnum,
     DosageUnitsEnum,
     DrugReferenceDbEnum,
     ErPrHpvStatusEnum,
@@ -56,6 +58,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     SpecimenTissueSourceEnum,
     SpecimenTypeEnum,
     StageGroupEnum,
+    StatusEnum,
     StorageEnum,
     SurgeryLocationEnum,
     SurgeryReferenceDatabaseEnum,
@@ -106,6 +109,9 @@ BaseProgramSchema = create_schema(
     name="BaseProgramSchema",
     custom_fields=[
         ("program_id", str, Field(pattern=ID_REGEX, max_length=64)),
+        ("status", Optional[StatusEnum], None),
+        ("context", Optional[ContextEnum], None),
+        ("domain", Optional[List[DomainEnum]], None),
     ],
 )
 
