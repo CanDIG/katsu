@@ -56,6 +56,24 @@ class ProgramFactory(factory.django.DjangoModelFactory):
 
     # default values
     program_id = factory.Sequence(lambda n: "PROGRAM_%d" % n)
+    study_name = factory.Faker("sentence", nb_words=4)
+    study_description = factory.Faker("paragraph")
+    program_name = factory.Faker("sentence", nb_words=3)
+    keywords = factory.List([factory.Faker("word") for _ in range(2)])
+    status = factory.Faker("random_element", elements=PERM_VAL.STATUS)
+    context = factory.Faker("random_element", elements=PERM_VAL.CONTEXT)
+    domain = factory.List(
+        [factory.Faker("random_element", elements=PERM_VAL.DOMAIN)]
+    )
+    dac_id = factory.Sequence(lambda n: "DAC_%d" % n)
+    participant_criteria = factory.Faker("sentence")
+    principal_investigators = factory.List([factory.Faker("name")])
+    lead_organizations = factory.List([factory.Faker("company")])
+    collaborators = factory.List([factory.Faker("company")])
+    funding_sources = factory.List([factory.Faker("company")])
+    publication_links = factory.List(
+        [factory.Faker("uri")]
+    )
 
 
 class DonorFactory(factory.django.DjangoModelFactory):
