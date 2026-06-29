@@ -417,22 +417,6 @@ STATUS = ["Ongoing", "Completed"]
 
 CONTEXT = ["Clinical", "Research"]
 
-DOMAIN = [
-    "Aging",
-    "Birth Defects",
-    "Cancer",
-    "Circulatory and Respiratory Health",
-    "General Health",
-    "Infection and Immunity",
-    "Musculoskeletal Health and Arthritis",
-    "Neurodevelopmental Conditions",
-    "Neurosciences, Mental Health and Addiction",
-    "Nutrition, Metabolism and Diabetes",
-    "Population Genomics",
-    "Rare Diseases",
-    "Other",
-]
-
 GENDER = ["Man", "Woman", "Non-binary", "Other", "Prefer not to disclose", "Not available"]
 
 SEX_AT_BIRTH = ["Male", "Female", "Other", "Not available"]
