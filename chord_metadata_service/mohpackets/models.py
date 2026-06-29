@@ -27,7 +27,6 @@ class AutoDateTimeField(models.DateTimeField):
 class Program(models.Model):
     program_id = models.CharField(max_length=64, primary_key=True)
     metadata = models.JSONField(null=True, blank=True)
-    study_name = models.CharField(max_length=255, null=True, blank=True)
     study_description = models.TextField(null=True, blank=True)
     program_name = models.CharField(max_length=255, null=True, blank=True)
     keywords = ArrayField(
