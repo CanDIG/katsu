@@ -34,8 +34,6 @@ class Program(models.Model):
     )
     status = models.CharField(max_length=32, null=True, blank=True)
     context = models.CharField(max_length=32, null=True, blank=True)
-    domain = ArrayField(models.CharField(max_length=255), null=True, blank=True)
-    dac_id = models.CharField(max_length=255, null=True, blank=True)
     participant_criteria = models.TextField(null=True, blank=True)
     principal_investigators = ArrayField(
         models.CharField(max_length=255), null=True, blank=True
