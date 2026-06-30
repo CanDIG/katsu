@@ -23,20 +23,20 @@ class ProgramModelTest(TestCase):
         """
         self.assertIsInstance(self.instance.program_id, str)
         self.assertIsInstance(self.instance.metadata, (dict, type(None)))
-        self.assertIsInstance(self.instance.study_name, str)
-        self.assertIsInstance(self.instance.study_description, str)
         self.assertIsInstance(self.instance.program_name, str)
+        self.assertIsInstance(self.instance.program_description, str)
         self.assertIsInstance(self.instance.keywords, list)
         self.assertIsInstance(self.instance.status, str)
         self.assertIsInstance(self.instance.context, str)
-        self.assertIsInstance(self.instance.domain, list)
-        self.assertIsInstance(self.instance.dac_id, str)
         self.assertIsInstance(self.instance.participant_criteria, str)
         self.assertIsInstance(self.instance.principal_investigators, list)
         self.assertIsInstance(self.instance.lead_organizations, list)
         self.assertIsInstance(self.instance.collaborators, list)
         self.assertIsInstance(self.instance.funding_sources, list)
         self.assertIsInstance(self.instance.publication_links, list)
+        self.assertIsInstance(self.instance.program_url, str)
+        self.assertIsInstance(self.instance.pancan_cohort, str)
+        self.assertIsInstance(self.instance.pancan_id, str)
         self.assertIsInstance(self.instance.created, datetime.datetime)
         self.assertIsInstance(self.instance.updated, datetime.datetime)
 
@@ -45,7 +45,7 @@ class ProgramModelTest(TestCase):
         invalid_cases = [
             {"status": "Paused"},
             {"context": "Industry"},
-            {"domain": ["Not a real domain"]},
+            {"pancan_cohort": "Maybe"},
         ]
         for case in invalid_cases:
             with self.subTest(case=case):
