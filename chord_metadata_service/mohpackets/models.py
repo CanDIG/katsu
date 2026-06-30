@@ -72,14 +72,14 @@ class Donor(models.Model):
     gender = models.CharField(max_length=32, null=True, blank=True)
     sex_at_birth = models.CharField(max_length=32, null=True, blank=True)
     is_deceased = models.CharField(max_length=32, blank=True, null=True)
-    lost_to_followup_after_clinical_event_identifier = models.CharField(
-        max_length=255, null=True, blank=True
-    )
+    lost_to_follow_up = models.CharField(max_length=32, null=True, blank=True)
     lost_to_followup_reason = models.CharField(max_length=255, null=True, blank=True)
-    date_alive_after_lost_to_followup = models.JSONField(null=True, blank=True)
     cause_of_death = models.CharField(max_length=255, null=True, blank=True)
     date_of_birth = models.JSONField(null=True, blank=True)
     date_of_death = models.JSONField(null=True, blank=True)
+    date_of_death_is_estimated = models.CharField(
+        max_length=32, null=True, blank=True
+    )
     date_resolution = models.CharField(max_length=32, null=True, blank=True)
 
     class Meta:
