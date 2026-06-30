@@ -29,7 +29,6 @@ from chord_metadata_service.mohpackets.permissible_values import (
     ConfirmedDiagnosisTumourEnum,
     ContextEnum,
     DiseaseStatusFollowupEnum,
-    DomainEnum,
     DosageUnitsEnum,
     DrugReferenceDbEnum,
     ErPrHpvStatusEnum,
@@ -42,6 +41,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     MarginTypesEnum,
     MCategoryEnum,
     NCategoryEnum,
+    PancanCohortEnum,
     PercentCellsRangeEnum,
     PerineuralInvasionEnum,
     PrimaryDiagnosisLateralityEnum,
@@ -111,7 +111,7 @@ BaseProgramSchema = create_schema(
         ("program_id", str, Field(pattern=ID_REGEX, max_length=64)),
         ("status", Optional[StatusEnum], None),
         ("context", Optional[ContextEnum], None),
-        ("domain", Optional[List[DomainEnum]], None),
+        ("pancan_cohort", Optional[PancanCohortEnum], None),
     ],
 )
 
@@ -125,7 +125,7 @@ ProgramUpdateSchema = create_schema(
     custom_fields=[
         ("status", Optional[StatusEnum], None),
         ("context", Optional[ContextEnum], None),
-        ("domain", Optional[List[DomainEnum]], None),
+        ("pancan_cohort", Optional[PancanCohortEnum], None),
     ],
 )
 
