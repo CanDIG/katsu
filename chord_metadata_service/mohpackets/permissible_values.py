@@ -417,6 +417,8 @@ STATUS = ["Ongoing", "Completed"]
 
 CONTEXT = ["Clinical", "Research"]
 
+PANCAN_COHORT = ["Yes", "No"]
+
 GENDER = ["Man", "Woman", "Non-binary", "Other", "Prefer not to disclose", "Not available"]
 
 SEX_AT_BIRTH = ["Male", "Female", "Other", "Not available"]
@@ -1363,7 +1365,7 @@ COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$"
 
 StatusEnum = list_to_enum("StatusEnum", STATUS)
 ContextEnum = list_to_enum("ContextEnum", CONTEXT)
-DomainEnum = list_to_enum("DomainEnum", DOMAIN)
+PancanCohortEnum = list_to_enum("PancanCohortEnum", PANCAN_COHORT)
 CauseOfDeathEnum = list_to_enum("CauseOfDeathEnum", CAUSE_OF_DEATH)
 PrimarySiteEnum = list_to_enum("PrimarySiteEnum", PRIMARY_SITE)
 uBooleanEnum = list_to_enum("uBooleanEnum", UBOOLEAN)
