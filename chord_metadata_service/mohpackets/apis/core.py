@@ -340,13 +340,13 @@ api.add_router(
     auth=[auth.IngestAuth(), auth.ServiceTokenAuth(service_name="candig-ingest")],
     tags=["ingest"],
 )
-api.add_router("/ingest/", delete_router, auth=auth.DeleteAuth(), tags=["delete"])
-api.add_router("/ingest/", update_router, auth=auth.DeleteAuth(), tags=["update"])
+api.add_router("/ingest/", delete_router, auth=auth.DeleteAuth(), tags=["ingest"])
+api.add_router("/ingest/", update_router, auth=auth.DeleteAuth(), tags=["ingest"])
 api.add_router(
     "/ingest/",
     metadata_router,
     auth=auth.ServiceTokenAuth(service_name="candig-ingest"),
-    tags=["metadata"],
+    tags=["ingest"],
 )
 api.add_router(
     "/authorized/", authorzied_router, auth=auth.GetAuth(), tags=["authorized"]
