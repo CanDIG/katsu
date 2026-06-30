@@ -25,9 +25,10 @@ class DonorFilterSchema(FilterSchema):
     gender: Optional[str] = Field(None, q="gender__icontains")
     sex_at_birth: Optional[str] = Field(None)
     is_deceased: Optional[str] = Field(None)
-    lost_to_followup_after_clinical_event_identifier: Optional[str] = Field(None)
+    lost_to_follow_up: Optional[str] = Field(None)
     lost_to_followup_reason: Optional[str] = Field(None)
     cause_of_death: Optional[str] = Field(None)
+    date_of_death_is_estimated: Optional[str] = Field(None)
 
 
 class PrimaryDiagnosisFilterSchema(FilterSchema):
