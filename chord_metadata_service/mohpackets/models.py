@@ -50,6 +50,9 @@ class Program(models.Model):
     publication_links = ArrayField(
         models.CharField(max_length=255), null=True, blank=True
     )
+    program_url = models.CharField(max_length=255, null=True, blank=True)
+    pancan_cohort = models.CharField(max_length=32, null=True, blank=True)
+    pancan_id = models.CharField(max_length=255, null=True, blank=True)
     created = models.DateTimeField(default=timezone.now)
     updated = AutoDateTimeField(default=timezone.now)
 
