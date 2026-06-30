@@ -28,6 +28,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     CellsMeasureMethodEnum,
     ConfirmedDiagnosisTumourEnum,
     ContextEnum,
+    DateOfDeathIsEstimatedEnum,
     DiseaseStatusFollowupEnum,
     DosageUnitsEnum,
     DrugReferenceDbEnum,
@@ -35,6 +36,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     GenderEnum,
     Her2StatusEnum,
     HpvStrainEnum,
+    LostToFollowUpEnum,
     LostToFollowupReasonEnum,
     LymphovascularInvasionEnum,
     MalignancyLateralityEnum,
@@ -139,10 +141,11 @@ BaseDonorSchema = create_schema(
         ("submitter_donor_id", str, Field(pattern=ID_REGEX, max_length=64)),
         ("date_of_birth", Optional[DateInterval], None),
         ("date_of_death", Optional[DateInterval], None),
+        ("date_of_death_is_estimated", Optional[DateOfDeathIsEstimatedEnum], None),
         ("gender", Optional[GenderEnum], None),
         ("sex_at_birth", Optional[SexAtBirthEnum], None),
+        ("lost_to_follow_up", Optional[LostToFollowUpEnum], None),
         ("lost_to_followup_reason", Optional[LostToFollowupReasonEnum], None),
-        ("date_alive_after_lost_to_followup", Optional[DateInterval], None),
     ],
 )
 
