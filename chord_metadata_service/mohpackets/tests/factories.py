@@ -665,9 +665,10 @@ class BiomarkerFactory(factory.django.DjangoModelFactory):
             "day_interval": random.randint(0, 3000),
         }
     )
-    psa_level = factory.Faker("pyint", min_value=0, max_value=100)
-    ca125 = factory.Faker("pyint", min_value=0, max_value=100)
-    cea = factory.Faker("pyint", min_value=0, max_value=100)
+    psa_level = factory.Faker("pyfloat", min_value=0, max_value=100)
+    ca125 = factory.Faker("pyfloat", min_value=0, max_value=100)
+    cea = factory.Faker("pyfloat", min_value=0, max_value=100)
+    ca19_9 = factory.Faker("pyfloat", min_value=0, max_value=100)
     er_status = factory.Faker("random_element", elements=PERM_VAL.ER_PR_HPV_STATUS)
     er_percent_positive = factory.Faker(
         "pyfloat", positive=True, left_digits=2, right_digits=1
