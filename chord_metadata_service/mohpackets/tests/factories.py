@@ -56,16 +56,11 @@ class ProgramFactory(factory.django.DjangoModelFactory):
 
     # default values
     program_id = factory.Sequence(lambda n: "PROGRAM_%d" % n)
-    study_name = factory.Faker("sentence", nb_words=4)
-    study_description = factory.Faker("paragraph")
     program_name = factory.Faker("sentence", nb_words=3)
+    program_description = factory.Faker("paragraph")
     keywords = factory.List([factory.Faker("word") for _ in range(2)])
     status = factory.Faker("random_element", elements=PERM_VAL.STATUS)
     context = factory.Faker("random_element", elements=PERM_VAL.CONTEXT)
-    domain = factory.List(
-        [factory.Faker("random_element", elements=PERM_VAL.DOMAIN)]
-    )
-    dac_id = factory.Sequence(lambda n: "DAC_%d" % n)
     participant_criteria = factory.Faker("sentence")
     principal_investigators = factory.List([factory.Faker("name")])
     lead_organizations = factory.List([factory.Faker("company")])
@@ -74,6 +69,9 @@ class ProgramFactory(factory.django.DjangoModelFactory):
     publication_links = factory.List(
         [factory.Faker("uri")]
     )
+    program_url = factory.Faker("uri")
+    pancan_cohort = factory.Faker("random_element", elements=PERM_VAL.PANCAN_COHORT)
+    pancan_id = factory.Sequence(lambda n: "PANCAN_%d" % n)
 
 
 class DonorFactory(factory.django.DjangoModelFactory):
