@@ -118,7 +118,7 @@ class UpdateTestCase(BaseTestCase):
         """A curator with write access can PATCH clinical fields (200)."""
         response = self.client.patch(
             self.update_url,
-            data={"study_name": "Updated Study Name", "status": "Completed"},
+            data={"program_name": "Updated Program Name", "status": "Completed"},
             content_type="application/json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
@@ -128,14 +128,14 @@ class UpdateTestCase(BaseTestCase):
             f"Response content: {response.content}",
         )
         self.program.refresh_from_db()
-        self.assertEqual(self.program.study_name, "Updated Study Name")
+        self.assertEqual(self.program.program_name, "Updated Program Name")
         self.assertEqual(self.program.status, "Completed")
 
     def test_update_unauthorized(self):
         """A user without write access cannot update (401)."""
         response = self.client.patch(
             self.update_url,
-            data={"study_name": "Hacked"},
+            data={"program_name": "Hacked"},
             content_type="application/json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",
         )
@@ -146,13 +146,13 @@ class UpdateTestCase(BaseTestCase):
         original_context = self.program.context
         response = self.client.patch(
             self.update_url,
-            data={"study_name": "Only Name Changed"},
+            data={"program_name": "Only Name Changed"},
             content_type="application/json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.program.refresh_from_db()
-        self.assertEqual(self.program.study_name, "Only Name Changed")
+        self.assertEqual(self.program.program_name, "Only Name Changed")
         self.assertEqual(self.program.context, original_context)
 
     def test_update_invalid_permissible_value(self):
@@ -172,13 +172,13 @@ class UpdateTestCase(BaseTestCase):
         response = self.client.patch(
             self.update_url,
             # metadata is excluded from the schema, so this key is ignored
-            data={"study_name": "New Name", "metadata": {"source": "user"}},
+            data={"program_name": "New Name", "metadata": {"source": "user"}},
             content_type="application/json",
             HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
         )
         self.assertEqual(response.status_code, HTTPStatus.OK)
         self.program.refresh_from_db()
-        self.assertEqual(self.program.study_name, "New Name")
+        self.assertEqual(self.program.program_name, "New Name")
         self.assertEqual(self.program.metadata, {"source": "service"})
 
 
