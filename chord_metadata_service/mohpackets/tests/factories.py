@@ -88,8 +88,18 @@ class DonorFactory(factory.django.DjangoModelFactory):
                                 "Yes",
                                 factory.Faker("random_element", elements=["No", "Not available"]))
     lost_to_followup_reason = None
-    lost_to_followup_after_clinical_event_identifier = None
-    date_alive_after_lost_to_followup = None
+    lost_to_follow_up = factory.Maybe(
+        "is_deceased_bool",
+        yes_declaration="Not applicable",
+        no_declaration=factory.Faker(
+            "random_element", elements=["Yes", "No", "Unknown"]
+        ),
+    )
+    date_of_death_is_estimated = factory.Maybe(
+        "is_deceased_bool",
+        yes_declaration=factory.Faker("random_element", elements=["Yes", "No"]),
+        no_declaration="Not applicable",
+    )
     date_resolution = "day"
 
     cause_of_death = factory.Maybe(
@@ -130,6 +140,16 @@ class DonorFactory(factory.django.DjangoModelFactory):
             self.date_of_death["month_interval"] = days_to_months(
                 self.date_of_death["day_interval"]
             )
+
+    @factory.post_generation
+    def set_lost_to_followup_reason(self, create, extracted, **kwargs):
+        "Provide a reason only when the donor was lost to follow-up."
+        if self.lost_to_follow_up == "Yes":
+            self.lost_to_followup_reason = random.choice(
+                PERM_VAL.LOST_TO_FOLLOWUP_REASON
+            )
+            if create:
+                self.save()
 
 
 class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
@@ -179,24 +199,6 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     program_id = factory.SelfAttribute("donor_uuid.program_id")
     submitter_donor_id = factory.SelfAttribute("donor_uuid.submitter_donor_id")
     donor_uuid = factory.SubFactory(DonorFactory)
-
-    @factory.post_generation
-    def set_clinical_event_identifier(self, create, extracted, **kwargs):
-        donor = self.donor_uuid
-        if donor.is_deceased == "No":
-            donor.lost_to_followup_after_clinical_event_identifier = (
-                self.submitter_primary_diagnosis_id
-            )
-            donor.lost_to_followup_reason = random.choice(
-                PERM_VAL.LOST_TO_FOLLOWUP_REASON
-            )
-            donor.date_alive_after_lost_to_followup = {
-                "day_interval": random.randint(25551, 32850),
-            }
-            donor.date_alive_after_lost_to_followup["month_interval"] = days_to_months(
-                donor.date_alive_after_lost_to_followup["day_interval"]
-            )
-            donor.save()
 
 
 class SpecimenFactory(factory.django.DjangoModelFactory):
