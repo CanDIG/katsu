@@ -7,6 +7,10 @@ from chord_metadata_service.mohpackets.utils import list_to_enum
 
 UBOOLEAN = ["Yes", "No", "Not available"]
 
+LOST_TO_FOLLOW_UP = ["Yes", "No", "Not applicable", "Unknown"]
+
+DATE_OF_DEATH_IS_ESTIMATED = ["Yes", "No", "Not applicable"]
+
 CAUSE_OF_DEATH = ["Died of cancer", "Died of other reasons", "Not available"]
 
 PRIMARY_SITE = [
@@ -1369,6 +1373,10 @@ PancanCohortEnum = list_to_enum("PancanCohortEnum", PANCAN_COHORT)
 CauseOfDeathEnum = list_to_enum("CauseOfDeathEnum", CAUSE_OF_DEATH)
 PrimarySiteEnum = list_to_enum("PrimarySiteEnum", PRIMARY_SITE)
 uBooleanEnum = list_to_enum("uBooleanEnum", UBOOLEAN)
+LostToFollowUpEnum = list_to_enum("LostToFollowUpEnum", LOST_TO_FOLLOW_UP)
+DateOfDeathIsEstimatedEnum = list_to_enum(
+    "DateOfDeathIsEstimatedEnum", DATE_OF_DEATH_IS_ESTIMATED
+)
 LostToFollowupReasonEnum = list_to_enum(
     "LostToFollowupReasonEnum", LOST_TO_FOLLOWUP_REASON
 )

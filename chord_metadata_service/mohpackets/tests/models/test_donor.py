@@ -25,16 +25,16 @@ class DonorModelTest(TestCase):
         self.assertIsInstance(self.instance.sex_at_birth, (str, type(None)))
         self.assertIsInstance(self.instance.is_deceased, (bool, type(None)))
         self.assertIsInstance(
-            self.instance.lost_to_followup_after_clinical_event_identifier,
+            self.instance.lost_to_follow_up,
             (str, type(None)),
         )
         self.assertIsInstance(self.instance.lost_to_followup_reason, (str, type(None)))
-        self.assertIsInstance(
-            self.instance.date_alive_after_lost_to_followup, (dict, type(None))
-        )
         self.assertIsInstance(self.instance.cause_of_death, (str, type(None)))
         self.assertIsInstance(self.instance.date_of_birth, (dict, type(None)))
         self.assertIsInstance(self.instance.date_of_death, (dict, type(None)))
+        self.assertIsInstance(
+            self.instance.date_of_death_is_estimated, (str, type(None))
+        )
         self.assertIsInstance(self.instance.date_resolution, (str, type(None)))
 
     def test_invalid_id(self):
