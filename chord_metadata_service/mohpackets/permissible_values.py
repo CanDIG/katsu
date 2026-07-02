@@ -412,6 +412,13 @@ CELLS_MEASURE_METHOD = [
     "Not available",
 ]
 
+# Program permissible values
+STATUS = ["Ongoing", "Completed"]
+
+CONTEXT = ["Clinical", "Research"]
+
+PANCAN_COHORT = ["Yes", "No"]
+
 GENDER = ["Man", "Woman", "Non-binary", "Other", "Prefer not to disclose", "Not available"]
 
 SEX_AT_BIRTH = ["Male", "Female", "Other", "Not available"]
@@ -1356,6 +1363,9 @@ TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(.[0-9]{1})?$|^Not available$"
 # Examples: E10, C50.1, I11, M06
 COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$"
 
+StatusEnum = list_to_enum("StatusEnum", STATUS)
+ContextEnum = list_to_enum("ContextEnum", CONTEXT)
+PancanCohortEnum = list_to_enum("PancanCohortEnum", PANCAN_COHORT)
 CauseOfDeathEnum = list_to_enum("CauseOfDeathEnum", CAUSE_OF_DEATH)
 PrimarySiteEnum = list_to_enum("PrimarySiteEnum", PRIMARY_SITE)
 uBooleanEnum = list_to_enum("uBooleanEnum", UBOOLEAN)

@@ -30,6 +30,10 @@ from chord_metadata_service.mohpackets.apis.ingestion import (
 from chord_metadata_service.mohpackets.apis.ingestion import (
     router as ingest_router,
 )
+from chord_metadata_service.mohpackets.apis.update import (
+    metadata_router,
+    update_router,
+)
 from chord_metadata_service.mohpackets.utils import get_schema_version
 
 """
@@ -336,7 +340,14 @@ api.add_router(
     auth=[auth.IngestAuth(), auth.ServiceTokenAuth(service_name="candig-ingest")],
     tags=["ingest"],
 )
-api.add_router("/ingest/", delete_router, auth=auth.DeleteAuth(), tags=["delete"])
+api.add_router("/ingest/", delete_router, auth=auth.DeleteAuth(), tags=["ingest"])
+api.add_router("/ingest/", update_router, auth=auth.DeleteAuth(), tags=["ingest"])
+api.add_router(
+    "/ingest/",
+    metadata_router,
+    auth=auth.ServiceTokenAuth(service_name="candig-ingest"),
+    tags=["ingest"],
+)
 api.add_router(
     "/authorized/", authorzied_router, auth=auth.GetAuth(), tags=["authorized"]
 )

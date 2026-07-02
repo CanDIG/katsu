@@ -27,6 +27,32 @@ class AutoDateTimeField(models.DateTimeField):
 class Program(models.Model):
     program_id = models.CharField(max_length=64, primary_key=True)
     metadata = models.JSONField(null=True, blank=True)
+    program_description = models.TextField(null=True, blank=True)
+    program_name = models.CharField(max_length=255, null=True, blank=True)
+    keywords = ArrayField(
+        models.CharField(max_length=255), null=True, blank=True
+    )
+    status = models.CharField(max_length=32, null=True, blank=True)
+    context = models.CharField(max_length=32, null=True, blank=True)
+    participant_criteria = models.TextField(null=True, blank=True)
+    principal_investigators = ArrayField(
+        models.CharField(max_length=255), null=True, blank=True
+    )
+    lead_organizations = ArrayField(
+        models.CharField(max_length=255), null=True, blank=True
+    )
+    collaborators = ArrayField(
+        models.CharField(max_length=255), null=True, blank=True
+    )
+    funding_sources = ArrayField(
+        models.CharField(max_length=255), null=True, blank=True
+    )
+    publication_links = ArrayField(
+        models.CharField(max_length=255), null=True, blank=True
+    )
+    program_url = models.CharField(max_length=255, null=True, blank=True)
+    pancan_cohort = models.CharField(max_length=32, null=True, blank=True)
+    pancan_id = models.CharField(max_length=255, null=True, blank=True)
     created = models.DateTimeField(default=timezone.now)
     updated = AutoDateTimeField(default=timezone.now)
 
