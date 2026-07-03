@@ -1058,15 +1058,19 @@ class SynthBiomarkerFactory(BiomarkerFactory):
     psa_level_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
     psa_level = factory.Maybe("psa_level_not_available",
                               None,
-                              factory.Faker("pyint", min_value=0, max_value=100))
+                              factory.Faker("pyfloat", min_value=0, max_value=100))
     ca125_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
     ca125 = factory.Maybe("ca125_not_available",
                           None,
-                          factory.Faker("pyint", min_value=0, max_value=100))
+                          factory.Faker("pyfloat", min_value=0, max_value=100))
     cea_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
     cea = factory.Maybe("cea_not_available",
                         None,
-                        factory.Faker("pyint", min_value=0, max_value=100))
+                        factory.Faker("pyfloat", min_value=0, max_value=100))
+    ca19_9_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
+    ca19_9 = factory.Maybe("ca19_9_not_available",
+                           None,
+                           factory.Faker("pyfloat", min_value=0, max_value=100))
 
     null_hpv_strain = factory.LazyFunction(lambda: random.random() < 0.15)
     hpv_strain = factory.Maybe(
@@ -1175,6 +1179,7 @@ class NullSynthBiomarkerFactory(SynthBiomarkerFactory):
     psa_level = None
     ca125 = None
     cea = None
+    ca19_9 = None
     er_status = None
     er_percent_positive = None
     pr_status = None
@@ -1215,11 +1220,13 @@ class AllSynthBiomarkerFactory(SynthBiomarkerFactory):
     her2_ihc_status = factory.Faker("random_element", elements=SYNTH_VAL.ALL_HER2_STATUS)
     her2_ish_status = factory.Faker("random_element", elements=SYNTH_VAL.ALL_HER2_STATUS)
     psa_level_not_available = False
-    psa_level = factory.Faker("pyint", min_value=0, max_value=100)
+    psa_level = factory.Faker("pyfloat", min_value=0, max_value=100)
     ca125_not_available = False
-    ca125 = factory.Faker("pyint", min_value=0, max_value=100)
+    ca125 = factory.Faker("pyfloat", min_value=0, max_value=100)
     cea_not_available = False
-    cea = factory.Faker("pyint", min_value=0, max_value=100)
+    cea = factory.Faker("pyfloat", min_value=0, max_value=100)
+    ca19_9_not_available = False
+    ca19_9 = factory.Faker("pyfloat", min_value=0, max_value=100)
     hpv_strain = factory.Faker(
         "random_elements",
         elements=PERM_VAL.HPV_STRAIN,

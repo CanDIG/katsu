@@ -444,12 +444,14 @@ class Biomarker(models.Model):
         max_length=64, null=True, blank=True
     )  # ref field, not true id
     test_date = models.JSONField(null=True, blank=True)
-    psa_level = models.IntegerField(null=True, blank=True)
+    psa_level = models.FloatField(null=True, blank=True)
     psa_level_not_available = models.BooleanField(default=False)
-    ca125 = models.IntegerField(null=True, blank=True)
+    ca125 = models.FloatField(null=True, blank=True)
     ca125_not_available = models.BooleanField(default=False)
-    cea = models.IntegerField(null=True, blank=True)
+    cea = models.FloatField(null=True, blank=True)
     cea_not_available = models.BooleanField(default=False)
+    ca19_9 = models.FloatField(null=True, blank=True)
+    ca19_9_not_available = models.BooleanField(default=False)
     er_status = models.CharField(max_length=64, null=True, blank=True)
     er_percent_positive = models.FloatField(null=True, blank=True)
     er_percent_positive_not_available = models.BooleanField(default=False)
