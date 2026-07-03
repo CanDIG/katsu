@@ -87,12 +87,12 @@ class NullSynthDonorFactory(SynthDonorFactory):
     sex_at_birth = None
     is_deceased = None
     lost_to_followup_reason = None
-    lost_to_followup_after_clinical_event_identifier = None
-    date_alive_after_lost_to_followup = None
+    lost_to_follow_up = None
     date_resolution = "day"
     cause_of_death = None
     date_of_birth = None
     date_of_death = None
+    date_of_death_is_estimated = None
 
 
 class AllSynthDonorFactory(DonorFactory):
@@ -151,30 +151,6 @@ class SynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
         "random_element", elements=SYNTH_VAL.STAGE_GROUP
     )
     primary_site = factory.Iterator(SYNTH_VAL.PRIMARY_SITE)
-
-    @factory.post_generation
-    def set_clinical_event_identifier(self, create, extracted, **kwargs):
-        """If Donor isn't deceased, 85% of the time, fill out the 'lost_to_followup' fields on the linked donor"""
-        if random.random() < 0.15:
-            pass
-        else:
-            donor = self.donor_uuid
-            if donor.is_deceased == "No":
-                donor.lost_to_followup_after_clinical_event_identifier = (
-                    self.submitter_primary_diagnosis_id
-                )
-                donor.lost_to_followup_reason = random.choice(
-                    PERM_VAL.LOST_TO_FOLLOWUP_REASON
-                )
-                donor.date_alive_after_lost_to_followup = {
-                    "day_interval": random.randint(3650, 4380),
-                }
-                donor.date_alive_after_lost_to_followup["month_interval"] = (
-                    days_to_months(
-                        donor.date_alive_after_lost_to_followup["day_interval"]
-                    )
-                )
-                donor.save()
 
     @factory.post_generation
     def consistent_stages(self, create, extracted, **kwargs):
@@ -268,31 +244,26 @@ class AllSynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
     )
 
     @factory.post_generation
-    def set_clinical_event_identifier(self, create, extracted, **kwargs):
-        """If donor is not deceased, fill out lost to followup info."""
+    def set_lost_to_followup(self, create, extracted, **kwargs):
+        """Fill out follow-up and death info consistent with is_deceased."""
         donor = self.donor_uuid
         if donor.is_deceased == "No":
-            donor.lost_to_followup_after_clinical_event_identifier = (
-                self.submitter_primary_diagnosis_id
-            )
-            donor.lost_to_followup_reason = random.choice(
-                PERM_VAL.LOST_TO_FOLLOWUP_REASON
-            )
-            donor.date_alive_after_lost_to_followup = {
-                "day_interval": random.randint(3650, 4380),
-            }
-            donor.date_alive_after_lost_to_followup["month_interval"] = (
-                days_to_months(
-                    donor.date_alive_after_lost_to_followup["day_interval"]
+            donor.lost_to_follow_up = random.choice(["Yes", "No", "Unknown"])
+            if donor.lost_to_follow_up == "Yes":
+                donor.lost_to_followup_reason = random.choice(
+                    PERM_VAL.LOST_TO_FOLLOWUP_REASON
                 )
-            )
+            donor.date_of_death_is_estimated = "Not applicable"
             donor.cause_of_death = None
             donor.date_of_death = None
             donor.save()
         elif donor.is_deceased == "Yes":
+            donor.lost_to_follow_up = "Not applicable"
+            donor.date_of_death_is_estimated = random.choice(["Yes", "No"])
             donor.cause_of_death = random.choice(SYNTH_VAL.ALL_CAUSE_OF_DEATH)
             donor.date_of_death = {"day_interval": random.randint(3650, 16425)}
             donor.date_of_death["month_interval"] = days_to_months(donor.date_of_death["day_interval"])
+            donor.save()
 
     @factory.post_generation
     def all_staging_filled(self, create, extracted, **kwargs):
@@ -1453,13 +1424,6 @@ class SynthFollowUpFactory(FollowUpFactory):
                     day_int = random.randint(
                         400, self.donor_uuid.date_of_death["day_interval"]
                     )
-                elif self.donor_uuid.date_alive_after_lost_to_followup:
-                    day_int = random.randint(
-                        400,
-                        self.donor_uuid.date_alive_after_lost_to_followup[
-                            "day_interval"
-                        ],
-                    )
                 else:
                     day_int = random.randint(400, 2000)
                 self.date_of_followup = {
@@ -1544,13 +1508,6 @@ class AllSynthFollowUpFactory(SynthFollowUpFactory):
             if self.donor_uuid.date_of_death:
                 day_int = random.randint(
                     400, self.donor_uuid.date_of_death["day_interval"]
-                )
-            elif self.donor_uuid.date_alive_after_lost_to_followup:
-                day_int = random.randint(
-                    400,
-                    self.donor_uuid.date_alive_after_lost_to_followup[
-                        "day_interval"
-                    ],
                 )
             else:
                 day_int = random.randint(400, 2000)

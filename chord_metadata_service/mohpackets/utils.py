@@ -17,6 +17,6 @@ def get_schema_version():
 def list_to_enum(enum_name, value_list):
     enum_dict = {}
     for item in value_list:
-        enum_member_name = item.upper().replace(" ", "_")
+        enum_member_name = item.upper().replace(",", "").replace(" ", "_")
         enum_dict[enum_member_name] = item
     return Enum(enum_name, enum_dict)

@@ -105,6 +105,122 @@ class DeleteTestCase(BaseTestCase):
         self.assertEqual(response.status_code, HTTPStatus.UNAUTHORIZED)
 
 
+# UPDATE API
+# ----------
+class UpdateTestCase(BaseTestCase):
+    def setUp(self):
+        super().setUp()
+        # user_1 has write access to programs[1]
+        self.program = self.programs[1]
+        self.update_url = f"/v3/ingest/programs/{self.program.program_id}/"
+
+    def test_update_authorized(self):
+        """A curator with write access can PATCH clinical fields (200)."""
+        response = self.client.patch(
+            self.update_url,
+            data={"program_name": "Updated Program Name", "status": "Completed"},
+            content_type="application/json",
+            HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
+        )
+        self.assertEqual(
+            response.status_code,
+            HTTPStatus.OK,
+            f"Response content: {response.content}",
+        )
+        self.program.refresh_from_db()
+        self.assertEqual(self.program.program_name, "Updated Program Name")
+        self.assertEqual(self.program.status, "Completed")
+
+    def test_update_unauthorized(self):
+        """A user without write access cannot update (401)."""
+        response = self.client.patch(
+            self.update_url,
+            data={"program_name": "Hacked"},
+            content_type="application/json",
+            HTTP_AUTHORIZATION=f"Bearer {self.user_0.token}",
+        )
+        self.assertEqual(response.status_code, HTTPStatus.UNAUTHORIZED)
+
+    def test_update_partial_only(self):
+        """Fields omitted from the body are left untouched."""
+        original_context = self.program.context
+        response = self.client.patch(
+            self.update_url,
+            data={"program_name": "Only Name Changed"},
+            content_type="application/json",
+            HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
+        )
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.program.refresh_from_db()
+        self.assertEqual(self.program.program_name, "Only Name Changed")
+        self.assertEqual(self.program.context, original_context)
+
+    def test_update_invalid_permissible_value(self):
+        """A value outside the permissible list is rejected (422)."""
+        response = self.client.patch(
+            self.update_url,
+            data={"status": "Paused"},
+            content_type="application/json",
+            HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
+        )
+        self.assertEqual(response.status_code, HTTPStatus.UNPROCESSABLE_ENTITY)
+
+    def test_update_does_not_affect_metadata(self):
+        """Updating clinical fields must not change the metadata field."""
+        self.program.metadata = {"source": "service"}
+        self.program.save(update_fields=["metadata"])
+        response = self.client.patch(
+            self.update_url,
+            # metadata is excluded from the schema, so this key is ignored
+            data={"program_name": "New Name", "metadata": {"source": "user"}},
+            content_type="application/json",
+            HTTP_AUTHORIZATION=f"Bearer {self.user_1.token}",
+        )
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.program.refresh_from_db()
+        self.assertEqual(self.program.program_name, "New Name")
+        self.assertEqual(self.program.metadata, {"source": "service"})
+
+
+# METADATA UPDATE API
+# -------------------
+class MetadataUpdateTestCase(BaseTestCase):
+    def setUp(self):
+        super().setUp()
+        self.program = self.programs[1]
+        self.metadata_url = (
+            f"/v3/ingest/programs/{self.program.program_id}/metadata/"
+        )
+
+    def test_metadata_update_with_service_token(self):
+        """The ingest service token can update metadata (200)."""
+        response = self.client.patch(
+            self.metadata_url,
+            data={"metadata": {"source": "service"}},
+            content_type="application/json",
+            HTTP_X_SERVICE_TOKEN="candig-ingest",
+        )
+        self.assertEqual(
+            response.status_code,
+            HTTPStatus.OK,
+            f"Response content: {response.content}",
+        )
+        self.program.refresh_from_db()
+        self.assertEqual(self.program.metadata, {"source": "service"})
+
+    def test_metadata_update_user_forbidden(self):
+        """A user bearer token cannot update metadata (401)."""
+        response = self.client.patch(
+            self.metadata_url,
+            data={"metadata": {"source": "user"}},
+            content_type="application/json",
+            HTTP_AUTHORIZATION=f"Bearer {self.user_2.token}",
+        )
+        self.assertEqual(response.status_code, HTTPStatus.UNAUTHORIZED)
+        self.program.refresh_from_db()
+        self.assertNotEqual(self.program.metadata, {"source": "user"})
+
+
 # GET API
 # -------
 class GETTestCase(BaseTestCase):

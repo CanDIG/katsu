@@ -27,6 +27,8 @@ from chord_metadata_service.mohpackets.permissible_values import (
     CauseOfDeathEnum,
     CellsMeasureMethodEnum,
     ConfirmedDiagnosisTumourEnum,
+    ContextEnum,
+    DateOfDeathIsEstimatedEnum,
     DiseaseStatusFollowupEnum,
     DosageUnitsEnum,
     DrugReferenceDbEnum,
@@ -34,12 +36,14 @@ from chord_metadata_service.mohpackets.permissible_values import (
     GenderEnum,
     Her2StatusEnum,
     HpvStrainEnum,
+    LostToFollowUpEnum,
     LostToFollowupReasonEnum,
     LymphovascularInvasionEnum,
     MalignancyLateralityEnum,
     MarginTypesEnum,
     MCategoryEnum,
     NCategoryEnum,
+    PancanCohortEnum,
     PercentCellsRangeEnum,
     PerineuralInvasionEnum,
     PrimaryDiagnosisLateralityEnum,
@@ -56,6 +60,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     SpecimenTissueSourceEnum,
     SpecimenTypeEnum,
     StageGroupEnum,
+    StatusEnum,
     StorageEnum,
     SurgeryLocationEnum,
     SurgeryReferenceDatabaseEnum,
@@ -106,6 +111,23 @@ BaseProgramSchema = create_schema(
     name="BaseProgramSchema",
     custom_fields=[
         ("program_id", str, Field(pattern=ID_REGEX, max_length=64)),
+        ("status", Optional[StatusEnum], None),
+        ("context", Optional[ContextEnum], None),
+        ("pancan_cohort", Optional[PancanCohortEnum], None),
+    ],
+)
+
+# Schema for partial updates of a Program's clinical fields.
+# program_id is immutable (path param) and metadata is excluded on purpose:
+# users may update clinical fields but never the metadata field.
+ProgramUpdateSchema = create_schema(
+    Program,
+    name="ProgramUpdateSchema",
+    exclude=["program_id", "metadata", "created", "updated"],
+    custom_fields=[
+        ("status", Optional[StatusEnum], None),
+        ("context", Optional[ContextEnum], None),
+        ("pancan_cohort", Optional[PancanCohortEnum], None),
     ],
 )
 
@@ -119,10 +141,11 @@ BaseDonorSchema = create_schema(
         ("submitter_donor_id", str, Field(pattern=ID_REGEX, max_length=64)),
         ("date_of_birth", Optional[DateInterval], None),
         ("date_of_death", Optional[DateInterval], None),
+        ("date_of_death_is_estimated", Optional[DateOfDeathIsEstimatedEnum], None),
         ("gender", Optional[GenderEnum], None),
         ("sex_at_birth", Optional[SexAtBirthEnum], None),
+        ("lost_to_follow_up", Optional[LostToFollowUpEnum], None),
         ("lost_to_followup_reason", Optional[LostToFollowupReasonEnum], None),
-        ("date_alive_after_lost_to_followup", Optional[DateInterval], None),
     ],
 )
 

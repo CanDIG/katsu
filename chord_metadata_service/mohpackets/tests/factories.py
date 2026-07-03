@@ -56,6 +56,22 @@ class ProgramFactory(factory.django.DjangoModelFactory):
 
     # default values
     program_id = factory.Sequence(lambda n: "PROGRAM_%d" % n)
+    program_name = factory.Faker("sentence", nb_words=3)
+    program_description = factory.Faker("paragraph")
+    keywords = factory.List([factory.Faker("word") for _ in range(2)])
+    status = factory.Faker("random_element", elements=PERM_VAL.STATUS)
+    context = factory.Faker("random_element", elements=PERM_VAL.CONTEXT)
+    participant_criteria = factory.Faker("sentence")
+    principal_investigators = factory.List([factory.Faker("name")])
+    lead_organizations = factory.List([factory.Faker("company")])
+    collaborators = factory.List([factory.Faker("company")])
+    funding_sources = factory.List([factory.Faker("company")])
+    publication_links = factory.List(
+        [factory.Faker("uri")]
+    )
+    program_url = factory.Faker("uri")
+    pancan_cohort = factory.Faker("random_element", elements=PERM_VAL.PANCAN_COHORT)
+    pancan_id = factory.Sequence(lambda n: "PANCAN_%d" % n)
 
 
 class DonorFactory(factory.django.DjangoModelFactory):
@@ -72,8 +88,18 @@ class DonorFactory(factory.django.DjangoModelFactory):
                                 "Yes",
                                 factory.Faker("random_element", elements=["No", "Not available"]))
     lost_to_followup_reason = None
-    lost_to_followup_after_clinical_event_identifier = None
-    date_alive_after_lost_to_followup = None
+    lost_to_follow_up = factory.Maybe(
+        "is_deceased_bool",
+        yes_declaration="Not applicable",
+        no_declaration=factory.Faker(
+            "random_element", elements=["Yes", "No", "Unknown"]
+        ),
+    )
+    date_of_death_is_estimated = factory.Maybe(
+        "is_deceased_bool",
+        yes_declaration=factory.Faker("random_element", elements=["Yes", "No"]),
+        no_declaration="Not applicable",
+    )
     date_resolution = "day"
 
     cause_of_death = factory.Maybe(
@@ -114,6 +140,16 @@ class DonorFactory(factory.django.DjangoModelFactory):
             self.date_of_death["month_interval"] = days_to_months(
                 self.date_of_death["day_interval"]
             )
+
+    @factory.post_generation
+    def set_lost_to_followup_reason(self, create, extracted, **kwargs):
+        "Provide a reason only when the donor was lost to follow-up."
+        if self.lost_to_follow_up == "Yes":
+            self.lost_to_followup_reason = random.choice(
+                PERM_VAL.LOST_TO_FOLLOWUP_REASON
+            )
+            if create:
+                self.save()
 
 
 class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
@@ -163,24 +199,6 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     program_id = factory.SelfAttribute("donor_uuid.program_id")
     submitter_donor_id = factory.SelfAttribute("donor_uuid.submitter_donor_id")
     donor_uuid = factory.SubFactory(DonorFactory)
-
-    @factory.post_generation
-    def set_clinical_event_identifier(self, create, extracted, **kwargs):
-        donor = self.donor_uuid
-        if donor.is_deceased == "No":
-            donor.lost_to_followup_after_clinical_event_identifier = (
-                self.submitter_primary_diagnosis_id
-            )
-            donor.lost_to_followup_reason = random.choice(
-                PERM_VAL.LOST_TO_FOLLOWUP_REASON
-            )
-            donor.date_alive_after_lost_to_followup = {
-                "day_interval": random.randint(25551, 32850),
-            }
-            donor.date_alive_after_lost_to_followup["month_interval"] = days_to_months(
-                donor.date_alive_after_lost_to_followup["day_interval"]
-            )
-            donor.save()
 
 
 class SpecimenFactory(factory.django.DjangoModelFactory):
