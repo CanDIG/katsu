@@ -49,6 +49,11 @@ class SpecimenModelTest(TestCase):
         self.assertIsInstance(
             self.instance.percent_tumour_cells_measurement_method, (str, type(None))
         )
+        self.assertIsInstance(self.instance.specimen_tissue_source, (str, type(None)))
+        self.assertIsInstance(
+            self.instance.tumour_normal_designation, (str, type(None))
+        )
+        self.assertIsInstance(self.instance.specimen_type, (str, type(None)))
 
     def test_invalid_id(self):
         """
