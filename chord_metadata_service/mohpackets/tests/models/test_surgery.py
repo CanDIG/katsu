@@ -31,13 +31,7 @@ class DonorModelTest(TestCase):
         self.assertIsInstance(
             self.instance.residual_tumour_classification, (str, type(None))
         )
-        self.assertIsInstance(self.instance.margin_types_involved, (list, type(None)))
-        self.assertIsInstance(
-            self.instance.margin_types_not_involved, (list, type(None))
-        )
-        self.assertIsInstance(
-            self.instance.margin_types_not_assessed, (list, type(None))
-        )
+        self.assertIsInstance(self.instance.margins_status, (str, type(None)))
         self.assertIsInstance(self.instance.lymphovascular_invasion, (str, type(None)))
         self.assertIsInstance(self.instance.perineural_invasion, (str, type(None)))
         self.assertIsInstance(
