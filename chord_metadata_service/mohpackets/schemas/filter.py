@@ -152,13 +152,7 @@ class SurgeryFilterSchema(FilterSchema):
     greatest_dimension_tumour: Optional[int] = Field(None)
     tumour_focality: Optional[str] = Field(None)
     residual_tumour_classification: Optional[str] = Field(None)
-    margin_types_involved: List[str] = Field(None, q="margin_types_involved__overlap")
-    margin_types_not_involved: List[str] = Field(
-        None, q="margin_types_not_involved__overlap"
-    )
-    margin_types_not_assessed: List[str] = Field(
-        None, q="margin_types_not_assessed__overlap"
-    )
+    margins_status: Optional[str] = Field(None)
     lymphovascular_invasion: Optional[str] = Field(None)
     perineural_invasion: Optional[str] = Field(None)
     surgery_reference_database: Optional[str] = Field(None)
