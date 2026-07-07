@@ -1145,15 +1145,6 @@ TUMOUR_FOCALITY = [
 
 TUMOUR_CLASSIFICATION = ["Not applicable", "RX", "R0", "R1", "R2", "Not available"]
 
-MARGIN_TYPES = [
-    "Circumferential resection margin",
-    "Common bile duct margin",
-    "Distal margin",
-    "Not applicable",
-    "Proximal margin",
-    "Not available",
-]
-
 MARGINS_STATUS = [
     "Margins clear",
     "Margin(s) involved",
@@ -1434,7 +1425,7 @@ TumourFocalityEnum = list_to_enum("TumourFocalityEnum", TUMOUR_FOCALITY)
 TumourClassificationEnum = list_to_enum(
     "TumourClassificationEnum", TUMOUR_CLASSIFICATION
 )
-MarginTypesEnum = list_to_enum("MarginTypesEnum", MARGIN_TYPES)
+MarginsStatusEnum = list_to_enum("MarginsStatusEnum", MARGINS_STATUS)
 LymphovascularInvasionEnum = list_to_enum(
     "LymphovascularInvasionEnum", LYMPHOVACULAR_INVASION
 )
