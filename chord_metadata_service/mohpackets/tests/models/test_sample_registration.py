@@ -25,11 +25,6 @@ class SampleRegistrationModelTest(TestCase):
         self.assertIsInstance(self.instance.submitter_donor_id, str)
         self.assertIsInstance(self.instance.submitter_specimen_id, str)
         self.assertIsInstance(self.instance.submitter_sample_id, str)
-        self.assertIsInstance(self.instance.specimen_tissue_source, (str, type(None)))
-        self.assertIsInstance(
-            self.instance.tumour_normal_designation, (str, type(None))
-        )
-        self.assertIsInstance(self.instance.specimen_type, (str, type(None)))
         self.assertIsInstance(self.instance.sample_type, (str, type(None)))
 
     def test_invalid_id(self):
@@ -66,12 +61,12 @@ class SampleRegistrationModelTest(TestCase):
         the database to verify the update.
         """
         update_source = SAMPLE_TYPE[0]  # Amplified DNA
-        self.instance.specimen_tissue_source = update_source
+        self.instance.sample_type = update_source
         self.instance.save()
         updated_object = SampleRegistration.objects.get(
             submitter_sample_id=self.instance.submitter_sample_id
         )
-        self.assertEqual(updated_object.specimen_tissue_source, update_source)
+        self.assertEqual(updated_object.sample_type, update_source)
 
     def test_delete(self):
         """

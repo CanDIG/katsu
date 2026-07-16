@@ -321,6 +321,11 @@ class SynthSpecimenFactory(SpecimenFactory):
     percent_tumour_cells_measurement_method = factory.Faker(
         "random_element", elements=SYNTH_VAL.CELLS_MEASURE_METHOD
     )
+    specimen_tissue_source = factory.Faker(
+        "random_element", elements=SYNTH_VAL.SPECIMEN_TISSUE_SOURCE
+    )
+    tumour_normal_designation = factory.Iterator(SYNTH_VAL.TUMOUR_DESIGNATION)
+    specimen_type = factory.Faker("random_element", elements=SYNTH_VAL.SPECIMEN_TYPE)
 
     @factory.post_generation
     def set_date(self, create, extracted, **kwargs):
@@ -360,6 +365,9 @@ class NullSynthSpecimenFactory(SpecimenFactory):
     tumour_grading_system = None
     tumour_grade = None
     percent_tumour_cells_measurement_method = None
+    specimen_tissue_source = None
+    tumour_normal_designation = None
+    specimen_type = None
 
     @factory.post_generation
     def set_months(self, create, extracted, **kwargs):
@@ -406,6 +414,10 @@ class AllSynthSpecimenFactory(SpecimenFactory):
     percent_tumour_cells_measurement_method = factory.Faker(
         "random_element", elements=SYNTH_VAL.ALL_CELLS_MEASURE_METHOD
     )
+    specimen_tissue_source = factory.Faker(
+        "random_element", elements=SYNTH_VAL.ALL_SPECIMEN_TISSUE_SOURCE
+    )
+    specimen_type = factory.Faker("random_element", elements=SYNTH_VAL.ALL_SPECIMEN_TYPE)
 
     @factory.post_generation
     def generate_histology_code(self, create, extracted, **kwargs):
@@ -421,20 +433,12 @@ class SynthSampleRegistrationFactory(SampleRegistrationFactory):
         django_get_or_create = ("submitter_sample_id",)
 
     submitter_sample_id = factory.Sequence(lambda n: f"SAMPLE_{str(n).zfill(4)}")
-    specimen_tissue_source = factory.Faker(
-        "random_element", elements=SYNTH_VAL.SPECIMEN_TISSUE_SOURCE
-    )
-    tumour_normal_designation = factory.Iterator(SYNTH_VAL.TUMOUR_DESIGNATION)
-    specimen_type = factory.Faker("random_element", elements=SYNTH_VAL.SPECIMEN_TYPE)
     sample_type = factory.Faker("random_element", elements=SYNTH_VAL.SAMPLE_TYPE)
 
 
 class NullSynthSampleRegistrationFactory(SampleRegistrationFactory):
     submitter_sample_id = factory.Sequence(lambda n: f"SAMPLE_NULL_{str(n).zfill(4)}")
 
-    specimen_tissue_source = None
-    tumour_normal_designation = None
-    specimen_type = None
     sample_type = None
 
 
@@ -443,10 +447,6 @@ class AllSynthSampleRegistrationFactory(SampleRegistrationFactory):
         django_get_or_create = ("submitter_sample_id",)
 
     submitter_sample_id = factory.Sequence(lambda n: f"SAMPLE_ALL_{str(n).zfill(4)}")
-    specimen_tissue_source = factory.Faker(
-        "random_element", elements=SYNTH_VAL.ALL_SPECIMEN_TISSUE_SOURCE
-    )
-    specimen_type = factory.Faker("random_element", elements=SYNTH_VAL.ALL_SPECIMEN_TYPE)
     sample_type = factory.Faker("random_element", elements=SYNTH_VAL.ALL_SAMPLE_TYPE)
 
 

@@ -220,6 +220,9 @@ BaseSpecimenSchema = create_schema(
         ),
         ("specimen_processing", Optional[SpecimenProcessingEnum], None),
         ("specimen_laterality", Optional[SpecimenLateralityEnum], None),
+        ("specimen_tissue_source", Optional[SpecimenTissueSourceEnum], None),
+        ("tumour_normal_designation", Optional[TumourDesginationEnum], None),
+        ("specimen_type", Optional[SpecimenTypeEnum], None),
     ],
 )
 
@@ -236,9 +239,6 @@ BaseSampleRegistrationSchema = create_schema(
     ],
     custom_fields=[
         ("submitter_sample_id", str, Field(pattern=ID_REGEX, max_length=64)),
-        ("specimen_tissue_source", Optional[SpecimenTissueSourceEnum], None),
-        ("tumour_normal_designation", Optional[TumourDesginationEnum], None),
-        ("specimen_type", Optional[SpecimenTypeEnum], None),
         ("sample_type", Optional[SampleTypeEnum], None),
     ],
 )

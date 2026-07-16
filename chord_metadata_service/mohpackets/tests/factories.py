@@ -252,6 +252,11 @@ class SpecimenFactory(factory.django.DjangoModelFactory):
     percent_tumour_cells_measurement_method = factory.Faker(
         "random_element", elements=PERM_VAL.CELLS_MEASURE_METHOD
     )
+    specimen_tissue_source = factory.Faker(
+        "random_element", elements=PERM_VAL.SPECIMEN_TISSUE_SOURCE
+    )
+    tumour_normal_designation = factory.Iterator(PERM_VAL.TUMOUR_DESIGNATION)
+    specimen_type = factory.Faker("random_element", elements=PERM_VAL.SPECIMEN_TYPE)
 
     # set foreign keys
     program_id = factory.SelfAttribute("primary_diagnosis_uuid.program_id")
@@ -286,11 +291,6 @@ class SampleRegistrationFactory(factory.django.DjangoModelFactory):
 
     # default values
     submitter_sample_id = factory.Sequence(lambda n: "SAMPLE_%d" % n)
-    specimen_tissue_source = factory.Faker(
-        "random_element", elements=PERM_VAL.SPECIMEN_TISSUE_SOURCE
-    )
-    tumour_normal_designation = factory.Iterator(PERM_VAL.TUMOUR_DESIGNATION)
-    specimen_type = factory.Faker("random_element", elements=PERM_VAL.SPECIMEN_TYPE)
     sample_type = factory.Faker("random_element", elements=PERM_VAL.SAMPLE_TYPE)
 
     # set foreign keys

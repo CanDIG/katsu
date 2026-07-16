@@ -176,6 +176,9 @@ class Specimen(models.Model):
     percent_tumour_cells_measurement_method = models.CharField(
         max_length=64, null=True, blank=True
     )
+    specimen_tissue_source = models.CharField(max_length=255, null=True, blank=True)
+    tumour_normal_designation = models.CharField(max_length=32, null=True, blank=True)
+    specimen_type = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         constraints = [
@@ -203,9 +206,6 @@ class SampleRegistration(models.Model):
     )
     submitter_donor_id = models.CharField(max_length=64, null=False, blank=False)
     submitter_specimen_id = models.CharField(max_length=64, null=False, blank=False)
-    specimen_tissue_source = models.CharField(max_length=255, null=True, blank=True)
-    tumour_normal_designation = models.CharField(max_length=32, null=True, blank=True)
-    specimen_type = models.CharField(max_length=255, null=True, blank=True)
     sample_type = models.CharField(max_length=128, null=True, blank=True)
 
     class Meta:

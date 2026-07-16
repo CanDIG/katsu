@@ -74,6 +74,9 @@ class SpecimenFilterSchema(FilterSchema):
     tumour_grade: Optional[str] = Field(None)
     percent_tumour_cells_range: Optional[str] = Field(None)
     percent_tumour_cells_measurement_method: Optional[str] = Field(None)
+    specimen_tissue_source: Optional[str] = Field(None)
+    tumour_normal_designation: Optional[str] = Field(None)
+    specimen_type: Optional[str] = Field(None)
 
 
 class SampleRegistrationFilterSchema(FilterSchema):
@@ -81,9 +84,6 @@ class SampleRegistrationFilterSchema(FilterSchema):
     program_id: Optional[str] = Field(None)
     submitter_donor_id: Optional[str] = Field(None)
     submitter_specimen_id: Optional[str] = Field(None)
-    specimen_tissue_source: Optional[str] = Field(None)
-    tumour_normal_designation: Optional[str] = Field(None)
-    specimen_type: Optional[str] = Field(None)
     sample_type: Optional[str] = Field(None)
 
 
