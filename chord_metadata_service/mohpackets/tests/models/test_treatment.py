@@ -28,6 +28,7 @@ class DonorModelTest(TestCase):
         self.assertIsInstance(self.instance.treatment_start_date, (dict, type(None)))
         self.assertIsInstance(self.instance.treatment_end_date, (dict, type(None)))
         self.assertIsInstance(self.instance.treatment_intent, (str, type(None)))
+        self.assertIsInstance(self.instance.treatment_setting, (str, type(None)))
         self.assertIsInstance(
             self.instance.response_to_treatment_criteria_method, (str, type(None))
         )
