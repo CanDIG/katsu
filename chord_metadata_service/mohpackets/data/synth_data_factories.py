@@ -464,6 +464,9 @@ class SynthTreatmentFactory(TreatmentFactory):
     treatment_intent = factory.Faker(
         "random_element", elements=SYNTH_VAL.TREATMENT_INTENT
     )
+    treatment_setting = factory.Faker(
+        "random_element", elements=SYNTH_VAL.TREATMENT_SETTING
+    )
     response_to_treatment_criteria_method = factory.Faker(
         "random_element", elements=SYNTH_VAL.TREATMENT_RESPONSE_METHOD
     )
@@ -518,6 +521,7 @@ class NullSynthTreatmentFactory(TreatmentFactory):
     treatment_start_date = None
     treatment_end_date = None
     treatment_intent = None
+    treatment_setting = None
     response_to_treatment_criteria_method = None
     response_to_treatment = None
     status_of_treatment = None
@@ -549,6 +553,9 @@ class AllSynthTreatmentFactory(TreatmentFactory):
     )
     treatment_intent = factory.Faker(
         "random_element", elements=SYNTH_VAL.ALL_TREATMENT_INTENT
+    )
+    treatment_setting = factory.Faker(
+        "random_element", elements=SYNTH_VAL.ALL_TREATMENT_SETTING
     )
     response_to_treatment_criteria_method = factory.Faker(
         "random_element", elements=SYNTH_VAL.ALL_TREATMENT_RESPONSE_METHOD
