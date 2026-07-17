@@ -70,6 +70,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     TreatmentIntentEnum,
     TreatmentResponseEnum,
     TreatmentResponseMethodEnum,
+    TreatmentSettingEnum,
     TreatmentStatusEnum,
     TreatmentTypeEnum,
     TumourClassificationEnum,
@@ -265,6 +266,7 @@ BaseTreatmentSchema = create_schema(
         ("treatment_start_date", Optional[DateInterval], None),
         ("treatment_end_date", Optional[DateInterval], None),
         ("treatment_intent", Optional[TreatmentIntentEnum], None),
+        ("treatment_setting", Optional[TreatmentSettingEnum], None),
         (
             "response_to_treatment_criteria_method",
             Optional[TreatmentResponseMethodEnum],
