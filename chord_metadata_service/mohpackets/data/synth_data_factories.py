@@ -895,9 +895,6 @@ class AllSynthRadiationFactory(SynthRadiationFactory):
 
 
 class SynthSurgeryFactory(SurgeryFactory):
-    class Meta:
-        exclude = ("null_margin_types",)
-
     surgery_site = factory.Faker("random_element", elements=SYNTH_VAL.TOPOGRAPHY_CODES)
     surgery_location = factory.Faker(
         "random_element", elements=SYNTH_VAL.SURGERY_LOCATION
@@ -920,36 +917,8 @@ class SynthSurgeryFactory(SurgeryFactory):
     residual_tumour_classification = factory.Faker(
         "random_element", elements=SYNTH_VAL.TUMOUR_CLASSIFICATION
     )
-    null_margin_types = factory.LazyFunction(lambda: random.random() < 0.15)
-    margin_types_involved = factory.Maybe(
-        "null_margin_type",
-        None,
-        factory.Faker(
-            "random_elements",
-            elements=SYNTH_VAL.MARGIN_TYPES,
-            length=random.randint(1, 3),
-            unique=True,
-        ),
-    )
-    margin_types_not_involved = factory.Maybe(
-        "null_margin_type",
-        None,
-        factory.Faker(
-            "random_elements",
-            elements=SYNTH_VAL.MARGIN_TYPES,
-            length=random.randint(1, 3),
-            unique=True,
-        ),
-    )
-    margin_types_not_assessed = factory.Maybe(
-        "null_margin_type",
-        None,
-        factory.Faker(
-            "random_elements",
-            elements=SYNTH_VAL.MARGIN_TYPES,
-            length=random.randint(1, 3),
-            unique=True,
-        ),
+    margins_status = factory.Faker(
+        "random_element", elements=SYNTH_VAL.MARGINS_STATUS
     )
 
     @factory.post_generation
@@ -976,9 +945,7 @@ class NullSynthSurgeryFactory(SurgeryFactory):
     greatest_dimension_tumour = None
     tumour_focality = None
     residual_tumour_classification = None
-    margin_types_involved = None
-    margin_types_not_involved = None
-    margin_types_not_assessed = None
+    margins_status = None
     lymphovascular_invasion = None
     perineural_invasion = None
 
@@ -1005,24 +972,9 @@ class AllSynthSurgeryFactory(SurgeryFactory):
     residual_tumour_classification = factory.Faker(
         "random_element", elements=SYNTH_VAL.ALL_TUMOUR_CLASSIFICATION
     )
-    margin_types_involved = factory.Faker(
-            "random_elements",
-            elements=SYNTH_VAL.ALL_MARGIN_TYPES,
-            length=random.randint(1, 3),
-            unique=True,
-        )
-    margin_types_not_involved = factory.Faker(
-            "random_elements",
-            elements=SYNTH_VAL.ALL_MARGIN_TYPES,
-            length=random.randint(1, 3),
-            unique=True,
-        )
-    margin_types_not_assessed = factory.Faker(
-            "random_elements",
-            elements=SYNTH_VAL.MARGIN_TYPES,
-            length=random.randint(1, 3),
-            unique=True,
-        )
+    margins_status = factory.Faker(
+        "random_element", elements=SYNTH_VAL.ALL_MARGINS_STATUS
+    )
 
     @factory.post_generation
     def add_surgery_type(self, create, extracted, **kwargs):

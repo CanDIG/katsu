@@ -561,23 +561,8 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
     residual_tumour_classification = factory.Faker(
         "random_element", elements=PERM_VAL.TUMOUR_CLASSIFICATION
     )
-    margin_types_involved = factory.Faker(
-        "random_elements",
-        elements=PERM_VAL.MARGIN_TYPES,
-        length=random.randint(1, 5),
-        unique=True,
-    )
-    margin_types_not_involved = factory.Faker(
-        "random_elements",
-        elements=PERM_VAL.MARGIN_TYPES,
-        length=random.randint(1, 5),
-        unique=True,
-    )
-    margin_types_not_assessed = factory.Faker(
-        "random_elements",
-        elements=PERM_VAL.MARGIN_TYPES,
-        length=random.randint(1, 5),
-        unique=True,
+    margins_status = factory.Faker(
+        "random_element", elements=PERM_VAL.MARGINS_STATUS
     )
     lymphovascular_invasion = factory.Faker(
         "random_element", elements=PERM_VAL.LYMPHOVACULAR_INVASION
@@ -598,21 +583,6 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
         "treatment_uuid.submitter_treatment_id"
     )
     treatment_uuid = factory.SubFactory(TreatmentFactory)
-
-    @factory.post_generation
-    def clean_margin_nulls(self, create, extracted, **kwargs):
-        if self.margin_types_involved:
-            self.margin_types_involved = [
-                x for x in self.margin_types_involved if x is not None
-            ]
-        if self.margin_types_not_involved:
-            self.margin_types_not_involved = [
-                x for x in self.margin_types_not_involved if x is not None
-            ]
-        if self.margin_types_not_assessed:
-            self.margin_types_not_assessed = [
-                x for x in self.margin_types_not_assessed if x is not None
-            ]
 
     @factory.post_generation
     def add_surgery_treatment_type(self, create, extracted, **kwargs):
