@@ -242,6 +242,7 @@ class Treatment(models.Model):
     treatment_start_date = models.JSONField(null=True, blank=True)
     treatment_end_date = models.JSONField(null=True, blank=True)
     treatment_intent = models.CharField(max_length=128, null=True, blank=True)
+    treatment_setting = models.CharField(max_length=255, null=True, blank=True)
     response_to_treatment_criteria_method = models.CharField(
         max_length=255, null=True, blank=True
     )

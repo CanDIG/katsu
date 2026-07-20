@@ -321,6 +321,9 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
     treatment_intent = factory.Faker(
         "random_element", elements=PERM_VAL.TREATMENT_INTENT
     )
+    treatment_setting = factory.Faker(
+        "random_element", elements=PERM_VAL.TREATMENT_SETTING
+    )
     response_to_treatment_criteria_method = factory.Faker(
         "random_element", elements=PERM_VAL.TREATMENT_RESPONSE_METHOD
     )
