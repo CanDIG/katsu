@@ -95,6 +95,7 @@ class TreatmentFilterSchema(FilterSchema):
     treatment_type: Optional[str] = Field(None)
     is_primary_treatment: Optional[str] = Field(None)
     treatment_intent: Optional[str] = Field(None)
+    treatment_setting: Optional[str] = Field(None)
     response_to_treatment_criteria_method: Optional[str] = Field(None)
     response_to_treatment: Optional[str] = Field(None)
     status_of_treatment: Optional[str] = Field(None)
