@@ -7004,7 +7004,7 @@ TreatmentResponseEnum
 |TreatmentResponseEnum|Stable disease|
 |TreatmentResponseEnum|Immune complete response (iCR)|
 |TreatmentResponseEnum|Immune partial response (iPR)|
-|TreatmentResponseEnum|Immune uncomfirmed progressive disease (iUPD)|
+|TreatmentResponseEnum|Immune unconfirmed progressive disease (iUPD)|
 |TreatmentResponseEnum|Immune confirmed progressive disease (iCPD)|
 |TreatmentResponseEnum|Immune stable disease (iSD)|
 |TreatmentResponseEnum|Complete remission|
