@@ -23,6 +23,7 @@ from chord_metadata_service.mohpackets.models import (
     PrimaryDiagnosis,
     Program,
     Radiation,
+    RadiopharmaceuticalTherapy,
     SampleRegistration,
     Specimen,
     Surgery,
@@ -42,6 +43,7 @@ from chord_metadata_service.mohpackets.schemas.filter import (
     PrimaryDiagnosisFilterSchema,
     ProgramFilterSchema,
     RadiationFilterSchema,
+    RadiopharmaceuticalTherapyFilterSchema,
     SampleRegistrationFilterSchema,
     SpecimenFilterSchema,
     SurgeryFilterSchema,
@@ -58,6 +60,7 @@ from chord_metadata_service.mohpackets.schemas.model import (
     ProgramModelSchema,
     QueryDonorSchema,
     RadiationModelSchema,
+    RadiopharmaceuticalTherapyModelSchema,
     SampleRegistrationModelSchema,
     SpecimenModelSchema,
     SurgeryModelSchema,
@@ -146,6 +149,7 @@ def get_donor_with_clinical_data(request, program_id: str, donor_id: str):
             "comorbidity_set",
             "exposure_set",
             "primarydiagnosis_set__treatment_set__systemictherapy_set",
+            "primarydiagnosis_set__treatment_set__radiopharmaceuticaltherapy_set",
             "primarydiagnosis_set__treatment_set__radiation_set",
             "primarydiagnosis_set__treatment_set__surgery_set",
             "primarydiagnosis_set__treatment_set__followup_set",
@@ -194,6 +198,7 @@ def query_donors(request, filters: DonorExplorerFilterSchema = Query(...)):
             "treatment_set",
             "primarydiagnosis_set",
             "systemictherapy_set",
+            "radiopharmaceuticaltherapy_set",
             "sampleregistration_set",
         )
         .distinct()
@@ -319,6 +324,18 @@ def list_radiations(request, filters: Query[RadiationFilterSchema]):
     q = Q(program_id__in=request.read_datasets)
     q &= filters.get_filter_expression()
     return Radiation.objects.filter(q)
+
+
+@router.get(
+    "/radiopharmaceutical_therapies/",
+    response=List[RadiopharmaceuticalTherapyModelSchema],
+)
+def list_radiopharmaceutical_therapies(
+    request, filters: Query[RadiopharmaceuticalTherapyFilterSchema]
+):
+    q = Q(program_id__in=request.read_datasets)
+    q &= filters.get_filter_expression()
+    return RadiopharmaceuticalTherapy.objects.filter(q)
 
 
 @router.get(
