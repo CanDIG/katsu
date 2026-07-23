@@ -370,6 +370,41 @@ class Surgery(models.Model):
         return f"{self.program_id}: {self.submitter_treatment_id}"
 
 
+class RadiopharmaceuticalTherapy(models.Model):
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    donor_uuid = models.ForeignKey(
+        Donor, on_delete=models.CASCADE, null=False, blank=False
+    )
+    treatment_uuid = models.ForeignKey(
+        Treatment, on_delete=models.CASCADE, null=False, blank=False
+    )
+    program_id = models.ForeignKey(
+        Program, on_delete=models.CASCADE, null=False, blank=False
+    )
+    submitter_donor_id = models.CharField(max_length=64, null=False, blank=False)
+    submitter_treatment_id = models.CharField(max_length=64, null=False, blank=False)
+    rxnorm_code = models.CharField(max_length=64, null=True, blank=True)
+    agent_name = models.CharField(max_length=255, null=True, blank=True)
+    radionuclide = models.CharField(max_length=255, null=True, blank=True)
+    radionuclide_other = models.CharField(max_length=255, null=True, blank=True)
+    start_date = models.JSONField(null=True, blank=True)
+    end_date = models.JSONField(null=True, blank=True)
+    cumulative_drug_dose = models.FloatField(null=True, blank=True)
+    cumulative_drug_dose_not_available = models.BooleanField(default=False)
+    drug_dose_units = models.CharField(max_length=64, null=True, blank=True)
+    mass_value = models.FloatField(null=True, blank=True)
+    mass_value_not_available = models.BooleanField(default=False)
+    mass_unit_ucum = models.CharField(max_length=64, null=True, blank=True)
+    number_of_cycles = models.IntegerField(null=True, blank=True)
+    number_of_cycles_not_available = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ["uuid"]
+
+    def __str__(self):
+        return f"{self.program_id}: {self.submitter_treatment_id}"
+
+
 class FollowUp(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     donor_uuid = models.ForeignKey(
