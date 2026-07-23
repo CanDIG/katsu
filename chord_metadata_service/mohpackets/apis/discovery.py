@@ -313,6 +313,7 @@ def explorer_donor(request, filters: DonorExplorerFilterSchema = Query(...)):
             "treatment_set",
             "primarydiagnosis_set",
             "systemictherapy_set",
+            "radiopharmaceuticaltherapy_set",
             "sampleregistration_set",
         )
         .distinct()
