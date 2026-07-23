@@ -128,6 +128,21 @@ class SystemicTherapyFilterSchema(FilterSchema):
         return Q()
 
 
+class RadiopharmaceuticalTherapyFilterSchema(FilterSchema):
+    program_id: Optional[str] = Field(None)
+    submitter_donor_id: Optional[str] = Field(None)
+    submitter_treatment_id: Optional[str] = Field(None)
+    rxnorm_code: Optional[str] = Field(None)
+    agent_name: Optional[str] = Field(None)
+    radionuclide: Optional[str] = Field(None)
+    radionuclide_other: Optional[str] = Field(None)
+    cumulative_drug_dose: Optional[float] = Field(None)
+    drug_dose_units: Optional[str] = Field(None)
+    mass_value: Optional[float] = Field(None)
+    mass_unit_ucum: Optional[str] = Field(None)
+    number_of_cycles: Optional[int] = Field(None)
+
+
 class RadiationFilterSchema(FilterSchema):
     program_id: Optional[str] = Field(None)
     submitter_donor_id: Optional[str] = Field(None)
