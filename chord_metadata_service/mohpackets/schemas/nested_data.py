@@ -10,6 +10,7 @@ from chord_metadata_service.mohpackets.schemas.base import (
     BaseFollowUpSchema,
     BasePrimaryDiagnosisSchema,
     BaseRadiationSchema,
+    BaseRadiopharmaceuticalTherapySchema,
     BaseSampleRegistrationSchema,
     BaseSpecimenSchema,
     BaseSurgerySchema,
@@ -52,6 +53,10 @@ class NestedSurgerySchema(BaseSurgerySchema):
     pass
 
 
+class NestedRadiopharmaceuticalTherapySchema(BaseRadiopharmaceuticalTherapySchema):
+    pass
+
+
 class NestedFollowUpSchema(BaseFollowUpSchema):
     pass
 
@@ -70,6 +75,9 @@ class NestedTreatmentSchema(BaseTreatmentSchema):
     )
     radiations: List[NestedRadiationSchema] = Field(None, alias="radiation_set")
     surgeries: List[NestedSurgerySchema] = Field(None, alias="surgery_set")
+    radiopharmaceutical_therapies: List[NestedRadiopharmaceuticalTherapySchema] = Field(
+        None, alias="radiopharmaceuticaltherapy_set"
+    )
     followups: List[NestedFollowUpSchema] = Field(None, alias="followup_set")
 
 
