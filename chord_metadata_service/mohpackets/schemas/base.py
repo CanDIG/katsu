@@ -12,6 +12,7 @@ from chord_metadata_service.mohpackets.models import (
     PrimaryDiagnosis,
     Program,
     Radiation,
+    RadiopharmaceuticalTherapy,
     SampleRegistration,
     Specimen,
     Surgery,
@@ -31,6 +32,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     DateOfDeathIsEstimatedEnum,
     DiseaseStatusFollowupEnum,
     DosageUnitsEnum,
+    DrugDoseUnitsEnum,
     DrugReferenceDbEnum,
     ErPrHpvStatusEnum,
     GenderEnum,
@@ -41,6 +43,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     LymphovascularInvasionEnum,
     MalignancyLateralityEnum,
     MarginsStatusEnum,
+    MassUnitUcumEnum,
     MCategoryEnum,
     NCategoryEnum,
     PancanCohortEnum,
@@ -51,6 +54,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     ProgressionStatusMethodEnum,
     RadiationAnatomicalSiteEnum,
     RadiationTherapyModalityEnum,
+    RadionuclideEnum,
     RelapseTypeEnum,
     SampleTypeEnum,
     SexAtBirthEnum,
@@ -294,6 +298,23 @@ BaseSystemicTherapySchema = create_schema(
     ],
 )
 
+BaseRadiopharmaceuticalTherapySchema = create_schema(
+    RadiopharmaceuticalTherapy,
+    name="BaseRadiopharmaceuticalTherapySchema",
+    exclude=[
+        "uuid",
+        "donor_uuid",
+        "submitter_donor_id",
+        "program_id",
+        "submitter_treatment_id",
+        "treatment_uuid",
+    ],
+    custom_fields=[
+        ("radionuclide", Optional[RadionuclideEnum], None),
+        ("drug_dose_units", Optional[DrugDoseUnitsEnum], None),
+        ("mass_unit_ucum", Optional[MassUnitUcumEnum], None),
+    ],
+)
 
 BaseRadiationSchema = create_schema(
     Radiation,
