@@ -13,6 +13,7 @@ from chord_metadata_service.mohpackets.models import (
     FollowUp,
     PrimaryDiagnosis,
     Radiation,
+    RadiopharmaceuticalTherapy,
     SampleRegistration,
     Specimen,
     Surgery,
@@ -133,6 +134,18 @@ def create_radiation_foreign_key(sender, instance, **kwargs):
 
 @receiver(pre_save, sender=Surgery)
 def create_surgery_foreign_key(sender, instance, **kwargs):
+    set_foreign_key(sender, instance, Donor, "submitter_donor_id", "donor_uuid_id")
+    set_foreign_key(
+        sender,
+        instance,
+        Treatment,
+        "submitter_treatment_id",
+        "treatment_uuid_id",
+    )
+
+
+@receiver(pre_save, sender=RadiopharmaceuticalTherapy)
+def create_radiopharmaceutical_therapy_foreign_key(sender, instance, **kwargs):
     set_foreign_key(sender, instance, Donor, "submitter_donor_id", "donor_uuid_id")
     set_foreign_key(
         sender,
