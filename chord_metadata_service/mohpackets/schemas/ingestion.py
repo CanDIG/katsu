@@ -12,6 +12,7 @@ from chord_metadata_service.mohpackets.schemas.base import (
     BasePrimaryDiagnosisSchema,
     BaseProgramSchema,
     BaseRadiationSchema,
+    BaseRadiopharmaceuticalTherapySchema,
     BaseSampleRegistrationSchema,
     BaseSpecimenSchema,
     BaseSurgerySchema,
@@ -60,6 +61,14 @@ class BiomarkerIngestSchema(BaseBiomarkerSchema):
 
 
 class SystemicTherapyIngestSchema(BaseSystemicTherapySchema):
+    model_config = ConfigDict(use_enum_values=True)
+    program_id_id: str = Field(..., alias="program_id")
+    submitter_donor_id: str
+    submitter_treatment_id: str
+    uuid: Optional[str] = None
+
+
+class RadiopharmaceuticalTherapyIngestSchema(BaseRadiopharmaceuticalTherapySchema):
     model_config = ConfigDict(use_enum_values=True)
     program_id_id: str = Field(..., alias="program_id")
     submitter_donor_id: str
