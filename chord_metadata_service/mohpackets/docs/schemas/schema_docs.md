@@ -5,6 +5,8 @@ This is the RESTful API for the MoH Service.
 
 Base URLs:
 
+* <a href="https://your-candig-domain/katsu">https://your-candig-domain/katsu</a>
+
 # Authentication
 
 * API Key (ServiceTokenAuth)

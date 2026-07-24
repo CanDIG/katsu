@@ -13155,5 +13155,9 @@
             }
         }
     },
-    "servers": []
+    "servers": [
+        {
+            "url": "https://your-candig-domain/katsu"
+        }
+    ]
 }
