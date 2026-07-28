@@ -35,6 +35,7 @@ from synth_data_factories import (  # noqa: E402
     AllSynthFollowUpFactory,
     AllSynthPrimaryDiagnosisFactory,
     AllSynthRadiationFactory,
+    AllSynthRadiopharmaceuticalTherapyFactory,
     AllSynthSampleRegistrationFactory,
     AllSynthSpecimenFactory,
     AllSynthSurgeryFactory,
@@ -47,6 +48,7 @@ from synth_data_factories import (  # noqa: E402
     NullSynthFollowUpFactory,
     NullSynthPrimaryDiagnosisFactory,
     NullSynthRadiationFactory,
+    NullSynthRadiopharmaceuticalTherapyFactory,
     NullSynthSampleRegistrationFactory,
     NullSynthSpecimenFactory,
     NullSynthSurgeryFactory,
@@ -60,6 +62,7 @@ from synth_data_factories import (  # noqa: E402
     SynthPrimaryDiagnosisFactory,
     SynthProgramFactory,
     SynthRadiationFactory,
+    SynthRadiopharmaceuticalTherapyFactory,
     SynthSampleRegistrationFactory,
     SynthSpecimenFactory,
     SynthSurgeryFactory,
@@ -76,6 +79,7 @@ from chord_metadata_service.mohpackets.tests.factories import (  # noqa: E402
     PrimaryDiagnosisFactory,
     ProgramFactory,
     RadiationFactory,
+    RadiopharmaceuticalTherapyFactory,
     SampleRegistrationFactory,
     SpecimenFactory,
     SurgeryFactory,
@@ -111,6 +115,7 @@ class Dataset:
         exposure_count=40,
         followup_count=40,
         sys_therapy_count=320,
+        radiopharma_count=320,
         all_type_donor_count=2,
         null_type_donor_count=2,
     ):
@@ -126,6 +131,7 @@ class Dataset:
         RadiationFactory.reset_sequence(1)
         SurgeryFactory.reset_sequence(1)
         SystemicTherapyFactory.reset_sequence(1)
+        RadiopharmaceuticalTherapyFactory.reset_sequence(1)
         BiomarkerFactory.reset_sequence(1)
         ComorbidityFactory.reset_sequence(1)
         ExposureFactory.reset_sequence(1)
@@ -139,6 +145,7 @@ class Dataset:
         cls.SampleRegistration = []
         cls.Treatment = []
         cls.SystemicTherapy = []
+        cls.RadiopharmaceuticalTherapy = []
         cls.Radiation = []
         cls.Surgery = []
         cls.Comorbidity = []
@@ -151,6 +158,7 @@ class Dataset:
         samples_per_specimen = int(sample_count / specimen_count)
         treatments_per_pd = int(treatment_count / pd_count)
         sys_therapy_per_treatment = int(sys_therapy_count / treatment_count)
+        radiopharma_per_treatment = int(radiopharma_count / treatment_count)
         followups_per_program = int(followup_count / program_count)
         exposure_start_index = int(donors_per_program / 4)
         exposure_end_index = int(
@@ -194,6 +202,10 @@ class Dataset:
                         sys_therapy_per_treatment, treatment_uuid=treatment_batch[k]
                     )
                     cls.SystemicTherapy.extend(sys_therapy_batch)
+                    radiopharma_batch = SynthRadiopharmaceuticalTherapyFactory.create_batch(
+                        radiopharma_per_treatment, treatment_uuid=treatment_batch[k]
+                    )
+                    cls.RadiopharmaceuticalTherapy.extend(radiopharma_batch)
                 if j < followups_per_program:
                     this_followup = SynthFollowUpFactory.create(
                         donor_uuid=donor_batch[j],
@@ -231,6 +243,7 @@ class Dataset:
         RadiationFactory.reset_sequence(1)
         SurgeryFactory.reset_sequence(1)
         SystemicTherapyFactory.reset_sequence(1)
+        RadiopharmaceuticalTherapyFactory.reset_sequence(1)
         BiomarkerFactory.reset_sequence(1)
         ComorbidityFactory.reset_sequence(1)
         ExposureFactory.reset_sequence(1)
@@ -267,6 +280,10 @@ class Dataset:
                     sys_therapy_per_treatment, treatment_uuid=null_treatments[j]
                 )
                 cls.SystemicTherapy.extend(sys_therapy_batch)
+                radiopharma_batch = NullSynthRadiopharmaceuticalTherapyFactory.create_batch(
+                    radiopharma_per_treatment, treatment_uuid=null_treatments[j]
+                )
+                cls.RadiopharmaceuticalTherapy.extend(radiopharma_batch)
             if i < followups_per_program:
                 this_followup = NullSynthFollowUpFactory.create(
                     donor_uuid=null_donors[i],
@@ -303,6 +320,7 @@ class Dataset:
         RadiationFactory.reset_sequence(1)
         SurgeryFactory.reset_sequence(1)
         SystemicTherapyFactory.reset_sequence(1)
+        RadiopharmaceuticalTherapyFactory.reset_sequence(1)
         BiomarkerFactory.reset_sequence(1)
         ComorbidityFactory.reset_sequence(1)
         ExposureFactory.reset_sequence(1)
@@ -340,6 +358,10 @@ class Dataset:
                     sys_therapy_per_treatment, treatment_uuid=all_treatments[j]
                 )
                 cls.SystemicTherapy.extend(sys_therapy_batch)
+                radiopharma_batch = AllSynthRadiopharmaceuticalTherapyFactory.create_batch(
+                    radiopharma_per_treatment, treatment_uuid=all_treatments[j]
+                )
+                cls.RadiopharmaceuticalTherapy.extend(radiopharma_batch)
             if i < followups_per_program:
                 this_followup = AllSynthFollowUpFactory.create(
                     donor_uuid=all_donors[i],
@@ -404,6 +426,9 @@ class Dataset:
         self.SampleRegistration = [self.clean_dict(x) for x in self.SampleRegistration]
         self.Treatment = [self.clean_dict(x) for x in self.Treatment]
         self.SystemicTherapy = [self.clean_dict(x) for x in self.SystemicTherapy]
+        self.RadiopharmaceuticalTherapy = [
+            self.clean_dict(x) for x in self.RadiopharmaceuticalTherapy
+        ]
         self.Radiation = [self.clean_dict(x) for x in self.Radiation]
         self.Surgery = [self.clean_dict(x) for x in self.Surgery]
         self.FollowUp = [self.clean_dict(x) for x in self.FollowUp]
@@ -466,6 +491,7 @@ def main():
             "exposure_count": int(args.total_donors / 4),
             "followup_count": int(args.total_donors / 4),
             "sys_therapy_count": args.total_donors * 4,
+            "radiopharma_count": args.total_donors * 4,
             "all_type_donor_count": 2,
             "null_type_donor_count": 2,
         }
@@ -485,6 +511,7 @@ def main():
                     "exposure_count": 5,
                     "followup_count": 6,
                     "sys_therapy_count": 40,
+                    "radiopharma_count": 40,
                     "all_type_donor_count": 1,
                     "null_type_donor_count": 1,
                 },
@@ -501,6 +528,7 @@ def main():
                     "exposure_count": 40,
                     "followup_count": 40,
                     "sys_therapy_count": 320,
+                    "radiopharma_count": 320,
                     "all_type_donor_count": 2,
                     "null_type_donor_count": 2,
                 },
@@ -517,6 +545,7 @@ def main():
                     "exposure_count": 400,
                     "followup_count": 200,
                     "sys_therapy_count": 3200,
+                    "radiopharma_count": 3200,
                     "all_type_donor_count": 2,
                     "null_type_donor_count": 2,
                 },
@@ -533,6 +562,7 @@ def main():
                     "exposure_count": 1000,
                     "followup_count": 500,
                     "sys_therapy_count": 8000,
+                    "radiopharma_count": 8000,
                     "all_type_donor_count": 2,
                     "null_type_donor_count": 2,
                 },

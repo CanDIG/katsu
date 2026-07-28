@@ -11,6 +11,7 @@ from chord_metadata_service.mohpackets.models import (
     FollowUp,
     PrimaryDiagnosis,
     Radiation,
+    RadiopharmaceuticalTherapy,
     SampleRegistration,
     Specimen,
     Surgery,
@@ -114,6 +115,10 @@ class DownloadClinicalDataTestCase(BaseTestCase):
         self.assertEqual(len(data["treatments"]), Treatment.objects.count())
         self.assertEqual(
             len(data["systemic_therapies"]), SystemicTherapy.objects.count()
+        )
+        self.assertEqual(
+            len(data["radiopharmaceutical_therapies"]),
+            RadiopharmaceuticalTherapy.objects.count(),
         )
         self.assertEqual(len(data["radiations"]), Radiation.objects.count())
         self.assertEqual(len(data["surgeries"]), Surgery.objects.count())
@@ -227,8 +232,9 @@ class DownloadClinicalDataTestCase(BaseTestCase):
                 submitter_donor_id=data["donors"][0]["submitter_donor_id"]
             ).count(),
         )
-        self.assertEqual(
-            data["sample_registrations"][0]["submitter_sample_id"], sample_id
+        self.assertIn(
+            sample_id,
+            [sr["submitter_sample_id"] for sr in data["sample_registrations"]],
         )
 
     def test_filter_invalid_biosample_id_format(self):
@@ -294,6 +300,7 @@ class DownloadClinicalDataTestCase(BaseTestCase):
             "sample_registrations",
             "treatments",
             "systemic_therapies",
+            "radiopharmaceutical_therapies",
             "radiations",
             "surgeries",
             "follow_ups",

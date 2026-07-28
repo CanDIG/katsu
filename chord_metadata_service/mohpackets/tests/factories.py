@@ -14,6 +14,7 @@ from chord_metadata_service.mohpackets.models import (
     PrimaryDiagnosis,
     Program,
     Radiation,
+    RadiopharmaceuticalTherapy,
     SampleRegistration,
     Specimen,
     Surgery,
@@ -478,6 +479,123 @@ class SystemicTherapyFactory(factory.django.DjangoModelFactory):
             treatment.treatment_type = ["Systemic therapy"]
         elif "Systemic therapy" not in treatment.treatment_type:
             treatment.treatment_type.append("Systemic therapy")
+        if "No treatment" in treatment.treatment_type:
+            treatment.treatment_type.remove("No treatment")
+        treatment.treatment_type = [
+            x for x in treatment.treatment_type if x is not None
+        ]
+
+
+class RadiopharmaceuticalTherapyFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = RadiopharmaceuticalTherapy
+
+    # default values
+    uuid = factory.LazyFunction(uuid.uuid4)
+    rxnorm_code = factory.Faker("pystr", min_chars=4, max_chars=8)
+    agent_name = factory.Faker("pystr", min_chars=10, max_chars=30)
+    radionuclide = factory.Faker("random_element", elements=PERM_VAL.RADIONUCLIDE)
+    radionuclide_other = None
+    start_date = None
+    end_date = None
+    cumulative_drug_dose = factory.Faker(
+        "pyfloat",
+        left_digits=3,
+        right_digits=1,
+        positive=True,
+        min_value=1,
+        max_value=500,
+    )
+    cumulative_drug_dose_not_available = False
+    drug_dose_units = factory.Faker("random_element", elements=PERM_VAL.DRUG_DOSE_UNITS)
+    mass_value = factory.Faker(
+        "pyfloat",
+        left_digits=2,
+        right_digits=1,
+        positive=True,
+        min_value=1,
+        max_value=100,
+    )
+    mass_value_not_available = False
+    mass_unit_ucum = factory.Faker("random_element", elements=PERM_VAL.MASS_UNIT_UCUM)
+    number_of_cycles = factory.Faker("random_int", min=1, max=10)
+    number_of_cycles_not_available = False
+
+    # set foreign keys
+    program_id = factory.SelfAttribute("treatment_uuid.program_id")
+    submitter_donor_id = factory.SelfAttribute("treatment_uuid.submitter_donor_id")
+    donor_uuid = factory.SelfAttribute("treatment_uuid.donor_uuid")
+    submitter_treatment_id = factory.SelfAttribute(
+        "treatment_uuid.submitter_treatment_id"
+    )
+    treatment_uuid = factory.SubFactory(TreatmentFactory)
+
+    @factory.post_generation
+    def add_dates(self, create, extracted, **kwargs):
+        treatment = self.treatment_uuid
+        if treatment.treatment_start_date and treatment.treatment_end_date:
+            self.start_date = {
+                "day_interval": random.randint(
+                    treatment.treatment_start_date["day_interval"],
+                    treatment.treatment_end_date["day_interval"],
+                )
+            }
+            self.start_date["month_interval"] = days_to_months(
+                self.start_date["day_interval"]
+            )
+            self.end_date = {
+                "day_interval": random.randint(
+                    self.start_date["day_interval"],
+                    treatment.treatment_end_date["day_interval"],
+                )
+            }
+            self.end_date["month_interval"] = days_to_months(
+                self.end_date["day_interval"]
+            )
+        elif treatment.treatment_start_date:
+            self.start_date = {
+                "day_interval": random.randint(
+                    treatment.treatment_start_date["day_interval"],
+                    treatment.treatment_start_date["day_interval"] + 100,
+                )
+            }
+            self.start_date["month_interval"] = days_to_months(
+                self.start_date["day_interval"]
+            )
+            self.end_date = {
+                "day_interval": random.randint(
+                    self.start_date["day_interval"],
+                    self.start_date["day_interval"] + 100,
+                )
+            }
+            self.end_date["month_interval"] = days_to_months(
+                self.end_date["day_interval"]
+            )
+        elif treatment.treatment_end_date:
+            day_int = random.randint(
+                max([0, (treatment.treatment_end_date["day_interval"] - 100)]),
+                treatment.treatment_end_date["day_interval"],
+            )
+            self.start_date = {"day_interval": day_int}
+            self.start_date["month_interval"] = days_to_months(
+                self.start_date["day_interval"]
+            )
+            day_int = random.randint(
+                self.start_date["day_interval"],
+                treatment.treatment_end_date["day_interval"],
+            )
+            self.end_date = {"day_interval": day_int}
+            self.end_date["month_interval"] = days_to_months(
+                self.end_date["day_interval"]
+            )
+
+    @factory.post_generation
+    def add_radiopharmaceutical_treatment_type(self, create, extracted, **kwargs):
+        treatment = self.treatment_uuid
+        if treatment.treatment_type == [None] or treatment.treatment_type is None:
+            treatment.treatment_type = ["Radiopharmaceutical Therapy"]
+        elif "Radiopharmaceutical Therapy" not in treatment.treatment_type:
+            treatment.treatment_type.append("Radiopharmaceutical Therapy")
         if "No treatment" in treatment.treatment_type:
             treatment.treatment_type.remove("No treatment")
         treatment.treatment_type = [

@@ -14,6 +14,7 @@ from chord_metadata_service.mohpackets.models import (
     PrimaryDiagnosis,
     Program,
     Radiation,
+    RadiopharmaceuticalTherapy,
     SampleRegistration,
     Specimen,
     Surgery,
@@ -29,6 +30,7 @@ from chord_metadata_service.mohpackets.schemas.ingestion import (
     PrimaryDiagnosisIngestSchema,
     ProgramIngestSchema,
     RadiationIngestSchema,
+    RadiopharmaceuticalTherapyIngestSchema,
     SampleRegistrationIngestSchema,
     SpecimenIngestSchema,
     SurgeryIngestSchema,
@@ -142,6 +144,15 @@ def create_radiations(
     request, payload: List[RadiationIngestSchema], response: HttpResponse
 ):
     return create_instances(payload, Radiation)
+
+
+@router.post("/radiopharmaceutical_therapies/")
+def create_radiopharmaceutical_therapies(
+    request,
+    payload: List[RadiopharmaceuticalTherapyIngestSchema],
+    response: HttpResponse,
+):
+    return create_instances(payload, RadiopharmaceuticalTherapy)
 
 
 @router.post("/sample_registrations/")

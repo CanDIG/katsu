@@ -10,6 +10,7 @@ from chord_metadata_service.mohpackets.schemas.model import (
     FollowUpModelSchema,
     PrimaryDiagnosisModelSchema,
     RadiationModelSchema,
+    RadiopharmaceuticalTherapyModelSchema,
     SampleRegistrationModelSchema,
     SpecimenModelSchema,
     SurgeryModelSchema,
@@ -26,6 +27,7 @@ class AllModelsSchema(Schema):
     treatments: List[TreatmentModelSchema]
     systemic_therapies: List[SystemicTherapyModelSchema]
     radiations: List[RadiationModelSchema]
+    radiopharmaceutical_therapies: List[RadiopharmaceuticalTherapyModelSchema]
     surgeries: List[SurgeryModelSchema]
     follow_ups: List[FollowUpModelSchema]
     biomarkers: List[BiomarkerModelSchema]

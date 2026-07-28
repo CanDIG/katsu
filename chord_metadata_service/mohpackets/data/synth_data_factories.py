@@ -12,6 +12,7 @@ from chord_metadata_service.mohpackets.tests.factories import (
     FollowUpFactory,
     PrimaryDiagnosisFactory,
     RadiationFactory,
+    RadiopharmaceuticalTherapyFactory,
     SampleRegistrationFactory,
     SpecimenFactory,
     SurgeryFactory,
@@ -849,6 +850,66 @@ class AllSynthSystemicTherapyFactory(SynthSystemicTherapyFactory):
             self.end_date["month_interval"] = days_to_months(
                 self.end_date["day_interval"]
             )
+
+
+class SynthRadiopharmaceuticalTherapyFactory(RadiopharmaceuticalTherapyFactory):
+    cumulative_drug_dose_not_available = factory.LazyFunction(
+        lambda: random.random() < 0.15
+    )
+    cumulative_drug_dose = factory.Maybe(
+        "cumulative_drug_dose_not_available",
+        None,
+        factory.Faker(
+            "pyfloat", left_digits=3, right_digits=1, positive=True, min_value=1, max_value=500
+        ),
+    )
+    mass_value_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
+    mass_value = factory.Maybe(
+        "mass_value_not_available",
+        None,
+        factory.Faker(
+            "pyfloat", left_digits=2, right_digits=1, positive=True, min_value=1, max_value=100
+        ),
+    )
+    number_of_cycles_not_available = factory.LazyFunction(
+        lambda: random.random() < 0.15
+    )
+    number_of_cycles = factory.Maybe(
+        "number_of_cycles_not_available",
+        None,
+        factory.Faker("random_int", min=1, max=10),
+    )
+
+
+class NullSynthRadiopharmaceuticalTherapyFactory(RadiopharmaceuticalTherapyFactory):
+    rxnorm_code = None
+    agent_name = None
+    radionuclide = None
+    radionuclide_other = None
+    cumulative_drug_dose = None
+    drug_dose_units = None
+    mass_value = None
+    mass_unit_ucum = None
+    number_of_cycles = None
+
+    @factory.post_generation
+    def add_dates(self, create, extracted, **kwargs):
+        """Override to keep null values."""
+        pass
+
+
+class AllSynthRadiopharmaceuticalTherapyFactory(SynthRadiopharmaceuticalTherapyFactory):
+    cumulative_drug_dose_not_available = False
+    cumulative_drug_dose = factory.Faker(
+        "pyfloat", left_digits=3, right_digits=1, positive=True, min_value=1, max_value=500
+    )
+    mass_value_not_available = False
+    mass_value = factory.Faker(
+        "pyfloat", left_digits=2, right_digits=1, positive=True, min_value=1, max_value=100
+    )
+    number_of_cycles_not_available = False
+    number_of_cycles = factory.Faker("random_int", min=1, max=10)
+    radionuclide_other = None
 
 
 class SynthRadiationFactory(RadiationFactory):

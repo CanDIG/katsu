@@ -12,6 +12,7 @@ from chord_metadata_service.mohpackets.models import (
     FollowUp,
     PrimaryDiagnosis,
     Radiation,
+    RadiopharmaceuticalTherapy,
     SampleRegistration,
     Specimen,
     Surgery,
@@ -44,6 +45,7 @@ def search_clinical_data(request, filters: DownloadFilterSchema):
             "treatment_set",
             "primarydiagnosis_set",
             "systemictherapy_set",
+            "radiopharmaceuticaltherapy_set",
             "sampleregistration_set",
         )
         .distinct()
@@ -100,6 +102,7 @@ def search_clinical_data(request, filters: DownloadFilterSchema):
         "sample_registrations": SampleRegistration,
         "treatments": Treatment,
         "systemic_therapies": SystemicTherapy,
+        "radiopharmaceutical_therapies": RadiopharmaceuticalTherapy,
         "radiations": Radiation,
         "surgeries": Surgery,
         "follow_ups": FollowUp,

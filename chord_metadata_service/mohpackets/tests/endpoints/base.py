@@ -12,6 +12,7 @@ from chord_metadata_service.mohpackets.tests.factories import (
     ExposureFactory,
     PrimaryDiagnosisFactory,
     ProgramFactory,
+    RadiopharmaceuticalTherapyFactory,
     SampleRegistrationFactory,
     SpecimenFactory,
     SystemicTherapyFactory,
@@ -69,6 +70,11 @@ class BaseTestCase(TestCase):
         )
         cls.systemic_therapies = SystemicTherapyFactory.create_batch(
             16, treatment_uuid=factory.Iterator(cls.treatments)
+        )
+        cls.radiopharmaceutical_therapies = (
+            RadiopharmaceuticalTherapyFactory.create_batch(
+                16, treatment_uuid=factory.Iterator(cls.treatments)
+            )
         )
         cls.exposures = ExposureFactory.create_batch(
             8, donor_uuid=factory.Iterator(cls.donors)

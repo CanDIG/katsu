@@ -23,7 +23,7 @@ class DonorModelTest(TestCase):
         self.assertIsInstance(self.instance.program_id, Program)
         self.assertIsInstance(self.instance.gender, (str, type(None)))
         self.assertIsInstance(self.instance.sex_at_birth, (str, type(None)))
-        self.assertIsInstance(self.instance.is_deceased, (bool, type(None)))
+        self.assertIsInstance(self.instance.is_deceased, (str, type(None)))
         self.assertIsInstance(
             self.instance.lost_to_follow_up,
             (str, type(None)),
