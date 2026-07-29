@@ -1,5 +1,5 @@
 
-<h1 id="moh-service-api">MoH Service API v5.3.1</h1>
+<h1 id="moh-service-api">MoH Service API v6.0.0</h1>
 
 This is the RESTful API for the MoH Service.
 
@@ -360,6 +360,20 @@ Return the count for age of diagnosis by calculating the date of birth interval.
 |---|---|---|---|---|
 |body|body|[RadiationIngestSchema](#schemaradiationingestschema)|true|none|
 
+## chord_metadata_service_mohpackets_apis_ingestion_create_radiopharmaceutical_therapies
+
+<a id="opIdchord_metadata_service_mohpackets_apis_ingestion_create_radiopharmaceutical_therapies"></a>
+
+`POST /v3/ingest/radiopharmaceutical_therapies/`
+
+*Create Radiopharmaceutical Therapies*
+
+<h3 id="chord_metadata_service_mohpackets_apis_ingestion_create_radiopharmaceutical_therapies-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[RadiopharmaceuticalTherapyIngestSchema](#schemaradiopharmaceuticaltherapyingestschema)|true|none|
+
 ## chord_metadata_service_mohpackets_apis_ingestion_create_sample_registrations
 
 <a id="opIdchord_metadata_service_mohpackets_apis_ingestion_create_sample_registrations"></a>
@@ -416,8 +430,6 @@ Return the count for age of diagnosis by calculating the date of birth interval.
 |---|---|---|---|---|
 |body|body|[TreatmentIngestSchema](#schematreatmentingestschema)|true|none|
 
-<h1 id="moh-service-api-delete">delete</h1>
-
 ## chord_metadata_service_mohpackets_apis_ingestion_delete_program
 
 <a id="opIdchord_metadata_service_mohpackets_apis_ingestion_delete_program"></a>
@@ -435,6 +447,65 @@ Return the count for age of diagnosis by calculating the date of birth interval.
 > Example responses
 
 > 404 Response
+
+```json
+{
+  "property1": "string",
+  "property2": "string"
+}
+```
+
+## chord_metadata_service_mohpackets_apis_update_update_program
+
+<a id="opIdchord_metadata_service_mohpackets_apis_update_update_program"></a>
+
+`PATCH /v3/ingest/programs/{program_id}/`
+
+*Update Program*
+
+Partially update a Program's clinical fields.
+
+Only the fields present in the request body are modified; the metadata
+field is excluded from ProgramUpdateSchema and is never touched here.
+
+<h3 id="chord_metadata_service_mohpackets_apis_update_update_program-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|program_id|path|string|true|none|
+|body|body|[ProgramUpdateSchema](#schemaprogramupdateschema)|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "property1": "string",
+  "property2": "string"
+}
+```
+
+## chord_metadata_service_mohpackets_apis_update_update_program_metadata
+
+<a id="opIdchord_metadata_service_mohpackets_apis_update_update_program_metadata"></a>
+
+`PATCH /v3/ingest/programs/{program_id}/metadata/`
+
+*Update Program Metadata*
+
+Update a Program's metadata field. Restricted to the ingest service token.
+
+<h3 id="chord_metadata_service_mohpackets_apis_update_update_program_metadata-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|program_id|path|string|true|none|
+|body|body|[MetadataSchema](#schemametadataschema)|true|none|
+
+> Example responses
+
+> 200 Response
 
 ```json
 {
@@ -472,12 +543,8 @@ Retrieves a single donor along with all related clinical data, organized in a ne
   "gender": "Man",
   "sex_at_birth": "Male",
   "is_deceased": "Yes",
-  "lost_to_followup_after_clinical_event_identifier": "string",
+  "lost_to_follow_up": "Yes",
   "lost_to_followup_reason": "Completed study",
-  "date_alive_after_lost_to_followup": {
-    "day_interval": 0,
-    "month_interval": 0
-  },
   "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
@@ -487,6 +554,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_death_is_estimated": "Yes",
   "date_resolution": "string",
   "program_id": "string",
   "primary_diagnoses": [
@@ -526,12 +594,12 @@ Retrieves a single donor along with all related clinical data, organized in a ne
           "tumour_grade": "Low grade",
           "percent_tumour_cells_range": "0-19%",
           "percent_tumour_cells_measurement_method": "Genomics",
+          "specimen_tissue_source": "Abdominal fluid",
+          "tumour_normal_designation": "Normal",
+          "specimen_type": "Cell line - derived from normal",
           "sample_registrations": [
             {
               "submitter_sample_id": "string",
-              "specimen_tissue_source": "Abdominal fluid",
-              "tumour_normal_designation": "Normal",
-              "specimen_type": "Cell line - derived from normal",
               "sample_type": "Amplified DNA"
             }
           ]
@@ -553,6 +621,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
             "month_interval": 0
           },
           "treatment_intent": "Curative",
+          "treatment_setting": "Adjuvant",
           "response_to_treatment_criteria_method": "RECIST 1.1",
           "response_to_treatment": "Complete response",
           "status_of_treatment": "Treatment completed as prescribed",
@@ -583,7 +652,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "radiation_therapy_fractions_not_available": false,
               "radiation_therapy_dosage": 0,
               "radiation_therapy_dosage_not_available": false,
-              "anatomical_site_irradiated": "LEFT ABDOMEN",
+              "anatomical_site_irradiated": "ABDOMEN_WHOLE",
               "radiation_boost": "Yes",
               "reference_radiation_treatment_id": "string"
             }
@@ -601,19 +670,29 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "greatest_dimension_tumour_not_available": false,
               "tumour_focality": "Cannot be assessed",
               "residual_tumour_classification": "Not applicable",
-              "margin_types_involved": [
-                "Circumferential resection margin"
-              ],
-              "margin_types_not_involved": [
-                "Circumferential resection margin"
-              ],
-              "margin_types_not_assessed": [
-                "Circumferential resection margin"
-              ],
+              "margins_status": "Margins clear",
               "lymphovascular_invasion": "Absent",
               "perineural_invasion": "Absent",
               "surgery_reference_database": "SNOMED",
               "surgery_reference_identifier": "string"
+            }
+          ],
+          "radiopharmaceutical_therapies": [
+            {
+              "rxnorm_code": "string",
+              "agent_name": "string",
+              "radionuclide": "Carbon-14",
+              "radionuclide_other": "string",
+              "start_date": {},
+              "end_date": {},
+              "cumulative_drug_dose": 0,
+              "cumulative_drug_dose_not_available": false,
+              "drug_dose_units": "Bq",
+              "mass_value": 0,
+              "mass_value_not_available": false,
+              "mass_unit_ucum": "ug",
+              "number_of_cycles": 0,
+              "number_of_cycles_not_available": false
             }
           ],
           "followups": [
@@ -699,6 +778,8 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "ca125_not_available": false,
       "cea": 0,
       "cea_not_available": false,
+      "ca19_9": 0,
+      "ca19_9_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
       "er_percent_positive_not_available": false,
@@ -764,6 +845,32 @@ Retrieves a single donor along with all related clinical data, organized in a ne
     {
       "program_id": "string",
       "metadata": {},
+      "program_description": "string",
+      "program_name": "string",
+      "keywords": [
+        null
+      ],
+      "status": "Ongoing",
+      "context": "Clinical",
+      "participant_criteria": "string",
+      "principal_investigators": [
+        null
+      ],
+      "lead_organizations": [
+        null
+      ],
+      "collaborators": [
+        null
+      ],
+      "funding_sources": [
+        null
+      ],
+      "publication_links": [
+        null
+      ],
+      "program_url": "string",
+      "pancan_cohort": "Yes",
+      "pancan_id": "string",
       "created": "2019-08-24T14:15:22Z",
       "updated": "2019-08-24T14:15:22Z"
     }
@@ -791,9 +898,10 @@ Retrieves a single donor along with all related clinical data, organized in a ne
 |gender|query|any|false|none|
 |sex_at_birth|query|any|false|none|
 |is_deceased|query|any|false|none|
-|lost_to_followup_after_clinical_event_identifier|query|any|false|none|
+|lost_to_follow_up|query|any|false|none|
 |lost_to_followup_reason|query|any|false|none|
 |cause_of_death|query|any|false|none|
+|date_of_death_is_estimated|query|any|false|none|
 |page|query|integer|false|none|
 |page_size|query|integer|false|none|
 
@@ -809,12 +917,8 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "gender": "Man",
       "sex_at_birth": "Male",
       "is_deceased": "Yes",
-      "lost_to_followup_after_clinical_event_identifier": "string",
+      "lost_to_follow_up": "Yes",
       "lost_to_followup_reason": "Completed study",
-      "date_alive_after_lost_to_followup": {
-        "day_interval": 0,
-        "month_interval": 0
-      },
       "cause_of_death": "Died of cancer",
       "date_of_birth": {
         "day_interval": 0,
@@ -824,6 +928,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_death_is_estimated": "Yes",
       "date_resolution": "string",
       "program_id": "string"
     }
@@ -867,12 +972,8 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "gender": "Man",
       "sex_at_birth": "Male",
       "is_deceased": "Yes",
-      "lost_to_followup_after_clinical_event_identifier": "string",
+      "lost_to_follow_up": "Yes",
       "lost_to_followup_reason": "Completed study",
-      "date_alive_after_lost_to_followup": {
-        "day_interval": 0,
-        "month_interval": 0
-      },
       "cause_of_death": "Died of cancer",
       "date_of_birth": {
         "day_interval": 0,
@@ -882,6 +983,7 @@ Used by the query service to return donors along with their sample IDs, treatmen
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_death_is_estimated": "Yes",
       "date_resolution": "string",
       "program_id": "string",
       "primary_site": [
@@ -991,6 +1093,7 @@ Used by the query service to return donors along with their sample IDs, treatmen
 |psa_level|query|any|false|none|
 |ca125|query|any|false|none|
 |cea|query|any|false|none|
+|ca19_9|query|any|false|none|
 |er_status|query|any|false|none|
 |er_percent_positive|query|any|false|none|
 |pr_status|query|any|false|none|
@@ -1025,6 +1128,8 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "ca125_not_available": false,
       "cea": 0,
       "cea_not_available": false,
+      "ca19_9": 0,
+      "ca19_9_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
       "er_percent_positive_not_available": false,
@@ -1301,9 +1406,69 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "radiation_therapy_fractions_not_available": false,
       "radiation_therapy_dosage": 0,
       "radiation_therapy_dosage_not_available": false,
-      "anatomical_site_irradiated": "LEFT ABDOMEN",
+      "anatomical_site_irradiated": "ABDOMEN_WHOLE",
       "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string",
+      "program_id": "string",
+      "submitter_donor_id": "string",
+      "submitter_treatment_id": "string"
+    }
+  ],
+  "count": 0,
+  "next_page": 0,
+  "previous_page": 0
+}
+```
+
+## chord_metadata_service_mohpackets_apis_authorized_list_radiopharmaceutical_therapies
+
+<a id="opIdchord_metadata_service_mohpackets_apis_authorized_list_radiopharmaceutical_therapies"></a>
+
+`GET /v3/authorized/radiopharmaceutical_therapies/`
+
+*List Radiopharmaceutical Therapies*
+
+<h3 id="chord_metadata_service_mohpackets_apis_authorized_list_radiopharmaceutical_therapies-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|program_id|query|any|false|none|
+|submitter_donor_id|query|any|false|none|
+|submitter_treatment_id|query|any|false|none|
+|rxnorm_code|query|any|false|none|
+|agent_name|query|any|false|none|
+|radionuclide|query|any|false|none|
+|radionuclide_other|query|any|false|none|
+|cumulative_drug_dose|query|any|false|none|
+|drug_dose_units|query|any|false|none|
+|mass_value|query|any|false|none|
+|mass_unit_ucum|query|any|false|none|
+|number_of_cycles|query|any|false|none|
+|page|query|integer|false|none|
+|page_size|query|integer|false|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "items": [
+    {
+      "rxnorm_code": "string",
+      "agent_name": "string",
+      "radionuclide": "Carbon-14",
+      "radionuclide_other": "string",
+      "start_date": {},
+      "end_date": {},
+      "cumulative_drug_dose": 0,
+      "cumulative_drug_dose_not_available": false,
+      "drug_dose_units": "Bq",
+      "mass_value": 0,
+      "mass_value_not_available": false,
+      "mass_unit_ucum": "ug",
+      "number_of_cycles": 0,
+      "number_of_cycles_not_available": false,
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -1331,9 +1496,6 @@ Used by the query service to return donors along with their sample IDs, treatmen
 |program_id|query|any|false|none|
 |submitter_donor_id|query|any|false|none|
 |submitter_specimen_id|query|any|false|none|
-|specimen_tissue_source|query|any|false|none|
-|tumour_normal_designation|query|any|false|none|
-|specimen_type|query|any|false|none|
 |sample_type|query|any|false|none|
 |page|query|integer|false|none|
 |page_size|query|integer|false|none|
@@ -1347,9 +1509,6 @@ Used by the query service to return donors along with their sample IDs, treatmen
   "items": [
     {
       "submitter_sample_id": "string",
-      "specimen_tissue_source": "Abdominal fluid",
-      "tumour_normal_designation": "Normal",
-      "specimen_type": "Cell line - derived from normal",
       "sample_type": "Amplified DNA",
       "program_id": "string",
       "submitter_donor_id": "string",
@@ -1390,6 +1549,9 @@ Used by the query service to return donors along with their sample IDs, treatmen
 |tumour_grade|query|any|false|none|
 |percent_tumour_cells_range|query|any|false|none|
 |percent_tumour_cells_measurement_method|query|any|false|none|
+|specimen_tissue_source|query|any|false|none|
+|tumour_normal_designation|query|any|false|none|
+|specimen_type|query|any|false|none|
 |page|query|integer|false|none|
 |page_size|query|integer|false|none|
 
@@ -1415,6 +1577,9 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "tumour_grade": "Low grade",
       "percent_tumour_cells_range": "0-19%",
       "percent_tumour_cells_measurement_method": "Genomics",
+      "specimen_tissue_source": "Abdominal fluid",
+      "tumour_normal_designation": "Normal",
+      "specimen_type": "Cell line - derived from normal",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_primary_diagnosis_id": "string"
@@ -1449,9 +1614,7 @@ Used by the query service to return donors along with their sample IDs, treatmen
 |greatest_dimension_tumour|query|any|false|none|
 |tumour_focality|query|any|false|none|
 |residual_tumour_classification|query|any|false|none|
-|margin_types_involved|query|array[string]|false|none|
-|margin_types_not_involved|query|array[string]|false|none|
-|margin_types_not_assessed|query|array[string]|false|none|
+|margins_status|query|any|false|none|
 |lymphovascular_invasion|query|any|false|none|
 |perineural_invasion|query|any|false|none|
 |surgery_reference_database|query|any|false|none|
@@ -1478,15 +1641,7 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "greatest_dimension_tumour_not_available": false,
       "tumour_focality": "Cannot be assessed",
       "residual_tumour_classification": "Not applicable",
-      "margin_types_involved": [
-        "Circumferential resection margin"
-      ],
-      "margin_types_not_involved": [
-        "Circumferential resection margin"
-      ],
-      "margin_types_not_assessed": [
-        "Circumferential resection margin"
-      ],
+      "margins_status": "Margins clear",
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
       "surgery_reference_database": "SNOMED",
@@ -1521,6 +1676,7 @@ Used by the query service to return donors along with their sample IDs, treatmen
 |treatment_type|query|any|false|none|
 |is_primary_treatment|query|any|false|none|
 |treatment_intent|query|any|false|none|
+|treatment_setting|query|any|false|none|
 |response_to_treatment_criteria_method|query|any|false|none|
 |response_to_treatment|query|any|false|none|
 |status_of_treatment|query|any|false|none|
@@ -1549,6 +1705,7 @@ Used by the query service to return donors along with their sample IDs, treatmen
         "month_interval": 0
       },
       "treatment_intent": "Curative",
+      "treatment_setting": "Adjuvant",
       "response_to_treatment_criteria_method": "RECIST 1.1",
       "response_to_treatment": "Complete response",
       "status_of_treatment": "Treatment completed as prescribed",
@@ -1603,12 +1760,8 @@ on the 'summary_only' flag.
         "gender": "Man",
         "sex_at_birth": "Male",
         "is_deceased": "Yes",
-        "lost_to_followup_after_clinical_event_identifier": "string",
+        "lost_to_follow_up": "Yes",
         "lost_to_followup_reason": "Completed study",
-        "date_alive_after_lost_to_followup": {
-          "day_interval": 0,
-          "month_interval": 0
-        },
         "cause_of_death": "Died of cancer",
         "date_of_birth": {
           "day_interval": 0,
@@ -1618,6 +1771,7 @@ on the 'summary_only' flag.
           "day_interval": 0,
           "month_interval": 0
         },
+        "date_of_death_is_estimated": "Yes",
         "date_resolution": "string",
         "program_id": "string"
       }
@@ -1663,6 +1817,9 @@ on the 'summary_only' flag.
         "tumour_grade": "Low grade",
         "percent_tumour_cells_range": "0-19%",
         "percent_tumour_cells_measurement_method": "Genomics",
+        "specimen_tissue_source": "Abdominal fluid",
+        "tumour_normal_designation": "Normal",
+        "specimen_type": "Cell line - derived from normal",
         "program_id": "string",
         "submitter_donor_id": "string",
         "submitter_primary_diagnosis_id": "string"
@@ -1671,9 +1828,6 @@ on the 'summary_only' flag.
     "sample_registrations": [
       {
         "submitter_sample_id": "string",
-        "specimen_tissue_source": "Abdominal fluid",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Cell line - derived from normal",
         "sample_type": "Amplified DNA",
         "program_id": "string",
         "submitter_donor_id": "string",
@@ -1696,6 +1850,7 @@ on the 'summary_only' flag.
           "month_interval": 0
         },
         "treatment_intent": "Curative",
+        "treatment_setting": "Adjuvant",
         "response_to_treatment_criteria_method": "RECIST 1.1",
         "response_to_treatment": "Complete response",
         "status_of_treatment": "Treatment completed as prescribed",
@@ -1734,9 +1889,30 @@ on the 'summary_only' flag.
         "radiation_therapy_fractions_not_available": false,
         "radiation_therapy_dosage": 0,
         "radiation_therapy_dosage_not_available": false,
-        "anatomical_site_irradiated": "LEFT ABDOMEN",
+        "anatomical_site_irradiated": "ABDOMEN_WHOLE",
         "radiation_boost": "Yes",
         "reference_radiation_treatment_id": "string",
+        "program_id": "string",
+        "submitter_donor_id": "string",
+        "submitter_treatment_id": "string"
+      }
+    ],
+    "radiopharmaceutical_therapies": [
+      {
+        "rxnorm_code": "string",
+        "agent_name": "string",
+        "radionuclide": "Carbon-14",
+        "radionuclide_other": "string",
+        "start_date": {},
+        "end_date": {},
+        "cumulative_drug_dose": 0,
+        "cumulative_drug_dose_not_available": false,
+        "drug_dose_units": "Bq",
+        "mass_value": 0,
+        "mass_value_not_available": false,
+        "mass_unit_ucum": "ug",
+        "number_of_cycles": 0,
+        "number_of_cycles_not_available": false,
         "program_id": "string",
         "submitter_donor_id": "string",
         "submitter_treatment_id": "string"
@@ -1755,15 +1931,7 @@ on the 'summary_only' flag.
         "greatest_dimension_tumour_not_available": false,
         "tumour_focality": "Cannot be assessed",
         "residual_tumour_classification": "Not applicable",
-        "margin_types_involved": [
-          "Circumferential resection margin"
-        ],
-        "margin_types_not_involved": [
-          "Circumferential resection margin"
-        ],
-        "margin_types_not_assessed": [
-          "Circumferential resection margin"
-        ],
+        "margins_status": "Margins clear",
         "lymphovascular_invasion": "Absent",
         "perineural_invasion": "Absent",
         "surgery_reference_database": "SNOMED",
@@ -1814,6 +1982,8 @@ on the 'summary_only' flag.
         "ca125_not_available": false,
         "cea": 0,
         "cea_not_available": false,
+        "ca19_9": 0,
+        "ca19_9_not_available": false,
         "er_status": "Cannot be determined",
         "er_percent_positive": 0,
         "er_percent_positive_not_available": false,
@@ -2085,6 +2255,60 @@ DiagnosisAgeCountSchema
 |age_at_diagnosis|string|true|none|none|
 |age_count|string|true|none|none|
 
+<h2 id="tocS_ContextEnum">ContextEnum</h2>
+
+<a id="schemacontextenum"></a>
+<a id="schema_ContextEnum"></a>
+<a id="tocScontextenum"></a>
+<a id="tocscontextenum"></a>
+
+```json
+"Clinical"
+
+```
+
+ContextEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|ContextEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|ContextEnum|Clinical|
+|ContextEnum|Research|
+
+<h2 id="tocS_PancanCohortEnum">PancanCohortEnum</h2>
+
+<a id="schemapancancohortenum"></a>
+<a id="schema_PancanCohortEnum"></a>
+<a id="tocSpancancohortenum"></a>
+<a id="tocspancancohortenum"></a>
+
+```json
+"Yes"
+
+```
+
+PancanCohortEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|PancanCohortEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|PancanCohortEnum|Yes|
+|PancanCohortEnum|No|
+
 <h2 id="tocS_ProgramIngestSchema">ProgramIngestSchema</h2>
 
 <a id="schemaprogramingestschema"></a>
@@ -2096,6 +2320,32 @@ DiagnosisAgeCountSchema
 {
   "program_id": "string",
   "metadata": {},
+  "program_description": "string",
+  "program_name": "string",
+  "keywords": [
+    null
+  ],
+  "status": "Ongoing",
+  "context": "Clinical",
+  "participant_criteria": "string",
+  "principal_investigators": [
+    null
+  ],
+  "lead_organizations": [
+    null
+  ],
+  "collaborators": [
+    null
+  ],
+  "funding_sources": [
+    null
+  ],
+  "publication_links": [
+    null
+  ],
+  "program_url": "string",
+  "pancan_cohort": "Yes",
+  "pancan_id": "string",
   "created": "2019-08-24T14:15:22Z",
   "updated": "2019-08-24T14:15:22Z"
 }
@@ -2127,8 +2377,287 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|program_description|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|program_name|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|keywords|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|status|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[StatusEnum](#schemastatusenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|context|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[ContextEnum](#schemacontextenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|participant_criteria|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|principal_investigators|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|lead_organizations|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|collaborators|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|funding_sources|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|publication_links|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|program_url|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|pancan_cohort|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[PancanCohortEnum](#schemapancancohortenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|pancan_id|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |created|string(date-time)|false|none|none|
 |updated|string(date-time)|false|none|none|
+
+<h2 id="tocS_StatusEnum">StatusEnum</h2>
+
+<a id="schemastatusenum"></a>
+<a id="schema_StatusEnum"></a>
+<a id="tocSstatusenum"></a>
+<a id="tocsstatusenum"></a>
+
+```json
+"Ongoing"
+
+```
+
+StatusEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|StatusEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|StatusEnum|Ongoing|
+|StatusEnum|Completed|
 
 <h2 id="tocS_CauseOfDeathEnum">CauseOfDeathEnum</h2>
 
@@ -2199,6 +2728,34 @@ continued
 |---|---|---|---|---|
 |month_interval|integer|true|none|number of months since first diagnosis|
 
+<h2 id="tocS_DateOfDeathIsEstimatedEnum">DateOfDeathIsEstimatedEnum</h2>
+
+<a id="schemadateofdeathisestimatedenum"></a>
+<a id="schema_DateOfDeathIsEstimatedEnum"></a>
+<a id="tocSdateofdeathisestimatedenum"></a>
+<a id="tocsdateofdeathisestimatedenum"></a>
+
+```json
+"Yes"
+
+```
+
+DateOfDeathIsEstimatedEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|DateOfDeathIsEstimatedEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|DateOfDeathIsEstimatedEnum|Yes|
+|DateOfDeathIsEstimatedEnum|No|
+|DateOfDeathIsEstimatedEnum|Not applicable|
+
 <h2 id="tocS_DonorIngestSchema">DonorIngestSchema</h2>
 
 <a id="schemadonoringestschema"></a>
@@ -2212,12 +2769,8 @@ continued
   "gender": "Man",
   "sex_at_birth": "Male",
   "is_deceased": "Yes",
-  "lost_to_followup_after_clinical_event_identifier": "string",
+  "lost_to_follow_up": "Yes",
   "lost_to_followup_reason": "Completed study",
-  "date_alive_after_lost_to_followup": {
-    "day_interval": 0,
-    "month_interval": 0
-  },
   "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
@@ -2227,6 +2780,7 @@ continued
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_death_is_estimated": "Yes",
   "date_resolution": "string",
   "program_id": "string",
   "uuid": "string"
@@ -2295,13 +2849,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|lost_to_followup_after_clinical_event_identifier|any|false|none|none|
+|lost_to_follow_up|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[LostToFollowUpEnum](#schemalosttofollowupenum)|false|none|none|
 
 or
 
@@ -2320,24 +2874,6 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[LostToFollowupReasonEnum](#schemalosttofollowupreasonenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|date_alive_after_lost_to_followup|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -2392,6 +2928,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_death_is_estimated|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateOfDeathIsEstimatedEnum](#schemadateofdeathisestimatedenum)|false|none|none|
 
 or
 
@@ -2466,6 +3020,35 @@ GenderEnum
 |GenderEnum|Other|
 |GenderEnum|Prefer not to disclose|
 |GenderEnum|Not available|
+
+<h2 id="tocS_LostToFollowUpEnum">LostToFollowUpEnum</h2>
+
+<a id="schemalosttofollowupenum"></a>
+<a id="schema_LostToFollowUpEnum"></a>
+<a id="tocSlosttofollowupenum"></a>
+<a id="tocslosttofollowupenum"></a>
+
+```json
+"Yes"
+
+```
+
+LostToFollowUpEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|LostToFollowUpEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|LostToFollowUpEnum|Yes|
+|LostToFollowUpEnum|No|
+|LostToFollowUpEnum|Not applicable|
+|LostToFollowUpEnum|Unknown|
 
 <h2 id="tocS_LostToFollowupReasonEnum">LostToFollowupReasonEnum</h2>
 
@@ -2578,6 +3161,8 @@ uBooleanEnum
   "ca125_not_available": false,
   "cea": 0,
   "cea_not_available": false,
+  "ca19_9": 0,
+  "ca19_9_not_available": false,
   "er_status": "Cannot be determined",
   "er_percent_positive": 0,
   "er_percent_positive_not_available": false,
@@ -2700,7 +3285,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -2719,7 +3304,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -2738,7 +3323,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -2751,6 +3336,25 @@ continued
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |cea_not_available|boolean|false|none|none|
+|ca19_9|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|number|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|ca19_9_not_available|boolean|false|none|none|
 |er_status|any|false|none|none|
 
 anyOf
@@ -4029,9 +4633,12 @@ BasisOfDiagnosisEnum
 |BasisOfDiagnosisEnum|Cytology|
 |BasisOfDiagnosisEnum|Death certificate only|
 |BasisOfDiagnosisEnum|Histology of a metastasis|
-|BasisOfDiagnosisEnum|Histology of a primary tumour|
 |BasisOfDiagnosisEnum|Specific tumour markers|
 |BasisOfDiagnosisEnum|Not available|
+|BasisOfDiagnosisEnum|Cytogenetic and/or molecular testing|
+|BasisOfDiagnosisEnum|Histology at autopsy|
+|BasisOfDiagnosisEnum|Histology of the primary tumor|
+|BasisOfDiagnosisEnum|Histology|
 
 <h2 id="tocS_MCategoryEnum">MCategoryEnum</h2>
 
@@ -4703,6 +5310,9 @@ StageGroupEnum
 |StageGroupEnum|Stage 4S|
 |StageGroupEnum|Occult Carcinoma|
 |StageGroupEnum|Not available|
+|StageGroupEnum|Stage IC1|
+|StageGroupEnum|Stage IC2|
+|StageGroupEnum|Stage IC3|
 
 <h2 id="tocS_TCategoryEnum">TCategoryEnum</h2>
 
@@ -4829,7 +5439,7 @@ TumourStagingSystemEnum
 <a id="tocsradiationanatomicalsiteenum"></a>
 
 ```json
-"LEFT ABDOMEN"
+"ABDOMEN_WHOLE"
 
 ```
 
@@ -4845,267 +5455,419 @@ RadiationAnatomicalSiteEnum
 
 |Property|Value|
 |---|---|
-|RadiationAnatomicalSiteEnum|LEFT ABDOMEN|
-|RadiationAnatomicalSiteEnum|WHOLE ABDOMEN|
-|RadiationAnatomicalSiteEnum|RIGHT ABDOMEN|
-|RadiationAnatomicalSiteEnum|LOWER ABDOMEN|
-|RadiationAnatomicalSiteEnum|LEFT LOWER ABDOMEN|
-|RadiationAnatomicalSiteEnum|RIGHT LOWER ABDOMEN|
-|RadiationAnatomicalSiteEnum|UPPER ABDOMEN|
-|RadiationAnatomicalSiteEnum|LEFT UPPER ABDOMEN|
-|RadiationAnatomicalSiteEnum|RIGHT UPPER ABDOMEN|
-|RadiationAnatomicalSiteEnum|LEFT ADRENAL|
-|RadiationAnatomicalSiteEnum|RIGHT ADRENAL|
-|RadiationAnatomicalSiteEnum|BILATERAL ANKLE|
-|RadiationAnatomicalSiteEnum|LEFT ANKLE|
-|RadiationAnatomicalSiteEnum|RIGHT ANKLE|
-|RadiationAnatomicalSiteEnum|BILATERAL ANTRUM (BULL'S EYE)|
-|RadiationAnatomicalSiteEnum|LEFT ANTRUM|
-|RadiationAnatomicalSiteEnum|RIGHT ANTRUM|
+|RadiationAnatomicalSiteEnum|ABDOMEN_WHOLE|
+|RadiationAnatomicalSiteEnum|ABDOMEN_LEFT|
+|RadiationAnatomicalSiteEnum|ABDOMEN_RIGHT|
+|RadiationAnatomicalSiteEnum|ABDOMEN_UPPER|
+|RadiationAnatomicalSiteEnum|ABDOMEN_LOWER|
+|RadiationAnatomicalSiteEnum|ABDOMEN_LEFT_LOWER|
+|RadiationAnatomicalSiteEnum|ABDOMEN_LEFT_UPPER|
+|RadiationAnatomicalSiteEnum|ABDOMEN_RIGHT_LOWER|
+|RadiationAnatomicalSiteEnum|ABDOMEN_RIGHT_UPPER|
+|RadiationAnatomicalSiteEnum|ABDOMEN_NOS|
+|RadiationAnatomicalSiteEnum|ADRENAL_GLAND_LEFT|
+|RadiationAnatomicalSiteEnum|ADRENAL_GLAND_RIGHT|
+|RadiationAnatomicalSiteEnum|ADRENAL_GLAND_NOS|
+|RadiationAnatomicalSiteEnum|ANKLE_LEFT|
+|RadiationAnatomicalSiteEnum|ANKLE_RIGHT|
+|RadiationAnatomicalSiteEnum|ANKLE_BILATERAL|
+|RadiationAnatomicalSiteEnum|ANKLE_NOS|
+|RadiationAnatomicalSiteEnum|ANTRUM_LEFT|
+|RadiationAnatomicalSiteEnum|ANTRUM_RIGHT|
+|RadiationAnatomicalSiteEnum|ANTRUM_BILATERAL (Bull's eye)|
+|RadiationAnatomicalSiteEnum|ANTRUM_NOS|
 |RadiationAnatomicalSiteEnum|ANUS|
-|RadiationAnatomicalSiteEnum|LOWER LEFT ARM|
-|RadiationAnatomicalSiteEnum|LOWER RIGHT ARM|
-|RadiationAnatomicalSiteEnum|BILATERAL ARMS|
-|RadiationAnatomicalSiteEnum|LEFT ARM|
-|RadiationAnatomicalSiteEnum|RIGHT ARM|
-|RadiationAnatomicalSiteEnum|UPPER LEFT ARM|
-|RadiationAnatomicalSiteEnum|UPPER RIGHT ARM|
-|RadiationAnatomicalSiteEnum|LEFT AXILLA|
-|RadiationAnatomicalSiteEnum|RIGHT AXILLA|
-|RadiationAnatomicalSiteEnum|SKIN OR SOFT TISSUE OF BACK|
-|RadiationAnatomicalSiteEnum|BILE DUCT|
-|RadiationAnatomicalSiteEnum|BLADDER|
-|RadiationAnatomicalSiteEnum|LOWER BODY|
-|RadiationAnatomicalSiteEnum|MIDDLE BODY|
-|RadiationAnatomicalSiteEnum|UPPER BODY|
-|RadiationAnatomicalSiteEnum|WHOLE BODY|
-|RadiationAnatomicalSiteEnum|BOOST - AREA PREVIOUSLY TREATED|
-|RadiationAnatomicalSiteEnum|BRAIN|
-|RadiationAnatomicalSiteEnum|LEFT BREAST BOOST|
-|RadiationAnatomicalSiteEnum|RIGHT BREAST BOOST|
-|RadiationAnatomicalSiteEnum|BILATERAL BREAST|
-|RadiationAnatomicalSiteEnum|LEFT BREAST|
-|RadiationAnatomicalSiteEnum|RIGHT BREAST|
-|RadiationAnatomicalSiteEnum|BILATERAL BREASTS WITH NODES|
-|RadiationAnatomicalSiteEnum|LEFT BREAST WITH NODES|
-|RadiationAnatomicalSiteEnum|RIGHT BREAST WITH NODES|
-|RadiationAnatomicalSiteEnum|BILATERAL BUTTOCKS|
-|RadiationAnatomicalSiteEnum|LEFT BUTTOCK|
-|RadiationAnatomicalSiteEnum|RIGHT BUTTOCK|
-|RadiationAnatomicalSiteEnum|INNER CANTHUS|
-|RadiationAnatomicalSiteEnum|OUTER CANTHUS|
+|RadiationAnatomicalSiteEnum|ARM_LOWER_LEFT|
+|RadiationAnatomicalSiteEnum|ARM_UPPER_LEFT|
+|RadiationAnatomicalSiteEnum|ARM_LEFT|
+|RadiationAnatomicalSiteEnum|ARM_LOWER_RIGHT|
+|RadiationAnatomicalSiteEnum|ARM_UPPER_RIGHT|
+|RadiationAnatomicalSiteEnum|ARM_RIGHT|
+|RadiationAnatomicalSiteEnum|ARM_BILATERAL|
+|RadiationAnatomicalSiteEnum|ARM_NOS|
+|RadiationAnatomicalSiteEnum|AXILLA_LEFT|
+|RadiationAnatomicalSiteEnum|AXILLA_RIGHT|
+|RadiationAnatomicalSiteEnum|AXILLA_NOS|
+|RadiationAnatomicalSiteEnum|BACK_WHOLE|
+|RadiationAnatomicalSiteEnum|BACK_LEFT|
+|RadiationAnatomicalSiteEnum|BACK_RIGHT|
+|RadiationAnatomicalSiteEnum|BACK_UPPER|
+|RadiationAnatomicalSiteEnum|BACK_LOWER|
+|RadiationAnatomicalSiteEnum|BACK_LEFT_LOWER|
+|RadiationAnatomicalSiteEnum|BACK_LEFT_UPPER|
+|RadiationAnatomicalSiteEnum|BACK_RIGHT_LOWER|
+|RadiationAnatomicalSiteEnum|BACK_RIGHT_UPPER|
+|RadiationAnatomicalSiteEnum|BACK_NOS|
+|RadiationAnatomicalSiteEnum|BILE_DUCT_INTRAHEPATIC|
+|RadiationAnatomicalSiteEnum|BILE_DUCT_EXTRAHEPATIC|
+|RadiationAnatomicalSiteEnum|BILE_DUCT_WHOLE|
+|RadiationAnatomicalSiteEnum|BILE_DUCT_NOS|
+|RadiationAnatomicalSiteEnum|BLADDER_APEX|
+|RadiationAnatomicalSiteEnum|BLADDER_BODY|
+|RadiationAnatomicalSiteEnum|BLADDER_FUNDUS|
+|RadiationAnatomicalSiteEnum|BLADDER_NECK|
+|RadiationAnatomicalSiteEnum|BLADDER_WHOLE|
+|RadiationAnatomicalSiteEnum|BLADDER_NOS|
+|RadiationAnatomicalSiteEnum|BODY_WHOLE|
+|RadiationAnatomicalSiteEnum|BODY_NOS|
+|RadiationAnatomicalSiteEnum|BODY_LOWER|
+|RadiationAnatomicalSiteEnum|BODY_MIDDLE|
+|RadiationAnatomicalSiteEnum|BODY_UPPER|
+|RadiationAnatomicalSiteEnum|BOOST_AREA_PREVIOUSLY_TREATED|
+|RadiationAnatomicalSiteEnum|BRAIN_NOS|
+|RadiationAnatomicalSiteEnum|BRAIN_WHOLE|
+|RadiationAnatomicalSiteEnum|BRAIN_CEREBRUM|
+|RadiationAnatomicalSiteEnum|BRAIN_CEREBELLUM|
+|RadiationAnatomicalSiteEnum|BRAIN_STEM|
+|RadiationAnatomicalSiteEnum|BREAST_LEFT|
+|RadiationAnatomicalSiteEnum|BREAST_RIGHT|
+|RadiationAnatomicalSiteEnum|BREAST_BILATERAL|
+|RadiationAnatomicalSiteEnum|BREAST_NOS|
+|RadiationAnatomicalSiteEnum|BREAST_BOOST_LEFT|
+|RadiationAnatomicalSiteEnum|BREAST_BOOST_RIGHT|
+|RadiationAnatomicalSiteEnum|BREAST_BOOST_BILATERAL|
+|RadiationAnatomicalSiteEnum|BREAST_BOOST_NOS|
+|RadiationAnatomicalSiteEnum|BREAST_WITH_NODES_LEFT|
+|RadiationAnatomicalSiteEnum|BREAST_WITH_NODES_RIGHT|
+|RadiationAnatomicalSiteEnum|BREAST_WITH_NODES_BILATERAL|
+|RadiationAnatomicalSiteEnum|BREAST_WITH_NODES_NOS|
+|RadiationAnatomicalSiteEnum|BUTTOCK_LEFT|
+|RadiationAnatomicalSiteEnum|BUTTOCK_RIGHT|
+|RadiationAnatomicalSiteEnum|BUTTOCK_BILATERAL|
+|RadiationAnatomicalSiteEnum|BUTTOCK_NOS|
+|RadiationAnatomicalSiteEnum|CANTHUS_INNER|
+|RadiationAnatomicalSiteEnum|CANTHUS_OUTER|
+|RadiationAnatomicalSiteEnum|CANTHUS_NOS|
 |RadiationAnatomicalSiteEnum|CERVIX|
+|RadiationAnatomicalSiteEnum|CHEST_WHOLE|
+|RadiationAnatomicalSiteEnum|CHEST_LEFT|
+|RadiationAnatomicalSiteEnum|CHEST_RIGHT|
+|RadiationAnatomicalSiteEnum|CHEST_NOS|
+|RadiationAnatomicalSiteEnum|CHEST_THORAX_LEFT|
+|RadiationAnatomicalSiteEnum|CHEST_THORAX_RIGHT|
+|RadiationAnatomicalSiteEnum|CHEST_THORAX_BILATERAL|
+|RadiationAnatomicalSiteEnum|CHEST_THORAX_NOS|
+|RadiationAnatomicalSiteEnum|CHEST_WALL_LEFT|
+|RadiationAnatomicalSiteEnum|CHEST_WALL_RIGHT|
+|RadiationAnatomicalSiteEnum|CHEST_WALL_BILATERAL|
+|RadiationAnatomicalSiteEnum|CHEST_WALL_NOS|
+|RadiationAnatomicalSiteEnum|CHEST_WALL_BOOST_LEFT|
+|RadiationAnatomicalSiteEnum|CHEST_WALL_BOOST_RIGHT|
+|RadiationAnatomicalSiteEnum|CHEST_WALL_BOOST_BILATERAL|
+|RadiationAnatomicalSiteEnum|CHEST_WALL_BOOST_NOS|
+|RadiationAnatomicalSiteEnum|CHEST_WALL_WITH_NODES_LEFT|
+|RadiationAnatomicalSiteEnum|CHEST_WALL_WITH_NODES_RIGHT|
+|RadiationAnatomicalSiteEnum|CHEST_WALL_WITH_NODES_BILATERAL|
+|RadiationAnatomicalSiteEnum|CHEST_WALL_WITH_NODES_NOS|
 |RadiationAnatomicalSiteEnum|BILATERAL CHEST LUNG & AREA INVOLVE|
-|RadiationAnatomicalSiteEnum|LEFT CHEST|
-|RadiationAnatomicalSiteEnum|RIGHT CHEST|
 |RadiationAnatomicalSiteEnum|CHIN|
-|RadiationAnatomicalSiteEnum|LEFT CHEEK|
-|RadiationAnatomicalSiteEnum|RIGHT CHEEK|
-|RadiationAnatomicalSiteEnum|BILATERAL CHEST WALL (W/O BREAST)|
-|RadiationAnatomicalSiteEnum|LEFT CHEST WALL|
-|RadiationAnatomicalSiteEnum|RIGHT CHEST WALL|
-|RadiationAnatomicalSiteEnum|BILATERAL CLAVICLE|
-|RadiationAnatomicalSiteEnum|LEFT CLAVICLE|
-|RadiationAnatomicalSiteEnum|RIGHT CLAVICLE|
+|RadiationAnatomicalSiteEnum|CHEEK_RIGHT|
+|RadiationAnatomicalSiteEnum|CHEEK_LEFT|
+|RadiationAnatomicalSiteEnum|CLAVICLE_LEFT|
+|RadiationAnatomicalSiteEnum|CLAVICLE_RIGHT|
+|RadiationAnatomicalSiteEnum|CLAVICLE_BILATERAL|
+|RadiationAnatomicalSiteEnum|CLAVICLE_NOS|
 |RadiationAnatomicalSiteEnum|COCCYX|
-|RadiationAnatomicalSiteEnum|COLON|
-|RadiationAnatomicalSiteEnum|WHOLE C.N.S. (MEDULLA TECHINQUE)|
+|RadiationAnatomicalSiteEnum|COLON_WHOLE|
+|RadiationAnatomicalSiteEnum|COLON_NOS|
+|RadiationAnatomicalSiteEnum|COLON_CAECUM|
+|RadiationAnatomicalSiteEnum|COLON_ASCENDING|
+|RadiationAnatomicalSiteEnum|COLON_TRANSVERSE|
+|RadiationAnatomicalSiteEnum|COLON_DESCENDING|
+|RadiationAnatomicalSiteEnum|C.N.S._WHOLE (MEDULLA TECHNIQUE)|
 |RadiationAnatomicalSiteEnum|CSF SPINE (MEDULL TECH 2 DIFF MACHI|
-|RadiationAnatomicalSiteEnum|LEFT CHESTWALL BOOST|
-|RadiationAnatomicalSiteEnum|RIGHT CHESTWALL BOOST|
-|RadiationAnatomicalSiteEnum|BILATERAL CHESTWALL WITH NODES|
-|RadiationAnatomicalSiteEnum|LEFT CHESTWALL WITH NODES|
-|RadiationAnatomicalSiteEnum|RIGHT CHESTWALL WITH NODES|
-|RadiationAnatomicalSiteEnum|LEFT EAR|
-|RadiationAnatomicalSiteEnum|RIGHT EAR|
+|RadiationAnatomicalSiteEnum|EAR_LEFT|
+|RadiationAnatomicalSiteEnum|EAR_RIGHT|
+|RadiationAnatomicalSiteEnum|EAR_BILATERAL|
+|RadiationAnatomicalSiteEnum|EAR_NOS|
+|RadiationAnatomicalSiteEnum|ESOPHAGUS_LOWER|
+|RadiationAnatomicalSiteEnum|ESOPHAGUS_MIDDLE|
+|RadiationAnatomicalSiteEnum|ESOPHAGUS_NOS|
+|RadiationAnatomicalSiteEnum|ESOPHAGUS_UPPER|
+|RadiationAnatomicalSiteEnum|ESOPHAGUS_WHOLE|
 |RadiationAnatomicalSiteEnum|EPIGASTRIUM|
-|RadiationAnatomicalSiteEnum|LOWER ESOPHAGUS|
-|RadiationAnatomicalSiteEnum|MIDDLE ESOPHAGUS|
-|RadiationAnatomicalSiteEnum|UPPER ESOPHAGUS|
-|RadiationAnatomicalSiteEnum|ENTIRE ESOPHAGUS|
-|RadiationAnatomicalSiteEnum|ETHMOID SINUS|
-|RadiationAnatomicalSiteEnum|BILATERAL EYES|
-|RadiationAnatomicalSiteEnum|LEFT EYE|
-|RadiationAnatomicalSiteEnum|RIGHT EYE|
-|RadiationAnatomicalSiteEnum|BILATERAL FACE|
-|RadiationAnatomicalSiteEnum|LEFT FACE|
-|RadiationAnatomicalSiteEnum|RIGHT FACE|
-|RadiationAnatomicalSiteEnum|LEFT FALLOPIAN TUBES|
-|RadiationAnatomicalSiteEnum|RIGHT FALLOPIAN TUBES|
-|RadiationAnatomicalSiteEnum|BILATERAL FEMUR|
-|RadiationAnatomicalSiteEnum|LEFT FEMUR|
-|RadiationAnatomicalSiteEnum|RIGHT FEMUR|
-|RadiationAnatomicalSiteEnum|LEFT FIBULA|
-|RadiationAnatomicalSiteEnum|RIGHT FIBULA|
-|RadiationAnatomicalSiteEnum|FINGER (INCLUDING THUMBS)|
-|RadiationAnatomicalSiteEnum|FLOOR OF MOUTH (BOOSTS)|
-|RadiationAnatomicalSiteEnum|BILATERAL FEET|
-|RadiationAnatomicalSiteEnum|LEFT FOOT|
-|RadiationAnatomicalSiteEnum|RIGHT FOOT|
+|RadiationAnatomicalSiteEnum|ETHMOID_SINUS|
+|RadiationAnatomicalSiteEnum|EYE_LEFT|
+|RadiationAnatomicalSiteEnum|EYE_RIGHT|
+|RadiationAnatomicalSiteEnum|EYE_BILATERAL|
+|RadiationAnatomicalSiteEnum|EYE_NOS|
+|RadiationAnatomicalSiteEnum|EYELID_LEFT|
+|RadiationAnatomicalSiteEnum|EYELID_RIGHT|
+|RadiationAnatomicalSiteEnum|EYELID_BILATERAL|
+|RadiationAnatomicalSiteEnum|EYELID_NOS|
+|RadiationAnatomicalSiteEnum|FACE_LEFT|
+|RadiationAnatomicalSiteEnum|FACE_RIGHT|
+|RadiationAnatomicalSiteEnum|FACE_BILATERAL|
+|RadiationAnatomicalSiteEnum|FACE_NOS|
+|RadiationAnatomicalSiteEnum|FALLOPIAN_TUBES_LEFT|
+|RadiationAnatomicalSiteEnum|FALLOPIAN_TUBES_RIGHT|
+|RadiationAnatomicalSiteEnum|FALLOPIAN_TUBES_NOS|
+|RadiationAnatomicalSiteEnum|FEMUR_LEFT|
+|RadiationAnatomicalSiteEnum|FEMUR_RIGHT|
+|RadiationAnatomicalSiteEnum|FEMUR_BILATERAL|
+|RadiationAnatomicalSiteEnum|FEMUR_NOS|
+|RadiationAnatomicalSiteEnum|FIBULA_LEFT|
+|RadiationAnatomicalSiteEnum|FIBULA_RIGHT|
+|RadiationAnatomicalSiteEnum|FIBULA_NOS|
+|RadiationAnatomicalSiteEnum|FINGER_RIGHT_HAND|
+|RadiationAnatomicalSiteEnum|FINGER_LEFT_HAND|
+|RadiationAnatomicalSiteEnum|FINGER_NOS|
+|RadiationAnatomicalSiteEnum|FOOT_LEFT|
+|RadiationAnatomicalSiteEnum|FOOT_RIGHT|
+|RadiationAnatomicalSiteEnum|FOOT_BILATERAL|
+|RadiationAnatomicalSiteEnum|FOOT_NOS|
+|RadiationAnatomicalSiteEnum|FLOOR_OF_MOUTH|
+|RadiationAnatomicalSiteEnum|FLOOR_OF_MOUTH_BOOST|
 |RadiationAnatomicalSiteEnum|FOREHEAD|
-|RadiationAnatomicalSiteEnum|POSTERIOR FOSSA|
-|RadiationAnatomicalSiteEnum|GALL BLADDER|
+|RadiationAnatomicalSiteEnum|POSTERIOR_FOSSA|
+|RadiationAnatomicalSiteEnum|GALL_BLADDER|
 |RadiationAnatomicalSiteEnum|GINGIVA|
-|RadiationAnatomicalSiteEnum|BILATERAL HAND|
-|RadiationAnatomicalSiteEnum|LEFT HAND|
-|RadiationAnatomicalSiteEnum|RIGHT HAND|
+|RadiationAnatomicalSiteEnum|HAND_RIGHT|
+|RadiationAnatomicalSiteEnum|HAND_LEFT|
+|RadiationAnatomicalSiteEnum|HAND_NOS|
+|RadiationAnatomicalSiteEnum|HAND_BILATERAL|
 |RadiationAnatomicalSiteEnum|HEAD|
-|RadiationAnatomicalSiteEnum|BILATERAL HEEL|
-|RadiationAnatomicalSiteEnum|LEFT HEEL|
-|RadiationAnatomicalSiteEnum|RIGHT HEEL|
-|RadiationAnatomicalSiteEnum|LEFT HEMIMANTLE|
-|RadiationAnatomicalSiteEnum|RIGHT HEMIMANTLE|
 |RadiationAnatomicalSiteEnum|HEART|
-|RadiationAnatomicalSiteEnum|BILATERAL HIP|
-|RadiationAnatomicalSiteEnum|LEFT HIP|
-|RadiationAnatomicalSiteEnum|RIGHT HIP|
-|RadiationAnatomicalSiteEnum|LEFT HUMERUS|
-|RadiationAnatomicalSiteEnum|RIGHT HUMERUS|
+|RadiationAnatomicalSiteEnum|HEEL_LEFT|
+|RadiationAnatomicalSiteEnum|HEEL_RIGHT|
+|RadiationAnatomicalSiteEnum|HEEL_BILATERAL|
+|RadiationAnatomicalSiteEnum|HEEL_NOS|
+|RadiationAnatomicalSiteEnum|HEMIMANTLE_LEFT|
+|RadiationAnatomicalSiteEnum|HEMIMANTLE_RIGHT|
+|RadiationAnatomicalSiteEnum|HEMIMANTLE_BILATERAL|
+|RadiationAnatomicalSiteEnum|HEMIMANTLE_NOS|
+|RadiationAnatomicalSiteEnum|HIP_LEFT|
+|RadiationAnatomicalSiteEnum|HIP_RIGHT|
+|RadiationAnatomicalSiteEnum|HIP_BILATERAL|
+|RadiationAnatomicalSiteEnum|HIP_NOS|
+|RadiationAnatomicalSiteEnum|HUMERUS_LEFT|
+|RadiationAnatomicalSiteEnum|HUMERUS_RIGHT|
+|RadiationAnatomicalSiteEnum|HUMERUS_NOS|
 |RadiationAnatomicalSiteEnum|HYPOPHARYNX|
-|RadiationAnatomicalSiteEnum|BILATERAL INTERNAL MAMMARY CHAIN|
-|RadiationAnatomicalSiteEnum|BILATERAL INGUINAL NODES|
-|RadiationAnatomicalSiteEnum|LEFT INGUINAL NODES|
-|RadiationAnatomicalSiteEnum|RIGHT INGUINAL NODES|
-|RadiationAnatomicalSiteEnum|INVERTED 'Y' (DOG-LEG,HOCKEY-STICK)|
-|RadiationAnatomicalSiteEnum|LEFT KIDNEY|
-|RadiationAnatomicalSiteEnum|RIGHT KIDNEY|
-|RadiationAnatomicalSiteEnum|BILATERAL KNEE|
-|RadiationAnatomicalSiteEnum|LEFT KNEE|
-|RadiationAnatomicalSiteEnum|RIGHT KNEE|
-|RadiationAnatomicalSiteEnum|BILATERAL LACRIMAL GLAND|
-|RadiationAnatomicalSiteEnum|LEFT LACRIMAL GLAND|
-|RadiationAnatomicalSiteEnum|RIGHT LACRIMAL GLAND|
-|RadiationAnatomicalSiteEnum|LARYGOPHARYNX|
+|RadiationAnatomicalSiteEnum|INTERNAL_MAMMARY_CHAIN_NOS|
+|RadiationAnatomicalSiteEnum|INTERNAL_MAMMARY_CHAIN_LEFT|
+|RadiationAnatomicalSiteEnum|INTERNAL_MAMMARY_CHAIN_RIGHT|
+|RadiationAnatomicalSiteEnum|INTERNAL_MAMMARY_CHAIN_BILATERAL|
+|RadiationAnatomicalSiteEnum|INGUINAL_NODES_LEFT|
+|RadiationAnatomicalSiteEnum|INGUINAL_NODES_RIGHT|
+|RadiationAnatomicalSiteEnum|INGUINAL_NODES_BILATERAL|
+|RadiationAnatomicalSiteEnum|INGUINAL_NODES_NOS|
+|RadiationAnatomicalSiteEnum|INVERTED_Y_DOG_LEG_HOCKEY_STICK|
+|RadiationAnatomicalSiteEnum|KIDNEY_LEFT|
+|RadiationAnatomicalSiteEnum|KIDNEY_RIGHT|
+|RadiationAnatomicalSiteEnum|KIDNEY_BILATERAL|
+|RadiationAnatomicalSiteEnum|KIDNEY_NOS|
+|RadiationAnatomicalSiteEnum|KNEE_LEFT|
+|RadiationAnatomicalSiteEnum|KNEE_RIGHT|
+|RadiationAnatomicalSiteEnum|KNEE_BILATERAL|
+|RadiationAnatomicalSiteEnum|KNEE_NOS|
+|RadiationAnatomicalSiteEnum|LACRIMAL_GLAND_LEFT|
+|RadiationAnatomicalSiteEnum|LACRIMAL_GLAND_RIGHT|
+|RadiationAnatomicalSiteEnum|LACRIMAL_GLAND_BILATERAL|
+|RadiationAnatomicalSiteEnum|LACRIMAL_GLAND_NOS|
+|RadiationAnatomicalSiteEnum|LARYNGOPHARYNX|
 |RadiationAnatomicalSiteEnum|LARYNX|
-|RadiationAnatomicalSiteEnum|BILATERAL LEG|
-|RadiationAnatomicalSiteEnum|LEFT LEG|
-|RadiationAnatomicalSiteEnum|RIGHT LEG|
-|RadiationAnatomicalSiteEnum|LOWER BILATERAL LEG|
-|RadiationAnatomicalSiteEnum|LOWER LEFT LEG|
-|RadiationAnatomicalSiteEnum|LOWER RIGHT LEG|
-|RadiationAnatomicalSiteEnum|UPPER BILATERAL LEG|
-|RadiationAnatomicalSiteEnum|UPPER LEFT LEG|
-|RadiationAnatomicalSiteEnum|UPPER RIGHT LEG|
-|RadiationAnatomicalSiteEnum|BOTH EYELID(S)|
-|RadiationAnatomicalSiteEnum|LEFT EYELID|
-|RadiationAnatomicalSiteEnum|RIGHT EYELID|
-|RadiationAnatomicalSiteEnum|BOTH LIP(S)|
-|RadiationAnatomicalSiteEnum|LOWER LIP|
-|RadiationAnatomicalSiteEnum|UPPER LIP|
-|RadiationAnatomicalSiteEnum|LIVER|
-|RadiationAnatomicalSiteEnum|BILATERAL LUNG|
-|RadiationAnatomicalSiteEnum|LEFT LUNG|
-|RadiationAnatomicalSiteEnum|RIGHT LUNG|
-|RadiationAnatomicalSiteEnum|BILATERAL MANDIBLE|
-|RadiationAnatomicalSiteEnum|LEFT MANDIBLE|
-|RadiationAnatomicalSiteEnum|RIGHT MANDIBLE|
+|RadiationAnatomicalSiteEnum|LEG_BILATERAL_LOWER|
+|RadiationAnatomicalSiteEnum|LEG_BILATERAL_NOS|
+|RadiationAnatomicalSiteEnum|LEG_BILATERAL_UPPER|
+|RadiationAnatomicalSiteEnum|LEG_LEFT_LOWER|
+|RadiationAnatomicalSiteEnum|LEG_LEFT_NOS|
+|RadiationAnatomicalSiteEnum|LEG_LEFT_UPPER|
+|RadiationAnatomicalSiteEnum|LEG_NOS|
+|RadiationAnatomicalSiteEnum|LEG_RIGHT_LOWER|
+|RadiationAnatomicalSiteEnum|LEG_RIGHT_NOS|
+|RadiationAnatomicalSiteEnum|LEG_RIGHT_UPPER|
+|RadiationAnatomicalSiteEnum|LEG_LOWER_NOS|
+|RadiationAnatomicalSiteEnum|LEG_UPPER_NOS|
+|RadiationAnatomicalSiteEnum|LIP_LOWER|
+|RadiationAnatomicalSiteEnum|LIP_NOS|
+|RadiationAnatomicalSiteEnum|LIP_UPPER|
+|RadiationAnatomicalSiteEnum|LIVER_NOS|
+|RadiationAnatomicalSiteEnum|LIVER_WHOLE|
+|RadiationAnatomicalSiteEnum|LIVER_LOBE_RIGHT|
+|RadiationAnatomicalSiteEnum|LIVER_LOBE_LEFT|
+|RadiationAnatomicalSiteEnum|LIVER_LOBE_CAUDATE|
+|RadiationAnatomicalSiteEnum|LIVER_LOBE_QUADRATE|
+|RadiationAnatomicalSiteEnum|LUNG_LEFT_UPPER|
+|RadiationAnatomicalSiteEnum|LUNG_LEFT_LOWER|
+|RadiationAnatomicalSiteEnum|LUNG_LEFT_WHOLE|
+|RadiationAnatomicalSiteEnum|LUNG_LEFT_NOS|
+|RadiationAnatomicalSiteEnum|LUNG_RIGHT_UPPER|
+|RadiationAnatomicalSiteEnum|LUNG_RIGHT_MIDDLE|
+|RadiationAnatomicalSiteEnum|LUNG_RIGHT_LOWER|
+|RadiationAnatomicalSiteEnum|LUNG_RIGHT_NOS|
+|RadiationAnatomicalSiteEnum|LUNG_BILATERAL|
+|RadiationAnatomicalSiteEnum|LUNG_NOS|
+|RadiationAnatomicalSiteEnum|MANDIBLE_LEFT|
+|RadiationAnatomicalSiteEnum|MANDIBLE_RIGHT|
+|RadiationAnatomicalSiteEnum|MANDIBLE_BILATERAL|
+|RadiationAnatomicalSiteEnum|MANDIBLE_NOS|
 |RadiationAnatomicalSiteEnum|MANTLE|
-|RadiationAnatomicalSiteEnum|BILATERAL MAXILLA|
-|RadiationAnatomicalSiteEnum|LEFT MAXILLA|
-|RadiationAnatomicalSiteEnum|RIGHT MAXILLA|
-|RadiationAnatomicalSiteEnum|MEDIASTINUM|
-|RadiationAnatomicalSiteEnum|MULTIPLE SKIN|
-|RadiationAnatomicalSiteEnum|NASAL FOSSA|
+|RadiationAnatomicalSiteEnum|MAXILLA_LEFT|
+|RadiationAnatomicalSiteEnum|MAXILLA_RIGHT|
+|RadiationAnatomicalSiteEnum|MAXILLA_BILATERAL|
+|RadiationAnatomicalSiteEnum|MAXILLA_NOS|
+|RadiationAnatomicalSiteEnum|LYMPH_NODES|
+|RadiationAnatomicalSiteEnum|MEDIASTINUM_ANTERIOR|
+|RadiationAnatomicalSiteEnum|MEDIASTINUM_MIDDLE|
+|RadiationAnatomicalSiteEnum|MEDIASTINUM_POSTERIOR|
+|RadiationAnatomicalSiteEnum|MEDIASTINUM_SUPERIOR|
+|RadiationAnatomicalSiteEnum|MEDIASTINUM_NOS|
+|RadiationAnatomicalSiteEnum|MULTIPLE_SKIN|
+|RadiationAnatomicalSiteEnum|NASAL_FOSSA_LEFT|
+|RadiationAnatomicalSiteEnum|NASAL_FOSSA_RIGHT|
+|RadiationAnatomicalSiteEnum|NASAL_FOSSA_POSTERIOR|
+|RadiationAnatomicalSiteEnum|NASAL_FOSSA_BILATERAL|
+|RadiationAnatomicalSiteEnum|NASAL_FOSSA_NOS|
 |RadiationAnatomicalSiteEnum|NASOPHARYNX|
-|RadiationAnatomicalSiteEnum|BILATERAL NECK INCLUDES NODES|
-|RadiationAnatomicalSiteEnum|LEFT NECK INCLUDES NODES|
-|RadiationAnatomicalSiteEnum|RIGHT NECK INCLUDES NODES|
-|RadiationAnatomicalSiteEnum|NECK - SKIN|
+|RadiationAnatomicalSiteEnum|NECK_NOS|
+|RadiationAnatomicalSiteEnum|NECK_SKIN|
+|RadiationAnatomicalSiteEnum|NECK_LEFT|
+|RadiationAnatomicalSiteEnum|NECK_RIGHT|
+|RadiationAnatomicalSiteEnum|NECK_BILATERAL|
+|RadiationAnatomicalSiteEnum|NECK_WITH_NODES_LEFT|
+|RadiationAnatomicalSiteEnum|NECK_WITH_NODES_RIGHT|
+|RadiationAnatomicalSiteEnum|NECK_WITH_NODES_BILATERAL|
+|RadiationAnatomicalSiteEnum|NECK_WITH_NODES_NOS|
 |RadiationAnatomicalSiteEnum|NOSE|
-|RadiationAnatomicalSiteEnum|ORAL CAVITY / BUCCAL MUCOSA|
-|RadiationAnatomicalSiteEnum|BILATERAL ORBIT|
-|RadiationAnatomicalSiteEnum|LEFT ORBIT|
-|RadiationAnatomicalSiteEnum|RIGHT ORBIT|
+|RadiationAnatomicalSiteEnum|NOT_AVAILABLE|
+|RadiationAnatomicalSiteEnum|ORAL_CAVITY__BUCCAL_MUCOSA_LEFT|
+|RadiationAnatomicalSiteEnum|ORAL_CAVITY__BUCCAL_MUCOSA_RIGHT|
+|RadiationAnatomicalSiteEnum|ORAL_CAVITY__BUCCAL_MUCOSA_BILATERAL|
+|RadiationAnatomicalSiteEnum|ORAL_CAVITY__BUCCAL_MUCOSA_NOS|
+|RadiationAnatomicalSiteEnum|ORAL_CAVITY_NOS|
+|RadiationAnatomicalSiteEnum|ORAL_CAVITY__HARD PALATE|
+|RadiationAnatomicalSiteEnum|ORAL_CAVITY__SOFT PALATE|
+|RadiationAnatomicalSiteEnum|ORAL_CAVITY__PALATE_NOS|
+|RadiationAnatomicalSiteEnum|ORBIT_LEFT|
+|RadiationAnatomicalSiteEnum|ORBIT_RIGHT|
+|RadiationAnatomicalSiteEnum|ORBIT_BILATERAL|
+|RadiationAnatomicalSiteEnum|ORBIT_NOS|
 |RadiationAnatomicalSiteEnum|OROPHARYNX|
-|RadiationAnatomicalSiteEnum|BILATERAL OVARY|
-|RadiationAnatomicalSiteEnum|LEFT OVARY|
-|RadiationAnatomicalSiteEnum|RIGHT OVARY|
-|RadiationAnatomicalSiteEnum|HARD PALATE|
-|RadiationAnatomicalSiteEnum|SOFT PALATE|
-|RadiationAnatomicalSiteEnum|PALATE UNSPECIFIED|
-|RadiationAnatomicalSiteEnum|PANCREAS|
-|RadiationAnatomicalSiteEnum|PARA-AORTIC NODES|
-|RadiationAnatomicalSiteEnum|LEFT PAROTID|
-|RadiationAnatomicalSiteEnum|RIGHT PAROTID|
-|RadiationAnatomicalSiteEnum|BILATERAL PELVIS|
-|RadiationAnatomicalSiteEnum|LEFT PELVIS|
-|RadiationAnatomicalSiteEnum|RIGHT PELVIS|
+|RadiationAnatomicalSiteEnum|OTHER|
+|RadiationAnatomicalSiteEnum|OVARY_LEFT|
+|RadiationAnatomicalSiteEnum|OVARY_RIGHT|
+|RadiationAnatomicalSiteEnum|OVARY_BILATERAL|
+|RadiationAnatomicalSiteEnum|OVARY_NOS|
+|RadiationAnatomicalSiteEnum|PANCREAS_HEAD|
+|RadiationAnatomicalSiteEnum|PANCREAS_BODY|
+|RadiationAnatomicalSiteEnum|PANCREAS_TAIL|
+|RadiationAnatomicalSiteEnum|PANCREAS_NECK|
+|RadiationAnatomicalSiteEnum|PANCREAS_NOS|
+|RadiationAnatomicalSiteEnum|PARA_AORTIC_NODES|
+|RadiationAnatomicalSiteEnum|PAROTID_GLAND_LEFT|
+|RadiationAnatomicalSiteEnum|PAROTID_GLAND_RIGHT|
+|RadiationAnatomicalSiteEnum|PAROTID_GLAND_BILATERAL|
+|RadiationAnatomicalSiteEnum|PAROTID_GLAND_NOS|
+|RadiationAnatomicalSiteEnum|PELVIS|
+|RadiationAnatomicalSiteEnum|PELVIS_HEMIPELVIS_LEFT|
+|RadiationAnatomicalSiteEnum|PELVIS_HEMIPELVIS_RIGHT|
+|RadiationAnatomicalSiteEnum|PELVIS_HEMIPELVIS_BILATERAL|
+|RadiationAnatomicalSiteEnum|PELVIS_HEMIPELVIS_NOS|
 |RadiationAnatomicalSiteEnum|PENIS|
 |RadiationAnatomicalSiteEnum|PERINEUM|
-|RadiationAnatomicalSiteEnum|PITUITARY|
-|RadiationAnatomicalSiteEnum|LEFT PLEURA (AS IN MESOTHELIOMA)|
-|RadiationAnatomicalSiteEnum|RIGHT PLEURA|
+|RadiationAnatomicalSiteEnum|PHARYNX_NOS|
+|RadiationAnatomicalSiteEnum|PITUITARY GLAND|
+|RadiationAnatomicalSiteEnum|PLEURA_LEFT|
+|RadiationAnatomicalSiteEnum|PLEURA_RIGHT|
+|RadiationAnatomicalSiteEnum|PLEURA_BILATERAL|
+|RadiationAnatomicalSiteEnum|PLEURA_NOS|
 |RadiationAnatomicalSiteEnum|PROSTATE|
 |RadiationAnatomicalSiteEnum|PUBIS|
-|RadiationAnatomicalSiteEnum|PYRIFORM FOSSA (SINUSES)|
-|RadiationAnatomicalSiteEnum|LEFT RADIUS|
-|RadiationAnatomicalSiteEnum|RIGHT RADIUS|
-|RadiationAnatomicalSiteEnum|RECTUM (INCLUDES SIGMOID)|
-|RadiationAnatomicalSiteEnum|LEFT RIBS|
-|RadiationAnatomicalSiteEnum|RIGHT RIBS|
+|RadiationAnatomicalSiteEnum|LARYNX_PYRIFORM_FOSSA|
+|RadiationAnatomicalSiteEnum|RADIUS_LEFT|
+|RadiationAnatomicalSiteEnum|RADIUS_RIGHT|
+|RadiationAnatomicalSiteEnum|RADIUS_NOS|
+|RadiationAnatomicalSiteEnum|RECTUM_INCLUDES_SIGMOID|
+|RadiationAnatomicalSiteEnum|RIBS_LEFT|
+|RadiationAnatomicalSiteEnum|RIBS_RIGHT|
+|RadiationAnatomicalSiteEnum|RIBS_BILATERAL|
+|RadiationAnatomicalSiteEnum|RIBS_NOS|
 |RadiationAnatomicalSiteEnum|SACRUM|
-|RadiationAnatomicalSiteEnum|LEFT SALIVARY GLAND|
-|RadiationAnatomicalSiteEnum|RIGHT SALIVARY GLAND|
-|RadiationAnatomicalSiteEnum|BILATERAL SCAPULA|
-|RadiationAnatomicalSiteEnum|LEFT SCAPULA|
-|RadiationAnatomicalSiteEnum|RIGHT SCAPULA|
-|RadiationAnatomicalSiteEnum|BILATERAL SUPRACLAVICULAR NODES|
-|RadiationAnatomicalSiteEnum|LEFT SUPRACLAVICULAR NODES|
-|RadiationAnatomicalSiteEnum|RIGHT SUPRACLAVICULAR NODES|
-|RadiationAnatomicalSiteEnum|BILATERAL SCALP|
-|RadiationAnatomicalSiteEnum|LEFT SCALP|
-|RadiationAnatomicalSiteEnum|RIGHT SCALP|
+|RadiationAnatomicalSiteEnum|SALIVARY_GLAND_LEFT|
+|RadiationAnatomicalSiteEnum|SALIVARY_GLAND_RIGHT|
+|RadiationAnatomicalSiteEnum|SALIVARY_GLAND_BILATERAL|
+|RadiationAnatomicalSiteEnum|SALIVARY_GLAND_NOS|
+|RadiationAnatomicalSiteEnum|SCALP_LEFT|
+|RadiationAnatomicalSiteEnum|SCALP_RIGHT|
+|RadiationAnatomicalSiteEnum|SCALP_BILATERAL|
+|RadiationAnatomicalSiteEnum|SCALP_NOS|
+|RadiationAnatomicalSiteEnum|SCAPULA_LEFT|
+|RadiationAnatomicalSiteEnum|SCAPULA_RIGHT|
+|RadiationAnatomicalSiteEnum|SCAPULA_BILATERAL|
+|RadiationAnatomicalSiteEnum|SCAPULA_NOS|
 |RadiationAnatomicalSiteEnum|SCROTUM|
-|RadiationAnatomicalSiteEnum|BILATERAL SHOULDER|
-|RadiationAnatomicalSiteEnum|LEFT SHOULDER|
-|RadiationAnatomicalSiteEnum|RIGHT SHOULDER|
-|RadiationAnatomicalSiteEnum|WHOLE BODY - SKIN|
-|RadiationAnatomicalSiteEnum|SKULL|
-|RadiationAnatomicalSiteEnum|CERVICAL & THORACIC SPINE|
-|RadiationAnatomicalSiteEnum|SPHENOID SINUS|
-|RadiationAnatomicalSiteEnum|CERVICAL SPINE|
-|RadiationAnatomicalSiteEnum|LUMBAR SPINE|
-|RadiationAnatomicalSiteEnum|THORACIC SPINE|
-|RadiationAnatomicalSiteEnum|WHOLE SPINE|
+|RadiationAnatomicalSiteEnum|SHOULDER_LEFT|
+|RadiationAnatomicalSiteEnum|SHOULDER_RIGHT|
+|RadiationAnatomicalSiteEnum|SHOULDER_BILATERAL|
+|RadiationAnatomicalSiteEnum|SHOULDER_NOS|
+|RadiationAnatomicalSiteEnum|SKIN_WHOLE_BODY|
+|RadiationAnatomicalSiteEnum|SKIN_NOS|
+|RadiationAnatomicalSiteEnum|SKULL_NOS|
+|RadiationAnatomicalSiteEnum|SKULL_PARIETAL|
+|RadiationAnatomicalSiteEnum|SKULL_TEMPORAL|
+|RadiationAnatomicalSiteEnum|SKULL_OCCIPITAL|
+|RadiationAnatomicalSiteEnum|SKULL_ZYGOMATIC|
+|RadiationAnatomicalSiteEnum|SKULL_FRONTAL|
+|RadiationAnatomicalSiteEnum|SPHENOID_SINUS|
+|RadiationAnatomicalSiteEnum|SPINE_CERVICAL|
+|RadiationAnatomicalSiteEnum|SPINE_THORACIC|
+|RadiationAnatomicalSiteEnum|SPINE_LUMBAR|
+|RadiationAnatomicalSiteEnum|SPINE_LUMBO_SACRAL|
+|RadiationAnatomicalSiteEnum|SPINE_WHOLE|
+|RadiationAnatomicalSiteEnum|SPINE_CERVICAL_AND_THORACIC|
+|RadiationAnatomicalSiteEnum|SPINE_LUMBAR_AND_THORACIC|
+|RadiationAnatomicalSiteEnum|SPINE_NOS|
 |RadiationAnatomicalSiteEnum|SPLEEN|
-|RadiationAnatomicalSiteEnum|LUMBO-SACRAL SPINE|
-|RadiationAnatomicalSiteEnum|THORACIC & LUMBAR SPINE|
 |RadiationAnatomicalSiteEnum|STERNUM|
-|RadiationAnatomicalSiteEnum|STOMACH|
-|RadiationAnatomicalSiteEnum|SUBMANDIBULAR GLANDS|
-|RadiationAnatomicalSiteEnum|LEFT TEMPLE|
-|RadiationAnatomicalSiteEnum|RIGHT TEMPLE|
-|RadiationAnatomicalSiteEnum|BILATERAL TESTIS|
-|RadiationAnatomicalSiteEnum|LEFT TESTIS|
-|RadiationAnatomicalSiteEnum|RIGHT TESTIS|
+|RadiationAnatomicalSiteEnum|STOMACH_CARDIA|
+|RadiationAnatomicalSiteEnum|STOMACH_FUNDUS|
+|RadiationAnatomicalSiteEnum|STOMACH_BODY|
+|RadiationAnatomicalSiteEnum|STOMACH_PYLORUS|
+|RadiationAnatomicalSiteEnum|STOMACH_GASTRIC ANTRUM|
+|RadiationAnatomicalSiteEnum|STOMACH_LESSER CURVATURE|
+|RadiationAnatomicalSiteEnum|STOMACH_GREATER CURVATURE|
+|RadiationAnatomicalSiteEnum|STOMACH_NOS|
+|RadiationAnatomicalSiteEnum|SUBMANDIBULAR_GLANDS|
+|RadiationAnatomicalSiteEnum|SUPRACLAVICULAR_NODES_LEFT|
+|RadiationAnatomicalSiteEnum|SUPRACLAVICULAR_NODES_RIGHT|
+|RadiationAnatomicalSiteEnum|SUPRACLAVICULAR_NODES_BILATERAL|
+|RadiationAnatomicalSiteEnum|SUPRACLAVICULAR_NODES_NOS|
+|RadiationAnatomicalSiteEnum|TEMPLE_LEFT|
+|RadiationAnatomicalSiteEnum|TEMPLE_RIGHT|
+|RadiationAnatomicalSiteEnum|TEMPLE_BILATERAL|
+|RadiationAnatomicalSiteEnum|TEMPLE_NOS|
+|RadiationAnatomicalSiteEnum|TESTIS_LEFT|
+|RadiationAnatomicalSiteEnum|TESTIS_RIGHT|
+|RadiationAnatomicalSiteEnum|TESTIS_BILATERAL|
+|RadiationAnatomicalSiteEnum|TESTIS_NOS|
 |RadiationAnatomicalSiteEnum|THYROID|
-|RadiationAnatomicalSiteEnum|LEFT TIBIA|
-|RadiationAnatomicalSiteEnum|RIGHT TIBIA|
-|RadiationAnatomicalSiteEnum|LEFT TOES|
-|RadiationAnatomicalSiteEnum|RIGHT TOES|
+|RadiationAnatomicalSiteEnum|TIBIA_LEFT|
+|RadiationAnatomicalSiteEnum|TIBIA_RIGHT|
+|RadiationAnatomicalSiteEnum|TIBIA_NOS|
 |RadiationAnatomicalSiteEnum|TONGUE|
 |RadiationAnatomicalSiteEnum|TONSIL|
+|RadiationAnatomicalSiteEnum|TOES_LEFT_FOOT|
+|RadiationAnatomicalSiteEnum|TOES_RIGHT_FOOT|
+|RadiationAnatomicalSiteEnum|TOES_NOS|
 |RadiationAnatomicalSiteEnum|TRACHEA|
-|RadiationAnatomicalSiteEnum|LEFT ULNA|
-|RadiationAnatomicalSiteEnum|RIGHT ULNA|
-|RadiationAnatomicalSiteEnum|LEFT URETER|
-|RadiationAnatomicalSiteEnum|RIGHT URETER|
+|RadiationAnatomicalSiteEnum|ULNA_LEFT|
+|RadiationAnatomicalSiteEnum|ULNA_RIGHT|
+|RadiationAnatomicalSiteEnum|ULNA_NOS|
+|RadiationAnatomicalSiteEnum|UPPER_LIMB|
+|RadiationAnatomicalSiteEnum|LOWER_LIMB|
+|RadiationAnatomicalSiteEnum|URETER_LEFT|
+|RadiationAnatomicalSiteEnum|URETER_RIGHT|
+|RadiationAnatomicalSiteEnum|URETER_BILATERAL|
+|RadiationAnatomicalSiteEnum|URETER_NOS|
 |RadiationAnatomicalSiteEnum|URETHRA|
 |RadiationAnatomicalSiteEnum|UTERUS|
 |RadiationAnatomicalSiteEnum|UVULA|
 |RadiationAnatomicalSiteEnum|VAGINA|
 |RadiationAnatomicalSiteEnum|VULVA|
-|RadiationAnatomicalSiteEnum|ABDOMEN|
-|RadiationAnatomicalSiteEnum|BODY|
-|RadiationAnatomicalSiteEnum|CHEST|
-|RadiationAnatomicalSiteEnum|LOWER LIMB|
-|RadiationAnatomicalSiteEnum|NECK|
-|RadiationAnatomicalSiteEnum|OTHER|
-|RadiationAnatomicalSiteEnum|PELVIS|
-|RadiationAnatomicalSiteEnum|SKIN|
-|RadiationAnatomicalSiteEnum|SPINE|
-|RadiationAnatomicalSiteEnum|UPPER LIMB|
-|RadiationAnatomicalSiteEnum|Not available|
+|RadiationAnatomicalSiteEnum|WHOLE_CNS|
+|RadiationAnatomicalSiteEnum|WHOLE_BODY|
+|RadiationAnatomicalSiteEnum|WHOLE_BODY_SKIN|
 
 <h2 id="tocS_RadiationIngestSchema">RadiationIngestSchema</h2>
 
@@ -5122,7 +5884,7 @@ RadiationAnatomicalSiteEnum
   "radiation_therapy_fractions_not_available": false,
   "radiation_therapy_dosage": 0,
   "radiation_therapy_dosage_not_available": false,
-  "anatomical_site_irradiated": "LEFT ABDOMEN",
+  "anatomical_site_irradiated": "ABDOMEN_WHOLE",
   "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string",
   "program_id": "string",
@@ -5316,6 +6078,7 @@ RadiationTherapyModalityEnum
 |RadiationTherapyModalityEnum|Brachytherapy (procedure)|
 |RadiationTherapyModalityEnum|Other|
 |RadiationTherapyModalityEnum|Not available|
+|RadiationTherapyModalityEnum|Teleradiotherapy using photons|
 
 <h2 id="tocS_TherapyTypeEnum">TherapyTypeEnum</h2>
 
@@ -5345,6 +6108,391 @@ TherapyTypeEnum
 |TherapyTypeEnum|Internal|
 |TherapyTypeEnum|Not available|
 
+<h2 id="tocS_DrugDoseUnitsEnum">DrugDoseUnitsEnum</h2>
+
+<a id="schemadrugdoseunitsenum"></a>
+<a id="schema_DrugDoseUnitsEnum"></a>
+<a id="tocSdrugdoseunitsenum"></a>
+<a id="tocsdrugdoseunitsenum"></a>
+
+```json
+"Bq"
+
+```
+
+DrugDoseUnitsEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|DrugDoseUnitsEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|DrugDoseUnitsEnum|Bq|
+|DrugDoseUnitsEnum|kBq|
+|DrugDoseUnitsEnum|MBq|
+|DrugDoseUnitsEnum|GBq|
+|DrugDoseUnitsEnum|Ci|
+|DrugDoseUnitsEnum|mCi|
+
+<h2 id="tocS_MassUnitUcumEnum">MassUnitUcumEnum</h2>
+
+<a id="schemamassunitucumenum"></a>
+<a id="schema_MassUnitUcumEnum"></a>
+<a id="tocSmassunitucumenum"></a>
+<a id="tocsmassunitucumenum"></a>
+
+```json
+"ug"
+
+```
+
+MassUnitUcumEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|MassUnitUcumEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|MassUnitUcumEnum|ug|
+|MassUnitUcumEnum|mg|
+|MassUnitUcumEnum|nmol|
+|MassUnitUcumEnum|umol|
+
+<h2 id="tocS_RadionuclideEnum">RadionuclideEnum</h2>
+
+<a id="schemaradionuclideenum"></a>
+<a id="schema_RadionuclideEnum"></a>
+<a id="tocSradionuclideenum"></a>
+<a id="tocsradionuclideenum"></a>
+
+```json
+"Carbon-14"
+
+```
+
+RadionuclideEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|RadionuclideEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|RadionuclideEnum|Carbon-14|
+|RadionuclideEnum|Fluorine-18|
+|RadionuclideEnum|Sodium-22|
+|RadionuclideEnum|Sodium-24|
+|RadionuclideEnum|Phosphorus-32|
+|RadionuclideEnum|Potassium-42|
+|RadionuclideEnum|Potassium-43|
+|RadionuclideEnum|Chromium-51|
+|RadionuclideEnum|Cobalt-57|
+|RadionuclideEnum|Cobalt-58|
+|RadionuclideEnum|Iron-59|
+|RadionuclideEnum|Cobalt-60|
+|RadionuclideEnum|Copper-64|
+|RadionuclideEnum|Copper-67|
+|RadionuclideEnum|Gallium-67|
+|RadionuclideEnum|Selenium-75|
+|RadionuclideEnum|Krypton-81m|
+|RadionuclideEnum|Krypton-85|
+|RadionuclideEnum|Strontium-85|
+|RadionuclideEnum|Strontium-87m|
+|RadionuclideEnum|Strontium-89|
+|RadionuclideEnum|Yttrium-90|
+|RadionuclideEnum|Ruthenium-97|
+|RadionuclideEnum|Technetium-99m|
+|RadionuclideEnum|Indium-111|
+|RadionuclideEnum|Indium-113m|
+|RadionuclideEnum|Iodine-123|
+|RadionuclideEnum|Iodine-125|
+|RadionuclideEnum|Xenon-127|
+|RadionuclideEnum|Iodine-131|
+|RadionuclideEnum|Barium-133|
+|RadionuclideEnum|Xenon-133|
+|RadionuclideEnum|Gadolinium-153|
+|RadionuclideEnum|Samarium-153|
+|RadionuclideEnum|Ytterbium-169|
+|RadionuclideEnum|Lutetium-177|
+|RadionuclideEnum|Tantalum-178|
+|RadionuclideEnum|Rhenium-186|
+|RadionuclideEnum|Rhenium-188|
+|RadionuclideEnum|Iridium-191m|
+|RadionuclideEnum|Gold-198|
+|RadionuclideEnum|Gold-199|
+|RadionuclideEnum|Thallium-201|
+|RadionuclideEnum|Lead-203|
+|RadionuclideEnum|Radium-223|
+
+<h2 id="tocS_RadiopharmaceuticalTherapyIngestSchema">RadiopharmaceuticalTherapyIngestSchema</h2>
+
+<a id="schemaradiopharmaceuticaltherapyingestschema"></a>
+<a id="schema_RadiopharmaceuticalTherapyIngestSchema"></a>
+<a id="tocSradiopharmaceuticaltherapyingestschema"></a>
+<a id="tocsradiopharmaceuticaltherapyingestschema"></a>
+
+```json
+{
+  "rxnorm_code": "string",
+  "agent_name": "string",
+  "radionuclide": "Carbon-14",
+  "radionuclide_other": "string",
+  "start_date": {},
+  "end_date": {},
+  "cumulative_drug_dose": 0,
+  "cumulative_drug_dose_not_available": false,
+  "drug_dose_units": "Bq",
+  "mass_value": 0,
+  "mass_value_not_available": false,
+  "mass_unit_ucum": "ug",
+  "number_of_cycles": 0,
+  "number_of_cycles_not_available": false,
+  "program_id": "string",
+  "submitter_donor_id": "string",
+  "submitter_treatment_id": "string",
+  "uuid": "string"
+}
+
+```
+
+RadiopharmaceuticalTherapyIngestSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|rxnorm_code|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|agent_name|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|radionuclide|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[RadionuclideEnum](#schemaradionuclideenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|radionuclide_other|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|start_date|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|object|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|end_date|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|object|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cumulative_drug_dose|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|number|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cumulative_drug_dose_not_available|boolean|false|none|none|
+|drug_dose_units|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DrugDoseUnitsEnum](#schemadrugdoseunitsenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mass_value|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|number|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mass_value_not_available|boolean|false|none|none|
+|mass_unit_ucum|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MassUnitUcumEnum](#schemamassunitucumenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|number_of_cycles|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|number_of_cycles_not_available|boolean|false|none|none|
+|program_id|string|true|none|none|
+|submitter_donor_id|string|true|none|none|
+|submitter_treatment_id|string|true|none|none|
+|uuid|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
 <h2 id="tocS_SampleRegistrationIngestSchema">SampleRegistrationIngestSchema</h2>
 
 <a id="schemasampleregistrationingestschema"></a>
@@ -5355,9 +6503,6 @@ TherapyTypeEnum
 ```json
 {
   "submitter_sample_id": "string",
-  "specimen_tissue_source": "Abdominal fluid",
-  "tumour_normal_designation": "Normal",
-  "specimen_type": "Cell line - derived from normal",
   "sample_type": "Amplified DNA",
   "program_id": "string",
   "submitter_donor_id": "string",
@@ -5374,60 +6519,6 @@ SampleRegistrationIngestSchema
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |submitter_sample_id|string|true|none|none|
-|specimen_tissue_source|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[SpecimenTissueSourceEnum](#schemaspecimentissuesourceenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|tumour_normal_designation|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[TumourDesginationEnum](#schematumourdesginationenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|specimen_type|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[SpecimenTypeEnum](#schemaspecimentypeenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |sample_type|any|false|none|none|
 
 anyOf
@@ -5496,136 +6587,6 @@ SampleTypeEnum
 |SampleTypeEnum|rRNA-depleted RNA|
 |SampleTypeEnum|Total DNA|
 |SampleTypeEnum|Total RNA|
-
-<h2 id="tocS_SpecimenTissueSourceEnum">SpecimenTissueSourceEnum</h2>
-
-<a id="schemaspecimentissuesourceenum"></a>
-<a id="schema_SpecimenTissueSourceEnum"></a>
-<a id="tocSspecimentissuesourceenum"></a>
-<a id="tocsspecimentissuesourceenum"></a>
-
-```json
-"Abdominal fluid"
-
-```
-
-SpecimenTissueSourceEnum
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|SpecimenTissueSourceEnum|string|false|none|none|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|SpecimenTissueSourceEnum|Abdominal fluid|
-|SpecimenTissueSourceEnum|Amniotic fluid|
-|SpecimenTissueSourceEnum|Arterial blood|
-|SpecimenTissueSourceEnum|Bile|
-|SpecimenTissueSourceEnum|Blood derived - bone marrow|
-|SpecimenTissueSourceEnum|Blood derived - peripheral blood|
-|SpecimenTissueSourceEnum|Bone marrow fluid|
-|SpecimenTissueSourceEnum|Bone marrow derived mononuclear cells|
-|SpecimenTissueSourceEnum|Buccal cell|
-|SpecimenTissueSourceEnum|Buffy coat|
-|SpecimenTissueSourceEnum|Cerebrospinal fluid|
-|SpecimenTissueSourceEnum|Cervical mucus|
-|SpecimenTissueSourceEnum|Convalescent plasma|
-|SpecimenTissueSourceEnum|Cord blood|
-|SpecimenTissueSourceEnum|Duodenal fluid|
-|SpecimenTissueSourceEnum|Female genital fluid|
-|SpecimenTissueSourceEnum|Fetal blood|
-|SpecimenTissueSourceEnum|Hydrocele fluid|
-|SpecimenTissueSourceEnum|Male genital fluid|
-|SpecimenTissueSourceEnum|Other|
-|SpecimenTissueSourceEnum|Pancreatic fluid|
-|SpecimenTissueSourceEnum|Pericardial effusion|
-|SpecimenTissueSourceEnum|Pleural fluid|
-|SpecimenTissueSourceEnum|Renal cyst fluid|
-|SpecimenTissueSourceEnum|Saliva|
-|SpecimenTissueSourceEnum|Seminal fluid|
-|SpecimenTissueSourceEnum|Serum|
-|SpecimenTissueSourceEnum|Solid tissue|
-|SpecimenTissueSourceEnum|Sputum|
-|SpecimenTissueSourceEnum|Synovial fluid|
-|SpecimenTissueSourceEnum|Urine|
-|SpecimenTissueSourceEnum|Venous blood|
-|SpecimenTissueSourceEnum|Vitreous fluid|
-|SpecimenTissueSourceEnum|Whole blood|
-|SpecimenTissueSourceEnum|Wound|
-
-<h2 id="tocS_SpecimenTypeEnum">SpecimenTypeEnum</h2>
-
-<a id="schemaspecimentypeenum"></a>
-<a id="schema_SpecimenTypeEnum"></a>
-<a id="tocSspecimentypeenum"></a>
-<a id="tocsspecimentypeenum"></a>
-
-```json
-"Cell line - derived from normal"
-
-```
-
-SpecimenTypeEnum
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|SpecimenTypeEnum|string|false|none|none|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|SpecimenTypeEnum|Cell line - derived from normal|
-|SpecimenTypeEnum|Cell line - derived from primary tumour|
-|SpecimenTypeEnum|Cell line - derived from metastatic tumour|
-|SpecimenTypeEnum|Cell line - derived from xenograft tumour|
-|SpecimenTypeEnum|Metastatic tumour - additional metastatic|
-|SpecimenTypeEnum|Metastatic tumour - metastasis local to lymph node|
-|SpecimenTypeEnum|Metastatic tumour - metastasis to distant location|
-|SpecimenTypeEnum|Metastatic tumour|
-|SpecimenTypeEnum|Normal - tissue adjacent to primary tumour|
-|SpecimenTypeEnum|Normal|
-|SpecimenTypeEnum|Primary tumour - additional new primary|
-|SpecimenTypeEnum|Primary tumour - adjacent to normal|
-|SpecimenTypeEnum|Primary tumour|
-|SpecimenTypeEnum|Recurrent tumour|
-|SpecimenTypeEnum|Tumour - unknown if derived from primary or metastatic tumour|
-|SpecimenTypeEnum|Xenograft - derived from primary tumour|
-|SpecimenTypeEnum|Xenograft - derived from metastatic tumour|
-|SpecimenTypeEnum|Xenograft - derived from tumour cell line|
-
-<h2 id="tocS_TumourDesginationEnum">TumourDesginationEnum</h2>
-
-<a id="schematumourdesginationenum"></a>
-<a id="schema_TumourDesginationEnum"></a>
-<a id="tocStumourdesginationenum"></a>
-<a id="tocstumourdesginationenum"></a>
-
-```json
-"Normal"
-
-```
-
-TumourDesginationEnum
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|TumourDesginationEnum|string|false|none|none|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|TumourDesginationEnum|Normal|
-|TumourDesginationEnum|Tumour|
 
 <h2 id="tocS_CellsMeasureMethodEnum">CellsMeasureMethodEnum</h2>
 
@@ -5738,6 +6699,9 @@ PercentCellsRangeEnum
   "tumour_grade": "Low grade",
   "percent_tumour_cells_range": "0-19%",
   "percent_tumour_cells_measurement_method": "Genomics",
+  "specimen_tissue_source": "Abdominal fluid",
+  "tumour_normal_designation": "Normal",
+  "specimen_type": "Cell line - derived from normal",
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_primary_diagnosis_id": "string",
@@ -5987,6 +6951,60 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|specimen_tissue_source|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[SpecimenTissueSourceEnum](#schemaspecimentissuesourceenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|tumour_normal_designation|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[TumourDesginationEnum](#schematumourdesginationenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|specimen_type|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[SpecimenTypeEnum](#schemaspecimentypeenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |submitter_primary_diagnosis_id|string|true|none|none|
@@ -6068,6 +7086,111 @@ SpecimenProcessingEnum
 |SpecimenProcessingEnum|Other|
 |SpecimenProcessingEnum|Not available|
 
+<h2 id="tocS_SpecimenTissueSourceEnum">SpecimenTissueSourceEnum</h2>
+
+<a id="schemaspecimentissuesourceenum"></a>
+<a id="schema_SpecimenTissueSourceEnum"></a>
+<a id="tocSspecimentissuesourceenum"></a>
+<a id="tocsspecimentissuesourceenum"></a>
+
+```json
+"Abdominal fluid"
+
+```
+
+SpecimenTissueSourceEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|SpecimenTissueSourceEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|SpecimenTissueSourceEnum|Abdominal fluid|
+|SpecimenTissueSourceEnum|Amniotic fluid|
+|SpecimenTissueSourceEnum|Arterial blood|
+|SpecimenTissueSourceEnum|Bile|
+|SpecimenTissueSourceEnum|Blood derived - bone marrow|
+|SpecimenTissueSourceEnum|Blood derived - peripheral blood|
+|SpecimenTissueSourceEnum|Bone marrow fluid|
+|SpecimenTissueSourceEnum|Bone marrow derived mononuclear cells|
+|SpecimenTissueSourceEnum|Buccal cell|
+|SpecimenTissueSourceEnum|Buffy coat|
+|SpecimenTissueSourceEnum|Cerebrospinal fluid|
+|SpecimenTissueSourceEnum|Cervical mucus|
+|SpecimenTissueSourceEnum|Convalescent plasma|
+|SpecimenTissueSourceEnum|Cord blood|
+|SpecimenTissueSourceEnum|Duodenal fluid|
+|SpecimenTissueSourceEnum|Female genital fluid|
+|SpecimenTissueSourceEnum|Fetal blood|
+|SpecimenTissueSourceEnum|Hydrocele fluid|
+|SpecimenTissueSourceEnum|Male genital fluid|
+|SpecimenTissueSourceEnum|Other|
+|SpecimenTissueSourceEnum|Pancreatic fluid|
+|SpecimenTissueSourceEnum|Pericardial effusion|
+|SpecimenTissueSourceEnum|Pleural fluid|
+|SpecimenTissueSourceEnum|Renal cyst fluid|
+|SpecimenTissueSourceEnum|Saliva|
+|SpecimenTissueSourceEnum|Seminal fluid|
+|SpecimenTissueSourceEnum|Serum|
+|SpecimenTissueSourceEnum|Solid tissue|
+|SpecimenTissueSourceEnum|Sputum|
+|SpecimenTissueSourceEnum|Synovial fluid|
+|SpecimenTissueSourceEnum|Urine|
+|SpecimenTissueSourceEnum|Venous blood|
+|SpecimenTissueSourceEnum|Vitreous fluid|
+|SpecimenTissueSourceEnum|Whole blood|
+|SpecimenTissueSourceEnum|Wound|
+
+<h2 id="tocS_SpecimenTypeEnum">SpecimenTypeEnum</h2>
+
+<a id="schemaspecimentypeenum"></a>
+<a id="schema_SpecimenTypeEnum"></a>
+<a id="tocSspecimentypeenum"></a>
+<a id="tocsspecimentypeenum"></a>
+
+```json
+"Cell line - derived from normal"
+
+```
+
+SpecimenTypeEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|SpecimenTypeEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|SpecimenTypeEnum|Cell line - derived from normal|
+|SpecimenTypeEnum|Cell line - derived from primary tumour|
+|SpecimenTypeEnum|Cell line - derived from metastatic tumour|
+|SpecimenTypeEnum|Cell line - derived from xenograft tumour|
+|SpecimenTypeEnum|Metastatic tumour - additional metastatic|
+|SpecimenTypeEnum|Metastatic tumour - metastasis local to lymph node|
+|SpecimenTypeEnum|Metastatic tumour - metastasis to distant location|
+|SpecimenTypeEnum|Metastatic tumour|
+|SpecimenTypeEnum|Normal - tissue adjacent to primary tumour|
+|SpecimenTypeEnum|Normal|
+|SpecimenTypeEnum|Primary tumour - additional new primary|
+|SpecimenTypeEnum|Primary tumour - adjacent to normal|
+|SpecimenTypeEnum|Primary tumour|
+|SpecimenTypeEnum|Tumour - unknown if derived from primary or metastatic tumour|
+|SpecimenTypeEnum|Xenograft - derived from primary tumour|
+|SpecimenTypeEnum|Xenograft - derived from metastatic tumour|
+|SpecimenTypeEnum|Xenograft - derived from tumour cell line|
+|SpecimenTypeEnum|Locally recurrent tumour (non-metastatic)|
+|SpecimenTypeEnum|Recurrent tumour, NOS|
+|SpecimenTypeEnum|Metastatic tumour of uncertain primary|
+
 <h2 id="tocS_StorageEnum">StorageEnum</h2>
 
 <a id="schemastorageenum"></a>
@@ -6102,6 +7225,33 @@ StorageEnum
 |StorageEnum|Paraffin block|
 |StorageEnum|RNA later frozen|
 |StorageEnum|Not available|
+
+<h2 id="tocS_TumourDesginationEnum">TumourDesginationEnum</h2>
+
+<a id="schematumourdesginationenum"></a>
+<a id="schema_TumourDesginationEnum"></a>
+<a id="tocStumourdesginationenum"></a>
+<a id="tocstumourdesginationenum"></a>
+
+```json
+"Normal"
+
+```
+
+TumourDesginationEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|TumourDesginationEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|TumourDesginationEnum|Normal|
+|TumourDesginationEnum|Tumour|
 
 <h2 id="tocS_TumourGradeEnum">TumourGradeEnum</h2>
 
@@ -6222,36 +7372,35 @@ LymphovascularInvasionEnum
 |LymphovascularInvasionEnum|Venous (large vessel) invasion only|
 |LymphovascularInvasionEnum|Not available|
 
-<h2 id="tocS_MarginTypesEnum">MarginTypesEnum</h2>
+<h2 id="tocS_MarginsStatusEnum">MarginsStatusEnum</h2>
 
-<a id="schemamargintypesenum"></a>
-<a id="schema_MarginTypesEnum"></a>
-<a id="tocSmargintypesenum"></a>
-<a id="tocsmargintypesenum"></a>
+<a id="schemamarginsstatusenum"></a>
+<a id="schema_MarginsStatusEnum"></a>
+<a id="tocSmarginsstatusenum"></a>
+<a id="tocsmarginsstatusenum"></a>
 
 ```json
-"Circumferential resection margin"
+"Margins clear"
 
 ```
 
-MarginTypesEnum
+MarginsStatusEnum
 
 ### Properties
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|MarginTypesEnum|string|false|none|none|
+|MarginsStatusEnum|string|false|none|none|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
-|MarginTypesEnum|Circumferential resection margin|
-|MarginTypesEnum|Common bile duct margin|
-|MarginTypesEnum|Distal margin|
-|MarginTypesEnum|Not applicable|
-|MarginTypesEnum|Proximal margin|
-|MarginTypesEnum|Not available|
+|MarginsStatusEnum|Margins clear|
+|MarginsStatusEnum|Margin(s) involved|
+|MarginsStatusEnum|Not applicable|
+|MarginsStatusEnum|Not available|
+|MarginsStatusEnum|Unknown|
 
 <h2 id="tocS_PerineuralInvasionEnum">PerineuralInvasionEnum</h2>
 
@@ -6303,15 +7452,7 @@ PerineuralInvasionEnum
   "greatest_dimension_tumour_not_available": false,
   "tumour_focality": "Cannot be assessed",
   "residual_tumour_classification": "Not applicable",
-  "margin_types_involved": [
-    "Circumferential resection margin"
-  ],
-  "margin_types_not_involved": [
-    "Circumferential resection margin"
-  ],
-  "margin_types_not_assessed": [
-    "Circumferential resection margin"
-  ],
+  "margins_status": "Margins clear",
   "lymphovascular_invasion": "Absent",
   "perineural_invasion": "Absent",
   "surgery_reference_database": "SNOMED",
@@ -6477,49 +7618,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|margin_types_involved|any|false|none|none|
+|margins_status|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[[MarginTypesEnum](#schemamargintypesenum)]|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|margin_types_not_involved|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[[MarginTypesEnum](#schemamargintypesenum)]|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|margin_types_not_assessed|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[[MarginTypesEnum](#schemamargintypesenum)]|false|none|none|
+|» *anonymous*|[MarginsStatusEnum](#schemamarginsstatusenum)|false|none|none|
 
 or
 
@@ -6761,6 +7866,7 @@ TumourFocalityEnum
     "month_interval": 0
   },
   "treatment_intent": "Curative",
+  "treatment_setting": "Adjuvant",
   "response_to_treatment_criteria_method": "RECIST 1.1",
   "response_to_treatment": "Complete response",
   "status_of_treatment": "Treatment completed as prescribed",
@@ -6858,6 +7964,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[TreatmentIntentEnum](#schematreatmentintentenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|treatment_setting|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[TreatmentSettingEnum](#schematreatmentsettingenum)|false|none|none|
 
 or
 
@@ -6973,6 +8097,8 @@ TreatmentIntentEnum
 |TreatmentIntentEnum|Screening|
 |TreatmentIntentEnum|Forensic|
 |TreatmentIntentEnum|Not available|
+|TreatmentIntentEnum|Combined diagnostic and therapeutic intent|
+|TreatmentIntentEnum|Life-sustaining intent|
 
 <h2 id="tocS_TreatmentResponseEnum">TreatmentResponseEnum</h2>
 
@@ -7056,6 +8182,34 @@ TreatmentResponseMethodEnum
 |TreatmentResponseMethodEnum|Blazer score|
 |TreatmentResponseMethodEnum|Not available|
 
+<h2 id="tocS_TreatmentSettingEnum">TreatmentSettingEnum</h2>
+
+<a id="schematreatmentsettingenum"></a>
+<a id="schema_TreatmentSettingEnum"></a>
+<a id="tocStreatmentsettingenum"></a>
+<a id="tocstreatmentsettingenum"></a>
+
+```json
+"Adjuvant"
+
+```
+
+TreatmentSettingEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|TreatmentSettingEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|TreatmentSettingEnum|Adjuvant|
+|TreatmentSettingEnum|Neoadjuvant|
+|TreatmentSettingEnum|Not available|
+
 <h2 id="tocS_TreatmentStatusEnum">TreatmentStatusEnum</h2>
 
 <a id="schematreatmentstatusenum"></a>
@@ -7124,6 +8278,324 @@ TreatmentTypeEnum
 |TreatmentTypeEnum|Stem cell transplant|
 |TreatmentTypeEnum|Surgery|
 |TreatmentTypeEnum|Other|
+|TreatmentTypeEnum|Unknown whether patient received treatment|
+|TreatmentTypeEnum|Patient referred for treatment at other center, details unknown|
+|TreatmentTypeEnum|Radiopharmaceutical Therapy|
+
+<h2 id="tocS_ProgramUpdateSchema">ProgramUpdateSchema</h2>
+
+<a id="schemaprogramupdateschema"></a>
+<a id="schema_ProgramUpdateSchema"></a>
+<a id="tocSprogramupdateschema"></a>
+<a id="tocsprogramupdateschema"></a>
+
+```json
+{
+  "program_description": "string",
+  "program_name": "string",
+  "keywords": [
+    null
+  ],
+  "status": "Ongoing",
+  "context": "Clinical",
+  "participant_criteria": "string",
+  "principal_investigators": [
+    null
+  ],
+  "lead_organizations": [
+    null
+  ],
+  "collaborators": [
+    null
+  ],
+  "funding_sources": [
+    null
+  ],
+  "publication_links": [
+    null
+  ],
+  "program_url": "string",
+  "pancan_cohort": "Yes",
+  "pancan_id": "string"
+}
+
+```
+
+ProgramUpdateSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|program_description|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|program_name|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|keywords|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|status|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[StatusEnum](#schemastatusenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|context|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[ContextEnum](#schemacontextenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|participant_criteria|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|principal_investigators|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|lead_organizations|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|collaborators|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|funding_sources|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|publication_links|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|program_url|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|pancan_cohort|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[PancanCohortEnum](#schemapancancohortenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|pancan_id|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+<h2 id="tocS_MetadataSchema">MetadataSchema</h2>
+
+<a id="schemametadataschema"></a>
+<a id="schema_MetadataSchema"></a>
+<a id="tocSmetadataschema"></a>
+<a id="tocsmetadataschema"></a>
+
+```json
+{
+  "metadata": {}
+}
+
+```
+
+MetadataSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|metadata|object|true|none|none|
 
 <h2 id="tocS_DonorWithClinicalDataSchema">DonorWithClinicalDataSchema</h2>
 
@@ -7138,12 +8610,8 @@ TreatmentTypeEnum
   "gender": "Man",
   "sex_at_birth": "Male",
   "is_deceased": "Yes",
-  "lost_to_followup_after_clinical_event_identifier": "string",
+  "lost_to_follow_up": "Yes",
   "lost_to_followup_reason": "Completed study",
-  "date_alive_after_lost_to_followup": {
-    "day_interval": 0,
-    "month_interval": 0
-  },
   "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
@@ -7153,6 +8621,7 @@ TreatmentTypeEnum
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_death_is_estimated": "Yes",
   "date_resolution": "string",
   "program_id": "string",
   "primary_diagnoses": [
@@ -7192,12 +8661,12 @@ TreatmentTypeEnum
           "tumour_grade": "Low grade",
           "percent_tumour_cells_range": "0-19%",
           "percent_tumour_cells_measurement_method": "Genomics",
+          "specimen_tissue_source": "Abdominal fluid",
+          "tumour_normal_designation": "Normal",
+          "specimen_type": "Cell line - derived from normal",
           "sample_registrations": [
             {
               "submitter_sample_id": "string",
-              "specimen_tissue_source": "Abdominal fluid",
-              "tumour_normal_designation": "Normal",
-              "specimen_type": "Cell line - derived from normal",
               "sample_type": "Amplified DNA"
             }
           ]
@@ -7219,6 +8688,7 @@ TreatmentTypeEnum
             "month_interval": 0
           },
           "treatment_intent": "Curative",
+          "treatment_setting": "Adjuvant",
           "response_to_treatment_criteria_method": "RECIST 1.1",
           "response_to_treatment": "Complete response",
           "status_of_treatment": "Treatment completed as prescribed",
@@ -7249,7 +8719,7 @@ TreatmentTypeEnum
               "radiation_therapy_fractions_not_available": false,
               "radiation_therapy_dosage": 0,
               "radiation_therapy_dosage_not_available": false,
-              "anatomical_site_irradiated": "LEFT ABDOMEN",
+              "anatomical_site_irradiated": "ABDOMEN_WHOLE",
               "radiation_boost": "Yes",
               "reference_radiation_treatment_id": "string"
             }
@@ -7267,19 +8737,29 @@ TreatmentTypeEnum
               "greatest_dimension_tumour_not_available": false,
               "tumour_focality": "Cannot be assessed",
               "residual_tumour_classification": "Not applicable",
-              "margin_types_involved": [
-                "Circumferential resection margin"
-              ],
-              "margin_types_not_involved": [
-                "Circumferential resection margin"
-              ],
-              "margin_types_not_assessed": [
-                "Circumferential resection margin"
-              ],
+              "margins_status": "Margins clear",
               "lymphovascular_invasion": "Absent",
               "perineural_invasion": "Absent",
               "surgery_reference_database": "SNOMED",
               "surgery_reference_identifier": "string"
+            }
+          ],
+          "radiopharmaceutical_therapies": [
+            {
+              "rxnorm_code": "string",
+              "agent_name": "string",
+              "radionuclide": "Carbon-14",
+              "radionuclide_other": "string",
+              "start_date": {},
+              "end_date": {},
+              "cumulative_drug_dose": 0,
+              "cumulative_drug_dose_not_available": false,
+              "drug_dose_units": "Bq",
+              "mass_value": 0,
+              "mass_value_not_available": false,
+              "mass_unit_ucum": "ug",
+              "number_of_cycles": 0,
+              "number_of_cycles_not_available": false
             }
           ],
           "followups": [
@@ -7365,6 +8845,8 @@ TreatmentTypeEnum
       "ca125_not_available": false,
       "cea": 0,
       "cea_not_available": false,
+      "ca19_9": 0,
+      "ca19_9_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
       "er_percent_positive_not_available": false,
@@ -7466,13 +8948,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|lost_to_followup_after_clinical_event_identifier|any|false|none|none|
+|lost_to_follow_up|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[LostToFollowUpEnum](#schemalosttofollowupenum)|false|none|none|
 
 or
 
@@ -7491,24 +8973,6 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[LostToFollowupReasonEnum](#schemalosttofollowupreasonenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|date_alive_after_lost_to_followup|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -7574,6 +9038,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|date_of_death_is_estimated|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateOfDeathIsEstimatedEnum](#schemadateofdeathisestimatedenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |date_resolution|any|false|none|none|
 
 anyOf
@@ -7622,6 +9104,8 @@ continued
   "ca125_not_available": false,
   "cea": 0,
   "cea_not_available": false,
+  "ca19_9": 0,
+  "ca19_9_not_available": false,
   "er_status": "Cannot be determined",
   "er_percent_positive": 0,
   "er_percent_positive_not_available": false,
@@ -7741,7 +9225,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -7760,7 +9244,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -7779,7 +9263,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -7792,6 +9276,25 @@ continued
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |cea_not_available|boolean|false|none|none|
+|ca19_9|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|number|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|ca19_9_not_available|boolean|false|none|none|
 |er_status|any|false|none|none|
 
 anyOf
@@ -8349,12 +9852,12 @@ or
       "tumour_grade": "Low grade",
       "percent_tumour_cells_range": "0-19%",
       "percent_tumour_cells_measurement_method": "Genomics",
+      "specimen_tissue_source": "Abdominal fluid",
+      "tumour_normal_designation": "Normal",
+      "specimen_type": "Cell line - derived from normal",
       "sample_registrations": [
         {
           "submitter_sample_id": "string",
-          "specimen_tissue_source": "Abdominal fluid",
-          "tumour_normal_designation": "Normal",
-          "specimen_type": "Cell line - derived from normal",
           "sample_type": "Amplified DNA"
         }
       ]
@@ -8376,6 +9879,7 @@ or
         "month_interval": 0
       },
       "treatment_intent": "Curative",
+      "treatment_setting": "Adjuvant",
       "response_to_treatment_criteria_method": "RECIST 1.1",
       "response_to_treatment": "Complete response",
       "status_of_treatment": "Treatment completed as prescribed",
@@ -8406,7 +9910,7 @@ or
           "radiation_therapy_fractions_not_available": false,
           "radiation_therapy_dosage": 0,
           "radiation_therapy_dosage_not_available": false,
-          "anatomical_site_irradiated": "LEFT ABDOMEN",
+          "anatomical_site_irradiated": "ABDOMEN_WHOLE",
           "radiation_boost": "Yes",
           "reference_radiation_treatment_id": "string"
         }
@@ -8424,19 +9928,29 @@ or
           "greatest_dimension_tumour_not_available": false,
           "tumour_focality": "Cannot be assessed",
           "residual_tumour_classification": "Not applicable",
-          "margin_types_involved": [
-            "Circumferential resection margin"
-          ],
-          "margin_types_not_involved": [
-            "Circumferential resection margin"
-          ],
-          "margin_types_not_assessed": [
-            "Circumferential resection margin"
-          ],
+          "margins_status": "Margins clear",
           "lymphovascular_invasion": "Absent",
           "perineural_invasion": "Absent",
           "surgery_reference_database": "SNOMED",
           "surgery_reference_identifier": "string"
+        }
+      ],
+      "radiopharmaceutical_therapies": [
+        {
+          "rxnorm_code": "string",
+          "agent_name": "string",
+          "radionuclide": "Carbon-14",
+          "radionuclide_other": "string",
+          "start_date": {},
+          "end_date": {},
+          "cumulative_drug_dose": 0,
+          "cumulative_drug_dose_not_available": false,
+          "drug_dose_units": "Bq",
+          "mass_value": 0,
+          "mass_value_not_available": false,
+          "mass_unit_ucum": "ug",
+          "number_of_cycles": 0,
+          "number_of_cycles_not_available": false
         }
       ],
       "followups": [
@@ -8783,7 +10297,7 @@ continued
   "radiation_therapy_fractions_not_available": false,
   "radiation_therapy_dosage": 0,
   "radiation_therapy_dosage_not_available": false,
-  "anatomical_site_irradiated": "LEFT ABDOMEN",
+  "anatomical_site_irradiated": "ABDOMEN_WHOLE",
   "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string"
 }
@@ -8920,6 +10434,241 @@ or
 |---|---|---|---|---|
 |» *anonymous*|null|false|none|none|
 
+<h2 id="tocS_NestedRadiopharmaceuticalTherapySchema">NestedRadiopharmaceuticalTherapySchema</h2>
+
+<a id="schemanestedradiopharmaceuticaltherapyschema"></a>
+<a id="schema_NestedRadiopharmaceuticalTherapySchema"></a>
+<a id="tocSnestedradiopharmaceuticaltherapyschema"></a>
+<a id="tocsnestedradiopharmaceuticaltherapyschema"></a>
+
+```json
+{
+  "rxnorm_code": "string",
+  "agent_name": "string",
+  "radionuclide": "Carbon-14",
+  "radionuclide_other": "string",
+  "start_date": {},
+  "end_date": {},
+  "cumulative_drug_dose": 0,
+  "cumulative_drug_dose_not_available": false,
+  "drug_dose_units": "Bq",
+  "mass_value": 0,
+  "mass_value_not_available": false,
+  "mass_unit_ucum": "ug",
+  "number_of_cycles": 0,
+  "number_of_cycles_not_available": false
+}
+
+```
+
+NestedRadiopharmaceuticalTherapySchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|rxnorm_code|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|agent_name|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|radionuclide|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[RadionuclideEnum](#schemaradionuclideenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|radionuclide_other|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|start_date|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|object|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|end_date|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|object|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cumulative_drug_dose|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|number|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cumulative_drug_dose_not_available|boolean|false|none|none|
+|drug_dose_units|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DrugDoseUnitsEnum](#schemadrugdoseunitsenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mass_value|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|number|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mass_value_not_available|boolean|false|none|none|
+|mass_unit_ucum|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MassUnitUcumEnum](#schemamassunitucumenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|number_of_cycles|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|number_of_cycles_not_available|boolean|false|none|none|
+
 <h2 id="tocS_NestedSampleRegistrationSchema">NestedSampleRegistrationSchema</h2>
 
 <a id="schemanestedsampleregistrationschema"></a>
@@ -8930,9 +10679,6 @@ or
 ```json
 {
   "submitter_sample_id": "string",
-  "specimen_tissue_source": "Abdominal fluid",
-  "tumour_normal_designation": "Normal",
-  "specimen_type": "Cell line - derived from normal",
   "sample_type": "Amplified DNA"
 }
 
@@ -8945,60 +10691,6 @@ NestedSampleRegistrationSchema
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |submitter_sample_id|string|true|none|none|
-|specimen_tissue_source|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[SpecimenTissueSourceEnum](#schemaspecimentissuesourceenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|tumour_normal_designation|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[TumourDesginationEnum](#schematumourdesginationenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|specimen_type|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[SpecimenTypeEnum](#schemaspecimentypeenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |sample_type|any|false|none|none|
 
 anyOf
@@ -9036,12 +10728,12 @@ or
   "tumour_grade": "Low grade",
   "percent_tumour_cells_range": "0-19%",
   "percent_tumour_cells_measurement_method": "Genomics",
+  "specimen_tissue_source": "Abdominal fluid",
+  "tumour_normal_designation": "Normal",
+  "specimen_type": "Cell line - derived from normal",
   "sample_registrations": [
     {
       "submitter_sample_id": "string",
-      "specimen_tissue_source": "Abdominal fluid",
-      "tumour_normal_designation": "Normal",
-      "specimen_type": "Cell line - derived from normal",
       "sample_type": "Amplified DNA"
     }
   ]
@@ -9290,6 +10982,60 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|specimen_tissue_source|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[SpecimenTissueSourceEnum](#schemaspecimentissuesourceenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|tumour_normal_designation|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[TumourDesginationEnum](#schematumourdesginationenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|specimen_type|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[SpecimenTypeEnum](#schemaspecimentypeenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |sample_registrations|[[NestedSampleRegistrationSchema](#schemanestedsampleregistrationschema)]|false|none|none|
 
 <h2 id="tocS_NestedSurgerySchema">NestedSurgerySchema</h2>
@@ -9312,15 +11058,7 @@ continued
   "greatest_dimension_tumour_not_available": false,
   "tumour_focality": "Cannot be assessed",
   "residual_tumour_classification": "Not applicable",
-  "margin_types_involved": [
-    "Circumferential resection margin"
-  ],
-  "margin_types_not_involved": [
-    "Circumferential resection margin"
-  ],
-  "margin_types_not_assessed": [
-    "Circumferential resection margin"
-  ],
+  "margins_status": "Margins clear",
   "lymphovascular_invasion": "Absent",
   "perineural_invasion": "Absent",
   "surgery_reference_database": "SNOMED",
@@ -9482,49 +11220,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|margin_types_involved|any|false|none|none|
+|margins_status|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[[MarginTypesEnum](#schemamargintypesenum)]|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|margin_types_not_involved|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[[MarginTypesEnum](#schemamargintypesenum)]|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|margin_types_not_assessed|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[[MarginTypesEnum](#schemamargintypesenum)]|false|none|none|
+|» *anonymous*|[MarginsStatusEnum](#schemamarginsstatusenum)|false|none|none|
 
 or
 
@@ -9864,6 +11566,7 @@ continued
     "month_interval": 0
   },
   "treatment_intent": "Curative",
+  "treatment_setting": "Adjuvant",
   "response_to_treatment_criteria_method": "RECIST 1.1",
   "response_to_treatment": "Complete response",
   "status_of_treatment": "Treatment completed as prescribed",
@@ -9894,7 +11597,7 @@ continued
       "radiation_therapy_fractions_not_available": false,
       "radiation_therapy_dosage": 0,
       "radiation_therapy_dosage_not_available": false,
-      "anatomical_site_irradiated": "LEFT ABDOMEN",
+      "anatomical_site_irradiated": "ABDOMEN_WHOLE",
       "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string"
     }
@@ -9912,19 +11615,29 @@ continued
       "greatest_dimension_tumour_not_available": false,
       "tumour_focality": "Cannot be assessed",
       "residual_tumour_classification": "Not applicable",
-      "margin_types_involved": [
-        "Circumferential resection margin"
-      ],
-      "margin_types_not_involved": [
-        "Circumferential resection margin"
-      ],
-      "margin_types_not_assessed": [
-        "Circumferential resection margin"
-      ],
+      "margins_status": "Margins clear",
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
       "surgery_reference_database": "SNOMED",
       "surgery_reference_identifier": "string"
+    }
+  ],
+  "radiopharmaceutical_therapies": [
+    {
+      "rxnorm_code": "string",
+      "agent_name": "string",
+      "radionuclide": "Carbon-14",
+      "radionuclide_other": "string",
+      "start_date": {},
+      "end_date": {},
+      "cumulative_drug_dose": 0,
+      "cumulative_drug_dose_not_available": false,
+      "drug_dose_units": "Bq",
+      "mass_value": 0,
+      "mass_value_not_available": false,
+      "mass_unit_ucum": "ug",
+      "number_of_cycles": 0,
+      "number_of_cycles_not_available": false
     }
   ],
   "followups": [
@@ -10049,6 +11762,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|treatment_setting|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[TreatmentSettingEnum](#schematreatmentsettingenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |response_to_treatment_criteria_method|any|false|none|none|
 
 anyOf
@@ -10106,6 +11837,7 @@ continued
 |systemic_therapies|[[NestedSystemicTherapySchema](#schemanestedsystemictherapyschema)]|false|none|none|
 |radiations|[[NestedRadiationSchema](#schemanestedradiationschema)]|false|none|none|
 |surgeries|[[NestedSurgerySchema](#schemanestedsurgeryschema)]|false|none|none|
+|radiopharmaceutical_therapies|[[NestedRadiopharmaceuticalTherapySchema](#schemanestedradiopharmaceuticaltherapyschema)]|false|none|none|
 |followups|[[NestedFollowUpSchema](#schemanestedfollowupschema)]|false|none|none|
 
 <h2 id="tocS_Input">Input</h2>
@@ -10179,6 +11911,32 @@ or
     {
       "program_id": "string",
       "metadata": {},
+      "program_description": "string",
+      "program_name": "string",
+      "keywords": [
+        null
+      ],
+      "status": "Ongoing",
+      "context": "Clinical",
+      "participant_criteria": "string",
+      "principal_investigators": [
+        null
+      ],
+      "lead_organizations": [
+        null
+      ],
+      "collaborators": [
+        null
+      ],
+      "funding_sources": [
+        null
+      ],
+      "publication_links": [
+        null
+      ],
+      "program_url": "string",
+      "pancan_cohort": "Yes",
+      "pancan_id": "string",
       "created": "2019-08-24T14:15:22Z",
       "updated": "2019-08-24T14:15:22Z"
     }
@@ -10258,6 +12016,32 @@ or
 {
   "program_id": "string",
   "metadata": {},
+  "program_description": "string",
+  "program_name": "string",
+  "keywords": [
+    null
+  ],
+  "status": "Ongoing",
+  "context": "Clinical",
+  "participant_criteria": "string",
+  "principal_investigators": [
+    null
+  ],
+  "lead_organizations": [
+    null
+  ],
+  "collaborators": [
+    null
+  ],
+  "funding_sources": [
+    null
+  ],
+  "publication_links": [
+    null
+  ],
+  "program_url": "string",
+  "pancan_cohort": "Yes",
+  "pancan_id": "string",
   "created": "2019-08-24T14:15:22Z",
   "updated": "2019-08-24T14:15:22Z"
 }
@@ -10289,6 +12073,258 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|program_description|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|program_name|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|keywords|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|status|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[StatusEnum](#schemastatusenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|context|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[ContextEnum](#schemacontextenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|participant_criteria|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|principal_investigators|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|lead_organizations|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|collaborators|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|funding_sources|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|publication_links|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[any]|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|program_url|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|pancan_cohort|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[PancanCohortEnum](#schemapancancohortenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|pancan_id|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |created|string(date-time)|false|none|none|
 |updated|string(date-time)|false|none|none|
 
@@ -10306,9 +12342,10 @@ continued
   "gender": "string",
   "sex_at_birth": "string",
   "is_deceased": "string",
-  "lost_to_followup_after_clinical_event_identifier": "string",
+  "lost_to_follow_up": "string",
   "lost_to_followup_reason": "string",
-  "cause_of_death": "string"
+  "cause_of_death": "string",
+  "date_of_death_is_estimated": "string"
 }
 
 ```
@@ -10409,7 +12446,7 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|lost_to_followup_after_clinical_event_identifier|any|false|none|none|
+|lost_to_follow_up|any|false|none|none|
 
 anyOf
 
@@ -10459,6 +12496,24 @@ or
 |---|---|---|---|---|
 |» *anonymous*|null|false|none|none|
 
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_death_is_estimated|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
 <h2 id="tocS_DonorModelSchema">DonorModelSchema</h2>
 
 <a id="schemadonormodelschema"></a>
@@ -10472,12 +12527,8 @@ or
   "gender": "Man",
   "sex_at_birth": "Male",
   "is_deceased": "Yes",
-  "lost_to_followup_after_clinical_event_identifier": "string",
+  "lost_to_follow_up": "Yes",
   "lost_to_followup_reason": "Completed study",
-  "date_alive_after_lost_to_followup": {
-    "day_interval": 0,
-    "month_interval": 0
-  },
   "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
@@ -10487,6 +12538,7 @@ or
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_death_is_estimated": "Yes",
   "date_resolution": "string",
   "program_id": "string"
 }
@@ -10554,13 +12606,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|lost_to_followup_after_clinical_event_identifier|any|false|none|none|
+|lost_to_follow_up|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[LostToFollowUpEnum](#schemalosttofollowupenum)|false|none|none|
 
 or
 
@@ -10579,24 +12631,6 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[LostToFollowupReasonEnum](#schemalosttofollowupreasonenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|date_alive_after_lost_to_followup|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -10662,6 +12696,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|date_of_death_is_estimated|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateOfDeathIsEstimatedEnum](#schemadateofdeathisestimatedenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |date_resolution|any|false|none|none|
 
 anyOf
@@ -10697,12 +12749,8 @@ continued
       "gender": "Man",
       "sex_at_birth": "Male",
       "is_deceased": "Yes",
-      "lost_to_followup_after_clinical_event_identifier": "string",
+      "lost_to_follow_up": "Yes",
       "lost_to_followup_reason": "Completed study",
-      "date_alive_after_lost_to_followup": {
-        "day_interval": 0,
-        "month_interval": 0
-      },
       "cause_of_death": "Died of cancer",
       "date_of_birth": {
         "day_interval": 0,
@@ -10712,6 +12760,7 @@ continued
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_death_is_estimated": "Yes",
       "date_resolution": "string",
       "program_id": "string"
     }
@@ -10831,12 +12880,8 @@ DonorExplorerFilterSchema
       "gender": "Man",
       "sex_at_birth": "Male",
       "is_deceased": "Yes",
-      "lost_to_followup_after_clinical_event_identifier": "string",
+      "lost_to_follow_up": "Yes",
       "lost_to_followup_reason": "Completed study",
-      "date_alive_after_lost_to_followup": {
-        "day_interval": 0,
-        "month_interval": 0
-      },
       "cause_of_death": "Died of cancer",
       "date_of_birth": {
         "day_interval": 0,
@@ -10846,6 +12891,7 @@ DonorExplorerFilterSchema
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_death_is_estimated": "Yes",
       "date_resolution": "string",
       "program_id": "string",
       "primary_site": [
@@ -10936,12 +12982,8 @@ or
   "gender": "Man",
   "sex_at_birth": "Male",
   "is_deceased": "Yes",
-  "lost_to_followup_after_clinical_event_identifier": "string",
+  "lost_to_follow_up": "Yes",
   "lost_to_followup_reason": "Completed study",
-  "date_alive_after_lost_to_followup": {
-    "day_interval": 0,
-    "month_interval": 0
-  },
   "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
@@ -10951,6 +12993,7 @@ or
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_death_is_estimated": "Yes",
   "date_resolution": "string",
   "program_id": "string",
   "primary_site": [
@@ -11027,13 +13070,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|lost_to_followup_after_clinical_event_identifier|any|false|none|none|
+|lost_to_follow_up|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[LostToFollowUpEnum](#schemalosttofollowupenum)|false|none|none|
 
 or
 
@@ -11052,24 +13095,6 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[LostToFollowupReasonEnum](#schemalosttofollowupreasonenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|date_alive_after_lost_to_followup|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -11124,6 +13149,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_death_is_estimated|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateOfDeathIsEstimatedEnum](#schemadateofdeathisestimatedenum)|false|none|none|
 
 or
 
@@ -11972,6 +14015,7 @@ continued
   "psa_level": 0,
   "ca125": 0,
   "cea": 0,
+  "ca19_9": 0,
   "er_status": "string",
   "er_percent_positive": 0,
   "pr_status": "string",
@@ -12107,7 +14151,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -12125,7 +14169,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -12143,7 +14187,25 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|ca19_9|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -12324,6 +14386,8 @@ continued
   "ca125_not_available": false,
   "cea": 0,
   "cea_not_available": false,
+  "ca19_9": 0,
+  "ca19_9_not_available": false,
   "er_status": "Cannot be determined",
   "er_percent_positive": 0,
   "er_percent_positive_not_available": false,
@@ -12445,7 +14509,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -12464,7 +14528,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -12483,7 +14547,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -12496,6 +14560,25 @@ continued
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |cea_not_available|boolean|false|none|none|
+|ca19_9|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|number|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|ca19_9_not_available|boolean|false|none|none|
 |er_status|any|false|none|none|
 
 anyOf
@@ -12688,6 +14771,8 @@ continued
       "ca125_not_available": false,
       "cea": 0,
       "cea_not_available": false,
+      "ca19_9": 0,
+      "ca19_9_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
       "er_percent_positive_not_available": false,
@@ -14672,7 +16757,7 @@ or
       "radiation_therapy_fractions_not_available": false,
       "radiation_therapy_dosage": 0,
       "radiation_therapy_dosage_not_available": false,
-      "anatomical_site_irradiated": "LEFT ABDOMEN",
+      "anatomical_site_irradiated": "ABDOMEN_WHOLE",
       "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string",
       "program_id": "string",
@@ -14759,7 +16844,7 @@ or
   "radiation_therapy_fractions_not_available": false,
   "radiation_therapy_dosage": 0,
   "radiation_therapy_dosage_not_available": false,
-  "anatomical_site_irradiated": "LEFT ABDOMEN",
+  "anatomical_site_irradiated": "ABDOMEN_WHOLE",
   "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string",
   "program_id": "string",
@@ -14907,6 +16992,584 @@ continued
 |submitter_donor_id|string|true|none|none|
 |submitter_treatment_id|string|true|none|none|
 
+<h2 id="tocS_RadiopharmaceuticalTherapyFilterSchema">RadiopharmaceuticalTherapyFilterSchema</h2>
+
+<a id="schemaradiopharmaceuticaltherapyfilterschema"></a>
+<a id="schema_RadiopharmaceuticalTherapyFilterSchema"></a>
+<a id="tocSradiopharmaceuticaltherapyfilterschema"></a>
+<a id="tocsradiopharmaceuticaltherapyfilterschema"></a>
+
+```json
+{
+  "program_id": "string",
+  "submitter_donor_id": "string",
+  "submitter_treatment_id": "string",
+  "rxnorm_code": "string",
+  "agent_name": "string",
+  "radionuclide": "string",
+  "radionuclide_other": "string",
+  "cumulative_drug_dose": 0,
+  "drug_dose_units": "string",
+  "mass_value": 0,
+  "mass_unit_ucum": "string",
+  "number_of_cycles": 0
+}
+
+```
+
+RadiopharmaceuticalTherapyFilterSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|program_id|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|submitter_donor_id|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|submitter_treatment_id|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|rxnorm_code|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|agent_name|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|radionuclide|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|radionuclide_other|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cumulative_drug_dose|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|number|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_dose_units|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mass_value|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|number|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mass_unit_ucum|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|number_of_cycles|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+<h2 id="tocS_PagedRadiopharmaceuticalTherapyModelSchema">PagedRadiopharmaceuticalTherapyModelSchema</h2>
+
+<a id="schemapagedradiopharmaceuticaltherapymodelschema"></a>
+<a id="schema_PagedRadiopharmaceuticalTherapyModelSchema"></a>
+<a id="tocSpagedradiopharmaceuticaltherapymodelschema"></a>
+<a id="tocspagedradiopharmaceuticaltherapymodelschema"></a>
+
+```json
+{
+  "items": [
+    {
+      "rxnorm_code": "string",
+      "agent_name": "string",
+      "radionuclide": "Carbon-14",
+      "radionuclide_other": "string",
+      "start_date": {},
+      "end_date": {},
+      "cumulative_drug_dose": 0,
+      "cumulative_drug_dose_not_available": false,
+      "drug_dose_units": "Bq",
+      "mass_value": 0,
+      "mass_value_not_available": false,
+      "mass_unit_ucum": "ug",
+      "number_of_cycles": 0,
+      "number_of_cycles_not_available": false,
+      "program_id": "string",
+      "submitter_donor_id": "string",
+      "submitter_treatment_id": "string"
+    }
+  ],
+  "count": 0,
+  "next_page": 0,
+  "previous_page": 0
+}
+
+```
+
+PagedRadiopharmaceuticalTherapyModelSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|items|[[RadiopharmaceuticalTherapyModelSchema](#schemaradiopharmaceuticaltherapymodelschema)]|true|none|none|
+|count|any|true|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|next_page|any|true|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|previous_page|any|true|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+<h2 id="tocS_RadiopharmaceuticalTherapyModelSchema">RadiopharmaceuticalTherapyModelSchema</h2>
+
+<a id="schemaradiopharmaceuticaltherapymodelschema"></a>
+<a id="schema_RadiopharmaceuticalTherapyModelSchema"></a>
+<a id="tocSradiopharmaceuticaltherapymodelschema"></a>
+<a id="tocsradiopharmaceuticaltherapymodelschema"></a>
+
+```json
+{
+  "rxnorm_code": "string",
+  "agent_name": "string",
+  "radionuclide": "Carbon-14",
+  "radionuclide_other": "string",
+  "start_date": {},
+  "end_date": {},
+  "cumulative_drug_dose": 0,
+  "cumulative_drug_dose_not_available": false,
+  "drug_dose_units": "Bq",
+  "mass_value": 0,
+  "mass_value_not_available": false,
+  "mass_unit_ucum": "ug",
+  "number_of_cycles": 0,
+  "number_of_cycles_not_available": false,
+  "program_id": "string",
+  "submitter_donor_id": "string",
+  "submitter_treatment_id": "string"
+}
+
+```
+
+RadiopharmaceuticalTherapyModelSchema
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|rxnorm_code|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|agent_name|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|radionuclide|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[RadionuclideEnum](#schemaradionuclideenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|radionuclide_other|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|start_date|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|object|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|end_date|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|object|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cumulative_drug_dose|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|number|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cumulative_drug_dose_not_available|boolean|false|none|none|
+|drug_dose_units|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DrugDoseUnitsEnum](#schemadrugdoseunitsenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mass_value|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|number|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|mass_value_not_available|boolean|false|none|none|
+|mass_unit_ucum|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MassUnitUcumEnum](#schemamassunitucumenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|number_of_cycles|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|integer|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|number_of_cycles_not_available|boolean|false|none|none|
+|program_id|string|true|none|none|
+|submitter_donor_id|string|true|none|none|
+|submitter_treatment_id|string|true|none|none|
+
 <h2 id="tocS_SampleRegistrationFilterSchema">SampleRegistrationFilterSchema</h2>
 
 <a id="schemasampleregistrationfilterschema"></a>
@@ -14920,9 +17583,6 @@ continued
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_specimen_id": "string",
-  "specimen_tissue_source": "string",
-  "tumour_normal_designation": "string",
-  "specimen_type": "string",
   "sample_type": "string"
 }
 
@@ -15006,60 +17666,6 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_tissue_source|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|tumour_normal_designation|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|specimen_type|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |sample_type|any|false|none|none|
 
 anyOf
@@ -15086,9 +17692,6 @@ or
   "items": [
     {
       "submitter_sample_id": "string",
-      "specimen_tissue_source": "Abdominal fluid",
-      "tumour_normal_designation": "Normal",
-      "specimen_type": "Cell line - derived from normal",
       "sample_type": "Amplified DNA",
       "program_id": "string",
       "submitter_donor_id": "string",
@@ -15169,9 +17772,6 @@ or
 ```json
 {
   "submitter_sample_id": "string",
-  "specimen_tissue_source": "Abdominal fluid",
-  "tumour_normal_designation": "Normal",
-  "specimen_type": "Cell line - derived from normal",
   "sample_type": "Amplified DNA",
   "program_id": "string",
   "submitter_donor_id": "string",
@@ -15187,60 +17787,6 @@ SampleRegistrationModelSchema
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |submitter_sample_id|string|true|none|none|
-|specimen_tissue_source|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[SpecimenTissueSourceEnum](#schemaspecimentissuesourceenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|tumour_normal_designation|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[TumourDesginationEnum](#schematumourdesginationenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|specimen_type|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[SpecimenTypeEnum](#schemaspecimentypeenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |sample_type|any|false|none|none|
 
 anyOf
@@ -15287,7 +17833,10 @@ continued
   "tumour_grading_system": "string",
   "tumour_grade": "string",
   "percent_tumour_cells_range": "string",
-  "percent_tumour_cells_measurement_method": "string"
+  "percent_tumour_cells_measurement_method": "string",
+  "specimen_tissue_source": "string",
+  "tumour_normal_designation": "string",
+  "specimen_type": "string"
 }
 
 ```
@@ -15582,6 +18131,60 @@ or
 |---|---|---|---|---|
 |» *anonymous*|null|false|none|none|
 
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|specimen_tissue_source|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|tumour_normal_designation|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|specimen_type|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
 <h2 id="tocS_PagedSpecimenModelSchema">PagedSpecimenModelSchema</h2>
 
 <a id="schemapagedspecimenmodelschema"></a>
@@ -15607,6 +18210,9 @@ or
       "tumour_grade": "Low grade",
       "percent_tumour_cells_range": "0-19%",
       "percent_tumour_cells_measurement_method": "Genomics",
+      "specimen_tissue_source": "Abdominal fluid",
+      "tumour_normal_designation": "Normal",
+      "specimen_type": "Cell line - derived from normal",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_primary_diagnosis_id": "string"
@@ -15699,6 +18305,9 @@ or
   "tumour_grade": "Low grade",
   "percent_tumour_cells_range": "0-19%",
   "percent_tumour_cells_measurement_method": "Genomics",
+  "specimen_tissue_source": "Abdominal fluid",
+  "tumour_normal_designation": "Normal",
+  "specimen_type": "Cell line - derived from normal",
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_primary_diagnosis_id": "string"
@@ -15947,6 +18556,60 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|specimen_tissue_source|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[SpecimenTissueSourceEnum](#schemaspecimentissuesourceenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|tumour_normal_designation|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[TumourDesginationEnum](#schematumourdesginationenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|specimen_type|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[SpecimenTypeEnum](#schemaspecimentypeenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |submitter_primary_diagnosis_id|string|true|none|none|
@@ -15971,15 +18634,7 @@ continued
   "greatest_dimension_tumour": 0,
   "tumour_focality": "string",
   "residual_tumour_classification": "string",
-  "margin_types_involved": [
-    "string"
-  ],
-  "margin_types_not_involved": [
-    "string"
-  ],
-  "margin_types_not_assessed": [
-    "string"
-  ],
+  "margins_status": "string",
   "lymphovascular_invasion": "string",
   "perineural_invasion": "string",
   "surgery_reference_database": "string",
@@ -16192,9 +18847,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|margin_types_involved|[string]|false|none|none|
-|margin_types_not_involved|[string]|false|none|none|
-|margin_types_not_assessed|[string]|false|none|none|
+|margins_status|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |lymphovascular_invasion|any|false|none|none|
 
 anyOf
@@ -16285,15 +18955,7 @@ or
       "greatest_dimension_tumour_not_available": false,
       "tumour_focality": "Cannot be assessed",
       "residual_tumour_classification": "Not applicable",
-      "margin_types_involved": [
-        "Circumferential resection margin"
-      ],
-      "margin_types_not_involved": [
-        "Circumferential resection margin"
-      ],
-      "margin_types_not_assessed": [
-        "Circumferential resection margin"
-      ],
+      "margins_status": "Margins clear",
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
       "surgery_reference_database": "SNOMED",
@@ -16387,15 +19049,7 @@ or
   "greatest_dimension_tumour_not_available": false,
   "tumour_focality": "Cannot be assessed",
   "residual_tumour_classification": "Not applicable",
-  "margin_types_involved": [
-    "Circumferential resection margin"
-  ],
-  "margin_types_not_involved": [
-    "Circumferential resection margin"
-  ],
-  "margin_types_not_assessed": [
-    "Circumferential resection margin"
-  ],
+  "margins_status": "Margins clear",
   "lymphovascular_invasion": "Absent",
   "perineural_invasion": "Absent",
   "surgery_reference_database": "SNOMED",
@@ -16560,49 +19214,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|margin_types_involved|any|false|none|none|
+|margins_status|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[[MarginTypesEnum](#schemamargintypesenum)]|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|margin_types_not_involved|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[[MarginTypesEnum](#schemamargintypesenum)]|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|margin_types_not_assessed|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[[MarginTypesEnum](#schemamargintypesenum)]|false|none|none|
+|» *anonymous*|[MarginsStatusEnum](#schemamarginsstatusenum)|false|none|none|
 
 or
 
@@ -16706,6 +19324,7 @@ continued
   "treatment_type": "string",
   "is_primary_treatment": "string",
   "treatment_intent": "string",
+  "treatment_setting": "string",
   "response_to_treatment_criteria_method": "string",
   "response_to_treatment": "string",
   "status_of_treatment": "string"
@@ -16845,6 +19464,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|treatment_setting|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |response_to_treatment_criteria_method|any|false|none|none|
 
 anyOf
@@ -16920,6 +19557,7 @@ or
         "month_interval": 0
       },
       "treatment_intent": "Curative",
+      "treatment_setting": "Adjuvant",
       "response_to_treatment_criteria_method": "RECIST 1.1",
       "response_to_treatment": "Complete response",
       "status_of_treatment": "Treatment completed as prescribed",
@@ -17015,6 +19653,7 @@ or
     "month_interval": 0
   },
   "treatment_intent": "Curative",
+  "treatment_setting": "Adjuvant",
   "response_to_treatment_criteria_method": "RECIST 1.1",
   "response_to_treatment": "Complete response",
   "status_of_treatment": "Treatment completed as prescribed",
@@ -17122,6 +19761,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|treatment_setting|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[TreatmentSettingEnum](#schematreatmentsettingenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |response_to_treatment_criteria_method|any|false|none|none|
 
 anyOf
@@ -17195,12 +19852,8 @@ continued
       "gender": "Man",
       "sex_at_birth": "Male",
       "is_deceased": "Yes",
-      "lost_to_followup_after_clinical_event_identifier": "string",
+      "lost_to_follow_up": "Yes",
       "lost_to_followup_reason": "Completed study",
-      "date_alive_after_lost_to_followup": {
-        "day_interval": 0,
-        "month_interval": 0
-      },
       "cause_of_death": "Died of cancer",
       "date_of_birth": {
         "day_interval": 0,
@@ -17210,6 +19863,7 @@ continued
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_death_is_estimated": "Yes",
       "date_resolution": "string",
       "program_id": "string"
     }
@@ -17255,6 +19909,9 @@ continued
       "tumour_grade": "Low grade",
       "percent_tumour_cells_range": "0-19%",
       "percent_tumour_cells_measurement_method": "Genomics",
+      "specimen_tissue_source": "Abdominal fluid",
+      "tumour_normal_designation": "Normal",
+      "specimen_type": "Cell line - derived from normal",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_primary_diagnosis_id": "string"
@@ -17263,9 +19920,6 @@ continued
   "sample_registrations": [
     {
       "submitter_sample_id": "string",
-      "specimen_tissue_source": "Abdominal fluid",
-      "tumour_normal_designation": "Normal",
-      "specimen_type": "Cell line - derived from normal",
       "sample_type": "Amplified DNA",
       "program_id": "string",
       "submitter_donor_id": "string",
@@ -17288,6 +19942,7 @@ continued
         "month_interval": 0
       },
       "treatment_intent": "Curative",
+      "treatment_setting": "Adjuvant",
       "response_to_treatment_criteria_method": "RECIST 1.1",
       "response_to_treatment": "Complete response",
       "status_of_treatment": "Treatment completed as prescribed",
@@ -17326,9 +19981,30 @@ continued
       "radiation_therapy_fractions_not_available": false,
       "radiation_therapy_dosage": 0,
       "radiation_therapy_dosage_not_available": false,
-      "anatomical_site_irradiated": "LEFT ABDOMEN",
+      "anatomical_site_irradiated": "ABDOMEN_WHOLE",
       "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string",
+      "program_id": "string",
+      "submitter_donor_id": "string",
+      "submitter_treatment_id": "string"
+    }
+  ],
+  "radiopharmaceutical_therapies": [
+    {
+      "rxnorm_code": "string",
+      "agent_name": "string",
+      "radionuclide": "Carbon-14",
+      "radionuclide_other": "string",
+      "start_date": {},
+      "end_date": {},
+      "cumulative_drug_dose": 0,
+      "cumulative_drug_dose_not_available": false,
+      "drug_dose_units": "Bq",
+      "mass_value": 0,
+      "mass_value_not_available": false,
+      "mass_unit_ucum": "ug",
+      "number_of_cycles": 0,
+      "number_of_cycles_not_available": false,
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -17347,15 +20023,7 @@ continued
       "greatest_dimension_tumour_not_available": false,
       "tumour_focality": "Cannot be assessed",
       "residual_tumour_classification": "Not applicable",
-      "margin_types_involved": [
-        "Circumferential resection margin"
-      ],
-      "margin_types_not_involved": [
-        "Circumferential resection margin"
-      ],
-      "margin_types_not_assessed": [
-        "Circumferential resection margin"
-      ],
+      "margins_status": "Margins clear",
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
       "surgery_reference_database": "SNOMED",
@@ -17406,6 +20074,8 @@ continued
       "ca125_not_available": false,
       "cea": 0,
       "cea_not_available": false,
+      "ca19_9": 0,
+      "ca19_9_not_available": false,
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
       "er_percent_positive_not_available": false,
@@ -17465,6 +20135,7 @@ AllModelsSchema
 |treatments|[[TreatmentModelSchema](#schematreatmentmodelschema)]|true|none|none|
 |systemic_therapies|[[SystemicTherapyModelSchema](#schemasystemictherapymodelschema)]|true|none|none|
 |radiations|[[RadiationModelSchema](#schemaradiationmodelschema)]|true|none|none|
+|radiopharmaceutical_therapies|[[RadiopharmaceuticalTherapyModelSchema](#schemaradiopharmaceuticaltherapymodelschema)]|true|none|none|
 |surgeries|[[SurgeryModelSchema](#schemasurgerymodelschema)]|true|none|none|
 |follow_ups|[[FollowUpModelSchema](#schemafollowupmodelschema)]|true|none|none|
 |biomarkers|[[BiomarkerModelSchema](#schemabiomarkermodelschema)]|true|none|none|
@@ -17494,12 +20165,8 @@ AllModelsSchema
         "gender": "Man",
         "sex_at_birth": "Male",
         "is_deceased": "Yes",
-        "lost_to_followup_after_clinical_event_identifier": "string",
+        "lost_to_follow_up": "Yes",
         "lost_to_followup_reason": "Completed study",
-        "date_alive_after_lost_to_followup": {
-          "day_interval": 0,
-          "month_interval": 0
-        },
         "cause_of_death": "Died of cancer",
         "date_of_birth": {
           "day_interval": 0,
@@ -17509,6 +20176,7 @@ AllModelsSchema
           "day_interval": 0,
           "month_interval": 0
         },
+        "date_of_death_is_estimated": "Yes",
         "date_resolution": "string",
         "program_id": "string"
       }
@@ -17554,6 +20222,9 @@ AllModelsSchema
         "tumour_grade": "Low grade",
         "percent_tumour_cells_range": "0-19%",
         "percent_tumour_cells_measurement_method": "Genomics",
+        "specimen_tissue_source": "Abdominal fluid",
+        "tumour_normal_designation": "Normal",
+        "specimen_type": "Cell line - derived from normal",
         "program_id": "string",
         "submitter_donor_id": "string",
         "submitter_primary_diagnosis_id": "string"
@@ -17562,9 +20233,6 @@ AllModelsSchema
     "sample_registrations": [
       {
         "submitter_sample_id": "string",
-        "specimen_tissue_source": "Abdominal fluid",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Cell line - derived from normal",
         "sample_type": "Amplified DNA",
         "program_id": "string",
         "submitter_donor_id": "string",
@@ -17587,6 +20255,7 @@ AllModelsSchema
           "month_interval": 0
         },
         "treatment_intent": "Curative",
+        "treatment_setting": "Adjuvant",
         "response_to_treatment_criteria_method": "RECIST 1.1",
         "response_to_treatment": "Complete response",
         "status_of_treatment": "Treatment completed as prescribed",
@@ -17625,9 +20294,30 @@ AllModelsSchema
         "radiation_therapy_fractions_not_available": false,
         "radiation_therapy_dosage": 0,
         "radiation_therapy_dosage_not_available": false,
-        "anatomical_site_irradiated": "LEFT ABDOMEN",
+        "anatomical_site_irradiated": "ABDOMEN_WHOLE",
         "radiation_boost": "Yes",
         "reference_radiation_treatment_id": "string",
+        "program_id": "string",
+        "submitter_donor_id": "string",
+        "submitter_treatment_id": "string"
+      }
+    ],
+    "radiopharmaceutical_therapies": [
+      {
+        "rxnorm_code": "string",
+        "agent_name": "string",
+        "radionuclide": "Carbon-14",
+        "radionuclide_other": "string",
+        "start_date": {},
+        "end_date": {},
+        "cumulative_drug_dose": 0,
+        "cumulative_drug_dose_not_available": false,
+        "drug_dose_units": "Bq",
+        "mass_value": 0,
+        "mass_value_not_available": false,
+        "mass_unit_ucum": "ug",
+        "number_of_cycles": 0,
+        "number_of_cycles_not_available": false,
         "program_id": "string",
         "submitter_donor_id": "string",
         "submitter_treatment_id": "string"
@@ -17646,15 +20336,7 @@ AllModelsSchema
         "greatest_dimension_tumour_not_available": false,
         "tumour_focality": "Cannot be assessed",
         "residual_tumour_classification": "Not applicable",
-        "margin_types_involved": [
-          "Circumferential resection margin"
-        ],
-        "margin_types_not_involved": [
-          "Circumferential resection margin"
-        ],
-        "margin_types_not_assessed": [
-          "Circumferential resection margin"
-        ],
+        "margins_status": "Margins clear",
         "lymphovascular_invasion": "Absent",
         "perineural_invasion": "Absent",
         "surgery_reference_database": "SNOMED",
@@ -17705,6 +20387,8 @@ AllModelsSchema
         "ca125_not_available": false,
         "cea": 0,
         "cea_not_available": false,
+        "ca19_9": 0,
+        "ca19_9_not_available": false,
         "er_status": "Cannot be determined",
         "er_percent_positive": 0,
         "er_percent_positive_not_available": false,
