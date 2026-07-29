@@ -3,9 +3,11 @@ classDiagram
     pre_save(model_instance, add)
   }
   class Biomarker {
-    ca125 : IntegerField
+    ca125 : FloatField
     ca125_not_available : BooleanField
-    cea : IntegerField
+    ca19_9 : FloatField
+    ca19_9_not_available : BooleanField
+    cea : FloatField
     cea_not_available : BooleanField
     donor_uuid : ForeignKey
     er_percent_positive : FloatField
@@ -20,7 +22,7 @@ classDiagram
     pr_percent_positive_not_available : BooleanField
     pr_status : CharField
     program_id : ForeignKey
-    psa_level : IntegerField
+    psa_level : FloatField
     psa_level_not_available : BooleanField
     submitter_donor_id : CharField
     submitter_follow_up_id : CharField
@@ -45,13 +47,13 @@ classDiagram
   }
   class Donor {
     cause_of_death : CharField
-    date_alive_after_lost_to_followup : JSONField
     date_of_birth : JSONField
     date_of_death : JSONField
+    date_of_death_is_estimated : CharField
     date_resolution : CharField
     gender : CharField
     is_deceased : CharField
-    lost_to_followup_after_clinical_event_identifier : CharField
+    lost_to_follow_up : CharField
     lost_to_followup_reason : CharField
     program_id : ForeignKey
     sex_at_birth : CharField
@@ -89,29 +91,23 @@ classDiagram
     ordering : list
   }
   class Meta {
-    ordering : list
-    unique_together : list
-  }
-  class Meta {
-    ordering : list
-    unique_together : list
-  }
-  class Meta {
-    ordering : list
-    unique_together : list
-  }
-  class Meta {
-    ordering : list
-    unique_together : list
-  }
-  class Meta {
-    ordering : list
-    unique_together : list
-  }
-  class Meta {
+    constraints : list
     ordering : list
   }
   class Meta {
+    constraints : list
+    ordering : list
+  }
+  class Meta {
+    constraints : list
+    ordering : list
+  }
+  class Meta {
+    constraints : list
+    ordering : list
+  }
+  class Meta {
+    constraints : list
     ordering : list
   }
   class Meta {
@@ -119,7 +115,16 @@ classDiagram
   }
   class Meta {
     ordering : list
-    unique_together : list
+  }
+  class Meta {
+    ordering : list
+  }
+  class Meta {
+    ordering : list
+  }
+  class Meta {
+    constraints : list
+    ordering : list
   }
   class Meta {
     ordering : list
@@ -153,9 +158,23 @@ classDiagram
     uuid : UUIDField
   }
   class Program {
+    collaborators : ArrayField
+    context : CharField
     created : DateTimeField
+    funding_sources : ArrayField
+    keywords : ArrayField
+    lead_organizations : ArrayField
     metadata : JSONField
+    pancan_cohort : CharField
+    pancan_id : CharField
+    participant_criteria : TextField
+    principal_investigators : ArrayField
+    program_description : TextField
     program_id : CharField
+    program_name : CharField
+    program_url : CharField
+    publication_links : ArrayField
+    status : CharField
     updated
   }
   class Radiation {
@@ -175,17 +194,36 @@ classDiagram
     treatment_uuid : ForeignKey
     uuid : UUIDField
   }
+  class RadiopharmaceuticalTherapy {
+    agent_name : CharField
+    cumulative_drug_dose : FloatField
+    cumulative_drug_dose_not_available : BooleanField
+    donor_uuid : ForeignKey
+    drug_dose_units : CharField
+    end_date : JSONField
+    mass_unit_ucum : CharField
+    mass_value : FloatField
+    mass_value_not_available : BooleanField
+    number_of_cycles : IntegerField
+    number_of_cycles_not_available : BooleanField
+    program_id : ForeignKey
+    radionuclide : CharField
+    radionuclide_other : CharField
+    rxnorm_code : CharField
+    start_date : JSONField
+    submitter_donor_id : CharField
+    submitter_treatment_id : CharField
+    treatment_uuid : ForeignKey
+    uuid : UUIDField
+  }
   class SampleRegistration {
     donor_uuid : ForeignKey
     program_id : ForeignKey
     sample_type : CharField
-    specimen_tissue_source : CharField
-    specimen_type : CharField
     specimen_uuid : ForeignKey
     submitter_donor_id : CharField
     submitter_sample_id : CharField
     submitter_specimen_id : CharField
-    tumour_normal_designation : CharField
     uuid : UUIDField
   }
   class Specimen {
@@ -201,6 +239,8 @@ classDiagram
     specimen_laterality : CharField
     specimen_processing : CharField
     specimen_storage : CharField
+    specimen_tissue_source : CharField
+    specimen_type : CharField
     submitter_donor_id : CharField
     submitter_primary_diagnosis_id : CharField
     submitter_specimen_id : CharField
@@ -208,6 +248,7 @@ classDiagram
     tumour_grade : CharField
     tumour_grading_system : CharField
     tumour_histological_type : CharField
+    tumour_normal_designation : CharField
     uuid : UUIDField
   }
   class Surgery {
@@ -215,9 +256,7 @@ classDiagram
     greatest_dimension_tumour : IntegerField
     greatest_dimension_tumour_not_available : BooleanField
     lymphovascular_invasion : CharField
-    margin_types_involved : ArrayField
-    margin_types_not_assessed : ArrayField
-    margin_types_not_involved : ArrayField
+    margins_status : CharField
     perineural_invasion : CharField
     program_id : ForeignKey
     residual_tumour_classification : CharField
@@ -272,6 +311,7 @@ classDiagram
     submitter_treatment_id : CharField
     treatment_end_date : JSONField
     treatment_intent : CharField
+    treatment_setting : CharField
     treatment_start_date : JSONField
     treatment_type : ArrayField
     uuid : UUIDField
