@@ -6,7 +6,8 @@ The large dataset is composed of 4 Programs, each program has:
 * 2000 Donors, Primary Diagnoses, Specimens, Radiations, Surgeries
 * 4000 Treatments
 * 6000 Sample registrations
-* 8000 Systemic Therapies
+* 8016 Systemic Therapies
+* 8016 Radiopharmaceutical Therapies
 * 2 'all' type donors where all fields should be populated
 * 2 'null' type donors where all possible null fields should be nulled
 
