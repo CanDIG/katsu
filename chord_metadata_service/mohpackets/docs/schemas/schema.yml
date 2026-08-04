@@ -37,6 +37,11 @@ components:
             $ref: '#/components/schemas/RadiationModelSchema'
           title: Radiations
           type: array
+        radiopharmaceutical_therapies:
+          items:
+            $ref: '#/components/schemas/RadiopharmaceuticalTherapyModelSchema'
+          title: Radiopharmaceutical Therapies
+          type: array
         sample_registrations:
           items:
             $ref: '#/components/schemas/SampleRegistrationModelSchema'
@@ -70,6 +75,7 @@ components:
       - treatments
       - systemic_therapies
       - radiations
+      - radiopharmaceutical_therapies
       - surgeries
       - follow_ups
       - biomarkers
@@ -84,21 +90,29 @@ components:
       - Cytology
       - Death certificate only
       - Histology of a metastasis
-      - Histology of a primary tumour
       - Specific tumour markers
       - Not available
+      - Cytogenetic and/or molecular testing
+      - Histology at autopsy
+      - Histology of the primary tumor
+      - Histology
       title: BasisOfDiagnosisEnum
       type: string
     BiomarkerFilterSchema:
       properties:
         ca125:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Ca125
+        ca19_9:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ca19 9
         cea:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Cea
         er_percent_positive:
@@ -154,7 +168,7 @@ components:
           title: Program Id
         psa_level:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Psa Level
         submitter_donor_id:
@@ -188,16 +202,25 @@ components:
       properties:
         ca125:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Ca125
         ca125_not_available:
           default: false
           title: Ca125 Not Available
           type: boolean
+        ca19_9:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ca19 9
+        ca19_9_not_available:
+          default: false
+          title: Ca19 9 Not Available
+          type: boolean
         cea:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Cea
         cea_not_available:
@@ -258,7 +281,7 @@ components:
           type: string
         psa_level:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Psa Level
         psa_level_not_available:
@@ -310,16 +333,25 @@ components:
       properties:
         ca125:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Ca125
         ca125_not_available:
           default: false
           title: Ca125 Not Available
           type: boolean
+        ca19_9:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ca19 9
+        ca19_9_not_available:
+          default: false
+          title: Ca19 9 Not Available
+          type: boolean
         cea:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Cea
         cea_not_available:
@@ -380,7 +412,7 @@ components:
           type: string
         psa_level:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Psa Level
         psa_level_not_available:
@@ -590,6 +622,12 @@ components:
       - Not available
       title: ConfirmedDiagnosisTumourEnum
       type: string
+    ContextEnum:
+      enum:
+      - Clinical
+      - Research
+      title: ContextEnum
+      type: string
     DateInterval:
       properties:
         day_interval:
@@ -606,6 +644,13 @@ components:
       - month_interval
       title: DateInterval
       type: object
+    DateOfDeathIsEstimatedEnum:
+      enum:
+      - 'Yes'
+      - 'No'
+      - Not applicable
+      title: DateOfDeathIsEstimatedEnum
+      type: string
     DiagnosisAgeCountSchema:
       properties:
         age_at_diagnosis:
@@ -708,6 +753,11 @@ components:
           - type: string
           - type: 'null'
           title: Cause Of Death
+        date_of_death_is_estimated:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Date Of Death Is Estimated
         gender:
           anyOf:
           - type: string
@@ -719,11 +769,11 @@ components:
           - type: string
           - type: 'null'
           title: Is Deceased
-        lost_to_followup_after_clinical_event_identifier:
+        lost_to_follow_up:
           anyOf:
           - type: string
           - type: 'null'
-          title: Lost To Followup After Clinical Event Identifier
+          title: Lost To Follow Up
         lost_to_followup_reason:
           anyOf:
           - type: string
@@ -752,10 +802,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/CauseOfDeathEnum'
           - type: 'null'
-        date_alive_after_lost_to_followup:
-          anyOf:
-          - $ref: '#/components/schemas/DateInterval'
-          - type: 'null'
         date_of_birth:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
@@ -763,6 +809,10 @@ components:
         date_of_death:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_of_death_is_estimated:
+          anyOf:
+          - $ref: '#/components/schemas/DateOfDeathIsEstimatedEnum'
           - type: 'null'
         date_resolution:
           anyOf:
@@ -778,12 +828,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/uBooleanEnum'
           - type: 'null'
-        lost_to_followup_after_clinical_event_identifier:
+        lost_to_follow_up:
           anyOf:
-          - maxLength: 255
-            type: string
+          - $ref: '#/components/schemas/LostToFollowUpEnum'
           - type: 'null'
-          title: Lost To Followup After Clinical Event Identifier
         lost_to_followup_reason:
           anyOf:
           - $ref: '#/components/schemas/LostToFollowupReasonEnum'
@@ -816,10 +864,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/CauseOfDeathEnum'
           - type: 'null'
-        date_alive_after_lost_to_followup:
-          anyOf:
-          - $ref: '#/components/schemas/DateInterval'
-          - type: 'null'
         date_of_birth:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
@@ -827,6 +871,10 @@ components:
         date_of_death:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_of_death_is_estimated:
+          anyOf:
+          - $ref: '#/components/schemas/DateOfDeathIsEstimatedEnum'
           - type: 'null'
         date_resolution:
           anyOf:
@@ -842,12 +890,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/uBooleanEnum'
           - type: 'null'
-        lost_to_followup_after_clinical_event_identifier:
+        lost_to_follow_up:
           anyOf:
-          - maxLength: 255
-            type: string
+          - $ref: '#/components/schemas/LostToFollowUpEnum'
           - type: 'null'
-          title: Lost To Followup After Clinical Event Identifier
         lost_to_followup_reason:
           anyOf:
           - $ref: '#/components/schemas/LostToFollowupReasonEnum'
@@ -885,10 +931,6 @@ components:
             $ref: '#/components/schemas/NestedComorbiditySchema'
           title: Comorbidities
           type: array
-        date_alive_after_lost_to_followup:
-          anyOf:
-          - $ref: '#/components/schemas/DateInterval'
-          - type: 'null'
         date_of_birth:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
@@ -896,6 +938,10 @@ components:
         date_of_death:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_of_death_is_estimated:
+          anyOf:
+          - $ref: '#/components/schemas/DateOfDeathIsEstimatedEnum'
           - type: 'null'
         date_resolution:
           anyOf:
@@ -921,12 +967,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/uBooleanEnum'
           - type: 'null'
-        lost_to_followup_after_clinical_event_identifier:
+        lost_to_follow_up:
           anyOf:
-          - maxLength: 255
-            type: string
+          - $ref: '#/components/schemas/LostToFollowUpEnum'
           - type: 'null'
-          title: Lost To Followup After Clinical Event Identifier
         lost_to_followup_reason:
           anyOf:
           - $ref: '#/components/schemas/LostToFollowupReasonEnum'
@@ -1013,6 +1057,16 @@ components:
       - summary
       title: DownloadResponseSchema
       type: object
+    DrugDoseUnitsEnum:
+      enum:
+      - Bq
+      - kBq
+      - MBq
+      - GBq
+      - Ci
+      - mCi
+      title: DrugDoseUnitsEnum
+      type: string
     DrugReferenceDbEnum:
       enum:
       - RxNorm
@@ -1370,6 +1424,14 @@ components:
           type: integer
       title: Input
       type: object
+    LostToFollowUpEnum:
+      enum:
+      - 'Yes'
+      - 'No'
+      - Not applicable
+      - Unknown
+      title: LostToFollowUpEnum
+      type: string
     LostToFollowupReasonEnum:
       enum:
       - Completed study
@@ -1424,16 +1486,33 @@ components:
       - Not available
       title: MalignancyLateralityEnum
       type: string
-    MarginTypesEnum:
+    MarginsStatusEnum:
       enum:
-      - Circumferential resection margin
-      - Common bile duct margin
-      - Distal margin
+      - Margins clear
+      - Margin(s) involved
       - Not applicable
-      - Proximal margin
       - Not available
-      title: MarginTypesEnum
+      - Unknown
+      title: MarginsStatusEnum
       type: string
+    MassUnitUcumEnum:
+      enum:
+      - ug
+      - mg
+      - nmol
+      - umol
+      title: MassUnitUcumEnum
+      type: string
+    MetadataSchema:
+      properties:
+        metadata:
+          additionalProperties: true
+          title: Metadata
+          type: object
+      required:
+      - metadata
+      title: MetadataSchema
+      type: object
     NCategoryEnum:
       enum:
       - N0
@@ -1468,16 +1547,25 @@ components:
       properties:
         ca125:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Ca125
         ca125_not_available:
           default: false
           title: Ca125 Not Available
           type: boolean
+        ca19_9:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ca19 9
+        ca19_9_not_available:
+          default: false
+          title: Ca19 9 Not Available
+          type: boolean
         cea:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Cea
         cea_not_available:
@@ -1535,7 +1623,7 @@ components:
           - type: 'null'
         psa_level:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Psa Level
         psa_level_not_available:
@@ -1807,29 +1895,88 @@ components:
           title: Reference Radiation Treatment Id
       title: NestedRadiationSchema
       type: object
+    NestedRadiopharmaceuticalTherapySchema:
+      properties:
+        agent_name:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Agent Name
+        cumulative_drug_dose:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cumulative Drug Dose
+        cumulative_drug_dose_not_available:
+          default: false
+          title: Cumulative Drug Dose Not Available
+          type: boolean
+        drug_dose_units:
+          anyOf:
+          - $ref: '#/components/schemas/DrugDoseUnitsEnum'
+          - type: 'null'
+        end_date:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: End Date
+        mass_unit_ucum:
+          anyOf:
+          - $ref: '#/components/schemas/MassUnitUcumEnum'
+          - type: 'null'
+        mass_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mass Value
+        mass_value_not_available:
+          default: false
+          title: Mass Value Not Available
+          type: boolean
+        number_of_cycles:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number Of Cycles
+        number_of_cycles_not_available:
+          default: false
+          title: Number Of Cycles Not Available
+          type: boolean
+        radionuclide:
+          anyOf:
+          - $ref: '#/components/schemas/RadionuclideEnum'
+          - type: 'null'
+        radionuclide_other:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Radionuclide Other
+        rxnorm_code:
+          anyOf:
+          - maxLength: 64
+            type: string
+          - type: 'null'
+          title: Rxnorm Code
+        start_date:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Start Date
+      title: NestedRadiopharmaceuticalTherapySchema
+      type: object
     NestedSampleRegistrationSchema:
       properties:
         sample_type:
           anyOf:
           - $ref: '#/components/schemas/SampleTypeEnum'
           - type: 'null'
-        specimen_tissue_source:
-          anyOf:
-          - $ref: '#/components/schemas/SpecimenTissueSourceEnum'
-          - type: 'null'
-        specimen_type:
-          anyOf:
-          - $ref: '#/components/schemas/SpecimenTypeEnum'
-          - type: 'null'
         submitter_sample_id:
           maxLength: 64
           pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Submitter Sample Id
           type: string
-        tumour_normal_designation:
-          anyOf:
-          - $ref: '#/components/schemas/TumourDesginationEnum'
-          - type: 'null'
       required:
       - submitter_sample_id
       title: NestedSampleRegistrationSchema
@@ -1881,6 +2028,14 @@ components:
           anyOf:
           - $ref: '#/components/schemas/StorageEnum'
           - type: 'null'
+        specimen_tissue_source:
+          anyOf:
+          - $ref: '#/components/schemas/SpecimenTissueSourceEnum'
+          - type: 'null'
+        specimen_type:
+          anyOf:
+          - $ref: '#/components/schemas/SpecimenTypeEnum'
+          - type: 'null'
         submitter_specimen_id:
           maxLength: 64
           pattern: ^[A-Za-z0-9\-\._]{1,64}$
@@ -1907,6 +2062,10 @@ components:
             type: string
           - type: 'null'
           title: Tumour Histological Type
+        tumour_normal_designation:
+          anyOf:
+          - $ref: '#/components/schemas/TumourDesginationEnum'
+          - type: 'null'
       required:
       - submitter_specimen_id
       title: NestedSpecimenSchema
@@ -1926,27 +2085,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/LymphovascularInvasionEnum'
           - type: 'null'
-        margin_types_involved:
+        margins_status:
           anyOf:
-          - items:
-              $ref: '#/components/schemas/MarginTypesEnum'
-            type: array
+          - $ref: '#/components/schemas/MarginsStatusEnum'
           - type: 'null'
-          title: Margin Types Involved
-        margin_types_not_assessed:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/MarginTypesEnum'
-            type: array
-          - type: 'null'
-          title: Margin Types Not Assessed
-        margin_types_not_involved:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/MarginTypesEnum'
-            type: array
-          - type: 'null'
-          title: Margin Types Not Involved
         perineural_invasion:
           anyOf:
           - $ref: '#/components/schemas/PerineuralInvasionEnum'
@@ -2098,6 +2240,11 @@ components:
             $ref: '#/components/schemas/NestedRadiationSchema'
           title: Radiations
           type: array
+        radiopharmaceutical_therapies:
+          items:
+            $ref: '#/components/schemas/NestedRadiopharmaceuticalTherapySchema'
+          title: Radiopharmaceutical Therapies
+          type: array
         response_to_treatment:
           anyOf:
           - $ref: '#/components/schemas/TreatmentResponseEnum'
@@ -2132,6 +2279,10 @@ components:
         treatment_intent:
           anyOf:
           - $ref: '#/components/schemas/TreatmentIntentEnum'
+          - type: 'null'
+        treatment_setting:
+          anyOf:
+          - $ref: '#/components/schemas/TreatmentSettingEnum'
           - type: 'null'
         treatment_start_date:
           anyOf:
@@ -2409,6 +2560,35 @@ components:
       - previous_page
       title: PagedRadiationModelSchema
       type: object
+    PagedRadiopharmaceuticalTherapyModelSchema:
+      properties:
+        count:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Count
+        items:
+          items:
+            $ref: '#/components/schemas/RadiopharmaceuticalTherapyModelSchema'
+          title: Items
+          type: array
+        next_page:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Next Page
+        previous_page:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Previous Page
+      required:
+      - items
+      - count
+      - next_page
+      - previous_page
+      title: PagedRadiopharmaceuticalTherapyModelSchema
+      type: object
     PagedSampleRegistrationModelSchema:
       properties:
         count:
@@ -2554,6 +2734,12 @@ components:
       - previous_page
       title: PagedTreatmentModelSchema
       type: object
+    PancanCohortEnum:
+      enum:
+      - 'Yes'
+      - 'No'
+      title: PancanCohortEnum
+      type: string
     PatientPerProgramSchema:
       properties:
         patients_count:
@@ -2964,20 +3150,96 @@ components:
       type: object
     ProgramIngestSchema:
       properties:
+        collaborators:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Collaborators
+        context:
+          anyOf:
+          - $ref: '#/components/schemas/ContextEnum'
+          - type: 'null'
         created:
           format: date-time
           title: Created
           type: string
+        funding_sources:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Funding Sources
+        keywords:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Keywords
+        lead_organizations:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Lead Organizations
         metadata:
           anyOf:
           - type: object
           - type: 'null'
           title: Metadata
+        pancan_cohort:
+          anyOf:
+          - $ref: '#/components/schemas/PancanCohortEnum'
+          - type: 'null'
+        pancan_id:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Pancan Id
+        participant_criteria:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Participant Criteria
+        principal_investigators:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Principal Investigators
+        program_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Program Description
         program_id:
           maxLength: 64
           pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Program Id
           type: string
+        program_name:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Program Name
+        program_url:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Program Url
+        publication_links:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Publication Links
+        status:
+          anyOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          - type: 'null'
         updated:
           format: date-time
           title: Updated
@@ -2988,20 +3250,96 @@ components:
       type: object
     ProgramModelSchema:
       properties:
+        collaborators:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Collaborators
+        context:
+          anyOf:
+          - $ref: '#/components/schemas/ContextEnum'
+          - type: 'null'
         created:
           format: date-time
           title: Created
           type: string
+        funding_sources:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Funding Sources
+        keywords:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Keywords
+        lead_organizations:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Lead Organizations
         metadata:
           anyOf:
           - type: object
           - type: 'null'
           title: Metadata
+        pancan_cohort:
+          anyOf:
+          - $ref: '#/components/schemas/PancanCohortEnum'
+          - type: 'null'
+        pancan_id:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Pancan Id
+        participant_criteria:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Participant Criteria
+        principal_investigators:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Principal Investigators
+        program_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Program Description
         program_id:
           maxLength: 64
           pattern: ^[A-Za-z0-9\-\._]{1,64}$
           title: Program Id
           type: string
+        program_name:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Program Name
+        program_url:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Program Url
+        publication_links:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Publication Links
+        status:
+          anyOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          - type: 'null'
         updated:
           format: date-time
           title: Updated
@@ -3009,6 +3347,86 @@ components:
       required:
       - program_id
       title: ProgramModelSchema
+      type: object
+    ProgramUpdateSchema:
+      properties:
+        collaborators:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Collaborators
+        context:
+          anyOf:
+          - $ref: '#/components/schemas/ContextEnum'
+          - type: 'null'
+        funding_sources:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Funding Sources
+        keywords:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Keywords
+        lead_organizations:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Lead Organizations
+        pancan_cohort:
+          anyOf:
+          - $ref: '#/components/schemas/PancanCohortEnum'
+          - type: 'null'
+        pancan_id:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Pancan Id
+        participant_criteria:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Participant Criteria
+        principal_investigators:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Principal Investigators
+        program_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Program Description
+        program_name:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Program Name
+        program_url:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Program Url
+        publication_links:
+          anyOf:
+          - items: {}
+            type: array
+          - type: 'null'
+          title: Publication Links
+        status:
+          anyOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          - type: 'null'
+      title: ProgramUpdateSchema
       type: object
     ProgressionStatusMethodEnum:
       enum:
@@ -3026,10 +3444,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/CauseOfDeathEnum'
           - type: 'null'
-        date_alive_after_lost_to_followup:
-          anyOf:
-          - $ref: '#/components/schemas/DateInterval'
-          - type: 'null'
         date_of_birth:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
@@ -3037,6 +3451,10 @@ components:
         date_of_death:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_of_death_is_estimated:
+          anyOf:
+          - $ref: '#/components/schemas/DateOfDeathIsEstimatedEnum'
           - type: 'null'
         date_resolution:
           anyOf:
@@ -3052,12 +3470,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/uBooleanEnum'
           - type: 'null'
-        lost_to_followup_after_clinical_event_identifier:
+        lost_to_follow_up:
           anyOf:
-          - maxLength: 255
-            type: string
+          - $ref: '#/components/schemas/LostToFollowUpEnum'
           - type: 'null'
-          title: Lost To Followup After Clinical Event Identifier
         lost_to_followup_reason:
           anyOf:
           - $ref: '#/components/schemas/LostToFollowupReasonEnum'
@@ -3102,267 +3518,419 @@ components:
       type: object
     RadiationAnatomicalSiteEnum:
       enum:
-      - LEFT ABDOMEN
-      - WHOLE ABDOMEN
-      - RIGHT ABDOMEN
-      - LOWER ABDOMEN
-      - LEFT LOWER ABDOMEN
-      - RIGHT LOWER ABDOMEN
-      - UPPER ABDOMEN
-      - LEFT UPPER ABDOMEN
-      - RIGHT UPPER ABDOMEN
-      - LEFT ADRENAL
-      - RIGHT ADRENAL
-      - BILATERAL ANKLE
-      - LEFT ANKLE
-      - RIGHT ANKLE
-      - BILATERAL ANTRUM (BULL'S EYE)
-      - LEFT ANTRUM
-      - RIGHT ANTRUM
+      - ABDOMEN_WHOLE
+      - ABDOMEN_LEFT
+      - ABDOMEN_RIGHT
+      - ABDOMEN_UPPER
+      - ABDOMEN_LOWER
+      - ABDOMEN_LEFT_LOWER
+      - ABDOMEN_LEFT_UPPER
+      - ABDOMEN_RIGHT_LOWER
+      - ABDOMEN_RIGHT_UPPER
+      - ABDOMEN_NOS
+      - ADRENAL_GLAND_LEFT
+      - ADRENAL_GLAND_RIGHT
+      - ADRENAL_GLAND_NOS
+      - ANKLE_LEFT
+      - ANKLE_RIGHT
+      - ANKLE_BILATERAL
+      - ANKLE_NOS
+      - ANTRUM_LEFT
+      - ANTRUM_RIGHT
+      - ANTRUM_BILATERAL (Bull's eye)
+      - ANTRUM_NOS
       - ANUS
-      - LOWER LEFT ARM
-      - LOWER RIGHT ARM
-      - BILATERAL ARMS
-      - LEFT ARM
-      - RIGHT ARM
-      - UPPER LEFT ARM
-      - UPPER RIGHT ARM
-      - LEFT AXILLA
-      - RIGHT AXILLA
-      - SKIN OR SOFT TISSUE OF BACK
-      - BILE DUCT
-      - BLADDER
-      - LOWER BODY
-      - MIDDLE BODY
-      - UPPER BODY
-      - WHOLE BODY
-      - BOOST - AREA PREVIOUSLY TREATED
-      - BRAIN
-      - LEFT BREAST BOOST
-      - RIGHT BREAST BOOST
-      - BILATERAL BREAST
-      - LEFT BREAST
-      - RIGHT BREAST
-      - BILATERAL BREASTS WITH NODES
-      - LEFT BREAST WITH NODES
-      - RIGHT BREAST WITH NODES
-      - BILATERAL BUTTOCKS
-      - LEFT BUTTOCK
-      - RIGHT BUTTOCK
-      - INNER CANTHUS
-      - OUTER CANTHUS
+      - ARM_LOWER_LEFT
+      - ARM_UPPER_LEFT
+      - ARM_LEFT
+      - ARM_LOWER_RIGHT
+      - ARM_UPPER_RIGHT
+      - ARM_RIGHT
+      - ARM_BILATERAL
+      - ARM_NOS
+      - AXILLA_LEFT
+      - AXILLA_RIGHT
+      - AXILLA_NOS
+      - BACK_WHOLE
+      - BACK_LEFT
+      - BACK_RIGHT
+      - BACK_UPPER
+      - BACK_LOWER
+      - BACK_LEFT_LOWER
+      - BACK_LEFT_UPPER
+      - BACK_RIGHT_LOWER
+      - BACK_RIGHT_UPPER
+      - BACK_NOS
+      - BILE_DUCT_INTRAHEPATIC
+      - BILE_DUCT_EXTRAHEPATIC
+      - BILE_DUCT_WHOLE
+      - BILE_DUCT_NOS
+      - BLADDER_APEX
+      - BLADDER_BODY
+      - BLADDER_FUNDUS
+      - BLADDER_NECK
+      - BLADDER_WHOLE
+      - BLADDER_NOS
+      - BODY_WHOLE
+      - BODY_NOS
+      - BODY_LOWER
+      - BODY_MIDDLE
+      - BODY_UPPER
+      - BOOST_AREA_PREVIOUSLY_TREATED
+      - BRAIN_NOS
+      - BRAIN_WHOLE
+      - BRAIN_CEREBRUM
+      - BRAIN_CEREBELLUM
+      - BRAIN_STEM
+      - BREAST_LEFT
+      - BREAST_RIGHT
+      - BREAST_BILATERAL
+      - BREAST_NOS
+      - BREAST_BOOST_LEFT
+      - BREAST_BOOST_RIGHT
+      - BREAST_BOOST_BILATERAL
+      - BREAST_BOOST_NOS
+      - BREAST_WITH_NODES_LEFT
+      - BREAST_WITH_NODES_RIGHT
+      - BREAST_WITH_NODES_BILATERAL
+      - BREAST_WITH_NODES_NOS
+      - BUTTOCK_LEFT
+      - BUTTOCK_RIGHT
+      - BUTTOCK_BILATERAL
+      - BUTTOCK_NOS
+      - CANTHUS_INNER
+      - CANTHUS_OUTER
+      - CANTHUS_NOS
       - CERVIX
+      - CHEST_WHOLE
+      - CHEST_LEFT
+      - CHEST_RIGHT
+      - CHEST_NOS
+      - CHEST_THORAX_LEFT
+      - CHEST_THORAX_RIGHT
+      - CHEST_THORAX_BILATERAL
+      - CHEST_THORAX_NOS
+      - CHEST_WALL_LEFT
+      - CHEST_WALL_RIGHT
+      - CHEST_WALL_BILATERAL
+      - CHEST_WALL_NOS
+      - CHEST_WALL_BOOST_LEFT
+      - CHEST_WALL_BOOST_RIGHT
+      - CHEST_WALL_BOOST_BILATERAL
+      - CHEST_WALL_BOOST_NOS
+      - CHEST_WALL_WITH_NODES_LEFT
+      - CHEST_WALL_WITH_NODES_RIGHT
+      - CHEST_WALL_WITH_NODES_BILATERAL
+      - CHEST_WALL_WITH_NODES_NOS
       - BILATERAL CHEST LUNG & AREA INVOLVE
-      - LEFT CHEST
-      - RIGHT CHEST
       - CHIN
-      - LEFT CHEEK
-      - RIGHT CHEEK
-      - BILATERAL CHEST WALL (W/O BREAST)
-      - LEFT CHEST WALL
-      - RIGHT CHEST WALL
-      - BILATERAL CLAVICLE
-      - LEFT CLAVICLE
-      - RIGHT CLAVICLE
+      - CHEEK_RIGHT
+      - CHEEK_LEFT
+      - CLAVICLE_LEFT
+      - CLAVICLE_RIGHT
+      - CLAVICLE_BILATERAL
+      - CLAVICLE_NOS
       - COCCYX
-      - COLON
-      - WHOLE C.N.S. (MEDULLA TECHINQUE)
+      - COLON_WHOLE
+      - COLON_NOS
+      - COLON_CAECUM
+      - COLON_ASCENDING
+      - COLON_TRANSVERSE
+      - COLON_DESCENDING
+      - C.N.S._WHOLE (MEDULLA TECHNIQUE)
       - CSF SPINE (MEDULL TECH 2 DIFF MACHI
-      - LEFT CHESTWALL BOOST
-      - RIGHT CHESTWALL BOOST
-      - BILATERAL CHESTWALL WITH NODES
-      - LEFT CHESTWALL WITH NODES
-      - RIGHT CHESTWALL WITH NODES
-      - LEFT EAR
-      - RIGHT EAR
+      - EAR_LEFT
+      - EAR_RIGHT
+      - EAR_BILATERAL
+      - EAR_NOS
+      - ESOPHAGUS_LOWER
+      - ESOPHAGUS_MIDDLE
+      - ESOPHAGUS_NOS
+      - ESOPHAGUS_UPPER
+      - ESOPHAGUS_WHOLE
       - EPIGASTRIUM
-      - LOWER ESOPHAGUS
-      - MIDDLE ESOPHAGUS
-      - UPPER ESOPHAGUS
-      - ENTIRE ESOPHAGUS
-      - ETHMOID SINUS
-      - BILATERAL EYES
-      - LEFT EYE
-      - RIGHT EYE
-      - BILATERAL FACE
-      - LEFT FACE
-      - RIGHT FACE
-      - LEFT FALLOPIAN TUBES
-      - RIGHT FALLOPIAN TUBES
-      - BILATERAL FEMUR
-      - LEFT FEMUR
-      - RIGHT FEMUR
-      - LEFT FIBULA
-      - RIGHT FIBULA
-      - FINGER (INCLUDING THUMBS)
-      - FLOOR OF MOUTH (BOOSTS)
-      - BILATERAL FEET
-      - LEFT FOOT
-      - RIGHT FOOT
+      - ETHMOID_SINUS
+      - EYE_LEFT
+      - EYE_RIGHT
+      - EYE_BILATERAL
+      - EYE_NOS
+      - EYELID_LEFT
+      - EYELID_RIGHT
+      - EYELID_BILATERAL
+      - EYELID_NOS
+      - FACE_LEFT
+      - FACE_RIGHT
+      - FACE_BILATERAL
+      - FACE_NOS
+      - FALLOPIAN_TUBES_LEFT
+      - FALLOPIAN_TUBES_RIGHT
+      - FALLOPIAN_TUBES_NOS
+      - FEMUR_LEFT
+      - FEMUR_RIGHT
+      - FEMUR_BILATERAL
+      - FEMUR_NOS
+      - FIBULA_LEFT
+      - FIBULA_RIGHT
+      - FIBULA_NOS
+      - FINGER_RIGHT_HAND
+      - FINGER_LEFT_HAND
+      - FINGER_NOS
+      - FOOT_LEFT
+      - FOOT_RIGHT
+      - FOOT_BILATERAL
+      - FOOT_NOS
+      - FLOOR_OF_MOUTH
+      - FLOOR_OF_MOUTH_BOOST
       - FOREHEAD
-      - POSTERIOR FOSSA
-      - GALL BLADDER
+      - POSTERIOR_FOSSA
+      - GALL_BLADDER
       - GINGIVA
-      - BILATERAL HAND
-      - LEFT HAND
-      - RIGHT HAND
+      - HAND_RIGHT
+      - HAND_LEFT
+      - HAND_NOS
+      - HAND_BILATERAL
       - HEAD
-      - BILATERAL HEEL
-      - LEFT HEEL
-      - RIGHT HEEL
-      - LEFT HEMIMANTLE
-      - RIGHT HEMIMANTLE
       - HEART
-      - BILATERAL HIP
-      - LEFT HIP
-      - RIGHT HIP
-      - LEFT HUMERUS
-      - RIGHT HUMERUS
+      - HEEL_LEFT
+      - HEEL_RIGHT
+      - HEEL_BILATERAL
+      - HEEL_NOS
+      - HEMIMANTLE_LEFT
+      - HEMIMANTLE_RIGHT
+      - HEMIMANTLE_BILATERAL
+      - HEMIMANTLE_NOS
+      - HIP_LEFT
+      - HIP_RIGHT
+      - HIP_BILATERAL
+      - HIP_NOS
+      - HUMERUS_LEFT
+      - HUMERUS_RIGHT
+      - HUMERUS_NOS
       - HYPOPHARYNX
-      - BILATERAL INTERNAL MAMMARY CHAIN
-      - BILATERAL INGUINAL NODES
-      - LEFT INGUINAL NODES
-      - RIGHT INGUINAL NODES
-      - INVERTED 'Y' (DOG-LEG,HOCKEY-STICK)
-      - LEFT KIDNEY
-      - RIGHT KIDNEY
-      - BILATERAL KNEE
-      - LEFT KNEE
-      - RIGHT KNEE
-      - BILATERAL LACRIMAL GLAND
-      - LEFT LACRIMAL GLAND
-      - RIGHT LACRIMAL GLAND
-      - LARYGOPHARYNX
+      - INTERNAL_MAMMARY_CHAIN_NOS
+      - INTERNAL_MAMMARY_CHAIN_LEFT
+      - INTERNAL_MAMMARY_CHAIN_RIGHT
+      - INTERNAL_MAMMARY_CHAIN_BILATERAL
+      - INGUINAL_NODES_LEFT
+      - INGUINAL_NODES_RIGHT
+      - INGUINAL_NODES_BILATERAL
+      - INGUINAL_NODES_NOS
+      - INVERTED_Y_DOG_LEG_HOCKEY_STICK
+      - KIDNEY_LEFT
+      - KIDNEY_RIGHT
+      - KIDNEY_BILATERAL
+      - KIDNEY_NOS
+      - KNEE_LEFT
+      - KNEE_RIGHT
+      - KNEE_BILATERAL
+      - KNEE_NOS
+      - LACRIMAL_GLAND_LEFT
+      - LACRIMAL_GLAND_RIGHT
+      - LACRIMAL_GLAND_BILATERAL
+      - LACRIMAL_GLAND_NOS
+      - LARYNGOPHARYNX
       - LARYNX
-      - BILATERAL LEG
-      - LEFT LEG
-      - RIGHT LEG
-      - LOWER BILATERAL LEG
-      - LOWER LEFT LEG
-      - LOWER RIGHT LEG
-      - UPPER BILATERAL LEG
-      - UPPER LEFT LEG
-      - UPPER RIGHT LEG
-      - BOTH EYELID(S)
-      - LEFT EYELID
-      - RIGHT EYELID
-      - BOTH LIP(S)
-      - LOWER LIP
-      - UPPER LIP
-      - LIVER
-      - BILATERAL LUNG
-      - LEFT LUNG
-      - RIGHT LUNG
-      - BILATERAL MANDIBLE
-      - LEFT MANDIBLE
-      - RIGHT MANDIBLE
+      - LEG_BILATERAL_LOWER
+      - LEG_BILATERAL_NOS
+      - LEG_BILATERAL_UPPER
+      - LEG_LEFT_LOWER
+      - LEG_LEFT_NOS
+      - LEG_LEFT_UPPER
+      - LEG_NOS
+      - LEG_RIGHT_LOWER
+      - LEG_RIGHT_NOS
+      - LEG_RIGHT_UPPER
+      - LEG_LOWER_NOS
+      - LEG_UPPER_NOS
+      - LIP_LOWER
+      - LIP_NOS
+      - LIP_UPPER
+      - LIVER_NOS
+      - LIVER_WHOLE
+      - LIVER_LOBE_RIGHT
+      - LIVER_LOBE_LEFT
+      - LIVER_LOBE_CAUDATE
+      - LIVER_LOBE_QUADRATE
+      - LUNG_LEFT_UPPER
+      - LUNG_LEFT_LOWER
+      - LUNG_LEFT_WHOLE
+      - LUNG_LEFT_NOS
+      - LUNG_RIGHT_UPPER
+      - LUNG_RIGHT_MIDDLE
+      - LUNG_RIGHT_LOWER
+      - LUNG_RIGHT_NOS
+      - LUNG_BILATERAL
+      - LUNG_NOS
+      - MANDIBLE_LEFT
+      - MANDIBLE_RIGHT
+      - MANDIBLE_BILATERAL
+      - MANDIBLE_NOS
       - MANTLE
-      - BILATERAL MAXILLA
-      - LEFT MAXILLA
-      - RIGHT MAXILLA
-      - MEDIASTINUM
-      - MULTIPLE SKIN
-      - NASAL FOSSA
+      - MAXILLA_LEFT
+      - MAXILLA_RIGHT
+      - MAXILLA_BILATERAL
+      - MAXILLA_NOS
+      - LYMPH_NODES
+      - MEDIASTINUM_ANTERIOR
+      - MEDIASTINUM_MIDDLE
+      - MEDIASTINUM_POSTERIOR
+      - MEDIASTINUM_SUPERIOR
+      - MEDIASTINUM_NOS
+      - MULTIPLE_SKIN
+      - NASAL_FOSSA_LEFT
+      - NASAL_FOSSA_RIGHT
+      - NASAL_FOSSA_POSTERIOR
+      - NASAL_FOSSA_BILATERAL
+      - NASAL_FOSSA_NOS
       - NASOPHARYNX
-      - BILATERAL NECK INCLUDES NODES
-      - LEFT NECK INCLUDES NODES
-      - RIGHT NECK INCLUDES NODES
-      - NECK - SKIN
+      - NECK_NOS
+      - NECK_SKIN
+      - NECK_LEFT
+      - NECK_RIGHT
+      - NECK_BILATERAL
+      - NECK_WITH_NODES_LEFT
+      - NECK_WITH_NODES_RIGHT
+      - NECK_WITH_NODES_BILATERAL
+      - NECK_WITH_NODES_NOS
       - NOSE
-      - ORAL CAVITY / BUCCAL MUCOSA
-      - BILATERAL ORBIT
-      - LEFT ORBIT
-      - RIGHT ORBIT
+      - NOT_AVAILABLE
+      - ORAL_CAVITY__BUCCAL_MUCOSA_LEFT
+      - ORAL_CAVITY__BUCCAL_MUCOSA_RIGHT
+      - ORAL_CAVITY__BUCCAL_MUCOSA_BILATERAL
+      - ORAL_CAVITY__BUCCAL_MUCOSA_NOS
+      - ORAL_CAVITY_NOS
+      - ORAL_CAVITY__HARD PALATE
+      - ORAL_CAVITY__SOFT PALATE
+      - ORAL_CAVITY__PALATE_NOS
+      - ORBIT_LEFT
+      - ORBIT_RIGHT
+      - ORBIT_BILATERAL
+      - ORBIT_NOS
       - OROPHARYNX
-      - BILATERAL OVARY
-      - LEFT OVARY
-      - RIGHT OVARY
-      - HARD PALATE
-      - SOFT PALATE
-      - PALATE UNSPECIFIED
-      - PANCREAS
-      - PARA-AORTIC NODES
-      - LEFT PAROTID
-      - RIGHT PAROTID
-      - BILATERAL PELVIS
-      - LEFT PELVIS
-      - RIGHT PELVIS
+      - OTHER
+      - OVARY_LEFT
+      - OVARY_RIGHT
+      - OVARY_BILATERAL
+      - OVARY_NOS
+      - PANCREAS_HEAD
+      - PANCREAS_BODY
+      - PANCREAS_TAIL
+      - PANCREAS_NECK
+      - PANCREAS_NOS
+      - PARA_AORTIC_NODES
+      - PAROTID_GLAND_LEFT
+      - PAROTID_GLAND_RIGHT
+      - PAROTID_GLAND_BILATERAL
+      - PAROTID_GLAND_NOS
+      - PELVIS
+      - PELVIS_HEMIPELVIS_LEFT
+      - PELVIS_HEMIPELVIS_RIGHT
+      - PELVIS_HEMIPELVIS_BILATERAL
+      - PELVIS_HEMIPELVIS_NOS
       - PENIS
       - PERINEUM
-      - PITUITARY
-      - LEFT PLEURA (AS IN MESOTHELIOMA)
-      - RIGHT PLEURA
+      - PHARYNX_NOS
+      - PITUITARY GLAND
+      - PLEURA_LEFT
+      - PLEURA_RIGHT
+      - PLEURA_BILATERAL
+      - PLEURA_NOS
       - PROSTATE
       - PUBIS
-      - PYRIFORM FOSSA (SINUSES)
-      - LEFT RADIUS
-      - RIGHT RADIUS
-      - RECTUM (INCLUDES SIGMOID)
-      - LEFT RIBS
-      - RIGHT RIBS
+      - LARYNX_PYRIFORM_FOSSA
+      - RADIUS_LEFT
+      - RADIUS_RIGHT
+      - RADIUS_NOS
+      - RECTUM_INCLUDES_SIGMOID
+      - RIBS_LEFT
+      - RIBS_RIGHT
+      - RIBS_BILATERAL
+      - RIBS_NOS
       - SACRUM
-      - LEFT SALIVARY GLAND
-      - RIGHT SALIVARY GLAND
-      - BILATERAL SCAPULA
-      - LEFT SCAPULA
-      - RIGHT SCAPULA
-      - BILATERAL SUPRACLAVICULAR NODES
-      - LEFT SUPRACLAVICULAR NODES
-      - RIGHT SUPRACLAVICULAR NODES
-      - BILATERAL SCALP
-      - LEFT SCALP
-      - RIGHT SCALP
+      - SALIVARY_GLAND_LEFT
+      - SALIVARY_GLAND_RIGHT
+      - SALIVARY_GLAND_BILATERAL
+      - SALIVARY_GLAND_NOS
+      - SCALP_LEFT
+      - SCALP_RIGHT
+      - SCALP_BILATERAL
+      - SCALP_NOS
+      - SCAPULA_LEFT
+      - SCAPULA_RIGHT
+      - SCAPULA_BILATERAL
+      - SCAPULA_NOS
       - SCROTUM
-      - BILATERAL SHOULDER
-      - LEFT SHOULDER
-      - RIGHT SHOULDER
-      - WHOLE BODY - SKIN
-      - SKULL
-      - CERVICAL & THORACIC SPINE
-      - SPHENOID SINUS
-      - CERVICAL SPINE
-      - LUMBAR SPINE
-      - THORACIC SPINE
-      - WHOLE SPINE
+      - SHOULDER_LEFT
+      - SHOULDER_RIGHT
+      - SHOULDER_BILATERAL
+      - SHOULDER_NOS
+      - SKIN_WHOLE_BODY
+      - SKIN_NOS
+      - SKULL_NOS
+      - SKULL_PARIETAL
+      - SKULL_TEMPORAL
+      - SKULL_OCCIPITAL
+      - SKULL_ZYGOMATIC
+      - SKULL_FRONTAL
+      - SPHENOID_SINUS
+      - SPINE_CERVICAL
+      - SPINE_THORACIC
+      - SPINE_LUMBAR
+      - SPINE_LUMBO_SACRAL
+      - SPINE_WHOLE
+      - SPINE_CERVICAL_AND_THORACIC
+      - SPINE_LUMBAR_AND_THORACIC
+      - SPINE_NOS
       - SPLEEN
-      - LUMBO-SACRAL SPINE
-      - THORACIC & LUMBAR SPINE
       - STERNUM
-      - STOMACH
-      - SUBMANDIBULAR GLANDS
-      - LEFT TEMPLE
-      - RIGHT TEMPLE
-      - BILATERAL TESTIS
-      - LEFT TESTIS
-      - RIGHT TESTIS
+      - STOMACH_CARDIA
+      - STOMACH_FUNDUS
+      - STOMACH_BODY
+      - STOMACH_PYLORUS
+      - STOMACH_GASTRIC ANTRUM
+      - STOMACH_LESSER CURVATURE
+      - STOMACH_GREATER CURVATURE
+      - STOMACH_NOS
+      - SUBMANDIBULAR_GLANDS
+      - SUPRACLAVICULAR_NODES_LEFT
+      - SUPRACLAVICULAR_NODES_RIGHT
+      - SUPRACLAVICULAR_NODES_BILATERAL
+      - SUPRACLAVICULAR_NODES_NOS
+      - TEMPLE_LEFT
+      - TEMPLE_RIGHT
+      - TEMPLE_BILATERAL
+      - TEMPLE_NOS
+      - TESTIS_LEFT
+      - TESTIS_RIGHT
+      - TESTIS_BILATERAL
+      - TESTIS_NOS
       - THYROID
-      - LEFT TIBIA
-      - RIGHT TIBIA
-      - LEFT TOES
-      - RIGHT TOES
+      - TIBIA_LEFT
+      - TIBIA_RIGHT
+      - TIBIA_NOS
       - TONGUE
       - TONSIL
+      - TOES_LEFT_FOOT
+      - TOES_RIGHT_FOOT
+      - TOES_NOS
       - TRACHEA
-      - LEFT ULNA
-      - RIGHT ULNA
-      - LEFT URETER
-      - RIGHT URETER
+      - ULNA_LEFT
+      - ULNA_RIGHT
+      - ULNA_NOS
+      - UPPER_LIMB
+      - LOWER_LIMB
+      - URETER_LEFT
+      - URETER_RIGHT
+      - URETER_BILATERAL
+      - URETER_NOS
       - URETHRA
       - UTERUS
       - UVULA
       - VAGINA
       - VULVA
-      - ABDOMEN
-      - BODY
-      - CHEST
-      - LOWER LIMB
-      - NECK
-      - OTHER
-      - PELVIS
-      - SKIN
-      - SPINE
-      - UPPER LIMB
-      - Not available
+      - WHOLE_CNS
+      - WHOLE_BODY
+      - WHOLE_BODY_SKIN
       title: RadiationAnatomicalSiteEnum
       type: string
     RadiationFilterSchema:
@@ -3548,8 +4116,295 @@ components:
       - Brachytherapy (procedure)
       - Other
       - Not available
+      - Teleradiotherapy using photons
       title: RadiationTherapyModalityEnum
       type: string
+    RadionuclideEnum:
+      enum:
+      - Carbon-14
+      - Fluorine-18
+      - Sodium-22
+      - Sodium-24
+      - Phosphorus-32
+      - Potassium-42
+      - Potassium-43
+      - Chromium-51
+      - Cobalt-57
+      - Cobalt-58
+      - Iron-59
+      - Cobalt-60
+      - Copper-64
+      - Copper-67
+      - Gallium-67
+      - Selenium-75
+      - Krypton-81m
+      - Krypton-85
+      - Strontium-85
+      - Strontium-87m
+      - Strontium-89
+      - Yttrium-90
+      - Ruthenium-97
+      - Technetium-99m
+      - Indium-111
+      - Indium-113m
+      - Iodine-123
+      - Iodine-125
+      - Xenon-127
+      - Iodine-131
+      - Barium-133
+      - Xenon-133
+      - Gadolinium-153
+      - Samarium-153
+      - Ytterbium-169
+      - Lutetium-177
+      - Tantalum-178
+      - Rhenium-186
+      - Rhenium-188
+      - Iridium-191m
+      - Gold-198
+      - Gold-199
+      - Thallium-201
+      - Lead-203
+      - Radium-223
+      title: RadionuclideEnum
+      type: string
+    RadiopharmaceuticalTherapyFilterSchema:
+      properties:
+        agent_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Name
+        cumulative_drug_dose:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cumulative Drug Dose
+        drug_dose_units:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Drug Dose Units
+        mass_unit_ucum:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mass Unit Ucum
+        mass_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mass Value
+        number_of_cycles:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number Of Cycles
+        program_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Program Id
+        radionuclide:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Radionuclide
+        radionuclide_other:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Radionuclide Other
+        rxnorm_code:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Rxnorm Code
+        submitter_donor_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitter Donor Id
+        submitter_treatment_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitter Treatment Id
+      title: RadiopharmaceuticalTherapyFilterSchema
+      type: object
+    RadiopharmaceuticalTherapyIngestSchema:
+      properties:
+        agent_name:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Agent Name
+        cumulative_drug_dose:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cumulative Drug Dose
+        cumulative_drug_dose_not_available:
+          default: false
+          title: Cumulative Drug Dose Not Available
+          type: boolean
+        drug_dose_units:
+          anyOf:
+          - $ref: '#/components/schemas/DrugDoseUnitsEnum'
+          - type: 'null'
+        end_date:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: End Date
+        mass_unit_ucum:
+          anyOf:
+          - $ref: '#/components/schemas/MassUnitUcumEnum'
+          - type: 'null'
+        mass_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mass Value
+        mass_value_not_available:
+          default: false
+          title: Mass Value Not Available
+          type: boolean
+        number_of_cycles:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number Of Cycles
+        number_of_cycles_not_available:
+          default: false
+          title: Number Of Cycles Not Available
+          type: boolean
+        program_id:
+          title: Program Id
+          type: string
+        radionuclide:
+          anyOf:
+          - $ref: '#/components/schemas/RadionuclideEnum'
+          - type: 'null'
+        radionuclide_other:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Radionuclide Other
+        rxnorm_code:
+          anyOf:
+          - maxLength: 64
+            type: string
+          - type: 'null'
+          title: Rxnorm Code
+        start_date:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Start Date
+        submitter_donor_id:
+          title: Submitter Donor Id
+          type: string
+        submitter_treatment_id:
+          title: Submitter Treatment Id
+          type: string
+        uuid:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Uuid
+      required:
+      - program_id
+      - submitter_donor_id
+      - submitter_treatment_id
+      title: RadiopharmaceuticalTherapyIngestSchema
+      type: object
+    RadiopharmaceuticalTherapyModelSchema:
+      properties:
+        agent_name:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Agent Name
+        cumulative_drug_dose:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cumulative Drug Dose
+        cumulative_drug_dose_not_available:
+          default: false
+          title: Cumulative Drug Dose Not Available
+          type: boolean
+        drug_dose_units:
+          anyOf:
+          - $ref: '#/components/schemas/DrugDoseUnitsEnum'
+          - type: 'null'
+        end_date:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: End Date
+        mass_unit_ucum:
+          anyOf:
+          - $ref: '#/components/schemas/MassUnitUcumEnum'
+          - type: 'null'
+        mass_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mass Value
+        mass_value_not_available:
+          default: false
+          title: Mass Value Not Available
+          type: boolean
+        number_of_cycles:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number Of Cycles
+        number_of_cycles_not_available:
+          default: false
+          title: Number Of Cycles Not Available
+          type: boolean
+        program_id:
+          title: Program Id
+          type: string
+        radionuclide:
+          anyOf:
+          - $ref: '#/components/schemas/RadionuclideEnum'
+          - type: 'null'
+        radionuclide_other:
+          anyOf:
+          - maxLength: 255
+            type: string
+          - type: 'null'
+          title: Radionuclide Other
+        rxnorm_code:
+          anyOf:
+          - maxLength: 64
+            type: string
+          - type: 'null'
+          title: Rxnorm Code
+        start_date:
+          anyOf:
+          - type: object
+          - type: 'null'
+          title: Start Date
+        submitter_donor_id:
+          title: Submitter Donor Id
+          type: string
+        submitter_treatment_id:
+          title: Submitter Treatment Id
+          type: string
+      required:
+      - program_id
+      - submitter_donor_id
+      - submitter_treatment_id
+      title: RadiopharmaceuticalTherapyModelSchema
+      type: object
     RelapseTypeEnum:
       enum:
       - Distant recurrence/metastasis
@@ -3572,16 +4427,6 @@ components:
           - type: string
           - type: 'null'
           title: Sample Type
-        specimen_tissue_source:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Specimen Tissue Source
-        specimen_type:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Specimen Type
         submitter_donor_id:
           anyOf:
           - type: string
@@ -3597,11 +4442,6 @@ components:
           - type: string
           - type: 'null'
           title: Submitter Specimen Id
-        tumour_normal_designation:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tumour Normal Designation
       title: SampleRegistrationFilterSchema
       type: object
     SampleRegistrationIngestSchema:
@@ -3612,14 +4452,6 @@ components:
         sample_type:
           anyOf:
           - $ref: '#/components/schemas/SampleTypeEnum'
-          - type: 'null'
-        specimen_tissue_source:
-          anyOf:
-          - $ref: '#/components/schemas/SpecimenTissueSourceEnum'
-          - type: 'null'
-        specimen_type:
-          anyOf:
-          - $ref: '#/components/schemas/SpecimenTypeEnum'
           - type: 'null'
         submitter_donor_id:
           title: Submitter Donor Id
@@ -3632,10 +4464,6 @@ components:
         submitter_specimen_id:
           title: Submitter Specimen Id
           type: string
-        tumour_normal_designation:
-          anyOf:
-          - $ref: '#/components/schemas/TumourDesginationEnum'
-          - type: 'null'
         uuid:
           anyOf:
           - type: string
@@ -3657,14 +4485,6 @@ components:
           anyOf:
           - $ref: '#/components/schemas/SampleTypeEnum'
           - type: 'null'
-        specimen_tissue_source:
-          anyOf:
-          - $ref: '#/components/schemas/SpecimenTissueSourceEnum'
-          - type: 'null'
-        specimen_type:
-          anyOf:
-          - $ref: '#/components/schemas/SpecimenTypeEnum'
-          - type: 'null'
         submitter_donor_id:
           title: Submitter Donor Id
           type: string
@@ -3676,10 +4496,6 @@ components:
         submitter_specimen_id:
           title: Submitter Specimen Id
           type: string
-        tumour_normal_designation:
-          anyOf:
-          - $ref: '#/components/schemas/TumourDesginationEnum'
-          - type: 'null'
       required:
       - submitter_sample_id
       - program_id
@@ -3766,6 +4582,16 @@ components:
           - type: string
           - type: 'null'
           title: Specimen Storage
+        specimen_tissue_source:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specimen Tissue Source
+        specimen_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specimen Type
         submitter_donor_id:
           anyOf:
           - type: string
@@ -3801,6 +4627,11 @@ components:
           - type: string
           - type: 'null'
           title: Tumour Histological Type
+        tumour_normal_designation:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tumour Normal Designation
       title: SpecimenFilterSchema
       type: object
     SpecimenIngestSchema:
@@ -3848,6 +4679,14 @@ components:
           anyOf:
           - $ref: '#/components/schemas/StorageEnum'
           - type: 'null'
+        specimen_tissue_source:
+          anyOf:
+          - $ref: '#/components/schemas/SpecimenTissueSourceEnum'
+          - type: 'null'
+        specimen_type:
+          anyOf:
+          - $ref: '#/components/schemas/SpecimenTypeEnum'
+          - type: 'null'
         submitter_donor_id:
           title: Submitter Donor Id
           type: string
@@ -3880,6 +4719,10 @@ components:
             type: string
           - type: 'null'
           title: Tumour Histological Type
+        tumour_normal_designation:
+          anyOf:
+          - $ref: '#/components/schemas/TumourDesginationEnum'
+          - type: 'null'
         uuid:
           anyOf:
           - type: string
@@ -3945,6 +4788,14 @@ components:
           anyOf:
           - $ref: '#/components/schemas/StorageEnum'
           - type: 'null'
+        specimen_tissue_source:
+          anyOf:
+          - $ref: '#/components/schemas/SpecimenTissueSourceEnum'
+          - type: 'null'
+        specimen_type:
+          anyOf:
+          - $ref: '#/components/schemas/SpecimenTypeEnum'
+          - type: 'null'
         submitter_donor_id:
           title: Submitter Donor Id
           type: string
@@ -3977,6 +4828,10 @@ components:
             type: string
           - type: 'null'
           title: Tumour Histological Type
+        tumour_normal_designation:
+          anyOf:
+          - $ref: '#/components/schemas/TumourDesginationEnum'
+          - type: 'null'
       required:
       - submitter_specimen_id
       - program_id
@@ -4052,11 +4907,13 @@ components:
       - Primary tumour - additional new primary
       - Primary tumour - adjacent to normal
       - Primary tumour
-      - Recurrent tumour
       - Tumour - unknown if derived from primary or metastatic tumour
       - Xenograft - derived from primary tumour
       - Xenograft - derived from metastatic tumour
       - Xenograft - derived from tumour cell line
+      - Locally recurrent tumour (non-metastatic)
+      - Recurrent tumour, NOS
+      - Metastatic tumour of uncertain primary
       title: SpecimenTypeEnum
       type: string
     StageGroupEnum:
@@ -4157,7 +5014,16 @@ components:
       - Stage 4S
       - Occult Carcinoma
       - Not available
+      - Stage IC1
+      - Stage IC2
+      - Stage IC3
       title: StageGroupEnum
+      type: string
+    StatusEnum:
+      enum:
+      - Ongoing
+      - Completed
+      title: StatusEnum
       type: string
     StorageEnum:
       enum:
@@ -4200,24 +5066,11 @@ components:
           - type: string
           - type: 'null'
           title: Lymphovascular Invasion
-        margin_types_involved:
-          items:
-            type: string
-          q: margin_types_involved__overlap
-          title: Margin Types Involved
-          type: array
-        margin_types_not_assessed:
-          items:
-            type: string
-          q: margin_types_not_assessed__overlap
-          title: Margin Types Not Assessed
-          type: array
-        margin_types_not_involved:
-          items:
-            type: string
-          q: margin_types_not_involved__overlap
-          title: Margin Types Not Involved
-          type: array
+        margins_status:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Margins Status
         perineural_invasion:
           anyOf:
           - type: string
@@ -4300,27 +5153,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/LymphovascularInvasionEnum'
           - type: 'null'
-        margin_types_involved:
+        margins_status:
           anyOf:
-          - items:
-              $ref: '#/components/schemas/MarginTypesEnum'
-            type: array
+          - $ref: '#/components/schemas/MarginsStatusEnum'
           - type: 'null'
-          title: Margin Types Involved
-        margin_types_not_assessed:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/MarginTypesEnum'
-            type: array
-          - type: 'null'
-          title: Margin Types Not Assessed
-        margin_types_not_involved:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/MarginTypesEnum'
-            type: array
-          - type: 'null'
-          title: Margin Types Not Involved
         perineural_invasion:
           anyOf:
           - $ref: '#/components/schemas/PerineuralInvasionEnum'
@@ -4420,27 +5256,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/LymphovascularInvasionEnum'
           - type: 'null'
-        margin_types_involved:
+        margins_status:
           anyOf:
-          - items:
-              $ref: '#/components/schemas/MarginTypesEnum'
-            type: array
+          - $ref: '#/components/schemas/MarginsStatusEnum'
           - type: 'null'
-          title: Margin Types Involved
-        margin_types_not_assessed:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/MarginTypesEnum'
-            type: array
-          - type: 'null'
-          title: Margin Types Not Assessed
-        margin_types_not_involved:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/MarginTypesEnum'
-            type: array
-          - type: 'null'
-          title: Margin Types Not Involved
         perineural_invasion:
           anyOf:
           - $ref: '#/components/schemas/PerineuralInvasionEnum'
@@ -4894,6 +5713,11 @@ components:
           - type: string
           - type: 'null'
           title: Treatment Intent
+        treatment_setting:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Treatment Setting
         treatment_type:
           anyOf:
           - type: string
@@ -4941,6 +5765,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/TreatmentIntentEnum'
           - type: 'null'
+        treatment_setting:
+          anyOf:
+          - $ref: '#/components/schemas/TreatmentSettingEnum'
+          - type: 'null'
         treatment_start_date:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
@@ -4975,6 +5803,8 @@ components:
       - Screening
       - Forensic
       - Not available
+      - Combined diagnostic and therapeutic intent
+      - Life-sustaining intent
       title: TreatmentIntentEnum
       type: string
     TreatmentModelSchema:
@@ -5017,6 +5847,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/TreatmentIntentEnum'
           - type: 'null'
+        treatment_setting:
+          anyOf:
+          - $ref: '#/components/schemas/TreatmentSettingEnum'
+          - type: 'null'
         treatment_start_date:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
@@ -5043,7 +5877,7 @@ components:
       - Stable disease
       - Immune complete response (iCR)
       - Immune partial response (iPR)
-      - Immune uncomfirmed progressive disease (iUPD)
+      - Immune unconfirmed progressive disease (iUPD)
       - Immune confirmed progressive disease (iCPD)
       - Immune stable disease (iSD)
       - Complete remission
@@ -5074,6 +5908,13 @@ components:
       - Blazer score
       - Not available
       title: TreatmentResponseMethodEnum
+      type: string
+    TreatmentSettingEnum:
+      enum:
+      - Adjuvant
+      - Neoadjuvant
+      - Not available
+      title: TreatmentSettingEnum
       type: string
     TreatmentStatusEnum:
       enum:
@@ -5113,6 +5954,9 @@ components:
       - Stem cell transplant
       - Surgery
       - Other
+      - Unknown whether patient received treatment
+      - Patient referred for treatment at other center, details unknown
+      - Radiopharmaceutical Therapy
       title: TreatmentTypeEnum
       type: string
     TumourClassificationEnum:
@@ -5229,7 +6073,7 @@ components:
 info:
   description: This is the RESTful API for the MoH Service.
   title: MoH Service API
-  version: 5.3.1
+  version: 6.0.0
 openapi: 3.1.0
 paths:
   /v3/authorized/biomarkers/:
@@ -5289,7 +6133,7 @@ paths:
         required: false
         schema:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Psa Level
       - in: query
@@ -5297,7 +6141,7 @@ paths:
         required: false
         schema:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Ca125
       - in: query
@@ -5305,9 +6149,17 @@ paths:
         required: false
         schema:
           anyOf:
-          - type: integer
+          - type: number
           - type: 'null'
           title: Cea
+      - in: query
+        name: ca19_9
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Ca19 9
       - in: query
         name: er_status
         required: false
@@ -5586,13 +6438,13 @@ paths:
           - type: 'null'
           title: Is Deceased
       - in: query
-        name: lost_to_followup_after_clinical_event_identifier
+        name: lost_to_follow_up
         required: false
         schema:
           anyOf:
           - type: string
           - type: 'null'
-          title: Lost To Followup After Clinical Event Identifier
+          title: Lost To Follow Up
       - in: query
         name: lost_to_followup_reason
         required: false
@@ -5609,6 +6461,14 @@ paths:
           - type: string
           - type: 'null'
           title: Cause Of Death
+      - in: query
+        name: date_of_death_is_estimated
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Date Of Death Is Estimated
       - in: query
         name: page
         required: false
@@ -6189,6 +7049,132 @@ paths:
       summary: List Radiations
       tags:
       - authorized
+  /v3/authorized/radiopharmaceutical_therapies/:
+    get:
+      operationId: chord_metadata_service_mohpackets_apis_authorized_list_radiopharmaceutical_therapies
+      parameters:
+      - in: query
+        name: program_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Program Id
+      - in: query
+        name: submitter_donor_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitter Donor Id
+      - in: query
+        name: submitter_treatment_id
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Submitter Treatment Id
+      - in: query
+        name: rxnorm_code
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Rxnorm Code
+      - in: query
+        name: agent_name
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Agent Name
+      - in: query
+        name: radionuclide
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Radionuclide
+      - in: query
+        name: radionuclide_other
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Radionuclide Other
+      - in: query
+        name: cumulative_drug_dose
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Cumulative Drug Dose
+      - in: query
+        name: drug_dose_units
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Drug Dose Units
+      - in: query
+        name: mass_value
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mass Value
+      - in: query
+        name: mass_unit_ucum
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mass Unit Ucum
+      - in: query
+        name: number_of_cycles
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Number Of Cycles
+      - in: query
+        name: page
+        required: false
+        schema:
+          minimum: 1
+          title: Page
+          type: integer
+      - in: query
+        name: page_size
+        required: false
+        schema:
+          minimum: 1
+          title: Page Size
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedRadiopharmaceuticalTherapyModelSchema'
+          description: OK
+      security:
+      - GetAuth: []
+      summary: List Radiopharmaceutical Therapies
+      tags:
+      - authorized
   /v3/authorized/sample_registrations/:
     get:
       operationId: chord_metadata_service_mohpackets_apis_authorized_list_sample_registrations
@@ -6225,30 +7211,6 @@ paths:
           - type: string
           - type: 'null'
           title: Submitter Specimen Id
-      - in: query
-        name: specimen_tissue_source
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Specimen Tissue Source
-      - in: query
-        name: tumour_normal_designation
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Tumour Normal Designation
-      - in: query
-        name: specimen_type
-        required: false
-        schema:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Specimen Type
       - in: query
         name: sample_type
         required: false
@@ -6416,6 +7378,30 @@ paths:
           - type: 'null'
           title: Percent Tumour Cells Measurement Method
       - in: query
+        name: specimen_tissue_source
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specimen Tissue Source
+      - in: query
+        name: tumour_normal_designation
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tumour Normal Designation
+      - in: query
+        name: specimen_type
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Specimen Type
+      - in: query
         name: page
         required: false
         schema:
@@ -6534,32 +7520,13 @@ paths:
           - type: 'null'
           title: Residual Tumour Classification
       - in: query
-        name: margin_types_involved
+        name: margins_status
         required: false
         schema:
-          items:
-            type: string
-          q: margin_types_involved__overlap
-          title: Margin Types Involved
-          type: array
-      - in: query
-        name: margin_types_not_involved
-        required: false
-        schema:
-          items:
-            type: string
-          q: margin_types_not_involved__overlap
-          title: Margin Types Not Involved
-          type: array
-      - in: query
-        name: margin_types_not_assessed
-        required: false
-        schema:
-          items:
-            type: string
-          q: margin_types_not_assessed__overlap
-          title: Margin Types Not Assessed
-          type: array
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Margins Status
       - in: query
         name: lymphovascular_invasion
         required: false
@@ -6804,6 +7771,14 @@ paths:
           - type: string
           - type: 'null'
           title: Treatment Intent
+      - in: query
+        name: treatment_setting
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Treatment Setting
       - in: query
         name: response_to_treatment_criteria_method
         required: false
@@ -7275,7 +8250,7 @@ paths:
       - DeleteAuth: []
       summary: Delete Program
       tags:
-      - delete
+      - ingest
   /v3/ingest/programs/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_programs
@@ -7298,6 +8273,94 @@ paths:
       summary: Create Programs
       tags:
       - ingest
+  /v3/ingest/programs/{program_id}/:
+    patch:
+      description: 'Partially update a Program''s clinical fields.
+
+
+        Only the fields present in the request body are modified; the metadata
+
+        field is excluded from ProgramUpdateSchema and is never touched here.'
+      operationId: chord_metadata_service_mohpackets_apis_update_update_program
+      parameters:
+      - in: path
+        name: program_id
+        required: true
+        schema:
+          title: Program Id
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProgramUpdateSchema'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                title: Response
+                type: object
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                title: Response
+                type: object
+          description: Not Found
+      security:
+      - DeleteAuth: []
+      summary: Update Program
+      tags:
+      - ingest
+  /v3/ingest/programs/{program_id}/metadata/:
+    patch:
+      description: Update a Program's metadata field. Restricted to the ingest service
+        token.
+      operationId: chord_metadata_service_mohpackets_apis_update_update_program_metadata
+      parameters:
+      - in: path
+        name: program_id
+        required: true
+        schema:
+          title: Program Id
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetadataSchema'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                title: Response
+                type: object
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                title: Response
+                type: object
+          description: Not Found
+      security:
+      - ServiceTokenAuth: []
+      summary: Update Program Metadata
+      tags:
+      - ingest
   /v3/ingest/radiations/:
     post:
       operationId: chord_metadata_service_mohpackets_apis_ingestion_create_radiations
@@ -7318,6 +8381,28 @@ paths:
       - IngestAuth: []
       - ServiceTokenAuth: []
       summary: Create Radiations
+      tags:
+      - ingest
+  /v3/ingest/radiopharmaceutical_therapies/:
+    post:
+      operationId: chord_metadata_service_mohpackets_apis_ingestion_create_radiopharmaceutical_therapies
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/RadiopharmaceuticalTherapyIngestSchema'
+              title: Payload
+              type: array
+        required: true
+      responses:
+        '200':
+          description: OK
+      security:
+      - IngestAuth: []
+      - ServiceTokenAuth: []
+      summary: Create Radiopharmaceutical Therapies
       tags:
       - ingest
   /v3/ingest/sample_registrations/:

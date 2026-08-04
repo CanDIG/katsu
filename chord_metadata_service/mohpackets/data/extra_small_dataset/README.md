@@ -7,7 +7,8 @@ The small dataset is composed of:
 * 6 Comorbidities, Biomarkers, Exposures
 * 24 Treatments
 * 36 Sample registrations
-* 72 Systemic Therapies
+* 48 Systemic Therapies
+* 48 Radiopharmaceutical Therapies
 
 Identifiers are numbered sequentially per object.
 

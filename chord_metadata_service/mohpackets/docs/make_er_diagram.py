@@ -66,6 +66,7 @@ def main():
                       'Program -- SystemicTherapy : ""\n'
                       'Program -- Radiation : ""\n'
                       'Program -- Surgery : ""\n'
+                      'Program -- RadiopharmaceuticalTherapy : ""\n'
                       'Donor -- PrimaryDiagnosis : ""\n'
                       'Donor -- Comorbidity : ""\n'
                       'Donor -- Biomarker\n'
@@ -77,6 +78,7 @@ def main():
                       'Donor -- SystemicTherapy\n'
                       'Donor -- Radiation\n'
                       'Donor -- Surgery\n'
+                      'Donor -- RadiopharmaceuticalTherapy\n'
                       'PrimaryDiagnosis -- Specimen\n'
                       'PrimaryDiagnosis -- Treatment\n'
                       'PrimaryDiagnosis -- FollowUp\n'
@@ -85,6 +87,7 @@ def main():
                       'Treatment -- Radiation\n'
                       'Treatment -- Surgery\n'
                       'Treatment -- FollowUp\n'
+                      'Treatment -- RadiopharmaceuticalTherapy\n'
                       '\n```\n')
 
 

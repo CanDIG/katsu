@@ -583,7 +583,7 @@ TREATMENT_RESPONSE = [
     "Stable disease",
     "Immune complete response (iCR)",
     "Immune partial response (iPR)",
-    "Immune uncomfirmed progressive disease (iUPD)",
+    "Immune unconfirmed progressive disease (iUPD)",
     "Immune confirmed progressive disease (iCPD)",
     "Immune stable disease (iSD)",
     "Complete remission",

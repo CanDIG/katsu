@@ -249,6 +249,7 @@ Specimen ||--o{ SampleRegistration : ""
 Treatment ||--o| Radiation : "" 
 Treatment ||--o| Surgery : "" 
 Treatment ||--o{ Systemictherapy : "" 
+Treatment ||--o{ RadiopharmaceuticalTherapy : "" 
 Treatment o|--o{ FollowUp : "" 
 
 ```
