@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Annotated, List, Optional
 
 from ninja import Field, Schema
 from ninja.orm import create_schema
@@ -391,7 +391,11 @@ BaseFollowUpSchema = create_schema(
             Optional[List[ProgressionStatusMethodEnum]],
             None,
         ),
-        ("anatomic_site_progression_or_recurrence", Optional[List[str]], None),
+        (
+            "anatomic_site_progression_or_recurrence",
+            Optional[List[Annotated[str, Field(pattern=TOPOGRAPHY_REGEX, max_length=255)]]],
+            None,
+        ),
     ],
 )
 
