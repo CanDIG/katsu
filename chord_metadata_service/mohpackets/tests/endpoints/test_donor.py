@@ -527,6 +527,29 @@ class DonorQueryTestCase(BaseTestCase):
 
             self.assertEqual(sorted(response_data), sorted(expected_donors))
 
+    def test_query_returns_sample_registration_detail(self):
+        """
+        The response includes per-sample registration detail
+        (submitter_sample_id + tumour_normal_designation) alongside the flat
+        submitter_sample_ids list, so the query service can build its
+        sample->donor map without a separate sample_registrations call.
+        """
+        for user in self.users:
+            response = self.client.get(
+                self.donor_url,
+                HTTP_AUTHORIZATION=f"Bearer {user.token}",
+            ).json()
+            for donor in response["items"]:
+                self.assertIn("sample_registrations", donor)
+                detail_ids = {
+                    s["submitter_sample_id"] for s in donor["sample_registrations"]
+                }
+                flat_ids = set(donor.get("submitter_sample_ids") or [])
+                # the per-sample detail covers exactly the flat sample-id list
+                self.assertEqual(detail_ids, flat_ids)
+                for sample in donor["sample_registrations"]:
+                    self.assertIn("tumour_normal_designation", sample)
+
     def test_post_request_405(self):
         """
         Test a POST request to the '/authorized/query/' endpoint.

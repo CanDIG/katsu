@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from ninja import Field
+from ninja import Field, Schema
 
 from chord_metadata_service.mohpackets.schemas.base import (
     BaseBiomarkerSchema,
@@ -41,11 +41,32 @@ class DonorModelSchema(BaseDonorSchema):
     program_id: str = Field(..., alias="program_id_id")
 
 
+class SampleRegistrationDetailSchema(Schema):
+    submitter_sample_id: str
+    tumour_normal_designation: Optional[str] = None
+
+
 class QueryDonorSchema(BaseDonorSchema):
     program_id: str = Field(..., alias="program_id_id")
     primary_site: Optional[List[str]] = None
     treatment_type: Optional[List[str]] = None
     submitter_sample_ids: Optional[List[str]] = None
+    sample_registrations: List[SampleRegistrationDetailSchema] = []
+
+    # Per-sample detail (adds tumour/normal alongside the flat submitter_sample_ids).
+    # Read from the sampleregistration_set already prefetched by query_donors(), so
+    # this adds no extra DB query (no N+1). Lets the query service build its
+    # sample->donor map from this response and drop its separate, unfiltered call to
+    # /authorized/sample_registrations/.
+    @staticmethod
+    def resolve_sample_registrations(obj):
+        return [
+            {
+                "submitter_sample_id": s.submitter_sample_id,
+                "tumour_normal_designation": s.tumour_normal_designation,
+            }
+            for s in obj.sampleregistration_set.all()
+        ]
 
 
 class PrimaryDiagnosisModelSchema(BasePrimaryDiagnosisSchema):
