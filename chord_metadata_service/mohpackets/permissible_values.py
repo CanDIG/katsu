@@ -5,6 +5,10 @@ MoH model fields and are used for validation during serialization.
 
 from chord_metadata_service.mohpackets.utils import list_to_enum
 
+###
+# used in multiple validations
+###
+
 UBOOLEAN = ["Yes", "No", "Not available"]
 uBooleanEnum = list_to_enum("uBooleanEnum", UBOOLEAN)
 
@@ -78,13 +82,12 @@ LostToFollowupReasonEnum = list_to_enum(
     "LostToFollowupReasonEnum", LOST_TO_FOLLOWUP_REASON
 )
 
-DATE_OF_DEATH_IS_ESTIMATED = ["Yes", "No", "Not applicable"]
-DateOfDeathIsEstimatedEnum = list_to_enum(
-    "DateOfDeathIsEstimatedEnum", DATE_OF_DEATH_IS_ESTIMATED
-)
 
-CAUSE_OF_DEATH = ["Died of cancer", "Died of other reasons", "Not available"]
-CauseOfDeathEnum = list_to_enum("CauseOfDeathEnum", CAUSE_OF_DEATH)
+###
+# Primary Diagnosis
+###
+
+# cancer_type_code missing?
 
 PRIMARY_SITE = [
     "Accessory sinuses",
@@ -161,6 +164,34 @@ PRIMARY_SITE = [
 ]
 PrimarySiteEnum = list_to_enum("PrimarySiteEnum", PRIMARY_SITE)
 
+BASIS_OF_DIAGNOSIS = [
+    "Clinical investigation",
+    "Clinical",
+    "Cytology",
+    "Death certificate only",
+    "Histology of a metastasis",
+    "Specific tumour markers",
+    "Not available",
+    "Cytogenetic and/or molecular testing",
+    "Histology at autopsy",
+    "Histology of a metastasis",
+    "Histology of the primary tumor",
+    "Histology",
+]
+BasisOfDiagnosisEnum = list_to_enum("BasisOfDiagnosisEnum", BASIS_OF_DIAGNOSIS)
+
+PRIMARY_DIAGNOSIS_LATERALITY = [
+    "Bilateral",
+    "Left",
+    "Midline",
+    "Not a paired site",
+    "Right",
+    "Unilateral, side not specified",
+    "Not available",
+]
+PrimaryDiagnosisLateralityEnum = list_to_enum(
+    "PrimaryDiagnosisLateralityEnum", PRIMARY_DIAGNOSIS_LATERALITY
+)
 
 TUMOUR_STAGING_SYSTEM = [
     "AJCC cancer staging system",
@@ -393,49 +424,77 @@ STAGE_GROUP = [
 StageGroupEnum = list_to_enum("StageGroupEnum", STAGE_GROUP)
 
 
-STORAGE = [
-    "Cut slide",
-    "Frozen in -70 freezer",
-    "Frozen in liquid nitrogen",
-    "Frozen in vapour phase",
-    "Not Applicable",
-    "OCT embedded",
+###
+# Specimen
+###
+
+SPECIMEN_TYPE = [
+    "Cell line - derived from normal",
+    "Cell line - derived from primary tumour",
+    "Cell line - derived from metastatic tumour",
+    "Cell line - derived from xenograft tumour",
+    "Metastatic tumour - additional metastatic",
+    "Metastatic tumour - metastasis local to lymph node",
+    "Metastatic tumour - metastasis to distant location",
+    "Metastatic tumour",
+    "Normal - tissue adjacent to primary tumour",
+    "Normal",
+    "Primary tumour - additional new primary",
+    "Primary tumour - adjacent to normal",
+    "Primary tumour",
+    "Tumour - unknown if derived from primary or metastatic tumour",
+    "Xenograft - derived from primary tumour",
+    "Xenograft - derived from metastatic tumour",
+    "Xenograft - derived from tumour cell line",
+    "Locally recurrent tumour (non-metastatic)",
+    "Recurrent tumour, NOS",
+    "Metastatic tumour of uncertain primary",
+]
+SpecimenTypeEnum = list_to_enum("SpecimenTypeEnum", SPECIMEN_TYPE)
+
+SPECIMEN_TISSUE_SOURCE = [
+    "Abdominal fluid",
+    "Amniotic fluid",
+    "Arterial blood",
+    "Bile",
+    "Blood derived - bone marrow",
+    "Blood derived - peripheral blood",
+    "Bone marrow fluid",
+    "Bone marrow derived mononuclear cells",
+    "Buccal cell",
+    "Buffy coat",
+    "Cerebrospinal fluid",
+    "Cervical mucus",
+    "Convalescent plasma",
+    "Cord blood",
+    "Duodenal fluid",
+    "Female genital fluid",
+    "Fetal blood",
+    "Hydrocele fluid",
+    "Male genital fluid",
     "Other",
-    "Paraffin block",
-    "RNA later frozen",
-    "Not available",
+    "Pancreatic fluid",
+    "Pericardial effusion",
+    "Pleural fluid",
+    "Renal cyst fluid",
+    "Saliva",
+    "Seminal fluid",
+    "Serum",
+    "Solid tissue",
+    "Sputum",
+    "Synovial fluid",
+    "Urine",
+    "Venous blood",
+    "Vitreous fluid",
+    "Whole blood",
+    "Wound",
 ]
-StorageEnum = list_to_enum("StorageEnum", STORAGE)
-
-SPECIMEN_PROCESSING = [
-    "Cryopreservation in liquid nitrogen (dead tissue)",
-    "Cryopreservation in dry ice (dead tissue)",
-    "Cryopreservation of live cells in liquid nitrogen",
-    "Cryopreservation - other",
-    "Formalin fixed & paraffin embedded",
-    "Formalin fixed - buffered",
-    "Formalin fixed - unbuffered",
-    "Fresh",
-    "Other",
-    "Not available",
-]
-SpecimenProcessingEnum = list_to_enum("SpecimenProcessingEnum", SPECIMEN_PROCESSING)
-
-SPECIMEN_LATERALITY = ["Left", "Not applicable", "Right", "Not available"]
-SpecimenLateralityEnum = list_to_enum("SpecimenLateralityEnum", SPECIMEN_LATERALITY)
-
-PRIMARY_DIAGNOSIS_LATERALITY = [
-    "Bilateral",
-    "Left",
-    "Midline",
-    "Not a paired site",
-    "Right",
-    "Unilateral, side not specified",
-    "Not available",
-]
-PrimaryDiagnosisLateralityEnum = list_to_enum(
-    "PrimaryDiagnosisLateralityEnum", PRIMARY_DIAGNOSIS_LATERALITY
+SpecimenTissueSourceEnum = list_to_enum(
+    "SpecimenTissueSourceEnum", SPECIMEN_TISSUE_SOURCE
 )
+
+TUMOUR_DESIGNATION = ["Normal", "Tumour"]
+TumourDesginationEnum = list_to_enum("TumourDesginationEnum", TUMOUR_DESIGNATION)
 
 CONFIRMED_DIAGNOSIS_TUMOUR = ["Yes", "No", "Not done", "Not available"]
 ConfirmedDiagnosisTumourEnum = list_to_enum(
@@ -499,89 +558,41 @@ CELLS_MEASURE_METHOD = [
 ]
 CellsMeasureMethodEnum = list_to_enum("CellsMeasureMethodEnum", CELLS_MEASURE_METHOD)
 
-# Program permissible values
-STATUS = ["Ongoing", "Completed"]
-StatusEnum = list_to_enum("StatusEnum", STATUS)
-
-CONTEXT = ["Clinical", "Research"]
-ContextEnum = list_to_enum("ContextEnum", CONTEXT)
-
-PANCAN_COHORT = ["Yes", "No"]
-PancanCohortEnum = list_to_enum("PancanCohortEnum", PANCAN_COHORT)
-
-GENDER = ["Man", "Woman", "Non-binary", "Other", "Prefer not to disclose", "Not available"]
-GenderEnum = list_to_enum("GenderEnum", GENDER)
-
-SEX_AT_BIRTH = ["Male", "Female", "Other", "Not available"]
-SexAtBirthEnum = list_to_enum("SexAtBirthEnum", SEX_AT_BIRTH)
-
-DATE_RESOLUTION = ["month", "day", "Currently incomplete", "Not available"]
-DateResolutionEnum = list_to_enum("DateResolutionEnum", DATE_RESOLUTION)
-
-SPECIMEN_TISSUE_SOURCE = [
-    "Abdominal fluid",
-    "Amniotic fluid",
-    "Arterial blood",
-    "Bile",
-    "Blood derived - bone marrow",
-    "Blood derived - peripheral blood",
-    "Bone marrow fluid",
-    "Bone marrow derived mononuclear cells",
-    "Buccal cell",
-    "Buffy coat",
-    "Cerebrospinal fluid",
-    "Cervical mucus",
-    "Convalescent plasma",
-    "Cord blood",
-    "Duodenal fluid",
-    "Female genital fluid",
-    "Fetal blood",
-    "Hydrocele fluid",
-    "Male genital fluid",
+STORAGE = [
+    "Cut slide",
+    "Frozen in -70 freezer",
+    "Frozen in liquid nitrogen",
+    "Frozen in vapour phase",
+    "Not Applicable",
+    "OCT embedded",
     "Other",
-    "Pancreatic fluid",
-    "Pericardial effusion",
-    "Pleural fluid",
-    "Renal cyst fluid",
-    "Saliva",
-    "Seminal fluid",
-    "Serum",
-    "Solid tissue",
-    "Sputum",
-    "Synovial fluid",
-    "Urine",
-    "Venous blood",
-    "Vitreous fluid",
-    "Whole blood",
-    "Wound",
+    "Paraffin block",
+    "RNA later frozen",
+    "Not available",
 ]
-SpecimenTissueSourceEnum = list_to_enum(
-    "SpecimenTissueSourceEnum", SPECIMEN_TISSUE_SOURCE
-)
+StorageEnum = list_to_enum("StorageEnum", STORAGE)
 
-SPECIMEN_TYPE = [
-    "Cell line - derived from normal",
-    "Cell line - derived from primary tumour",
-    "Cell line - derived from metastatic tumour",
-    "Cell line - derived from xenograft tumour",
-    "Metastatic tumour - additional metastatic",
-    "Metastatic tumour - metastasis local to lymph node",
-    "Metastatic tumour - metastasis to distant location",
-    "Metastatic tumour",
-    "Normal - tissue adjacent to primary tumour",
-    "Normal",
-    "Primary tumour - additional new primary",
-    "Primary tumour - adjacent to normal",
-    "Primary tumour",
-    "Tumour - unknown if derived from primary or metastatic tumour",
-    "Xenograft - derived from primary tumour",
-    "Xenograft - derived from metastatic tumour",
-    "Xenograft - derived from tumour cell line",
-    "Locally recurrent tumour (non-metastatic)",
-    "Recurrent tumour, NOS",
-    "Metastatic tumour of uncertain primary",
+SPECIMEN_PROCESSING = [
+    "Cryopreservation in liquid nitrogen (dead tissue)",
+    "Cryopreservation in dry ice (dead tissue)",
+    "Cryopreservation of live cells in liquid nitrogen",
+    "Cryopreservation - other",
+    "Formalin fixed & paraffin embedded",
+    "Formalin fixed - buffered",
+    "Formalin fixed - unbuffered",
+    "Fresh",
+    "Other",
+    "Not available",
 ]
-SpecimenTypeEnum = list_to_enum("SpecimenTypeEnum", SPECIMEN_TYPE)
+SpecimenProcessingEnum = list_to_enum("SpecimenProcessingEnum", SPECIMEN_PROCESSING)
+
+SPECIMEN_LATERALITY = ["Left", "Not applicable", "Right", "Not available"]
+SpecimenLateralityEnum = list_to_enum("SpecimenLateralityEnum", SPECIMEN_LATERALITY)
+
+
+###
+# Sample registration
+###
 
 SAMPLE_TYPE = [
     "Amplified DNA",
@@ -596,37 +607,10 @@ SAMPLE_TYPE = [
 ]
 SampleTypeEnum = list_to_enum("SampleTypeEnum", SAMPLE_TYPE)
 
-BASIS_OF_DIAGNOSIS = [
-    "Clinical investigation",
-    "Clinical",
-    "Cytology",
-    "Death certificate only",
-    "Histology of a metastasis",
-    "Specific tumour markers",
-    "Not available",
-    "Cytogenetic and/or molecular testing",
-    "Histology at autopsy",
-    "Histology of a metastasis",
-    "Histology of the primary tumor",
-    "Histology",
-]
-BasisOfDiagnosisEnum = list_to_enum("BasisOfDiagnosisEnum", BASIS_OF_DIAGNOSIS)
 
-LYMPH_NODE_STATUS = [
-    "Cannot be determined",
-    "No",
-    "No lymph nodes found in resected specimen",
-    "Not applicable",
-    "Yes",
-]
-LymphNodeStatusEnum = list_to_enum("LymphNodeStatusEnum", LYMPH_NODE_STATUS)
-
-LYMPH_NODE_METHOD = [
-    "Imaging",
-    "Lymph node dissection/pathological exam",
-    "Physical palpation of patient",
-]
-LymphNodeMethodEnum = list_to_enum("LymphNodeMethodEnum", LYMPH_NODE_METHOD)
+###
+# Treatment
+###
 
 TREATMENT_TYPE = [
     "Bone marrow transplant",
@@ -644,13 +628,6 @@ TREATMENT_TYPE = [
 ]
 TreatmentTypeEnum = list_to_enum("TreatmentTypeEnum", TREATMENT_TYPE)
 
-TREATMENT_SETTING = [
-    "Adjuvant",
-    "Neoadjuvant",
-    "Not available",
-]
-TreatmentSettingEnum = list_to_enum("TreatmentSettingEnum", TREATMENT_SETTING)
-
 TREATMENT_INTENT = [
     "Curative",
     "Palliative",
@@ -665,6 +642,13 @@ TREATMENT_INTENT = [
     "Life-sustaining intent",
 ]
 TreatmentIntentEnum = list_to_enum("TreatmentIntentEnum", TREATMENT_INTENT)
+
+TREATMENT_SETTING = [
+    "Adjuvant",
+    "Neoadjuvant",
+    "Not available",
+]
+TreatmentSettingEnum = list_to_enum("TreatmentSettingEnum", TREATMENT_SETTING)
 
 TREATMENT_RESPONSE_METHOD = [
     "RECIST 1.1",
@@ -724,12 +708,13 @@ TREATMENT_STATUS = [
 ]
 TreatmentStatusEnum = list_to_enum("TreatmentStatusEnum", TREATMENT_STATUS)
 
-DRUG_REFERENCE_DB = [
-    "RxNorm",
-    "PubChem",
-    "NCI Thesaurus",
-]
-DrugReferenceDbEnum = list_to_enum("DrugReferenceDbEnum", DRUG_REFERENCE_DB)
+
+###
+# Systemic therapy
+###
+
+SYSTEMIC_THERAPY_TYPE = ["Chemotherapy", "Hormone therapy", "Immunotherapy"]
+SystemicTherapyTypeEnum = list_to_enum("SystemicTherapyTypeEnum", SYSTEMIC_THERAPY_TYPE)
 
 DOSAGE_UNITS = [
     "mg/m2",
@@ -742,6 +727,18 @@ DOSAGE_UNITS = [
     "Not available",
 ]
 DosageUnitsEnum = list_to_enum("DosageUnitsEnum", DOSAGE_UNITS)
+
+DRUG_REFERENCE_DB = [
+    "RxNorm",
+    "PubChem",
+    "NCI Thesaurus",
+]
+DrugReferenceDbEnum = list_to_enum("DrugReferenceDbEnum", DRUG_REFERENCE_DB)
+
+
+###
+# Radiation
+###
 
 RADIATION_THERAPY_MODALITY = [
     "Megavoltage radiation therapy using photons (procedure)",
@@ -757,6 +754,9 @@ RADIATION_THERAPY_MODALITY = [
 RadiationTherapyModalityEnum = list_to_enum(
     "RadiationTherapyModalityEnum", RADIATION_THERAPY_MODALITY
 )
+
+THERAPY_TYPE = ["External", "Internal", "Not available"]
+TherapyTypeEnum = list_to_enum("TherapyTypeEnum", THERAPY_TYPE)
 
 RADIATION_ANATOMICAL_SITE = [
     "ABDOMEN_WHOLE",
@@ -1178,13 +1178,17 @@ RadiationAnatomicalSiteEnum = list_to_enum(
     "RadiationAnatomicalSiteEnum", RADIATION_ANATOMICAL_SITE
 )
 
-IMMUNOTHERAPY_TYPE = [
-    "Cell-based",
-    "Immune checkpoint inhibitors",
-    "Monoclonal antibodies other than immune checkpoint inhibitors",
-    "Other immunomodulatory substances",
-]
-ImmunotherapyTypeEnum = list_to_enum("ImmunotherapyTypeEnum", IMMUNOTHERAPY_TYPE)
+
+###
+# Surgery
+###
+
+SURGERY_REFERENCE_DATABASE = ["SNOMED", "NCIt", "UMLS", "CCI"]
+SurgeryReferenceDatabaseEnum = list_to_enum(
+    "SurgeryReferenceDatabaseEnum", SURGERY_REFERENCE_DATABASE
+)
+
+# surgery_reference_identifier missing?
 
 SURGERY_TYPE = [
     "Ablation",
@@ -1250,11 +1254,6 @@ SurgeryTypeEnum = list_to_enum("SurgeryTypeEnum", SURGERY_TYPE)
 SURGERY_LOCATION = ["Local recurrence", "Metastatic", "Primary"]
 SurgeryLocationEnum = list_to_enum("SurgeryLocationEnum", SURGERY_LOCATION)
 
-SURGERY_REFERENCE_DATABASE = ["SNOMED", "NCIt", "UMLS", "CCI"]
-SurgeryReferenceDatabaseEnum = list_to_enum(
-    "SurgeryReferenceDatabaseEnum", SURGERY_REFERENCE_DATABASE
-)
-
 TUMOUR_FOCALITY = [
     "Cannot be assessed",
     "Multifocal",
@@ -1300,145 +1299,10 @@ PERINEURAL_INVASION = [
 ]
 PerineuralInvasionEnum = list_to_enum("PerineuralInvasionEnum", PERINEURAL_INVASION)
 
-DISEASE_STATUS_FOLLOWUP = [
-    "Complete remission",
-    "Distant progression",
-    "Loco-regional progression",
-    "No evidence of disease",
-    "Partial remission",
-    "Progression not otherwise specified",
-    "Relapse or recurrence",
-    "Stable",
-    "Not available",
-]
-DiseaseStatusFollowupEnum = list_to_enum(
-    "DiseaseStatusFollowupEnum", DISEASE_STATUS_FOLLOWUP
-)
 
-RELAPSE_TYPE = [
-    "Distant recurrence/metastasis",
-    "Local recurrence",
-    "Local recurrence and distant metastasis",
-    "Progression",
-    "Biochemical progression",
-    "Not available",
-]
-RelapseTypeEnum = list_to_enum("RelapseTypeEnum", RELAPSE_TYPE)
-
-PROGRESSION_STATUS_METHOD = [
-    "Imaging (procedure)",
-    "Histopathology test (procedure)",
-    "Assessment of symptom control (procedure)",
-    "Physical examination procedure (procedure)",
-    "Tumor marker measurement (procedure)",
-    "Laboratory data interpretation (procedure)",
-]
-ProgressionStatusMethodEnum = list_to_enum(
-    "ProgressionStatusMethodEnum", PROGRESSION_STATUS_METHOD
-)
-
-MALIGNANCY_LATERALITY = [
-    "Bilateral",
-    "Left",
-    "Midline",
-    "Not applicable",
-    "Right",
-    "Unilateral, Side not specified",
-    "Not available",
-]
-MalignancyLateralityEnum = list_to_enum(
-    "MalignancyLateralityEnum", MALIGNANCY_LATERALITY
-)
-
-ER_PR_HPV_STATUS = [
-    "Cannot be determined",
-    "Negative",
-    "Not applicable",
-    "Positive",
-    "Not available",
-]
-ErPrHpvStatusEnum = list_to_enum("ErPrHpvStatusEnum", ER_PR_HPV_STATUS)
-
-HER2_STATUS = [
-    "Cannot be determined",
-    "Equivocal",
-    "Positive",
-    "Negative",
-    "Not applicable",
-    "Not available",
-]
-Her2StatusEnum = list_to_enum("Her2StatusEnum", HER2_STATUS)
-
-HPV_STRAIN = [
-    "HPV16",
-    "HPV18",
-    "HPV31",
-    "HPV33",
-    "HPV35",
-    "HPV39",
-    "HPV45",
-    "HPV51",
-    "HPV52",
-    "HPV56",
-    "HPV58",
-    "HPV59",
-    "HPV66",
-    "HPV68",
-    "HPV73",
-]
-HpvStrainEnum = list_to_enum("HpvStrainEnum", HPV_STRAIN)
-
-SMOKING_STATUS = [
-    "Current reformed smoker for <= 15 years",
-    "Current reformed smoker for > 15 years",
-    "Current reformed smoker, duration not specified",
-    "Current smoker",
-    "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
-    "Not applicable",
-    "Not available",
-]
-SmokingStatusEnum = list_to_enum("SmokingStatusEnum", SMOKING_STATUS)
-
-TOBACCO_TYPE = [
-    "Chewing Tobacco",
-    "Cigar",
-    "Cigarettes",
-    "Electronic cigarettes",
-    "Not applicable",
-    "Pipe",
-    "Roll-ups",
-    "Snuff",
-    "Not available",
-    "Waterpipe",
-]
-TobaccoTypeEnum = list_to_enum("TobaccoTypeEnum", TOBACCO_TYPE)
-
-TUMOUR_DESIGNATION = ["Normal", "Tumour"]
-TumourDesginationEnum = list_to_enum("TumourDesginationEnum", TUMOUR_DESIGNATION)
-
-THERAPY_TYPE = ["External", "Internal", "Not available"]
-TherapyTypeEnum = list_to_enum("TherapyTypeEnum", THERAPY_TYPE)
-
-SYSTEMIC_THERAPY_TYPE = ["Chemotherapy", "Hormone therapy", "Immunotherapy"]
-SystemicTherapyTypeEnum = list_to_enum("SystemicTherapyTypeEnum", SYSTEMIC_THERAPY_TYPE)
-
-MASS_UNIT_UCUM = [
-    "ug",
-    "mg",
-    "nmol",
-    "umol",
-]
-MassUnitUcumEnum = list_to_enum("MassUnitUcumEnum", MASS_UNIT_UCUM)
-
-DRUG_DOSE_UNITS = [
-    "Bq",
-    "kBq",
-    "MBq",
-    "GBq",
-    "Ci",
-    "mCi",
-    ]
-DrugDoseUnitsEnum = list_to_enum("DrugDoseUnitsEnum", DRUG_DOSE_UNITS)
+###
+# RadiopharmaceuticalTherapy
+###
 
 RADIONUCLIDE = [
     "Carbon-14",
@@ -1489,24 +1353,182 @@ RADIONUCLIDE = [
 ]
 RadionuclideEnum = list_to_enum("RadionuclideEnum", RADIONUCLIDE)
 
-# ID format
-# Examples: 90234, BLD_donor_89, AML-90
-ID_REGEX = r"^[A-Za-z0-9\-\._]{1,64}$"
+DRUG_DOSE_UNITS = [
+    "Bq",
+    "kBq",
+    "MBq",
+    "GBq",
+    "Ci",
+    "mCi",
+    ]
+DrugDoseUnitsEnum = list_to_enum("DrugDoseUnitsEnum", DRUG_DOSE_UNITS)
 
-# Date format
-# A date, or partial date (e.g. just year or year + month) as used in
-# human communication. The format is YYYY, YYYY-MM, or YYYY-MM-DD,
-# e.g. 2018, 1973-06, or 1905-08-23. There SHALL be no time zone.
-DATE_REGEX = r"^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?"  # noqa: E501
+MASS_UNIT_UCUM = [
+    "ug",
+    "mg",
+    "nmol",
+    "umol",
+]
+MassUnitUcumEnum = list_to_enum("MassUnitUcumEnum", MASS_UNIT_UCUM)
 
-# ICD-O-3 morphology codes
-# Examples: 8260/3, 9691/36
-MORPHOLOGY_REGEX = r"^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$"
 
-# ICD-O-3 topography codes
-# Examples: C50.1, C18
-TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(.[0-9]{1})?$|^Not available$"
+###
+# Follow Up
+###
 
-# WHO ICD-10 codes
-# Examples: E10, C50.1, I11, M06
-COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$"
+DISEASE_STATUS_FOLLOWUP = [
+    "Complete remission",
+    "Distant progression",
+    "Loco-regional progression",
+    "No evidence of disease",
+    "Partial remission",
+    "Progression not otherwise specified",
+    "Relapse or recurrence",
+    "Stable",
+    "Not available",
+]
+DiseaseStatusFollowupEnum = list_to_enum(
+    "DiseaseStatusFollowupEnum", DISEASE_STATUS_FOLLOWUP
+)
+
+RELAPSE_TYPE = [
+    "Distant recurrence/metastasis",
+    "Local recurrence",
+    "Local recurrence and distant metastasis",
+    "Progression",
+    "Biochemical progression",
+    "Not available",
+]
+RelapseTypeEnum = list_to_enum("RelapseTypeEnum", RELAPSE_TYPE)
+
+PROGRESSION_STATUS_METHOD = [
+    "Imaging (procedure)",
+    "Histopathology test (procedure)",
+    "Assessment of symptom control (procedure)",
+    "Physical examination procedure (procedure)",
+    "Tumor marker measurement (procedure)",
+    "Laboratory data interpretation (procedure)",
+]
+ProgressionStatusMethodEnum = list_to_enum(
+    "ProgressionStatusMethodEnum", PROGRESSION_STATUS_METHOD
+)
+
+# anatomic_site_progression_or_recurrence missing?
+
+
+###
+# Biomarker
+###
+
+ER_PR_HPV_STATUS = [
+    "Cannot be determined",
+    "Negative",
+    "Not applicable",
+    "Positive",
+    "Not available",
+]
+ErPrHpvStatusEnum = list_to_enum("ErPrHpvStatusEnum", ER_PR_HPV_STATUS)
+
+HER2_STATUS = [
+    "Cannot be determined",
+    "Equivocal",
+    "Positive",
+    "Negative",
+    "Not applicable",
+    "Not available",
+]
+Her2StatusEnum = list_to_enum("Her2StatusEnum", HER2_STATUS)
+
+HPV_STRAIN = [
+    "HPV16",
+    "HPV18",
+    "HPV31",
+    "HPV33",
+    "HPV35",
+    "HPV39",
+    "HPV45",
+    "HPV51",
+    "HPV52",
+    "HPV56",
+    "HPV58",
+    "HPV59",
+    "HPV66",
+    "HPV68",
+    "HPV73",
+]
+HpvStrainEnum = list_to_enum("HpvStrainEnum", HPV_STRAIN)
+
+
+###
+# Comorbidity
+###
+
+MALIGNANCY_LATERALITY = [
+    "Bilateral",
+    "Left",
+    "Midline",
+    "Not applicable",
+    "Right",
+    "Unilateral, Side not specified",
+    "Not available",
+]
+MalignancyLateralityEnum = list_to_enum(
+    "MalignancyLateralityEnum", MALIGNANCY_LATERALITY
+)
+
+
+###
+# Exposure
+###
+
+SMOKING_STATUS = [
+    "Current reformed smoker for <= 15 years",
+    "Current reformed smoker for > 15 years",
+    "Current reformed smoker, duration not specified",
+    "Current smoker",
+    "Lifelong non-smoker (<100 cigarettes smoked in lifetime)",
+    "Not applicable",
+    "Not available",
+]
+SmokingStatusEnum = list_to_enum("SmokingStatusEnum", SMOKING_STATUS)
+
+TOBACCO_TYPE = [
+    "Chewing Tobacco",
+    "Cigar",
+    "Cigarettes",
+    "Electronic cigarettes",
+    "Not applicable",
+    "Pipe",
+    "Roll-ups",
+    "Snuff",
+    "Not available",
+    "Waterpipe",
+]
+TobaccoTypeEnum = list_to_enum("TobaccoTypeEnum", TOBACCO_TYPE)
+
+# Unused??
+###########
+LYMPH_NODE_STATUS = [
+    "Cannot be determined",
+    "No",
+    "No lymph nodes found in resected specimen",
+    "Not applicable",
+    "Yes",
+]
+LymphNodeStatusEnum = list_to_enum("LymphNodeStatusEnum", LYMPH_NODE_STATUS)
+
+LYMPH_NODE_METHOD = [
+    "Imaging",
+    "Lymph node dissection/pathological exam",
+    "Physical palpation of patient",
+]
+LymphNodeMethodEnum = list_to_enum("LymphNodeMethodEnum", LYMPH_NODE_METHOD)
+
+
+IMMUNOTHERAPY_TYPE = [
+    "Cell-based",
+    "Immune checkpoint inhibitors",
+    "Monoclonal antibodies other than immune checkpoint inhibitors",
+    "Other immunomodulatory substances",
+]
+ImmunotherapyTypeEnum = list_to_enum("ImmunotherapyTypeEnum", IMMUNOTHERAPY_TYPE)
