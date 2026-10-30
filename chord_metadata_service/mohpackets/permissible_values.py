@@ -6,12 +6,85 @@ MoH model fields and are used for validation during serialization.
 from chord_metadata_service.mohpackets.utils import list_to_enum
 
 UBOOLEAN = ["Yes", "No", "Not available"]
+uBooleanEnum = list_to_enum("uBooleanEnum", UBOOLEAN)
 
-LOST_TO_FOLLOW_UP = ["Yes", "No", "Not applicable", "Unknown"]
+# ID format
+# Examples: 90234, BLD_donor_89, AML-90
+ID_REGEX = r"^[A-Za-z0-9\-\._]{1,64}$"
+
+# Date format
+# A date, or partial date (e.g. just year or year + month) as used in
+# human communication. The format is YYYY, YYYY-MM, or YYYY-MM-DD,
+# e.g. 2018, 1973-06, or 1905-08-23. There SHALL be no time zone.
+DATE_REGEX = r"^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?"  # noqa: E501
+
+# ICD-O-3 morphology codes
+# Examples: 8260/3, 9691/36
+MORPHOLOGY_REGEX = r"^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$"
+
+# ICD-O-3 topography codes
+# Examples: C50.1, C18
+TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(.[0-9]{1})?$|^Not available$"
+
+# WHO ICD-10 codes
+# Examples: E10, C50.1, I11, M06
+COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$"
+
+
+###
+# Program
+###
+
+STATUS = ["Ongoing", "Completed"]
+StatusEnum = list_to_enum("StatusEnum", STATUS)
+
+CONTEXT = ["Clinical", "Research"]
+ContextEnum = list_to_enum("ContextEnum", CONTEXT)
+
+PANCAN_COHORT = ["Yes", "No"]
+PancanCohortEnum = list_to_enum("PancanCohortEnum", PANCAN_COHORT)
+
+
+###
+# Donor
+###
+
+GENDER = ["Man", "Woman", "Non-binary", "Other", "Prefer not to disclose", "Not available"]
+GenderEnum = list_to_enum("GenderEnum", GENDER)
+
+SEX_AT_BIRTH = ["Male", "Female", "Other", "Not available"]
+SexAtBirthEnum = list_to_enum("SexAtBirthEnum", SEX_AT_BIRTH)
 
 DATE_OF_DEATH_IS_ESTIMATED = ["Yes", "No", "Not applicable"]
+DateOfDeathIsEstimatedEnum = list_to_enum(
+    "DateOfDeathIsEstimatedEnum", DATE_OF_DEATH_IS_ESTIMATED
+)
 
 CAUSE_OF_DEATH = ["Died of cancer", "Died of other reasons", "Not available"]
+CauseOfDeathEnum = list_to_enum("CauseOfDeathEnum", CAUSE_OF_DEATH)
+
+LOST_TO_FOLLOW_UP = ["Yes", "No", "Not applicable", "Unknown"]
+LostToFollowUpEnum = list_to_enum("LostToFollowUpEnum", LOST_TO_FOLLOW_UP)
+
+LOST_TO_FOLLOWUP_REASON = [
+    "Completed study",
+    "Discharged to palliative care",
+    "Lost contact",
+    "Not available",
+    "Withdrew from study",
+    "Discharged from follow-up"
+]
+LostToFollowupReasonEnum = list_to_enum(
+    "LostToFollowupReasonEnum", LOST_TO_FOLLOWUP_REASON
+)
+
+DATE_OF_DEATH_IS_ESTIMATED = ["Yes", "No", "Not applicable"]
+DateOfDeathIsEstimatedEnum = list_to_enum(
+    "DateOfDeathIsEstimatedEnum", DATE_OF_DEATH_IS_ESTIMATED
+)
+
+CAUSE_OF_DEATH = ["Died of cancer", "Died of other reasons", "Not available"]
+CauseOfDeathEnum = list_to_enum("CauseOfDeathEnum", CAUSE_OF_DEATH)
 
 PRIMARY_SITE = [
     "Accessory sinuses",
@@ -86,16 +159,8 @@ PRIMARY_SITE = [
     "Unknown primary site",
     "Not available"
 ]
+PrimarySiteEnum = list_to_enum("PrimarySiteEnum", PRIMARY_SITE)
 
-
-LOST_TO_FOLLOWUP_REASON = [
-    "Completed study",
-    "Discharged to palliative care",
-    "Lost contact",
-    "Not available",
-    "Withdrew from study",
-    "Discharged from follow-up"
-]
 
 TUMOUR_STAGING_SYSTEM = [
     "AJCC cancer staging system",
@@ -112,6 +177,7 @@ TUMOUR_STAGING_SYSTEM = [
     "St Jude staging system",
     "Not available"
 ]
+TumourStagingSystemEnum = list_to_enum("TumourStagingSystemEnum", TUMOUR_STAGING_SYSTEM)
 
 T_CATEGORY = [
     "T0",
@@ -169,6 +235,7 @@ T_CATEGORY = [
     "Tis pd",
     "TX",
 ]
+TCategoryEnum = list_to_enum("TCategoryEnum", T_CATEGORY)
 
 N_CATEGORY = [
     "N0",
@@ -198,6 +265,7 @@ N_CATEGORY = [
     "N4",
     "NX",
 ]
+NCategoryEnum = list_to_enum("NCategoryEnum", N_CATEGORY)
 
 M_CATEGORY = [
     "M0",
@@ -219,6 +287,7 @@ M_CATEGORY = [
     "MX",
     "Not applicable"
 ]
+MCategoryEnum = list_to_enum("MCategoryEnum", M_CATEGORY)
 
 STAGE_GROUP = [
     "Stage 0",
@@ -321,6 +390,7 @@ STAGE_GROUP = [
     "Stage IC2",
     "Stage IC3",
 ]
+StageGroupEnum = list_to_enum("StageGroupEnum", STAGE_GROUP)
 
 
 STORAGE = [
@@ -335,6 +405,7 @@ STORAGE = [
     "RNA later frozen",
     "Not available",
 ]
+StorageEnum = list_to_enum("StorageEnum", STORAGE)
 
 SPECIMEN_PROCESSING = [
     "Cryopreservation in liquid nitrogen (dead tissue)",
@@ -348,8 +419,10 @@ SPECIMEN_PROCESSING = [
     "Other",
     "Not available",
 ]
+SpecimenProcessingEnum = list_to_enum("SpecimenProcessingEnum", SPECIMEN_PROCESSING)
 
 SPECIMEN_LATERALITY = ["Left", "Not applicable", "Right", "Not available"]
+SpecimenLateralityEnum = list_to_enum("SpecimenLateralityEnum", SPECIMEN_LATERALITY)
 
 PRIMARY_DIAGNOSIS_LATERALITY = [
     "Bilateral",
@@ -360,8 +433,14 @@ PRIMARY_DIAGNOSIS_LATERALITY = [
     "Unilateral, side not specified",
     "Not available",
 ]
+PrimaryDiagnosisLateralityEnum = list_to_enum(
+    "PrimaryDiagnosisLateralityEnum", PRIMARY_DIAGNOSIS_LATERALITY
+)
 
 CONFIRMED_DIAGNOSIS_TUMOUR = ["Yes", "No", "Not done", "Not available"]
+ConfirmedDiagnosisTumourEnum = list_to_enum(
+    "ConfirmedDiagnosisTumourEnum", CONFIRMED_DIAGNOSIS_TUMOUR
+)
 
 TUMOUR_GRADING_SYSTEM = [
     "FNCLCC grading system",
@@ -379,6 +458,7 @@ TUMOUR_GRADING_SYSTEM = [
     "WHO grading system for CNS tumours",
     "Not available"
 ]
+TumourGradingSystemEnum = list_to_enum("TumourGradingSystemEnum", TUMOUR_GRADING_SYSTEM)
 
 TUMOUR_GRADE = [
     "Low grade",
@@ -405,8 +485,10 @@ TUMOUR_GRADE = [
     "Grade Group 5",
     "Not available",
 ]
+TumourGradeEnum = list_to_enum("TumourGradeEnum", TUMOUR_GRADE)
 
 PERCENT_CELLS_RANGE = ["0-19%", "20-50%", "51-100%", "Not available"]
+PercentCellsRangeEnum = list_to_enum("PercentCellsRangeEnum", PERCENT_CELLS_RANGE)
 
 CELLS_MEASURE_METHOD = [
     "Genomics",
@@ -415,17 +497,26 @@ CELLS_MEASURE_METHOD = [
     "Other",
     "Not available",
 ]
+CellsMeasureMethodEnum = list_to_enum("CellsMeasureMethodEnum", CELLS_MEASURE_METHOD)
 
 # Program permissible values
 STATUS = ["Ongoing", "Completed"]
+StatusEnum = list_to_enum("StatusEnum", STATUS)
 
 CONTEXT = ["Clinical", "Research"]
+ContextEnum = list_to_enum("ContextEnum", CONTEXT)
 
 PANCAN_COHORT = ["Yes", "No"]
+PancanCohortEnum = list_to_enum("PancanCohortEnum", PANCAN_COHORT)
 
 GENDER = ["Man", "Woman", "Non-binary", "Other", "Prefer not to disclose", "Not available"]
+GenderEnum = list_to_enum("GenderEnum", GENDER)
 
 SEX_AT_BIRTH = ["Male", "Female", "Other", "Not available"]
+SexAtBirthEnum = list_to_enum("SexAtBirthEnum", SEX_AT_BIRTH)
+
+DATE_RESOLUTION = ["month", "day", "Currently incomplete", "Not available"]
+DateResolutionEnum = list_to_enum("DateResolutionEnum", DATE_RESOLUTION)
 
 SPECIMEN_TISSUE_SOURCE = [
     "Abdominal fluid",
@@ -464,6 +555,9 @@ SPECIMEN_TISSUE_SOURCE = [
     "Whole blood",
     "Wound",
 ]
+SpecimenTissueSourceEnum = list_to_enum(
+    "SpecimenTissueSourceEnum", SPECIMEN_TISSUE_SOURCE
+)
 
 SPECIMEN_TYPE = [
     "Cell line - derived from normal",
@@ -487,7 +581,7 @@ SPECIMEN_TYPE = [
     "Recurrent tumour, NOS",
     "Metastatic tumour of uncertain primary",
 ]
-
+SpecimenTypeEnum = list_to_enum("SpecimenTypeEnum", SPECIMEN_TYPE)
 
 SAMPLE_TYPE = [
     "Amplified DNA",
@@ -500,6 +594,7 @@ SAMPLE_TYPE = [
     "Total DNA",
     "Total RNA",
 ]
+SampleTypeEnum = list_to_enum("SampleTypeEnum", SAMPLE_TYPE)
 
 BASIS_OF_DIAGNOSIS = [
     "Clinical investigation",
@@ -515,6 +610,7 @@ BASIS_OF_DIAGNOSIS = [
     "Histology of the primary tumor",
     "Histology",
 ]
+BasisOfDiagnosisEnum = list_to_enum("BasisOfDiagnosisEnum", BASIS_OF_DIAGNOSIS)
 
 LYMPH_NODE_STATUS = [
     "Cannot be determined",
@@ -523,12 +619,14 @@ LYMPH_NODE_STATUS = [
     "Not applicable",
     "Yes",
 ]
+LymphNodeStatusEnum = list_to_enum("LymphNodeStatusEnum", LYMPH_NODE_STATUS)
 
 LYMPH_NODE_METHOD = [
     "Imaging",
     "Lymph node dissection/pathological exam",
     "Physical palpation of patient",
 ]
+LymphNodeMethodEnum = list_to_enum("LymphNodeMethodEnum", LYMPH_NODE_METHOD)
 
 TREATMENT_TYPE = [
     "Bone marrow transplant",
@@ -544,12 +642,14 @@ TREATMENT_TYPE = [
     "Patient referred for treatment at other center, details unknown",
     "Radiopharmaceutical Therapy",
 ]
+TreatmentTypeEnum = list_to_enum("TreatmentTypeEnum", TREATMENT_TYPE)
 
 TREATMENT_SETTING = [
     "Adjuvant",
     "Neoadjuvant",
     "Not available",
 ]
+TreatmentSettingEnum = list_to_enum("TreatmentSettingEnum", TREATMENT_SETTING)
 
 TREATMENT_INTENT = [
     "Curative",
@@ -564,6 +664,7 @@ TREATMENT_INTENT = [
     "Combined diagnostic and therapeutic intent",
     "Life-sustaining intent",
 ]
+TreatmentIntentEnum = list_to_enum("TreatmentIntentEnum", TREATMENT_INTENT)
 
 TREATMENT_RESPONSE_METHOD = [
     "RECIST 1.1",
@@ -575,6 +676,9 @@ TREATMENT_RESPONSE_METHOD = [
     "Blazer score",
     "Not available",
 ]
+TreatmentResponseMethodEnum = list_to_enum(
+    "TreatmentResponseMethodEnum", TREATMENT_RESPONSE_METHOD
+)
 
 TREATMENT_RESPONSE = [
     "Complete response",
@@ -604,6 +708,7 @@ TREATMENT_RESPONSE = [
     "Complete response",
     "Not available",
 ]
+TreatmentResponseEnum = list_to_enum("TreatmentResponseEnum", TREATMENT_RESPONSE)
 
 TREATMENT_STATUS = [
     "Treatment completed as prescribed",
@@ -617,12 +722,14 @@ TREATMENT_STATUS = [
     "Other",
     "Not available",
 ]
+TreatmentStatusEnum = list_to_enum("TreatmentStatusEnum", TREATMENT_STATUS)
 
 DRUG_REFERENCE_DB = [
     "RxNorm",
     "PubChem",
     "NCI Thesaurus",
 ]
+DrugReferenceDbEnum = list_to_enum("DrugReferenceDbEnum", DRUG_REFERENCE_DB)
 
 DOSAGE_UNITS = [
     "mg/m2",
@@ -634,6 +741,7 @@ DOSAGE_UNITS = [
     "mg",
     "Not available",
 ]
+DosageUnitsEnum = list_to_enum("DosageUnitsEnum", DOSAGE_UNITS)
 
 RADIATION_THERAPY_MODALITY = [
     "Megavoltage radiation therapy using photons (procedure)",
@@ -646,6 +754,9 @@ RADIATION_THERAPY_MODALITY = [
     "Not available",
     "Teleradiotherapy using photons",
 ]
+RadiationTherapyModalityEnum = list_to_enum(
+    "RadiationTherapyModalityEnum", RADIATION_THERAPY_MODALITY
+)
 
 RADIATION_ANATOMICAL_SITE = [
     "ABDOMEN_WHOLE",
@@ -1063,7 +1174,9 @@ RADIATION_ANATOMICAL_SITE = [
     "WHOLE_BODY_SKIN",
     "NOT_AVAILABLE",
 ]
-
+RadiationAnatomicalSiteEnum = list_to_enum(
+    "RadiationAnatomicalSiteEnum", RADIATION_ANATOMICAL_SITE
+)
 
 IMMUNOTHERAPY_TYPE = [
     "Cell-based",
@@ -1071,6 +1184,7 @@ IMMUNOTHERAPY_TYPE = [
     "Monoclonal antibodies other than immune checkpoint inhibitors",
     "Other immunomodulatory substances",
 ]
+ImmunotherapyTypeEnum = list_to_enum("ImmunotherapyTypeEnum", IMMUNOTHERAPY_TYPE)
 
 SURGERY_TYPE = [
     "Ablation",
@@ -1131,9 +1245,15 @@ SURGERY_TYPE = [
     "Wedge/localised gastric resection",
     "Wide Local Excision",
 ]
+SurgeryTypeEnum = list_to_enum("SurgeryTypeEnum", SURGERY_TYPE)
 
 SURGERY_LOCATION = ["Local recurrence", "Metastatic", "Primary"]
+SurgeryLocationEnum = list_to_enum("SurgeryLocationEnum", SURGERY_LOCATION)
+
 SURGERY_REFERENCE_DATABASE = ["SNOMED", "NCIt", "UMLS", "CCI"]
+SurgeryReferenceDatabaseEnum = list_to_enum(
+    "SurgeryReferenceDatabaseEnum", SURGERY_REFERENCE_DATABASE
+)
 
 TUMOUR_FOCALITY = [
     "Cannot be assessed",
@@ -1142,8 +1262,12 @@ TUMOUR_FOCALITY = [
     "Unifocal",
     "Not available",
 ]
+TumourFocalityEnum = list_to_enum("TumourFocalityEnum", TUMOUR_FOCALITY)
 
 TUMOUR_CLASSIFICATION = ["Not applicable", "RX", "R0", "R1", "R2", "Not available"]
+TumourClassificationEnum = list_to_enum(
+    "TumourClassificationEnum", TUMOUR_CLASSIFICATION
+)
 
 MARGINS_STATUS = [
     "Margins clear",
@@ -1152,8 +1276,9 @@ MARGINS_STATUS = [
     "Not available",
     "Unknown",
 ]
+MarginsStatusEnum = list_to_enum("MarginsStatusEnum", MARGINS_STATUS)
 
-LYMPHOVACULAR_INVASION = [
+LYMPHOVASCULAR_INVASION = [
     "Absent",
     "Both lymphatic and small vessel and venous (large vessel) invasion",
     "Lymphatic and small vessel invasion only",
@@ -1162,6 +1287,9 @@ LYMPHOVACULAR_INVASION = [
     "Venous (large vessel) invasion only",
     "Not available",
 ]
+LymphovascularInvasionEnum = list_to_enum(
+    "LymphovascularInvasionEnum", LYMPHOVASCULAR_INVASION
+)
 
 PERINEURAL_INVASION = [
     "Absent",
@@ -1170,6 +1298,7 @@ PERINEURAL_INVASION = [
     "Present",
     "Not available",
 ]
+PerineuralInvasionEnum = list_to_enum("PerineuralInvasionEnum", PERINEURAL_INVASION)
 
 DISEASE_STATUS_FOLLOWUP = [
     "Complete remission",
@@ -1182,6 +1311,9 @@ DISEASE_STATUS_FOLLOWUP = [
     "Stable",
     "Not available",
 ]
+DiseaseStatusFollowupEnum = list_to_enum(
+    "DiseaseStatusFollowupEnum", DISEASE_STATUS_FOLLOWUP
+)
 
 RELAPSE_TYPE = [
     "Distant recurrence/metastasis",
@@ -1191,6 +1323,7 @@ RELAPSE_TYPE = [
     "Biochemical progression",
     "Not available",
 ]
+RelapseTypeEnum = list_to_enum("RelapseTypeEnum", RELAPSE_TYPE)
 
 PROGRESSION_STATUS_METHOD = [
     "Imaging (procedure)",
@@ -1200,6 +1333,9 @@ PROGRESSION_STATUS_METHOD = [
     "Tumor marker measurement (procedure)",
     "Laboratory data interpretation (procedure)",
 ]
+ProgressionStatusMethodEnum = list_to_enum(
+    "ProgressionStatusMethodEnum", PROGRESSION_STATUS_METHOD
+)
 
 MALIGNANCY_LATERALITY = [
     "Bilateral",
@@ -1210,6 +1346,9 @@ MALIGNANCY_LATERALITY = [
     "Unilateral, Side not specified",
     "Not available",
 ]
+MalignancyLateralityEnum = list_to_enum(
+    "MalignancyLateralityEnum", MALIGNANCY_LATERALITY
+)
 
 ER_PR_HPV_STATUS = [
     "Cannot be determined",
@@ -1218,6 +1357,7 @@ ER_PR_HPV_STATUS = [
     "Positive",
     "Not available",
 ]
+ErPrHpvStatusEnum = list_to_enum("ErPrHpvStatusEnum", ER_PR_HPV_STATUS)
 
 HER2_STATUS = [
     "Cannot be determined",
@@ -1227,6 +1367,7 @@ HER2_STATUS = [
     "Not applicable",
     "Not available",
 ]
+Her2StatusEnum = list_to_enum("Her2StatusEnum", HER2_STATUS)
 
 HPV_STRAIN = [
     "HPV16",
@@ -1245,6 +1386,7 @@ HPV_STRAIN = [
     "HPV68",
     "HPV73",
 ]
+HpvStrainEnum = list_to_enum("HpvStrainEnum", HPV_STRAIN)
 
 SMOKING_STATUS = [
     "Current reformed smoker for <= 15 years",
@@ -1255,6 +1397,7 @@ SMOKING_STATUS = [
     "Not applicable",
     "Not available",
 ]
+SmokingStatusEnum = list_to_enum("SmokingStatusEnum", SMOKING_STATUS)
 
 TOBACCO_TYPE = [
     "Chewing Tobacco",
@@ -1268,9 +1411,16 @@ TOBACCO_TYPE = [
     "Not available",
     "Waterpipe",
 ]
+TobaccoTypeEnum = list_to_enum("TobaccoTypeEnum", TOBACCO_TYPE)
+
 TUMOUR_DESIGNATION = ["Normal", "Tumour"]
+TumourDesginationEnum = list_to_enum("TumourDesginationEnum", TUMOUR_DESIGNATION)
+
 THERAPY_TYPE = ["External", "Internal", "Not available"]
+TherapyTypeEnum = list_to_enum("TherapyTypeEnum", THERAPY_TYPE)
+
 SYSTEMIC_THERAPY_TYPE = ["Chemotherapy", "Hormone therapy", "Immunotherapy"]
+SystemicTherapyTypeEnum = list_to_enum("SystemicTherapyTypeEnum", SYSTEMIC_THERAPY_TYPE)
 
 MASS_UNIT_UCUM = [
     "ug",
@@ -1278,15 +1428,17 @@ MASS_UNIT_UCUM = [
     "nmol",
     "umol",
 ]
+MassUnitUcumEnum = list_to_enum("MassUnitUcumEnum", MASS_UNIT_UCUM)
 
 DRUG_DOSE_UNITS = [
-    "Bq", 
-    "kBq", 
-    "MBq", 
-    "GBq", 
-    "Ci", 
+    "Bq",
+    "kBq",
+    "MBq",
+    "GBq",
+    "Ci",
     "mCi",
     ]
+DrugDoseUnitsEnum = list_to_enum("DrugDoseUnitsEnum", DRUG_DOSE_UNITS)
 
 RADIONUCLIDE = [
     "Carbon-14",
@@ -1335,6 +1487,7 @@ RADIONUCLIDE = [
     "Lead-203",
     "Radium-223",
 ]
+RadionuclideEnum = list_to_enum("RadionuclideEnum", RADIONUCLIDE)
 
 # ID format
 # Examples: 90234, BLD_donor_89, AML-90
@@ -1357,97 +1510,3 @@ TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(.[0-9]{1})?$|^Not available$"
 # WHO ICD-10 codes
 # Examples: E10, C50.1, I11, M06
 COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$"
-
-StatusEnum = list_to_enum("StatusEnum", STATUS)
-ContextEnum = list_to_enum("ContextEnum", CONTEXT)
-PancanCohortEnum = list_to_enum("PancanCohortEnum", PANCAN_COHORT)
-CauseOfDeathEnum = list_to_enum("CauseOfDeathEnum", CAUSE_OF_DEATH)
-PrimarySiteEnum = list_to_enum("PrimarySiteEnum", PRIMARY_SITE)
-uBooleanEnum = list_to_enum("uBooleanEnum", UBOOLEAN)
-LostToFollowUpEnum = list_to_enum("LostToFollowUpEnum", LOST_TO_FOLLOW_UP)
-DateOfDeathIsEstimatedEnum = list_to_enum(
-    "DateOfDeathIsEstimatedEnum", DATE_OF_DEATH_IS_ESTIMATED
-)
-LostToFollowupReasonEnum = list_to_enum(
-    "LostToFollowupReasonEnum", LOST_TO_FOLLOWUP_REASON
-)
-TumourStagingSystemEnum = list_to_enum("TumourStagingSystemEnum", TUMOUR_STAGING_SYSTEM)
-TCategoryEnum = list_to_enum("TCategoryEnum", T_CATEGORY)
-NCategoryEnum = list_to_enum("NCategoryEnum", N_CATEGORY)
-MCategoryEnum = list_to_enum("MCategoryEnum", M_CATEGORY)
-StageGroupEnum = list_to_enum("StageGroupEnum", STAGE_GROUP)
-StorageEnum = list_to_enum("StorageEnum", STORAGE)
-SpecimenProcessingEnum = list_to_enum("SpecimenProcessingEnum", SPECIMEN_PROCESSING)
-SpecimenLateralityEnum = list_to_enum("SpecimenLateralityEnum", SPECIMEN_LATERALITY)
-PrimaryDiagnosisLateralityEnum = list_to_enum(
-    "PrimaryDiagnosisLateralityEnum", PRIMARY_DIAGNOSIS_LATERALITY
-)
-ConfirmedDiagnosisTumourEnum = list_to_enum(
-    "ConfirmedDiagnosisTumourEnum", CONFIRMED_DIAGNOSIS_TUMOUR
-)
-TumourGradingSystemEnum = list_to_enum("TumourGradingSystemEnum", TUMOUR_GRADING_SYSTEM)
-TumourGradeEnum = list_to_enum("TumourGradeEnum", TUMOUR_GRADE)
-PercentCellsRangeEnum = list_to_enum("PercentCellsRangeEnum", PERCENT_CELLS_RANGE)
-CellsMeasureMethodEnum = list_to_enum("CellsMeasureMethodEnum", CELLS_MEASURE_METHOD)
-GenderEnum = list_to_enum("GenderEnum", GENDER)
-SexAtBirthEnum = list_to_enum("SexAtBirthEnum", SEX_AT_BIRTH)
-SpecimenTissueSourceEnum = list_to_enum(
-    "SpecimenTissueSourceEnum", SPECIMEN_TISSUE_SOURCE
-)
-SpecimenTypeEnum = list_to_enum("SpecimenTypeEnum", SPECIMEN_TYPE)
-SampleTypeEnum = list_to_enum("SampleTypeEnum", SAMPLE_TYPE)
-BasisOfDiagnosisEnum = list_to_enum("BasisOfDiagnosisEnum", BASIS_OF_DIAGNOSIS)
-LymphNodeStatusEnum = list_to_enum("LymphNodeStatusEnum", LYMPH_NODE_STATUS)
-LymphNodeMethodEnum = list_to_enum("LymphNodeMethodEnum", LYMPH_NODE_METHOD)
-TreatmentTypeEnum = list_to_enum("TreatmentTypeEnum", TREATMENT_TYPE)
-TreatmentSettingEnum = list_to_enum("TreatmentSettingEnum", TREATMENT_SETTING)
-TreatmentIntentEnum = list_to_enum("TreatmentIntentEnum", TREATMENT_INTENT)
-TreatmentResponseMethodEnum = list_to_enum(
-    "TreatmentResponseMethodEnum", TREATMENT_RESPONSE_METHOD
-)
-TreatmentResponseEnum = list_to_enum("TreatmentResponseEnum", TREATMENT_RESPONSE)
-TreatmentStatusEnum = list_to_enum("TreatmentStatusEnum", TREATMENT_STATUS)
-DrugReferenceDbEnum = list_to_enum("DrugReferenceDbEnum", DRUG_REFERENCE_DB)
-DosageUnitsEnum = list_to_enum("DosageUnitsEnum", DOSAGE_UNITS)
-RadiationTherapyModalityEnum = list_to_enum(
-    "RadiationTherapyModalityEnum", RADIATION_THERAPY_MODALITY
-)
-RadiationAnatomicalSiteEnum = list_to_enum(
-    "RadiationAnatomicalSiteEnum", RADIATION_ANATOMICAL_SITE
-)
-ImmunotherapyTypeEnum = list_to_enum("ImmunotherapyTypeEnum", IMMUNOTHERAPY_TYPE)
-SurgeryTypeEnum = list_to_enum("SurgeryTypeEnum", SURGERY_TYPE)
-SurgeryReferenceDatabaseEnum = list_to_enum(
-    "SurgeryReferenceDatabaseEnum", SURGERY_REFERENCE_DATABASE
-)
-SurgeryLocationEnum = list_to_enum("SurgeryLocationEnum", SURGERY_LOCATION)
-TumourFocalityEnum = list_to_enum("TumourFocalityEnum", TUMOUR_FOCALITY)
-TumourClassificationEnum = list_to_enum(
-    "TumourClassificationEnum", TUMOUR_CLASSIFICATION
-)
-MarginsStatusEnum = list_to_enum("MarginsStatusEnum", MARGINS_STATUS)
-LymphovascularInvasionEnum = list_to_enum(
-    "LymphovascularInvasionEnum", LYMPHOVACULAR_INVASION
-)
-PerineuralInvasionEnum = list_to_enum("PerineuralInvasionEnum", PERINEURAL_INVASION)
-DiseaseStatusFollowupEnum = list_to_enum(
-    "DiseaseStatusFollowupEnum", DISEASE_STATUS_FOLLOWUP
-)
-RelapseTypeEnum = list_to_enum("RelapseTypeEnum", RELAPSE_TYPE)
-ProgressionStatusMethodEnum = list_to_enum(
-    "ProgressionStatusMethodEnum", PROGRESSION_STATUS_METHOD
-)
-MalignancyLateralityEnum = list_to_enum(
-    "MalignancyLateralityEnum", MALIGNANCY_LATERALITY
-)
-ErPrHpvStatusEnum = list_to_enum("ErPrHpvStatusEnum", ER_PR_HPV_STATUS)
-Her2StatusEnum = list_to_enum("Her2StatusEnum", HER2_STATUS)
-HpvStrainEnum = list_to_enum("HpvStrainEnum", HPV_STRAIN)
-SmokingStatusEnum = list_to_enum("SmokingStatusEnum", SMOKING_STATUS)
-TobaccoTypeEnum = list_to_enum("TobaccoTypeEnum", TOBACCO_TYPE)
-TumourDesginationEnum = list_to_enum("TumourDesginationEnum", TUMOUR_DESIGNATION)
-TherapyTypeEnum = list_to_enum("TherapyTypeEnum", THERAPY_TYPE)
-SystemicTherapyTypeEnum = list_to_enum("SystemicTherapyTypeEnum", SYSTEMIC_THERAPY_TYPE)
-RadionuclideEnum = list_to_enum("RadionuclideEnum", RADIONUCLIDE)
-DrugDoseUnitsEnum = list_to_enum("DrugDoseUnitsEnum", DRUG_DOSE_UNITS)
-MassUnitUcumEnum = list_to_enum("MassUnitUcumEnum", MASS_UNIT_UCUM)
