@@ -295,7 +295,7 @@ BaseSystemicTherapySchema = create_schema(
         "treatment_uuid",
     ],
     custom_fields=[
-        # systemic therapy type missing?
+        ("systemic_therapy_type", Optional[SystemicTherapyTypeEnum], None),
         ("drug_dose_units", Optional[DosageUnitsEnum], None),
         ("drug_reference_database", Optional[DrugReferenceDbEnum], None),
     ],
