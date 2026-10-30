@@ -59,6 +59,9 @@ GenderEnum = list_to_enum("GenderEnum", GENDER)
 SEX_AT_BIRTH = ["Male", "Female", "Other", "Not available"]
 SexAtBirthEnum = list_to_enum("SexAtBirthEnum", SEX_AT_BIRTH)
 
+DATE_RESOLUTION = ["month", "day", "Not available"]
+DateResolutionEnum = list_to_enum("DateResolutionEnum", DATE_RESOLUTION)
+
 DATE_OF_DEATH_IS_ESTIMATED = ["Yes", "No", "Not applicable"]
 DateOfDeathIsEstimatedEnum = list_to_enum(
     "DateOfDeathIsEstimatedEnum", DATE_OF_DEATH_IS_ESTIMATED

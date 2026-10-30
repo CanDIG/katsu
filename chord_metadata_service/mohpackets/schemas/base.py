@@ -148,7 +148,7 @@ BaseDonorSchema = create_schema(
         ("date_of_birth", Optional[DateInterval], None),
         ("date_of_death", Optional[DateInterval], None),
         ("date_of_death_is_estimated", Optional[DateOfDeathIsEstimatedEnum], None),
-        # missing date_resolution?
+        ("date_resolution", Optional[DateResolutionEnum], None),
         ("cause_of_death", Optional[CauseOfDeathEnum], None),
         ("lost_to_follow_up", Optional[LostToFollowUpEnum], None),
         ("lost_to_followup_reason", Optional[LostToFollowupReasonEnum], None),
