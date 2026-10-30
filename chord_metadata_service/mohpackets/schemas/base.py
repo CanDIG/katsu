@@ -313,8 +313,8 @@ BaseRadiopharmaceuticalTherapySchema = create_schema(
         "treatment_uuid",
     ],
     custom_fields=[
-        # rxnorm_code missing?
-        # agent_name missing?
+        # rxnorm_code not validated
+        # agent_name not validated
         ("radionuclide", Optional[RadionuclideEnum], None),
         ("drug_dose_units", Optional[DrugDoseUnitsEnum], None),
         ("mass_unit_ucum", Optional[MassUnitUcumEnum], None),
@@ -354,7 +354,7 @@ BaseSurgerySchema = create_schema(
     ],
     custom_fields=[
         ("surgery_reference_database", Optional[SurgeryReferenceDatabaseEnum], None),
-        # surgery_type missing?
+        # surgery_type not validated
         (
             "surgery_site",
             Optional[str],
