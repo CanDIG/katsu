@@ -141,14 +141,15 @@ BaseDonorSchema = create_schema(
     name="BaseDonorSchema",
     exclude=["uuid", "program_id"],
     custom_fields=[
-        ("cause_of_death", Optional[CauseOfDeathEnum], None),
-        ("is_deceased", Optional[uBooleanEnum], None),
         ("submitter_donor_id", str, Field(pattern=ID_REGEX, max_length=64)),
+        ("gender", Optional[GenderEnum], None),
+        ("sex_at_birth", Optional[SexAtBirthEnum], None),
+        ("is_deceased", Optional[uBooleanEnum], None),
         ("date_of_birth", Optional[DateInterval], None),
         ("date_of_death", Optional[DateInterval], None),
         ("date_of_death_is_estimated", Optional[DateOfDeathIsEstimatedEnum], None),
-        ("gender", Optional[GenderEnum], None),
-        ("sex_at_birth", Optional[SexAtBirthEnum], None),
+        ("date_resolution", Optional[DateResolutionEnum], None),
+        ("cause_of_death", Optional[CauseOfDeathEnum], None),
         ("lost_to_follow_up", Optional[LostToFollowUpEnum], None),
         ("lost_to_followup_reason", Optional[LostToFollowupReasonEnum], None),
     ],
@@ -165,14 +166,15 @@ BasePrimaryDiagnosisSchema = create_schema(
             Field(pattern=ID_REGEX, max_length=64),
         ),
         ("date_of_diagnosis", Optional[DateInterval], None),
+        # missing cancer_type_code?
+        ("primary_site", Optional[PrimarySiteEnum], None),
         ("basis_of_diagnosis", Optional[BasisOfDiagnosisEnum], None),
+        ("laterality", Optional[PrimaryDiagnosisLateralityEnum], None),
         ("clinical_tumour_staging_system", Optional[TumourStagingSystemEnum], None),
         ("clinical_t_category", Optional[TCategoryEnum], None),
         ("clinical_n_category", Optional[NCategoryEnum], None),
         ("clinical_m_category", Optional[MCategoryEnum], None),
         ("clinical_stage_group", Optional[StageGroupEnum], None),
-        ("laterality", Optional[PrimaryDiagnosisLateralityEnum], None),
-        ("primary_site", Optional[PrimarySiteEnum], None),
         ("pathological_tumour_staging_system", Optional[TumourStagingSystemEnum], None),
         ("pathological_t_category", Optional[TCategoryEnum], None),
         ("pathological_n_category", Optional[NCategoryEnum], None),
@@ -194,16 +196,18 @@ BaseSpecimenSchema = create_schema(
     ],
     custom_fields=[
         ("submitter_specimen_id", str, Field(pattern=ID_REGEX, max_length=64)),
-        ("specimen_storage", Optional[StorageEnum], None),
-        (
-            "tumour_histological_type",
-            Optional[str],
-            Field(None, max_length=128, pattern=MORPHOLOGY_REGEX),
-        ),
+        ("specimen_type", Optional[SpecimenTypeEnum], None),
+        ("specimen_tissue_source", Optional[SpecimenTissueSourceEnum], None),
+        ("tumour_normal_designation", Optional[TumourDesginationEnum], None),
         (
             "specimen_anatomic_location",
             Optional[str],
             Field(None, max_length=32, pattern=TOPOGRAPHY_REGEX),
+        ),
+        (
+            "tumour_histological_type",
+            Optional[str],
+            Field(None, max_length=128, pattern=MORPHOLOGY_REGEX),
         ),
         (
             "reference_pathology_confirmed_diagnosis",
@@ -223,11 +227,9 @@ BaseSpecimenSchema = create_schema(
             Optional[CellsMeasureMethodEnum],
             None,
         ),
+        ("specimen_storage", Optional[StorageEnum], None),
         ("specimen_processing", Optional[SpecimenProcessingEnum], None),
         ("specimen_laterality", Optional[SpecimenLateralityEnum], None),
-        ("specimen_tissue_source", Optional[SpecimenTissueSourceEnum], None),
-        ("tumour_normal_designation", Optional[TumourDesginationEnum], None),
-        ("specimen_type", Optional[SpecimenTypeEnum], None),
     ],
 )
 
@@ -293,6 +295,7 @@ BaseSystemicTherapySchema = create_schema(
         "treatment_uuid",
     ],
     custom_fields=[
+        ("systemic_therapy_type", Optional[SystemicTherapyTypeEnum], None),
         ("drug_dose_units", Optional[DosageUnitsEnum], None),
         ("drug_reference_database", Optional[DrugReferenceDbEnum], None),
     ],
@@ -310,6 +313,8 @@ BaseRadiopharmaceuticalTherapySchema = create_schema(
         "treatment_uuid",
     ],
     custom_fields=[
+        # rxnorm_code not validated
+        # agent_name not validated
         ("radionuclide", Optional[RadionuclideEnum], None),
         ("drug_dose_units", Optional[DrugDoseUnitsEnum], None),
         ("mass_unit_ucum", Optional[MassUnitUcumEnum], None),
@@ -348,6 +353,8 @@ BaseSurgerySchema = create_schema(
         "treatment_uuid",
     ],
     custom_fields=[
+        ("surgery_reference_database", Optional[SurgeryReferenceDatabaseEnum], None),
+        # surgery_type not validated
         (
             "surgery_site",
             Optional[str],
@@ -359,7 +366,6 @@ BaseSurgerySchema = create_schema(
         ("margins_status", Optional[MarginsStatusEnum], None),
         ("lymphovascular_invasion", Optional[LymphovascularInvasionEnum], None),
         ("perineural_invasion", Optional[PerineuralInvasionEnum], None),
-        ("surgery_reference_database", Optional[SurgeryReferenceDatabaseEnum], None),
     ],
 )
 
@@ -382,9 +388,9 @@ BaseFollowUpSchema = create_schema(
             str,
             Field(pattern=ID_REGEX, max_length=64),
         ),
+        ("date_of_followup", Optional[DateInterval], None),
         ("disease_status_at_followup", Optional[DiseaseStatusFollowupEnum], None),
         ("relapse_type", Optional[RelapseTypeEnum], None),
-        ("date_of_followup", Optional[DateInterval], None),
         ("date_of_relapse", Optional[DateInterval], None),
         (
             "method_of_progression_status",
@@ -400,6 +406,7 @@ BaseBiomarkerSchema = create_schema(
     name="BaseBiomarkerSchema",
     exclude=["uuid", "donor_uuid", "submitter_donor_id", "program_id"],
     custom_fields=[
+        ("test_date", Optional[DateInterval], None),
         ("er_status", Optional[ErPrHpvStatusEnum], None),
         ("pr_status", Optional[ErPrHpvStatusEnum], None),
         ("her2_ihc_status", Optional[Her2StatusEnum], None),
@@ -407,7 +414,6 @@ BaseBiomarkerSchema = create_schema(
         ("hpv_ihc_status", Optional[ErPrHpvStatusEnum], None),
         ("hpv_pcr_status", Optional[ErPrHpvStatusEnum], None),
         ("hpv_strain", Optional[List[HpvStrainEnum]], None),
-        ("test_date", Optional[DateInterval], None),
     ],
 )
 
