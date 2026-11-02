@@ -72,15 +72,15 @@ class Donor(models.Model):
     gender = models.CharField(max_length=32, null=True, blank=True)
     sex_at_birth = models.CharField(max_length=32, null=True, blank=True)
     is_deceased = models.CharField(max_length=32, blank=True, null=True)
-    lost_to_follow_up = models.CharField(max_length=32, null=True, blank=True)
-    lost_to_followup_reason = models.CharField(max_length=255, null=True, blank=True)
-    cause_of_death = models.CharField(max_length=255, null=True, blank=True)
     date_of_birth = models.JSONField(null=True, blank=True)
     date_of_death = models.JSONField(null=True, blank=True)
     date_of_death_is_estimated = models.CharField(
         max_length=32, null=True, blank=True
     )
     date_resolution = models.CharField(max_length=32, null=True, blank=True)
+    cause_of_death = models.CharField(max_length=255, null=True, blank=True)
+    lost_to_follow_up = models.CharField(max_length=32, null=True, blank=True)
+    lost_to_followup_reason = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         constraints = [
@@ -106,9 +106,9 @@ class PrimaryDiagnosis(models.Model):
         max_length=64, null=False, blank=False
     )
     submitter_donor_id = models.CharField(max_length=64, null=False, blank=False)
-    primary_site = models.CharField(max_length=255, null=True, blank=True)
     date_of_diagnosis = models.JSONField(null=True, blank=True)
     cancer_type_code = models.CharField(max_length=64, null=True, blank=True)
+    primary_site = models.CharField(max_length=255, null=True, blank=True)
     basis_of_diagnosis = models.CharField(max_length=128, null=True, blank=True)
     laterality = models.CharField(max_length=128, null=True, blank=True)
     clinical_tumour_staging_system = models.CharField(
@@ -159,11 +159,11 @@ class Specimen(models.Model):
         max_length=64, null=True, blank=True
     )  # ref field, not a true id
     specimen_collection_date = models.JSONField(null=True, blank=True)
-    specimen_storage = models.CharField(max_length=64, null=True, blank=True)
-    specimen_processing = models.CharField(max_length=128, null=True, blank=True)
-    tumour_histological_type = models.CharField(max_length=128, null=True, blank=True)
+    specimen_type = models.CharField(max_length=255, null=True, blank=True)
+    specimen_tissue_source = models.CharField(max_length=255, null=True, blank=True)
+    tumour_normal_designation = models.CharField(max_length=32, null=True, blank=True)
     specimen_anatomic_location = models.CharField(max_length=32, null=True, blank=True)
-    specimen_laterality = models.CharField(max_length=64, null=True, blank=True)
+    tumour_histological_type = models.CharField(max_length=128, null=True, blank=True)
     reference_pathology_confirmed_diagnosis = models.CharField(
         max_length=32, null=True, blank=True
     )
@@ -176,9 +176,9 @@ class Specimen(models.Model):
     percent_tumour_cells_measurement_method = models.CharField(
         max_length=64, null=True, blank=True
     )
-    specimen_tissue_source = models.CharField(max_length=255, null=True, blank=True)
-    tumour_normal_designation = models.CharField(max_length=32, null=True, blank=True)
-    specimen_type = models.CharField(max_length=255, null=True, blank=True)
+    specimen_storage = models.CharField(max_length=64, null=True, blank=True)
+    specimen_processing = models.CharField(max_length=128, null=True, blank=True)
+    specimen_laterality = models.CharField(max_length=64, null=True, blank=True)
 
     class Meta:
         constraints = [
@@ -275,16 +275,16 @@ class SystemicTherapy(models.Model):
     submitter_donor_id = models.CharField(max_length=64, null=False, blank=False)
     submitter_treatment_id = models.CharField(max_length=64, null=False, blank=False)
     systemic_therapy_type = models.CharField(max_length=32, null=True, blank=True)
+    start_date = models.JSONField(null=True, blank=True)
+    end_date = models.JSONField(null=True, blank=True)
+    drug_reference_database = models.CharField(max_length=64, null=True, blank=True)
+    drug_reference_identifier = models.CharField(max_length=64, null=True, blank=True)
+    drug_name = models.CharField(max_length=255, null=True, blank=True)
+    drug_dose_units = models.CharField(max_length=64, null=True, blank=True)
     days_per_cycle = models.IntegerField(null=True, blank=True)
     days_per_cycle_not_available = models.BooleanField(default=False)
     number_of_cycles = models.IntegerField(null=True, blank=True)
     number_of_cycles_not_available = models.BooleanField(default=False)
-    start_date = models.JSONField(null=True, blank=True)
-    end_date = models.JSONField(null=True, blank=True)
-    drug_reference_database = models.CharField(max_length=64, null=True, blank=True)
-    drug_name = models.CharField(max_length=255, null=True, blank=True)
-    drug_reference_identifier = models.CharField(max_length=64, null=True, blank=True)
-    drug_dose_units = models.CharField(max_length=64, null=True, blank=True)
     prescribed_cumulative_drug_dose = models.FloatField(blank=True, null=True)
     prescribed_cumulative_drug_dose_not_available = models.BooleanField(default=False)
     actual_cumulative_drug_dose = models.FloatField(blank=True, null=True)
@@ -342,6 +342,10 @@ class Surgery(models.Model):
     )
     submitter_donor_id = models.CharField(max_length=64, null=False, blank=False)
     submitter_treatment_id = models.CharField(max_length=64, null=False, blank=False)
+    surgery_reference_database = models.CharField(max_length=64, null=True, blank=True)
+    surgery_reference_identifier = models.CharField(
+        max_length=64, null=True, blank=True
+    )
     surgery_type = models.CharField(max_length=255, null=True, blank=True)
     surgery_site = models.CharField(max_length=255, null=True, blank=True)
     surgery_location = models.CharField(max_length=128, null=True, blank=True)
@@ -358,10 +362,6 @@ class Surgery(models.Model):
     margins_status = models.CharField(max_length=64, null=True, blank=True)
     lymphovascular_invasion = models.CharField(max_length=255, null=True, blank=True)
     perineural_invasion = models.CharField(max_length=128, null=True, blank=True)
-    surgery_reference_database = models.CharField(max_length=64, null=True, blank=True)
-    surgery_reference_identifier = models.CharField(
-        max_length=64, null=True, blank=True
-    )
 
     class Meta:
         ordering = ["uuid"]
