@@ -26,7 +26,7 @@ TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$"
 
 # WHO ICD-10 codes
 # Examples: E10, C50.1, I11, M06
-COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(\.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$"
+COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(\.[0-9]{1,3}[A-Z]?)?$|^Not available$"
 
 
 ###
