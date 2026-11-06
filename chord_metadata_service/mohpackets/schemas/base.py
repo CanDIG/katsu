@@ -168,7 +168,11 @@ BasePrimaryDiagnosisSchema = create_schema(
             Field(pattern=ID_REGEX, max_length=64),
         ),
         ("date_of_diagnosis", Optional[DateInterval], None),
-        # missing cancer_type_code?
+        (
+            "cancer_type_code",
+            Optional[str],
+            Field(None, max_length=32, pattern=COMORBIDITY_REGEX),
+        ),
         ("primary_site", Optional[PrimarySiteEnum], None),
         ("basis_of_diagnosis", Optional[BasisOfDiagnosisEnum], None),
         ("laterality", Optional[PrimaryDiagnosisLateralityEnum], None),
