@@ -29,7 +29,6 @@ from chord_metadata_service.mohpackets.permissible_values import (
     CellsMeasureMethodEnum,
     ConfirmedDiagnosisTumourEnum,
     ContextEnum,
-    DateOfDeathIsEstimatedEnum,
     DateResolutionEnum,
     DiseaseStatusFollowupEnum,
     DosageUnitsEnum,
@@ -86,6 +85,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     TumourGradingSystemEnum,
     TumourStagingSystemEnum,
     uBooleanEnum,
+    uBooleanNotApplicableEnum,
 )
 
 """
@@ -149,7 +149,7 @@ BaseDonorSchema = create_schema(
         ("is_deceased", Optional[uBooleanEnum], None),
         ("date_of_birth", Optional[DateInterval], None),
         ("date_of_death", Optional[DateInterval], None),
-        ("date_of_death_is_estimated", Optional[DateOfDeathIsEstimatedEnum], None),
+        ("date_of_death_is_estimated", Optional[uBooleanNotApplicableEnum], None),
         ("date_resolution", Optional[DateResolutionEnum], None),
         ("cause_of_death", Optional[CauseOfDeathEnum], None),
         ("lost_to_follow_up", Optional[LostToFollowUpEnum], None),
@@ -270,7 +270,7 @@ BaseTreatmentSchema = create_schema(
             Field(pattern=ID_REGEX, max_length=64),
         ),
         ("treatment_type", Optional[List[TreatmentTypeEnum]], None),
-        ("is_primary_treatment", Optional[uBooleanEnum], None),
+        ("is_primary_treatment", Optional[uBooleanNotApplicableEnum], None),
         ("treatment_start_date", Optional[DateInterval], None),
         ("treatment_end_date", Optional[DateInterval], None),
         ("treatment_intent", Optional[TreatmentIntentEnum], None),
