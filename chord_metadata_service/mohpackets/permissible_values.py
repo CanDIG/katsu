@@ -21,15 +21,15 @@ ID_REGEX = r"^[A-Za-z0-9\-\._]{1,64}$"
 
 # ICD-O-3 morphology codes
 # Examples: 8260/3, 9691/36
-MORPHOLOGY_REGEX = r"^[89][0-9]{3}/[012369]{1}[1-9]?$|^Not available$"
+MORPHOLOGY_REGEX = r"^[89][0-9]{3}/[012369]{1}[1-9]?$|^Not available$|^Currently incomplete$|^Not applicable$"
 
 # ICD-O-3 topography codes
 # Examples: C50.1, C18
-TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$"
+TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$"
 
 # WHO ICD-10 codes
 # Examples: E10, C50.1, I11, M06
-COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(\.[0-9]{1,3}[A-Z]?)?$|^Not available$"
+COMORBIDITY_REGEX = r"^[A-Z][0-9]{2}(\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently incomplete$"
 
 
 ###
