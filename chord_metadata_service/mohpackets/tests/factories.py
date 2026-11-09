@@ -686,7 +686,7 @@ class SurgeryFactory(factory.django.DjangoModelFactory):
         "random_element", elements=PERM_VAL.MARGINS_STATUS
     )
     lymphovascular_invasion = factory.Faker(
-        "random_element", elements=PERM_VAL.LYMPHOVACULAR_INVASION
+        "random_element", elements=PERM_VAL.LYMPHOVASCULAR_INVASION
     )
     perineural_invasion = factory.Faker(
         "random_element", elements=PERM_VAL.PERINEURAL_INVASION
