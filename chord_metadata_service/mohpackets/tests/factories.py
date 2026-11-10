@@ -160,7 +160,7 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     # Default values
     submitter_primary_diagnosis_id = factory.Sequence(lambda n: "DIAG_%d" % n)
     date_of_diagnosis = {"month_interval": 0, "day_interval": 0}
-    cancer_type_code = factory.Faker("uuid4")
+    cancer_type_code = "Currently incomplete"
     basis_of_diagnosis = factory.Faker(
         "random_element", elements=PERM_VAL.BASIS_OF_DIAGNOSIS
     )
