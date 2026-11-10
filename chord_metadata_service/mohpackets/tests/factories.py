@@ -91,7 +91,7 @@ class DonorFactory(factory.django.DjangoModelFactory):
     lost_to_followup_reason = None
     lost_to_follow_up = factory.Maybe(
         "is_deceased_bool",
-        yes_declaration="Not applicable",
+        yes_declaration=None,
         no_declaration=factory.Faker(
             "random_element", elements=["Yes", "No", "Unknown"]
         ),

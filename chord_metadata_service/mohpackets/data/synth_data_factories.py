@@ -259,7 +259,7 @@ class AllSynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
             donor.date_of_death = None
             donor.save()
         elif donor.is_deceased == "Yes":
-            donor.lost_to_follow_up = "Not applicable"
+            donor.lost_to_follow_up = None
             donor.date_of_death_is_estimated = random.choice(["Yes", "No"])
             donor.cause_of_death = random.choice(SYNTH_VAL.ALL_CAUSE_OF_DEATH)
             donor.date_of_death = {"day_interval": random.randint(3650, 16425)}
