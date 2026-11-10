@@ -15,6 +15,12 @@ uBooleanEnum = list_to_enum("uBooleanEnum", UBOOLEAN)
 UBOOLEAN_NOT_APPLICABLE = ["Yes", "No", "Not available", "Currently incomplete", "Not applicable"]
 uBooleanNotApplicableEnum = list_to_enum("uBooleanNotApplicableEnum", UBOOLEAN_NOT_APPLICABLE)
 
+MISSING_REASON = ["Not available", "Currently incomplete"]
+MissingReasonEnum = list_to_enum("MissingReasonEnum", MISSING_REASON)
+
+MISSING_REASON_NOT_APPLICABLE = ["Not available", "Currently incomplete", "Not applicable"]
+MissingReasonNotApplicableEnum = list_to_enum("MissingReasonNotApplicableEnum", MISSING_REASON_NOT_APPLICABLE)
+
 # ID format
 # Examples: 90234, BLD_donor_89, AML-90
 ID_REGEX = r"^[A-Za-z0-9\-\._]{1,64}$"
