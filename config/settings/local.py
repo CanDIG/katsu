@@ -12,6 +12,7 @@
 #############################################################
 
 import socket
+import os
 from .base import *
 
 DEBUG = True
@@ -34,7 +35,7 @@ DATABASES = {
         "NAME": "katsu_local",
         "USER": "admin_local",
         "PASSWORD": "password_local",
-        "HOST": "localhost",
+        "HOST": os.getenv("POSTGRES_HOST", "localhost"),
         "PORT": "5432",
     }
 }
