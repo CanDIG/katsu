@@ -65,7 +65,7 @@ class SynthProgramFactory(ProgramFactory):
 class SynthDonorFactory(DonorFactory):
     class Meta:
         django_get_or_create = ("submitter_donor_id",)
-        exclude = ("fill_dob", "null_percent", "is_deceased_bool",)
+        exclude = ("fill_dob", "null_percent", "is_deceased_bool", "date_of_death_is_null")
 
     submitter_donor_id = factory.Sequence(lambda n: f"DONOR_{str(n).zfill(4)}")
     gender = factory.Faker("random_element", elements=SYNTH_VAL.GENDER)

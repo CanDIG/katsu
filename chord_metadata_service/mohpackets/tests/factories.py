@@ -48,7 +48,15 @@ from chord_metadata_service.mohpackets.models import (
 
 def days_to_months(day_interval):
     """Convert a day interval to a month interval."""
-    return int(math.floor(day_interval * 0.032855))
+    if day_interval is not None:
+        return int(math.floor(day_interval * 0.032855))
+    return None
+
+
+def day_interval_with_nulls():
+    if random.random() < 0.1:
+        return None
+    return {"day_interval": random.randint(3650, 16425)}
 
 
 class ProgramFactory(factory.django.DjangoModelFactory):
@@ -78,7 +86,7 @@ class ProgramFactory(factory.django.DjangoModelFactory):
 class DonorFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Donor
-        exclude = ("is_deceased_bool",)
+        exclude = ("is_deceased_bool", "date_of_death_is_null")
 
     # default values
     submitter_donor_id = factory.Sequence(lambda n: "DONOR_%d" % n)
@@ -115,9 +123,13 @@ class DonorFactory(factory.django.DjangoModelFactory):
     )
     date_of_death = factory.Maybe(
         "is_deceased_bool",
-        yes_declaration=factory.LazyFunction(
-            lambda: {"day_interval": random.randint(3650, 16425)}
-        ),
+        yes_declaration=factory.LazyFunction(day_interval_with_nulls),
+        no_declaration=None,
+    )
+    date_of_death_is_null = factory.LazyAttribute(lambda o: o.date_of_death is None)
+    date_of_death_missing_reason = factory.Maybe(
+        "date_of_death_is_null",
+        yes_declaration=factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON),
         no_declaration=None,
     )
 
@@ -814,9 +826,14 @@ class BiomarkerFactory(factory.django.DjangoModelFactory):
         """
         donor = self.donor_uuid
         if donor.date_of_death and donor.date_of_birth:
-            test_day_int = random.randint(
-                donor.date_of_birth["day_interval"], donor.date_of_death["day_interval"]
-            )
+            if donor.date_of_death["day_interval"] is None:
+                test_day_int = random.randint(
+                    donor.date_of_birth["day_interval"], donor.date_of_birth["day_interval"] + 500
+                )
+            else:
+                test_day_int = random.randint(
+                    donor.date_of_birth["day_interval"], donor.date_of_death["day_interval"]
+                )
             test_month_int = days_to_months(test_day_int)
             self.test_date = {
                 "day_interval": test_day_int,
