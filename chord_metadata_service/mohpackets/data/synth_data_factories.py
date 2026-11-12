@@ -126,7 +126,7 @@ class SynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
         yes_declaration={"month_interval": 0, "day_interval": 0},
         no_declaration=None,
     )
-    cancer_type_code = factory.Faker("random_element", elements=SYNTH_VAL.CANCER_CODES)
+    cancer_type_code = factory.Faker("random_element", elements=SYNTH_VAL.CANCER_CODES_NOT_AVAILABLE)
     basis_of_diagnosis = factory.Faker(
         "random_element", elements=SYNTH_VAL.BASIS_OF_DIAGNOSIS
     )
