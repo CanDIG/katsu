@@ -4734,7 +4734,9 @@
                 "enum": [
                     "Died of cancer",
                     "Died of other reasons",
-                    "Not available"
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "CauseOfDeathEnum",
                 "type": "string"
@@ -4765,13 +4767,13 @@
                 "title": "DateInterval",
                 "type": "object"
             },
-            "DateOfDeathIsEstimatedEnum": {
+            "DateResolutionEnum": {
                 "enum": [
-                    "Yes",
-                    "No",
-                    "Not applicable"
+                    "month",
+                    "day",
+                    "Not available"
                 ],
-                "title": "DateOfDeathIsEstimatedEnum",
+                "title": "DateResolutionEnum",
                 "type": "string"
             },
             "DonorIngestSchema": {
@@ -4812,6 +4814,76 @@
                             }
                         ]
                     },
+                    "date_of_birth": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_birth_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death_is_estimated": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/uBooleanNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_resolution": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateResolutionEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "cause_of_death": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/CauseOfDeathEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "lost_to_follow_up": {
                         "anyOf": [
                             {
@@ -4831,58 +4903,6 @@
                                 "type": "null"
                             }
                         ]
-                    },
-                    "cause_of_death": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/CauseOfDeathEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_of_birth": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DateInterval"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_of_death": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DateInterval"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_of_death_is_estimated": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DateOfDeathIsEstimatedEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_resolution": {
-                        "anyOf": [
-                            {
-                                "maxLength": 32,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Date Resolution"
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -4914,7 +4934,8 @@
                     "Non-binary",
                     "Other",
                     "Prefer not to disclose",
-                    "Not available"
+                    "Not available",
+                    "Currently incomplete"
                 ],
                 "title": "GenderEnum",
                 "type": "string"
@@ -4923,7 +4944,7 @@
                 "enum": [
                     "Yes",
                     "No",
-                    "Not applicable",
+                    "Not available",
                     "Unknown"
                 ],
                 "title": "LostToFollowUpEnum",
@@ -4941,12 +4962,30 @@
                 "title": "LostToFollowupReasonEnum",
                 "type": "string"
             },
+            "MissingReasonEnum": {
+                "enum": [
+                    "Not available",
+                    "Currently incomplete"
+                ],
+                "title": "MissingReasonEnum",
+                "type": "string"
+            },
+            "MissingReasonNotApplicableEnum": {
+                "enum": [
+                    "Not available",
+                    "Currently incomplete",
+                    "Not applicable"
+                ],
+                "title": "MissingReasonNotApplicableEnum",
+                "type": "string"
+            },
             "SexAtBirthEnum": {
                 "enum": [
                     "Male",
                     "Female",
                     "Other",
-                    "Not available"
+                    "Not available",
+                    "Currently incomplete"
                 ],
                 "title": "SexAtBirthEnum",
                 "type": "string"
@@ -4955,9 +4994,21 @@
                 "enum": [
                     "Yes",
                     "No",
-                    "Not available"
+                    "Not available",
+                    "Currently incomplete"
                 ],
                 "title": "uBooleanEnum",
+                "type": "string"
+            },
+            "uBooleanNotApplicableEnum": {
+                "enum": [
+                    "Yes",
+                    "No",
+                    "Not available",
+                    "Currently incomplete",
+                    "Not applicable"
+                ],
+                "title": "uBooleanNotApplicableEnum",
                 "type": "string"
             },
             "BiomarkerIngestSchema": {
@@ -5014,6 +5065,16 @@
                         "anyOf": [
                             {
                                 "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "test_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
                             },
                             {
                                 "type": "null"
@@ -5270,7 +5331,9 @@
                     "g/m2",
                     "mg/kg",
                     "mg",
-                    "Not available"
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "DosageUnitsEnum",
                 "type": "string"
@@ -5289,14 +5352,96 @@
                     "systemic_therapy_type": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
+                                "$ref": "#/components/schemas/SystemicTherapyTypeEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "start_date": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "start_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "end_date": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "end_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "drug_reference_database": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DrugReferenceDbEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "drug_reference_identifier": {
+                        "anyOf": [
+                            {
+                                "maxLength": 64,
                                 "type": "string"
                             },
                             {
                                 "type": "null"
                             }
                         ],
-                        "title": "Systemic Therapy Type"
+                        "title": "Drug Reference Identifier"
+                    },
+                    "drug_name": {
+                        "anyOf": [
+                            {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Drug Name"
+                    },
+                    "drug_dose_units": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DosageUnitsEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "days_per_cycle": {
                         "anyOf": [
@@ -5329,72 +5474,6 @@
                         "default": false,
                         "title": "Number Of Cycles Not Available",
                         "type": "boolean"
-                    },
-                    "start_date": {
-                        "anyOf": [
-                            {
-                                "type": "object"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Start Date"
-                    },
-                    "end_date": {
-                        "anyOf": [
-                            {
-                                "type": "object"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "End Date"
-                    },
-                    "drug_reference_database": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DrugReferenceDbEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "drug_name": {
-                        "anyOf": [
-                            {
-                                "maxLength": 255,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Drug Name"
-                    },
-                    "drug_reference_identifier": {
-                        "anyOf": [
-                            {
-                                "maxLength": 64,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Drug Reference Identifier"
-                    },
-                    "drug_dose_units": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DosageUnitsEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
                     },
                     "prescribed_cumulative_drug_dose": {
                         "anyOf": [
@@ -5460,6 +5539,17 @@
                 "title": "SystemicTherapyIngestSchema",
                 "type": "object"
             },
+            "SystemicTherapyTypeEnum": {
+                "enum": [
+                    "Chemotherapy",
+                    "Hormone therapy",
+                    "Immunotherapy",
+                    "Not available",
+                    "Currently incomplete"
+                ],
+                "title": "SystemicTherapyTypeEnum",
+                "type": "string"
+            },
             "ComorbidityIngestSchema": {
                 "properties": {
                     "prior_malignancy": {
@@ -5502,7 +5592,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 64,
-                                "pattern": "^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$",
+                                "pattern": "^[A-Z][0-9]{2}(\\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently incomplete$",
                                 "type": "string"
                             },
                             {
@@ -5665,8 +5755,8 @@
                     "Pipe",
                     "Roll-ups",
                     "Snuff",
-                    "Not available",
-                    "Waterpipe"
+                    "Waterpipe",
+                    "Not available"
                 ],
                 "title": "TobaccoTypeEnum",
                 "type": "string"
@@ -5681,7 +5771,8 @@
                     "Progression not otherwise specified",
                     "Relapse or recurrence",
                     "Stable",
-                    "Not available"
+                    "Not available",
+                    "Currently incomplete"
                 ],
                 "title": "DiseaseStatusFollowupEnum",
                 "type": "string"
@@ -5698,6 +5789,16 @@
                         "anyOf": [
                             {
                                 "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_followup_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
                             },
                             {
                                 "type": "null"
@@ -5734,6 +5835,16 @@
                             }
                         ]
                     },
+                    "date_of_relapse_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "method_of_progression_status": {
                         "anyOf": [
                             {
@@ -5752,6 +5863,8 @@
                         "anyOf": [
                             {
                                 "items": {
+                                    "maxLength": 255,
+                                    "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
                                     "type": "string"
                                 },
                                 "type": "array"
@@ -5819,7 +5932,10 @@
                     "Assessment of symptom control (procedure)",
                     "Physical examination procedure (procedure)",
                     "Tumor marker measurement (procedure)",
-                    "Laboratory data interpretation (procedure)"
+                    "Laboratory data interpretation (procedure)",
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "ProgressionStatusMethodEnum",
                 "type": "string"
@@ -5831,7 +5947,9 @@
                     "Local recurrence and distant metastasis",
                     "Progression",
                     "Biochemical progression",
-                    "Not available"
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "RelapseTypeEnum",
                 "type": "string"
@@ -5845,6 +5963,7 @@
                     "Histology of a metastasis",
                     "Specific tumour markers",
                     "Not available",
+                    "Currently incomplete",
                     "Cytogenetic and/or molecular testing",
                     "Histology at autopsy",
                     "Histology of the primary tumor",
@@ -5917,16 +6036,6 @@
                         "title": "Submitter Primary Diagnosis Id",
                         "type": "string"
                     },
-                    "primary_site": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/PrimarySiteEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
                     "date_of_diagnosis": {
                         "anyOf": [
                             {
@@ -5937,10 +6046,21 @@
                             }
                         ]
                     },
+                    "date_of_diagnosis_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "cancer_type_code": {
                         "anyOf": [
                             {
-                                "maxLength": 64,
+                                "maxLength": 32,
+                                "pattern": "^[A-Z][0-9]{2}(\\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently incomplete$",
                                 "type": "string"
                             },
                             {
@@ -5948,6 +6068,16 @@
                             }
                         ],
                         "title": "Cancer Type Code"
+                    },
+                    "primary_site": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/PrimarySiteEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "basis_of_diagnosis": {
                         "anyOf": [
@@ -6182,7 +6312,8 @@
                     "Vagina",
                     "Vulva",
                     "Unknown primary site",
-                    "Not available"
+                    "Not available",
+                    "Currently incomplete"
                 ],
                 "title": "PrimarySiteEnum",
                 "type": "string"
@@ -6285,6 +6416,7 @@
                     "Stage 4S",
                     "Occult Carcinoma",
                     "Not available",
+                    "Currently incomplete",
                     "Stage IC1",
                     "Stage IC2",
                     "Stage IC3"
@@ -6366,7 +6498,8 @@
                     "Revised International staging system (R-ISS)",
                     "SEER staging system",
                     "St Jude staging system",
-                    "Not available"
+                    "Not available",
+                    "Currently incomplete"
                 ],
                 "title": "TumourStagingSystemEnum",
                 "type": "string"
@@ -6648,7 +6781,7 @@
                     "NECK_WITH_NODES_BILATERAL",
                     "NECK_WITH_NODES_NOS",
                     "NOSE",
-                    "NOT_AVAILABLE",
+                    "Not available",
                     "ORAL_CAVITY__BUCCAL_MUCOSA_LEFT",
                     "ORAL_CAVITY__BUCCAL_MUCOSA_RIGHT",
                     "ORAL_CAVITY__BUCCAL_MUCOSA_BILATERAL",
@@ -6785,7 +6918,8 @@
                     "VULVA",
                     "WHOLE_CNS",
                     "WHOLE_BODY",
-                    "WHOLE_BODY_SKIN"
+                    "WHOLE_BODY_SKIN",
+                    "Currently incomplete"
                 ],
                 "title": "RadiationAnatomicalSiteEnum",
                 "type": "string"
@@ -6918,6 +7052,7 @@
                     "Brachytherapy (procedure)",
                     "Other",
                     "Not available",
+                    "Currently incomplete",
                     "Teleradiotherapy using photons"
                 ],
                 "title": "RadiationTherapyModalityEnum",
@@ -6927,7 +7062,8 @@
                 "enum": [
                     "External",
                     "Internal",
-                    "Not available"
+                    "Not available",
+                    "Currently incomplete"
                 ],
                 "title": "TherapyTypeEnum",
                 "type": "string"
@@ -6939,7 +7075,9 @@
                     "MBq",
                     "GBq",
                     "Ci",
-                    "mCi"
+                    "mCi",
+                    "Currently incomplete",
+                    "Not available"
                 ],
                 "title": "DrugDoseUnitsEnum",
                 "type": "string"
@@ -7000,7 +7138,10 @@
                     "Gold-199",
                     "Thallium-201",
                     "Lead-203",
-                    "Radium-223"
+                    "Radium-223",
+                    "Currently incomplete",
+                    "Not available",
+                    "Other"
                 ],
                 "title": "RadionuclideEnum",
                 "type": "string"
@@ -7056,24 +7197,42 @@
                     "start_date": {
                         "anyOf": [
                             {
-                                "type": "object"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Start Date"
+                        ]
+                    },
+                    "start_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "end_date": {
                         "anyOf": [
                             {
-                                "type": "object"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "End Date"
+                        ]
+                    },
+                    "end_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "cumulative_drug_dose": {
                         "anyOf": [
@@ -7247,7 +7406,9 @@
                     "Image analysis",
                     "Pathology estimate by percent nuclei",
                     "Other",
-                    "Not available"
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "CellsMeasureMethodEnum",
                 "type": "string"
@@ -7257,7 +7418,9 @@
                     "Yes",
                     "No",
                     "Not done",
-                    "Not available"
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "ConfirmedDiagnosisTumourEnum",
                 "type": "string"
@@ -7267,7 +7430,9 @@
                     "0-19%",
                     "20-50%",
                     "51-100%",
-                    "Not available"
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "PercentCellsRangeEnum",
                 "type": "string"
@@ -7295,52 +7460,58 @@
                     "specimen_collection_date": {
                         "anyOf": [
                             {
-                                "type": "object"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Specimen Collection Date"
-                    },
-                    "specimen_storage": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/StorageEnum"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
                         ]
                     },
-                    "specimen_processing": {
+                    "specimen_collection_date_missing_reason": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/SpecimenProcessingEnum"
+                                "$ref": "#/components/schemas/MissingReasonEnum"
                             },
                             {
                                 "type": "null"
                             }
                         ]
                     },
-                    "tumour_histological_type": {
+                    "specimen_type": {
                         "anyOf": [
                             {
-                                "maxLength": 128,
-                                "pattern": "^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$",
-                                "type": "string"
+                                "$ref": "#/components/schemas/SpecimenTypeEnum"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Tumour Histological Type"
+                        ]
+                    },
+                    "specimen_tissue_source": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SpecimenTissueSourceEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "tumour_normal_designation": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/TumourDesginationEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "specimen_anatomic_location": {
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^[C][0-9]{2}(.[0-9]{1})?$|^Not available$",
+                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
                                 "type": "string"
                             },
                             {
@@ -7349,15 +7520,18 @@
                         ],
                         "title": "Specimen Anatomic Location"
                     },
-                    "specimen_laterality": {
+                    "tumour_histological_type": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/SpecimenLateralityEnum"
+                                "maxLength": 128,
+                                "pattern": "^[89][0-9]{3}/[012369]{1}[1-9]?$|^Not available$|^Currently incomplete$|^Not applicable$",
+                                "type": "string"
                             },
                             {
                                 "type": "null"
                             }
-                        ]
+                        ],
+                        "title": "Tumour Histological Type"
                     },
                     "reference_pathology_confirmed_diagnosis": {
                         "anyOf": [
@@ -7419,30 +7593,30 @@
                             }
                         ]
                     },
-                    "specimen_tissue_source": {
+                    "specimen_storage": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/SpecimenTissueSourceEnum"
+                                "$ref": "#/components/schemas/StorageEnum"
                             },
                             {
                                 "type": "null"
                             }
                         ]
                     },
-                    "tumour_normal_designation": {
+                    "specimen_processing": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/TumourDesginationEnum"
+                                "$ref": "#/components/schemas/SpecimenProcessingEnum"
                             },
                             {
                                 "type": "null"
                             }
                         ]
                     },
-                    "specimen_type": {
+                    "specimen_laterality": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/SpecimenTypeEnum"
+                                "$ref": "#/components/schemas/SpecimenLateralityEnum"
                             },
                             {
                                 "type": "null"
@@ -7544,7 +7718,9 @@
                     "Venous blood",
                     "Vitreous fluid",
                     "Whole blood",
-                    "Wound"
+                    "Wound",
+                    "Not available",
+                    "Currently incomplete"
                 ],
                 "title": "SpecimenTissueSourceEnum",
                 "type": "string"
@@ -7570,7 +7746,9 @@
                     "Xenograft - derived from tumour cell line",
                     "Locally recurrent tumour (non-metastatic)",
                     "Recurrent tumour, NOS",
-                    "Metastatic tumour of uncertain primary"
+                    "Metastatic tumour of uncertain primary",
+                    "Not available",
+                    "Currently incomplete"
                 ],
                 "title": "SpecimenTypeEnum",
                 "type": "string"
@@ -7623,7 +7801,9 @@
                     "Grade Group 3",
                     "Grade Group 4",
                     "Grade Group 5",
-                    "Not available"
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "TumourGradeEnum",
                 "type": "string"
@@ -7643,7 +7823,8 @@
                     "Three-tier grading system",
                     "Two-tier grading system",
                     "WHO grading system for CNS tumours",
-                    "Not available"
+                    "Not available",
+                    "Currently incomplete"
                 ],
                 "title": "TumourGradingSystemEnum",
                 "type": "string"
@@ -7667,6 +7848,7 @@
                     "Margin(s) involved",
                     "Not applicable",
                     "Not available",
+                    "Currently incomplete",
                     "Unknown"
                 ],
                 "title": "MarginsStatusEnum",
@@ -7685,6 +7867,28 @@
             },
             "SurgeryIngestSchema": {
                 "properties": {
+                    "surgery_reference_database": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SurgeryReferenceDatabaseEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "surgery_reference_identifier": {
+                        "anyOf": [
+                            {
+                                "maxLength": 64,
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Surgery Reference Identifier"
+                    },
                     "surgery_type": {
                         "anyOf": [
                             {
@@ -7701,7 +7905,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 255,
-                                "pattern": "^[C][0-9]{2}(.[0-9]{1})?$|^Not available$",
+                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
                                 "type": "string"
                             },
                             {
@@ -7818,28 +8022,6 @@
                             }
                         ]
                     },
-                    "surgery_reference_database": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/SurgeryReferenceDatabaseEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "surgery_reference_identifier": {
-                        "anyOf": [
-                            {
-                                "maxLength": 64,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Surgery Reference Identifier"
-                    },
                     "program_id": {
                         "title": "Program Id",
                         "type": "string"
@@ -7876,7 +8058,9 @@
                 "enum": [
                     "Local recurrence",
                     "Metastatic",
-                    "Primary"
+                    "Primary",
+                    "Not available",
+                    "Currently incomplete"
                 ],
                 "title": "SurgeryLocationEnum",
                 "type": "string"
@@ -7886,7 +8070,8 @@
                     "SNOMED",
                     "NCIt",
                     "UMLS",
-                    "CCI"
+                    "CCI",
+                    "Currently incomplete"
                 ],
                 "title": "SurgeryReferenceDatabaseEnum",
                 "type": "string"
@@ -7939,7 +8124,7 @@
                     "is_primary_treatment": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/uBooleanEnum"
+                                "$ref": "#/components/schemas/uBooleanNotApplicableEnum"
                             },
                             {
                                 "type": "null"
@@ -7956,10 +8141,30 @@
                             }
                         ]
                     },
+                    "treatment_start_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "treatment_end_date": {
                         "anyOf": [
                             {
                                 "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "treatment_end_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
                             },
                             {
                                 "type": "null"
@@ -8059,9 +8264,11 @@
                     "Guidance",
                     "Screening",
                     "Forensic",
-                    "Not available",
                     "Combined diagnostic and therapeutic intent",
-                    "Life-sustaining intent"
+                    "Life-sustaining intent",
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "TreatmentIntentEnum",
                 "type": "string"
@@ -8091,7 +8298,9 @@
                     "Physician assessed stable disease",
                     "No evidence of disease (NED)",
                     "Major response",
-                    "Not available"
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "TreatmentResponseEnum",
                 "type": "string"
@@ -8105,7 +8314,9 @@
                     "AML Response Criteria",
                     "Physician Assessed Response Criteria",
                     "Blazer score",
-                    "Not available"
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "TreatmentResponseMethodEnum",
                 "type": "string"
@@ -8114,7 +8325,9 @@
                 "enum": [
                     "Adjuvant",
                     "Neoadjuvant",
-                    "Not available"
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "TreatmentSettingEnum",
                 "type": "string"
@@ -8130,7 +8343,9 @@
                     "Treatment stopped due to acute toxicity",
                     "Treatment ongoing",
                     "Other",
-                    "Not available"
+                    "Not available",
+                    "Not applicable",
+                    "Currently incomplete"
                 ],
                 "title": "TreatmentStatusEnum",
                 "type": "string"
@@ -8148,7 +8363,8 @@
                     "Other",
                     "Unknown whether patient received treatment",
                     "Patient referred for treatment at other center, details unknown",
-                    "Radiopharmaceutical Therapy"
+                    "Radiopharmaceutical Therapy",
+                    "Currently incomplete"
                 ],
                 "title": "TreatmentTypeEnum",
                 "type": "string"
@@ -8371,6 +8587,76 @@
                             }
                         ]
                     },
+                    "date_of_birth": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_birth_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death_is_estimated": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/uBooleanNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_resolution": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateResolutionEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "cause_of_death": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/CauseOfDeathEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "lost_to_follow_up": {
                         "anyOf": [
                             {
@@ -8390,58 +8676,6 @@
                                 "type": "null"
                             }
                         ]
-                    },
-                    "cause_of_death": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/CauseOfDeathEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_of_birth": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DateInterval"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_of_death": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DateInterval"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_of_death_is_estimated": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DateOfDeathIsEstimatedEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_resolution": {
-                        "anyOf": [
-                            {
-                                "maxLength": 32,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Date Resolution"
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -8544,6 +8778,16 @@
                         "anyOf": [
                             {
                                 "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "test_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
                             },
                             {
                                 "type": "null"
@@ -8766,7 +9010,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 64,
-                                "pattern": "^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$",
+                                "pattern": "^[A-Z][0-9]{2}(\\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently incomplete$",
                                 "type": "string"
                             },
                             {
@@ -8865,6 +9109,16 @@
                             }
                         ]
                     },
+                    "date_of_followup_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "disease_status_at_followup": {
                         "anyOf": [
                             {
@@ -8895,6 +9149,16 @@
                             }
                         ]
                     },
+                    "date_of_relapse_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "method_of_progression_status": {
                         "anyOf": [
                             {
@@ -8913,6 +9177,8 @@
                         "anyOf": [
                             {
                                 "items": {
+                                    "maxLength": 255,
+                                    "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
                                     "type": "string"
                                 },
                                 "type": "array"
@@ -8938,16 +9204,6 @@
                         "title": "Submitter Primary Diagnosis Id",
                         "type": "string"
                     },
-                    "primary_site": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/PrimarySiteEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
                     "date_of_diagnosis": {
                         "anyOf": [
                             {
@@ -8958,10 +9214,21 @@
                             }
                         ]
                     },
+                    "date_of_diagnosis_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "cancer_type_code": {
                         "anyOf": [
                             {
-                                "maxLength": 64,
+                                "maxLength": 32,
+                                "pattern": "^[A-Z][0-9]{2}(\\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently incomplete$",
                                 "type": "string"
                             },
                             {
@@ -8969,6 +9236,16 @@
                             }
                         ],
                         "title": "Cancer Type Code"
+                    },
+                    "primary_site": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/PrimarySiteEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "basis_of_diagnosis": {
                         "anyOf": [
@@ -9259,24 +9536,42 @@
                     "start_date": {
                         "anyOf": [
                             {
-                                "type": "object"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Start Date"
+                        ]
+                    },
+                    "start_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "end_date": {
                         "anyOf": [
                             {
-                                "type": "object"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "End Date"
+                        ]
+                    },
+                    "end_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "cumulative_drug_dose": {
                         "anyOf": [
@@ -9398,52 +9693,58 @@
                     "specimen_collection_date": {
                         "anyOf": [
                             {
-                                "type": "object"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Specimen Collection Date"
-                    },
-                    "specimen_storage": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/StorageEnum"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
                         ]
                     },
-                    "specimen_processing": {
+                    "specimen_collection_date_missing_reason": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/SpecimenProcessingEnum"
+                                "$ref": "#/components/schemas/MissingReasonEnum"
                             },
                             {
                                 "type": "null"
                             }
                         ]
                     },
-                    "tumour_histological_type": {
+                    "specimen_type": {
                         "anyOf": [
                             {
-                                "maxLength": 128,
-                                "pattern": "^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$",
-                                "type": "string"
+                                "$ref": "#/components/schemas/SpecimenTypeEnum"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Tumour Histological Type"
+                        ]
+                    },
+                    "specimen_tissue_source": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SpecimenTissueSourceEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "tumour_normal_designation": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/TumourDesginationEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "specimen_anatomic_location": {
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^[C][0-9]{2}(.[0-9]{1})?$|^Not available$",
+                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
                                 "type": "string"
                             },
                             {
@@ -9452,15 +9753,18 @@
                         ],
                         "title": "Specimen Anatomic Location"
                     },
-                    "specimen_laterality": {
+                    "tumour_histological_type": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/SpecimenLateralityEnum"
+                                "maxLength": 128,
+                                "pattern": "^[89][0-9]{3}/[012369]{1}[1-9]?$|^Not available$|^Currently incomplete$|^Not applicable$",
+                                "type": "string"
                             },
                             {
                                 "type": "null"
                             }
-                        ]
+                        ],
+                        "title": "Tumour Histological Type"
                     },
                     "reference_pathology_confirmed_diagnosis": {
                         "anyOf": [
@@ -9522,30 +9826,30 @@
                             }
                         ]
                     },
-                    "specimen_tissue_source": {
+                    "specimen_storage": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/SpecimenTissueSourceEnum"
+                                "$ref": "#/components/schemas/StorageEnum"
                             },
                             {
                                 "type": "null"
                             }
                         ]
                     },
-                    "tumour_normal_designation": {
+                    "specimen_processing": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/TumourDesginationEnum"
+                                "$ref": "#/components/schemas/SpecimenProcessingEnum"
                             },
                             {
                                 "type": "null"
                             }
                         ]
                     },
-                    "specimen_type": {
+                    "specimen_laterality": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/SpecimenTypeEnum"
+                                "$ref": "#/components/schemas/SpecimenLateralityEnum"
                             },
                             {
                                 "type": "null"
@@ -9568,6 +9872,28 @@
             },
             "NestedSurgerySchema": {
                 "properties": {
+                    "surgery_reference_database": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SurgeryReferenceDatabaseEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "surgery_reference_identifier": {
+                        "anyOf": [
+                            {
+                                "maxLength": 64,
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Surgery Reference Identifier"
+                    },
                     "surgery_type": {
                         "anyOf": [
                             {
@@ -9584,7 +9910,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 255,
-                                "pattern": "^[C][0-9]{2}(.[0-9]{1})?$|^Not available$",
+                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
                                 "type": "string"
                             },
                             {
@@ -9700,28 +10026,6 @@
                                 "type": "null"
                             }
                         ]
-                    },
-                    "surgery_reference_database": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/SurgeryReferenceDatabaseEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "surgery_reference_identifier": {
-                        "anyOf": [
-                            {
-                                "maxLength": 64,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Surgery Reference Identifier"
                     }
                 },
                 "title": "NestedSurgerySchema",
@@ -9732,14 +10036,96 @@
                     "systemic_therapy_type": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
+                                "$ref": "#/components/schemas/SystemicTherapyTypeEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "start_date": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "start_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "end_date": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "end_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "drug_reference_database": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DrugReferenceDbEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "drug_reference_identifier": {
+                        "anyOf": [
+                            {
+                                "maxLength": 64,
                                 "type": "string"
                             },
                             {
                                 "type": "null"
                             }
                         ],
-                        "title": "Systemic Therapy Type"
+                        "title": "Drug Reference Identifier"
+                    },
+                    "drug_name": {
+                        "anyOf": [
+                            {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Drug Name"
+                    },
+                    "drug_dose_units": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DosageUnitsEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "days_per_cycle": {
                         "anyOf": [
@@ -9772,72 +10158,6 @@
                         "default": false,
                         "title": "Number Of Cycles Not Available",
                         "type": "boolean"
-                    },
-                    "start_date": {
-                        "anyOf": [
-                            {
-                                "type": "object"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Start Date"
-                    },
-                    "end_date": {
-                        "anyOf": [
-                            {
-                                "type": "object"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "End Date"
-                    },
-                    "drug_reference_database": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DrugReferenceDbEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "drug_name": {
-                        "anyOf": [
-                            {
-                                "maxLength": 255,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Drug Name"
-                    },
-                    "drug_reference_identifier": {
-                        "anyOf": [
-                            {
-                                "maxLength": 64,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Drug Reference Identifier"
-                    },
-                    "drug_dose_units": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DosageUnitsEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
                     },
                     "prescribed_cumulative_drug_dose": {
                         "anyOf": [
@@ -9900,7 +10220,7 @@
                     "is_primary_treatment": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/uBooleanEnum"
+                                "$ref": "#/components/schemas/uBooleanNotApplicableEnum"
                             },
                             {
                                 "type": "null"
@@ -9917,10 +10237,30 @@
                             }
                         ]
                     },
+                    "treatment_start_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "treatment_end_date": {
                         "anyOf": [
                             {
                                 "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "treatment_end_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
                             },
                             {
                                 "type": "null"
@@ -10444,6 +10784,76 @@
                             }
                         ]
                     },
+                    "date_of_birth": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_birth_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death_is_estimated": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/uBooleanNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_resolution": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateResolutionEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "cause_of_death": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/CauseOfDeathEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "lost_to_follow_up": {
                         "anyOf": [
                             {
@@ -10463,58 +10873,6 @@
                                 "type": "null"
                             }
                         ]
-                    },
-                    "cause_of_death": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/CauseOfDeathEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_of_birth": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DateInterval"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_of_death": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DateInterval"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_of_death_is_estimated": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DateOfDeathIsEstimatedEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_resolution": {
-                        "anyOf": [
-                            {
-                                "maxLength": 32,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Date Resolution"
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -10705,6 +11063,76 @@
                             }
                         ]
                     },
+                    "date_of_birth": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_birth_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_of_death_is_estimated": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/uBooleanNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "date_resolution": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateResolutionEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "cause_of_death": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/CauseOfDeathEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "lost_to_follow_up": {
                         "anyOf": [
                             {
@@ -10724,58 +11152,6 @@
                                 "type": "null"
                             }
                         ]
-                    },
-                    "cause_of_death": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/CauseOfDeathEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_of_birth": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DateInterval"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_of_death": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DateInterval"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_of_death_is_estimated": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DateOfDeathIsEstimatedEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "date_resolution": {
-                        "anyOf": [
-                            {
-                                "maxLength": 32,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Date Resolution"
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -11084,16 +11460,6 @@
                         "title": "Submitter Primary Diagnosis Id",
                         "type": "string"
                     },
-                    "primary_site": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/PrimarySiteEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
                     "date_of_diagnosis": {
                         "anyOf": [
                             {
@@ -11104,10 +11470,21 @@
                             }
                         ]
                     },
+                    "date_of_diagnosis_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "cancer_type_code": {
                         "anyOf": [
                             {
-                                "maxLength": 64,
+                                "maxLength": 32,
+                                "pattern": "^[A-Z][0-9]{2}(\\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently incomplete$",
                                 "type": "string"
                             },
                             {
@@ -11115,6 +11492,16 @@
                             }
                         ],
                         "title": "Cancer Type Code"
+                    },
+                    "primary_site": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/PrimarySiteEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "basis_of_diagnosis": {
                         "anyOf": [
@@ -11519,6 +11906,16 @@
                         "anyOf": [
                             {
                                 "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "test_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
                             },
                             {
                                 "type": "null"
@@ -11958,14 +12355,96 @@
                     "systemic_therapy_type": {
                         "anyOf": [
                             {
-                                "maxLength": 32,
+                                "$ref": "#/components/schemas/SystemicTherapyTypeEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "start_date": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "start_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "end_date": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "end_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "drug_reference_database": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DrugReferenceDbEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "drug_reference_identifier": {
+                        "anyOf": [
+                            {
+                                "maxLength": 64,
                                 "type": "string"
                             },
                             {
                                 "type": "null"
                             }
                         ],
-                        "title": "Systemic Therapy Type"
+                        "title": "Drug Reference Identifier"
+                    },
+                    "drug_name": {
+                        "anyOf": [
+                            {
+                                "maxLength": 255,
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Drug Name"
+                    },
+                    "drug_dose_units": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/DosageUnitsEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "days_per_cycle": {
                         "anyOf": [
@@ -11998,72 +12477,6 @@
                         "default": false,
                         "title": "Number Of Cycles Not Available",
                         "type": "boolean"
-                    },
-                    "start_date": {
-                        "anyOf": [
-                            {
-                                "type": "object"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Start Date"
-                    },
-                    "end_date": {
-                        "anyOf": [
-                            {
-                                "type": "object"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "End Date"
-                    },
-                    "drug_reference_database": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DrugReferenceDbEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "drug_name": {
-                        "anyOf": [
-                            {
-                                "maxLength": 255,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Drug Name"
-                    },
-                    "drug_reference_identifier": {
-                        "anyOf": [
-                            {
-                                "maxLength": 64,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Drug Reference Identifier"
-                    },
-                    "drug_dose_units": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/DosageUnitsEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
                     },
                     "prescribed_cumulative_drug_dose": {
                         "anyOf": [
@@ -12254,7 +12667,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 64,
-                                "pattern": "^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$",
+                                "pattern": "^[A-Z][0-9]{2}(\\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently incomplete$",
                                 "type": "string"
                             },
                             {
@@ -12638,6 +13051,16 @@
                             }
                         ]
                     },
+                    "date_of_followup_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "disease_status_at_followup": {
                         "anyOf": [
                             {
@@ -12668,6 +13091,16 @@
                             }
                         ]
                     },
+                    "date_of_relapse_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "method_of_progression_status": {
                         "anyOf": [
                             {
@@ -12686,6 +13119,8 @@
                         "anyOf": [
                             {
                                 "items": {
+                                    "maxLength": 255,
+                                    "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
                                     "type": "string"
                                 },
                                 "type": "array"
@@ -13303,24 +13738,42 @@
                     "start_date": {
                         "anyOf": [
                             {
-                                "type": "object"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Start Date"
+                        ]
+                    },
+                    "start_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "end_date": {
                         "anyOf": [
                             {
-                                "type": "object"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "End Date"
+                        ]
+                    },
+                    "end_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "cumulative_drug_dose": {
                         "anyOf": [
@@ -13854,52 +14307,58 @@
                     "specimen_collection_date": {
                         "anyOf": [
                             {
-                                "type": "object"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Specimen Collection Date"
-                    },
-                    "specimen_storage": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/StorageEnum"
+                                "$ref": "#/components/schemas/DateInterval"
                             },
                             {
                                 "type": "null"
                             }
                         ]
                     },
-                    "specimen_processing": {
+                    "specimen_collection_date_missing_reason": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/SpecimenProcessingEnum"
+                                "$ref": "#/components/schemas/MissingReasonEnum"
                             },
                             {
                                 "type": "null"
                             }
                         ]
                     },
-                    "tumour_histological_type": {
+                    "specimen_type": {
                         "anyOf": [
                             {
-                                "maxLength": 128,
-                                "pattern": "^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$",
-                                "type": "string"
+                                "$ref": "#/components/schemas/SpecimenTypeEnum"
                             },
                             {
                                 "type": "null"
                             }
-                        ],
-                        "title": "Tumour Histological Type"
+                        ]
+                    },
+                    "specimen_tissue_source": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SpecimenTissueSourceEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "tumour_normal_designation": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/TumourDesginationEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "specimen_anatomic_location": {
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^[C][0-9]{2}(.[0-9]{1})?$|^Not available$",
+                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
                                 "type": "string"
                             },
                             {
@@ -13908,15 +14367,18 @@
                         ],
                         "title": "Specimen Anatomic Location"
                     },
-                    "specimen_laterality": {
+                    "tumour_histological_type": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/SpecimenLateralityEnum"
+                                "maxLength": 128,
+                                "pattern": "^[89][0-9]{3}/[012369]{1}[1-9]?$|^Not available$|^Currently incomplete$|^Not applicable$",
+                                "type": "string"
                             },
                             {
                                 "type": "null"
                             }
-                        ]
+                        ],
+                        "title": "Tumour Histological Type"
                     },
                     "reference_pathology_confirmed_diagnosis": {
                         "anyOf": [
@@ -13978,30 +14440,30 @@
                             }
                         ]
                     },
-                    "specimen_tissue_source": {
+                    "specimen_storage": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/SpecimenTissueSourceEnum"
+                                "$ref": "#/components/schemas/StorageEnum"
                             },
                             {
                                 "type": "null"
                             }
                         ]
                     },
-                    "tumour_normal_designation": {
+                    "specimen_processing": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/TumourDesginationEnum"
+                                "$ref": "#/components/schemas/SpecimenProcessingEnum"
                             },
                             {
                                 "type": "null"
                             }
                         ]
                     },
-                    "specimen_type": {
+                    "specimen_laterality": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/SpecimenTypeEnum"
+                                "$ref": "#/components/schemas/SpecimenLateralityEnum"
                             },
                             {
                                 "type": "null"
@@ -14266,6 +14728,28 @@
             },
             "SurgeryModelSchema": {
                 "properties": {
+                    "surgery_reference_database": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/SurgeryReferenceDatabaseEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "surgery_reference_identifier": {
+                        "anyOf": [
+                            {
+                                "maxLength": 64,
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Surgery Reference Identifier"
+                    },
                     "surgery_type": {
                         "anyOf": [
                             {
@@ -14282,7 +14766,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 255,
-                                "pattern": "^[C][0-9]{2}(.[0-9]{1})?$|^Not available$",
+                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
                                 "type": "string"
                             },
                             {
@@ -14398,28 +14882,6 @@
                                 "type": "null"
                             }
                         ]
-                    },
-                    "surgery_reference_database": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/SurgeryReferenceDatabaseEnum"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "surgery_reference_identifier": {
-                        "anyOf": [
-                            {
-                                "maxLength": 64,
-                                "type": "string"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ],
-                        "title": "Surgery Reference Identifier"
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -14646,7 +15108,7 @@
                     "is_primary_treatment": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/uBooleanEnum"
+                                "$ref": "#/components/schemas/uBooleanNotApplicableEnum"
                             },
                             {
                                 "type": "null"
@@ -14663,10 +15125,30 @@
                             }
                         ]
                     },
+                    "treatment_start_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
                     "treatment_end_date": {
                         "anyOf": [
                             {
                                 "$ref": "#/components/schemas/DateInterval"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "treatment_end_date_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
                             },
                             {
                                 "type": "null"
