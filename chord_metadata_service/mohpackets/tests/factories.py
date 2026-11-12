@@ -121,6 +121,8 @@ class DonorFactory(factory.django.DjangoModelFactory):
     date_of_birth = factory.LazyFunction(
         lambda: {"day_interval": random.randint(-21900, -18220)}
     )
+    date_of_birth_missing_reason = None
+
     date_of_death = factory.Maybe(
         "is_deceased_bool",
         yes_declaration=factory.LazyFunction(day_interval_with_nulls),
@@ -172,6 +174,7 @@ class PrimaryDiagnosisFactory(factory.django.DjangoModelFactory):
     # Default values
     submitter_primary_diagnosis_id = factory.Sequence(lambda n: "DIAG_%d" % n)
     date_of_diagnosis = {"month_interval": 0, "day_interval": 0}
+    date_of_diagnosis_missing_reason = None
     cancer_type_code = "Currently incomplete"
     basis_of_diagnosis = factory.Faker(
         "random_element", elements=PERM_VAL.BASIS_OF_DIAGNOSIS
@@ -224,6 +227,7 @@ class SpecimenFactory(factory.django.DjangoModelFactory):
     specimen_collection_date = factory.LazyFunction(
         lambda: {"day_interval": random.randint(0, 90)}
     )
+    specimen_collection_date_missing_reason = None
     specimen_storage = factory.Faker("random_element", elements=PERM_VAL.STORAGE)
     specimen_processing = factory.Faker(
         "random_element", elements=PERM_VAL.SPECIMEN_PROCESSING
@@ -330,7 +334,11 @@ class TreatmentFactory(factory.django.DjangoModelFactory):
     treatment_start_date = factory.LazyFunction(
         lambda: {"day_interval": random.randint(5, 180)}
     )
+    treatment_start_date_missing_reason = None
+
     treatment_end_date = None
+    treatment_end_date_missing_reason = None
+
     treatment_intent = factory.Faker(
         "random_element", elements=PERM_VAL.TREATMENT_INTENT
     )
@@ -392,7 +400,9 @@ class SystemicTherapyFactory(factory.django.DjangoModelFactory):
     days_per_cycle = factory.Faker("random_int", min=1, max=30)
     number_of_cycles = factory.Faker("random_int", min=1, max=10)
     start_date = None
+    start_date_missing_reason = None
     end_date = None
+    end_date_missing_reason = None
     drug_reference_database = factory.Faker(
         "random_element", elements=PERM_VAL.DRUG_REFERENCE_DB
     )
@@ -509,7 +519,9 @@ class RadiopharmaceuticalTherapyFactory(factory.django.DjangoModelFactory):
     radionuclide = factory.Faker("random_element", elements=PERM_VAL.RADIONUCLIDE)
     radionuclide_other = None
     start_date = None
+    start_date_missing_reason = None
     end_date = None
+    end_date_missing_reason = None
     cumulative_drug_dose = factory.Faker(
         "pyfloat",
         left_digits=3,
@@ -738,11 +750,13 @@ class FollowUpFactory(factory.django.DjangoModelFactory):
     # default values
     submitter_follow_up_id = factory.Sequence(lambda n: "FOLLOW_UP_%d" % n)
     date_of_followup = None
+    date_of_followup_missing_reason = None
     disease_status_at_followup = factory.Faker(
         "random_element", elements=PERM_VAL.DISEASE_STATUS_FOLLOWUP
     )
     relapse_type = factory.Faker("random_element", elements=PERM_VAL.RELAPSE_TYPE)
     date_of_relapse = None
+    date_of_relapse_missing_reason = None
     method_of_progression_status = factory.Faker(
         "random_elements",
         elements=PERM_VAL.PROGRESSION_STATUS_METHOD,
@@ -786,6 +800,7 @@ class BiomarkerFactory(factory.django.DjangoModelFactory):
             "day_interval": random.randint(0, 3000),
         }
     )
+    test_date_missing_reason = None
     psa_level = factory.Faker("pyfloat", min_value=0, max_value=100)
     ca125 = factory.Faker("pyfloat", min_value=0, max_value=100)
     cea = factory.Faker("pyfloat", min_value=0, max_value=100)
