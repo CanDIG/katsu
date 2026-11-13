@@ -283,7 +283,7 @@ BaseTreatmentSchema = create_schema(
         ("treatment_type", Optional[List[TreatmentTypeEnum]], None),
         ("is_primary_treatment", Optional[uBooleanNotApplicableEnum], None),
         ("treatment_start_date", Optional[DateInterval], None),
-        ("treatment_start_date_missing_reason", Optional[MissingReasonEnum], None),
+        ("treatment_start_date_missing_reason", Optional[MissingReasonNotApplicableEnum], None),
         ("treatment_end_date", Optional[DateInterval], None),
         ("treatment_end_date_missing_reason", Optional[MissingReasonNotApplicableEnum], None),
         ("treatment_intent", Optional[TreatmentIntentEnum], None),
@@ -359,7 +359,7 @@ BaseRadiationSchema = create_schema(
         ("radiation_therapy_modality", Optional[RadiationTherapyModalityEnum], None),
         ("radiation_therapy_type", Optional[TherapyTypeEnum], None),
         ("anatomical_site_irradiated", Optional[RadiationAnatomicalSiteEnum], None),
-        ("radiation_boost", Optional[uBooleanEnum], None),
+        ("radiation_boost", Optional[uBooleanNotAvailableEnum], None),
     ],
 )
 
@@ -452,7 +452,7 @@ BaseComorbiditySchema = create_schema(
     name="BaseComorbiditySchema",
     exclude=["uuid", "donor_uuid", "submitter_donor_id", "program_id"],
     custom_fields=[
-        ("prior_malignancy", Optional[uBooleanEnum], None),
+        ("prior_malignancy", Optional[uBooleanNotAvailableEnum], None),
         ("laterality_of_prior_malignancy", Optional[MalignancyLateralityEnum], None),
         (
             "comorbidity_type_code",

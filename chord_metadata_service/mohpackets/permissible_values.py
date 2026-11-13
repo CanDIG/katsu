@@ -15,6 +15,8 @@ uBooleanEnum = list_to_enum("uBooleanEnum", UBOOLEAN)
 UBOOLEAN_NOT_APPLICABLE = ["Yes", "No", "Not available", "Currently incomplete", "Not applicable"]
 uBooleanNotApplicableEnum = list_to_enum("uBooleanNotApplicableEnum", UBOOLEAN_NOT_APPLICABLE)
 
+UBOOLEAN_NOT_AVAILABLE = ["Yes", "No", "Not available"]
+uBooleanEnum = list_to_enum("uBooleanNotAvailableEnum", UBOOLEAN_NOT_AVAILABLE)
 MISSING_REASON = ["Not available", "Currently incomplete"]
 MissingReasonEnum = list_to_enum("MissingReasonEnum", MISSING_REASON)
 
@@ -31,7 +33,7 @@ MORPHOLOGY_REGEX = r"^[89][0-9]{3}/[012369]{1}[1-9]?$|^Not available$|^Currently
 
 # ICD-O-3 topography codes
 # Examples: C50.1, C18
-TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$"
+TOPOGRAPHY_REGEX = r"^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$|^Currently incomplete$"
 
 # WHO ICD-10 codes
 # Examples: E10, C50.1, I11, M06
@@ -62,7 +64,7 @@ GenderEnum = list_to_enum("GenderEnum", GENDER)
 SEX_AT_BIRTH = ["Male", "Female", "Other", "Not available", "Currently incomplete"]
 SexAtBirthEnum = list_to_enum("SexAtBirthEnum", SEX_AT_BIRTH)
 
-DATE_RESOLUTION = ["month", "day", "Not available"]
+DATE_RESOLUTION = ["month", "day", "Not available", "Currently incomplete"]
 DateResolutionEnum = list_to_enum("DateResolutionEnum", DATE_RESOLUTION)
 
 CAUSE_OF_DEATH = ["Died of cancer", "Died of other reasons", "Not available", "Not applicable", "Currently incomplete"]
@@ -161,7 +163,6 @@ PRIMARY_SITE = [
     "Vagina",
     "Vulva",
     "Unknown primary site",
-    "Not available",
     "Currently incomplete"
 ]
 PrimarySiteEnum = list_to_enum("PrimarySiteEnum", PRIMARY_SITE)
@@ -170,9 +171,9 @@ BASIS_OF_DIAGNOSIS = [
     "Clinical investigation",
     "Clinical",
     "Cytology",
-    "Death certificate only",
+    "Death certificate only (DCO)",
     "Histology of a metastasis",
-    "Specific tumour markers",
+    "Specific tumor markers",
     "Not available",
     "Currently incomplete",
     "Cytogenetic and/or molecular testing",
@@ -269,6 +270,9 @@ T_CATEGORY = [
     "Tis pu",
     "Tis pd",
     "TX",
+    "Currently incomplete",
+    "Not applicable",
+    "Not available"
 ]
 TCategoryEnum = list_to_enum("TCategoryEnum", T_CATEGORY)
 
@@ -299,6 +303,9 @@ N_CATEGORY = [
     "N3c",
     "N4",
     "NX",
+    "Currently incomplete",
+    "Not applicable",
+    "Not available"
 ]
 NCategoryEnum = list_to_enum("NCategoryEnum", N_CATEGORY)
 
@@ -320,7 +327,9 @@ M_CATEGORY = [
     "M1d(1)",
     "M1e",
     "MX",
-    "Not applicable"
+    "Not applicable",
+    "Currently incomplete",
+    "Not available"
 ]
 MCategoryEnum = list_to_enum("MCategoryEnum", M_CATEGORY)
 
@@ -524,7 +533,8 @@ TUMOUR_GRADING_SYSTEM = [
     "Two-tier grading system",
     "WHO grading system for CNS tumours",
     "Not available",
-    "Currently incomplete"
+    "Currently incomplete",
+    "Not applicable"
 ]
 TumourGradingSystemEnum = list_to_enum("TumourGradingSystemEnum", TUMOUR_GRADING_SYSTEM)
 
@@ -758,6 +768,7 @@ DRUG_REFERENCE_DB = [
     "RxNorm",
     "PubChem",
     "NCI Thesaurus",
+    "Currently incomplete"
 ]
 DrugReferenceDbEnum = list_to_enum("DrugReferenceDbEnum", DRUG_REFERENCE_DB)
 
