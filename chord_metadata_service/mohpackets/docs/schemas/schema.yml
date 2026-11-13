@@ -92,6 +92,7 @@ components:
       - Histology of a metastasis
       - Specific tumour markers
       - Not available
+      - Currently incomplete
       - Cytogenetic and/or molecular testing
       - Histology at autopsy
       - Histology of the primary tumor
@@ -319,6 +320,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        test_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         uuid:
           anyOf:
           - type: string
@@ -450,6 +455,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        test_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
       required:
       - program_id
       - submitter_donor_id
@@ -460,6 +469,8 @@ components:
       - Died of cancer
       - Died of other reasons
       - Not available
+      - Not applicable
+      - Currently incomplete
       title: CauseOfDeathEnum
       type: string
     CellsMeasureMethodEnum:
@@ -469,6 +480,8 @@ components:
       - Pathology estimate by percent nuclei
       - Other
       - Not available
+      - Not applicable
+      - Currently incomplete
       title: CellsMeasureMethodEnum
       type: string
     ComorbidityFilterSchema:
@@ -539,7 +552,8 @@ components:
         comorbidity_type_code:
           anyOf:
           - maxLength: 64
-            pattern: ^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$
+            pattern: ^[A-Z][0-9]{2}(\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently
+              incomplete$
             type: string
           - type: 'null'
           title: Comorbidity Type Code
@@ -591,7 +605,8 @@ components:
         comorbidity_type_code:
           anyOf:
           - maxLength: 64
-            pattern: ^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$
+            pattern: ^[A-Z][0-9]{2}(\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently
+              incomplete$
             type: string
           - type: 'null'
           title: Comorbidity Type Code
@@ -620,6 +635,8 @@ components:
       - 'No'
       - Not done
       - Not available
+      - Not applicable
+      - Currently incomplete
       title: ConfirmedDiagnosisTumourEnum
       type: string
     ContextEnum:
@@ -644,12 +661,12 @@ components:
       - month_interval
       title: DateInterval
       type: object
-    DateOfDeathIsEstimatedEnum:
+    DateResolutionEnum:
       enum:
-      - 'Yes'
-      - 'No'
-      - Not applicable
-      title: DateOfDeathIsEstimatedEnum
+      - month
+      - day
+      - Not available
+      title: DateResolutionEnum
       type: string
     DiagnosisAgeCountSchema:
       properties:
@@ -675,6 +692,7 @@ components:
       - Relapse or recurrence
       - Stable
       - Not available
+      - Currently incomplete
       title: DiseaseStatusFollowupEnum
       type: string
     DonorExplorerFilterSchema:
@@ -806,20 +824,26 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        date_of_birth_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         date_of_death:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
         date_of_death_is_estimated:
           anyOf:
-          - $ref: '#/components/schemas/DateOfDeathIsEstimatedEnum'
+          - $ref: '#/components/schemas/uBooleanNotApplicableEnum'
+          - type: 'null'
+        date_of_death_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
           - type: 'null'
         date_resolution:
           anyOf:
-          - maxLength: 32
-            type: string
+          - $ref: '#/components/schemas/DateResolutionEnum'
           - type: 'null'
-          title: Date Resolution
         gender:
           anyOf:
           - $ref: '#/components/schemas/GenderEnum'
@@ -868,20 +892,26 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        date_of_birth_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         date_of_death:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
         date_of_death_is_estimated:
           anyOf:
-          - $ref: '#/components/schemas/DateOfDeathIsEstimatedEnum'
+          - $ref: '#/components/schemas/uBooleanNotApplicableEnum'
+          - type: 'null'
+        date_of_death_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
           - type: 'null'
         date_resolution:
           anyOf:
-          - maxLength: 32
-            type: string
+          - $ref: '#/components/schemas/DateResolutionEnum'
           - type: 'null'
-          title: Date Resolution
         gender:
           anyOf:
           - $ref: '#/components/schemas/GenderEnum'
@@ -935,20 +965,26 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        date_of_birth_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         date_of_death:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
         date_of_death_is_estimated:
           anyOf:
-          - $ref: '#/components/schemas/DateOfDeathIsEstimatedEnum'
+          - $ref: '#/components/schemas/uBooleanNotApplicableEnum'
+          - type: 'null'
+        date_of_death_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
           - type: 'null'
         date_resolution:
           anyOf:
-          - maxLength: 32
-            type: string
+          - $ref: '#/components/schemas/DateResolutionEnum'
           - type: 'null'
-          title: Date Resolution
         exposures:
           items:
             $ref: '#/components/schemas/NestedExposureSchema'
@@ -1007,6 +1043,8 @@ components:
       - mg/kg
       - mg
       - Not available
+      - Not applicable
+      - Currently incomplete
       title: DosageUnitsEnum
       type: string
     DownloadFilterSchema:
@@ -1065,6 +1103,8 @@ components:
       - GBq
       - Ci
       - mCi
+      - Currently incomplete
+      - Not available
       title: DrugDoseUnitsEnum
       type: string
     DrugReferenceDbEnum:
@@ -1240,6 +1280,9 @@ components:
         anatomic_site_progression_or_recurrence:
           anyOf:
           - items:
+              maxLength: 255
+              pattern: ^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not
+                applicable$
               type: string
             type: array
           - type: 'null'
@@ -1248,9 +1291,17 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        date_of_followup_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         date_of_relapse:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_of_relapse_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
           - type: 'null'
         disease_status_at_followup:
           anyOf:
@@ -1304,6 +1355,9 @@ components:
         anatomic_site_progression_or_recurrence:
           anyOf:
           - items:
+              maxLength: 255
+              pattern: ^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not
+                applicable$
               type: string
             type: array
           - type: 'null'
@@ -1312,9 +1366,17 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        date_of_followup_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         date_of_relapse:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_of_relapse_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
           - type: 'null'
         disease_status_at_followup:
           anyOf:
@@ -1381,6 +1443,7 @@ components:
       - Other
       - Prefer not to disclose
       - Not available
+      - Currently incomplete
       title: GenderEnum
       type: string
     Her2StatusEnum:
@@ -1428,7 +1491,7 @@ components:
       enum:
       - 'Yes'
       - 'No'
-      - Not applicable
+      - Not available
       - Unknown
       title: LostToFollowUpEnum
       type: string
@@ -1492,6 +1555,7 @@ components:
       - Margin(s) involved
       - Not applicable
       - Not available
+      - Currently incomplete
       - Unknown
       title: MarginsStatusEnum
       type: string
@@ -1513,6 +1577,19 @@ components:
       - metadata
       title: MetadataSchema
       type: object
+    MissingReasonEnum:
+      enum:
+      - Not available
+      - Currently incomplete
+      title: MissingReasonEnum
+      type: string
+    MissingReasonNotApplicableEnum:
+      enum:
+      - Not available
+      - Currently incomplete
+      - Not applicable
+      title: MissingReasonNotApplicableEnum
+      type: string
     NCategoryEnum:
       enum:
       - N0
@@ -1658,6 +1735,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        test_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
       title: NestedBiomarkerSchema
       type: object
     NestedComorbiditySchema:
@@ -1684,7 +1765,8 @@ components:
         comorbidity_type_code:
           anyOf:
           - maxLength: 64
-            pattern: ^[A-Z][0-9]{2}(.[0-9]{1,3}[A-Z]{0,1})?$|^Not available$
+            pattern: ^[A-Z][0-9]{2}(\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently
+              incomplete$
             type: string
           - type: 'null'
           title: Comorbidity Type Code
@@ -1727,6 +1809,9 @@ components:
         anatomic_site_progression_or_recurrence:
           anyOf:
           - items:
+              maxLength: 255
+              pattern: ^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not
+                applicable$
               type: string
             type: array
           - type: 'null'
@@ -1735,9 +1820,17 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        date_of_followup_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         date_of_relapse:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_of_relapse_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
           - type: 'null'
         disease_status_at_followup:
           anyOf:
@@ -1771,7 +1864,9 @@ components:
           - type: 'null'
         cancer_type_code:
           anyOf:
-          - maxLength: 64
+          - maxLength: 32
+            pattern: ^[A-Z][0-9]{2}(\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently
+              incomplete$
             type: string
           - type: 'null'
           title: Cancer Type Code
@@ -1798,6 +1893,10 @@ components:
         date_of_diagnosis:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_of_diagnosis_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
           - type: 'null'
         followups:
           items:
@@ -1918,9 +2017,12 @@ components:
           - type: 'null'
         end_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: End Date
+        end_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
+          - type: 'null'
         mass_unit_ucum:
           anyOf:
           - $ref: '#/components/schemas/MassUnitUcumEnum'
@@ -1961,9 +2063,12 @@ components:
           title: Rxnorm Code
         start_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Start Date
+        start_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
       title: NestedRadiopharmaceuticalTherapySchema
       type: object
     NestedSampleRegistrationSchema:
@@ -2007,15 +2112,19 @@ components:
         specimen_anatomic_location:
           anyOf:
           - maxLength: 32
-            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not available$
+            pattern: ^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not
+              applicable$
             type: string
           - type: 'null'
           title: Specimen Anatomic Location
         specimen_collection_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Specimen Collection Date
+        specimen_collection_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         specimen_laterality:
           anyOf:
           - $ref: '#/components/schemas/SpecimenLateralityEnum'
@@ -2058,7 +2167,8 @@ components:
         tumour_histological_type:
           anyOf:
           - maxLength: 128
-            pattern: ^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$
+            pattern: ^[89][0-9]{3}/[012369]{1}[1-9]?$|^Not available$|^Currently incomplete$|^Not
+              applicable$
             type: string
           - type: 'null'
           title: Tumour Histological Type
@@ -2114,7 +2224,8 @@ components:
         surgery_site:
           anyOf:
           - maxLength: 255
-            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not available$
+            pattern: ^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not
+              applicable$
             type: string
           - type: 'null'
           title: Surgery Site
@@ -2190,9 +2301,12 @@ components:
           title: Drug Reference Identifier
         end_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: End Date
+        end_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
+          - type: 'null'
         number_of_cycles:
           anyOf:
           - type: integer
@@ -2213,15 +2327,16 @@ components:
           type: boolean
         start_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Start Date
+        start_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         systemic_therapy_type:
           anyOf:
-          - maxLength: 32
-            type: string
+          - $ref: '#/components/schemas/SystemicTherapyTypeEnum'
           - type: 'null'
-          title: Systemic Therapy Type
       title: NestedSystemicTherapySchema
       type: object
     NestedTreatmentSchema:
@@ -2233,7 +2348,7 @@ components:
           type: array
         is_primary_treatment:
           anyOf:
-          - $ref: '#/components/schemas/uBooleanEnum'
+          - $ref: '#/components/schemas/uBooleanNotApplicableEnum'
           - type: 'null'
         radiations:
           items:
@@ -2276,6 +2391,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        treatment_end_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
+          - type: 'null'
         treatment_intent:
           anyOf:
           - $ref: '#/components/schemas/TreatmentIntentEnum'
@@ -2287,6 +2406,10 @@ components:
         treatment_start_date:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        treatment_start_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
           - type: 'null'
         treatment_type:
           anyOf:
@@ -2759,6 +2882,8 @@ components:
       - 20-50%
       - 51-100%
       - Not available
+      - Not applicable
+      - Currently incomplete
       title: PercentCellsRangeEnum
       type: string
     PerineuralInvasionEnum:
@@ -2867,7 +2992,9 @@ components:
           - type: 'null'
         cancer_type_code:
           anyOf:
-          - maxLength: 64
+          - maxLength: 32
+            pattern: ^[A-Z][0-9]{2}(\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently
+              incomplete$
             type: string
           - type: 'null'
           title: Cancer Type Code
@@ -2894,6 +3021,10 @@ components:
         date_of_diagnosis:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_of_diagnosis_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
           - type: 'null'
         laterality:
           anyOf:
@@ -2964,7 +3095,9 @@ components:
           - type: 'null'
         cancer_type_code:
           anyOf:
-          - maxLength: 64
+          - maxLength: 32
+            pattern: ^[A-Z][0-9]{2}(\.[0-9]{1,3}[A-Z]?)?$|^Not available$|^Currently
+              incomplete$
             type: string
           - type: 'null'
           title: Cancer Type Code
@@ -2991,6 +3124,10 @@ components:
         date_of_diagnosis:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        date_of_diagnosis_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
           - type: 'null'
         laterality:
           anyOf:
@@ -3125,6 +3262,7 @@ components:
       - Vulva
       - Unknown primary site
       - Not available
+      - Currently incomplete
       title: PrimarySiteEnum
       type: string
     ProgramDiscoverySchema:
@@ -3436,6 +3574,9 @@ components:
       - Physical examination procedure (procedure)
       - Tumor marker measurement (procedure)
       - Laboratory data interpretation (procedure)
+      - Not available
+      - Not applicable
+      - Currently incomplete
       title: ProgressionStatusMethodEnum
       type: string
     QueryDonorSchema:
@@ -3448,20 +3589,26 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        date_of_birth_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         date_of_death:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
         date_of_death_is_estimated:
           anyOf:
-          - $ref: '#/components/schemas/DateOfDeathIsEstimatedEnum'
+          - $ref: '#/components/schemas/uBooleanNotApplicableEnum'
+          - type: 'null'
+        date_of_death_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
           - type: 'null'
         date_resolution:
           anyOf:
-          - maxLength: 32
-            type: string
+          - $ref: '#/components/schemas/DateResolutionEnum'
           - type: 'null'
-          title: Date Resolution
         gender:
           anyOf:
           - $ref: '#/components/schemas/GenderEnum'
@@ -3793,7 +3940,7 @@ components:
       - NECK_WITH_NODES_BILATERAL
       - NECK_WITH_NODES_NOS
       - NOSE
-      - NOT_AVAILABLE
+      - Not available
       - ORAL_CAVITY__BUCCAL_MUCOSA_LEFT
       - ORAL_CAVITY__BUCCAL_MUCOSA_RIGHT
       - ORAL_CAVITY__BUCCAL_MUCOSA_BILATERAL
@@ -3931,6 +4078,7 @@ components:
       - WHOLE_CNS
       - WHOLE_BODY
       - WHOLE_BODY_SKIN
+      - Currently incomplete
       title: RadiationAnatomicalSiteEnum
       type: string
     RadiationFilterSchema:
@@ -4116,6 +4264,7 @@ components:
       - Brachytherapy (procedure)
       - Other
       - Not available
+      - Currently incomplete
       - Teleradiotherapy using photons
       title: RadiationTherapyModalityEnum
       type: string
@@ -4166,6 +4315,9 @@ components:
       - Thallium-201
       - Lead-203
       - Radium-223
+      - Currently incomplete
+      - Not available
+      - Other
       title: RadionuclideEnum
       type: string
     RadiopharmaceuticalTherapyFilterSchema:
@@ -4255,9 +4407,12 @@ components:
           - type: 'null'
         end_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: End Date
+        end_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
+          - type: 'null'
         mass_unit_ucum:
           anyOf:
           - $ref: '#/components/schemas/MassUnitUcumEnum'
@@ -4301,9 +4456,12 @@ components:
           title: Rxnorm Code
         start_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Start Date
+        start_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         submitter_donor_id:
           title: Submitter Donor Id
           type: string
@@ -4344,9 +4502,12 @@ components:
           - type: 'null'
         end_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: End Date
+        end_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
+          - type: 'null'
         mass_unit_ucum:
           anyOf:
           - $ref: '#/components/schemas/MassUnitUcumEnum'
@@ -4390,9 +4551,12 @@ components:
           title: Rxnorm Code
         start_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Start Date
+        start_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         submitter_donor_id:
           title: Submitter Donor Id
           type: string
@@ -4413,6 +4577,8 @@ components:
       - Progression
       - Biochemical progression
       - Not available
+      - Not applicable
+      - Currently incomplete
       title: RelapseTypeEnum
       type: string
     SampleRegistrationFilterSchema:
@@ -4522,6 +4688,7 @@ components:
       - Female
       - Other
       - Not available
+      - Currently incomplete
       title: SexAtBirthEnum
       type: string
     SmokingStatusEnum:
@@ -4658,15 +4825,19 @@ components:
         specimen_anatomic_location:
           anyOf:
           - maxLength: 32
-            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not available$
+            pattern: ^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not
+              applicable$
             type: string
           - type: 'null'
           title: Specimen Anatomic Location
         specimen_collection_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Specimen Collection Date
+        specimen_collection_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         specimen_laterality:
           anyOf:
           - $ref: '#/components/schemas/SpecimenLateralityEnum'
@@ -4715,7 +4886,8 @@ components:
         tumour_histological_type:
           anyOf:
           - maxLength: 128
-            pattern: ^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$
+            pattern: ^[89][0-9]{3}/[012369]{1}[1-9]?$|^Not available$|^Currently incomplete$|^Not
+              applicable$
             type: string
           - type: 'null'
           title: Tumour Histological Type
@@ -4767,15 +4939,19 @@ components:
         specimen_anatomic_location:
           anyOf:
           - maxLength: 32
-            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not available$
+            pattern: ^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not
+              applicable$
             type: string
           - type: 'null'
           title: Specimen Anatomic Location
         specimen_collection_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Specimen Collection Date
+        specimen_collection_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         specimen_laterality:
           anyOf:
           - $ref: '#/components/schemas/SpecimenLateralityEnum'
@@ -4824,7 +5000,8 @@ components:
         tumour_histological_type:
           anyOf:
           - maxLength: 128
-            pattern: ^[8,9]{1}[0-9]{3}/[0,1,2,3,6,9]{1}[1-9]{0,1}$|^Not available$
+            pattern: ^[89][0-9]{3}/[012369]{1}[1-9]?$|^Not available$|^Currently incomplete$|^Not
+              applicable$
             type: string
           - type: 'null'
           title: Tumour Histological Type
@@ -4890,6 +5067,8 @@ components:
       - Vitreous fluid
       - Whole blood
       - Wound
+      - Not available
+      - Currently incomplete
       title: SpecimenTissueSourceEnum
       type: string
     SpecimenTypeEnum:
@@ -4914,6 +5093,8 @@ components:
       - Locally recurrent tumour (non-metastatic)
       - Recurrent tumour, NOS
       - Metastatic tumour of uncertain primary
+      - Not available
+      - Currently incomplete
       title: SpecimenTypeEnum
       type: string
     StageGroupEnum:
@@ -5014,6 +5195,7 @@ components:
       - Stage 4S
       - Occult Carcinoma
       - Not available
+      - Currently incomplete
       - Stage IC1
       - Stage IC2
       - Stage IC3
@@ -5191,7 +5373,8 @@ components:
         surgery_site:
           anyOf:
           - maxLength: 255
-            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not available$
+            pattern: ^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not
+              applicable$
             type: string
           - type: 'null'
           title: Surgery Site
@@ -5239,6 +5422,8 @@ components:
       - Local recurrence
       - Metastatic
       - Primary
+      - Not available
+      - Currently incomplete
       title: SurgeryLocationEnum
       type: string
     SurgeryModelSchema:
@@ -5294,7 +5479,8 @@ components:
         surgery_site:
           anyOf:
           - maxLength: 255
-            pattern: ^[C][0-9]{2}(.[0-9]{1})?$|^Not available$
+            pattern: ^[C][0-9]{2}(\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not
+              applicable$
             type: string
           - type: 'null'
           title: Surgery Site
@@ -5338,6 +5524,7 @@ components:
       - NCIt
       - UMLS
       - CCI
+      - Currently incomplete
       title: SurgeryReferenceDatabaseEnum
       type: string
     SystemicTherapyFilterSchema:
@@ -5446,9 +5633,12 @@ components:
           title: Drug Reference Identifier
         end_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: End Date
+        end_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
+          - type: 'null'
         number_of_cycles:
           anyOf:
           - type: integer
@@ -5472,9 +5662,12 @@ components:
           type: string
         start_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Start Date
+        start_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         submitter_donor_id:
           title: Submitter Donor Id
           type: string
@@ -5483,10 +5676,8 @@ components:
           type: string
         systemic_therapy_type:
           anyOf:
-          - maxLength: 32
-            type: string
+          - $ref: '#/components/schemas/SystemicTherapyTypeEnum'
           - type: 'null'
-          title: Systemic Therapy Type
         uuid:
           anyOf:
           - type: string
@@ -5540,9 +5731,12 @@ components:
           title: Drug Reference Identifier
         end_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: End Date
+        end_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
+          - type: 'null'
         number_of_cycles:
           anyOf:
           - type: integer
@@ -5566,9 +5760,12 @@ components:
           type: string
         start_date:
           anyOf:
-          - type: object
+          - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
-          title: Start Date
+        start_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
+          - type: 'null'
         submitter_donor_id:
           title: Submitter Donor Id
           type: string
@@ -5577,16 +5774,23 @@ components:
           type: string
         systemic_therapy_type:
           anyOf:
-          - maxLength: 32
-            type: string
+          - $ref: '#/components/schemas/SystemicTherapyTypeEnum'
           - type: 'null'
-          title: Systemic Therapy Type
       required:
       - program_id
       - submitter_donor_id
       - submitter_treatment_id
       title: SystemicTherapyModelSchema
       type: object
+    SystemicTherapyTypeEnum:
+      enum:
+      - Chemotherapy
+      - Hormone therapy
+      - Immunotherapy
+      - Not available
+      - Currently incomplete
+      title: SystemicTherapyTypeEnum
+      type: string
     TCategoryEnum:
       enum:
       - T0
@@ -5650,6 +5854,7 @@ components:
       - External
       - Internal
       - Not available
+      - Currently incomplete
       title: TherapyTypeEnum
       type: string
     TobaccoTypeEnum:
@@ -5662,8 +5867,8 @@ components:
       - Pipe
       - Roll-ups
       - Snuff
-      - Not available
       - Waterpipe
+      - Not available
       title: TobaccoTypeEnum
       type: string
     TreatmentFilterSchema:
@@ -5729,7 +5934,7 @@ components:
       properties:
         is_primary_treatment:
           anyOf:
-          - $ref: '#/components/schemas/uBooleanEnum'
+          - $ref: '#/components/schemas/uBooleanNotApplicableEnum'
           - type: 'null'
         program_id:
           title: Program Id
@@ -5761,6 +5966,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        treatment_end_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
+          - type: 'null'
         treatment_intent:
           anyOf:
           - $ref: '#/components/schemas/TreatmentIntentEnum'
@@ -5772,6 +5981,10 @@ components:
         treatment_start_date:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        treatment_start_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
           - type: 'null'
         treatment_type:
           anyOf:
@@ -5802,16 +6015,18 @@ components:
       - Guidance
       - Screening
       - Forensic
-      - Not available
       - Combined diagnostic and therapeutic intent
       - Life-sustaining intent
+      - Not available
+      - Not applicable
+      - Currently incomplete
       title: TreatmentIntentEnum
       type: string
     TreatmentModelSchema:
       properties:
         is_primary_treatment:
           anyOf:
-          - $ref: '#/components/schemas/uBooleanEnum'
+          - $ref: '#/components/schemas/uBooleanNotApplicableEnum'
           - type: 'null'
         program_id:
           title: Program Id
@@ -5843,6 +6058,10 @@ components:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
           - type: 'null'
+        treatment_end_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonNotApplicableEnum'
+          - type: 'null'
         treatment_intent:
           anyOf:
           - $ref: '#/components/schemas/TreatmentIntentEnum'
@@ -5854,6 +6073,10 @@ components:
         treatment_start_date:
           anyOf:
           - $ref: '#/components/schemas/DateInterval'
+          - type: 'null'
+        treatment_start_date_missing_reason:
+          anyOf:
+          - $ref: '#/components/schemas/MissingReasonEnum'
           - type: 'null'
         treatment_type:
           anyOf:
@@ -5895,6 +6118,8 @@ components:
       - No evidence of disease (NED)
       - Major response
       - Not available
+      - Not applicable
+      - Currently incomplete
       title: TreatmentResponseEnum
       type: string
     TreatmentResponseMethodEnum:
@@ -5907,6 +6132,8 @@ components:
       - Physician Assessed Response Criteria
       - Blazer score
       - Not available
+      - Not applicable
+      - Currently incomplete
       title: TreatmentResponseMethodEnum
       type: string
     TreatmentSettingEnum:
@@ -5914,6 +6141,8 @@ components:
       - Adjuvant
       - Neoadjuvant
       - Not available
+      - Not applicable
+      - Currently incomplete
       title: TreatmentSettingEnum
       type: string
     TreatmentStatusEnum:
@@ -5928,6 +6157,8 @@ components:
       - Treatment ongoing
       - Other
       - Not available
+      - Not applicable
+      - Currently incomplete
       title: TreatmentStatusEnum
       type: string
     TreatmentTypeCountSchema:
@@ -5957,6 +6188,7 @@ components:
       - Unknown whether patient received treatment
       - Patient referred for treatment at other center, details unknown
       - Radiopharmaceutical Therapy
+      - Currently incomplete
       title: TreatmentTypeEnum
       type: string
     TumourClassificationEnum:
@@ -6009,6 +6241,8 @@ components:
       - Grade Group 4
       - Grade Group 5
       - Not available
+      - Not applicable
+      - Currently incomplete
       title: TumourGradeEnum
       type: string
     TumourGradingSystemEnum:
@@ -6027,6 +6261,7 @@ components:
       - Two-tier grading system
       - WHO grading system for CNS tumours
       - Not available
+      - Currently incomplete
       title: TumourGradingSystemEnum
       type: string
     TumourStagingSystemEnum:
@@ -6044,6 +6279,7 @@ components:
       - SEER staging system
       - St Jude staging system
       - Not available
+      - Currently incomplete
       title: TumourStagingSystemEnum
       type: string
     uBooleanEnum:
@@ -6051,7 +6287,17 @@ components:
       - 'Yes'
       - 'No'
       - Not available
+      - Currently incomplete
       title: uBooleanEnum
+      type: string
+    uBooleanNotApplicableEnum:
+      enum:
+      - 'Yes'
+      - 'No'
+      - Not available
+      - Currently incomplete
+      - Not applicable
+      title: uBooleanNotApplicableEnum
       type: string
   securitySchemes:
     DeleteAuth:

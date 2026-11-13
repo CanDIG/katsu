@@ -65,7 +65,7 @@ class SynthProgramFactory(ProgramFactory):
 class SynthDonorFactory(DonorFactory):
     class Meta:
         django_get_or_create = ("submitter_donor_id",)
-        exclude = ("fill_dob", "null_percent", "is_deceased_bool",)
+        exclude = ("fill_dob", "null_percent", "is_deceased_bool", "date_of_death_is_null")
 
     submitter_donor_id = factory.Sequence(lambda n: f"DONOR_{str(n).zfill(4)}")
     gender = factory.Faker("random_element", elements=SYNTH_VAL.GENDER)
@@ -126,7 +126,7 @@ class SynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
         yes_declaration={"month_interval": 0, "day_interval": 0},
         no_declaration=None,
     )
-    cancer_type_code = factory.Faker("random_element", elements=SYNTH_VAL.CANCER_CODES)
+    cancer_type_code = factory.Faker("random_element", elements=SYNTH_VAL.CANCER_CODES_NOT_AVAILABLE)
     basis_of_diagnosis = factory.Faker(
         "random_element", elements=SYNTH_VAL.BASIS_OF_DIAGNOSIS
     )
@@ -249,7 +249,7 @@ class AllSynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
         """Fill out follow-up and death info consistent with is_deceased."""
         donor = self.donor_uuid
         if donor.is_deceased == "No":
-            donor.lost_to_follow_up = random.choice(["Yes", "No", "Unknown"])
+            donor.lost_to_follow_up = random.choice(["Yes", "No", "Not available"])
             if donor.lost_to_follow_up == "Yes":
                 donor.lost_to_followup_reason = random.choice(
                     PERM_VAL.LOST_TO_FOLLOWUP_REASON
@@ -259,7 +259,7 @@ class AllSynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
             donor.date_of_death = None
             donor.save()
         elif donor.is_deceased == "Yes":
-            donor.lost_to_follow_up = "Not applicable"
+            donor.lost_to_follow_up = None
             donor.date_of_death_is_estimated = random.choice(["Yes", "No"])
             donor.cause_of_death = random.choice(SYNTH_VAL.ALL_CAUSE_OF_DEATH)
             donor.date_of_death = {"day_interval": random.randint(3650, 16425)}
@@ -1547,7 +1547,8 @@ class AllSynthFollowUpFactory(SynthFollowUpFactory):
         ]:
             donor = self.donor_uuid
             self.relapse_type = random.choice(PERM_VAL.RELAPSE_TYPE)
-            self.anatomic_site_progression_or_recurrence = random.choices(SYNTH_VAL.TOPOGRAPHY_CODES,
+            topo_codes = SYNTH_VAL.TOPOGRAPHY_CODES + PERM_VAL.MISSING_REASON_NOT_APPLICABLE
+            self.anatomic_site_progression_or_recurrence = random.choices(topo_codes,
                                                                           k=random.randint(1, 3))
             if donor.date_of_death:
                 relapse_day_int = random.randint(0, donor.date_of_death["day_interval"])
