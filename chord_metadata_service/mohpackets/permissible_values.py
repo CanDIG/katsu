@@ -586,7 +586,7 @@ STORAGE = [
     "Frozen in -70 freezer",
     "Frozen in liquid nitrogen",
     "Frozen in vapour phase",
-    "Not Applicable",
+    "Not applicable",
     "OCT embedded",
     "Other",
     "Paraffin block",
@@ -1314,7 +1314,6 @@ MARGINS_STATUS = [
     "Not applicable",
     "Not available",
     "Currently incomplete",
-    "Unknown",
 ]
 MarginsStatusEnum = list_to_enum("MarginsStatusEnum", MARGINS_STATUS)
 
