@@ -1547,8 +1547,7 @@ class AllSynthFollowUpFactory(SynthFollowUpFactory):
         ]:
             donor = self.donor_uuid
             self.relapse_type = random.choice(PERM_VAL.RELAPSE_TYPE)
-            topo_codes = SYNTH_VAL.TOPOGRAPHY_CODES
-            topo_codes.extend(PERM_VAL.MISSING_REASON_NOT_APPLICABLE)
+            topo_codes = SYNTH_VAL.TOPOGRAPHY_CODES + PERM_VAL.MISSING_REASON_NOT_APPLICABLE
             self.anatomic_site_progression_or_recurrence = random.choices(topo_codes,
                                                                           k=random.randint(1, 3))
             if donor.date_of_death:
