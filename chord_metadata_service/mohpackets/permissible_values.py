@@ -68,7 +68,7 @@ DateResolutionEnum = list_to_enum("DateResolutionEnum", DATE_RESOLUTION)
 CAUSE_OF_DEATH = ["Died of cancer", "Died of other reasons", "Not available", "Not applicable", "Currently incomplete"]
 CauseOfDeathEnum = list_to_enum("CauseOfDeathEnum", CAUSE_OF_DEATH)
 
-LOST_TO_FOLLOW_UP = ["Yes", "No", "Not available", "Unknown"]
+LOST_TO_FOLLOW_UP = ["Yes", "No", "Not available"]
 LostToFollowUpEnum = list_to_enum("LostToFollowUpEnum", LOST_TO_FOLLOW_UP)
 
 LOST_TO_FOLLOWUP_REASON = [
