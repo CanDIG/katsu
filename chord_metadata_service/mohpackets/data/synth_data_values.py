@@ -138,8 +138,7 @@ NON_CANCER_CODES = ['D' + str(x) for x in list(range(50, 89)) + list(range(37, 4
                    ['I' + str(x).rjust(2, '0') for x in list(range(0, 99))]
 CANCER_CODES.extend([None] * math.floor(len(NON_CANCER_CODES) * .2))
 
-CANCER_CODES_NOT_AVAILABLE = CANCER_CODES
-CANCER_CODES_NOT_AVAILABLE.extend(["Currently incomplete", "Not available"])
+CANCER_CODES_NOT_AVAILABLE = CANCER_CODES + ["Currently incomplete", "Not available"]
 
 ALL_CODES = CANCER_CODES + NON_CANCER_CODES
 
