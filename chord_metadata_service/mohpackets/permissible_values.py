@@ -627,6 +627,10 @@ SAMPLE_TYPE = [
     "rRNA-depleted RNA",
     "Total DNA",
     "Total RNA",
+    "Whole cell - DNA",
+    "Whole cell - protein",
+    "Whole cell - RNA",
+    "Whole cell (B-cell depleted)"
 ]
 SampleTypeEnum = list_to_enum("SampleTypeEnum", SAMPLE_TYPE)
 
