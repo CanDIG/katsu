@@ -249,7 +249,7 @@ class AllSynthPrimaryDiagnosisFactory(PrimaryDiagnosisFactory):
         """Fill out follow-up and death info consistent with is_deceased."""
         donor = self.donor_uuid
         if donor.is_deceased == "No":
-            donor.lost_to_follow_up = random.choice(["Yes", "No", "Unknown"])
+            donor.lost_to_follow_up = random.choice(["Yes", "No", "Not available"])
             if donor.lost_to_follow_up == "Yes":
                 donor.lost_to_followup_reason = random.choice(
                     PERM_VAL.LOST_TO_FOLLOWUP_REASON

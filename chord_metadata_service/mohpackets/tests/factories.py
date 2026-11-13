@@ -101,7 +101,7 @@ class DonorFactory(factory.django.DjangoModelFactory):
         "is_deceased_bool",
         yes_declaration=None,
         no_declaration=factory.Faker(
-            "random_element", elements=["Yes", "No", "Unknown"]
+            "random_element", elements=["Yes", "No", "Not available"]
         ),
     )
     date_of_death_is_estimated = factory.Maybe(
@@ -128,7 +128,7 @@ class DonorFactory(factory.django.DjangoModelFactory):
         yes_declaration=factory.LazyFunction(day_interval_with_nulls),
         no_declaration=None,
     )
-    date_of_death_is_null = factory.LazyAttribute(lambda o: o.date_of_death is None)
+    date_of_death_is_null = factory.LazyAttribute(lambda o: o.date_of_death is None and o.is_deceased_bool)
     date_of_death_missing_reason = factory.Maybe(
         "date_of_death_is_null",
         yes_declaration=factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON),
@@ -891,14 +891,14 @@ class ComorbidityFactory(factory.django.DjangoModelFactory):
 
     # default values
     uuid = factory.LazyFunction(uuid.uuid4)
-    prior_malignancy = factory.Faker("random_element", elements=PERM_VAL.UBOOLEAN)
+    prior_malignancy = factory.Faker("random_element", elements=PERM_VAL.UBOOLEAN_NOT_AVAILABLE)
     laterality_of_prior_malignancy = factory.Faker(
         "random_element", elements=PERM_VAL.MALIGNANCY_LATERALITY
     )
     age_at_comorbidity_diagnosis = factory.Faker("pyint", min_value=20, max_value=80)
     comorbidity_type_code = "Not available"
     comorbidity_treatment_status = factory.Faker(
-        "random_element", elements=PERM_VAL.UBOOLEAN
+        "random_element", elements=PERM_VAL.UBOOLEAN_NOT_AVAILABLE
     )
     comorbidity_treatment = factory.Faker("word")
 

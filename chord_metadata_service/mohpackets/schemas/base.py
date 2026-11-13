@@ -88,6 +88,7 @@ from chord_metadata_service.mohpackets.permissible_values import (
     TumourStagingSystemEnum,
     uBooleanEnum,
     uBooleanNotApplicableEnum,
+    uBooleanNotAvailableEnum
 )
 
 """

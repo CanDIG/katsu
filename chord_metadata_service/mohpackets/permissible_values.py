@@ -16,7 +16,8 @@ UBOOLEAN_NOT_APPLICABLE = ["Yes", "No", "Not available", "Currently incomplete",
 uBooleanNotApplicableEnum = list_to_enum("uBooleanNotApplicableEnum", UBOOLEAN_NOT_APPLICABLE)
 
 UBOOLEAN_NOT_AVAILABLE = ["Yes", "No", "Not available"]
-uBooleanEnum = list_to_enum("uBooleanNotAvailableEnum", UBOOLEAN_NOT_AVAILABLE)
+uBooleanNotAvailableEnum = list_to_enum("uBooleanNotAvailableEnum", UBOOLEAN_NOT_AVAILABLE)
+
 MISSING_REASON = ["Not available", "Currently incomplete"]
 MissingReasonEnum = list_to_enum("MissingReasonEnum", MISSING_REASON)
 
