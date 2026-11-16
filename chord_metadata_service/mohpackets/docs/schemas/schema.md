@@ -541,29 +541,32 @@ Retrieves a single donor along with all related clinical data, organized in a ne
   "gender": "Man",
   "sex_at_birth": "Male",
   "is_deceased": "Yes",
-  "lost_to_follow_up": "Yes",
-  "lost_to_followup_reason": "Completed study",
-  "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_birth_missing_reason": "Not available",
   "date_of_death": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_death_missing_reason": "Not available",
   "date_of_death_is_estimated": "Yes",
-  "date_resolution": "string",
+  "date_resolution": "month",
+  "cause_of_death": "Died of cancer",
+  "lost_to_follow_up": "Yes",
+  "lost_to_followup_reason": "Completed study",
   "program_id": "string",
   "primary_diagnoses": [
     {
       "submitter_primary_diagnosis_id": "string",
-      "primary_site": "Accessory sinuses",
       "date_of_diagnosis": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_diagnosis_missing_reason": "Not available",
       "cancer_type_code": "string",
+      "primary_site": "Accessory sinuses",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
       "clinical_tumour_staging_system": "AJCC cancer staging system",
@@ -580,21 +583,25 @@ Retrieves a single donor along with all related clinical data, organized in a ne
         {
           "submitter_specimen_id": "string",
           "submitter_treatment_id": "string",
-          "specimen_collection_date": {},
-          "specimen_storage": "Cut slide",
-          "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
-          "tumour_histological_type": "string",
+          "specimen_collection_date": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
+          "specimen_collection_date_missing_reason": "Not available",
+          "specimen_type": "Cell line - derived from normal",
+          "specimen_tissue_source": "Abdominal fluid",
+          "tumour_normal_designation": "Normal",
           "specimen_anatomic_location": "string",
-          "specimen_laterality": "Left",
+          "tumour_histological_type": "string",
           "reference_pathology_confirmed_diagnosis": "Yes",
           "reference_pathology_confirmed_tumour_presence": "Yes",
           "tumour_grading_system": "FNCLCC grading system",
           "tumour_grade": "Low grade",
           "percent_tumour_cells_range": "0-19%",
           "percent_tumour_cells_measurement_method": "Genomics",
-          "specimen_tissue_source": "Abdominal fluid",
-          "tumour_normal_designation": "Normal",
-          "specimen_type": "Cell line - derived from normal",
+          "specimen_storage": "Cut slide",
+          "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
+          "specimen_laterality": "Left",
           "sample_registrations": [
             {
               "submitter_sample_id": "string",
@@ -614,10 +621,12 @@ Retrieves a single donor along with all related clinical data, organized in a ne
             "day_interval": 0,
             "month_interval": 0
           },
+          "treatment_start_date_missing_reason": "Not available",
           "treatment_end_date": {
             "day_interval": 0,
             "month_interval": 0
           },
+          "treatment_end_date_missing_reason": "Not available",
           "treatment_intent": "Curative",
           "treatment_setting": "Adjuvant",
           "response_to_treatment_criteria_method": "RECIST 1.1",
@@ -625,17 +634,25 @@ Retrieves a single donor along with all related clinical data, organized in a ne
           "status_of_treatment": "Treatment completed as prescribed",
           "systemic_therapies": [
             {
-              "systemic_therapy_type": "string",
+              "systemic_therapy_type": "Chemotherapy",
+              "start_date": {
+                "day_interval": 0,
+                "month_interval": 0
+              },
+              "start_date_missing_reason": "Not available",
+              "end_date": {
+                "day_interval": 0,
+                "month_interval": 0
+              },
+              "end_date_missing_reason": "Not available",
+              "drug_reference_database": "RxNorm",
+              "drug_reference_identifier": "string",
+              "drug_name": "string",
+              "drug_dose_units": "mg/m2",
               "days_per_cycle": 0,
               "days_per_cycle_not_available": false,
               "number_of_cycles": 0,
               "number_of_cycles_not_available": false,
-              "start_date": {},
-              "end_date": {},
-              "drug_reference_database": "RxNorm",
-              "drug_name": "string",
-              "drug_reference_identifier": "string",
-              "drug_dose_units": "mg/m2",
               "prescribed_cumulative_drug_dose": 0,
               "prescribed_cumulative_drug_dose_not_available": false,
               "actual_cumulative_drug_dose": 0,
@@ -657,6 +674,8 @@ Retrieves a single donor along with all related clinical data, organized in a ne
           ],
           "surgeries": [
             {
+              "surgery_reference_database": "SNOMED",
+              "surgery_reference_identifier": "string",
               "surgery_type": "string",
               "surgery_site": "string",
               "surgery_location": "Local recurrence",
@@ -670,9 +689,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "residual_tumour_classification": "Not applicable",
               "margins_status": "Margins clear",
               "lymphovascular_invasion": "Absent",
-              "perineural_invasion": "Absent",
-              "surgery_reference_database": "SNOMED",
-              "surgery_reference_identifier": "string"
+              "perineural_invasion": "Absent"
             }
           ],
           "radiopharmaceutical_therapies": [
@@ -681,8 +698,16 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "agent_name": "string",
               "radionuclide": "Carbon-14",
               "radionuclide_other": "string",
-              "start_date": {},
-              "end_date": {},
+              "start_date": {
+                "day_interval": 0,
+                "month_interval": 0
+              },
+              "start_date_missing_reason": "Not available",
+              "end_date": {
+                "day_interval": 0,
+                "month_interval": 0
+              },
+              "end_date_missing_reason": "Not available",
               "cumulative_drug_dose": 0,
               "cumulative_drug_dose_not_available": false,
               "drug_dose_units": "Bq",
@@ -700,12 +725,14 @@ Retrieves a single donor along with all related clinical data, organized in a ne
                 "day_interval": 0,
                 "month_interval": 0
               },
+              "date_of_followup_missing_reason": "Not available",
               "disease_status_at_followup": "Complete remission",
               "relapse_type": "Distant recurrence/metastasis",
               "date_of_relapse": {
                 "day_interval": 0,
                 "month_interval": 0
               },
+              "date_of_relapse_missing_reason": "Not available",
               "method_of_progression_status": [
                 "Imaging (procedure)"
               ],
@@ -723,12 +750,14 @@ Retrieves a single donor along with all related clinical data, organized in a ne
             "day_interval": 0,
             "month_interval": 0
           },
+          "date_of_followup_missing_reason": "Not available",
           "disease_status_at_followup": "Complete remission",
           "relapse_type": "Distant recurrence/metastasis",
           "date_of_relapse": {
             "day_interval": 0,
             "month_interval": 0
           },
+          "date_of_relapse_missing_reason": "Not available",
           "method_of_progression_status": [
             "Imaging (procedure)"
           ],
@@ -746,12 +775,14 @@ Retrieves a single donor along with all related clinical data, organized in a ne
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_followup_missing_reason": "Not available",
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
       "date_of_relapse": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_relapse_missing_reason": "Not available",
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -770,6 +801,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
         "day_interval": 0,
         "month_interval": 0
       },
+      "test_date_missing_reason": "Not available",
       "psa_level": 0,
       "psa_level_not_available": false,
       "ca125": 0,
@@ -915,19 +947,21 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "gender": "Man",
       "sex_at_birth": "Male",
       "is_deceased": "Yes",
-      "lost_to_follow_up": "Yes",
-      "lost_to_followup_reason": "Completed study",
-      "cause_of_death": "Died of cancer",
       "date_of_birth": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_birth_missing_reason": "Not available",
       "date_of_death": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_death_missing_reason": "Not available",
       "date_of_death_is_estimated": "Yes",
-      "date_resolution": "string",
+      "date_resolution": "month",
+      "cause_of_death": "Died of cancer",
+      "lost_to_follow_up": "Yes",
+      "lost_to_followup_reason": "Completed study",
       "program_id": "string"
     }
   ],
@@ -970,19 +1004,21 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "gender": "Man",
       "sex_at_birth": "Male",
       "is_deceased": "Yes",
-      "lost_to_follow_up": "Yes",
-      "lost_to_followup_reason": "Completed study",
-      "cause_of_death": "Died of cancer",
       "date_of_birth": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_birth_missing_reason": "Not available",
       "date_of_death": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_death_missing_reason": "Not available",
       "date_of_death_is_estimated": "Yes",
-      "date_resolution": "string",
+      "date_resolution": "month",
+      "cause_of_death": "Died of cancer",
+      "lost_to_follow_up": "Yes",
+      "lost_to_followup_reason": "Completed study",
       "program_id": "string",
       "primary_site": [
         "string"
@@ -1042,12 +1078,13 @@ Used by the query service to return donors along with their sample IDs, treatmen
   "items": [
     {
       "submitter_primary_diagnosis_id": "string",
-      "primary_site": "Accessory sinuses",
       "date_of_diagnosis": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_diagnosis_missing_reason": "Not available",
       "cancer_type_code": "string",
+      "primary_site": "Accessory sinuses",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
       "clinical_tumour_staging_system": "AJCC cancer staging system",
@@ -1120,6 +1157,7 @@ Used by the query service to return donors along with their sample IDs, treatmen
         "day_interval": 0,
         "month_interval": 0
       },
+      "test_date_missing_reason": "Not available",
       "psa_level": 0,
       "psa_level_not_available": false,
       "ca125": 0,
@@ -1186,17 +1224,25 @@ Used by the query service to return donors along with their sample IDs, treatmen
 {
   "items": [
     {
-      "systemic_therapy_type": "string",
+      "systemic_therapy_type": "Chemotherapy",
+      "start_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "start_date_missing_reason": "Not available",
+      "end_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "end_date_missing_reason": "Not available",
+      "drug_reference_database": "RxNorm",
+      "drug_reference_identifier": "string",
+      "drug_name": "string",
+      "drug_dose_units": "mg/m2",
       "days_per_cycle": 0,
       "days_per_cycle_not_available": false,
       "number_of_cycles": 0,
       "number_of_cycles_not_available": false,
-      "start_date": {},
-      "end_date": {},
-      "drug_reference_database": "RxNorm",
-      "drug_name": "string",
-      "drug_reference_identifier": "string",
-      "drug_dose_units": "mg/m2",
       "prescribed_cumulative_drug_dose": 0,
       "prescribed_cumulative_drug_dose_not_available": false,
       "actual_cumulative_drug_dose": 0,
@@ -1341,12 +1387,14 @@ Used by the query service to return donors along with their sample IDs, treatmen
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_followup_missing_reason": "Not available",
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
       "date_of_relapse": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_relapse_missing_reason": "Not available",
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -1457,8 +1505,16 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "agent_name": "string",
       "radionuclide": "Carbon-14",
       "radionuclide_other": "string",
-      "start_date": {},
-      "end_date": {},
+      "start_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "start_date_missing_reason": "Not available",
+      "end_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "end_date_missing_reason": "Not available",
       "cumulative_drug_dose": 0,
       "cumulative_drug_dose_not_available": false,
       "drug_dose_units": "Bq",
@@ -1563,21 +1619,25 @@ Used by the query service to return donors along with their sample IDs, treatmen
     {
       "submitter_specimen_id": "string",
       "submitter_treatment_id": "string",
-      "specimen_collection_date": {},
-      "specimen_storage": "Cut slide",
-      "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
-      "tumour_histological_type": "string",
+      "specimen_collection_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "specimen_collection_date_missing_reason": "Not available",
+      "specimen_type": "Cell line - derived from normal",
+      "specimen_tissue_source": "Abdominal fluid",
+      "tumour_normal_designation": "Normal",
       "specimen_anatomic_location": "string",
-      "specimen_laterality": "Left",
+      "tumour_histological_type": "string",
       "reference_pathology_confirmed_diagnosis": "Yes",
       "reference_pathology_confirmed_tumour_presence": "Yes",
       "tumour_grading_system": "FNCLCC grading system",
       "tumour_grade": "Low grade",
       "percent_tumour_cells_range": "0-19%",
       "percent_tumour_cells_measurement_method": "Genomics",
-      "specimen_tissue_source": "Abdominal fluid",
-      "tumour_normal_designation": "Normal",
-      "specimen_type": "Cell line - derived from normal",
+      "specimen_storage": "Cut slide",
+      "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
+      "specimen_laterality": "Left",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_primary_diagnosis_id": "string"
@@ -1628,6 +1688,8 @@ Used by the query service to return donors along with their sample IDs, treatmen
 {
   "items": [
     {
+      "surgery_reference_database": "SNOMED",
+      "surgery_reference_identifier": "string",
       "surgery_type": "string",
       "surgery_site": "string",
       "surgery_location": "Local recurrence",
@@ -1642,8 +1704,6 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "margins_status": "Margins clear",
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
-      "surgery_reference_database": "SNOMED",
-      "surgery_reference_identifier": "string",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -1698,10 +1758,12 @@ Used by the query service to return donors along with their sample IDs, treatmen
         "day_interval": 0,
         "month_interval": 0
       },
+      "treatment_start_date_missing_reason": "Not available",
       "treatment_end_date": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "treatment_end_date_missing_reason": "Not available",
       "treatment_intent": "Curative",
       "treatment_setting": "Adjuvant",
       "response_to_treatment_criteria_method": "RECIST 1.1",
@@ -1758,31 +1820,34 @@ on the 'summary_only' flag.
         "gender": "Man",
         "sex_at_birth": "Male",
         "is_deceased": "Yes",
-        "lost_to_follow_up": "Yes",
-        "lost_to_followup_reason": "Completed study",
-        "cause_of_death": "Died of cancer",
         "date_of_birth": {
           "day_interval": 0,
           "month_interval": 0
         },
+        "date_of_birth_missing_reason": "Not available",
         "date_of_death": {
           "day_interval": 0,
           "month_interval": 0
         },
+        "date_of_death_missing_reason": "Not available",
         "date_of_death_is_estimated": "Yes",
-        "date_resolution": "string",
+        "date_resolution": "month",
+        "cause_of_death": "Died of cancer",
+        "lost_to_follow_up": "Yes",
+        "lost_to_followup_reason": "Completed study",
         "program_id": "string"
       }
     ],
     "primary_diagnoses": [
       {
         "submitter_primary_diagnosis_id": "string",
-        "primary_site": "Accessory sinuses",
         "date_of_diagnosis": {
           "day_interval": 0,
           "month_interval": 0
         },
+        "date_of_diagnosis_missing_reason": "Not available",
         "cancer_type_code": "string",
+        "primary_site": "Accessory sinuses",
         "basis_of_diagnosis": "Clinical investigation",
         "laterality": "Bilateral",
         "clinical_tumour_staging_system": "AJCC cancer staging system",
@@ -1803,21 +1868,25 @@ on the 'summary_only' flag.
       {
         "submitter_specimen_id": "string",
         "submitter_treatment_id": "string",
-        "specimen_collection_date": {},
-        "specimen_storage": "Cut slide",
-        "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
-        "tumour_histological_type": "string",
+        "specimen_collection_date": {
+          "day_interval": 0,
+          "month_interval": 0
+        },
+        "specimen_collection_date_missing_reason": "Not available",
+        "specimen_type": "Cell line - derived from normal",
+        "specimen_tissue_source": "Abdominal fluid",
+        "tumour_normal_designation": "Normal",
         "specimen_anatomic_location": "string",
-        "specimen_laterality": "Left",
+        "tumour_histological_type": "string",
         "reference_pathology_confirmed_diagnosis": "Yes",
         "reference_pathology_confirmed_tumour_presence": "Yes",
         "tumour_grading_system": "FNCLCC grading system",
         "tumour_grade": "Low grade",
         "percent_tumour_cells_range": "0-19%",
         "percent_tumour_cells_measurement_method": "Genomics",
-        "specimen_tissue_source": "Abdominal fluid",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Cell line - derived from normal",
+        "specimen_storage": "Cut slide",
+        "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
+        "specimen_laterality": "Left",
         "program_id": "string",
         "submitter_donor_id": "string",
         "submitter_primary_diagnosis_id": "string"
@@ -1843,10 +1912,12 @@ on the 'summary_only' flag.
           "day_interval": 0,
           "month_interval": 0
         },
+        "treatment_start_date_missing_reason": "Not available",
         "treatment_end_date": {
           "day_interval": 0,
           "month_interval": 0
         },
+        "treatment_end_date_missing_reason": "Not available",
         "treatment_intent": "Curative",
         "treatment_setting": "Adjuvant",
         "response_to_treatment_criteria_method": "RECIST 1.1",
@@ -1859,17 +1930,25 @@ on the 'summary_only' flag.
     ],
     "systemic_therapies": [
       {
-        "systemic_therapy_type": "string",
+        "systemic_therapy_type": "Chemotherapy",
+        "start_date": {
+          "day_interval": 0,
+          "month_interval": 0
+        },
+        "start_date_missing_reason": "Not available",
+        "end_date": {
+          "day_interval": 0,
+          "month_interval": 0
+        },
+        "end_date_missing_reason": "Not available",
+        "drug_reference_database": "RxNorm",
+        "drug_reference_identifier": "string",
+        "drug_name": "string",
+        "drug_dose_units": "mg/m2",
         "days_per_cycle": 0,
         "days_per_cycle_not_available": false,
         "number_of_cycles": 0,
         "number_of_cycles_not_available": false,
-        "start_date": {},
-        "end_date": {},
-        "drug_reference_database": "RxNorm",
-        "drug_name": "string",
-        "drug_reference_identifier": "string",
-        "drug_dose_units": "mg/m2",
         "prescribed_cumulative_drug_dose": 0,
         "prescribed_cumulative_drug_dose_not_available": false,
         "actual_cumulative_drug_dose": 0,
@@ -1901,8 +1980,16 @@ on the 'summary_only' flag.
         "agent_name": "string",
         "radionuclide": "Carbon-14",
         "radionuclide_other": "string",
-        "start_date": {},
-        "end_date": {},
+        "start_date": {
+          "day_interval": 0,
+          "month_interval": 0
+        },
+        "start_date_missing_reason": "Not available",
+        "end_date": {
+          "day_interval": 0,
+          "month_interval": 0
+        },
+        "end_date_missing_reason": "Not available",
         "cumulative_drug_dose": 0,
         "cumulative_drug_dose_not_available": false,
         "drug_dose_units": "Bq",
@@ -1918,6 +2005,8 @@ on the 'summary_only' flag.
     ],
     "surgeries": [
       {
+        "surgery_reference_database": "SNOMED",
+        "surgery_reference_identifier": "string",
         "surgery_type": "string",
         "surgery_site": "string",
         "surgery_location": "Local recurrence",
@@ -1932,8 +2021,6 @@ on the 'summary_only' flag.
         "margins_status": "Margins clear",
         "lymphovascular_invasion": "Absent",
         "perineural_invasion": "Absent",
-        "surgery_reference_database": "SNOMED",
-        "surgery_reference_identifier": "string",
         "program_id": "string",
         "submitter_donor_id": "string",
         "submitter_treatment_id": "string"
@@ -1946,12 +2033,14 @@ on the 'summary_only' flag.
           "day_interval": 0,
           "month_interval": 0
         },
+        "date_of_followup_missing_reason": "Not available",
         "disease_status_at_followup": "Complete remission",
         "relapse_type": "Distant recurrence/metastasis",
         "date_of_relapse": {
           "day_interval": 0,
           "month_interval": 0
         },
+        "date_of_relapse_missing_reason": "Not available",
         "method_of_progression_status": [
           "Imaging (procedure)"
         ],
@@ -1974,6 +2063,7 @@ on the 'summary_only' flag.
           "day_interval": 0,
           "month_interval": 0
         },
+        "test_date_missing_reason": "Not available",
         "psa_level": 0,
         "psa_level_not_available": false,
         "ca125": 0,
@@ -2684,6 +2774,8 @@ CauseOfDeathEnum
 |CauseOfDeathEnum|Died of cancer|
 |CauseOfDeathEnum|Died of other reasons|
 |CauseOfDeathEnum|Not available|
+|CauseOfDeathEnum|Not applicable|
+|CauseOfDeathEnum|Currently incomplete|
 
 <h2 id="tocS_DateInterval">DateInterval</h2>
 
@@ -2726,33 +2818,33 @@ continued
 |---|---|---|---|---|
 |month_interval|integer|true|none|number of months since first diagnosis|
 
-<h2 id="tocS_DateOfDeathIsEstimatedEnum">DateOfDeathIsEstimatedEnum</h2>
+<h2 id="tocS_DateResolutionEnum">DateResolutionEnum</h2>
 
-<a id="schemadateofdeathisestimatedenum"></a>
-<a id="schema_DateOfDeathIsEstimatedEnum"></a>
-<a id="tocSdateofdeathisestimatedenum"></a>
-<a id="tocsdateofdeathisestimatedenum"></a>
+<a id="schemadateresolutionenum"></a>
+<a id="schema_DateResolutionEnum"></a>
+<a id="tocSdateresolutionenum"></a>
+<a id="tocsdateresolutionenum"></a>
 
 ```json
-"Yes"
+"month"
 
 ```
 
-DateOfDeathIsEstimatedEnum
+DateResolutionEnum
 
 ### Properties
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|DateOfDeathIsEstimatedEnum|string|false|none|none|
+|DateResolutionEnum|string|false|none|none|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
-|DateOfDeathIsEstimatedEnum|Yes|
-|DateOfDeathIsEstimatedEnum|No|
-|DateOfDeathIsEstimatedEnum|Not applicable|
+|DateResolutionEnum|month|
+|DateResolutionEnum|day|
+|DateResolutionEnum|Not available|
 
 <h2 id="tocS_DonorIngestSchema">DonorIngestSchema</h2>
 
@@ -2767,19 +2859,21 @@ DateOfDeathIsEstimatedEnum
   "gender": "Man",
   "sex_at_birth": "Male",
   "is_deceased": "Yes",
-  "lost_to_follow_up": "Yes",
-  "lost_to_followup_reason": "Completed study",
-  "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_birth_missing_reason": "Not available",
   "date_of_death": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_death_missing_reason": "Not available",
   "date_of_death_is_estimated": "Yes",
-  "date_resolution": "string",
+  "date_resolution": "month",
+  "cause_of_death": "Died of cancer",
+  "lost_to_follow_up": "Yes",
+  "lost_to_followup_reason": "Completed study",
   "program_id": "string",
   "uuid": "string"
 }
@@ -2847,60 +2941,6 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|lost_to_follow_up|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[LostToFollowUpEnum](#schemalosttofollowupenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|lost_to_followup_reason|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[LostToFollowupReasonEnum](#schemalosttofollowupreasonenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|cause_of_death|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[CauseOfDeathEnum](#schemacauseofdeathenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |date_of_birth|any|false|none|none|
 
 anyOf
@@ -2908,6 +2948,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_birth_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -2937,13 +2995,31 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|date_of_death_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |date_of_death_is_estimated|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[DateOfDeathIsEstimatedEnum](#schemadateofdeathisestimatedenum)|false|none|none|
+|» *anonymous*|[uBooleanNotApplicableEnum](#schemaubooleannotapplicableenum)|false|none|none|
 
 or
 
@@ -2961,7 +3037,61 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateResolutionEnum](#schemadateresolutionenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cause_of_death|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[CauseOfDeathEnum](#schemacauseofdeathenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|lost_to_follow_up|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[LostToFollowUpEnum](#schemalosttofollowupenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|lost_to_followup_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[LostToFollowupReasonEnum](#schemalosttofollowupreasonenum)|false|none|none|
 
 or
 
@@ -3018,6 +3148,7 @@ GenderEnum
 |GenderEnum|Other|
 |GenderEnum|Prefer not to disclose|
 |GenderEnum|Not available|
+|GenderEnum|Currently incomplete|
 
 <h2 id="tocS_LostToFollowUpEnum">LostToFollowUpEnum</h2>
 
@@ -3045,7 +3176,7 @@ LostToFollowUpEnum
 |---|---|
 |LostToFollowUpEnum|Yes|
 |LostToFollowUpEnum|No|
-|LostToFollowUpEnum|Not applicable|
+|LostToFollowUpEnum|Not available|
 |LostToFollowUpEnum|Unknown|
 
 <h2 id="tocS_LostToFollowupReasonEnum">LostToFollowupReasonEnum</h2>
@@ -3079,6 +3210,61 @@ LostToFollowupReasonEnum
 |LostToFollowupReasonEnum|Withdrew from study|
 |LostToFollowupReasonEnum|Discharged from follow-up|
 
+<h2 id="tocS_MissingReasonEnum">MissingReasonEnum</h2>
+
+<a id="schemamissingreasonenum"></a>
+<a id="schema_MissingReasonEnum"></a>
+<a id="tocSmissingreasonenum"></a>
+<a id="tocsmissingreasonenum"></a>
+
+```json
+"Not available"
+
+```
+
+MissingReasonEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|MissingReasonEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|MissingReasonEnum|Not available|
+|MissingReasonEnum|Currently incomplete|
+
+<h2 id="tocS_MissingReasonNotApplicableEnum">MissingReasonNotApplicableEnum</h2>
+
+<a id="schemamissingreasonnotapplicableenum"></a>
+<a id="schema_MissingReasonNotApplicableEnum"></a>
+<a id="tocSmissingreasonnotapplicableenum"></a>
+<a id="tocsmissingreasonnotapplicableenum"></a>
+
+```json
+"Not available"
+
+```
+
+MissingReasonNotApplicableEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|MissingReasonNotApplicableEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|MissingReasonNotApplicableEnum|Not available|
+|MissingReasonNotApplicableEnum|Currently incomplete|
+|MissingReasonNotApplicableEnum|Not applicable|
+
 <h2 id="tocS_SexAtBirthEnum">SexAtBirthEnum</h2>
 
 <a id="schemasexatbirthenum"></a>
@@ -3107,6 +3293,7 @@ SexAtBirthEnum
 |SexAtBirthEnum|Female|
 |SexAtBirthEnum|Other|
 |SexAtBirthEnum|Not available|
+|SexAtBirthEnum|Currently incomplete|
 
 <h2 id="tocS_uBooleanEnum">uBooleanEnum</h2>
 
@@ -3135,6 +3322,37 @@ uBooleanEnum
 |uBooleanEnum|Yes|
 |uBooleanEnum|No|
 |uBooleanEnum|Not available|
+|uBooleanEnum|Currently incomplete|
+
+<h2 id="tocS_uBooleanNotApplicableEnum">uBooleanNotApplicableEnum</h2>
+
+<a id="schemaubooleannotapplicableenum"></a>
+<a id="schema_uBooleanNotApplicableEnum"></a>
+<a id="tocSubooleannotapplicableenum"></a>
+<a id="tocsubooleannotapplicableenum"></a>
+
+```json
+"Yes"
+
+```
+
+uBooleanNotApplicableEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|uBooleanNotApplicableEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|uBooleanNotApplicableEnum|Yes|
+|uBooleanNotApplicableEnum|No|
+|uBooleanNotApplicableEnum|Not available|
+|uBooleanNotApplicableEnum|Currently incomplete|
+|uBooleanNotApplicableEnum|Not applicable|
 
 <h2 id="tocS_BiomarkerIngestSchema">BiomarkerIngestSchema</h2>
 
@@ -3153,6 +3371,7 @@ uBooleanEnum
     "day_interval": 0,
     "month_interval": 0
   },
+  "test_date_missing_reason": "Not available",
   "psa_level": 0,
   "psa_level_not_available": false,
   "ca125": 0,
@@ -3266,6 +3485,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|test_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -3666,6 +3903,8 @@ DosageUnitsEnum
 |DosageUnitsEnum|mg/kg|
 |DosageUnitsEnum|mg|
 |DosageUnitsEnum|Not available|
+|DosageUnitsEnum|Not applicable|
+|DosageUnitsEnum|Currently incomplete|
 
 <h2 id="tocS_DrugReferenceDbEnum">DrugReferenceDbEnum</h2>
 
@@ -3704,17 +3943,25 @@ DrugReferenceDbEnum
 
 ```json
 {
-  "systemic_therapy_type": "string",
+  "systemic_therapy_type": "Chemotherapy",
+  "start_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "start_date_missing_reason": "Not available",
+  "end_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "end_date_missing_reason": "Not available",
+  "drug_reference_database": "RxNorm",
+  "drug_reference_identifier": "string",
+  "drug_name": "string",
+  "drug_dose_units": "mg/m2",
   "days_per_cycle": 0,
   "days_per_cycle_not_available": false,
   "number_of_cycles": 0,
   "number_of_cycles_not_available": false,
-  "start_date": {},
-  "end_date": {},
-  "drug_reference_database": "RxNorm",
-  "drug_name": "string",
-  "drug_reference_identifier": "string",
-  "drug_dose_units": "mg/m2",
   "prescribed_cumulative_drug_dose": 0,
   "prescribed_cumulative_drug_dose_not_available": false,
   "actual_cumulative_drug_dose": 0,
@@ -3739,7 +3986,151 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|» *anonymous*|[SystemicTherapyTypeEnum](#schemasystemictherapytypeenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|start_date|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|start_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|end_date|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|end_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_reference_database|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DrugReferenceDbEnum](#schemadrugreferencedbenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_reference_identifier|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_name|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_dose_units|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DosageUnitsEnum](#schemadosageunitsenum)|false|none|none|
 
 or
 
@@ -3789,114 +4180,6 @@ continued
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |number_of_cycles_not_available|boolean|false|none|none|
-|start_date|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|end_date|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|drug_reference_database|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DrugReferenceDbEnum](#schemadrugreferencedbenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|drug_name|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|drug_reference_identifier|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|drug_dose_units|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DosageUnitsEnum](#schemadosageunitsenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |prescribed_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -3951,6 +4234,36 @@ or
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|null|false|none|none|
+
+<h2 id="tocS_SystemicTherapyTypeEnum">SystemicTherapyTypeEnum</h2>
+
+<a id="schemasystemictherapytypeenum"></a>
+<a id="schema_SystemicTherapyTypeEnum"></a>
+<a id="tocSsystemictherapytypeenum"></a>
+<a id="tocssystemictherapytypeenum"></a>
+
+```json
+"Chemotherapy"
+
+```
+
+SystemicTherapyTypeEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|SystemicTherapyTypeEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|SystemicTherapyTypeEnum|Chemotherapy|
+|SystemicTherapyTypeEnum|Hormone therapy|
+|SystemicTherapyTypeEnum|Immunotherapy|
+|SystemicTherapyTypeEnum|Not available|
+|SystemicTherapyTypeEnum|Currently incomplete|
 
 <h2 id="tocS_ComorbidityIngestSchema">ComorbidityIngestSchema</h2>
 
@@ -4301,8 +4614,8 @@ TobaccoTypeEnum
 |TobaccoTypeEnum|Pipe|
 |TobaccoTypeEnum|Roll-ups|
 |TobaccoTypeEnum|Snuff|
-|TobaccoTypeEnum|Not available|
 |TobaccoTypeEnum|Waterpipe|
+|TobaccoTypeEnum|Not available|
 
 <h2 id="tocS_DiseaseStatusFollowupEnum">DiseaseStatusFollowupEnum</h2>
 
@@ -4337,6 +4650,7 @@ DiseaseStatusFollowupEnum
 |DiseaseStatusFollowupEnum|Relapse or recurrence|
 |DiseaseStatusFollowupEnum|Stable|
 |DiseaseStatusFollowupEnum|Not available|
+|DiseaseStatusFollowupEnum|Currently incomplete|
 
 <h2 id="tocS_FollowUpIngestSchema">FollowUpIngestSchema</h2>
 
@@ -4352,12 +4666,14 @@ DiseaseStatusFollowupEnum
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_followup_missing_reason": "Not available",
   "disease_status_at_followup": "Complete remission",
   "relapse_type": "Distant recurrence/metastasis",
   "date_of_relapse": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_relapse_missing_reason": "Not available",
   "method_of_progression_status": [
     "Imaging (procedure)"
   ],
@@ -4387,6 +4703,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_followup_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -4441,6 +4775,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_relapse_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -4570,6 +4922,9 @@ ProgressionStatusMethodEnum
 |ProgressionStatusMethodEnum|Physical examination procedure (procedure)|
 |ProgressionStatusMethodEnum|Tumor marker measurement (procedure)|
 |ProgressionStatusMethodEnum|Laboratory data interpretation (procedure)|
+|ProgressionStatusMethodEnum|Not available|
+|ProgressionStatusMethodEnum|Not applicable|
+|ProgressionStatusMethodEnum|Currently incomplete|
 
 <h2 id="tocS_RelapseTypeEnum">RelapseTypeEnum</h2>
 
@@ -4601,6 +4956,8 @@ RelapseTypeEnum
 |RelapseTypeEnum|Progression|
 |RelapseTypeEnum|Biochemical progression|
 |RelapseTypeEnum|Not available|
+|RelapseTypeEnum|Not applicable|
+|RelapseTypeEnum|Currently incomplete|
 
 <h2 id="tocS_BasisOfDiagnosisEnum">BasisOfDiagnosisEnum</h2>
 
@@ -4633,6 +4990,7 @@ BasisOfDiagnosisEnum
 |BasisOfDiagnosisEnum|Histology of a metastasis|
 |BasisOfDiagnosisEnum|Specific tumour markers|
 |BasisOfDiagnosisEnum|Not available|
+|BasisOfDiagnosisEnum|Currently incomplete|
 |BasisOfDiagnosisEnum|Cytogenetic and/or molecular testing|
 |BasisOfDiagnosisEnum|Histology at autopsy|
 |BasisOfDiagnosisEnum|Histology of the primary tumor|
@@ -4742,12 +5100,13 @@ NCategoryEnum
 ```json
 {
   "submitter_primary_diagnosis_id": "string",
-  "primary_site": "Accessory sinuses",
   "date_of_diagnosis": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_diagnosis_missing_reason": "Not available",
   "cancer_type_code": "string",
+  "primary_site": "Accessory sinuses",
   "basis_of_diagnosis": "Clinical investigation",
   "laterality": "Bilateral",
   "clinical_tumour_staging_system": "AJCC cancer staging system",
@@ -4774,24 +5133,6 @@ PrimaryDiagnosisIngestSchema
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |submitter_primary_diagnosis_id|string|true|none|none|
-|primary_site|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[PrimarySiteEnum](#schemaprimarysiteenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |date_of_diagnosis|any|false|none|none|
 
 anyOf
@@ -4810,6 +5151,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|date_of_diagnosis_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |cancer_type_code|any|false|none|none|
 
 anyOf
@@ -4817,6 +5176,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|primary_site|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[PrimarySiteEnum](#schemaprimarysiteenum)|false|none|none|
 
 or
 
@@ -5187,6 +5564,7 @@ PrimarySiteEnum
 |PrimarySiteEnum|Vulva|
 |PrimarySiteEnum|Unknown primary site|
 |PrimarySiteEnum|Not available|
+|PrimarySiteEnum|Currently incomplete|
 
 <h2 id="tocS_StageGroupEnum">StageGroupEnum</h2>
 
@@ -5308,6 +5686,7 @@ StageGroupEnum
 |StageGroupEnum|Stage 4S|
 |StageGroupEnum|Occult Carcinoma|
 |StageGroupEnum|Not available|
+|StageGroupEnum|Currently incomplete|
 |StageGroupEnum|Stage IC1|
 |StageGroupEnum|Stage IC2|
 |StageGroupEnum|Stage IC3|
@@ -5428,6 +5807,7 @@ TumourStagingSystemEnum
 |TumourStagingSystemEnum|SEER staging system|
 |TumourStagingSystemEnum|St Jude staging system|
 |TumourStagingSystemEnum|Not available|
+|TumourStagingSystemEnum|Currently incomplete|
 
 <h2 id="tocS_RadiationAnatomicalSiteEnum">RadiationAnatomicalSiteEnum</h2>
 
@@ -5728,7 +6108,7 @@ RadiationAnatomicalSiteEnum
 |RadiationAnatomicalSiteEnum|NECK_WITH_NODES_BILATERAL|
 |RadiationAnatomicalSiteEnum|NECK_WITH_NODES_NOS|
 |RadiationAnatomicalSiteEnum|NOSE|
-|RadiationAnatomicalSiteEnum|NOT_AVAILABLE|
+|RadiationAnatomicalSiteEnum|Not available|
 |RadiationAnatomicalSiteEnum|ORAL_CAVITY__BUCCAL_MUCOSA_LEFT|
 |RadiationAnatomicalSiteEnum|ORAL_CAVITY__BUCCAL_MUCOSA_RIGHT|
 |RadiationAnatomicalSiteEnum|ORAL_CAVITY__BUCCAL_MUCOSA_BILATERAL|
@@ -5866,6 +6246,7 @@ RadiationAnatomicalSiteEnum
 |RadiationAnatomicalSiteEnum|WHOLE_CNS|
 |RadiationAnatomicalSiteEnum|WHOLE_BODY|
 |RadiationAnatomicalSiteEnum|WHOLE_BODY_SKIN|
+|RadiationAnatomicalSiteEnum|Currently incomplete|
 
 <h2 id="tocS_RadiationIngestSchema">RadiationIngestSchema</h2>
 
@@ -6076,6 +6457,7 @@ RadiationTherapyModalityEnum
 |RadiationTherapyModalityEnum|Brachytherapy (procedure)|
 |RadiationTherapyModalityEnum|Other|
 |RadiationTherapyModalityEnum|Not available|
+|RadiationTherapyModalityEnum|Currently incomplete|
 |RadiationTherapyModalityEnum|Teleradiotherapy using photons|
 
 <h2 id="tocS_TherapyTypeEnum">TherapyTypeEnum</h2>
@@ -6105,6 +6487,7 @@ TherapyTypeEnum
 |TherapyTypeEnum|External|
 |TherapyTypeEnum|Internal|
 |TherapyTypeEnum|Not available|
+|TherapyTypeEnum|Currently incomplete|
 
 <h2 id="tocS_DrugDoseUnitsEnum">DrugDoseUnitsEnum</h2>
 
@@ -6136,6 +6519,8 @@ DrugDoseUnitsEnum
 |DrugDoseUnitsEnum|GBq|
 |DrugDoseUnitsEnum|Ci|
 |DrugDoseUnitsEnum|mCi|
+|DrugDoseUnitsEnum|Currently incomplete|
+|DrugDoseUnitsEnum|Not available|
 
 <h2 id="tocS_MassUnitUcumEnum">MassUnitUcumEnum</h2>
 
@@ -6235,6 +6620,9 @@ RadionuclideEnum
 |RadionuclideEnum|Thallium-201|
 |RadionuclideEnum|Lead-203|
 |RadionuclideEnum|Radium-223|
+|RadionuclideEnum|Currently incomplete|
+|RadionuclideEnum|Not available|
+|RadionuclideEnum|Other|
 
 <h2 id="tocS_RadiopharmaceuticalTherapyIngestSchema">RadiopharmaceuticalTherapyIngestSchema</h2>
 
@@ -6249,8 +6637,16 @@ RadionuclideEnum
   "agent_name": "string",
   "radionuclide": "Carbon-14",
   "radionuclide_other": "string",
-  "start_date": {},
-  "end_date": {},
+  "start_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "start_date_missing_reason": "Not available",
+  "end_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "end_date_missing_reason": "Not available",
   "cumulative_drug_dose": 0,
   "cumulative_drug_dose_not_available": false,
   "drug_dose_units": "Bq",
@@ -6351,7 +6747,25 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|start_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -6369,7 +6783,25 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|end_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
 
 or
 
@@ -6615,6 +7047,8 @@ CellsMeasureMethodEnum
 |CellsMeasureMethodEnum|Pathology estimate by percent nuclei|
 |CellsMeasureMethodEnum|Other|
 |CellsMeasureMethodEnum|Not available|
+|CellsMeasureMethodEnum|Not applicable|
+|CellsMeasureMethodEnum|Currently incomplete|
 
 <h2 id="tocS_ConfirmedDiagnosisTumourEnum">ConfirmedDiagnosisTumourEnum</h2>
 
@@ -6644,6 +7078,8 @@ ConfirmedDiagnosisTumourEnum
 |ConfirmedDiagnosisTumourEnum|No|
 |ConfirmedDiagnosisTumourEnum|Not done|
 |ConfirmedDiagnosisTumourEnum|Not available|
+|ConfirmedDiagnosisTumourEnum|Not applicable|
+|ConfirmedDiagnosisTumourEnum|Currently incomplete|
 
 <h2 id="tocS_PercentCellsRangeEnum">PercentCellsRangeEnum</h2>
 
@@ -6673,6 +7109,8 @@ PercentCellsRangeEnum
 |PercentCellsRangeEnum|20-50%|
 |PercentCellsRangeEnum|51-100%|
 |PercentCellsRangeEnum|Not available|
+|PercentCellsRangeEnum|Not applicable|
+|PercentCellsRangeEnum|Currently incomplete|
 
 <h2 id="tocS_SpecimenIngestSchema">SpecimenIngestSchema</h2>
 
@@ -6685,21 +7123,25 @@ PercentCellsRangeEnum
 {
   "submitter_specimen_id": "string",
   "submitter_treatment_id": "string",
-  "specimen_collection_date": {},
-  "specimen_storage": "Cut slide",
-  "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
-  "tumour_histological_type": "string",
+  "specimen_collection_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "specimen_collection_date_missing_reason": "Not available",
+  "specimen_type": "Cell line - derived from normal",
+  "specimen_tissue_source": "Abdominal fluid",
+  "tumour_normal_designation": "Normal",
   "specimen_anatomic_location": "string",
-  "specimen_laterality": "Left",
+  "tumour_histological_type": "string",
   "reference_pathology_confirmed_diagnosis": "Yes",
   "reference_pathology_confirmed_tumour_presence": "Yes",
   "tumour_grading_system": "FNCLCC grading system",
   "tumour_grade": "Low grade",
   "percent_tumour_cells_range": "0-19%",
   "percent_tumour_cells_measurement_method": "Genomics",
-  "specimen_tissue_source": "Abdominal fluid",
-  "tumour_normal_designation": "Normal",
-  "specimen_type": "Cell line - derived from normal",
+  "specimen_storage": "Cut slide",
+  "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
+  "specimen_laterality": "Left",
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_primary_diagnosis_id": "string",
@@ -6739,7 +7181,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -6751,13 +7193,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_storage|any|false|none|none|
+|specimen_collection_date_missing_reason|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[StorageEnum](#schemastorageenum)|false|none|none|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -6769,13 +7211,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_processing|any|false|none|none|
+|specimen_type|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[SpecimenProcessingEnum](#schemaspecimenprocessingenum)|false|none|none|
+|» *anonymous*|[SpecimenTypeEnum](#schemaspecimentypeenum)|false|none|none|
 
 or
 
@@ -6787,13 +7229,31 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|tumour_histological_type|any|false|none|none|
+|specimen_tissue_source|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[SpecimenTissueSourceEnum](#schemaspecimentissuesourceenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|tumour_normal_designation|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[TumourDesginationEnum](#schematumourdesginationenum)|false|none|none|
 
 or
 
@@ -6823,13 +7283,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_laterality|any|false|none|none|
+|tumour_histological_type|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[SpecimenLateralityEnum](#schemaspecimenlateralityenum)|false|none|none|
+|» *anonymous*|string|false|none|none|
 
 or
 
@@ -6949,13 +7409,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_tissue_source|any|false|none|none|
+|specimen_storage|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[SpecimenTissueSourceEnum](#schemaspecimentissuesourceenum)|false|none|none|
+|» *anonymous*|[StorageEnum](#schemastorageenum)|false|none|none|
 
 or
 
@@ -6967,13 +7427,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|tumour_normal_designation|any|false|none|none|
+|specimen_processing|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[TumourDesginationEnum](#schematumourdesginationenum)|false|none|none|
+|» *anonymous*|[SpecimenProcessingEnum](#schemaspecimenprocessingenum)|false|none|none|
 
 or
 
@@ -6985,13 +7445,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_type|any|false|none|none|
+|specimen_laterality|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[SpecimenTypeEnum](#schemaspecimentypeenum)|false|none|none|
+|» *anonymous*|[SpecimenLateralityEnum](#schemaspecimenlateralityenum)|false|none|none|
 
 or
 
@@ -7143,6 +7603,8 @@ SpecimenTissueSourceEnum
 |SpecimenTissueSourceEnum|Vitreous fluid|
 |SpecimenTissueSourceEnum|Whole blood|
 |SpecimenTissueSourceEnum|Wound|
+|SpecimenTissueSourceEnum|Not available|
+|SpecimenTissueSourceEnum|Currently incomplete|
 
 <h2 id="tocS_SpecimenTypeEnum">SpecimenTypeEnum</h2>
 
@@ -7188,6 +7650,8 @@ SpecimenTypeEnum
 |SpecimenTypeEnum|Locally recurrent tumour (non-metastatic)|
 |SpecimenTypeEnum|Recurrent tumour, NOS|
 |SpecimenTypeEnum|Metastatic tumour of uncertain primary|
+|SpecimenTypeEnum|Not available|
+|SpecimenTypeEnum|Currently incomplete|
 
 <h2 id="tocS_StorageEnum">StorageEnum</h2>
 
@@ -7298,6 +7762,8 @@ TumourGradeEnum
 |TumourGradeEnum|Grade Group 4|
 |TumourGradeEnum|Grade Group 5|
 |TumourGradeEnum|Not available|
+|TumourGradeEnum|Not applicable|
+|TumourGradeEnum|Currently incomplete|
 
 <h2 id="tocS_TumourGradingSystemEnum">TumourGradingSystemEnum</h2>
 
@@ -7337,6 +7803,7 @@ TumourGradingSystemEnum
 |TumourGradingSystemEnum|Two-tier grading system|
 |TumourGradingSystemEnum|WHO grading system for CNS tumours|
 |TumourGradingSystemEnum|Not available|
+|TumourGradingSystemEnum|Currently incomplete|
 
 <h2 id="tocS_LymphovascularInvasionEnum">LymphovascularInvasionEnum</h2>
 
@@ -7398,6 +7865,7 @@ MarginsStatusEnum
 |MarginsStatusEnum|Margin(s) involved|
 |MarginsStatusEnum|Not applicable|
 |MarginsStatusEnum|Not available|
+|MarginsStatusEnum|Currently incomplete|
 |MarginsStatusEnum|Unknown|
 
 <h2 id="tocS_PerineuralInvasionEnum">PerineuralInvasionEnum</h2>
@@ -7439,6 +7907,8 @@ PerineuralInvasionEnum
 
 ```json
 {
+  "surgery_reference_database": "SNOMED",
+  "surgery_reference_identifier": "string",
   "surgery_type": "string",
   "surgery_site": "string",
   "surgery_location": "Local recurrence",
@@ -7453,8 +7923,6 @@ PerineuralInvasionEnum
   "margins_status": "Margins clear",
   "lymphovascular_invasion": "Absent",
   "perineural_invasion": "Absent",
-  "surgery_reference_database": "SNOMED",
-  "surgery_reference_identifier": "string",
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_treatment_id": "string",
@@ -7466,6 +7934,42 @@ PerineuralInvasionEnum
 SurgeryIngestSchema
 
 ### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|surgery_reference_database|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[SurgeryReferenceDatabaseEnum](#schemasurgeryreferencedatabaseenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|surgery_reference_identifier|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -7670,42 +8174,6 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|surgery_reference_database|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[SurgeryReferenceDatabaseEnum](#schemasurgeryreferencedatabaseenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|surgery_reference_identifier|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |submitter_treatment_id|string|true|none|none|
@@ -7750,6 +8218,8 @@ SurgeryLocationEnum
 |SurgeryLocationEnum|Local recurrence|
 |SurgeryLocationEnum|Metastatic|
 |SurgeryLocationEnum|Primary|
+|SurgeryLocationEnum|Not available|
+|SurgeryLocationEnum|Currently incomplete|
 
 <h2 id="tocS_SurgeryReferenceDatabaseEnum">SurgeryReferenceDatabaseEnum</h2>
 
@@ -7779,6 +8249,7 @@ SurgeryReferenceDatabaseEnum
 |SurgeryReferenceDatabaseEnum|NCIt|
 |SurgeryReferenceDatabaseEnum|UMLS|
 |SurgeryReferenceDatabaseEnum|CCI|
+|SurgeryReferenceDatabaseEnum|Currently incomplete|
 
 <h2 id="tocS_TumourClassificationEnum">TumourClassificationEnum</h2>
 
@@ -7859,10 +8330,12 @@ TumourFocalityEnum
     "day_interval": 0,
     "month_interval": 0
   },
+  "treatment_start_date_missing_reason": "Not available",
   "treatment_end_date": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "treatment_end_date_missing_reason": "Not available",
   "treatment_intent": "Curative",
   "treatment_setting": "Adjuvant",
   "response_to_treatment_criteria_method": "RECIST 1.1",
@@ -7907,7 +8380,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
+|» *anonymous*|[uBooleanNotApplicableEnum](#schemaubooleannotapplicableenum)|false|none|none|
 
 or
 
@@ -7937,6 +8410,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|treatment_start_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |treatment_end_date|any|false|none|none|
 
 anyOf
@@ -7944,6 +8435,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|treatment_end_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
 
 or
 
@@ -8094,9 +8603,11 @@ TreatmentIntentEnum
 |TreatmentIntentEnum|Guidance|
 |TreatmentIntentEnum|Screening|
 |TreatmentIntentEnum|Forensic|
-|TreatmentIntentEnum|Not available|
 |TreatmentIntentEnum|Combined diagnostic and therapeutic intent|
 |TreatmentIntentEnum|Life-sustaining intent|
+|TreatmentIntentEnum|Not available|
+|TreatmentIntentEnum|Not applicable|
+|TreatmentIntentEnum|Currently incomplete|
 
 <h2 id="tocS_TreatmentResponseEnum">TreatmentResponseEnum</h2>
 
@@ -8146,6 +8657,8 @@ TreatmentResponseEnum
 |TreatmentResponseEnum|No evidence of disease (NED)|
 |TreatmentResponseEnum|Major response|
 |TreatmentResponseEnum|Not available|
+|TreatmentResponseEnum|Not applicable|
+|TreatmentResponseEnum|Currently incomplete|
 
 <h2 id="tocS_TreatmentResponseMethodEnum">TreatmentResponseMethodEnum</h2>
 
@@ -8179,6 +8692,8 @@ TreatmentResponseMethodEnum
 |TreatmentResponseMethodEnum|Physician Assessed Response Criteria|
 |TreatmentResponseMethodEnum|Blazer score|
 |TreatmentResponseMethodEnum|Not available|
+|TreatmentResponseMethodEnum|Not applicable|
+|TreatmentResponseMethodEnum|Currently incomplete|
 
 <h2 id="tocS_TreatmentSettingEnum">TreatmentSettingEnum</h2>
 
@@ -8207,6 +8722,8 @@ TreatmentSettingEnum
 |TreatmentSettingEnum|Adjuvant|
 |TreatmentSettingEnum|Neoadjuvant|
 |TreatmentSettingEnum|Not available|
+|TreatmentSettingEnum|Not applicable|
+|TreatmentSettingEnum|Currently incomplete|
 
 <h2 id="tocS_TreatmentStatusEnum">TreatmentStatusEnum</h2>
 
@@ -8242,6 +8759,8 @@ TreatmentStatusEnum
 |TreatmentStatusEnum|Treatment ongoing|
 |TreatmentStatusEnum|Other|
 |TreatmentStatusEnum|Not available|
+|TreatmentStatusEnum|Not applicable|
+|TreatmentStatusEnum|Currently incomplete|
 
 <h2 id="tocS_TreatmentTypeEnum">TreatmentTypeEnum</h2>
 
@@ -8279,6 +8798,7 @@ TreatmentTypeEnum
 |TreatmentTypeEnum|Unknown whether patient received treatment|
 |TreatmentTypeEnum|Patient referred for treatment at other center, details unknown|
 |TreatmentTypeEnum|Radiopharmaceutical Therapy|
+|TreatmentTypeEnum|Currently incomplete|
 
 <h2 id="tocS_ProgramUpdateSchema">ProgramUpdateSchema</h2>
 
@@ -8608,29 +9128,32 @@ MetadataSchema
   "gender": "Man",
   "sex_at_birth": "Male",
   "is_deceased": "Yes",
-  "lost_to_follow_up": "Yes",
-  "lost_to_followup_reason": "Completed study",
-  "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_birth_missing_reason": "Not available",
   "date_of_death": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_death_missing_reason": "Not available",
   "date_of_death_is_estimated": "Yes",
-  "date_resolution": "string",
+  "date_resolution": "month",
+  "cause_of_death": "Died of cancer",
+  "lost_to_follow_up": "Yes",
+  "lost_to_followup_reason": "Completed study",
   "program_id": "string",
   "primary_diagnoses": [
     {
       "submitter_primary_diagnosis_id": "string",
-      "primary_site": "Accessory sinuses",
       "date_of_diagnosis": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_diagnosis_missing_reason": "Not available",
       "cancer_type_code": "string",
+      "primary_site": "Accessory sinuses",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
       "clinical_tumour_staging_system": "AJCC cancer staging system",
@@ -8647,21 +9170,25 @@ MetadataSchema
         {
           "submitter_specimen_id": "string",
           "submitter_treatment_id": "string",
-          "specimen_collection_date": {},
-          "specimen_storage": "Cut slide",
-          "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
-          "tumour_histological_type": "string",
+          "specimen_collection_date": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
+          "specimen_collection_date_missing_reason": "Not available",
+          "specimen_type": "Cell line - derived from normal",
+          "specimen_tissue_source": "Abdominal fluid",
+          "tumour_normal_designation": "Normal",
           "specimen_anatomic_location": "string",
-          "specimen_laterality": "Left",
+          "tumour_histological_type": "string",
           "reference_pathology_confirmed_diagnosis": "Yes",
           "reference_pathology_confirmed_tumour_presence": "Yes",
           "tumour_grading_system": "FNCLCC grading system",
           "tumour_grade": "Low grade",
           "percent_tumour_cells_range": "0-19%",
           "percent_tumour_cells_measurement_method": "Genomics",
-          "specimen_tissue_source": "Abdominal fluid",
-          "tumour_normal_designation": "Normal",
-          "specimen_type": "Cell line - derived from normal",
+          "specimen_storage": "Cut slide",
+          "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
+          "specimen_laterality": "Left",
           "sample_registrations": [
             {
               "submitter_sample_id": "string",
@@ -8681,10 +9208,12 @@ MetadataSchema
             "day_interval": 0,
             "month_interval": 0
           },
+          "treatment_start_date_missing_reason": "Not available",
           "treatment_end_date": {
             "day_interval": 0,
             "month_interval": 0
           },
+          "treatment_end_date_missing_reason": "Not available",
           "treatment_intent": "Curative",
           "treatment_setting": "Adjuvant",
           "response_to_treatment_criteria_method": "RECIST 1.1",
@@ -8692,17 +9221,25 @@ MetadataSchema
           "status_of_treatment": "Treatment completed as prescribed",
           "systemic_therapies": [
             {
-              "systemic_therapy_type": "string",
+              "systemic_therapy_type": "Chemotherapy",
+              "start_date": {
+                "day_interval": 0,
+                "month_interval": 0
+              },
+              "start_date_missing_reason": "Not available",
+              "end_date": {
+                "day_interval": 0,
+                "month_interval": 0
+              },
+              "end_date_missing_reason": "Not available",
+              "drug_reference_database": "RxNorm",
+              "drug_reference_identifier": "string",
+              "drug_name": "string",
+              "drug_dose_units": "mg/m2",
               "days_per_cycle": 0,
               "days_per_cycle_not_available": false,
               "number_of_cycles": 0,
               "number_of_cycles_not_available": false,
-              "start_date": {},
-              "end_date": {},
-              "drug_reference_database": "RxNorm",
-              "drug_name": "string",
-              "drug_reference_identifier": "string",
-              "drug_dose_units": "mg/m2",
               "prescribed_cumulative_drug_dose": 0,
               "prescribed_cumulative_drug_dose_not_available": false,
               "actual_cumulative_drug_dose": 0,
@@ -8724,6 +9261,8 @@ MetadataSchema
           ],
           "surgeries": [
             {
+              "surgery_reference_database": "SNOMED",
+              "surgery_reference_identifier": "string",
               "surgery_type": "string",
               "surgery_site": "string",
               "surgery_location": "Local recurrence",
@@ -8737,9 +9276,7 @@ MetadataSchema
               "residual_tumour_classification": "Not applicable",
               "margins_status": "Margins clear",
               "lymphovascular_invasion": "Absent",
-              "perineural_invasion": "Absent",
-              "surgery_reference_database": "SNOMED",
-              "surgery_reference_identifier": "string"
+              "perineural_invasion": "Absent"
             }
           ],
           "radiopharmaceutical_therapies": [
@@ -8748,8 +9285,16 @@ MetadataSchema
               "agent_name": "string",
               "radionuclide": "Carbon-14",
               "radionuclide_other": "string",
-              "start_date": {},
-              "end_date": {},
+              "start_date": {
+                "day_interval": 0,
+                "month_interval": 0
+              },
+              "start_date_missing_reason": "Not available",
+              "end_date": {
+                "day_interval": 0,
+                "month_interval": 0
+              },
+              "end_date_missing_reason": "Not available",
               "cumulative_drug_dose": 0,
               "cumulative_drug_dose_not_available": false,
               "drug_dose_units": "Bq",
@@ -8767,12 +9312,14 @@ MetadataSchema
                 "day_interval": 0,
                 "month_interval": 0
               },
+              "date_of_followup_missing_reason": "Not available",
               "disease_status_at_followup": "Complete remission",
               "relapse_type": "Distant recurrence/metastasis",
               "date_of_relapse": {
                 "day_interval": 0,
                 "month_interval": 0
               },
+              "date_of_relapse_missing_reason": "Not available",
               "method_of_progression_status": [
                 "Imaging (procedure)"
               ],
@@ -8790,12 +9337,14 @@ MetadataSchema
             "day_interval": 0,
             "month_interval": 0
           },
+          "date_of_followup_missing_reason": "Not available",
           "disease_status_at_followup": "Complete remission",
           "relapse_type": "Distant recurrence/metastasis",
           "date_of_relapse": {
             "day_interval": 0,
             "month_interval": 0
           },
+          "date_of_relapse_missing_reason": "Not available",
           "method_of_progression_status": [
             "Imaging (procedure)"
           ],
@@ -8813,12 +9362,14 @@ MetadataSchema
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_followup_missing_reason": "Not available",
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
       "date_of_relapse": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_relapse_missing_reason": "Not available",
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -8837,6 +9388,7 @@ MetadataSchema
         "day_interval": 0,
         "month_interval": 0
       },
+      "test_date_missing_reason": "Not available",
       "psa_level": 0,
       "psa_level_not_available": false,
       "ca125": 0,
@@ -8946,6 +9498,132 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|date_of_birth|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_birth_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_death|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_death_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_death_is_estimated|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[uBooleanNotApplicableEnum](#schemaubooleannotapplicableenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_resolution|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateResolutionEnum](#schemadateresolutionenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cause_of_death|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[CauseOfDeathEnum](#schemacauseofdeathenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |lost_to_follow_up|any|false|none|none|
 
 anyOf
@@ -8982,96 +9660,6 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|cause_of_death|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[CauseOfDeathEnum](#schemacauseofdeathenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|date_of_birth|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|date_of_death|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|date_of_death_is_estimated|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DateOfDeathIsEstimatedEnum](#schemadateofdeathisestimatedenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|date_resolution|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |program_id|string|true|none|none|
 |primary_diagnoses|[[NestedPrimaryDiagnosisSchema](#schemanestedprimarydiagnosisschema)]|false|none|none|
 |followups|[[NestedFollowUpSchema](#schemanestedfollowupschema)]|false|none|none|
@@ -9096,6 +9684,7 @@ continued
     "day_interval": 0,
     "month_interval": 0
   },
+  "test_date_missing_reason": "Not available",
   "psa_level": 0,
   "psa_level_not_available": false,
   "ca125": 0,
@@ -9206,6 +9795,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|test_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -9679,12 +10286,14 @@ continued
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_followup_missing_reason": "Not available",
   "disease_status_at_followup": "Complete remission",
   "relapse_type": "Distant recurrence/metastasis",
   "date_of_relapse": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_relapse_missing_reason": "Not available",
   "method_of_progression_status": [
     "Imaging (procedure)"
   ],
@@ -9709,6 +10318,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_followup_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -9774,6 +10401,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|date_of_relapse_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |method_of_progression_status|any|false|none|none|
 
 anyOf
@@ -9816,12 +10461,13 @@ or
 ```json
 {
   "submitter_primary_diagnosis_id": "string",
-  "primary_site": "Accessory sinuses",
   "date_of_diagnosis": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_diagnosis_missing_reason": "Not available",
   "cancer_type_code": "string",
+  "primary_site": "Accessory sinuses",
   "basis_of_diagnosis": "Clinical investigation",
   "laterality": "Bilateral",
   "clinical_tumour_staging_system": "AJCC cancer staging system",
@@ -9838,21 +10484,25 @@ or
     {
       "submitter_specimen_id": "string",
       "submitter_treatment_id": "string",
-      "specimen_collection_date": {},
-      "specimen_storage": "Cut slide",
-      "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
-      "tumour_histological_type": "string",
+      "specimen_collection_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "specimen_collection_date_missing_reason": "Not available",
+      "specimen_type": "Cell line - derived from normal",
+      "specimen_tissue_source": "Abdominal fluid",
+      "tumour_normal_designation": "Normal",
       "specimen_anatomic_location": "string",
-      "specimen_laterality": "Left",
+      "tumour_histological_type": "string",
       "reference_pathology_confirmed_diagnosis": "Yes",
       "reference_pathology_confirmed_tumour_presence": "Yes",
       "tumour_grading_system": "FNCLCC grading system",
       "tumour_grade": "Low grade",
       "percent_tumour_cells_range": "0-19%",
       "percent_tumour_cells_measurement_method": "Genomics",
-      "specimen_tissue_source": "Abdominal fluid",
-      "tumour_normal_designation": "Normal",
-      "specimen_type": "Cell line - derived from normal",
+      "specimen_storage": "Cut slide",
+      "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
+      "specimen_laterality": "Left",
       "sample_registrations": [
         {
           "submitter_sample_id": "string",
@@ -9872,10 +10522,12 @@ or
         "day_interval": 0,
         "month_interval": 0
       },
+      "treatment_start_date_missing_reason": "Not available",
       "treatment_end_date": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "treatment_end_date_missing_reason": "Not available",
       "treatment_intent": "Curative",
       "treatment_setting": "Adjuvant",
       "response_to_treatment_criteria_method": "RECIST 1.1",
@@ -9883,17 +10535,25 @@ or
       "status_of_treatment": "Treatment completed as prescribed",
       "systemic_therapies": [
         {
-          "systemic_therapy_type": "string",
+          "systemic_therapy_type": "Chemotherapy",
+          "start_date": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
+          "start_date_missing_reason": "Not available",
+          "end_date": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
+          "end_date_missing_reason": "Not available",
+          "drug_reference_database": "RxNorm",
+          "drug_reference_identifier": "string",
+          "drug_name": "string",
+          "drug_dose_units": "mg/m2",
           "days_per_cycle": 0,
           "days_per_cycle_not_available": false,
           "number_of_cycles": 0,
           "number_of_cycles_not_available": false,
-          "start_date": {},
-          "end_date": {},
-          "drug_reference_database": "RxNorm",
-          "drug_name": "string",
-          "drug_reference_identifier": "string",
-          "drug_dose_units": "mg/m2",
           "prescribed_cumulative_drug_dose": 0,
           "prescribed_cumulative_drug_dose_not_available": false,
           "actual_cumulative_drug_dose": 0,
@@ -9915,6 +10575,8 @@ or
       ],
       "surgeries": [
         {
+          "surgery_reference_database": "SNOMED",
+          "surgery_reference_identifier": "string",
           "surgery_type": "string",
           "surgery_site": "string",
           "surgery_location": "Local recurrence",
@@ -9928,9 +10590,7 @@ or
           "residual_tumour_classification": "Not applicable",
           "margins_status": "Margins clear",
           "lymphovascular_invasion": "Absent",
-          "perineural_invasion": "Absent",
-          "surgery_reference_database": "SNOMED",
-          "surgery_reference_identifier": "string"
+          "perineural_invasion": "Absent"
         }
       ],
       "radiopharmaceutical_therapies": [
@@ -9939,8 +10599,16 @@ or
           "agent_name": "string",
           "radionuclide": "Carbon-14",
           "radionuclide_other": "string",
-          "start_date": {},
-          "end_date": {},
+          "start_date": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
+          "start_date_missing_reason": "Not available",
+          "end_date": {
+            "day_interval": 0,
+            "month_interval": 0
+          },
+          "end_date_missing_reason": "Not available",
           "cumulative_drug_dose": 0,
           "cumulative_drug_dose_not_available": false,
           "drug_dose_units": "Bq",
@@ -9958,12 +10626,14 @@ or
             "day_interval": 0,
             "month_interval": 0
           },
+          "date_of_followup_missing_reason": "Not available",
           "disease_status_at_followup": "Complete remission",
           "relapse_type": "Distant recurrence/metastasis",
           "date_of_relapse": {
             "day_interval": 0,
             "month_interval": 0
           },
+          "date_of_relapse_missing_reason": "Not available",
           "method_of_progression_status": [
             "Imaging (procedure)"
           ],
@@ -9981,12 +10651,14 @@ or
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_followup_missing_reason": "Not available",
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
       "date_of_relapse": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_relapse_missing_reason": "Not available",
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -10006,24 +10678,6 @@ NestedPrimaryDiagnosisSchema
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |submitter_primary_diagnosis_id|string|true|none|none|
-|primary_site|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[PrimarySiteEnum](#schemaprimarysiteenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |date_of_diagnosis|any|false|none|none|
 
 anyOf
@@ -10042,6 +10696,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|date_of_diagnosis_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |cancer_type_code|any|false|none|none|
 
 anyOf
@@ -10049,6 +10721,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|primary_site|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[PrimarySiteEnum](#schemaprimarysiteenum)|false|none|none|
 
 or
 
@@ -10445,8 +11135,16 @@ or
   "agent_name": "string",
   "radionuclide": "Carbon-14",
   "radionuclide_other": "string",
-  "start_date": {},
-  "end_date": {},
+  "start_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "start_date_missing_reason": "Not available",
+  "end_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "end_date_missing_reason": "Not available",
   "cumulative_drug_dose": 0,
   "cumulative_drug_dose_not_available": false,
   "drug_dose_units": "Bq",
@@ -10543,7 +11241,25 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|start_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -10561,7 +11277,25 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|end_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
 
 or
 
@@ -10714,21 +11448,25 @@ or
 {
   "submitter_specimen_id": "string",
   "submitter_treatment_id": "string",
-  "specimen_collection_date": {},
-  "specimen_storage": "Cut slide",
-  "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
-  "tumour_histological_type": "string",
+  "specimen_collection_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "specimen_collection_date_missing_reason": "Not available",
+  "specimen_type": "Cell line - derived from normal",
+  "specimen_tissue_source": "Abdominal fluid",
+  "tumour_normal_designation": "Normal",
   "specimen_anatomic_location": "string",
-  "specimen_laterality": "Left",
+  "tumour_histological_type": "string",
   "reference_pathology_confirmed_diagnosis": "Yes",
   "reference_pathology_confirmed_tumour_presence": "Yes",
   "tumour_grading_system": "FNCLCC grading system",
   "tumour_grade": "Low grade",
   "percent_tumour_cells_range": "0-19%",
   "percent_tumour_cells_measurement_method": "Genomics",
-  "specimen_tissue_source": "Abdominal fluid",
-  "tumour_normal_designation": "Normal",
-  "specimen_type": "Cell line - derived from normal",
+  "specimen_storage": "Cut slide",
+  "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
+  "specimen_laterality": "Left",
   "sample_registrations": [
     {
       "submitter_sample_id": "string",
@@ -10770,7 +11508,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -10782,13 +11520,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_storage|any|false|none|none|
+|specimen_collection_date_missing_reason|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[StorageEnum](#schemastorageenum)|false|none|none|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -10800,13 +11538,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_processing|any|false|none|none|
+|specimen_type|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[SpecimenProcessingEnum](#schemaspecimenprocessingenum)|false|none|none|
+|» *anonymous*|[SpecimenTypeEnum](#schemaspecimentypeenum)|false|none|none|
 
 or
 
@@ -10818,13 +11556,31 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|tumour_histological_type|any|false|none|none|
+|specimen_tissue_source|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[SpecimenTissueSourceEnum](#schemaspecimentissuesourceenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|tumour_normal_designation|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[TumourDesginationEnum](#schematumourdesginationenum)|false|none|none|
 
 or
 
@@ -10854,13 +11610,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_laterality|any|false|none|none|
+|tumour_histological_type|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[SpecimenLateralityEnum](#schemaspecimenlateralityenum)|false|none|none|
+|» *anonymous*|string|false|none|none|
 
 or
 
@@ -10980,13 +11736,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_tissue_source|any|false|none|none|
+|specimen_storage|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[SpecimenTissueSourceEnum](#schemaspecimentissuesourceenum)|false|none|none|
+|» *anonymous*|[StorageEnum](#schemastorageenum)|false|none|none|
 
 or
 
@@ -10998,13 +11754,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|tumour_normal_designation|any|false|none|none|
+|specimen_processing|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[TumourDesginationEnum](#schematumourdesginationenum)|false|none|none|
+|» *anonymous*|[SpecimenProcessingEnum](#schemaspecimenprocessingenum)|false|none|none|
 
 or
 
@@ -11016,13 +11772,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_type|any|false|none|none|
+|specimen_laterality|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[SpecimenTypeEnum](#schemaspecimentypeenum)|false|none|none|
+|» *anonymous*|[SpecimenLateralityEnum](#schemaspecimenlateralityenum)|false|none|none|
 
 or
 
@@ -11045,6 +11801,8 @@ continued
 
 ```json
 {
+  "surgery_reference_database": "SNOMED",
+  "surgery_reference_identifier": "string",
   "surgery_type": "string",
   "surgery_site": "string",
   "surgery_location": "Local recurrence",
@@ -11058,9 +11816,7 @@ continued
   "residual_tumour_classification": "Not applicable",
   "margins_status": "Margins clear",
   "lymphovascular_invasion": "Absent",
-  "perineural_invasion": "Absent",
-  "surgery_reference_database": "SNOMED",
-  "surgery_reference_identifier": "string"
+  "perineural_invasion": "Absent"
 }
 
 ```
@@ -11068,6 +11824,42 @@ continued
 NestedSurgerySchema
 
 ### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|surgery_reference_database|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[SurgeryReferenceDatabaseEnum](#schemasurgeryreferencedatabaseenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|surgery_reference_identifier|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -11268,42 +12060,6 @@ or
 |---|---|---|---|---|
 |» *anonymous*|null|false|none|none|
 
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|surgery_reference_database|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[SurgeryReferenceDatabaseEnum](#schemasurgeryreferencedatabaseenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|surgery_reference_identifier|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
 <h2 id="tocS_NestedSystemicTherapySchema">NestedSystemicTherapySchema</h2>
 
 <a id="schemanestedsystemictherapyschema"></a>
@@ -11313,17 +12069,25 @@ or
 
 ```json
 {
-  "systemic_therapy_type": "string",
+  "systemic_therapy_type": "Chemotherapy",
+  "start_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "start_date_missing_reason": "Not available",
+  "end_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "end_date_missing_reason": "Not available",
+  "drug_reference_database": "RxNorm",
+  "drug_reference_identifier": "string",
+  "drug_name": "string",
+  "drug_dose_units": "mg/m2",
   "days_per_cycle": 0,
   "days_per_cycle_not_available": false,
   "number_of_cycles": 0,
   "number_of_cycles_not_available": false,
-  "start_date": {},
-  "end_date": {},
-  "drug_reference_database": "RxNorm",
-  "drug_name": "string",
-  "drug_reference_identifier": "string",
-  "drug_dose_units": "mg/m2",
   "prescribed_cumulative_drug_dose": 0,
   "prescribed_cumulative_drug_dose_not_available": false,
   "actual_cumulative_drug_dose": 0,
@@ -11344,7 +12108,151 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|» *anonymous*|[SystemicTherapyTypeEnum](#schemasystemictherapytypeenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|start_date|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|start_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|end_date|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|end_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_reference_database|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DrugReferenceDbEnum](#schemadrugreferencedbenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_reference_identifier|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_name|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_dose_units|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DosageUnitsEnum](#schemadosageunitsenum)|false|none|none|
 
 or
 
@@ -11394,114 +12302,6 @@ continued
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |number_of_cycles_not_available|boolean|false|none|none|
-|start_date|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|end_date|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|drug_reference_database|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DrugReferenceDbEnum](#schemadrugreferencedbenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|drug_name|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|drug_reference_identifier|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|drug_dose_units|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DosageUnitsEnum](#schemadosageunitsenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |prescribed_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -11559,10 +12359,12 @@ continued
     "day_interval": 0,
     "month_interval": 0
   },
+  "treatment_start_date_missing_reason": "Not available",
   "treatment_end_date": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "treatment_end_date_missing_reason": "Not available",
   "treatment_intent": "Curative",
   "treatment_setting": "Adjuvant",
   "response_to_treatment_criteria_method": "RECIST 1.1",
@@ -11570,17 +12372,25 @@ continued
   "status_of_treatment": "Treatment completed as prescribed",
   "systemic_therapies": [
     {
-      "systemic_therapy_type": "string",
+      "systemic_therapy_type": "Chemotherapy",
+      "start_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "start_date_missing_reason": "Not available",
+      "end_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "end_date_missing_reason": "Not available",
+      "drug_reference_database": "RxNorm",
+      "drug_reference_identifier": "string",
+      "drug_name": "string",
+      "drug_dose_units": "mg/m2",
       "days_per_cycle": 0,
       "days_per_cycle_not_available": false,
       "number_of_cycles": 0,
       "number_of_cycles_not_available": false,
-      "start_date": {},
-      "end_date": {},
-      "drug_reference_database": "RxNorm",
-      "drug_name": "string",
-      "drug_reference_identifier": "string",
-      "drug_dose_units": "mg/m2",
       "prescribed_cumulative_drug_dose": 0,
       "prescribed_cumulative_drug_dose_not_available": false,
       "actual_cumulative_drug_dose": 0,
@@ -11602,6 +12412,8 @@ continued
   ],
   "surgeries": [
     {
+      "surgery_reference_database": "SNOMED",
+      "surgery_reference_identifier": "string",
       "surgery_type": "string",
       "surgery_site": "string",
       "surgery_location": "Local recurrence",
@@ -11615,9 +12427,7 @@ continued
       "residual_tumour_classification": "Not applicable",
       "margins_status": "Margins clear",
       "lymphovascular_invasion": "Absent",
-      "perineural_invasion": "Absent",
-      "surgery_reference_database": "SNOMED",
-      "surgery_reference_identifier": "string"
+      "perineural_invasion": "Absent"
     }
   ],
   "radiopharmaceutical_therapies": [
@@ -11626,8 +12436,16 @@ continued
       "agent_name": "string",
       "radionuclide": "Carbon-14",
       "radionuclide_other": "string",
-      "start_date": {},
-      "end_date": {},
+      "start_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "start_date_missing_reason": "Not available",
+      "end_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "end_date_missing_reason": "Not available",
       "cumulative_drug_dose": 0,
       "cumulative_drug_dose_not_available": false,
       "drug_dose_units": "Bq",
@@ -11645,12 +12463,14 @@ continued
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_followup_missing_reason": "Not available",
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
       "date_of_relapse": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_relapse_missing_reason": "Not available",
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -11694,7 +12514,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
+|» *anonymous*|[uBooleanNotApplicableEnum](#schemaubooleannotapplicableenum)|false|none|none|
 
 or
 
@@ -11724,6 +12544,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|treatment_start_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |treatment_end_date|any|false|none|none|
 
 anyOf
@@ -11731,6 +12569,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|treatment_end_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
 
 or
 
@@ -12525,19 +13381,21 @@ or
   "gender": "Man",
   "sex_at_birth": "Male",
   "is_deceased": "Yes",
-  "lost_to_follow_up": "Yes",
-  "lost_to_followup_reason": "Completed study",
-  "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_birth_missing_reason": "Not available",
   "date_of_death": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_death_missing_reason": "Not available",
   "date_of_death_is_estimated": "Yes",
-  "date_resolution": "string",
+  "date_resolution": "month",
+  "cause_of_death": "Died of cancer",
+  "lost_to_follow_up": "Yes",
+  "lost_to_followup_reason": "Completed study",
   "program_id": "string"
 }
 
@@ -12604,6 +13462,132 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|date_of_birth|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_birth_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_death|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_death_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_death_is_estimated|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[uBooleanNotApplicableEnum](#schemaubooleannotapplicableenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_resolution|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateResolutionEnum](#schemadateresolutionenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cause_of_death|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[CauseOfDeathEnum](#schemacauseofdeathenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |lost_to_follow_up|any|false|none|none|
 
 anyOf
@@ -12640,96 +13624,6 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|cause_of_death|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[CauseOfDeathEnum](#schemacauseofdeathenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|date_of_birth|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|date_of_death|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|date_of_death_is_estimated|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DateOfDeathIsEstimatedEnum](#schemadateofdeathisestimatedenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|date_resolution|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |program_id|string|true|none|none|
 
 <h2 id="tocS_PagedDonorModelSchema">PagedDonorModelSchema</h2>
@@ -12747,19 +13641,21 @@ continued
       "gender": "Man",
       "sex_at_birth": "Male",
       "is_deceased": "Yes",
-      "lost_to_follow_up": "Yes",
-      "lost_to_followup_reason": "Completed study",
-      "cause_of_death": "Died of cancer",
       "date_of_birth": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_birth_missing_reason": "Not available",
       "date_of_death": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_death_missing_reason": "Not available",
       "date_of_death_is_estimated": "Yes",
-      "date_resolution": "string",
+      "date_resolution": "month",
+      "cause_of_death": "Died of cancer",
+      "lost_to_follow_up": "Yes",
+      "lost_to_followup_reason": "Completed study",
       "program_id": "string"
     }
   ],
@@ -12878,19 +13774,21 @@ DonorExplorerFilterSchema
       "gender": "Man",
       "sex_at_birth": "Male",
       "is_deceased": "Yes",
-      "lost_to_follow_up": "Yes",
-      "lost_to_followup_reason": "Completed study",
-      "cause_of_death": "Died of cancer",
       "date_of_birth": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_birth_missing_reason": "Not available",
       "date_of_death": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_death_missing_reason": "Not available",
       "date_of_death_is_estimated": "Yes",
-      "date_resolution": "string",
+      "date_resolution": "month",
+      "cause_of_death": "Died of cancer",
+      "lost_to_follow_up": "Yes",
+      "lost_to_followup_reason": "Completed study",
       "program_id": "string",
       "primary_site": [
         "string"
@@ -12980,19 +13878,21 @@ or
   "gender": "Man",
   "sex_at_birth": "Male",
   "is_deceased": "Yes",
-  "lost_to_follow_up": "Yes",
-  "lost_to_followup_reason": "Completed study",
-  "cause_of_death": "Died of cancer",
   "date_of_birth": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_birth_missing_reason": "Not available",
   "date_of_death": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_death_missing_reason": "Not available",
   "date_of_death_is_estimated": "Yes",
-  "date_resolution": "string",
+  "date_resolution": "month",
+  "cause_of_death": "Died of cancer",
+  "lost_to_follow_up": "Yes",
+  "lost_to_followup_reason": "Completed study",
   "program_id": "string",
   "primary_site": [
     "string"
@@ -13068,60 +13968,6 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|lost_to_follow_up|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[LostToFollowUpEnum](#schemalosttofollowupenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|lost_to_followup_reason|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[LostToFollowupReasonEnum](#schemalosttofollowupreasonenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|cause_of_death|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[CauseOfDeathEnum](#schemacauseofdeathenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |date_of_birth|any|false|none|none|
 
 anyOf
@@ -13129,6 +13975,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_birth_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -13158,13 +14022,31 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|date_of_death_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |date_of_death_is_estimated|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[DateOfDeathIsEstimatedEnum](#schemadateofdeathisestimatedenum)|false|none|none|
+|» *anonymous*|[uBooleanNotApplicableEnum](#schemaubooleannotapplicableenum)|false|none|none|
 
 or
 
@@ -13182,7 +14064,61 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[DateResolutionEnum](#schemadateresolutionenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|cause_of_death|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[CauseOfDeathEnum](#schemacauseofdeathenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|lost_to_follow_up|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[LostToFollowUpEnum](#schemalosttofollowupenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|lost_to_followup_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[LostToFollowupReasonEnum](#schemalosttofollowupreasonenum)|false|none|none|
 
 or
 
@@ -13595,12 +14531,13 @@ or
   "items": [
     {
       "submitter_primary_diagnosis_id": "string",
-      "primary_site": "Accessory sinuses",
       "date_of_diagnosis": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_diagnosis_missing_reason": "Not available",
       "cancer_type_code": "string",
+      "primary_site": "Accessory sinuses",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
       "clinical_tumour_staging_system": "AJCC cancer staging system",
@@ -13691,12 +14628,13 @@ or
 ```json
 {
   "submitter_primary_diagnosis_id": "string",
-  "primary_site": "Accessory sinuses",
   "date_of_diagnosis": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_diagnosis_missing_reason": "Not available",
   "cancer_type_code": "string",
+  "primary_site": "Accessory sinuses",
   "basis_of_diagnosis": "Clinical investigation",
   "laterality": "Bilateral",
   "clinical_tumour_staging_system": "AJCC cancer staging system",
@@ -13722,24 +14660,6 @@ PrimaryDiagnosisModelSchema
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |submitter_primary_diagnosis_id|string|true|none|none|
-|primary_site|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[PrimarySiteEnum](#schemaprimarysiteenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |date_of_diagnosis|any|false|none|none|
 
 anyOf
@@ -13758,6 +14678,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|date_of_diagnosis_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |cancer_type_code|any|false|none|none|
 
 anyOf
@@ -13765,6 +14703,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|primary_site|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[PrimarySiteEnum](#schemaprimarysiteenum)|false|none|none|
 
 or
 
@@ -14378,6 +15334,7 @@ continued
     "day_interval": 0,
     "month_interval": 0
   },
+  "test_date_missing_reason": "Not available",
   "psa_level": 0,
   "psa_level_not_available": false,
   "ca125": 0,
@@ -14490,6 +15447,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|test_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -14763,6 +15738,7 @@ continued
         "day_interval": 0,
         "month_interval": 0
       },
+      "test_date_missing_reason": "Not available",
       "psa_level": 0,
       "psa_level_not_available": false,
       "ca125": 0,
@@ -15106,17 +16082,25 @@ or
 {
   "items": [
     {
-      "systemic_therapy_type": "string",
+      "systemic_therapy_type": "Chemotherapy",
+      "start_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "start_date_missing_reason": "Not available",
+      "end_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "end_date_missing_reason": "Not available",
+      "drug_reference_database": "RxNorm",
+      "drug_reference_identifier": "string",
+      "drug_name": "string",
+      "drug_dose_units": "mg/m2",
       "days_per_cycle": 0,
       "days_per_cycle_not_available": false,
       "number_of_cycles": 0,
       "number_of_cycles_not_available": false,
-      "start_date": {},
-      "end_date": {},
-      "drug_reference_database": "RxNorm",
-      "drug_name": "string",
-      "drug_reference_identifier": "string",
-      "drug_dose_units": "mg/m2",
       "prescribed_cumulative_drug_dose": 0,
       "prescribed_cumulative_drug_dose_not_available": false,
       "actual_cumulative_drug_dose": 0,
@@ -15199,17 +16183,25 @@ or
 
 ```json
 {
-  "systemic_therapy_type": "string",
+  "systemic_therapy_type": "Chemotherapy",
+  "start_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "start_date_missing_reason": "Not available",
+  "end_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "end_date_missing_reason": "Not available",
+  "drug_reference_database": "RxNorm",
+  "drug_reference_identifier": "string",
+  "drug_name": "string",
+  "drug_dose_units": "mg/m2",
   "days_per_cycle": 0,
   "days_per_cycle_not_available": false,
   "number_of_cycles": 0,
   "number_of_cycles_not_available": false,
-  "start_date": {},
-  "end_date": {},
-  "drug_reference_database": "RxNorm",
-  "drug_name": "string",
-  "drug_reference_identifier": "string",
-  "drug_dose_units": "mg/m2",
   "prescribed_cumulative_drug_dose": 0,
   "prescribed_cumulative_drug_dose_not_available": false,
   "actual_cumulative_drug_dose": 0,
@@ -15233,7 +16225,151 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|» *anonymous*|[SystemicTherapyTypeEnum](#schemasystemictherapytypeenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|start_date|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|start_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|end_date|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|end_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_reference_database|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DrugReferenceDbEnum](#schemadrugreferencedbenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_reference_identifier|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_name|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|drug_dose_units|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[DosageUnitsEnum](#schemadosageunitsenum)|false|none|none|
 
 or
 
@@ -15283,114 +16419,6 @@ continued
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |number_of_cycles_not_available|boolean|false|none|none|
-|start_date|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|end_date|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|drug_reference_database|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DrugReferenceDbEnum](#schemadrugreferencedbenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|drug_name|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|drug_reference_identifier|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|drug_dose_units|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[DosageUnitsEnum](#schemadosageunitsenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
 |prescribed_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -16266,12 +17294,14 @@ continued
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_followup_missing_reason": "Not available",
   "disease_status_at_followup": "Complete remission",
   "relapse_type": "Distant recurrence/metastasis",
   "date_of_relapse": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "date_of_relapse_missing_reason": "Not available",
   "method_of_progression_status": [
     "Imaging (procedure)"
   ],
@@ -16300,6 +17330,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_followup_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -16354,6 +17402,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|date_of_relapse_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -16451,12 +17517,14 @@ or
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_followup_missing_reason": "Not available",
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
       "date_of_relapse": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_relapse_missing_reason": "Not available",
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -17248,8 +18316,16 @@ or
       "agent_name": "string",
       "radionuclide": "Carbon-14",
       "radionuclide_other": "string",
-      "start_date": {},
-      "end_date": {},
+      "start_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "start_date_missing_reason": "Not available",
+      "end_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "end_date_missing_reason": "Not available",
       "cumulative_drug_dose": 0,
       "cumulative_drug_dose_not_available": false,
       "drug_dose_units": "Bq",
@@ -17340,8 +18416,16 @@ or
   "agent_name": "string",
   "radionuclide": "Carbon-14",
   "radionuclide_other": "string",
-  "start_date": {},
-  "end_date": {},
+  "start_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "start_date_missing_reason": "Not available",
+  "end_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "end_date_missing_reason": "Not available",
   "cumulative_drug_dose": 0,
   "cumulative_drug_dose_not_available": false,
   "drug_dose_units": "Bq",
@@ -17441,7 +18525,25 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|start_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -17459,7 +18561,25 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|end_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
 
 or
 
@@ -18196,21 +19316,25 @@ or
     {
       "submitter_specimen_id": "string",
       "submitter_treatment_id": "string",
-      "specimen_collection_date": {},
-      "specimen_storage": "Cut slide",
-      "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
-      "tumour_histological_type": "string",
+      "specimen_collection_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "specimen_collection_date_missing_reason": "Not available",
+      "specimen_type": "Cell line - derived from normal",
+      "specimen_tissue_source": "Abdominal fluid",
+      "tumour_normal_designation": "Normal",
       "specimen_anatomic_location": "string",
-      "specimen_laterality": "Left",
+      "tumour_histological_type": "string",
       "reference_pathology_confirmed_diagnosis": "Yes",
       "reference_pathology_confirmed_tumour_presence": "Yes",
       "tumour_grading_system": "FNCLCC grading system",
       "tumour_grade": "Low grade",
       "percent_tumour_cells_range": "0-19%",
       "percent_tumour_cells_measurement_method": "Genomics",
-      "specimen_tissue_source": "Abdominal fluid",
-      "tumour_normal_designation": "Normal",
-      "specimen_type": "Cell line - derived from normal",
+      "specimen_storage": "Cut slide",
+      "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
+      "specimen_laterality": "Left",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_primary_diagnosis_id": "string"
@@ -18291,21 +19415,25 @@ or
 {
   "submitter_specimen_id": "string",
   "submitter_treatment_id": "string",
-  "specimen_collection_date": {},
-  "specimen_storage": "Cut slide",
-  "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
-  "tumour_histological_type": "string",
+  "specimen_collection_date": {
+    "day_interval": 0,
+    "month_interval": 0
+  },
+  "specimen_collection_date_missing_reason": "Not available",
+  "specimen_type": "Cell line - derived from normal",
+  "specimen_tissue_source": "Abdominal fluid",
+  "tumour_normal_designation": "Normal",
   "specimen_anatomic_location": "string",
-  "specimen_laterality": "Left",
+  "tumour_histological_type": "string",
   "reference_pathology_confirmed_diagnosis": "Yes",
   "reference_pathology_confirmed_tumour_presence": "Yes",
   "tumour_grading_system": "FNCLCC grading system",
   "tumour_grade": "Low grade",
   "percent_tumour_cells_range": "0-19%",
   "percent_tumour_cells_measurement_method": "Genomics",
-  "specimen_tissue_source": "Abdominal fluid",
-  "tumour_normal_designation": "Normal",
-  "specimen_type": "Cell line - derived from normal",
+  "specimen_storage": "Cut slide",
+  "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
+  "specimen_laterality": "Left",
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_primary_diagnosis_id": "string"
@@ -18344,7 +19472,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|object|false|none|none|
+|» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
 
 or
 
@@ -18356,13 +19484,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_storage|any|false|none|none|
+|specimen_collection_date_missing_reason|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[StorageEnum](#schemastorageenum)|false|none|none|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
 
 or
 
@@ -18374,13 +19502,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_processing|any|false|none|none|
+|specimen_type|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[SpecimenProcessingEnum](#schemaspecimenprocessingenum)|false|none|none|
+|» *anonymous*|[SpecimenTypeEnum](#schemaspecimentypeenum)|false|none|none|
 
 or
 
@@ -18392,13 +19520,31 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|tumour_histological_type|any|false|none|none|
+|specimen_tissue_source|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
+|» *anonymous*|[SpecimenTissueSourceEnum](#schemaspecimentissuesourceenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|tumour_normal_designation|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[TumourDesginationEnum](#schematumourdesginationenum)|false|none|none|
 
 or
 
@@ -18428,13 +19574,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_laterality|any|false|none|none|
+|tumour_histological_type|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[SpecimenLateralityEnum](#schemaspecimenlateralityenum)|false|none|none|
+|» *anonymous*|string|false|none|none|
 
 or
 
@@ -18554,13 +19700,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_tissue_source|any|false|none|none|
+|specimen_storage|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[SpecimenTissueSourceEnum](#schemaspecimentissuesourceenum)|false|none|none|
+|» *anonymous*|[StorageEnum](#schemastorageenum)|false|none|none|
 
 or
 
@@ -18572,13 +19718,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|tumour_normal_designation|any|false|none|none|
+|specimen_processing|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[TumourDesginationEnum](#schematumourdesginationenum)|false|none|none|
+|» *anonymous*|[SpecimenProcessingEnum](#schemaspecimenprocessingenum)|false|none|none|
 
 or
 
@@ -18590,13 +19736,13 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|specimen_type|any|false|none|none|
+|specimen_laterality|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[SpecimenTypeEnum](#schemaspecimentypeenum)|false|none|none|
+|» *anonymous*|[SpecimenLateralityEnum](#schemaspecimenlateralityenum)|false|none|none|
 
 or
 
@@ -18942,6 +20088,8 @@ or
 {
   "items": [
     {
+      "surgery_reference_database": "SNOMED",
+      "surgery_reference_identifier": "string",
       "surgery_type": "string",
       "surgery_site": "string",
       "surgery_location": "Local recurrence",
@@ -18956,8 +20104,6 @@ or
       "margins_status": "Margins clear",
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
-      "surgery_reference_database": "SNOMED",
-      "surgery_reference_identifier": "string",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -19036,6 +20182,8 @@ or
 
 ```json
 {
+  "surgery_reference_database": "SNOMED",
+  "surgery_reference_identifier": "string",
   "surgery_type": "string",
   "surgery_site": "string",
   "surgery_location": "Local recurrence",
@@ -19050,8 +20198,6 @@ or
   "margins_status": "Margins clear",
   "lymphovascular_invasion": "Absent",
   "perineural_invasion": "Absent",
-  "surgery_reference_database": "SNOMED",
-  "surgery_reference_identifier": "string",
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_treatment_id": "string"
@@ -19062,6 +20208,42 @@ or
 SurgeryModelSchema
 
 ### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|surgery_reference_database|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[SurgeryReferenceDatabaseEnum](#schemasurgeryreferencedatabaseenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|surgery_reference_identifier|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|string|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
@@ -19255,42 +20437,6 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[PerineuralInvasionEnum](#schemaperineuralinvasionenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|surgery_reference_database|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|[SurgeryReferenceDatabaseEnum](#schemasurgeryreferencedatabaseenum)|false|none|none|
-
-or
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|null|false|none|none|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|surgery_reference_identifier|any|false|none|none|
-
-anyOf
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» *anonymous*|string|false|none|none|
 
 or
 
@@ -19550,10 +20696,12 @@ or
         "day_interval": 0,
         "month_interval": 0
       },
+      "treatment_start_date_missing_reason": "Not available",
       "treatment_end_date": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "treatment_end_date_missing_reason": "Not available",
       "treatment_intent": "Curative",
       "treatment_setting": "Adjuvant",
       "response_to_treatment_criteria_method": "RECIST 1.1",
@@ -19646,10 +20794,12 @@ or
     "day_interval": 0,
     "month_interval": 0
   },
+  "treatment_start_date_missing_reason": "Not available",
   "treatment_end_date": {
     "day_interval": 0,
     "month_interval": 0
   },
+  "treatment_end_date_missing_reason": "Not available",
   "treatment_intent": "Curative",
   "treatment_setting": "Adjuvant",
   "response_to_treatment_criteria_method": "RECIST 1.1",
@@ -19693,7 +20843,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
+|» *anonymous*|[uBooleanNotApplicableEnum](#schemaubooleannotapplicableenum)|false|none|none|
 
 or
 
@@ -19723,6 +20873,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
+|treatment_start_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |treatment_end_date|any|false|none|none|
 
 anyOf
@@ -19730,6 +20898,24 @@ anyOf
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |» *anonymous*|[DateInterval](#schemadateinterval)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|treatment_end_date_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
 
 or
 
@@ -19850,31 +21036,34 @@ continued
       "gender": "Man",
       "sex_at_birth": "Male",
       "is_deceased": "Yes",
-      "lost_to_follow_up": "Yes",
-      "lost_to_followup_reason": "Completed study",
-      "cause_of_death": "Died of cancer",
       "date_of_birth": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_birth_missing_reason": "Not available",
       "date_of_death": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_death_missing_reason": "Not available",
       "date_of_death_is_estimated": "Yes",
-      "date_resolution": "string",
+      "date_resolution": "month",
+      "cause_of_death": "Died of cancer",
+      "lost_to_follow_up": "Yes",
+      "lost_to_followup_reason": "Completed study",
       "program_id": "string"
     }
   ],
   "primary_diagnoses": [
     {
       "submitter_primary_diagnosis_id": "string",
-      "primary_site": "Accessory sinuses",
       "date_of_diagnosis": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_diagnosis_missing_reason": "Not available",
       "cancer_type_code": "string",
+      "primary_site": "Accessory sinuses",
       "basis_of_diagnosis": "Clinical investigation",
       "laterality": "Bilateral",
       "clinical_tumour_staging_system": "AJCC cancer staging system",
@@ -19895,21 +21084,25 @@ continued
     {
       "submitter_specimen_id": "string",
       "submitter_treatment_id": "string",
-      "specimen_collection_date": {},
-      "specimen_storage": "Cut slide",
-      "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
-      "tumour_histological_type": "string",
+      "specimen_collection_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "specimen_collection_date_missing_reason": "Not available",
+      "specimen_type": "Cell line - derived from normal",
+      "specimen_tissue_source": "Abdominal fluid",
+      "tumour_normal_designation": "Normal",
       "specimen_anatomic_location": "string",
-      "specimen_laterality": "Left",
+      "tumour_histological_type": "string",
       "reference_pathology_confirmed_diagnosis": "Yes",
       "reference_pathology_confirmed_tumour_presence": "Yes",
       "tumour_grading_system": "FNCLCC grading system",
       "tumour_grade": "Low grade",
       "percent_tumour_cells_range": "0-19%",
       "percent_tumour_cells_measurement_method": "Genomics",
-      "specimen_tissue_source": "Abdominal fluid",
-      "tumour_normal_designation": "Normal",
-      "specimen_type": "Cell line - derived from normal",
+      "specimen_storage": "Cut slide",
+      "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
+      "specimen_laterality": "Left",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_primary_diagnosis_id": "string"
@@ -19935,10 +21128,12 @@ continued
         "day_interval": 0,
         "month_interval": 0
       },
+      "treatment_start_date_missing_reason": "Not available",
       "treatment_end_date": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "treatment_end_date_missing_reason": "Not available",
       "treatment_intent": "Curative",
       "treatment_setting": "Adjuvant",
       "response_to_treatment_criteria_method": "RECIST 1.1",
@@ -19951,17 +21146,25 @@ continued
   ],
   "systemic_therapies": [
     {
-      "systemic_therapy_type": "string",
+      "systemic_therapy_type": "Chemotherapy",
+      "start_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "start_date_missing_reason": "Not available",
+      "end_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "end_date_missing_reason": "Not available",
+      "drug_reference_database": "RxNorm",
+      "drug_reference_identifier": "string",
+      "drug_name": "string",
+      "drug_dose_units": "mg/m2",
       "days_per_cycle": 0,
       "days_per_cycle_not_available": false,
       "number_of_cycles": 0,
       "number_of_cycles_not_available": false,
-      "start_date": {},
-      "end_date": {},
-      "drug_reference_database": "RxNorm",
-      "drug_name": "string",
-      "drug_reference_identifier": "string",
-      "drug_dose_units": "mg/m2",
       "prescribed_cumulative_drug_dose": 0,
       "prescribed_cumulative_drug_dose_not_available": false,
       "actual_cumulative_drug_dose": 0,
@@ -19993,8 +21196,16 @@ continued
       "agent_name": "string",
       "radionuclide": "Carbon-14",
       "radionuclide_other": "string",
-      "start_date": {},
-      "end_date": {},
+      "start_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "start_date_missing_reason": "Not available",
+      "end_date": {
+        "day_interval": 0,
+        "month_interval": 0
+      },
+      "end_date_missing_reason": "Not available",
       "cumulative_drug_dose": 0,
       "cumulative_drug_dose_not_available": false,
       "drug_dose_units": "Bq",
@@ -20010,6 +21221,8 @@ continued
   ],
   "surgeries": [
     {
+      "surgery_reference_database": "SNOMED",
+      "surgery_reference_identifier": "string",
       "surgery_type": "string",
       "surgery_site": "string",
       "surgery_location": "Local recurrence",
@@ -20024,8 +21237,6 @@ continued
       "margins_status": "Margins clear",
       "lymphovascular_invasion": "Absent",
       "perineural_invasion": "Absent",
-      "surgery_reference_database": "SNOMED",
-      "surgery_reference_identifier": "string",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -20038,12 +21249,14 @@ continued
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_followup_missing_reason": "Not available",
       "disease_status_at_followup": "Complete remission",
       "relapse_type": "Distant recurrence/metastasis",
       "date_of_relapse": {
         "day_interval": 0,
         "month_interval": 0
       },
+      "date_of_relapse_missing_reason": "Not available",
       "method_of_progression_status": [
         "Imaging (procedure)"
       ],
@@ -20066,6 +21279,7 @@ continued
         "day_interval": 0,
         "month_interval": 0
       },
+      "test_date_missing_reason": "Not available",
       "psa_level": 0,
       "psa_level_not_available": false,
       "ca125": 0,
@@ -20163,31 +21377,34 @@ AllModelsSchema
         "gender": "Man",
         "sex_at_birth": "Male",
         "is_deceased": "Yes",
-        "lost_to_follow_up": "Yes",
-        "lost_to_followup_reason": "Completed study",
-        "cause_of_death": "Died of cancer",
         "date_of_birth": {
           "day_interval": 0,
           "month_interval": 0
         },
+        "date_of_birth_missing_reason": "Not available",
         "date_of_death": {
           "day_interval": 0,
           "month_interval": 0
         },
+        "date_of_death_missing_reason": "Not available",
         "date_of_death_is_estimated": "Yes",
-        "date_resolution": "string",
+        "date_resolution": "month",
+        "cause_of_death": "Died of cancer",
+        "lost_to_follow_up": "Yes",
+        "lost_to_followup_reason": "Completed study",
         "program_id": "string"
       }
     ],
     "primary_diagnoses": [
       {
         "submitter_primary_diagnosis_id": "string",
-        "primary_site": "Accessory sinuses",
         "date_of_diagnosis": {
           "day_interval": 0,
           "month_interval": 0
         },
+        "date_of_diagnosis_missing_reason": "Not available",
         "cancer_type_code": "string",
+        "primary_site": "Accessory sinuses",
         "basis_of_diagnosis": "Clinical investigation",
         "laterality": "Bilateral",
         "clinical_tumour_staging_system": "AJCC cancer staging system",
@@ -20208,21 +21425,25 @@ AllModelsSchema
       {
         "submitter_specimen_id": "string",
         "submitter_treatment_id": "string",
-        "specimen_collection_date": {},
-        "specimen_storage": "Cut slide",
-        "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
-        "tumour_histological_type": "string",
+        "specimen_collection_date": {
+          "day_interval": 0,
+          "month_interval": 0
+        },
+        "specimen_collection_date_missing_reason": "Not available",
+        "specimen_type": "Cell line - derived from normal",
+        "specimen_tissue_source": "Abdominal fluid",
+        "tumour_normal_designation": "Normal",
         "specimen_anatomic_location": "string",
-        "specimen_laterality": "Left",
+        "tumour_histological_type": "string",
         "reference_pathology_confirmed_diagnosis": "Yes",
         "reference_pathology_confirmed_tumour_presence": "Yes",
         "tumour_grading_system": "FNCLCC grading system",
         "tumour_grade": "Low grade",
         "percent_tumour_cells_range": "0-19%",
         "percent_tumour_cells_measurement_method": "Genomics",
-        "specimen_tissue_source": "Abdominal fluid",
-        "tumour_normal_designation": "Normal",
-        "specimen_type": "Cell line - derived from normal",
+        "specimen_storage": "Cut slide",
+        "specimen_processing": "Cryopreservation in liquid nitrogen (dead tissue)",
+        "specimen_laterality": "Left",
         "program_id": "string",
         "submitter_donor_id": "string",
         "submitter_primary_diagnosis_id": "string"
@@ -20248,10 +21469,12 @@ AllModelsSchema
           "day_interval": 0,
           "month_interval": 0
         },
+        "treatment_start_date_missing_reason": "Not available",
         "treatment_end_date": {
           "day_interval": 0,
           "month_interval": 0
         },
+        "treatment_end_date_missing_reason": "Not available",
         "treatment_intent": "Curative",
         "treatment_setting": "Adjuvant",
         "response_to_treatment_criteria_method": "RECIST 1.1",
@@ -20264,17 +21487,25 @@ AllModelsSchema
     ],
     "systemic_therapies": [
       {
-        "systemic_therapy_type": "string",
+        "systemic_therapy_type": "Chemotherapy",
+        "start_date": {
+          "day_interval": 0,
+          "month_interval": 0
+        },
+        "start_date_missing_reason": "Not available",
+        "end_date": {
+          "day_interval": 0,
+          "month_interval": 0
+        },
+        "end_date_missing_reason": "Not available",
+        "drug_reference_database": "RxNorm",
+        "drug_reference_identifier": "string",
+        "drug_name": "string",
+        "drug_dose_units": "mg/m2",
         "days_per_cycle": 0,
         "days_per_cycle_not_available": false,
         "number_of_cycles": 0,
         "number_of_cycles_not_available": false,
-        "start_date": {},
-        "end_date": {},
-        "drug_reference_database": "RxNorm",
-        "drug_name": "string",
-        "drug_reference_identifier": "string",
-        "drug_dose_units": "mg/m2",
         "prescribed_cumulative_drug_dose": 0,
         "prescribed_cumulative_drug_dose_not_available": false,
         "actual_cumulative_drug_dose": 0,
@@ -20306,8 +21537,16 @@ AllModelsSchema
         "agent_name": "string",
         "radionuclide": "Carbon-14",
         "radionuclide_other": "string",
-        "start_date": {},
-        "end_date": {},
+        "start_date": {
+          "day_interval": 0,
+          "month_interval": 0
+        },
+        "start_date_missing_reason": "Not available",
+        "end_date": {
+          "day_interval": 0,
+          "month_interval": 0
+        },
+        "end_date_missing_reason": "Not available",
         "cumulative_drug_dose": 0,
         "cumulative_drug_dose_not_available": false,
         "drug_dose_units": "Bq",
@@ -20323,6 +21562,8 @@ AllModelsSchema
     ],
     "surgeries": [
       {
+        "surgery_reference_database": "SNOMED",
+        "surgery_reference_identifier": "string",
         "surgery_type": "string",
         "surgery_site": "string",
         "surgery_location": "Local recurrence",
@@ -20337,8 +21578,6 @@ AllModelsSchema
         "margins_status": "Margins clear",
         "lymphovascular_invasion": "Absent",
         "perineural_invasion": "Absent",
-        "surgery_reference_database": "SNOMED",
-        "surgery_reference_identifier": "string",
         "program_id": "string",
         "submitter_donor_id": "string",
         "submitter_treatment_id": "string"
@@ -20351,12 +21590,14 @@ AllModelsSchema
           "day_interval": 0,
           "month_interval": 0
         },
+        "date_of_followup_missing_reason": "Not available",
         "disease_status_at_followup": "Complete remission",
         "relapse_type": "Distant recurrence/metastasis",
         "date_of_relapse": {
           "day_interval": 0,
           "month_interval": 0
         },
+        "date_of_relapse_missing_reason": "Not available",
         "method_of_progression_status": [
           "Imaging (procedure)"
         ],
@@ -20379,6 +21620,7 @@ AllModelsSchema
           "day_interval": 0,
           "month_interval": 0
         },
+        "test_date_missing_reason": "Not available",
         "psa_level": 0,
         "psa_level_not_available": false,
         "ca125": 0,

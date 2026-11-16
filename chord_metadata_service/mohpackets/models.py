@@ -73,7 +73,9 @@ class Donor(models.Model):
     sex_at_birth = models.CharField(max_length=32, null=True, blank=True)
     is_deceased = models.CharField(max_length=32, blank=True, null=True)
     date_of_birth = models.JSONField(null=True, blank=True)
+    date_of_birth_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     date_of_death = models.JSONField(null=True, blank=True)
+    date_of_death_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     date_of_death_is_estimated = models.CharField(
         max_length=32, null=True, blank=True
     )
@@ -107,6 +109,7 @@ class PrimaryDiagnosis(models.Model):
     )
     submitter_donor_id = models.CharField(max_length=64, null=False, blank=False)
     date_of_diagnosis = models.JSONField(null=True, blank=True)
+    date_of_diagnosis_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     cancer_type_code = models.CharField(max_length=64, null=True, blank=True)
     primary_site = models.CharField(max_length=255, null=True, blank=True)
     basis_of_diagnosis = models.CharField(max_length=128, null=True, blank=True)
@@ -159,6 +162,7 @@ class Specimen(models.Model):
         max_length=64, null=True, blank=True
     )  # ref field, not a true id
     specimen_collection_date = models.JSONField(null=True, blank=True)
+    specimen_collection_date_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     specimen_type = models.CharField(max_length=255, null=True, blank=True)
     specimen_tissue_source = models.CharField(max_length=255, null=True, blank=True)
     tumour_normal_designation = models.CharField(max_length=32, null=True, blank=True)
@@ -240,7 +244,9 @@ class Treatment(models.Model):
     treatment_type = ArrayField(models.CharField(max_length=255), null=True, blank=True)
     is_primary_treatment = models.CharField(max_length=32, null=True, blank=True)
     treatment_start_date = models.JSONField(null=True, blank=True)
+    treatment_start_date_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     treatment_end_date = models.JSONField(null=True, blank=True)
+    treatment_end_date_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     treatment_intent = models.CharField(max_length=128, null=True, blank=True)
     treatment_setting = models.CharField(max_length=255, null=True, blank=True)
     response_to_treatment_criteria_method = models.CharField(
@@ -276,7 +282,9 @@ class SystemicTherapy(models.Model):
     submitter_treatment_id = models.CharField(max_length=64, null=False, blank=False)
     systemic_therapy_type = models.CharField(max_length=32, null=True, blank=True)
     start_date = models.JSONField(null=True, blank=True)
+    start_date_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     end_date = models.JSONField(null=True, blank=True)
+    end_date_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     drug_reference_database = models.CharField(max_length=64, null=True, blank=True)
     drug_reference_identifier = models.CharField(max_length=64, null=True, blank=True)
     drug_name = models.CharField(max_length=255, null=True, blank=True)
@@ -349,11 +357,11 @@ class Surgery(models.Model):
     surgery_type = models.CharField(max_length=255, null=True, blank=True)
     surgery_site = models.CharField(max_length=255, null=True, blank=True)
     surgery_location = models.CharField(max_length=128, null=True, blank=True)
-    tumour_length = models.IntegerField(null=True, blank=True)
+    tumour_length = models.FloatField(null=True, blank=True)
     tumour_length_not_available = models.BooleanField(default=False)
-    tumour_width = models.IntegerField(null=True, blank=True)
+    tumour_width = models.FloatField(null=True, blank=True)
     tumour_width_not_available = models.BooleanField(default=False)
-    greatest_dimension_tumour = models.IntegerField(null=True, blank=True)
+    greatest_dimension_tumour = models.FloatField(null=True, blank=True)
     greatest_dimension_tumour_not_available = models.BooleanField(default=False)
     tumour_focality = models.CharField(max_length=64, null=True, blank=True)
     residual_tumour_classification = models.CharField(
@@ -388,7 +396,9 @@ class RadiopharmaceuticalTherapy(models.Model):
     radionuclide = models.CharField(max_length=255, null=True, blank=True)
     radionuclide_other = models.CharField(max_length=255, null=True, blank=True)
     start_date = models.JSONField(null=True, blank=True)
+    start_date_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     end_date = models.JSONField(null=True, blank=True)
+    end_date_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     cumulative_drug_dose = models.FloatField(null=True, blank=True)
     cumulative_drug_dose_not_available = models.BooleanField(default=False)
     drug_dose_units = models.CharField(max_length=64, null=True, blank=True)
@@ -428,9 +438,11 @@ class FollowUp(models.Model):
         max_length=64, null=True, blank=True
     )  # optional id
     date_of_followup = models.JSONField(null=True, blank=True)
+    date_of_followup_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     disease_status_at_followup = models.CharField(max_length=255, null=True, blank=True)
     relapse_type = models.CharField(max_length=128, null=True, blank=True)
     date_of_relapse = models.JSONField(null=True, blank=True)
+    date_of_relapse_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     method_of_progression_status = ArrayField(
         models.CharField(max_length=255, null=True, blank=True), null=True, blank=True
     )
@@ -472,6 +484,7 @@ class Biomarker(models.Model):
         max_length=64, null=True, blank=True
     )  # ref field, not true id
     test_date = models.JSONField(null=True, blank=True)
+    test_date_missing_reason = models.CharField(max_length=32, null=True, blank=True)
     psa_level = models.FloatField(null=True, blank=True)
     psa_level_not_available = models.BooleanField(default=False)
     ca125 = models.FloatField(null=True, blank=True)

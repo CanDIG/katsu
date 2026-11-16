@@ -29,7 +29,6 @@ from chord_metadata_service.mohpackets.permissible_values import (
     CellsMeasureMethodEnum,
     ConfirmedDiagnosisTumourEnum,
     ContextEnum,
-    DateOfDeathIsEstimatedEnum,
     DateResolutionEnum,
     DiseaseStatusFollowupEnum,
     DosageUnitsEnum,
@@ -45,6 +44,8 @@ from chord_metadata_service.mohpackets.permissible_values import (
     MalignancyLateralityEnum,
     MarginsStatusEnum,
     MassUnitUcumEnum,
+    MissingReasonEnum,
+    MissingReasonNotApplicableEnum,
     MCategoryEnum,
     NCategoryEnum,
     PancanCohortEnum,
@@ -86,6 +87,8 @@ from chord_metadata_service.mohpackets.permissible_values import (
     TumourGradingSystemEnum,
     TumourStagingSystemEnum,
     uBooleanEnum,
+    uBooleanNotApplicableEnum,
+    uBooleanNotAvailableEnum
 )
 
 """
@@ -148,8 +151,10 @@ BaseDonorSchema = create_schema(
         ("sex_at_birth", Optional[SexAtBirthEnum], None),
         ("is_deceased", Optional[uBooleanEnum], None),
         ("date_of_birth", Optional[DateInterval], None),
+        ("date_of_birth_missing_reason", Optional[MissingReasonEnum], None),
         ("date_of_death", Optional[DateInterval], None),
-        ("date_of_death_is_estimated", Optional[DateOfDeathIsEstimatedEnum], None),
+        ("date_of_death_missing_reason", Optional[MissingReasonNotApplicableEnum], None),
+        ("date_of_death_is_estimated", Optional[uBooleanNotApplicableEnum], None),
         ("date_resolution", Optional[DateResolutionEnum], None),
         ("cause_of_death", Optional[CauseOfDeathEnum], None),
         ("lost_to_follow_up", Optional[LostToFollowUpEnum], None),
@@ -168,7 +173,12 @@ BasePrimaryDiagnosisSchema = create_schema(
             Field(pattern=ID_REGEX, max_length=64),
         ),
         ("date_of_diagnosis", Optional[DateInterval], None),
-        # missing cancer_type_code?
+        ("date_of_diagnosis_missing_reason", Optional[MissingReasonEnum], None),
+        (
+            "cancer_type_code",
+            Optional[str],
+            Field(None, max_length=32, pattern=COMORBIDITY_REGEX),
+        ),
         ("primary_site", Optional[PrimarySiteEnum], None),
         ("basis_of_diagnosis", Optional[BasisOfDiagnosisEnum], None),
         ("laterality", Optional[PrimaryDiagnosisLateralityEnum], None),
@@ -198,6 +208,8 @@ BaseSpecimenSchema = create_schema(
     ],
     custom_fields=[
         ("submitter_specimen_id", str, Field(pattern=ID_REGEX, max_length=64)),
+        ("specimen_collection_date", Optional[DateInterval], None),
+        ("specimen_collection_date_missing_reason", Optional[MissingReasonEnum], None),
         ("specimen_type", Optional[SpecimenTypeEnum], None),
         ("specimen_tissue_source", Optional[SpecimenTissueSourceEnum], None),
         ("tumour_normal_designation", Optional[TumourDesginationEnum], None),
@@ -270,9 +282,11 @@ BaseTreatmentSchema = create_schema(
             Field(pattern=ID_REGEX, max_length=64),
         ),
         ("treatment_type", Optional[List[TreatmentTypeEnum]], None),
-        ("is_primary_treatment", Optional[uBooleanEnum], None),
+        ("is_primary_treatment", Optional[uBooleanNotApplicableEnum], None),
         ("treatment_start_date", Optional[DateInterval], None),
+        ("treatment_start_date_missing_reason", Optional[MissingReasonNotApplicableEnum], None),
         ("treatment_end_date", Optional[DateInterval], None),
+        ("treatment_end_date_missing_reason", Optional[MissingReasonNotApplicableEnum], None),
         ("treatment_intent", Optional[TreatmentIntentEnum], None),
         ("treatment_setting", Optional[TreatmentSettingEnum], None),
         (
@@ -298,6 +312,10 @@ BaseSystemicTherapySchema = create_schema(
     ],
     custom_fields=[
         ("systemic_therapy_type", Optional[SystemicTherapyTypeEnum], None),
+        ("start_date", Optional[DateInterval], None),
+        ("start_date_missing_reason", Optional[MissingReasonEnum], None),
+        ("end_date", Optional[DateInterval], None),
+        ("end_date_missing_reason", Optional[MissingReasonNotApplicableEnum], None),
         ("drug_dose_units", Optional[DosageUnitsEnum], None),
         ("drug_reference_database", Optional[DrugReferenceDbEnum], None),
     ],
@@ -317,6 +335,10 @@ BaseRadiopharmaceuticalTherapySchema = create_schema(
     custom_fields=[
         # rxnorm_code not validated
         # agent_name not validated
+        ("start_date", Optional[DateInterval], None),
+        ("start_date_missing_reason", Optional[MissingReasonEnum], None),
+        ("end_date", Optional[DateInterval], None),
+        ("end_date_missing_reason", Optional[MissingReasonNotApplicableEnum], None),
         ("radionuclide", Optional[RadionuclideEnum], None),
         ("drug_dose_units", Optional[DrugDoseUnitsEnum], None),
         ("mass_unit_ucum", Optional[MassUnitUcumEnum], None),
@@ -338,7 +360,7 @@ BaseRadiationSchema = create_schema(
         ("radiation_therapy_modality", Optional[RadiationTherapyModalityEnum], None),
         ("radiation_therapy_type", Optional[TherapyTypeEnum], None),
         ("anatomical_site_irradiated", Optional[RadiationAnatomicalSiteEnum], None),
-        ("radiation_boost", Optional[uBooleanEnum], None),
+        ("radiation_boost", Optional[uBooleanNotAvailableEnum], None),
     ],
 )
 
@@ -391,9 +413,11 @@ BaseFollowUpSchema = create_schema(
             Field(pattern=ID_REGEX, max_length=64),
         ),
         ("date_of_followup", Optional[DateInterval], None),
+        ("date_of_followup_missing_reason", Optional[MissingReasonEnum], None),
         ("disease_status_at_followup", Optional[DiseaseStatusFollowupEnum], None),
         ("relapse_type", Optional[RelapseTypeEnum], None),
         ("date_of_relapse", Optional[DateInterval], None),
+        ("date_of_relapse_missing_reason", Optional[MissingReasonEnum], None),
         (
             "method_of_progression_status",
             Optional[List[ProgressionStatusMethodEnum]],
@@ -413,6 +437,7 @@ BaseBiomarkerSchema = create_schema(
     exclude=["uuid", "donor_uuid", "submitter_donor_id", "program_id"],
     custom_fields=[
         ("test_date", Optional[DateInterval], None),
+        ("test_date_missing_reason", Optional[MissingReasonEnum], None),
         ("er_status", Optional[ErPrHpvStatusEnum], None),
         ("pr_status", Optional[ErPrHpvStatusEnum], None),
         ("her2_ihc_status", Optional[Her2StatusEnum], None),
@@ -428,7 +453,7 @@ BaseComorbiditySchema = create_schema(
     name="BaseComorbiditySchema",
     exclude=["uuid", "donor_uuid", "submitter_donor_id", "program_id"],
     custom_fields=[
-        ("prior_malignancy", Optional[uBooleanEnum], None),
+        ("prior_malignancy", Optional[uBooleanNotAvailableEnum], None),
         ("laterality_of_prior_malignancy", Optional[MalignancyLateralityEnum], None),
         (
             "comorbidity_type_code",
