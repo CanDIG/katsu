@@ -378,7 +378,6 @@ BaseSurgerySchema = create_schema(
     ],
     custom_fields=[
         ("surgery_reference_database", Optional[SurgeryReferenceDatabaseEnum], None),
-        # surgery_type not validated
         (
             "surgery_site",
             Optional[str],
