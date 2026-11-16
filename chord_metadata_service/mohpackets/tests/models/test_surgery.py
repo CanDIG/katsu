@@ -3,7 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase
 
 from chord_metadata_service.mohpackets.models import Surgery, Program
-from chord_metadata_service.mohpackets.permissible_values import SURGERY_TYPE
+from chord_metadata_service.mohpackets.permissible_values import SURGERY_LOCATION
 from chord_metadata_service.mohpackets.tests.factories import SurgeryFactory
 
 
@@ -46,11 +46,11 @@ class DonorModelTest(TestCase):
         This test changes a field value, saves it, and then retrieves it from
         the database to verify the update.
         """
-        update_surgery_type = SURGERY_TYPE[0]
-        self.instance.surgery_type = update_surgery_type
+        update_surgery_location = SURGERY_LOCATION[0]
+        self.instance.surgery_location = update_surgery_location
         self.instance.save()
         updated_object = Surgery.objects.get(uuid=self.instance.uuid)
-        self.assertEqual(updated_object.surgery_type, update_surgery_type)
+        self.assertEqual(updated_object.surgery_location, update_surgery_location)
 
     def test_delete(self):
         """
