@@ -316,8 +316,12 @@ BaseSystemicTherapySchema = create_schema(
         ("start_date_missing_reason", Optional[MissingReasonEnum], None),
         ("end_date", Optional[DateInterval], None),
         ("end_date_missing_reason", Optional[MissingReasonNotApplicableEnum], None),
-        ("drug_dose_units", Optional[DosageUnitsEnum], None),
         ("drug_reference_database", Optional[DrugReferenceDbEnum], None),
+        ("drug_dose_units", Optional[DosageUnitsEnum], None),
+        ("days_per_cycle_missing_reason", Optional[MissingReasonEnum], None),
+        ("number_of_cycles_missing_reason", Optional[MissingReasonEnum], None),
+        ("prescribed_cumulative_drug_dose_missing_reason", Optional[MissingReasonEnum], None),
+        ("actual_cumulative_drug_dose_missing_reason", Optional[MissingReasonEnum], None),
     ],
 )
 
@@ -335,13 +339,16 @@ BaseRadiopharmaceuticalTherapySchema = create_schema(
     custom_fields=[
         # rxnorm_code not validated
         # agent_name not validated
+        ("radionuclide", Optional[RadionuclideEnum], None),
         ("start_date", Optional[DateInterval], None),
         ("start_date_missing_reason", Optional[MissingReasonEnum], None),
         ("end_date", Optional[DateInterval], None),
         ("end_date_missing_reason", Optional[MissingReasonNotApplicableEnum], None),
-        ("radionuclide", Optional[RadionuclideEnum], None),
+        ("cumulative_drug_dose_missing_reason", Optional[MissingReasonEnum], None),
         ("drug_dose_units", Optional[DrugDoseUnitsEnum], None),
+        ("mass_value_missing_reason", Optional[MissingReasonEnum], None),
         ("mass_unit_ucum", Optional[MassUnitUcumEnum], None),
+        ("number_of_cycles_missing_reason", Optional[MissingReasonEnum], None),
     ],
 )
 
@@ -361,6 +368,8 @@ BaseRadiationSchema = create_schema(
         ("radiation_therapy_type", Optional[TherapyTypeEnum], None),
         ("anatomical_site_irradiated", Optional[RadiationAnatomicalSiteEnum], None),
         ("radiation_boost", Optional[uBooleanNotAvailableEnum], None),
+        ("radiation_therapy_fractions_missing_reason", Optional[MissingReasonEnum], None),
+        ("radiation_therapy_dosage_missing_reason", Optional[MissingReasonEnum], None),
     ],
 )
 
@@ -384,6 +393,9 @@ BaseSurgerySchema = create_schema(
             Field(None, pattern=TOPOGRAPHY_REGEX, max_length=255),
         ),
         ("surgery_location", Optional[SurgeryLocationEnum], None),
+        ("tumour_length_missing_reason", Optional[MissingReasonEnum], None),
+        ("tumour_width_missing_reason", Optional[MissingReasonEnum], None),
+        ("greatest_dimension_tumour_missing_reason", Optional[MissingReasonEnum], None),
         ("tumour_focality", Optional[TumourFocalityEnum], None),
         ("residual_tumour_classification", Optional[TumourClassificationEnum], None),
         ("margins_status", Optional[MarginsStatusEnum], None),
@@ -437,8 +449,14 @@ BaseBiomarkerSchema = create_schema(
     custom_fields=[
         ("test_date", Optional[DateInterval], None),
         ("test_date_missing_reason", Optional[MissingReasonEnum], None),
+        ("psa_level_missing_reason", Optional[MissingReasonEnum], None),
+        ("ca125_missing_reason", Optional[MissingReasonEnum], None),
+        ("cea_missing_reason", Optional[MissingReasonEnum], None),
+        ("ca19_9_missing_reason", Optional[MissingReasonEnum], None),
         ("er_status", Optional[ErPrHpvStatusEnum], None),
+        ("er_percent_positive_missing_reason", Optional[MissingReasonEnum], None),
         ("pr_status", Optional[ErPrHpvStatusEnum], None),
+        ("pr_percent_positive_missing_reason", Optional[MissingReasonEnum], None),
         ("her2_ihc_status", Optional[Her2StatusEnum], None),
         ("her2_ish_status", Optional[Her2StatusEnum], None),
         ("hpv_ihc_status", Optional[ErPrHpvStatusEnum], None),
@@ -459,6 +477,7 @@ BaseComorbiditySchema = create_schema(
             Optional[str],
             Field(None, pattern=COMORBIDITY_REGEX, max_length=64),
         ),
+        ("age_at_comorbidity_diagnosis_missing_reason", Optional[MissingReasonEnum], None),
         ("comorbidity_treatment_status", Optional[uBooleanEnum], None),
         ("comorbidity_treatment", Optional[str], Field(None, max_length=255)),
     ],
@@ -471,5 +490,6 @@ BaseExposureSchema = create_schema(
     custom_fields=[
         ("tobacco_smoking_status", Optional[SmokingStatusEnum], None),
         ("tobacco_type", Optional[List[TobaccoTypeEnum]], None),
+        ("pack_years_smoked_missing_reason", Optional[MissingReasonEnum], None),
     ],
 )
