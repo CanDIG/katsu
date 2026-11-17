@@ -530,7 +530,7 @@ class RadiopharmaceuticalTherapyFactory(factory.django.DjangoModelFactory):
         min_value=1,
         max_value=500,
     )
-    cumulative_drug_dose_not_available = False
+    cumulative_drug_dose_missing_reason = None
     drug_dose_units = factory.Faker("random_element", elements=PERM_VAL.DRUG_DOSE_UNITS)
     mass_value = factory.Faker(
         "pyfloat",
@@ -540,10 +540,10 @@ class RadiopharmaceuticalTherapyFactory(factory.django.DjangoModelFactory):
         min_value=1,
         max_value=100,
     )
-    mass_value_not_available = False
+    mass_value_missing_reason = None
     mass_unit_ucum = factory.Faker("random_element", elements=PERM_VAL.MASS_UNIT_UCUM)
     number_of_cycles = factory.Faker("random_int", min=1, max=10)
-    number_of_cycles_not_available = False
+    number_of_cycles_missing_reason = None
 
     # set foreign keys
     program_id = factory.SelfAttribute("treatment_uuid.program_id")

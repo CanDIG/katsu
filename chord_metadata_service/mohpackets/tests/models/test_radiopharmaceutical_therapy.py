@@ -30,13 +30,13 @@ class RadiopharmaceuticalTherapyModelTest(TestCase):
         self.assertIsInstance(self.instance.start_date, (dict, type(None)))
         self.assertIsInstance(self.instance.end_date, (dict, type(None)))
         self.assertIsInstance(self.instance.cumulative_drug_dose, (float, type(None)))
-        self.assertIsInstance(self.instance.cumulative_drug_dose_not_available, bool)
+        self.assertIsInstance(self.instance.cumulative_drug_dose_missing_reason, (str, type(None)))
         self.assertIsInstance(self.instance.drug_dose_units, (str, type(None)))
         self.assertIsInstance(self.instance.mass_value, (float, type(None)))
-        self.assertIsInstance(self.instance.mass_value_not_available, bool)
+        self.assertIsInstance(self.instance.mass_value_missing_reason, (str, type(None)))
         self.assertIsInstance(self.instance.mass_unit_ucum, (str, type(None)))
         self.assertIsInstance(self.instance.number_of_cycles, (int, type(None)))
-        self.assertIsInstance(self.instance.number_of_cycles_not_available, bool)
+        self.assertIsInstance(self.instance.number_of_cycles_missing_reason, (str, type(None)))
 
     def test_update(self):
         """
