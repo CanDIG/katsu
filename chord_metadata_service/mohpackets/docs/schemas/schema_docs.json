@@ -4771,7 +4771,8 @@
                 "enum": [
                     "month",
                     "day",
-                    "Not available"
+                    "Not available",
+                    "Currently incomplete"
                 ],
                 "title": "DateResolutionEnum",
                 "type": "string"
@@ -4944,8 +4945,7 @@
                 "enum": [
                     "Yes",
                     "No",
-                    "Not available",
-                    "Unknown"
+                    "Not available"
                 ],
                 "title": "LostToFollowUpEnum",
                 "type": "string"
@@ -5092,10 +5092,15 @@
                         ],
                         "title": "Psa Level"
                     },
-                    "psa_level_not_available": {
-                        "default": false,
-                        "title": "Psa Level Not Available",
-                        "type": "boolean"
+                    "psa_level_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "ca125": {
                         "anyOf": [
@@ -5108,10 +5113,15 @@
                         ],
                         "title": "Ca125"
                     },
-                    "ca125_not_available": {
-                        "default": false,
-                        "title": "Ca125 Not Available",
-                        "type": "boolean"
+                    "ca125_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "cea": {
                         "anyOf": [
@@ -5124,10 +5134,15 @@
                         ],
                         "title": "Cea"
                     },
-                    "cea_not_available": {
-                        "default": false,
-                        "title": "Cea Not Available",
-                        "type": "boolean"
+                    "cea_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "ca19_9": {
                         "anyOf": [
@@ -5140,10 +5155,15 @@
                         ],
                         "title": "Ca19 9"
                     },
-                    "ca19_9_not_available": {
-                        "default": false,
-                        "title": "Ca19 9 Not Available",
-                        "type": "boolean"
+                    "ca19_9_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "er_status": {
                         "anyOf": [
@@ -5166,10 +5186,15 @@
                         ],
                         "title": "Er Percent Positive"
                     },
-                    "er_percent_positive_not_available": {
-                        "default": false,
-                        "title": "Er Percent Positive Not Available",
-                        "type": "boolean"
+                    "er_percent_positive_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "pr_status": {
                         "anyOf": [
@@ -5192,10 +5217,15 @@
                         ],
                         "title": "Pr Percent Positive"
                     },
-                    "pr_percent_positive_not_available": {
-                        "default": false,
-                        "title": "Pr Percent Positive Not Available",
-                        "type": "boolean"
+                    "pr_percent_positive_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "her2_ihc_status": {
                         "anyOf": [
@@ -5342,7 +5372,8 @@
                 "enum": [
                     "RxNorm",
                     "PubChem",
-                    "NCI Thesaurus"
+                    "NCI Thesaurus",
+                    "Currently incomplete"
                 ],
                 "title": "DrugReferenceDbEnum",
                 "type": "string"
@@ -5454,10 +5485,15 @@
                         ],
                         "title": "Days Per Cycle"
                     },
-                    "days_per_cycle_not_available": {
-                        "default": false,
-                        "title": "Days Per Cycle Not Available",
-                        "type": "boolean"
+                    "days_per_cycle_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "number_of_cycles": {
                         "anyOf": [
@@ -5470,10 +5506,15 @@
                         ],
                         "title": "Number Of Cycles"
                     },
-                    "number_of_cycles_not_available": {
-                        "default": false,
-                        "title": "Number Of Cycles Not Available",
-                        "type": "boolean"
+                    "number_of_cycles_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "prescribed_cumulative_drug_dose": {
                         "anyOf": [
@@ -5486,10 +5527,15 @@
                         ],
                         "title": "Prescribed Cumulative Drug Dose"
                     },
-                    "prescribed_cumulative_drug_dose_not_available": {
-                        "default": false,
-                        "title": "Prescribed Cumulative Drug Dose Not Available",
-                        "type": "boolean"
+                    "prescribed_cumulative_drug_dose_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "actual_cumulative_drug_dose": {
                         "anyOf": [
@@ -5502,10 +5548,15 @@
                         ],
                         "title": "Actual Cumulative Drug Dose"
                     },
-                    "actual_cumulative_drug_dose_not_available": {
-                        "default": false,
-                        "title": "Actual Cumulative Drug Dose Not Available",
-                        "type": "boolean"
+                    "actual_cumulative_drug_dose_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -5555,7 +5606,7 @@
                     "prior_malignancy": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/uBooleanEnum"
+                                "$ref": "#/components/schemas/uBooleanNotAvailableEnum"
                             },
                             {
                                 "type": "null"
@@ -5583,10 +5634,15 @@
                         ],
                         "title": "Age At Comorbidity Diagnosis"
                     },
-                    "age_at_comorbidity_diagnosis_not_available": {
-                        "default": false,
-                        "title": "Age At Comorbidity Diagnosis Not Available",
-                        "type": "boolean"
+                    "age_at_comorbidity_diagnosis_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "comorbidity_type_code": {
                         "anyOf": [
@@ -5663,6 +5719,15 @@
                 "title": "MalignancyLateralityEnum",
                 "type": "string"
             },
+            "uBooleanNotAvailableEnum": {
+                "enum": [
+                    "Yes",
+                    "No",
+                    "Not available"
+                ],
+                "title": "uBooleanNotAvailableEnum",
+                "type": "string"
+            },
             "ExposureIngestSchema": {
                 "properties": {
                     "tobacco_smoking_status": {
@@ -5700,10 +5765,15 @@
                         ],
                         "title": "Pack Years Smoked"
                     },
-                    "pack_years_smoked_not_available": {
-                        "default": false,
-                        "title": "Pack Years Smoked Not Available",
-                        "type": "boolean"
+                    "pack_years_smoked_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -5864,7 +5934,7 @@
                             {
                                 "items": {
                                     "maxLength": 255,
-                                    "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
+                                    "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$",
                                     "type": "string"
                                 },
                                 "type": "array"
@@ -5959,9 +6029,9 @@
                     "Clinical investigation",
                     "Clinical",
                     "Cytology",
-                    "Death certificate only",
+                    "Death certificate only (DCO)",
                     "Histology of a metastasis",
-                    "Specific tumour markers",
+                    "Specific tumor markers",
                     "Not available",
                     "Currently incomplete",
                     "Cytogenetic and/or molecular testing",
@@ -5991,7 +6061,9 @@
                     "M1d(1)",
                     "M1e",
                     "MX",
-                    "Not applicable"
+                    "Not applicable",
+                    "Currently incomplete",
+                    "Not available"
                 ],
                 "title": "MCategoryEnum",
                 "type": "string"
@@ -6023,7 +6095,10 @@
                     "N3b",
                     "N3c",
                     "N4",
-                    "NX"
+                    "NX",
+                    "Currently incomplete",
+                    "Not applicable",
+                    "Not available"
                 ],
                 "title": "NCategoryEnum",
                 "type": "string"
@@ -6312,7 +6387,6 @@
                     "Vagina",
                     "Vulva",
                     "Unknown primary site",
-                    "Not available",
                     "Currently incomplete"
                 ],
                 "title": "PrimarySiteEnum",
@@ -6479,7 +6553,10 @@
                     "Tis(Paget's)",
                     "Tis pu",
                     "Tis pd",
-                    "TX"
+                    "TX",
+                    "Currently incomplete",
+                    "Not applicable",
+                    "Not available"
                 ],
                 "title": "TCategoryEnum",
                 "type": "string"
@@ -6957,10 +7034,15 @@
                         ],
                         "title": "Radiation Therapy Fractions"
                     },
-                    "radiation_therapy_fractions_not_available": {
-                        "default": false,
-                        "title": "Radiation Therapy Fractions Not Available",
-                        "type": "boolean"
+                    "radiation_therapy_fractions_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "radiation_therapy_dosage": {
                         "anyOf": [
@@ -6973,10 +7055,15 @@
                         ],
                         "title": "Radiation Therapy Dosage"
                     },
-                    "radiation_therapy_dosage_not_available": {
-                        "default": false,
-                        "title": "Radiation Therapy Dosage Not Available",
-                        "type": "boolean"
+                    "radiation_therapy_dosage_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "anatomical_site_irradiated": {
                         "anyOf": [
@@ -6991,7 +7078,7 @@
                     "radiation_boost": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/uBooleanEnum"
+                                "$ref": "#/components/schemas/uBooleanNotAvailableEnum"
                             },
                             {
                                 "type": "null"
@@ -7245,10 +7332,15 @@
                         ],
                         "title": "Cumulative Drug Dose"
                     },
-                    "cumulative_drug_dose_not_available": {
-                        "default": false,
-                        "title": "Cumulative Drug Dose Not Available",
-                        "type": "boolean"
+                    "cumulative_drug_dose_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "drug_dose_units": {
                         "anyOf": [
@@ -7271,10 +7363,15 @@
                         ],
                         "title": "Mass Value"
                     },
-                    "mass_value_not_available": {
-                        "default": false,
-                        "title": "Mass Value Not Available",
-                        "type": "boolean"
+                    "mass_value_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "mass_unit_ucum": {
                         "anyOf": [
@@ -7297,10 +7394,15 @@
                         ],
                         "title": "Number Of Cycles"
                     },
-                    "number_of_cycles_not_available": {
-                        "default": false,
-                        "title": "Number Of Cycles Not Available",
-                        "type": "boolean"
+                    "number_of_cycles_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -7395,7 +7497,11 @@
                     "Protein",
                     "rRNA-depleted RNA",
                     "Total DNA",
-                    "Total RNA"
+                    "Total RNA",
+                    "Whole cell - DNA",
+                    "Whole cell - protein",
+                    "Whole cell - RNA",
+                    "Whole cell (B-cell depleted)"
                 ],
                 "title": "SampleTypeEnum",
                 "type": "string"
@@ -7511,7 +7617,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
+                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$",
                                 "type": "string"
                             },
                             {
@@ -7759,7 +7865,7 @@
                     "Frozen in -70 freezer",
                     "Frozen in liquid nitrogen",
                     "Frozen in vapour phase",
-                    "Not Applicable",
+                    "Not applicable",
                     "OCT embedded",
                     "Other",
                     "Paraffin block",
@@ -7824,7 +7930,8 @@
                     "Two-tier grading system",
                     "WHO grading system for CNS tumours",
                     "Not available",
-                    "Currently incomplete"
+                    "Currently incomplete",
+                    "Not applicable"
                 ],
                 "title": "TumourGradingSystemEnum",
                 "type": "string"
@@ -7848,8 +7955,7 @@
                     "Margin(s) involved",
                     "Not applicable",
                     "Not available",
-                    "Currently incomplete",
-                    "Unknown"
+                    "Currently incomplete"
                 ],
                 "title": "MarginsStatusEnum",
                 "type": "string"
@@ -7905,7 +8011,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 255,
-                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
+                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$",
                                 "type": "string"
                             },
                             {
@@ -7927,7 +8033,7 @@
                     "tumour_length": {
                         "anyOf": [
                             {
-                                "type": "integer"
+                                "type": "number"
                             },
                             {
                                 "type": "null"
@@ -7935,15 +8041,20 @@
                         ],
                         "title": "Tumour Length"
                     },
-                    "tumour_length_not_available": {
-                        "default": false,
-                        "title": "Tumour Length Not Available",
-                        "type": "boolean"
+                    "tumour_length_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "tumour_width": {
                         "anyOf": [
                             {
-                                "type": "integer"
+                                "type": "number"
                             },
                             {
                                 "type": "null"
@@ -7951,15 +8062,20 @@
                         ],
                         "title": "Tumour Width"
                     },
-                    "tumour_width_not_available": {
-                        "default": false,
-                        "title": "Tumour Width Not Available",
-                        "type": "boolean"
+                    "tumour_width_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "greatest_dimension_tumour": {
                         "anyOf": [
                             {
-                                "type": "integer"
+                                "type": "number"
                             },
                             {
                                 "type": "null"
@@ -7967,10 +8083,15 @@
                         ],
                         "title": "Greatest Dimension Tumour"
                     },
-                    "greatest_dimension_tumour_not_available": {
-                        "default": false,
-                        "title": "Greatest Dimension Tumour Not Available",
-                        "type": "boolean"
+                    "greatest_dimension_tumour_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "tumour_focality": {
                         "anyOf": [
@@ -8144,7 +8265,7 @@
                     "treatment_start_date_missing_reason": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/MissingReasonEnum"
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
                             },
                             {
                                 "type": "null"
@@ -8805,10 +8926,15 @@
                         ],
                         "title": "Psa Level"
                     },
-                    "psa_level_not_available": {
-                        "default": false,
-                        "title": "Psa Level Not Available",
-                        "type": "boolean"
+                    "psa_level_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "ca125": {
                         "anyOf": [
@@ -8821,10 +8947,15 @@
                         ],
                         "title": "Ca125"
                     },
-                    "ca125_not_available": {
-                        "default": false,
-                        "title": "Ca125 Not Available",
-                        "type": "boolean"
+                    "ca125_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "cea": {
                         "anyOf": [
@@ -8837,10 +8968,15 @@
                         ],
                         "title": "Cea"
                     },
-                    "cea_not_available": {
-                        "default": false,
-                        "title": "Cea Not Available",
-                        "type": "boolean"
+                    "cea_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "ca19_9": {
                         "anyOf": [
@@ -8853,10 +8989,15 @@
                         ],
                         "title": "Ca19 9"
                     },
-                    "ca19_9_not_available": {
-                        "default": false,
-                        "title": "Ca19 9 Not Available",
-                        "type": "boolean"
+                    "ca19_9_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "er_status": {
                         "anyOf": [
@@ -8879,10 +9020,15 @@
                         ],
                         "title": "Er Percent Positive"
                     },
-                    "er_percent_positive_not_available": {
-                        "default": false,
-                        "title": "Er Percent Positive Not Available",
-                        "type": "boolean"
+                    "er_percent_positive_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "pr_status": {
                         "anyOf": [
@@ -8905,10 +9051,15 @@
                         ],
                         "title": "Pr Percent Positive"
                     },
-                    "pr_percent_positive_not_available": {
-                        "default": false,
-                        "title": "Pr Percent Positive Not Available",
-                        "type": "boolean"
+                    "pr_percent_positive_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "her2_ihc_status": {
                         "anyOf": [
@@ -8973,7 +9124,7 @@
                     "prior_malignancy": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/uBooleanEnum"
+                                "$ref": "#/components/schemas/uBooleanNotAvailableEnum"
                             },
                             {
                                 "type": "null"
@@ -9001,10 +9152,15 @@
                         ],
                         "title": "Age At Comorbidity Diagnosis"
                     },
-                    "age_at_comorbidity_diagnosis_not_available": {
-                        "default": false,
-                        "title": "Age At Comorbidity Diagnosis Not Available",
-                        "type": "boolean"
+                    "age_at_comorbidity_diagnosis_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "comorbidity_type_code": {
                         "anyOf": [
@@ -9082,10 +9238,15 @@
                         ],
                         "title": "Pack Years Smoked"
                     },
-                    "pack_years_smoked_not_available": {
-                        "default": false,
-                        "title": "Pack Years Smoked Not Available",
-                        "type": "boolean"
+                    "pack_years_smoked_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     }
                 },
                 "title": "NestedExposureSchema",
@@ -9178,7 +9339,7 @@
                             {
                                 "items": {
                                     "maxLength": 255,
-                                    "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
+                                    "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$",
                                     "type": "string"
                                 },
                                 "type": "array"
@@ -9428,10 +9589,15 @@
                         ],
                         "title": "Radiation Therapy Fractions"
                     },
-                    "radiation_therapy_fractions_not_available": {
-                        "default": false,
-                        "title": "Radiation Therapy Fractions Not Available",
-                        "type": "boolean"
+                    "radiation_therapy_fractions_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "radiation_therapy_dosage": {
                         "anyOf": [
@@ -9444,10 +9610,15 @@
                         ],
                         "title": "Radiation Therapy Dosage"
                     },
-                    "radiation_therapy_dosage_not_available": {
-                        "default": false,
-                        "title": "Radiation Therapy Dosage Not Available",
-                        "type": "boolean"
+                    "radiation_therapy_dosage_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "anatomical_site_irradiated": {
                         "anyOf": [
@@ -9462,7 +9633,7 @@
                     "radiation_boost": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/uBooleanEnum"
+                                "$ref": "#/components/schemas/uBooleanNotAvailableEnum"
                             },
                             {
                                 "type": "null"
@@ -9584,10 +9755,15 @@
                         ],
                         "title": "Cumulative Drug Dose"
                     },
-                    "cumulative_drug_dose_not_available": {
-                        "default": false,
-                        "title": "Cumulative Drug Dose Not Available",
-                        "type": "boolean"
+                    "cumulative_drug_dose_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "drug_dose_units": {
                         "anyOf": [
@@ -9610,10 +9786,15 @@
                         ],
                         "title": "Mass Value"
                     },
-                    "mass_value_not_available": {
-                        "default": false,
-                        "title": "Mass Value Not Available",
-                        "type": "boolean"
+                    "mass_value_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "mass_unit_ucum": {
                         "anyOf": [
@@ -9636,10 +9817,15 @@
                         ],
                         "title": "Number Of Cycles"
                     },
-                    "number_of_cycles_not_available": {
-                        "default": false,
-                        "title": "Number Of Cycles Not Available",
-                        "type": "boolean"
+                    "number_of_cycles_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     }
                 },
                 "title": "NestedRadiopharmaceuticalTherapySchema",
@@ -9744,7 +9930,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
+                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$",
                                 "type": "string"
                             },
                             {
@@ -9910,7 +10096,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 255,
-                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
+                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$",
                                 "type": "string"
                             },
                             {
@@ -9932,7 +10118,7 @@
                     "tumour_length": {
                         "anyOf": [
                             {
-                                "type": "integer"
+                                "type": "number"
                             },
                             {
                                 "type": "null"
@@ -9940,15 +10126,20 @@
                         ],
                         "title": "Tumour Length"
                     },
-                    "tumour_length_not_available": {
-                        "default": false,
-                        "title": "Tumour Length Not Available",
-                        "type": "boolean"
+                    "tumour_length_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "tumour_width": {
                         "anyOf": [
                             {
-                                "type": "integer"
+                                "type": "number"
                             },
                             {
                                 "type": "null"
@@ -9956,15 +10147,20 @@
                         ],
                         "title": "Tumour Width"
                     },
-                    "tumour_width_not_available": {
-                        "default": false,
-                        "title": "Tumour Width Not Available",
-                        "type": "boolean"
+                    "tumour_width_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "greatest_dimension_tumour": {
                         "anyOf": [
                             {
-                                "type": "integer"
+                                "type": "number"
                             },
                             {
                                 "type": "null"
@@ -9972,10 +10168,15 @@
                         ],
                         "title": "Greatest Dimension Tumour"
                     },
-                    "greatest_dimension_tumour_not_available": {
-                        "default": false,
-                        "title": "Greatest Dimension Tumour Not Available",
-                        "type": "boolean"
+                    "greatest_dimension_tumour_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "tumour_focality": {
                         "anyOf": [
@@ -10138,10 +10339,15 @@
                         ],
                         "title": "Days Per Cycle"
                     },
-                    "days_per_cycle_not_available": {
-                        "default": false,
-                        "title": "Days Per Cycle Not Available",
-                        "type": "boolean"
+                    "days_per_cycle_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "number_of_cycles": {
                         "anyOf": [
@@ -10154,10 +10360,15 @@
                         ],
                         "title": "Number Of Cycles"
                     },
-                    "number_of_cycles_not_available": {
-                        "default": false,
-                        "title": "Number Of Cycles Not Available",
-                        "type": "boolean"
+                    "number_of_cycles_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "prescribed_cumulative_drug_dose": {
                         "anyOf": [
@@ -10170,10 +10381,15 @@
                         ],
                         "title": "Prescribed Cumulative Drug Dose"
                     },
-                    "prescribed_cumulative_drug_dose_not_available": {
-                        "default": false,
-                        "title": "Prescribed Cumulative Drug Dose Not Available",
-                        "type": "boolean"
+                    "prescribed_cumulative_drug_dose_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "actual_cumulative_drug_dose": {
                         "anyOf": [
@@ -10186,10 +10402,15 @@
                         ],
                         "title": "Actual Cumulative Drug Dose"
                     },
-                    "actual_cumulative_drug_dose_not_available": {
-                        "default": false,
-                        "title": "Actual Cumulative Drug Dose Not Available",
-                        "type": "boolean"
+                    "actual_cumulative_drug_dose_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     }
                 },
                 "title": "NestedSystemicTherapySchema",
@@ -10240,7 +10461,7 @@
                     "treatment_start_date_missing_reason": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/MissingReasonEnum"
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
                             },
                             {
                                 "type": "null"
@@ -11933,10 +12154,15 @@
                         ],
                         "title": "Psa Level"
                     },
-                    "psa_level_not_available": {
-                        "default": false,
-                        "title": "Psa Level Not Available",
-                        "type": "boolean"
+                    "psa_level_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "ca125": {
                         "anyOf": [
@@ -11949,10 +12175,15 @@
                         ],
                         "title": "Ca125"
                     },
-                    "ca125_not_available": {
-                        "default": false,
-                        "title": "Ca125 Not Available",
-                        "type": "boolean"
+                    "ca125_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "cea": {
                         "anyOf": [
@@ -11965,10 +12196,15 @@
                         ],
                         "title": "Cea"
                     },
-                    "cea_not_available": {
-                        "default": false,
-                        "title": "Cea Not Available",
-                        "type": "boolean"
+                    "cea_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "ca19_9": {
                         "anyOf": [
@@ -11981,10 +12217,15 @@
                         ],
                         "title": "Ca19 9"
                     },
-                    "ca19_9_not_available": {
-                        "default": false,
-                        "title": "Ca19 9 Not Available",
-                        "type": "boolean"
+                    "ca19_9_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "er_status": {
                         "anyOf": [
@@ -12007,10 +12248,15 @@
                         ],
                         "title": "Er Percent Positive"
                     },
-                    "er_percent_positive_not_available": {
-                        "default": false,
-                        "title": "Er Percent Positive Not Available",
-                        "type": "boolean"
+                    "er_percent_positive_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "pr_status": {
                         "anyOf": [
@@ -12033,10 +12279,15 @@
                         ],
                         "title": "Pr Percent Positive"
                     },
-                    "pr_percent_positive_not_available": {
-                        "default": false,
-                        "title": "Pr Percent Positive Not Available",
-                        "type": "boolean"
+                    "pr_percent_positive_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "her2_ihc_status": {
                         "anyOf": [
@@ -12457,10 +12708,15 @@
                         ],
                         "title": "Days Per Cycle"
                     },
-                    "days_per_cycle_not_available": {
-                        "default": false,
-                        "title": "Days Per Cycle Not Available",
-                        "type": "boolean"
+                    "days_per_cycle_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "number_of_cycles": {
                         "anyOf": [
@@ -12473,10 +12729,15 @@
                         ],
                         "title": "Number Of Cycles"
                     },
-                    "number_of_cycles_not_available": {
-                        "default": false,
-                        "title": "Number Of Cycles Not Available",
-                        "type": "boolean"
+                    "number_of_cycles_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "prescribed_cumulative_drug_dose": {
                         "anyOf": [
@@ -12489,10 +12750,15 @@
                         ],
                         "title": "Prescribed Cumulative Drug Dose"
                     },
-                    "prescribed_cumulative_drug_dose_not_available": {
-                        "default": false,
-                        "title": "Prescribed Cumulative Drug Dose Not Available",
-                        "type": "boolean"
+                    "prescribed_cumulative_drug_dose_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "actual_cumulative_drug_dose": {
                         "anyOf": [
@@ -12505,10 +12771,15 @@
                         ],
                         "title": "Actual Cumulative Drug Dose"
                     },
-                    "actual_cumulative_drug_dose_not_available": {
-                        "default": false,
-                        "title": "Actual Cumulative Drug Dose Not Available",
-                        "type": "boolean"
+                    "actual_cumulative_drug_dose_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -12630,7 +12901,7 @@
                     "prior_malignancy": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/uBooleanEnum"
+                                "$ref": "#/components/schemas/uBooleanNotAvailableEnum"
                             },
                             {
                                 "type": "null"
@@ -12658,10 +12929,15 @@
                         ],
                         "title": "Age At Comorbidity Diagnosis"
                     },
-                    "age_at_comorbidity_diagnosis_not_available": {
-                        "default": false,
-                        "title": "Age At Comorbidity Diagnosis Not Available",
-                        "type": "boolean"
+                    "age_at_comorbidity_diagnosis_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "comorbidity_type_code": {
                         "anyOf": [
@@ -12861,10 +13137,15 @@
                         ],
                         "title": "Pack Years Smoked"
                     },
-                    "pack_years_smoked_not_available": {
-                        "default": false,
-                        "title": "Pack Years Smoked Not Available",
-                        "type": "boolean"
+                    "pack_years_smoked_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -13120,7 +13401,7 @@
                             {
                                 "items": {
                                     "maxLength": 255,
-                                    "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
+                                    "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$",
                                     "type": "string"
                                 },
                                 "type": "array"
@@ -13423,10 +13704,15 @@
                         ],
                         "title": "Radiation Therapy Fractions"
                     },
-                    "radiation_therapy_fractions_not_available": {
-                        "default": false,
-                        "title": "Radiation Therapy Fractions Not Available",
-                        "type": "boolean"
+                    "radiation_therapy_fractions_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "radiation_therapy_dosage": {
                         "anyOf": [
@@ -13439,10 +13725,15 @@
                         ],
                         "title": "Radiation Therapy Dosage"
                     },
-                    "radiation_therapy_dosage_not_available": {
-                        "default": false,
-                        "title": "Radiation Therapy Dosage Not Available",
-                        "type": "boolean"
+                    "radiation_therapy_dosage_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "anatomical_site_irradiated": {
                         "anyOf": [
@@ -13457,7 +13748,7 @@
                     "radiation_boost": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/uBooleanEnum"
+                                "$ref": "#/components/schemas/uBooleanNotAvailableEnum"
                             },
                             {
                                 "type": "null"
@@ -13786,10 +14077,15 @@
                         ],
                         "title": "Cumulative Drug Dose"
                     },
-                    "cumulative_drug_dose_not_available": {
-                        "default": false,
-                        "title": "Cumulative Drug Dose Not Available",
-                        "type": "boolean"
+                    "cumulative_drug_dose_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "drug_dose_units": {
                         "anyOf": [
@@ -13812,10 +14108,15 @@
                         ],
                         "title": "Mass Value"
                     },
-                    "mass_value_not_available": {
-                        "default": false,
-                        "title": "Mass Value Not Available",
-                        "type": "boolean"
+                    "mass_value_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "mass_unit_ucum": {
                         "anyOf": [
@@ -13838,10 +14139,15 @@
                         ],
                         "title": "Number Of Cycles"
                     },
-                    "number_of_cycles_not_available": {
-                        "default": false,
-                        "title": "Number Of Cycles Not Available",
-                        "type": "boolean"
+                    "number_of_cycles_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "program_id": {
                         "title": "Program Id",
@@ -14358,7 +14664,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 32,
-                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
+                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$",
                                 "type": "string"
                             },
                             {
@@ -14766,7 +15072,7 @@
                         "anyOf": [
                             {
                                 "maxLength": 255,
-                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$|^Not applicable$",
+                                "pattern": "^[C][0-9]{2}(\\.[0-9]{1})?$|^Not available$|^Currently incomplete$",
                                 "type": "string"
                             },
                             {
@@ -14788,7 +15094,7 @@
                     "tumour_length": {
                         "anyOf": [
                             {
-                                "type": "integer"
+                                "type": "number"
                             },
                             {
                                 "type": "null"
@@ -14796,15 +15102,20 @@
                         ],
                         "title": "Tumour Length"
                     },
-                    "tumour_length_not_available": {
-                        "default": false,
-                        "title": "Tumour Length Not Available",
-                        "type": "boolean"
+                    "tumour_length_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "tumour_width": {
                         "anyOf": [
                             {
-                                "type": "integer"
+                                "type": "number"
                             },
                             {
                                 "type": "null"
@@ -14812,15 +15123,20 @@
                         ],
                         "title": "Tumour Width"
                     },
-                    "tumour_width_not_available": {
-                        "default": false,
-                        "title": "Tumour Width Not Available",
-                        "type": "boolean"
+                    "tumour_width_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "greatest_dimension_tumour": {
                         "anyOf": [
                             {
-                                "type": "integer"
+                                "type": "number"
                             },
                             {
                                 "type": "null"
@@ -14828,10 +15144,15 @@
                         ],
                         "title": "Greatest Dimension Tumour"
                     },
-                    "greatest_dimension_tumour_not_available": {
-                        "default": false,
-                        "title": "Greatest Dimension Tumour Not Available",
-                        "type": "boolean"
+                    "greatest_dimension_tumour_missing_reason": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/MissingReasonEnum"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     },
                     "tumour_focality": {
                         "anyOf": [
@@ -15128,7 +15449,7 @@
                     "treatment_start_date_missing_reason": {
                         "anyOf": [
                             {
-                                "$ref": "#/components/schemas/MissingReasonEnum"
+                                "$ref": "#/components/schemas/MissingReasonNotApplicableEnum"
                             },
                             {
                                 "type": "null"

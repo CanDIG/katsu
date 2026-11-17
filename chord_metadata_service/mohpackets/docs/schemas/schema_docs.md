@@ -652,13 +652,13 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "drug_name": "string",
               "drug_dose_units": "mg/m2",
               "days_per_cycle": 0,
-              "days_per_cycle_not_available": false,
+              "days_per_cycle_missing_reason": "Not available",
               "number_of_cycles": 0,
-              "number_of_cycles_not_available": false,
+              "number_of_cycles_missing_reason": "Not available",
               "prescribed_cumulative_drug_dose": 0,
-              "prescribed_cumulative_drug_dose_not_available": false,
+              "prescribed_cumulative_drug_dose_missing_reason": "Not available",
               "actual_cumulative_drug_dose": 0,
-              "actual_cumulative_drug_dose_not_available": false
+              "actual_cumulative_drug_dose_missing_reason": "Not available"
             }
           ],
           "radiations": [
@@ -666,9 +666,9 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
               "radiation_therapy_type": "External",
               "radiation_therapy_fractions": 0,
-              "radiation_therapy_fractions_not_available": false,
+              "radiation_therapy_fractions_missing_reason": "Not available",
               "radiation_therapy_dosage": 0,
-              "radiation_therapy_dosage_not_available": false,
+              "radiation_therapy_dosage_missing_reason": "Not available",
               "anatomical_site_irradiated": "ABDOMEN_WHOLE",
               "radiation_boost": "Yes",
               "reference_radiation_treatment_id": "string"
@@ -682,11 +682,11 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               "surgery_site": "string",
               "surgery_location": "Local recurrence",
               "tumour_length": 0,
-              "tumour_length_not_available": false,
+              "tumour_length_missing_reason": "Not available",
               "tumour_width": 0,
-              "tumour_width_not_available": false,
+              "tumour_width_missing_reason": "Not available",
               "greatest_dimension_tumour": 0,
-              "greatest_dimension_tumour_not_available": false,
+              "greatest_dimension_tumour_missing_reason": "Not available",
               "tumour_focality": "Cannot be assessed",
               "residual_tumour_classification": "Not applicable",
               "margins_status": "Margins clear",
@@ -711,13 +711,13 @@ Retrieves a single donor along with all related clinical data, organized in a ne
               },
               "end_date_missing_reason": "Not available",
               "cumulative_drug_dose": 0,
-              "cumulative_drug_dose_not_available": false,
+              "cumulative_drug_dose_missing_reason": "Not available",
               "drug_dose_units": "Bq",
               "mass_value": 0,
-              "mass_value_not_available": false,
+              "mass_value_missing_reason": "Not available",
               "mass_unit_ucum": "ug",
               "number_of_cycles": 0,
-              "number_of_cycles_not_available": false
+              "number_of_cycles_missing_reason": "Not available"
             }
           ],
           "followups": [
@@ -805,19 +805,19 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       },
       "test_date_missing_reason": "Not available",
       "psa_level": 0,
-      "psa_level_not_available": false,
+      "psa_level_missing_reason": "Not available",
       "ca125": 0,
-      "ca125_not_available": false,
+      "ca125_missing_reason": "Not available",
       "cea": 0,
-      "cea_not_available": false,
+      "cea_missing_reason": "Not available",
       "ca19_9": 0,
-      "ca19_9_not_available": false,
+      "ca19_9_missing_reason": "Not available",
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
-      "er_percent_positive_not_available": false,
+      "er_percent_positive_missing_reason": "Not available",
       "pr_status": "Cannot be determined",
       "pr_percent_positive": 0,
-      "pr_percent_positive_not_available": false,
+      "pr_percent_positive_missing_reason": "Not available",
       "her2_ihc_status": "Cannot be determined",
       "her2_ish_status": "Cannot be determined",
       "hpv_ihc_status": "Cannot be determined",
@@ -834,7 +834,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
         "Chewing Tobacco"
       ],
       "pack_years_smoked": 0,
-      "pack_years_smoked_not_available": false
+      "pack_years_smoked_missing_reason": "Not available"
     }
   ],
   "comorbidities": [
@@ -842,7 +842,7 @@ Retrieves a single donor along with all related clinical data, organized in a ne
       "prior_malignancy": "Yes",
       "laterality_of_prior_malignancy": "Bilateral",
       "age_at_comorbidity_diagnosis": 0,
-      "age_at_comorbidity_diagnosis_not_available": false,
+      "age_at_comorbidity_diagnosis_missing_reason": "Not available",
       "comorbidity_type_code": "string",
       "comorbidity_treatment_status": "Yes",
       "comorbidity_treatment": "string"
@@ -1161,19 +1161,19 @@ Used by the query service to return donors along with their sample IDs, treatmen
       },
       "test_date_missing_reason": "Not available",
       "psa_level": 0,
-      "psa_level_not_available": false,
+      "psa_level_missing_reason": "Not available",
       "ca125": 0,
-      "ca125_not_available": false,
+      "ca125_missing_reason": "Not available",
       "cea": 0,
-      "cea_not_available": false,
+      "cea_missing_reason": "Not available",
       "ca19_9": 0,
-      "ca19_9_not_available": false,
+      "ca19_9_missing_reason": "Not available",
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
-      "er_percent_positive_not_available": false,
+      "er_percent_positive_missing_reason": "Not available",
       "pr_status": "Cannot be determined",
       "pr_percent_positive": 0,
-      "pr_percent_positive_not_available": false,
+      "pr_percent_positive_missing_reason": "Not available",
       "her2_ihc_status": "Cannot be determined",
       "her2_ish_status": "Cannot be determined",
       "hpv_ihc_status": "Cannot be determined",
@@ -1242,13 +1242,13 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "drug_name": "string",
       "drug_dose_units": "mg/m2",
       "days_per_cycle": 0,
-      "days_per_cycle_not_available": false,
+      "days_per_cycle_missing_reason": "Not available",
       "number_of_cycles": 0,
-      "number_of_cycles_not_available": false,
+      "number_of_cycles_missing_reason": "Not available",
       "prescribed_cumulative_drug_dose": 0,
-      "prescribed_cumulative_drug_dose_not_available": false,
+      "prescribed_cumulative_drug_dose_missing_reason": "Not available",
       "actual_cumulative_drug_dose": 0,
-      "actual_cumulative_drug_dose_not_available": false,
+      "actual_cumulative_drug_dose_missing_reason": "Not available",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -1294,7 +1294,7 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "prior_malignancy": "Yes",
       "laterality_of_prior_malignancy": "Bilateral",
       "age_at_comorbidity_diagnosis": 0,
-      "age_at_comorbidity_diagnosis_not_available": false,
+      "age_at_comorbidity_diagnosis_missing_reason": "Not available",
       "comorbidity_type_code": "string",
       "comorbidity_treatment_status": "Yes",
       "comorbidity_treatment": "string",
@@ -1341,7 +1341,7 @@ Used by the query service to return donors along with their sample IDs, treatmen
         "Chewing Tobacco"
       ],
       "pack_years_smoked": 0,
-      "pack_years_smoked_not_available": false,
+      "pack_years_smoked_missing_reason": "Not available",
       "program_id": "string",
       "submitter_donor_id": "string"
     }
@@ -1451,9 +1451,9 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
       "radiation_therapy_type": "External",
       "radiation_therapy_fractions": 0,
-      "radiation_therapy_fractions_not_available": false,
+      "radiation_therapy_fractions_missing_reason": "Not available",
       "radiation_therapy_dosage": 0,
-      "radiation_therapy_dosage_not_available": false,
+      "radiation_therapy_dosage_missing_reason": "Not available",
       "anatomical_site_irradiated": "ABDOMEN_WHOLE",
       "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string",
@@ -1518,13 +1518,13 @@ Used by the query service to return donors along with their sample IDs, treatmen
       },
       "end_date_missing_reason": "Not available",
       "cumulative_drug_dose": 0,
-      "cumulative_drug_dose_not_available": false,
+      "cumulative_drug_dose_missing_reason": "Not available",
       "drug_dose_units": "Bq",
       "mass_value": 0,
-      "mass_value_not_available": false,
+      "mass_value_missing_reason": "Not available",
       "mass_unit_ucum": "ug",
       "number_of_cycles": 0,
-      "number_of_cycles_not_available": false,
+      "number_of_cycles_missing_reason": "Not available",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -1696,11 +1696,11 @@ Used by the query service to return donors along with their sample IDs, treatmen
       "surgery_site": "string",
       "surgery_location": "Local recurrence",
       "tumour_length": 0,
-      "tumour_length_not_available": false,
+      "tumour_length_missing_reason": "Not available",
       "tumour_width": 0,
-      "tumour_width_not_available": false,
+      "tumour_width_missing_reason": "Not available",
       "greatest_dimension_tumour": 0,
-      "greatest_dimension_tumour_not_available": false,
+      "greatest_dimension_tumour_missing_reason": "Not available",
       "tumour_focality": "Cannot be assessed",
       "residual_tumour_classification": "Not applicable",
       "margins_status": "Margins clear",
@@ -1948,13 +1948,13 @@ on the 'summary_only' flag.
         "drug_name": "string",
         "drug_dose_units": "mg/m2",
         "days_per_cycle": 0,
-        "days_per_cycle_not_available": false,
+        "days_per_cycle_missing_reason": "Not available",
         "number_of_cycles": 0,
-        "number_of_cycles_not_available": false,
+        "number_of_cycles_missing_reason": "Not available",
         "prescribed_cumulative_drug_dose": 0,
-        "prescribed_cumulative_drug_dose_not_available": false,
+        "prescribed_cumulative_drug_dose_missing_reason": "Not available",
         "actual_cumulative_drug_dose": 0,
-        "actual_cumulative_drug_dose_not_available": false,
+        "actual_cumulative_drug_dose_missing_reason": "Not available",
         "program_id": "string",
         "submitter_donor_id": "string",
         "submitter_treatment_id": "string"
@@ -1965,9 +1965,9 @@ on the 'summary_only' flag.
         "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
         "radiation_therapy_type": "External",
         "radiation_therapy_fractions": 0,
-        "radiation_therapy_fractions_not_available": false,
+        "radiation_therapy_fractions_missing_reason": "Not available",
         "radiation_therapy_dosage": 0,
-        "radiation_therapy_dosage_not_available": false,
+        "radiation_therapy_dosage_missing_reason": "Not available",
         "anatomical_site_irradiated": "ABDOMEN_WHOLE",
         "radiation_boost": "Yes",
         "reference_radiation_treatment_id": "string",
@@ -1993,13 +1993,13 @@ on the 'summary_only' flag.
         },
         "end_date_missing_reason": "Not available",
         "cumulative_drug_dose": 0,
-        "cumulative_drug_dose_not_available": false,
+        "cumulative_drug_dose_missing_reason": "Not available",
         "drug_dose_units": "Bq",
         "mass_value": 0,
-        "mass_value_not_available": false,
+        "mass_value_missing_reason": "Not available",
         "mass_unit_ucum": "ug",
         "number_of_cycles": 0,
-        "number_of_cycles_not_available": false,
+        "number_of_cycles_missing_reason": "Not available",
         "program_id": "string",
         "submitter_donor_id": "string",
         "submitter_treatment_id": "string"
@@ -2013,11 +2013,11 @@ on the 'summary_only' flag.
         "surgery_site": "string",
         "surgery_location": "Local recurrence",
         "tumour_length": 0,
-        "tumour_length_not_available": false,
+        "tumour_length_missing_reason": "Not available",
         "tumour_width": 0,
-        "tumour_width_not_available": false,
+        "tumour_width_missing_reason": "Not available",
         "greatest_dimension_tumour": 0,
-        "greatest_dimension_tumour_not_available": false,
+        "greatest_dimension_tumour_missing_reason": "Not available",
         "tumour_focality": "Cannot be assessed",
         "residual_tumour_classification": "Not applicable",
         "margins_status": "Margins clear",
@@ -2067,19 +2067,19 @@ on the 'summary_only' flag.
         },
         "test_date_missing_reason": "Not available",
         "psa_level": 0,
-        "psa_level_not_available": false,
+        "psa_level_missing_reason": "Not available",
         "ca125": 0,
-        "ca125_not_available": false,
+        "ca125_missing_reason": "Not available",
         "cea": 0,
-        "cea_not_available": false,
+        "cea_missing_reason": "Not available",
         "ca19_9": 0,
-        "ca19_9_not_available": false,
+        "ca19_9_missing_reason": "Not available",
         "er_status": "Cannot be determined",
         "er_percent_positive": 0,
-        "er_percent_positive_not_available": false,
+        "er_percent_positive_missing_reason": "Not available",
         "pr_status": "Cannot be determined",
         "pr_percent_positive": 0,
-        "pr_percent_positive_not_available": false,
+        "pr_percent_positive_missing_reason": "Not available",
         "her2_ihc_status": "Cannot be determined",
         "her2_ish_status": "Cannot be determined",
         "hpv_ihc_status": "Cannot be determined",
@@ -2096,7 +2096,7 @@ on the 'summary_only' flag.
         "prior_malignancy": "Yes",
         "laterality_of_prior_malignancy": "Bilateral",
         "age_at_comorbidity_diagnosis": 0,
-        "age_at_comorbidity_diagnosis_not_available": false,
+        "age_at_comorbidity_diagnosis_missing_reason": "Not available",
         "comorbidity_type_code": "string",
         "comorbidity_treatment_status": "Yes",
         "comorbidity_treatment": "string",
@@ -2111,7 +2111,7 @@ on the 'summary_only' flag.
           "Chewing Tobacco"
         ],
         "pack_years_smoked": 0,
-        "pack_years_smoked_not_available": false,
+        "pack_years_smoked_missing_reason": "Not available",
         "program_id": "string",
         "submitter_donor_id": "string"
       }
@@ -2847,6 +2847,7 @@ DateResolutionEnum
 |DateResolutionEnum|month|
 |DateResolutionEnum|day|
 |DateResolutionEnum|Not available|
+|DateResolutionEnum|Currently incomplete|
 
 <h2 id="tocS_DonorIngestSchema">DonorIngestSchema</h2>
 
@@ -3179,7 +3180,6 @@ LostToFollowUpEnum
 |LostToFollowUpEnum|Yes|
 |LostToFollowUpEnum|No|
 |LostToFollowUpEnum|Not available|
-|LostToFollowUpEnum|Unknown|
 
 <h2 id="tocS_LostToFollowupReasonEnum">LostToFollowupReasonEnum</h2>
 
@@ -3375,19 +3375,19 @@ uBooleanNotApplicableEnum
   },
   "test_date_missing_reason": "Not available",
   "psa_level": 0,
-  "psa_level_not_available": false,
+  "psa_level_missing_reason": "Not available",
   "ca125": 0,
-  "ca125_not_available": false,
+  "ca125_missing_reason": "Not available",
   "cea": 0,
-  "cea_not_available": false,
+  "cea_missing_reason": "Not available",
   "ca19_9": 0,
-  "ca19_9_not_available": false,
+  "ca19_9_missing_reason": "Not available",
   "er_status": "Cannot be determined",
   "er_percent_positive": 0,
-  "er_percent_positive_not_available": false,
+  "er_percent_positive_missing_reason": "Not available",
   "pr_status": "Cannot be determined",
   "pr_percent_positive": 0,
-  "pr_percent_positive_not_available": false,
+  "pr_percent_positive_missing_reason": "Not available",
   "her2_ihc_status": "Cannot be determined",
   "her2_ish_status": "Cannot be determined",
   "hpv_ihc_status": "Cannot be determined",
@@ -3534,7 +3534,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|psa_level_not_available|boolean|false|none|none|
+|psa_level_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |ca125|any|false|none|none|
 
 anyOf
@@ -3553,7 +3570,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|ca125_not_available|boolean|false|none|none|
+|ca125_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |cea|any|false|none|none|
 
 anyOf
@@ -3572,7 +3606,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|cea_not_available|boolean|false|none|none|
+|cea_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |ca19_9|any|false|none|none|
 
 anyOf
@@ -3591,7 +3642,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|ca19_9_not_available|boolean|false|none|none|
+|ca19_9_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |er_status|any|false|none|none|
 
 anyOf
@@ -3628,7 +3696,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|er_percent_positive_not_available|boolean|false|none|none|
+|er_percent_positive_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |pr_status|any|false|none|none|
 
 anyOf
@@ -3665,7 +3750,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|pr_percent_positive_not_available|boolean|false|none|none|
+|pr_percent_positive_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |her2_ihc_status|any|false|none|none|
 
 anyOf
@@ -3935,6 +4037,7 @@ DrugReferenceDbEnum
 |DrugReferenceDbEnum|RxNorm|
 |DrugReferenceDbEnum|PubChem|
 |DrugReferenceDbEnum|NCI Thesaurus|
+|DrugReferenceDbEnum|Currently incomplete|
 
 <h2 id="tocS_SystemicTherapyIngestSchema">SystemicTherapyIngestSchema</h2>
 
@@ -3961,13 +4064,13 @@ DrugReferenceDbEnum
   "drug_name": "string",
   "drug_dose_units": "mg/m2",
   "days_per_cycle": 0,
-  "days_per_cycle_not_available": false,
+  "days_per_cycle_missing_reason": "Not available",
   "number_of_cycles": 0,
-  "number_of_cycles_not_available": false,
+  "number_of_cycles_missing_reason": "Not available",
   "prescribed_cumulative_drug_dose": 0,
-  "prescribed_cumulative_drug_dose_not_available": false,
+  "prescribed_cumulative_drug_dose_missing_reason": "Not available",
   "actual_cumulative_drug_dose": 0,
-  "actual_cumulative_drug_dose_not_available": false,
+  "actual_cumulative_drug_dose_missing_reason": "Not available",
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_treatment_id": "string",
@@ -4162,7 +4265,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|days_per_cycle_not_available|boolean|false|none|none|
+|days_per_cycle_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |number_of_cycles|any|false|none|none|
 
 anyOf
@@ -4181,7 +4301,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|number_of_cycles_not_available|boolean|false|none|none|
+|number_of_cycles_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |prescribed_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -4200,7 +4337,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|prescribed_cumulative_drug_dose_not_available|boolean|false|none|none|
+|prescribed_cumulative_drug_dose_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |actual_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -4219,7 +4373,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|actual_cumulative_drug_dose_not_available|boolean|false|none|none|
+|actual_cumulative_drug_dose_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |submitter_treatment_id|string|true|none|none|
@@ -4279,7 +4450,7 @@ SystemicTherapyTypeEnum
   "prior_malignancy": "Yes",
   "laterality_of_prior_malignancy": "Bilateral",
   "age_at_comorbidity_diagnosis": 0,
-  "age_at_comorbidity_diagnosis_not_available": false,
+  "age_at_comorbidity_diagnosis_missing_reason": "Not available",
   "comorbidity_type_code": "string",
   "comorbidity_treatment_status": "Yes",
   "comorbidity_treatment": "string",
@@ -4302,7 +4473,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
+|» *anonymous*|[uBooleanNotAvailableEnum](#schemaubooleannotavailableenum)|false|none|none|
 
 or
 
@@ -4350,7 +4521,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|age_at_comorbidity_diagnosis_not_available|boolean|false|none|none|
+|age_at_comorbidity_diagnosis_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |comorbidity_type_code|any|false|none|none|
 
 anyOf
@@ -4453,6 +4641,34 @@ MalignancyLateralityEnum
 |MalignancyLateralityEnum|Unilateral, Side not specified|
 |MalignancyLateralityEnum|Not available|
 
+<h2 id="tocS_uBooleanNotAvailableEnum">uBooleanNotAvailableEnum</h2>
+
+<a id="schemaubooleannotavailableenum"></a>
+<a id="schema_uBooleanNotAvailableEnum"></a>
+<a id="tocSubooleannotavailableenum"></a>
+<a id="tocsubooleannotavailableenum"></a>
+
+```json
+"Yes"
+
+```
+
+uBooleanNotAvailableEnum
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|uBooleanNotAvailableEnum|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|uBooleanNotAvailableEnum|Yes|
+|uBooleanNotAvailableEnum|No|
+|uBooleanNotAvailableEnum|Not available|
+
 <h2 id="tocS_ExposureIngestSchema">ExposureIngestSchema</h2>
 
 <a id="schemaexposureingestschema"></a>
@@ -4467,7 +4683,7 @@ MalignancyLateralityEnum
     "Chewing Tobacco"
   ],
   "pack_years_smoked": 0,
-  "pack_years_smoked_not_available": false,
+  "pack_years_smoked_missing_reason": "Not available",
   "program_id": "string",
   "submitter_donor_id": "string",
   "uuid": "string"
@@ -4535,7 +4751,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|pack_years_smoked_not_available|boolean|false|none|none|
+|pack_years_smoked_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |uuid|any|false|none|none|
@@ -4988,9 +5221,9 @@ BasisOfDiagnosisEnum
 |BasisOfDiagnosisEnum|Clinical investigation|
 |BasisOfDiagnosisEnum|Clinical|
 |BasisOfDiagnosisEnum|Cytology|
-|BasisOfDiagnosisEnum|Death certificate only|
+|BasisOfDiagnosisEnum|Death certificate only (DCO)|
 |BasisOfDiagnosisEnum|Histology of a metastasis|
-|BasisOfDiagnosisEnum|Specific tumour markers|
+|BasisOfDiagnosisEnum|Specific tumor markers|
 |BasisOfDiagnosisEnum|Not available|
 |BasisOfDiagnosisEnum|Currently incomplete|
 |BasisOfDiagnosisEnum|Cytogenetic and/or molecular testing|
@@ -5040,6 +5273,8 @@ MCategoryEnum
 |MCategoryEnum|M1e|
 |MCategoryEnum|MX|
 |MCategoryEnum|Not applicable|
+|MCategoryEnum|Currently incomplete|
+|MCategoryEnum|Not available|
 
 <h2 id="tocS_NCategoryEnum">NCategoryEnum</h2>
 
@@ -5091,6 +5326,9 @@ NCategoryEnum
 |NCategoryEnum|N3c|
 |NCategoryEnum|N4|
 |NCategoryEnum|NX|
+|NCategoryEnum|Currently incomplete|
+|NCategoryEnum|Not applicable|
+|NCategoryEnum|Not available|
 
 <h2 id="tocS_PrimaryDiagnosisIngestSchema">PrimaryDiagnosisIngestSchema</h2>
 
@@ -5565,7 +5803,6 @@ PrimarySiteEnum
 |PrimarySiteEnum|Vagina|
 |PrimarySiteEnum|Vulva|
 |PrimarySiteEnum|Unknown primary site|
-|PrimarySiteEnum|Not available|
 |PrimarySiteEnum|Currently incomplete|
 
 <h2 id="tocS_StageGroupEnum">StageGroupEnum</h2>
@@ -5771,6 +6008,9 @@ TCategoryEnum
 |TCategoryEnum|Tis pu|
 |TCategoryEnum|Tis pd|
 |TCategoryEnum|TX|
+|TCategoryEnum|Currently incomplete|
+|TCategoryEnum|Not applicable|
+|TCategoryEnum|Not available|
 
 <h2 id="tocS_TumourStagingSystemEnum">TumourStagingSystemEnum</h2>
 
@@ -6262,9 +6502,9 @@ RadiationAnatomicalSiteEnum
   "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
   "radiation_therapy_type": "External",
   "radiation_therapy_fractions": 0,
-  "radiation_therapy_fractions_not_available": false,
+  "radiation_therapy_fractions_missing_reason": "Not available",
   "radiation_therapy_dosage": 0,
-  "radiation_therapy_dosage_not_available": false,
+  "radiation_therapy_dosage_missing_reason": "Not available",
   "anatomical_site_irradiated": "ABDOMEN_WHOLE",
   "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string",
@@ -6336,7 +6576,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|radiation_therapy_fractions_not_available|boolean|false|none|none|
+|radiation_therapy_fractions_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |radiation_therapy_dosage|any|false|none|none|
 
 anyOf
@@ -6355,7 +6612,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|radiation_therapy_dosage_not_available|boolean|false|none|none|
+|radiation_therapy_dosage_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |anatomical_site_irradiated|any|false|none|none|
 
 anyOf
@@ -6380,7 +6654,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
+|» *anonymous*|[uBooleanNotAvailableEnum](#schemaubooleannotavailableenum)|false|none|none|
 
 or
 
@@ -6650,13 +6924,13 @@ RadionuclideEnum
   },
   "end_date_missing_reason": "Not available",
   "cumulative_drug_dose": 0,
-  "cumulative_drug_dose_not_available": false,
+  "cumulative_drug_dose_missing_reason": "Not available",
   "drug_dose_units": "Bq",
   "mass_value": 0,
-  "mass_value_not_available": false,
+  "mass_value_missing_reason": "Not available",
   "mass_unit_ucum": "ug",
   "number_of_cycles": 0,
-  "number_of_cycles_not_available": false,
+  "number_of_cycles_missing_reason": "Not available",
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_treatment_id": "string",
@@ -6833,7 +7107,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|cumulative_drug_dose_not_available|boolean|false|none|none|
+|cumulative_drug_dose_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |drug_dose_units|any|false|none|none|
 
 anyOf
@@ -6870,7 +7161,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|mass_value_not_available|boolean|false|none|none|
+|mass_value_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |mass_unit_ucum|any|false|none|none|
 
 anyOf
@@ -6907,7 +7215,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|number_of_cycles_not_available|boolean|false|none|none|
+|number_of_cycles_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |submitter_treatment_id|string|true|none|none|
@@ -7019,6 +7344,10 @@ SampleTypeEnum
 |SampleTypeEnum|rRNA-depleted RNA|
 |SampleTypeEnum|Total DNA|
 |SampleTypeEnum|Total RNA|
+|SampleTypeEnum|Whole cell - DNA|
+|SampleTypeEnum|Whole cell - protein|
+|SampleTypeEnum|Whole cell - RNA|
+|SampleTypeEnum|Whole cell (B-cell depleted)|
 
 <h2 id="tocS_CellsMeasureMethodEnum">CellsMeasureMethodEnum</h2>
 
@@ -7683,7 +8012,7 @@ StorageEnum
 |StorageEnum|Frozen in -70 freezer|
 |StorageEnum|Frozen in liquid nitrogen|
 |StorageEnum|Frozen in vapour phase|
-|StorageEnum|Not Applicable|
+|StorageEnum|Not applicable|
 |StorageEnum|OCT embedded|
 |StorageEnum|Other|
 |StorageEnum|Paraffin block|
@@ -7806,6 +8135,7 @@ TumourGradingSystemEnum
 |TumourGradingSystemEnum|WHO grading system for CNS tumours|
 |TumourGradingSystemEnum|Not available|
 |TumourGradingSystemEnum|Currently incomplete|
+|TumourGradingSystemEnum|Not applicable|
 
 <h2 id="tocS_LymphovascularInvasionEnum">LymphovascularInvasionEnum</h2>
 
@@ -7868,7 +8198,6 @@ MarginsStatusEnum
 |MarginsStatusEnum|Not applicable|
 |MarginsStatusEnum|Not available|
 |MarginsStatusEnum|Currently incomplete|
-|MarginsStatusEnum|Unknown|
 
 <h2 id="tocS_PerineuralInvasionEnum">PerineuralInvasionEnum</h2>
 
@@ -7915,11 +8244,11 @@ PerineuralInvasionEnum
   "surgery_site": "string",
   "surgery_location": "Local recurrence",
   "tumour_length": 0,
-  "tumour_length_not_available": false,
+  "tumour_length_missing_reason": "Not available",
   "tumour_width": 0,
-  "tumour_width_not_available": false,
+  "tumour_width_missing_reason": "Not available",
   "greatest_dimension_tumour": 0,
-  "greatest_dimension_tumour_not_available": false,
+  "greatest_dimension_tumour_missing_reason": "Not available",
   "tumour_focality": "Cannot be assessed",
   "residual_tumour_classification": "Not applicable",
   "margins_status": "Margins clear",
@@ -8035,7 +8364,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -8047,14 +8376,31 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|tumour_length_not_available|boolean|false|none|none|
+|tumour_length_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |tumour_width|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -8066,14 +8412,31 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|tumour_width_not_available|boolean|false|none|none|
+|tumour_width_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |greatest_dimension_tumour|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -8085,7 +8448,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|greatest_dimension_tumour_not_available|boolean|false|none|none|
+|greatest_dimension_tumour_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |tumour_focality|any|false|none|none|
 
 anyOf
@@ -8418,7 +8798,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
 
 or
 
@@ -9239,13 +9619,13 @@ MetadataSchema
               "drug_name": "string",
               "drug_dose_units": "mg/m2",
               "days_per_cycle": 0,
-              "days_per_cycle_not_available": false,
+              "days_per_cycle_missing_reason": "Not available",
               "number_of_cycles": 0,
-              "number_of_cycles_not_available": false,
+              "number_of_cycles_missing_reason": "Not available",
               "prescribed_cumulative_drug_dose": 0,
-              "prescribed_cumulative_drug_dose_not_available": false,
+              "prescribed_cumulative_drug_dose_missing_reason": "Not available",
               "actual_cumulative_drug_dose": 0,
-              "actual_cumulative_drug_dose_not_available": false
+              "actual_cumulative_drug_dose_missing_reason": "Not available"
             }
           ],
           "radiations": [
@@ -9253,9 +9633,9 @@ MetadataSchema
               "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
               "radiation_therapy_type": "External",
               "radiation_therapy_fractions": 0,
-              "radiation_therapy_fractions_not_available": false,
+              "radiation_therapy_fractions_missing_reason": "Not available",
               "radiation_therapy_dosage": 0,
-              "radiation_therapy_dosage_not_available": false,
+              "radiation_therapy_dosage_missing_reason": "Not available",
               "anatomical_site_irradiated": "ABDOMEN_WHOLE",
               "radiation_boost": "Yes",
               "reference_radiation_treatment_id": "string"
@@ -9269,11 +9649,11 @@ MetadataSchema
               "surgery_site": "string",
               "surgery_location": "Local recurrence",
               "tumour_length": 0,
-              "tumour_length_not_available": false,
+              "tumour_length_missing_reason": "Not available",
               "tumour_width": 0,
-              "tumour_width_not_available": false,
+              "tumour_width_missing_reason": "Not available",
               "greatest_dimension_tumour": 0,
-              "greatest_dimension_tumour_not_available": false,
+              "greatest_dimension_tumour_missing_reason": "Not available",
               "tumour_focality": "Cannot be assessed",
               "residual_tumour_classification": "Not applicable",
               "margins_status": "Margins clear",
@@ -9298,13 +9678,13 @@ MetadataSchema
               },
               "end_date_missing_reason": "Not available",
               "cumulative_drug_dose": 0,
-              "cumulative_drug_dose_not_available": false,
+              "cumulative_drug_dose_missing_reason": "Not available",
               "drug_dose_units": "Bq",
               "mass_value": 0,
-              "mass_value_not_available": false,
+              "mass_value_missing_reason": "Not available",
               "mass_unit_ucum": "ug",
               "number_of_cycles": 0,
-              "number_of_cycles_not_available": false
+              "number_of_cycles_missing_reason": "Not available"
             }
           ],
           "followups": [
@@ -9392,19 +9772,19 @@ MetadataSchema
       },
       "test_date_missing_reason": "Not available",
       "psa_level": 0,
-      "psa_level_not_available": false,
+      "psa_level_missing_reason": "Not available",
       "ca125": 0,
-      "ca125_not_available": false,
+      "ca125_missing_reason": "Not available",
       "cea": 0,
-      "cea_not_available": false,
+      "cea_missing_reason": "Not available",
       "ca19_9": 0,
-      "ca19_9_not_available": false,
+      "ca19_9_missing_reason": "Not available",
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
-      "er_percent_positive_not_available": false,
+      "er_percent_positive_missing_reason": "Not available",
       "pr_status": "Cannot be determined",
       "pr_percent_positive": 0,
-      "pr_percent_positive_not_available": false,
+      "pr_percent_positive_missing_reason": "Not available",
       "her2_ihc_status": "Cannot be determined",
       "her2_ish_status": "Cannot be determined",
       "hpv_ihc_status": "Cannot be determined",
@@ -9421,7 +9801,7 @@ MetadataSchema
         "Chewing Tobacco"
       ],
       "pack_years_smoked": 0,
-      "pack_years_smoked_not_available": false
+      "pack_years_smoked_missing_reason": "Not available"
     }
   ],
   "comorbidities": [
@@ -9429,7 +9809,7 @@ MetadataSchema
       "prior_malignancy": "Yes",
       "laterality_of_prior_malignancy": "Bilateral",
       "age_at_comorbidity_diagnosis": 0,
-      "age_at_comorbidity_diagnosis_not_available": false,
+      "age_at_comorbidity_diagnosis_missing_reason": "Not available",
       "comorbidity_type_code": "string",
       "comorbidity_treatment_status": "Yes",
       "comorbidity_treatment": "string"
@@ -9688,19 +10068,19 @@ continued
   },
   "test_date_missing_reason": "Not available",
   "psa_level": 0,
-  "psa_level_not_available": false,
+  "psa_level_missing_reason": "Not available",
   "ca125": 0,
-  "ca125_not_available": false,
+  "ca125_missing_reason": "Not available",
   "cea": 0,
-  "cea_not_available": false,
+  "cea_missing_reason": "Not available",
   "ca19_9": 0,
-  "ca19_9_not_available": false,
+  "ca19_9_missing_reason": "Not available",
   "er_status": "Cannot be determined",
   "er_percent_positive": 0,
-  "er_percent_positive_not_available": false,
+  "er_percent_positive_missing_reason": "Not available",
   "pr_status": "Cannot be determined",
   "pr_percent_positive": 0,
-  "pr_percent_positive_not_available": false,
+  "pr_percent_positive_missing_reason": "Not available",
   "her2_ihc_status": "Cannot be determined",
   "her2_ish_status": "Cannot be determined",
   "hpv_ihc_status": "Cannot be determined",
@@ -9844,7 +10224,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|psa_level_not_available|boolean|false|none|none|
+|psa_level_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |ca125|any|false|none|none|
 
 anyOf
@@ -9863,7 +10260,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|ca125_not_available|boolean|false|none|none|
+|ca125_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |cea|any|false|none|none|
 
 anyOf
@@ -9882,7 +10296,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|cea_not_available|boolean|false|none|none|
+|cea_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |ca19_9|any|false|none|none|
 
 anyOf
@@ -9901,7 +10332,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|ca19_9_not_available|boolean|false|none|none|
+|ca19_9_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |er_status|any|false|none|none|
 
 anyOf
@@ -9938,7 +10386,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|er_percent_positive_not_available|boolean|false|none|none|
+|er_percent_positive_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |pr_status|any|false|none|none|
 
 anyOf
@@ -9975,7 +10440,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|pr_percent_positive_not_available|boolean|false|none|none|
+|pr_percent_positive_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |her2_ihc_status|any|false|none|none|
 
 anyOf
@@ -10074,7 +10556,7 @@ or
   "prior_malignancy": "Yes",
   "laterality_of_prior_malignancy": "Bilateral",
   "age_at_comorbidity_diagnosis": 0,
-  "age_at_comorbidity_diagnosis_not_available": false,
+  "age_at_comorbidity_diagnosis_missing_reason": "Not available",
   "comorbidity_type_code": "string",
   "comorbidity_treatment_status": "Yes",
   "comorbidity_treatment": "string"
@@ -10094,7 +10576,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
+|» *anonymous*|[uBooleanNotAvailableEnum](#schemaubooleannotavailableenum)|false|none|none|
 
 or
 
@@ -10142,7 +10624,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|age_at_comorbidity_diagnosis_not_available|boolean|false|none|none|
+|age_at_comorbidity_diagnosis_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |comorbidity_type_code|any|false|none|none|
 
 anyOf
@@ -10207,7 +10706,7 @@ or
     "Chewing Tobacco"
   ],
   "pack_years_smoked": 0,
-  "pack_years_smoked_not_available": false
+  "pack_years_smoked_missing_reason": "Not available"
 }
 
 ```
@@ -10272,7 +10771,19 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|pack_years_smoked_not_available|boolean|false|none|none|
+|pack_years_smoked_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
 
 <h2 id="tocS_NestedFollowUpSchema">NestedFollowUpSchema</h2>
 
@@ -10553,13 +11064,13 @@ or
           "drug_name": "string",
           "drug_dose_units": "mg/m2",
           "days_per_cycle": 0,
-          "days_per_cycle_not_available": false,
+          "days_per_cycle_missing_reason": "Not available",
           "number_of_cycles": 0,
-          "number_of_cycles_not_available": false,
+          "number_of_cycles_missing_reason": "Not available",
           "prescribed_cumulative_drug_dose": 0,
-          "prescribed_cumulative_drug_dose_not_available": false,
+          "prescribed_cumulative_drug_dose_missing_reason": "Not available",
           "actual_cumulative_drug_dose": 0,
-          "actual_cumulative_drug_dose_not_available": false
+          "actual_cumulative_drug_dose_missing_reason": "Not available"
         }
       ],
       "radiations": [
@@ -10567,9 +11078,9 @@ or
           "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
           "radiation_therapy_type": "External",
           "radiation_therapy_fractions": 0,
-          "radiation_therapy_fractions_not_available": false,
+          "radiation_therapy_fractions_missing_reason": "Not available",
           "radiation_therapy_dosage": 0,
-          "radiation_therapy_dosage_not_available": false,
+          "radiation_therapy_dosage_missing_reason": "Not available",
           "anatomical_site_irradiated": "ABDOMEN_WHOLE",
           "radiation_boost": "Yes",
           "reference_radiation_treatment_id": "string"
@@ -10583,11 +11094,11 @@ or
           "surgery_site": "string",
           "surgery_location": "Local recurrence",
           "tumour_length": 0,
-          "tumour_length_not_available": false,
+          "tumour_length_missing_reason": "Not available",
           "tumour_width": 0,
-          "tumour_width_not_available": false,
+          "tumour_width_missing_reason": "Not available",
           "greatest_dimension_tumour": 0,
-          "greatest_dimension_tumour_not_available": false,
+          "greatest_dimension_tumour_missing_reason": "Not available",
           "tumour_focality": "Cannot be assessed",
           "residual_tumour_classification": "Not applicable",
           "margins_status": "Margins clear",
@@ -10612,13 +11123,13 @@ or
           },
           "end_date_missing_reason": "Not available",
           "cumulative_drug_dose": 0,
-          "cumulative_drug_dose_not_available": false,
+          "cumulative_drug_dose_missing_reason": "Not available",
           "drug_dose_units": "Bq",
           "mass_value": 0,
-          "mass_value_not_available": false,
+          "mass_value_missing_reason": "Not available",
           "mass_unit_ucum": "ug",
           "number_of_cycles": 0,
-          "number_of_cycles_not_available": false
+          "number_of_cycles_missing_reason": "Not available"
         }
       ],
       "followups": [
@@ -10984,9 +11495,9 @@ continued
   "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
   "radiation_therapy_type": "External",
   "radiation_therapy_fractions": 0,
-  "radiation_therapy_fractions_not_available": false,
+  "radiation_therapy_fractions_missing_reason": "Not available",
   "radiation_therapy_dosage": 0,
-  "radiation_therapy_dosage_not_available": false,
+  "radiation_therapy_dosage_missing_reason": "Not available",
   "anatomical_site_irradiated": "ABDOMEN_WHOLE",
   "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string"
@@ -11054,7 +11565,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|radiation_therapy_fractions_not_available|boolean|false|none|none|
+|radiation_therapy_fractions_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |radiation_therapy_dosage|any|false|none|none|
 
 anyOf
@@ -11073,7 +11601,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|radiation_therapy_dosage_not_available|boolean|false|none|none|
+|radiation_therapy_dosage_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |anatomical_site_irradiated|any|false|none|none|
 
 anyOf
@@ -11098,7 +11643,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
+|» *anonymous*|[uBooleanNotAvailableEnum](#schemaubooleannotavailableenum)|false|none|none|
 
 or
 
@@ -11148,13 +11693,13 @@ or
   },
   "end_date_missing_reason": "Not available",
   "cumulative_drug_dose": 0,
-  "cumulative_drug_dose_not_available": false,
+  "cumulative_drug_dose_missing_reason": "Not available",
   "drug_dose_units": "Bq",
   "mass_value": 0,
-  "mass_value_not_available": false,
+  "mass_value_missing_reason": "Not available",
   "mass_unit_ucum": "ug",
   "number_of_cycles": 0,
-  "number_of_cycles_not_available": false
+  "number_of_cycles_missing_reason": "Not available"
 }
 
 ```
@@ -11327,7 +11872,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|cumulative_drug_dose_not_available|boolean|false|none|none|
+|cumulative_drug_dose_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |drug_dose_units|any|false|none|none|
 
 anyOf
@@ -11364,7 +11926,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|mass_value_not_available|boolean|false|none|none|
+|mass_value_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |mass_unit_ucum|any|false|none|none|
 
 anyOf
@@ -11401,7 +11980,19 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|number_of_cycles_not_available|boolean|false|none|none|
+|number_of_cycles_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
 
 <h2 id="tocS_NestedSampleRegistrationSchema">NestedSampleRegistrationSchema</h2>
 
@@ -11809,11 +12400,11 @@ continued
   "surgery_site": "string",
   "surgery_location": "Local recurrence",
   "tumour_length": 0,
-  "tumour_length_not_available": false,
+  "tumour_length_missing_reason": "Not available",
   "tumour_width": 0,
-  "tumour_width_not_available": false,
+  "tumour_width_missing_reason": "Not available",
   "greatest_dimension_tumour": 0,
-  "greatest_dimension_tumour_not_available": false,
+  "greatest_dimension_tumour_missing_reason": "Not available",
   "tumour_focality": "Cannot be assessed",
   "residual_tumour_classification": "Not applicable",
   "margins_status": "Margins clear",
@@ -11925,7 +12516,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -11937,14 +12528,31 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|tumour_length_not_available|boolean|false|none|none|
+|tumour_length_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |tumour_width|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -11956,14 +12564,31 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|tumour_width_not_available|boolean|false|none|none|
+|tumour_width_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |greatest_dimension_tumour|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -11975,7 +12600,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|greatest_dimension_tumour_not_available|boolean|false|none|none|
+|greatest_dimension_tumour_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |tumour_focality|any|false|none|none|
 
 anyOf
@@ -12087,13 +12729,13 @@ or
   "drug_name": "string",
   "drug_dose_units": "mg/m2",
   "days_per_cycle": 0,
-  "days_per_cycle_not_available": false,
+  "days_per_cycle_missing_reason": "Not available",
   "number_of_cycles": 0,
-  "number_of_cycles_not_available": false,
+  "number_of_cycles_missing_reason": "Not available",
   "prescribed_cumulative_drug_dose": 0,
-  "prescribed_cumulative_drug_dose_not_available": false,
+  "prescribed_cumulative_drug_dose_missing_reason": "Not available",
   "actual_cumulative_drug_dose": 0,
-  "actual_cumulative_drug_dose_not_available": false
+  "actual_cumulative_drug_dose_missing_reason": "Not available"
 }
 
 ```
@@ -12284,7 +12926,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|days_per_cycle_not_available|boolean|false|none|none|
+|days_per_cycle_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |number_of_cycles|any|false|none|none|
 
 anyOf
@@ -12303,7 +12962,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|number_of_cycles_not_available|boolean|false|none|none|
+|number_of_cycles_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |prescribed_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -12322,7 +12998,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|prescribed_cumulative_drug_dose_not_available|boolean|false|none|none|
+|prescribed_cumulative_drug_dose_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |actual_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -12341,7 +13034,19 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|actual_cumulative_drug_dose_not_available|boolean|false|none|none|
+|actual_cumulative_drug_dose_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
 
 <h2 id="tocS_NestedTreatmentSchema">NestedTreatmentSchema</h2>
 
@@ -12390,13 +13095,13 @@ continued
       "drug_name": "string",
       "drug_dose_units": "mg/m2",
       "days_per_cycle": 0,
-      "days_per_cycle_not_available": false,
+      "days_per_cycle_missing_reason": "Not available",
       "number_of_cycles": 0,
-      "number_of_cycles_not_available": false,
+      "number_of_cycles_missing_reason": "Not available",
       "prescribed_cumulative_drug_dose": 0,
-      "prescribed_cumulative_drug_dose_not_available": false,
+      "prescribed_cumulative_drug_dose_missing_reason": "Not available",
       "actual_cumulative_drug_dose": 0,
-      "actual_cumulative_drug_dose_not_available": false
+      "actual_cumulative_drug_dose_missing_reason": "Not available"
     }
   ],
   "radiations": [
@@ -12404,9 +13109,9 @@ continued
       "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
       "radiation_therapy_type": "External",
       "radiation_therapy_fractions": 0,
-      "radiation_therapy_fractions_not_available": false,
+      "radiation_therapy_fractions_missing_reason": "Not available",
       "radiation_therapy_dosage": 0,
-      "radiation_therapy_dosage_not_available": false,
+      "radiation_therapy_dosage_missing_reason": "Not available",
       "anatomical_site_irradiated": "ABDOMEN_WHOLE",
       "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string"
@@ -12420,11 +13125,11 @@ continued
       "surgery_site": "string",
       "surgery_location": "Local recurrence",
       "tumour_length": 0,
-      "tumour_length_not_available": false,
+      "tumour_length_missing_reason": "Not available",
       "tumour_width": 0,
-      "tumour_width_not_available": false,
+      "tumour_width_missing_reason": "Not available",
       "greatest_dimension_tumour": 0,
-      "greatest_dimension_tumour_not_available": false,
+      "greatest_dimension_tumour_missing_reason": "Not available",
       "tumour_focality": "Cannot be assessed",
       "residual_tumour_classification": "Not applicable",
       "margins_status": "Margins clear",
@@ -12449,13 +13154,13 @@ continued
       },
       "end_date_missing_reason": "Not available",
       "cumulative_drug_dose": 0,
-      "cumulative_drug_dose_not_available": false,
+      "cumulative_drug_dose_missing_reason": "Not available",
       "drug_dose_units": "Bq",
       "mass_value": 0,
-      "mass_value_not_available": false,
+      "mass_value_missing_reason": "Not available",
       "mass_unit_ucum": "ug",
       "number_of_cycles": 0,
-      "number_of_cycles_not_available": false
+      "number_of_cycles_missing_reason": "Not available"
     }
   ],
   "followups": [
@@ -12552,7 +13257,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
 
 or
 
@@ -15338,19 +16043,19 @@ continued
   },
   "test_date_missing_reason": "Not available",
   "psa_level": 0,
-  "psa_level_not_available": false,
+  "psa_level_missing_reason": "Not available",
   "ca125": 0,
-  "ca125_not_available": false,
+  "ca125_missing_reason": "Not available",
   "cea": 0,
-  "cea_not_available": false,
+  "cea_missing_reason": "Not available",
   "ca19_9": 0,
-  "ca19_9_not_available": false,
+  "ca19_9_missing_reason": "Not available",
   "er_status": "Cannot be determined",
   "er_percent_positive": 0,
-  "er_percent_positive_not_available": false,
+  "er_percent_positive_missing_reason": "Not available",
   "pr_status": "Cannot be determined",
   "pr_percent_positive": 0,
-  "pr_percent_positive_not_available": false,
+  "pr_percent_positive_missing_reason": "Not available",
   "her2_ihc_status": "Cannot be determined",
   "her2_ish_status": "Cannot be determined",
   "hpv_ihc_status": "Cannot be determined",
@@ -15496,7 +16201,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|psa_level_not_available|boolean|false|none|none|
+|psa_level_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |ca125|any|false|none|none|
 
 anyOf
@@ -15515,7 +16237,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|ca125_not_available|boolean|false|none|none|
+|ca125_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |cea|any|false|none|none|
 
 anyOf
@@ -15534,7 +16273,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|cea_not_available|boolean|false|none|none|
+|cea_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |ca19_9|any|false|none|none|
 
 anyOf
@@ -15553,7 +16309,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|ca19_9_not_available|boolean|false|none|none|
+|ca19_9_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |er_status|any|false|none|none|
 
 anyOf
@@ -15590,7 +16363,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|er_percent_positive_not_available|boolean|false|none|none|
+|er_percent_positive_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |pr_status|any|false|none|none|
 
 anyOf
@@ -15627,7 +16417,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|pr_percent_positive_not_available|boolean|false|none|none|
+|pr_percent_positive_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |her2_ihc_status|any|false|none|none|
 
 anyOf
@@ -15742,19 +16549,19 @@ continued
       },
       "test_date_missing_reason": "Not available",
       "psa_level": 0,
-      "psa_level_not_available": false,
+      "psa_level_missing_reason": "Not available",
       "ca125": 0,
-      "ca125_not_available": false,
+      "ca125_missing_reason": "Not available",
       "cea": 0,
-      "cea_not_available": false,
+      "cea_missing_reason": "Not available",
       "ca19_9": 0,
-      "ca19_9_not_available": false,
+      "ca19_9_missing_reason": "Not available",
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
-      "er_percent_positive_not_available": false,
+      "er_percent_positive_missing_reason": "Not available",
       "pr_status": "Cannot be determined",
       "pr_percent_positive": 0,
-      "pr_percent_positive_not_available": false,
+      "pr_percent_positive_missing_reason": "Not available",
       "her2_ihc_status": "Cannot be determined",
       "her2_ish_status": "Cannot be determined",
       "hpv_ihc_status": "Cannot be determined",
@@ -16100,13 +16907,13 @@ or
       "drug_name": "string",
       "drug_dose_units": "mg/m2",
       "days_per_cycle": 0,
-      "days_per_cycle_not_available": false,
+      "days_per_cycle_missing_reason": "Not available",
       "number_of_cycles": 0,
-      "number_of_cycles_not_available": false,
+      "number_of_cycles_missing_reason": "Not available",
       "prescribed_cumulative_drug_dose": 0,
-      "prescribed_cumulative_drug_dose_not_available": false,
+      "prescribed_cumulative_drug_dose_missing_reason": "Not available",
       "actual_cumulative_drug_dose": 0,
-      "actual_cumulative_drug_dose_not_available": false,
+      "actual_cumulative_drug_dose_missing_reason": "Not available",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -16201,13 +17008,13 @@ or
   "drug_name": "string",
   "drug_dose_units": "mg/m2",
   "days_per_cycle": 0,
-  "days_per_cycle_not_available": false,
+  "days_per_cycle_missing_reason": "Not available",
   "number_of_cycles": 0,
-  "number_of_cycles_not_available": false,
+  "number_of_cycles_missing_reason": "Not available",
   "prescribed_cumulative_drug_dose": 0,
-  "prescribed_cumulative_drug_dose_not_available": false,
+  "prescribed_cumulative_drug_dose_missing_reason": "Not available",
   "actual_cumulative_drug_dose": 0,
-  "actual_cumulative_drug_dose_not_available": false,
+  "actual_cumulative_drug_dose_missing_reason": "Not available",
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_treatment_id": "string"
@@ -16401,7 +17208,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|days_per_cycle_not_available|boolean|false|none|none|
+|days_per_cycle_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |number_of_cycles|any|false|none|none|
 
 anyOf
@@ -16420,7 +17244,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|number_of_cycles_not_available|boolean|false|none|none|
+|number_of_cycles_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |prescribed_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -16439,7 +17280,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|prescribed_cumulative_drug_dose_not_available|boolean|false|none|none|
+|prescribed_cumulative_drug_dose_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |actual_cumulative_drug_dose|any|false|none|none|
 
 anyOf
@@ -16458,7 +17316,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|actual_cumulative_drug_dose_not_available|boolean|false|none|none|
+|actual_cumulative_drug_dose_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |submitter_treatment_id|string|true|none|none|
@@ -16642,7 +17517,7 @@ or
   "prior_malignancy": "Yes",
   "laterality_of_prior_malignancy": "Bilateral",
   "age_at_comorbidity_diagnosis": 0,
-  "age_at_comorbidity_diagnosis_not_available": false,
+  "age_at_comorbidity_diagnosis_missing_reason": "Not available",
   "comorbidity_type_code": "string",
   "comorbidity_treatment_status": "Yes",
   "comorbidity_treatment": "string",
@@ -16664,7 +17539,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
+|» *anonymous*|[uBooleanNotAvailableEnum](#schemaubooleannotavailableenum)|false|none|none|
 
 or
 
@@ -16712,7 +17587,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|age_at_comorbidity_diagnosis_not_available|boolean|false|none|none|
+|age_at_comorbidity_diagnosis_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |comorbidity_type_code|any|false|none|none|
 
 anyOf
@@ -16784,7 +17676,7 @@ continued
       "prior_malignancy": "Yes",
       "laterality_of_prior_malignancy": "Bilateral",
       "age_at_comorbidity_diagnosis": 0,
-      "age_at_comorbidity_diagnosis_not_available": false,
+      "age_at_comorbidity_diagnosis_missing_reason": "Not available",
       "comorbidity_type_code": "string",
       "comorbidity_treatment_status": "Yes",
       "comorbidity_treatment": "string",
@@ -16965,7 +17857,7 @@ or
     "Chewing Tobacco"
   ],
   "pack_years_smoked": 0,
-  "pack_years_smoked_not_available": false,
+  "pack_years_smoked_missing_reason": "Not available",
   "program_id": "string",
   "submitter_donor_id": "string"
 }
@@ -17032,7 +17924,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|pack_years_smoked_not_available|boolean|false|none|none|
+|pack_years_smoked_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 
@@ -17052,7 +17961,7 @@ continued
         "Chewing Tobacco"
       ],
       "pack_years_smoked": 0,
-      "pack_years_smoked_not_available": false,
+      "pack_years_smoked_missing_reason": "Not available",
       "program_id": "string",
       "submitter_donor_id": "string"
     }
@@ -17822,9 +18731,9 @@ or
       "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
       "radiation_therapy_type": "External",
       "radiation_therapy_fractions": 0,
-      "radiation_therapy_fractions_not_available": false,
+      "radiation_therapy_fractions_missing_reason": "Not available",
       "radiation_therapy_dosage": 0,
-      "radiation_therapy_dosage_not_available": false,
+      "radiation_therapy_dosage_missing_reason": "Not available",
       "anatomical_site_irradiated": "ABDOMEN_WHOLE",
       "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string",
@@ -17909,9 +18818,9 @@ or
   "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
   "radiation_therapy_type": "External",
   "radiation_therapy_fractions": 0,
-  "radiation_therapy_fractions_not_available": false,
+  "radiation_therapy_fractions_missing_reason": "Not available",
   "radiation_therapy_dosage": 0,
-  "radiation_therapy_dosage_not_available": false,
+  "radiation_therapy_dosage_missing_reason": "Not available",
   "anatomical_site_irradiated": "ABDOMEN_WHOLE",
   "radiation_boost": "Yes",
   "reference_radiation_treatment_id": "string",
@@ -17982,7 +18891,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|radiation_therapy_fractions_not_available|boolean|false|none|none|
+|radiation_therapy_fractions_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |radiation_therapy_dosage|any|false|none|none|
 
 anyOf
@@ -18001,7 +18927,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|radiation_therapy_dosage_not_available|boolean|false|none|none|
+|radiation_therapy_dosage_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |anatomical_site_irradiated|any|false|none|none|
 
 anyOf
@@ -18026,7 +18969,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[uBooleanEnum](#schemaubooleanenum)|false|none|none|
+|» *anonymous*|[uBooleanNotAvailableEnum](#schemaubooleannotavailableenum)|false|none|none|
 
 or
 
@@ -18329,13 +19272,13 @@ or
       },
       "end_date_missing_reason": "Not available",
       "cumulative_drug_dose": 0,
-      "cumulative_drug_dose_not_available": false,
+      "cumulative_drug_dose_missing_reason": "Not available",
       "drug_dose_units": "Bq",
       "mass_value": 0,
-      "mass_value_not_available": false,
+      "mass_value_missing_reason": "Not available",
       "mass_unit_ucum": "ug",
       "number_of_cycles": 0,
-      "number_of_cycles_not_available": false,
+      "number_of_cycles_missing_reason": "Not available",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -18429,13 +19372,13 @@ or
   },
   "end_date_missing_reason": "Not available",
   "cumulative_drug_dose": 0,
-  "cumulative_drug_dose_not_available": false,
+  "cumulative_drug_dose_missing_reason": "Not available",
   "drug_dose_units": "Bq",
   "mass_value": 0,
-  "mass_value_not_available": false,
+  "mass_value_missing_reason": "Not available",
   "mass_unit_ucum": "ug",
   "number_of_cycles": 0,
-  "number_of_cycles_not_available": false,
+  "number_of_cycles_missing_reason": "Not available",
   "program_id": "string",
   "submitter_donor_id": "string",
   "submitter_treatment_id": "string"
@@ -18611,7 +19554,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|cumulative_drug_dose_not_available|boolean|false|none|none|
+|cumulative_drug_dose_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |drug_dose_units|any|false|none|none|
 
 anyOf
@@ -18648,7 +19608,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|mass_value_not_available|boolean|false|none|none|
+|mass_value_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |mass_unit_ucum|any|false|none|none|
 
 anyOf
@@ -18685,7 +19662,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|number_of_cycles_not_available|boolean|false|none|none|
+|number_of_cycles_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |program_id|string|true|none|none|
 |submitter_donor_id|string|true|none|none|
 |submitter_treatment_id|string|true|none|none|
@@ -20096,11 +21090,11 @@ or
       "surgery_site": "string",
       "surgery_location": "Local recurrence",
       "tumour_length": 0,
-      "tumour_length_not_available": false,
+      "tumour_length_missing_reason": "Not available",
       "tumour_width": 0,
-      "tumour_width_not_available": false,
+      "tumour_width_missing_reason": "Not available",
       "greatest_dimension_tumour": 0,
-      "greatest_dimension_tumour_not_available": false,
+      "greatest_dimension_tumour_missing_reason": "Not available",
       "tumour_focality": "Cannot be assessed",
       "residual_tumour_classification": "Not applicable",
       "margins_status": "Margins clear",
@@ -20190,11 +21184,11 @@ or
   "surgery_site": "string",
   "surgery_location": "Local recurrence",
   "tumour_length": 0,
-  "tumour_length_not_available": false,
+  "tumour_length_missing_reason": "Not available",
   "tumour_width": 0,
-  "tumour_width_not_available": false,
+  "tumour_width_missing_reason": "Not available",
   "greatest_dimension_tumour": 0,
-  "greatest_dimension_tumour_not_available": false,
+  "greatest_dimension_tumour_missing_reason": "Not available",
   "tumour_focality": "Cannot be assessed",
   "residual_tumour_classification": "Not applicable",
   "margins_status": "Margins clear",
@@ -20309,7 +21303,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -20321,14 +21315,31 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|tumour_length_not_available|boolean|false|none|none|
+|tumour_length_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |tumour_width|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -20340,14 +21351,31 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|tumour_width_not_available|boolean|false|none|none|
+|tumour_width_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |greatest_dimension_tumour|any|false|none|none|
 
 anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|integer|false|none|none|
+|» *anonymous*|number|false|none|none|
 
 or
 
@@ -20359,7 +21387,24 @@ continued
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|greatest_dimension_tumour_not_available|boolean|false|none|none|
+|greatest_dimension_tumour_missing_reason|any|false|none|none|
+
+anyOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+
+or
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» *anonymous*|null|false|none|none|
+
+continued
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
 |tumour_focality|any|false|none|none|
 
 anyOf
@@ -20881,7 +21926,7 @@ anyOf
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|» *anonymous*|[MissingReasonEnum](#schemamissingreasonenum)|false|none|none|
+|» *anonymous*|[MissingReasonNotApplicableEnum](#schemamissingreasonnotapplicableenum)|false|none|none|
 
 or
 
@@ -21164,13 +22209,13 @@ continued
       "drug_name": "string",
       "drug_dose_units": "mg/m2",
       "days_per_cycle": 0,
-      "days_per_cycle_not_available": false,
+      "days_per_cycle_missing_reason": "Not available",
       "number_of_cycles": 0,
-      "number_of_cycles_not_available": false,
+      "number_of_cycles_missing_reason": "Not available",
       "prescribed_cumulative_drug_dose": 0,
-      "prescribed_cumulative_drug_dose_not_available": false,
+      "prescribed_cumulative_drug_dose_missing_reason": "Not available",
       "actual_cumulative_drug_dose": 0,
-      "actual_cumulative_drug_dose_not_available": false,
+      "actual_cumulative_drug_dose_missing_reason": "Not available",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -21181,9 +22226,9 @@ continued
       "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
       "radiation_therapy_type": "External",
       "radiation_therapy_fractions": 0,
-      "radiation_therapy_fractions_not_available": false,
+      "radiation_therapy_fractions_missing_reason": "Not available",
       "radiation_therapy_dosage": 0,
-      "radiation_therapy_dosage_not_available": false,
+      "radiation_therapy_dosage_missing_reason": "Not available",
       "anatomical_site_irradiated": "ABDOMEN_WHOLE",
       "radiation_boost": "Yes",
       "reference_radiation_treatment_id": "string",
@@ -21209,13 +22254,13 @@ continued
       },
       "end_date_missing_reason": "Not available",
       "cumulative_drug_dose": 0,
-      "cumulative_drug_dose_not_available": false,
+      "cumulative_drug_dose_missing_reason": "Not available",
       "drug_dose_units": "Bq",
       "mass_value": 0,
-      "mass_value_not_available": false,
+      "mass_value_missing_reason": "Not available",
       "mass_unit_ucum": "ug",
       "number_of_cycles": 0,
-      "number_of_cycles_not_available": false,
+      "number_of_cycles_missing_reason": "Not available",
       "program_id": "string",
       "submitter_donor_id": "string",
       "submitter_treatment_id": "string"
@@ -21229,11 +22274,11 @@ continued
       "surgery_site": "string",
       "surgery_location": "Local recurrence",
       "tumour_length": 0,
-      "tumour_length_not_available": false,
+      "tumour_length_missing_reason": "Not available",
       "tumour_width": 0,
-      "tumour_width_not_available": false,
+      "tumour_width_missing_reason": "Not available",
       "greatest_dimension_tumour": 0,
-      "greatest_dimension_tumour_not_available": false,
+      "greatest_dimension_tumour_missing_reason": "Not available",
       "tumour_focality": "Cannot be assessed",
       "residual_tumour_classification": "Not applicable",
       "margins_status": "Margins clear",
@@ -21283,19 +22328,19 @@ continued
       },
       "test_date_missing_reason": "Not available",
       "psa_level": 0,
-      "psa_level_not_available": false,
+      "psa_level_missing_reason": "Not available",
       "ca125": 0,
-      "ca125_not_available": false,
+      "ca125_missing_reason": "Not available",
       "cea": 0,
-      "cea_not_available": false,
+      "cea_missing_reason": "Not available",
       "ca19_9": 0,
-      "ca19_9_not_available": false,
+      "ca19_9_missing_reason": "Not available",
       "er_status": "Cannot be determined",
       "er_percent_positive": 0,
-      "er_percent_positive_not_available": false,
+      "er_percent_positive_missing_reason": "Not available",
       "pr_status": "Cannot be determined",
       "pr_percent_positive": 0,
-      "pr_percent_positive_not_available": false,
+      "pr_percent_positive_missing_reason": "Not available",
       "her2_ihc_status": "Cannot be determined",
       "her2_ish_status": "Cannot be determined",
       "hpv_ihc_status": "Cannot be determined",
@@ -21312,7 +22357,7 @@ continued
       "prior_malignancy": "Yes",
       "laterality_of_prior_malignancy": "Bilateral",
       "age_at_comorbidity_diagnosis": 0,
-      "age_at_comorbidity_diagnosis_not_available": false,
+      "age_at_comorbidity_diagnosis_missing_reason": "Not available",
       "comorbidity_type_code": "string",
       "comorbidity_treatment_status": "Yes",
       "comorbidity_treatment": "string",
@@ -21327,7 +22372,7 @@ continued
         "Chewing Tobacco"
       ],
       "pack_years_smoked": 0,
-      "pack_years_smoked_not_available": false,
+      "pack_years_smoked_missing_reason": "Not available",
       "program_id": "string",
       "submitter_donor_id": "string"
     }
@@ -21505,13 +22550,13 @@ AllModelsSchema
         "drug_name": "string",
         "drug_dose_units": "mg/m2",
         "days_per_cycle": 0,
-        "days_per_cycle_not_available": false,
+        "days_per_cycle_missing_reason": "Not available",
         "number_of_cycles": 0,
-        "number_of_cycles_not_available": false,
+        "number_of_cycles_missing_reason": "Not available",
         "prescribed_cumulative_drug_dose": 0,
-        "prescribed_cumulative_drug_dose_not_available": false,
+        "prescribed_cumulative_drug_dose_missing_reason": "Not available",
         "actual_cumulative_drug_dose": 0,
-        "actual_cumulative_drug_dose_not_available": false,
+        "actual_cumulative_drug_dose_missing_reason": "Not available",
         "program_id": "string",
         "submitter_donor_id": "string",
         "submitter_treatment_id": "string"
@@ -21522,9 +22567,9 @@ AllModelsSchema
         "radiation_therapy_modality": "Megavoltage radiation therapy using photons (procedure)",
         "radiation_therapy_type": "External",
         "radiation_therapy_fractions": 0,
-        "radiation_therapy_fractions_not_available": false,
+        "radiation_therapy_fractions_missing_reason": "Not available",
         "radiation_therapy_dosage": 0,
-        "radiation_therapy_dosage_not_available": false,
+        "radiation_therapy_dosage_missing_reason": "Not available",
         "anatomical_site_irradiated": "ABDOMEN_WHOLE",
         "radiation_boost": "Yes",
         "reference_radiation_treatment_id": "string",
@@ -21550,13 +22595,13 @@ AllModelsSchema
         },
         "end_date_missing_reason": "Not available",
         "cumulative_drug_dose": 0,
-        "cumulative_drug_dose_not_available": false,
+        "cumulative_drug_dose_missing_reason": "Not available",
         "drug_dose_units": "Bq",
         "mass_value": 0,
-        "mass_value_not_available": false,
+        "mass_value_missing_reason": "Not available",
         "mass_unit_ucum": "ug",
         "number_of_cycles": 0,
-        "number_of_cycles_not_available": false,
+        "number_of_cycles_missing_reason": "Not available",
         "program_id": "string",
         "submitter_donor_id": "string",
         "submitter_treatment_id": "string"
@@ -21570,11 +22615,11 @@ AllModelsSchema
         "surgery_site": "string",
         "surgery_location": "Local recurrence",
         "tumour_length": 0,
-        "tumour_length_not_available": false,
+        "tumour_length_missing_reason": "Not available",
         "tumour_width": 0,
-        "tumour_width_not_available": false,
+        "tumour_width_missing_reason": "Not available",
         "greatest_dimension_tumour": 0,
-        "greatest_dimension_tumour_not_available": false,
+        "greatest_dimension_tumour_missing_reason": "Not available",
         "tumour_focality": "Cannot be assessed",
         "residual_tumour_classification": "Not applicable",
         "margins_status": "Margins clear",
@@ -21624,19 +22669,19 @@ AllModelsSchema
         },
         "test_date_missing_reason": "Not available",
         "psa_level": 0,
-        "psa_level_not_available": false,
+        "psa_level_missing_reason": "Not available",
         "ca125": 0,
-        "ca125_not_available": false,
+        "ca125_missing_reason": "Not available",
         "cea": 0,
-        "cea_not_available": false,
+        "cea_missing_reason": "Not available",
         "ca19_9": 0,
-        "ca19_9_not_available": false,
+        "ca19_9_missing_reason": "Not available",
         "er_status": "Cannot be determined",
         "er_percent_positive": 0,
-        "er_percent_positive_not_available": false,
+        "er_percent_positive_missing_reason": "Not available",
         "pr_status": "Cannot be determined",
         "pr_percent_positive": 0,
-        "pr_percent_positive_not_available": false,
+        "pr_percent_positive_missing_reason": "Not available",
         "her2_ihc_status": "Cannot be determined",
         "her2_ish_status": "Cannot be determined",
         "hpv_ihc_status": "Cannot be determined",
@@ -21653,7 +22698,7 @@ AllModelsSchema
         "prior_malignancy": "Yes",
         "laterality_of_prior_malignancy": "Bilateral",
         "age_at_comorbidity_diagnosis": 0,
-        "age_at_comorbidity_diagnosis_not_available": false,
+        "age_at_comorbidity_diagnosis_missing_reason": "Not available",
         "comorbidity_type_code": "string",
         "comorbidity_treatment_status": "Yes",
         "comorbidity_treatment": "string",
@@ -21668,7 +22713,7 @@ AllModelsSchema
           "Chewing Tobacco"
         ],
         "pack_years_smoked": 0,
-        "pack_years_smoked_not_available": false,
+        "pack_years_smoked_missing_reason": "Not available",
         "program_id": "string",
         "submitter_donor_id": "string"
       }
