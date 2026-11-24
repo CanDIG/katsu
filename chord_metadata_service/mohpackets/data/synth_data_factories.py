@@ -592,49 +592,32 @@ class AllSynthTreatmentFactory(TreatmentFactory):
 
 
 class SynthSystemicTherapyFactory(SystemicTherapyFactory):
-
-    days_per_cycle_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    days_per_cycle = factory.Maybe(
-        "days_per_cycle_not_available",
-        None,
-        factory.Faker("random_int", min=1, max=30)
-    )
-    number_of_cycles_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    number_of_cycles = factory.Maybe(
-        "number_of_cycles_not_available",
-        None,
-        factory.Faker("random_int", min=1, max=10)
-    )
+    days_per_cycle_missing_reason = None
+    days_per_cycle = factory.Faker("random_int", min=1, max=30)
+    number_of_cycles_missing_reason = None
+    number_of_cycles = factory.Faker("random_int", min=1, max=10)
     drug_name = None
     drug_reference_database = None
     drug_reference_identifier = None
     drug_dose_units = factory.Faker("random_element", elements=SYNTH_VAL.DOSAGE_UNITS)
-    prescribed_cumulative_drug_dose_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    prescribed_cumulative_drug_dose = factory.Maybe(
-        "prescribed_cumulative_drug_dose_not_available",
-        None,
-        factory.Faker(
+    prescribed_cumulative_drug_dose_missing_reason = None
+    prescribed_cumulative_drug_dose = factory.Faker(
             "pyfloat",
             left_digits=2,
             right_digits=1,
             positive=True,
             min_value=20,
             max_value=50,
-        ),
-    )
-    actual_cumulative_drug_dose_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    actual_cumulative_drug_dose = factory.Maybe(
-        "actual_cumulative_drug_dose_not_available",
-        None,
-        factory.Faker(
+        )
+    actual_cumulative_drug_dose_missing_reason = None
+    actual_cumulative_drug_dose = factory.Faker(
             "pyfloat",
             left_digits=2,
             right_digits=1,
             positive=True,
             min_value=51,
             max_value=100,
-        ),
-    )
+        )
 
     @factory.post_generation
     def add_dates(self, create, extracted, **kwargs):
@@ -716,7 +699,7 @@ class SynthSystemicTherapyFactory(SystemicTherapyFactory):
             self.drug_reference_identifier = None
         else:
             self.drug_reference_database = random.choice(PERM_VAL.DRUG_REFERENCE_DB)
-            if self.drug_reference_database:
+            if self.drug_reference_database and self.drug_reference_database != "Currently incomplete":
                 if self.systemic_therapy_type == "Chemotherapy":
                     self.drug_name = random.choice(list(SYNTH_VAL.CHEMO_DRUGS.keys()))
                     if self.drug_name:
@@ -763,24 +746,25 @@ class AllSynthSystemicTherapyFactory(SynthSystemicTherapyFactory):
     def add_drug_info(self, create, extracted, **kwargs):
         if not self.systemic_therapy_type:
             self.systemic_therapy_type = random.choice(PERM_VAL.SYSTEMIC_THERAPY_TYPE)
-        if self.systemic_therapy_type == "Chemotherapy":
-            self.drug_name = random.choice(list(SYNTH_VAL.CHEMO_DRUGS.keys()))
-            if self.drug_name:
-                self.drug_reference_identifier = SYNTH_VAL.CHEMO_DRUGS[self.drug_name][
-                    self.drug_reference_database
-                ]
-        elif self.systemic_therapy_type == "Hormone therapy":
-            self.drug_name = random.choice(list(SYNTH_VAL.HORMONE_DRUGS.keys()))
-            if self.drug_name:
-                self.drug_reference_identifier = SYNTH_VAL.HORMONE_DRUGS[
-                    self.drug_name
-                ][self.drug_reference_database]
-        elif self.systemic_therapy_type == "Immunotherapy":
-            self.drug_name = random.choice(list(SYNTH_VAL.IMMUNO_DRUGS.keys()))
-            if self.drug_name:
-                self.drug_reference_identifier = SYNTH_VAL.IMMUNO_DRUGS[self.drug_name][
-                    self.drug_reference_database
-                ]
+        if self.drug_reference_database and self.drug_reference_database != "Currently incomplete":
+            if self.systemic_therapy_type == "Chemotherapy":
+                self.drug_name = random.choice(list(SYNTH_VAL.CHEMO_DRUGS.keys()))
+                if self.drug_name:
+                    self.drug_reference_identifier = SYNTH_VAL.CHEMO_DRUGS[self.drug_name][
+                        self.drug_reference_database
+                    ]
+            elif self.systemic_therapy_type == "Hormone therapy":
+                self.drug_name = random.choice(list(SYNTH_VAL.HORMONE_DRUGS.keys()))
+                if self.drug_name:
+                    self.drug_reference_identifier = SYNTH_VAL.HORMONE_DRUGS[
+                        self.drug_name
+                    ][self.drug_reference_database]
+            elif self.systemic_therapy_type == "Immunotherapy":
+                self.drug_name = random.choice(list(SYNTH_VAL.IMMUNO_DRUGS.keys()))
+                if self.drug_name:
+                    self.drug_reference_identifier = SYNTH_VAL.IMMUNO_DRUGS[self.drug_name][
+                        self.drug_reference_database
+                    ]
         # I don't know why but it is sometimes null but I don't want any nulls so catching it here
         if self.drug_name is None:
             self.drug_name = "Nivolumab"
@@ -853,32 +837,16 @@ class AllSynthSystemicTherapyFactory(SynthSystemicTherapyFactory):
 
 
 class SynthRadiopharmaceuticalTherapyFactory(RadiopharmaceuticalTherapyFactory):
-    cumulative_drug_dose_not_available = factory.LazyFunction(
-        lambda: random.random() < 0.15
-    )
-    cumulative_drug_dose = factory.Maybe(
-        "cumulative_drug_dose_not_available",
-        None,
-        factory.Faker(
+    cumulative_drug_dose_missing_reason = None
+    cumulative_drug_dose = factory.Faker(
             "pyfloat", left_digits=3, right_digits=1, positive=True, min_value=1, max_value=500
-        ),
-    )
-    mass_value_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    mass_value = factory.Maybe(
-        "mass_value_not_available",
-        None,
-        factory.Faker(
+        )
+    mass_value_missing_reason = None
+    mass_value = factory.Faker(
             "pyfloat", left_digits=2, right_digits=1, positive=True, min_value=1, max_value=100
-        ),
-    )
-    number_of_cycles_not_available = factory.LazyFunction(
-        lambda: random.random() < 0.15
-    )
-    number_of_cycles = factory.Maybe(
-        "number_of_cycles_not_available",
-        None,
-        factory.Faker("random_int", min=1, max=10),
-    )
+        )
+    number_of_cycles_missing_reason = None
+    number_of_cycles = factory.Faker("random_int", min=1, max=10)
 
 
 class NullSynthRadiopharmaceuticalTherapyFactory(RadiopharmaceuticalTherapyFactory):
@@ -899,15 +867,15 @@ class NullSynthRadiopharmaceuticalTherapyFactory(RadiopharmaceuticalTherapyFacto
 
 
 class AllSynthRadiopharmaceuticalTherapyFactory(SynthRadiopharmaceuticalTherapyFactory):
-    cumulative_drug_dose_not_available = False
+    cumulative_drug_dose_missing_reason = None
     cumulative_drug_dose = factory.Faker(
         "pyfloat", left_digits=3, right_digits=1, positive=True, min_value=1, max_value=500
     )
-    mass_value_not_available = False
+    mass_value_missing_reason = None
     mass_value = factory.Faker(
         "pyfloat", left_digits=2, right_digits=1, positive=True, min_value=1, max_value=100
     )
-    number_of_cycles_not_available = False
+    number_of_cycles_missing_reason = None
     number_of_cycles = factory.Faker("random_int", min=1, max=10)
     radionuclide_other = None
 
@@ -926,14 +894,10 @@ class SynthRadiationFactory(RadiationFactory):
         "random_element", elements=SYNTH_VAL.RADIATION_ANATOMICAL_SITE
     )
 
-    radiation_therapy_fractions_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    radiation_therapy_fractions = factory.Maybe(
-        "radiation_therapy_fractions_not_available", factory.Faker("random_int", min=1, max=30), None
-    )
-    radiation_therapy_dosage_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    radiation_therapy_dosage = factory.Maybe(
-        "radiation_therapy_dosage_not_available", factory.Faker("random_int", min=1, max=100), None
-    )
+    radiation_therapy_fractions_missing_reason = None
+    radiation_therapy_fractions = factory.Faker("random_int", min=1, max=30)
+    radiation_therapy_dosage_missing_reason = None
+    radiation_therapy_dosage = factory.Faker("random_int", min=1, max=100)
     radiation_boost = "No"
     reference_radiation_treatment_id = None
 
@@ -967,18 +931,12 @@ class SynthSurgeryFactory(SurgeryFactory):
     surgery_location = factory.Faker(
         "random_element", elements=SYNTH_VAL.SURGERY_LOCATION
     )
-    tumour_length_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    tumour_length = factory.Maybe(
-        "tumour_length_not_available", None, factory.Faker("random_int", min=1, max=10)
-    )
-    tumour_width_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    tumour_width = factory.Maybe(
-        "tumour_width_not_available", None, factory.Faker("random_int", min=1, max=10)
-    )
-    greatest_dimension_tumour_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    greatest_dimension_tumour = factory.Maybe(
-        "greatest_dimension_tumour_not_available", None, factory.Faker("random_int", min=1, max=10)
-    )
+    tumour_length_missing_reason = None
+    tumour_length = factory.Faker("random_int", min=1, max=10)
+    tumour_width_missing_reason = None
+    tumour_width = factory.Faker("random_int", min=1, max=10)
+    greatest_dimension_tumour_missing_reason = None
+    greatest_dimension_tumour = factory.Faker("random_int", min=1, max=10)
     tumour_focality = factory.Faker(
         "random_element", elements=SYNTH_VAL.TUMOUR_FOCALITY
     )
@@ -1029,11 +987,11 @@ class AllSynthSurgeryFactory(SurgeryFactory):
         "random_element", elements=SYNTH_VAL.ALL_SURGERY_LOCATION
     )
     tumour_length = factory.Faker("random_int", min=1, max=10)
-    tumour_length_not_available = False
+    tumour_length_missing_reason = None
     tumour_width = factory.Faker("random_int", min=1, max=10)
-    tumour_width_not_available = False
+    tumour_width_missing_reason = None
     greatest_dimension_tumour = factory.Faker("random_int", min=1, max=10)
-    greatest_dimension_tumour_not_available = False
+    greatest_dimension_tumour_missing_reason = None
     tumour_focality = factory.Faker(
         "random_element", elements=SYNTH_VAL.ALL_TUMOUR_FOCALITY
     )
@@ -1075,23 +1033,34 @@ class SynthBiomarkerFactory(BiomarkerFactory):
     pr_status = factory.Faker("random_element", elements=SYNTH_VAL.ER_PR_HPV_STATUS)
     her2_ihc_status = factory.Faker("random_element", elements=SYNTH_VAL.HER2_STATUS)
     her2_ish_status = factory.Faker("random_element", elements=SYNTH_VAL.HER2_STATUS)
-    psa_level_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    psa_level = factory.Maybe("psa_level_not_available",
-                              None,
-                              factory.Faker("pyfloat", min_value=0, max_value=100))
-    ca125_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    ca125 = factory.Maybe("ca125_not_available",
-                          None,
-                          factory.Faker("pyfloat", min_value=0, max_value=100))
-    cea_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    cea = factory.Maybe("cea_not_available",
-                        None,
-                        factory.Faker("pyfloat", min_value=0, max_value=100))
-    ca19_9_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
-    ca19_9 = factory.Maybe("ca19_9_not_available",
-                           None,
-                           factory.Faker("pyfloat", min_value=0, max_value=100))
-
+    if random.randint(1,10) == 1:
+        # 10% missing reason
+        psa_level_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+        psa_level = None
+    else:
+        psa_level_missing_reason = None
+        psa_level = factory.Faker("pyfloat", min_value=0, max_value=100)
+    if random.randint(1,10) == 1:
+        # 10% missing reason
+        ca125_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+        ca125 = None
+    else:
+        ca125_missing_reason = None
+        ca125 = factory.Faker("pyfloat", min_value=0, max_value=100)
+    if random.randint(1,10) == 1:
+        # 10% missing reason
+        cea_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+        cea = None
+    else:
+        cea_missing_reason = None
+        cea = factory.Faker("pyfloat", min_value=0, max_value=100)
+    if random.randint(1,10) == 1:
+        # 10% missing reason
+        ca19_9_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+        ca19_9 = None
+    else:
+        ca19_9_missing_reason = None
+        ca19_9 = factory.Faker("pyfloat", min_value=0, max_value=100)
     null_hpv_strain = factory.LazyFunction(lambda: random.random() < 0.15)
     hpv_strain = factory.Maybe(
         "null_hpv_strain",
@@ -1239,13 +1208,13 @@ class AllSynthBiomarkerFactory(SynthBiomarkerFactory):
     pr_status = factory.Faker("random_element", elements=SYNTH_VAL.ALL_ER_PR_HPV_STATUS)
     her2_ihc_status = factory.Faker("random_element", elements=SYNTH_VAL.ALL_HER2_STATUS)
     her2_ish_status = factory.Faker("random_element", elements=SYNTH_VAL.ALL_HER2_STATUS)
-    psa_level_not_available = False
+    psa_level_missing_reason = None
     psa_level = factory.Faker("pyfloat", min_value=0, max_value=100)
-    ca125_not_available = False
+    ca125_missing_reason = None
     ca125 = factory.Faker("pyfloat", min_value=0, max_value=100)
-    cea_not_available = False
+    cea_missing_reason = None
     cea = factory.Faker("pyfloat", min_value=0, max_value=100)
-    ca19_9_not_available = False
+    ca19_9_missing_reason = None
     ca19_9 = factory.Faker("pyfloat", min_value=0, max_value=100)
     hpv_strain = factory.Faker(
         "random_elements",
@@ -1309,7 +1278,11 @@ class SynthComorbidityFactory(ComorbidityFactory):
     comorbidity_type_code = factory.Faker(
         "random_element", elements=SYNTH_VAL.ALL_CODES
     )
-    age_at_comorbidity_diagnosis_not_available = factory.LazyFunction(lambda: random.random() < 0.15)
+    if random.randint(1,10) == 1:
+        # 10% missing reason
+        age_at_comorbidity_diagnosis_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+    else:
+        age_at_comorbidity_diagnosis_missing_reason = None
 
     @factory.post_generation
     def set_priors(self, create, extracted, **kwargs):
@@ -1328,7 +1301,7 @@ class SynthComorbidityFactory(ComorbidityFactory):
                 PERM_VAL.MALIGNANCY_LATERALITY
             )
             if donor.date_of_birth:
-                if not comorbidity.age_at_comorbidity_diagnosis_not_available:
+                if comorbidity.age_at_comorbidity_diagnosis_missing_reason is None:
                     comorbidity.age_at_comorbidity_diagnosis = random.randint(
                         10, age_at_diagnosis
                     )
@@ -1339,7 +1312,7 @@ class SynthComorbidityFactory(ComorbidityFactory):
         elif comorbidity.comorbidity_type_code:
             comorbidity.comorbidity_treatment_status = random.choice(PERM_VAL.UBOOLEAN)
             if donor.date_of_birth:
-                if not comorbidity.age_at_comorbidity_diagnosis_not_available:
+                if comorbidity.age_at_comorbidity_diagnosis_missing_reason is not None:
                     comorbidity.age_at_comorbidity_diagnosis = random.randint(
                         10, age_at_diagnosis
                     )
@@ -1601,8 +1574,12 @@ class SynthExposureFactory(ExposureFactory):
                 ):
                     self.pack_years_smoked = None
                 else:
-                    self.pack_years_smoked_not_available = random.choice([True, False])
-                    if not self.pack_years_smoked_not_available:
+                    if random.randint(1,10) == 1:
+                        # 10% missing reason
+                        self.pack_years_smoked_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+                        self.pack_years_smoked = None
+                    else:
+                        self.pack_years_smoked_missing_reason = None
                         self.pack_years_smoked = random.randint(5, 70)
 
 
@@ -1622,7 +1599,7 @@ class AllSynthExposureFactory(SynthExposureFactory):
                 )
                 if len(self.tobacco_type) > 1 and "Unknown" in self.tobacco_type:
                     self.tobacco_type.remove("Unknown")
-                    self.pack_years_smoked_not_available = False
+                    self.pack_years_smoked_missing_reason = None
                     self.pack_years_smoked = random.randint(5, 70)
 
 
