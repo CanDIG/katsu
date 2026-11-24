@@ -592,7 +592,6 @@ class AllSynthTreatmentFactory(TreatmentFactory):
 
 
 class SynthSystemicTherapyFactory(SystemicTherapyFactory):
-
     days_per_cycle_missing_reason = None
     days_per_cycle = factory.Faker("random_int", min=1, max=30)
     number_of_cycles_missing_reason = None
@@ -1034,15 +1033,34 @@ class SynthBiomarkerFactory(BiomarkerFactory):
     pr_status = factory.Faker("random_element", elements=SYNTH_VAL.ER_PR_HPV_STATUS)
     her2_ihc_status = factory.Faker("random_element", elements=SYNTH_VAL.HER2_STATUS)
     her2_ish_status = factory.Faker("random_element", elements=SYNTH_VAL.HER2_STATUS)
-    psa_level_missing_reason = None
-    psa_level = factory.Faker("pyfloat", min_value=0, max_value=100)
-    ca125_missing_reason = None
-    ca125 = factory.Faker("pyfloat", min_value=0, max_value=100)
-    cea_missing_reason = None
-    cea = factory.Faker("pyfloat", min_value=0, max_value=100)
-    ca19_9_missing_reason = None
-    ca19_9 = factory.Faker("pyfloat", min_value=0, max_value=100)
-
+    if random.randint(1,10) == 1:
+        # 10% missing reason
+        psa_level_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+        psa_level = None
+    else:
+        psa_level_missing_reason = None
+        psa_level = factory.Faker("pyfloat", min_value=0, max_value=100)
+    if random.randint(1,10) == 1:
+        # 10% missing reason
+        ca125_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+        ca125 = None
+    else:
+        ca125_missing_reason = None
+        ca125 = factory.Faker("pyfloat", min_value=0, max_value=100)
+    if random.randint(1,10) == 1:
+        # 10% missing reason
+        cea_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+        cea = None
+    else:
+        cea_missing_reason = None
+        cea = factory.Faker("pyfloat", min_value=0, max_value=100)
+    if random.randint(1,10) == 1:
+        # 10% missing reason
+        ca19_9_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+        ca19_9 = None
+    else:
+        ca19_9_missing_reason = None
+        ca19_9 = factory.Faker("pyfloat", min_value=0, max_value=100)
     null_hpv_strain = factory.LazyFunction(lambda: random.random() < 0.15)
     hpv_strain = factory.Maybe(
         "null_hpv_strain",
@@ -1279,7 +1297,12 @@ class SynthComorbidityFactory(ComorbidityFactory):
                 PERM_VAL.MALIGNANCY_LATERALITY
             )
             if donor.date_of_birth:
-                if comorbidity.age_at_comorbidity_diagnosis_missing_reason is not None:
+                if random.randint(1,10) == 1:
+                    # 10% missing reason
+                    comorbidity.age_at_comorbidity_diagnosis_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+                    comorbidity.age_at_comorbidity_diagnosis = None
+                else:
+                    comorbidity.age_at_comorbidity_diagnosis_missing_reason = None
                     comorbidity.age_at_comorbidity_diagnosis = random.randint(
                         10, age_at_diagnosis
                     )
@@ -1552,8 +1575,12 @@ class SynthExposureFactory(ExposureFactory):
                 ):
                     self.pack_years_smoked = None
                 else:
-                    self.pack_years_smoked_missing_reason = None
-                    if self.pack_years_smoked_missing_reason is not None:
+                    if random.randint(1,10) == 1:
+                        # 10% missing reason
+                        self.pack_years_smoked_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+                        self.pack_years_smoked = None
+                    else:
+                        self.pack_years_smoked_missing_reason = None
                         self.pack_years_smoked = random.randint(5, 70)
 
 
