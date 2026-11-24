@@ -1278,7 +1278,11 @@ class SynthComorbidityFactory(ComorbidityFactory):
     comorbidity_type_code = factory.Faker(
         "random_element", elements=SYNTH_VAL.ALL_CODES
     )
-    age_at_comorbidity_diagnosis_missing_reason = None
+    if random.randint(1,10) == 1:
+        # 10% missing reason
+        age_at_comorbidity_diagnosis_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
+    else:
+        age_at_comorbidity_diagnosis_missing_reason = None
 
     @factory.post_generation
     def set_priors(self, create, extracted, **kwargs):
@@ -1297,12 +1301,7 @@ class SynthComorbidityFactory(ComorbidityFactory):
                 PERM_VAL.MALIGNANCY_LATERALITY
             )
             if donor.date_of_birth:
-                if random.randint(1,10) == 1:
-                    # 10% missing reason
-                    comorbidity.age_at_comorbidity_diagnosis_missing_reason = factory.Faker("random_element", elements=PERM_VAL.MISSING_REASON)
-                    comorbidity.age_at_comorbidity_diagnosis = None
-                else:
-                    comorbidity.age_at_comorbidity_diagnosis_missing_reason = None
+                if comorbidity.age_at_comorbidity_diagnosis_missing_reason is None:
                     comorbidity.age_at_comorbidity_diagnosis = random.randint(
                         10, age_at_diagnosis
                     )
